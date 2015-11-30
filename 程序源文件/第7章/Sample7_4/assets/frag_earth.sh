@@ -1,14 +1,14 @@
-//µØÇò×ÅÉ«Æ÷
+//åœ°çƒç€è‰²å™¨
 precision mediump float;
-varying vec2 vTextureCoord;//½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
+varying vec2 vTextureCoord;//æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
 varying vec4 vAmbient;
 varying vec4 vDiffuse;
 varying vec4 vSpecular;
-uniform sampler2D sTextureDay;//ÎÆÀíÄÚÈİÊı¾İ
-uniform sampler2D sTextureNight;//ÎÆÀíÄÚÈİÊı¾İ
+uniform sampler2D sTextureDay;//çº¹ç†å†…å®¹æ•°æ®
+uniform sampler2D sTextureNight;//çº¹ç†å†…å®¹æ•°æ®
 void main()                         
 {  
-  //¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ   
+  //ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼   
   vec4 finalColorDay;   
   vec4 finalColorNight;   
   

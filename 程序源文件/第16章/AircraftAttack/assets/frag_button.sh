@@ -1,12 +1,12 @@
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
-uniform int uisButtonDown;//°´Å¥ÊÇ·ñ°´ÏÂ,Èç¹û°´ÏÂ,¸Ä±äÆä²»Í¸Ã÷¶È
+varying vec2 vTextureCoord; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
+uniform int uisButtonDown;//æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹,å¦‚æœæŒ‰ä¸‹,æ”¹å˜å…¶ä¸é€æ˜åº¦
 void main()                         
 {           
-   //¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ            
+   //ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼            
    vec4 finalColor = texture2D(sTexture, vTextureCoord); 
-   if(uisButtonDown==1)//µ±Ç°°´Å¥°´ÏÂ
+   if(uisButtonDown==1)//å½“å‰æŒ‰é’®æŒ‰ä¸‹
    {
    	  gl_FragColor=finalColor*0.5;
    }

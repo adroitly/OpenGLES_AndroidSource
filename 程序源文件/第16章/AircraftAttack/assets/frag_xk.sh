@@ -1,5 +1,5 @@
-//ĞÇ¿Õ×ÅÉ«Æ÷
+//æ˜Ÿç©ºç€è‰²å™¨
 precision mediump float;
 void main(){
-  gl_FragColor = vec4(1.0,1.0,1.0,1.0); //¸ø´ËÆ¬ÔªÑÕÉ«Öµ 
+  gl_FragColor = vec4(1.0,1.0,1.0,1.0); //ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼ 
 }              

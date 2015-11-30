@@ -1,12 +1,12 @@
 precision mediump float;
-varying  vec4 vaaColor; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
+varying  vec4 vaaColor; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
 varying vec4 vambient;
 varying vec4 vdiffuse;
 varying vec4 vspecular;
 void main()                         
 {
-   //½«ÑÕÉ«¸ø´ËÆ¬Ôª
+   //å°†é¢œè‰²ç»™æ­¤ç‰‡å…ƒ
 	vec4 finalColor = vaaColor;
-   //¸ø´ËÆ¬ÔªÑÕÉ«Öµ 
-   gl_FragColor = finalColor*vambient+finalColor*vspecular+finalColor*vdiffuse;//¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+   //ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼ 
+   gl_FragColor = finalColor*vambient+finalColor*vspecular+finalColor*vdiffuse;//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
 }              

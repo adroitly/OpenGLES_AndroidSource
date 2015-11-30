@@ -1,12 +1,12 @@
 precision mediump float;
-varying  vec3 vPosition;  //¶¥µãÎ»ÖÃ
+varying  vec3 vPosition;  //é¡¶ç‚¹ä½ç½®
 void main() {
-   vec4 bColor=vec4(0.678,0.231,0.129,0);//×©¿éµÄÑÕÉ«
-   vec4 mColor=vec4(0.763,0.657,0.614,0);//¼ä¸ôµÄÑÕÉ«
+   vec4 bColor=vec4(0.678,0.231,0.129,0);//ç –å—çš„é¢œè‰²
+   vec4 mColor=vec4(0.763,0.657,0.614,0);//é—´éš”çš„é¢œè‰²
    float y=vPosition.y;
    y=mod((y+100.0)*4.0,4.0);
    if(y>1.8) {
-     gl_FragColor = bColor;//¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+     gl_FragColor = bColor;//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
    } else {
-     gl_FragColor = mColor;//¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+     gl_FragColor = mColor;//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
 }} 

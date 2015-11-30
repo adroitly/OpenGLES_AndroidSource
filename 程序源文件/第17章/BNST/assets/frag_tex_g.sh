@@ -1,7 +1,7 @@
-//¾ßÓĞÎÆÀí¹¦ÄÜµÄÆ¬Ôª×ÅÉ«Æ÷
+//å…·æœ‰çº¹ç†åŠŸèƒ½çš„ç‰‡å…ƒç€è‰²å™¨
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
+varying vec2 vTextureCoord; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
 void main()                         
 {
    gl_FragColor = texture2D(sTexture, vTextureCoord);    

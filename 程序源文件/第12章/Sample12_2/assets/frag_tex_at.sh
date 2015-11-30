@@ -1,8 +1,8 @@
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
+varying vec2 vTextureCoord; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
 void main() { 
-   vec4 bcolor = texture2D(sTexture, vTextureCoord);//¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ 
+   vec4 bcolor = texture2D(sTexture, vTextureCoord);//ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼ 
    if(bcolor.a<0.6) {
    		discard;
    } else {

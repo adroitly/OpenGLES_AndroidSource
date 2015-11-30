@@ -1,28 +1,28 @@
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕÎÆÀí×ø±ê²ÎÊı
-varying float vertexHeight;//½ÓÊÜ¶¥µãµÄ¸ß¶ÈÖµ
-uniform sampler2D usTextureTuCeng;//ÎÆÀíÄÚÈİÊı¾İ   ----ÍÁ²ã
-uniform sampler2D usTextureCaoDi;//ÎÆÀíÄÚÈİÊı¾İ-----²İµØ
-uniform sampler2D usTextureShiTou;//ÎÆÀíÄÚÈİÊı¾İ-----Ê¯Í·
-uniform sampler2D usTextureShanDing;//ÎÆÀíÄÚÈİÊı¾İ-----É½¶¥
-uniform float uheight;//×îµÍµã¸ß¶È
+varying vec2 vTextureCoord; //æ¥æ”¶çº¹ç†åæ ‡å‚æ•°
+varying float vertexHeight;//æ¥å—é¡¶ç‚¹çš„é«˜åº¦å€¼
+uniform sampler2D usTextureTuCeng;//çº¹ç†å†…å®¹æ•°æ®   ----åœŸå±‚
+uniform sampler2D usTextureCaoDi;//çº¹ç†å†…å®¹æ•°æ®-----è‰åœ°
+uniform sampler2D usTextureShiTou;//çº¹ç†å†…å®¹æ•°æ®-----çŸ³å¤´
+uniform sampler2D usTextureShanDing;//çº¹ç†å†…å®¹æ•°æ®-----å±±é¡¶
+uniform float uheight;//æœ€ä½ç‚¹é«˜åº¦
 uniform float uheight_span;
-uniform int uland_flag;//É½µÄ±êÖ¾1ÎªµØÃæÉÏµÄ¸ßÉ½
+uniform int uland_flag;//å±±çš„æ ‡å¿—1ä¸ºåœ°é¢ä¸Šçš„é«˜å±±
 void main()                         
 {           
-   //µÚÒ»¿éµØÍ¼µÄ¸ß¶È
- 	float height1=30.0;//µÚÒ»¸öµÄ½¥±ä¸ß¶È
+   //ç¬¬ä¸€å—åœ°å›¾çš„é«˜åº¦
+ 	float height1=30.0;//ç¬¬ä¸€ä¸ªçš„æ¸å˜é«˜åº¦
  	float height2=30.0;
  	float height3=10.0;
  	
- 	float land1=250.0;//Â½µØÉ½µÄ¹ı¶È
+ 	float land1=250.0;//é™†åœ°å±±çš„è¿‡åº¦
 	float land2=400.0;
 
- 	vec4 finalColor0=vec4(0.3,0.3,0.3,0.5);//ºÚÉ«Ìõ
-   vec4 finalColor1=texture2D(usTextureTuCeng, vTextureCoord);//ÍÁ²ã
-   vec4 finalColor2=texture2D(usTextureCaoDi, vTextureCoord);   //²İµØ
-   vec4 finalColor3=texture2D(usTextureShiTou, vTextureCoord);//Ê¯Í·
-   vec4 finalColor4=texture2D(usTextureShanDing, vTextureCoord);//É½¶¥ÎÆÀí
+ 	vec4 finalColor0=vec4(0.3,0.3,0.3,0.5);//é»‘è‰²æ¡
+   vec4 finalColor1=texture2D(usTextureTuCeng, vTextureCoord);//åœŸå±‚
+   vec4 finalColor2=texture2D(usTextureCaoDi, vTextureCoord);   //è‰åœ°
+   vec4 finalColor3=texture2D(usTextureShiTou, vTextureCoord);//çŸ³å¤´
+   vec4 finalColor4=texture2D(usTextureShanDing, vTextureCoord);//å±±é¡¶çº¹ç†
    if(uland_flag==0)
    {
 	   if(abs(vertexHeight)<uheight)
@@ -32,7 +32,7 @@ void main()
 	   	  finalColor0 *=ratio;
 	      gl_FragColor =finalColor3+ finalColor0;
 	   }
-	   else if(abs(vertexHeight)>=uheight&&abs(vertexHeight)<=uheight+height1)//µÚÒ»¸ö½¥±ä¸ß¶È
+	   else if(abs(vertexHeight)>=uheight&&abs(vertexHeight)<=uheight+height1)//ç¬¬ä¸€ä¸ªæ¸å˜é«˜åº¦
 	   {
 	   		float ratio=(abs(vertexHeight)-uheight)/height1;
 	   		finalColor0 *=(1.0-ratio); 

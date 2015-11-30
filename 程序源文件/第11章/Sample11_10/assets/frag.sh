@@ -1,5 +1,5 @@
 precision mediump float;
-//½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
+//æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
 varying vec4 diffuse;
 varying vec4 specular;
 varying float vEdge;
@@ -22,8 +22,8 @@ void main()
    vec4 specularFinal = vec4(averageSpecular, averageSpecular, averageSpecular, 1.0);
    
    float edgeFinal = 1.0;
-   if(vEdge<0.2){//Èç¹ûÎª±ßÔµÏñËØ£¬ÓÃºÚÉ«Ãè±ß
+   if(vEdge<0.2){//å¦‚æœä¸ºè¾¹ç¼˜åƒç´ ï¼Œç”¨é»‘è‰²æè¾¹
        edgeFinal = 0.0;
    }
-   gl_FragColor = edgeFinal*(specularFinal+diffuseFinal);//¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+   gl_FragColor = edgeFinal*(specularFinal+diffuseFinal);//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
 }

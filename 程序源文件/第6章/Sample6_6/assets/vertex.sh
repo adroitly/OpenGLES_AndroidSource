@@ -1,45 +1,45 @@
-uniform mat4 uMVPMatrix; //×Ü±ä»»¾ØÕó
-uniform mat4 uMMatrix; //±ä»»¾ØÕó
-uniform vec3 uLightDirection;	//¹âÔ´·½Ïò
-uniform vec3 uCamera;	//ÉãÏñ»úÎ»ÖÃ
-attribute vec3 aPosition;  //¶¥µãÎ»ÖÃ
-attribute vec3 aNormal;    //·¨ÏòÁ¿
-varying vec3 vPosition;			//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ¶¥µãÎ»ÖÃ
-varying vec4 vAmbient;			//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ»·¾³¹â×îÖÕÇ¿¶È
-varying vec4 vDiffuse;			//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄÉ¢Éä¹â×îÖÕÇ¿¶È
-varying vec4 vSpecular;			//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ¾µÃæ¹â×îÖÕÇ¿¶È
-void directionalLight(			//¶¨Ïò¹â¹âÕÕ¼ÆËãµÄ·½·¨
-  in vec3 normal,				//·¨ÏòÁ¿
-  inout vec4 ambient,			//»·¾³¹â×îÖÕÇ¿¶È
-  inout vec4 diffuse,				//É¢Éä¹â×îÖÕÇ¿¶È
-  inout vec4 specular,			//¾µÃæ¹â×îÖÕÇ¿¶È
-  in vec3 lightDirection,			//¶¨Ïò¹â·½Ïò
-  in vec4 lightAmbient,			//»·¾³¹âÇ¿¶È
-  in vec4 lightDiffuse,			//É¢Éä¹âÇ¿¶È
-  in vec4 lightSpecular			//¾µÃæ¹âÇ¿¶È
+uniform mat4 uMVPMatrix; //æ€»å˜æ¢çŸ©é˜µ
+uniform mat4 uMMatrix; //å˜æ¢çŸ©é˜µ
+uniform vec3 uLightDirection;	//å…‰æºæ–¹å‘
+uniform vec3 uCamera;	//æ‘„åƒæœºä½ç½®
+attribute vec3 aPosition;  //é¡¶ç‚¹ä½ç½®
+attribute vec3 aNormal;    //æ³•å‘é‡
+varying vec3 vPosition;			//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„é¡¶ç‚¹ä½ç½®
+varying vec4 vAmbient;			//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„ç¯å¢ƒå…‰æœ€ç»ˆå¼ºåº¦
+varying vec4 vDiffuse;			//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„æ•£å°„å…‰æœ€ç»ˆå¼ºåº¦
+varying vec4 vSpecular;			//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„é•œé¢å…‰æœ€ç»ˆå¼ºåº¦
+void directionalLight(			//å®šå‘å…‰å…‰ç…§è®¡ç®—çš„æ–¹æ³•
+  in vec3 normal,				//æ³•å‘é‡
+  inout vec4 ambient,			//ç¯å¢ƒå…‰æœ€ç»ˆå¼ºåº¦
+  inout vec4 diffuse,				//æ•£å°„å…‰æœ€ç»ˆå¼ºåº¦
+  inout vec4 specular,			//é•œé¢å…‰æœ€ç»ˆå¼ºåº¦
+  in vec3 lightDirection,			//å®šå‘å…‰æ–¹å‘
+  in vec4 lightAmbient,			//ç¯å¢ƒå…‰å¼ºåº¦
+  in vec4 lightDiffuse,			//æ•£å°„å…‰å¼ºåº¦
+  in vec4 lightSpecular			//é•œé¢å…‰å¼ºåº¦
 ){
-  ambient=lightAmbient;			//Ö±½ÓµÃ³ö»·¾³¹âµÄ×îÖÕÇ¿¶È  
-  vec3 normalTarget=aPosition+normal;	//¼ÆËã±ä»»ºóµÄ·¨ÏòÁ¿
+  ambient=lightAmbient;			//ç›´æ¥å¾—å‡ºç¯å¢ƒå…‰çš„æœ€ç»ˆå¼ºåº¦  
+  vec3 normalTarget=aPosition+normal;	//è®¡ç®—å˜æ¢åçš„æ³•å‘é‡
   vec3 newNormal=(uMMatrix*vec4(normalTarget,1)).xyz-(uMMatrix*vec4(aPosition,1)).xyz;
-  newNormal=normalize(newNormal); 	//¶Ô·¨ÏòÁ¿¹æ¸ñ»¯
-  //¼ÆËã´Ó±íÃæµãµ½ÉãÏñ»úµÄÏòÁ¿
+  newNormal=normalize(newNormal); 	//å¯¹æ³•å‘é‡è§„æ ¼åŒ–
+  //è®¡ç®—ä»è¡¨é¢ç‚¹åˆ°æ‘„åƒæœºçš„å‘é‡
   vec3 eye= normalize(uCamera-(uMMatrix*vec4(aPosition,1)).xyz);    
-  vec3 vp= normalize(lightDirection);  //¹æ¸ñ»¯¶¨Ïò¹â·½ÏòÏòÁ¿
-  vec3 halfVector=normalize(vp+eye);	//ÇóÊÓÏßÓë¹âÏßµÄ°ëÏòÁ¿    
-  float shininess=50.0;				//´Ö²Ú¶È£¬Ô½Ğ¡Ô½¹â»¬
-  float nDotViewPosition=max(0.0,dot(newNormal,vp)); 	//Çó·¨ÏòÁ¿ÓëvpµÄµã»ıÓë0µÄ×î´óÖµ
-  diffuse=lightDiffuse*nDotViewPosition;				//¼ÆËãÉ¢Éä¹âµÄ×îÖÕÇ¿¶È
-  float nDotViewHalfVector=dot(newNormal,halfVector);	//·¨ÏßÓë°ëÏòÁ¿µÄµã»ı 
-  float powerFactor=max(0.0,pow(nDotViewHalfVector,shininess)); 	//¾µÃæ·´Éä¹âÇ¿¶ÈÒò×Ó
-  specular=lightSpecular*powerFactor;    			//¼ÆËã¾µÃæ¹âµÄ×îÖÕÇ¿¶È
+  vec3 vp= normalize(lightDirection);  //è§„æ ¼åŒ–å®šå‘å…‰æ–¹å‘å‘é‡
+  vec3 halfVector=normalize(vp+eye);	//æ±‚è§†çº¿ä¸å…‰çº¿çš„åŠå‘é‡    
+  float shininess=50.0;				//ç²—ç³™åº¦ï¼Œè¶Šå°è¶Šå…‰æ»‘
+  float nDotViewPosition=max(0.0,dot(newNormal,vp)); 	//æ±‚æ³•å‘é‡ä¸vpçš„ç‚¹ç§¯ä¸0çš„æœ€å¤§å€¼
+  diffuse=lightDiffuse*nDotViewPosition;				//è®¡ç®—æ•£å°„å…‰çš„æœ€ç»ˆå¼ºåº¦
+  float nDotViewHalfVector=dot(newNormal,halfVector);	//æ³•çº¿ä¸åŠå‘é‡çš„ç‚¹ç§¯ 
+  float powerFactor=max(0.0,pow(nDotViewHalfVector,shininess)); 	//é•œé¢åå°„å…‰å¼ºåº¦å› å­
+  specular=lightSpecular*powerFactor;    			//è®¡ç®—é•œé¢å…‰çš„æœ€ç»ˆå¼ºåº¦
 }
 void main(){ 
-   gl_Position = uMVPMatrix * vec4(aPosition,1); //¸ù¾İ×Ü±ä»»¾ØÕó¼ÆËã´Ë´Î»æÖÆ´Ë¶¥µãÎ»ÖÃ     
-   vec4 ambientTemp,diffuseTemp,specularTemp;	  //ÓÃÀ´½ÓÊÕÈı¸öÍ¨µÀ×îÖÕÇ¿¶ÈµÄ±äÁ¿    
+   gl_Position = uMVPMatrix * vec4(aPosition,1); //æ ¹æ®æ€»å˜æ¢çŸ©é˜µè®¡ç®—æ­¤æ¬¡ç»˜åˆ¶æ­¤é¡¶ç‚¹ä½ç½®     
+   vec4 ambientTemp,diffuseTemp,specularTemp;	  //ç”¨æ¥æ¥æ”¶ä¸‰ä¸ªé€šé“æœ€ç»ˆå¼ºåº¦çš„å˜é‡    
    directionalLight(normalize(aNormal),ambientTemp,diffuseTemp,specularTemp,uLightDirection,
    vec4(0.15,0.15,0.15,1.0),vec4(0.8,0.8,0.8,1.0),vec4(0.7,0.7,0.7,1.0));
-   vAmbient=ambientTemp; 		//½«»·¾³¹â×îÖÕÇ¿¶È´«¸øÆ¬Ôª×ÅÉ«Æ÷
-   vDiffuse=diffuseTemp; 		//½«É¢Éä¹â×îÖÕÇ¿¶È´«¸øÆ¬Ôª×ÅÉ«Æ÷
-   vSpecular=specularTemp; 		//½«¾µÃæ¹â×îÖÕÇ¿¶È´«¸øÆ¬Ôª×ÅÉ«Æ÷     
-   vPosition = aPosition; //½«¶¥µãµÄÎ»ÖÃ´«¸øÆ¬Ôª×ÅÉ«Æ÷
+   vAmbient=ambientTemp; 		//å°†ç¯å¢ƒå…‰æœ€ç»ˆå¼ºåº¦ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
+   vDiffuse=diffuseTemp; 		//å°†æ•£å°„å…‰æœ€ç»ˆå¼ºåº¦ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
+   vSpecular=specularTemp; 		//å°†é•œé¢å…‰æœ€ç»ˆå¼ºåº¦ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨     
+   vPosition = aPosition; //å°†é¡¶ç‚¹çš„ä½ç½®ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
 }                      

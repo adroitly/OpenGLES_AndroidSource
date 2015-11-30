@@ -1,13 +1,13 @@
 precision mediump float;
-//½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform float colorR;//ÑÕÉ«ÖµµÄR·ÖÁ¿
-uniform float colorG;//ÑÕÉ«ÖµµÄG·ÖÁ¿
-uniform float colorB;//ÑÕÉ«ÖµµÄB·ÖÁ¿
+//æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform float colorR;//é¢œè‰²å€¼çš„Råˆ†é‡
+uniform float colorG;//é¢œè‰²å€¼çš„Gåˆ†é‡
+uniform float colorB;//é¢œè‰²å€¼çš„Båˆ†é‡
 uniform float colorA;
 void main()                         
 {    
-    //½«¼ÆËã³öµÄÑÕÉ«¸ø´ËÆ¬Ôª
+    //å°†è®¡ç®—å‡ºçš„é¢œè‰²ç»™æ­¤ç‰‡å…ƒ
 	vec4 finalColor;
 	finalColor=vec4(colorR,colorG,colorB,colorA);
-    gl_FragColor = finalColor;//¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+    gl_FragColor = finalColor;//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
 }

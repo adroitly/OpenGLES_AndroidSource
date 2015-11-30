@@ -1,18 +1,18 @@
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
+varying vec2 vTextureCoord; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
 
 varying float currY;
-uniform sampler2D sTextureGrass;//ÎÆÀíÄÚÈİÊı¾İ£¨²İÆ¤£©
-uniform sampler2D sTextureRock;//ÎÆÀíÄÚÈİÊı¾İ£¨ÑÒÊ¯£©
+uniform sampler2D sTextureGrass;//çº¹ç†å†…å®¹æ•°æ®ï¼ˆè‰çš®ï¼‰
+uniform sampler2D sTextureRock;//çº¹ç†å†…å®¹æ•°æ®ï¼ˆå²©çŸ³ï¼‰
 varying float rTemp;
-uniform float b_YZ_StartY;//Â½µØÆğÊ¼Y
-uniform float b_YZ_YSpan;//Â½µØYÆ«ÒÆÁ¿
-uniform int sdflag;//ÊÇ·ñÎªËíµÀÉ½µÄ±êÖ¾Î»
+uniform float b_YZ_StartY;//é™†åœ°èµ·å§‹Y
+uniform float b_YZ_YSpan;//é™†åœ°Yåç§»é‡
+uniform int sdflag;//æ˜¯å¦ä¸ºéš§é“å±±çš„æ ‡å¿—ä½
 
 void main()                         
 {      
-       if(sdflag==0)//±íÊ¾ÎªËíµÀÉ½
+       if(sdflag==0)//è¡¨ç¤ºä¸ºéš§é“å±±
        {  
            float min=0.4;
 			   float max=0.8;
@@ -38,18 +38,18 @@ void main()
 			      finalColor=rockBL*rColor+(1.0-rockBL)*gColor;
 			   }
             	   
-		   if(rTemp<330.0)//¾àÀëĞ¡ÓÚ400µÄ²»»æÖÆ 
+		   if(rTemp<330.0)//è·ç¦»å°äº400çš„ä¸ç»˜åˆ¶ 
 		   {
 		   		finalColor.a=0.0;
 		   }
 		   else
 		   {
-			   //¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ            
+			   //ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼            
 			   
 		   }
 		   gl_FragColor = finalColor; 
        }
-       else if(sdflag==1)//ÆÕÍ¨
+       else if(sdflag==1)//æ™®é€š
        {
        	   float min=0.3;
 		   float max=0.7;
@@ -75,7 +75,7 @@ void main()
 		      finalColor=rockBL*rColor+(1.0-rockBL)*gColor;
 		   }
 		   
-		   //¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ            
+		   //ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼            
 		   gl_FragColor = finalColor; 
        }
        

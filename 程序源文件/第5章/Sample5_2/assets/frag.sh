@@ -1,6 +1,6 @@
 precision mediump float;
-varying  vec4 aaColor; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
+varying  vec4 aaColor; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
 void main()                         
 {                       
-   gl_FragColor = aaColor;//¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+   gl_FragColor = aaColor;//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
 }              

@@ -1,30 +1,30 @@
-uniform mat4 uMVPMatrix; 						//×Ü±ä»»¾ØÕó
-uniform mat4 uMMatrix; 							//±ä»»¾ØÕó(°üÀ¨Æ½ÒÆ¡¢Ğı×ª¡¢Ëõ·Å)
-uniform vec3 uLightLocation;						//¹âÔ´Î»ÖÃ
-attribute vec3 aPosition;  						//¶¥µãÎ»ÖÃ
-attribute vec3 aNormal;    						//¶¥µã·¨ÏòÁ¿
-varying vec3 vPosition;							//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ¶¥µãÎ»ÖÃ
-varying vec4 vDiffuse;							//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄÉ¢Éä¹â·ÖÁ¿
-void pointLight (								//É¢Éä¹â¹âÕÕ¼ÆËãµÄ·½·¨
-  in vec3 normal,								//·¨ÏòÁ¿
-  inout vec4 diffuse,								//É¢Éä¹â¼ÆËã½á¹û
-  in vec3 lightLocation,							//¹âÔ´Î»ÖÃ
-  in vec4 lightDiffuse							//É¢Éä¹âÇ¿¶È
+uniform mat4 uMVPMatrix; 						//æ€»å˜æ¢çŸ©é˜µ
+uniform mat4 uMMatrix; 							//å˜æ¢çŸ©é˜µ(åŒ…æ‹¬å¹³ç§»ã€æ—‹è½¬ã€ç¼©æ”¾)
+uniform vec3 uLightLocation;						//å…‰æºä½ç½®
+attribute vec3 aPosition;  						//é¡¶ç‚¹ä½ç½®
+attribute vec3 aNormal;    						//é¡¶ç‚¹æ³•å‘é‡
+varying vec3 vPosition;							//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„é¡¶ç‚¹ä½ç½®
+varying vec4 vDiffuse;							//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„æ•£å°„å…‰åˆ†é‡
+void pointLight (								//æ•£å°„å…‰å…‰ç…§è®¡ç®—çš„æ–¹æ³•
+  in vec3 normal,								//æ³•å‘é‡
+  inout vec4 diffuse,								//æ•£å°„å…‰è®¡ç®—ç»“æœ
+  in vec3 lightLocation,							//å…‰æºä½ç½®
+  in vec4 lightDiffuse							//æ•£å°„å…‰å¼ºåº¦
 ){  
-  vec3 normalTarget=aPosition+normal;					//¼ÆËã±ä»»ºóµÄ·¨ÏòÁ¿
+  vec3 normalTarget=aPosition+normal;					//è®¡ç®—å˜æ¢åçš„æ³•å‘é‡
   vec3 newNormal=(uMMatrix*vec4(normalTarget,1)).xyz-(uMMatrix*vec4(aPosition,1)).xyz;
-  newNormal=normalize(newNormal);					//¶Ô·¨ÏòÁ¿¹æ¸ñ»¯
-//¼ÆËã´Ó±íÃæµãµ½¹âÔ´Î»ÖÃµÄÏòÁ¿vp
+  newNormal=normalize(newNormal);					//å¯¹æ³•å‘é‡è§„æ ¼åŒ–
+//è®¡ç®—ä»è¡¨é¢ç‚¹åˆ°å…‰æºä½ç½®çš„å‘é‡vp
   vec3 vp= normalize(lightLocation-(uMMatrix*vec4(aPosition,1)).xyz);
-  vp=normalize(vp);									//¹æ¸ñ»¯vp
-  float nDotViewPosition=max(0.0,dot(newNormal,vp)); 	//Çó·¨ÏòÁ¿ÓëvpÏòÁ¿µÄµã»ıÓë0µÄ×î´óÖµ
-  diffuse=lightDiffuse*nDotViewPosition;			//¼ÆËãÉ¢Éä¹âµÄ×îÖÕÇ¿¶È
+  vp=normalize(vp);									//è§„æ ¼åŒ–vp
+  float nDotViewPosition=max(0.0,dot(newNormal,vp)); 	//æ±‚æ³•å‘é‡ä¸vpå‘é‡çš„ç‚¹ç§¯ä¸0çš„æœ€å¤§å€¼
+  diffuse=lightDiffuse*nDotViewPosition;			//è®¡ç®—æ•£å°„å…‰çš„æœ€ç»ˆå¼ºåº¦
 }
 void main(){
-   gl_Position = uMVPMatrix * vec4(aPosition,1); 	//¸ù¾İ×Ü±ä»»¾ØÕó¼ÆËã´Ë´Î»æÖÆ´Ë¶¥µãµÄÎ»ÖÃ 
+   gl_Position = uMVPMatrix * vec4(aPosition,1); 	//æ ¹æ®æ€»å˜æ¢çŸ©é˜µè®¡ç®—æ­¤æ¬¡ç»˜åˆ¶æ­¤é¡¶ç‚¹çš„ä½ç½® 
    vec4 diffuseTemp=vec4(0.0,0.0,0.0,0.0);   
    pointLight(normalize(aNormal), diffuseTemp, uLightLocation, vec4(0.8,0.8,0.8,1.0));  
-   vDiffuse=diffuseTemp;					//½«É¢Éä¹â×îÖÕÇ¿¶È´«¸øÆ¬Ôª×ÅÉ«Æ÷
-   vPosition = aPosition; 					//½«¶¥µãµÄÎ»ÖÃ´«¸øÆ¬Ôª×ÅÉ«Æ÷
+   vDiffuse=diffuseTemp;					//å°†æ•£å°„å…‰æœ€ç»ˆå¼ºåº¦ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
+   vPosition = aPosition; 					//å°†é¡¶ç‚¹çš„ä½ç½®ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
 }
 

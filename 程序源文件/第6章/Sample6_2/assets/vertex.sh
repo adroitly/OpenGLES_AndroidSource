@@ -1,13 +1,13 @@
-uniform mat4 uMVPMatrix; //×Ü±ä»»¾ØÕó
-attribute vec3 aPosition;  //¶¥µãÎ»ÖÃ
-varying vec3 vPosition;//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ¶¥µãÎ»ÖÃ
-varying vec4 vAmbient;//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ»·¾³¹â·ÖÁ¿
+uniform mat4 uMVPMatrix; //æ€»å˜æ¢çŸ©é˜µ
+attribute vec3 aPosition;  //é¡¶ç‚¹ä½ç½®
+varying vec3 vPosition;//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„é¡¶ç‚¹ä½ç½®
+varying vec4 vAmbient;//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„ç¯å¢ƒå…‰åˆ†é‡
 void main()     
 {         
-   //¸ù¾İ×Ü±ä»»¾ØÕó¼ÆËã´Ë´Î»æÖÆ´Ë¶¥µãÎ»ÖÃ         		
+   //æ ¹æ®æ€»å˜æ¢çŸ©é˜µè®¡ç®—æ­¤æ¬¡ç»˜åˆ¶æ­¤é¡¶ç‚¹ä½ç½®         		
    gl_Position = uMVPMatrix * vec4(aPosition,1); 
-   //½«¶¥µãµÄÎ»ÖÃ´«¸øÆ¬Ôª×ÅÉ«Æ÷
+   //å°†é¡¶ç‚¹çš„ä½ç½®ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
    vPosition = aPosition;   
-   //½«µÄ»·¾³¹â·ÖÁ¿´«¸øÆ¬Ôª×ÅÉ«Æ÷
+   //å°†çš„ç¯å¢ƒå…‰åˆ†é‡ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
    vAmbient = vec4(0.15,0.15,0.15,1.0);
 }                      

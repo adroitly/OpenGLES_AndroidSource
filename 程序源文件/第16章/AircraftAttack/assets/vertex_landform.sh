@@ -1,11 +1,11 @@
-//É½µØµÄ¶¥µã×ÅÉ«Æ÷
-uniform mat4 uMVPMatrix; //×Ü±ä»»¾ØÕó
-attribute vec3 aPosition;  //¶¥µãÎ»ÖÃ
-attribute vec2 aTexCoor;    //¶¥µãÎÆÀí×ø±ê
-varying vec2 vTextureCoord;  //ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ±äÁ¿
-varying float vertexHeight;//½ÓÊÜ¶¥µãµÄ¸ß¶ÈÖµ
+//å±±åœ°çš„é¡¶ç‚¹ç€è‰²å™¨
+uniform mat4 uMVPMatrix; //æ€»å˜æ¢çŸ©é˜µ
+attribute vec3 aPosition;  //é¡¶ç‚¹ä½ç½®
+attribute vec2 aTexCoor;    //é¡¶ç‚¹çº¹ç†åæ ‡
+varying vec2 vTextureCoord;  //ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„å˜é‡
+varying float vertexHeight;//æ¥å—é¡¶ç‚¹çš„é«˜åº¦å€¼
 void main(){                            		
-   gl_Position = uMVPMatrix * vec4(aPosition,1); //¸ù¾İ×Ü±ä»»¾ØÕó¼ÆËã´Ë´Î»æÖÆ´Ë¶¥µãÎ»ÖÃ
-   vTextureCoord = aTexCoor;//½«½ÓÊÕµÄÎÆÀí×ø±ê´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷
-   vertexHeight = aPosition.y;//½«¸Ã¶¥µãµÄ¸ß¶È´«ÈëÆ¬Ôª×ÅÉ«Æ÷
+   gl_Position = uMVPMatrix * vec4(aPosition,1); //æ ¹æ®æ€»å˜æ¢çŸ©é˜µè®¡ç®—æ­¤æ¬¡ç»˜åˆ¶æ­¤é¡¶ç‚¹ä½ç½®
+   vTextureCoord = aTexCoor;//å°†æ¥æ”¶çš„çº¹ç†åæ ‡ä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨
+   vertexHeight = aPosition.y;//å°†è¯¥é¡¶ç‚¹çš„é«˜åº¦ä¼ å…¥ç‰‡å…ƒç€è‰²å™¨
 }                      

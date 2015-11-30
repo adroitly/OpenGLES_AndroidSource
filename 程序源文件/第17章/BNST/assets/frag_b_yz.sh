@@ -1,11 +1,11 @@
-//¾ßÓĞÎÆÀí¹¦ÄÜµÄÆ¬Ôª×ÅÉ«Æ÷
+//å…·æœ‰çº¹ç†åŠŸèƒ½çš„ç‰‡å…ƒç€è‰²å™¨
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform sampler2D sTextureGrass;//ÎÆÀíÄÚÈİÊı¾İ£¨²İÆ¤£©
-uniform sampler2D sTextureRock;//ÎÆÀíÄÚÈİÊı¾İ£¨ÑÒÊ¯£©
-uniform float b_YZ_StartX;//Â½µØÆğÊ¼X
-uniform float b_YZ_XSpan;//Â½µØXÆ«ÒÆÁ¿
-varying float currX;//µ±Ç°Æ¬ÔªµÄÂ½µØX
+varying vec2 vTextureCoord; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform sampler2D sTextureGrass;//çº¹ç†å†…å®¹æ•°æ®ï¼ˆè‰çš®ï¼‰
+uniform sampler2D sTextureRock;//çº¹ç†å†…å®¹æ•°æ®ï¼ˆå²©çŸ³ï¼‰
+uniform float b_YZ_StartX;//é™†åœ°èµ·å§‹X
+uniform float b_YZ_XSpan;//é™†åœ°Xåç§»é‡
+varying float currX;//å½“å‰ç‰‡å…ƒçš„é™†åœ°X
 void main()                         
 {           
    float min=0.2;
@@ -32,6 +32,6 @@ void main()
       finalColor=rockBL*rColor+(1.0-rockBL)*gColor;
    }  
    
-   //¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ            
+   //ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼            
    gl_FragColor = finalColor; 
 }              

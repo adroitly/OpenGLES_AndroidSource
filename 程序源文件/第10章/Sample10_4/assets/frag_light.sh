@@ -2,14 +2,14 @@ precision mediump float;
 varying vec4 ambient;
 varying vec4 diffuse;
 varying vec4 specular;
-varying float vFogFactor; //ÎíÒò×Ó
+varying float vFogFactor; //é›¾å› å­
 void main()                         
 {
-	vec4 objectColor=vec4(0.95,0.95,0.95,1.0);//ÎïÌåÑÕÉ«	
-	vec4 fogColor = vec4(0.97,0.76,0.03,1.0);//ÎíµÄÑÕÉ«	
- 	if(vFogFactor != 0.0){//Èç¹ûÎíÒò×ÓÎª0£¬²»±Ø¼ÆËã¹âÕÕ
-		objectColor = objectColor*ambient+objectColor*specular+objectColor*diffuse;//¼ÆËã¹âÕÕÖ®ºóÎïÌåÑÕÉ«
-		gl_FragColor = objectColor*vFogFactor + fogColor*(1.0-vFogFactor);//ÎïÌåÑÕÉ«ºÍÎíÑÕÉ«²åÖµ¼ÆËã×îÖÕÑÕÉ«
+	vec4 objectColor=vec4(0.95,0.95,0.95,1.0);//ç‰©ä½“é¢œè‰²	
+	vec4 fogColor = vec4(0.97,0.76,0.03,1.0);//é›¾çš„é¢œè‰²	
+ 	if(vFogFactor != 0.0){//å¦‚æœé›¾å› å­ä¸º0ï¼Œä¸å¿…è®¡ç®—å…‰ç…§
+		objectColor = objectColor*ambient+objectColor*specular+objectColor*diffuse;//è®¡ç®—å…‰ç…§ä¹‹åç‰©ä½“é¢œè‰²
+		gl_FragColor = objectColor*vFogFactor + fogColor*(1.0-vFogFactor);//ç‰©ä½“é¢œè‰²å’Œé›¾é¢œè‰²æ’å€¼è®¡ç®—æœ€ç»ˆé¢œè‰²
 	}else{
  	    gl_FragColor=fogColor;
  	}
