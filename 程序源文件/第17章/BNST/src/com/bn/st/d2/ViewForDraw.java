@@ -6,12 +6,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-//Ö÷²Ëµ¥View
+//ä¸»èœå•View
 public class ViewForDraw extends SurfaceView 
-implements SurfaceHolder.Callback  //ÊµÏÖÉúÃüÖÜÆÚ»Øµ÷½Ó¿Ú
+implements SurfaceHolder.Callback  //å®ç°ç”Ÿå‘½å‘¨æœŸå›è°ƒæ¥å£
 {
 	MyActivity activity;
-	Paint paint;//»­±Ê	
+	Paint paint;//ç”»ç¬”	
 	boolean flag;
 	MySFView curr;	
 	
@@ -20,11 +20,11 @@ implements SurfaceHolder.Callback  //ÊµÏÖÉúÃüÖÜÆÚ»Øµ÷½Ó¿Ú
 		super(activity);
 		this.setKeepScreenOn(true);
 		this.activity = activity;		
-		//ÉèÖÃÉúÃüÖÜÆÚ»Øµ÷½Ó¿ÚµÄÊµÏÖÕß
+		//è®¾ç½®ç”Ÿå‘½å‘¨æœŸå›è°ƒæ¥å£çš„å®ç°è€…
 		this.getHolder().addCallback(this);
-		//³õÊ¼»¯»­±Ê
-		paint = new Paint();//´´½¨»­±Ê
-		paint.setAntiAlias(true);//´ò¿ª¿¹¾â³İ
+		//åˆå§‹åŒ–ç”»ç¬”
+		paint = new Paint();//åˆ›å»ºç”»ç¬”
+		paint.setAntiAlias(true);//æ‰“å¼€æŠ—é”¯é½¿
 	} 
 	
 	public void initThread()
@@ -77,21 +77,21 @@ implements SurfaceHolder.Callback  //ÊµÏÖÉúÃüÖÜÆÚ»Øµ÷½Ó¿Ú
 		
 	}
 
-	public void surfaceCreated(SurfaceHolder holder) {//´´½¨Ê±±»µ÷ÓÃ
+	public void surfaceCreated(SurfaceHolder holder) {//åˆ›å»ºæ—¶è¢«è°ƒç”¨
 		repaint();
 	}
 
-	public void surfaceDestroyed(SurfaceHolder arg0) {//Ïú»ÙÊ±±»µ÷ÓÃ
+	public void surfaceDestroyed(SurfaceHolder arg0) {//é”€æ¯æ—¶è¢«è°ƒç”¨
 
 	}
 	
 	public void repaint()
 	{
 		SurfaceHolder holder=this.getHolder();
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
+		Canvas canvas = holder.lockCanvas();//è·å–ç”»å¸ƒ
 		try{
 			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
+				onDraw(canvas);//ç»˜åˆ¶
 			}			
 		}
 		catch(Exception e){
@@ -104,7 +104,7 @@ implements SurfaceHolder.Callback  //ÊµÏÖÉúÃüÖÜÆÚ»Øµ÷½Ó¿Ú
 		}
 	}
 
-	//ÆÁÄ»´¥¿ØÊÂ¼ş	
+	//å±å¹•è§¦æ§äº‹ä»¶	
 	@Override
 	public boolean onTouchEvent(MotionEvent e)
 	{

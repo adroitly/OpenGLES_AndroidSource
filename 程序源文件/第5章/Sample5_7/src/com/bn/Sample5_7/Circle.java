@@ -4,61 +4,61 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import android.opengl.GLES20;
 
-//ÑÕÉ«Ô²
+//é¢œè‰²åœ†
 public class Circle
 {	
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃ
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃ  
-    int maColorHandle; //¶¥µãÑÕÉ«ÊôĞÔÒıÓÃ 
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷´úÂë½Å±¾  
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷´úÂë½Å±¾
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨  
+    int maColorHandle; //é¡¶ç‚¹é¢œè‰²å±æ€§å¼•ç”¨ 
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨ä»£ç è„šæœ¬  
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨ä»£ç è„šæœ¬
 	
-	FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	FloatBuffer   mColorBuffer;//¶¥µã×ÅÉ«Êı¾İ»º³å
+	FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	FloatBuffer   mColorBuffer;//é¡¶ç‚¹ç€è‰²æ•°æ®ç¼“å†²
     int vCount=0;  
     
     public Circle(MySurfaceView mv)
     {    	
-    	//³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İ
+    	//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®
     	initVertexData();
-    	//³õÊ¼»¯shader        
+    	//åˆå§‹åŒ–shader        
     	initShader(mv);
     }
     
-    //³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İµÄ·½·¨
+    //åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®çš„æ–¹æ³•
     public void initVertexData()
     {
-    	//¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================begin============================
+    	//é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin============================
     	int n = 10;
         vCount=n+2;         
     
         float angdegSpan=360.0f/n;		
-		float[] vertices=new float[vCount*3];//×ø±êÊı¾İ
-		//×ø±êÊı¾İ³õÊ¼»¯
+		float[] vertices=new float[vCount*3];//åæ ‡æ•°æ®
+		//åæ ‡æ•°æ®åˆå§‹åŒ–
 		int count=0;
 		vertices[count++] = 0;
 		vertices[count++] = 0;
 		vertices[count++] = 0;
 		for(float angdeg=0; Math.ceil(angdeg)<=360; angdeg+=angdegSpan) {
-			double angrad=Math.toRadians(angdeg);//µ±Ç°»¡¶È			
-			//µ±Ç°µã
-			vertices[count++]=(float) (-Constant.UNIT_SIZE*Math.sin(angrad));//¶¥µã×ø±ê
+			double angrad=Math.toRadians(angdeg);//å½“å‰å¼§åº¦			
+			//å½“å‰ç‚¹
+			vertices[count++]=(float) (-Constant.UNIT_SIZE*Math.sin(angrad));//é¡¶ç‚¹åæ ‡
 			vertices[count++]=(float) (Constant.UNIT_SIZE*Math.cos(angrad));
 			vertices[count++]=0;
 		}
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        //ÌØ±ğÌáÊ¾£ºÓÉÓÚ²»Í¬Æ½Ì¨×Ö½ÚË³Ğò²»Í¬Êı¾İµ¥Ôª²»ÊÇ×Ö½ÚµÄÒ»¶¨Òª¾­¹ıByteBuffer
-        //×ª»»£¬¹Ø¼üÊÇÒªÍ¨¹ıByteOrderÉèÖÃnativeOrder()£¬·ñÔòÓĞ¿ÉÄÜ»á³öÎÊÌâ
-        //¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================end============================
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        //ç‰¹åˆ«æç¤ºï¼šç”±äºä¸åŒå¹³å°å­—èŠ‚é¡ºåºä¸åŒæ•°æ®å•å…ƒä¸æ˜¯å­—èŠ‚çš„ä¸€å®šè¦ç»è¿‡ByteBuffer
+        //è½¬æ¢ï¼Œå…³é”®æ˜¯è¦é€šè¿‡ByteOrderè®¾ç½®nativeOrder()ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¼šå‡ºé—®é¢˜
+        //é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================end============================
        
-    	//¶¥µãÑÕÉ«ÖµÊı×é£¬Ã¿¸ö¶¥µã4¸öÉ«²ÊÖµRGBA
+    	//é¡¶ç‚¹é¢œè‰²å€¼æ•°ç»„ï¼Œæ¯ä¸ªé¡¶ç‚¹4ä¸ªè‰²å½©å€¼RGBA
        	count = 0;
         float colors[]=new float[vCount*4];
         colors[count++] = 1; 
@@ -71,40 +71,40 @@ public class Circle
         	colors[count++] = 0; 
         	colors[count++] = 0;
         }
-        //´´½¨¶¥µã×ÅÉ«Êı¾İ»º³å
+        //åˆ›å»ºé¡¶ç‚¹ç€è‰²æ•°æ®ç¼“å†²
         ByteBuffer cbb = ByteBuffer.allocateDirect(colors.length*4);
-        cbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mColorBuffer = cbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mColorBuffer.put(colors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-        mColorBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        //ÌØ±ğÌáÊ¾£ºÓÉÓÚ²»Í¬Æ½Ì¨×Ö½ÚË³Ğò²»Í¬Êı¾İµ¥Ôª²»ÊÇ×Ö½ÚµÄÒ»¶¨Òª¾­¹ıByteBuffer
-        //×ª»»£¬¹Ø¼üÊÇÒªÍ¨¹ıByteOrderÉèÖÃnativeOrder()£¬·ñÔòÓĞ¿ÉÄÜ»á³öÎÊÌâ
-        //¶¥µã×ÅÉ«Êı¾İµÄ³õÊ¼»¯================end============================
+        cbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mColorBuffer = cbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mColorBuffer.put(colors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+        mColorBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        //ç‰¹åˆ«æç¤ºï¼šç”±äºä¸åŒå¹³å°å­—èŠ‚é¡ºåºä¸åŒæ•°æ®å•å…ƒä¸æ˜¯å­—èŠ‚çš„ä¸€å®šè¦ç»è¿‡ByteBuffer
+        //è½¬æ¢ï¼Œå…³é”®æ˜¯è¦é€šè¿‡ByteOrderè®¾ç½®nativeOrder()ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¼šå‡ºé—®é¢˜
+        //é¡¶ç‚¹ç€è‰²æ•°æ®çš„åˆå§‹åŒ–================end============================
     }
-    //³õÊ¼»¯shader
+    //åˆå§‹åŒ–shader
     public void initShader(MySurfaceView mv)
     {
-    	//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+    	//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mVertexShader=ShaderUtil.loadFromAssetsFile("vertex.sh", mv.getResources());
-        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mFragmentShader=ShaderUtil.loadFromAssetsFile("frag.sh", mv.getResources());  
-        //»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+        //åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
         mProgram = ShaderUtil.createProgram(mVertexShader, mFragmentShader);
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÑÕÉ«ÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹é¢œè‰²å±æ€§å¼•ç”¨id  
         maColorHandle= GLES20.glGetAttribLocation(mProgram, "aColor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
     }
     
     public void drawSelf()
     {        
-    	 //ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	 //åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
     	 GLES20.glUseProgram(mProgram);
-         //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+         //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
          GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-         //Îª»­±ÊÖ¸¶¨¶¥µãÎ»ÖÃÊı¾İ
+         //ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹ä½ç½®æ•°æ®
          GLES20.glVertexAttribPointer  
          (
          		maPositionHandle,   
@@ -114,7 +114,7 @@ public class Circle
                 3*4,   
                 mVertexBuffer
          );       
-         //Îª»­±ÊÖ¸¶¨¶¥µã×ÅÉ«Êı¾İ
+         //ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹ç€è‰²æ•°æ®
          GLES20.glVertexAttribPointer  
          (
         		maColorHandle, 
@@ -124,10 +124,10 @@ public class Circle
                 4*4,   
                 mColorBuffer
          );   
-         //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+         //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
          GLES20.glEnableVertexAttribArray(maPositionHandle);  
          GLES20.glEnableVertexAttribArray(maColorHandle);  
-         //»æÖÆÔ²
+         //ç»˜åˆ¶åœ†
          GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0 , vCount); 
     }
 }

@@ -6,10 +6,10 @@ import android.graphics.Paint;
 
 public class Explosion {
 	MySurfaceView gameView;
-	private Bitmap[] bitmaps;// Î»Í¼
-	float x;// x·½ÏòÎ»ÒÆ
-	float y;// y·½ÏòÎ»ÒÆ
-	private int anmiIndex = 0;// ±¬Õ¨¶¯»­Ö¡Ë÷Òı
+	private Bitmap[] bitmaps;// ä½å›¾
+	float x;// xæ–¹å‘ä½ç§»
+	float y;// yæ–¹å‘ä½ç§»
+	private int anmiIndex = 0;// çˆ†ç‚¸åŠ¨ç”»å¸§ç´¢å¼•
 
 	public Explosion(MySurfaceView gameView, Bitmap[] bitmaps, float x, float y) {
 		this.gameView = gameView;
@@ -18,12 +18,12 @@ public class Explosion {
 		this.y = y;
 	}
 
-	// »æÖÆ±³¾°µÄ·½·¨
+	// ç»˜åˆ¶èƒŒæ™¯çš„æ–¹æ³•
 	public void drawSelf(Canvas canvas, Paint paint) {
-		if (anmiIndex >= bitmaps.length - 1) {// Èç¹û¶¯»­²¥·ÅÍê±Ï£¬²»ÔÙ»æÖÆ±¬Õ¨Ğ§¹û
+		if (anmiIndex >= bitmaps.length - 1) {// å¦‚æœåŠ¨ç”»æ’­æ”¾å®Œæ¯•ï¼Œä¸å†ç»˜åˆ¶çˆ†ç‚¸æ•ˆæœ
 			return;
 		}
-		canvas.drawBitmap(bitmaps[anmiIndex], x, y, paint);// »æÖÆÊı×éÖĞÄ³Ò»·ùÍ¼
-		anmiIndex++;// µ±Ç°ÏÂ±ê¼Ó1
+		canvas.drawBitmap(bitmaps[anmiIndex], x, y, paint);// ç»˜åˆ¶æ•°ç»„ä¸­æŸä¸€å¹…å›¾
+		anmiIndex++;// å½“å‰ä¸‹æ ‡åŠ 1
 	}
 }

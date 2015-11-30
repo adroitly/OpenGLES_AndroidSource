@@ -3,7 +3,7 @@ package com.bn.bezier;
 public class Constant 
 {
    public static int HEIGHT=350;
-   public static int FD=20;//·Ö¶Î
-   public static int ZYBJ=1;//×óÒÆ²½½ø
-   public static boolean XSKZD=true;//ÊÇ·ñÏÔÊ¾¿ØÖÆµã
+   public static int FD=20;//åˆ†æ®µ
+   public static int ZYBJ=1;//å·¦ç§»æ­¥è¿›
+   public static boolean XSKZD=true;//æ˜¯å¦æ˜¾ç¤ºæ§åˆ¶ç‚¹
 }

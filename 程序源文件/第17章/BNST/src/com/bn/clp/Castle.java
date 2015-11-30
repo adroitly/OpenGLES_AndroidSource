@@ -8,24 +8,24 @@ import java.util.List;
 import android.opengl.GLES20;
 import com.bn.core.MatrixState;
 
-//³Ç±¤
+//åŸå ¡
 public class Castle extends BNDrawer
 {
-	//³Ç±¤ÉÏ·½µÄÎïÌå
+	//åŸå ¡ä¸Šæ–¹çš„ç‰©ä½“
 	Castle_Up castle_Up;
-	//ÏÂ²àµÄÔ²Öù
+	//ä¸‹ä¾§çš„åœ†æŸ±
 	Cylinder cylinder;
 	Cylinder cylinder0;
 	Cylinder cylinder1;
 	Cylinder cylinder2;
 	
-	//ÇĞ·ÖµÄ½Ç¶È
+	//åˆ‡åˆ†çš„è§’åº¦
 	final float ANGLE_SPAN=30;
 	final float UNIT_SIZE=3.75f;
 	final float r=UNIT_SIZE*1.75f;
 	final float R=UNIT_SIZE*2.2f;
 	final float mR=UNIT_SIZE*2f;
-	//×ÔÏÂÖÁÉÏ¸÷¸ö¸ß¶ÈÖµ
+	//è‡ªä¸‹è‡³ä¸Šå„ä¸ªé«˜åº¦å€¼
 	final float HEIGHT0=UNIT_SIZE*1.7f;
 	final float HEIGHT1=UNIT_SIZE*0.18f;
 	final float HEIGHT2=UNIT_SIZE*0.18f;
@@ -33,16 +33,16 @@ public class Castle extends BNDrawer
 	public Castle(int programId)
 	{
 		cylinder=new Cylinder(programId,mR,mR,ANGLE_SPAN,HEIGHT2);
-		//Ô²Öù1
+		//åœ†æŸ±1
 		cylinder0=new Cylinder(programId,r,r,ANGLE_SPAN,HEIGHT0);
-		//Ô²Öù2
+		//åœ†æŸ±2
 		cylinder1=new Cylinder(programId,r,R,ANGLE_SPAN,HEIGHT1);
-		//Ô²Öù3
+		//åœ†æŸ±3
 		cylinder2=new Cylinder(programId,R,R,ANGLE_SPAN,HEIGHT2);
-		//³Ç±¤ÉÏ·½µÄÎïÌå
+		//åŸå ¡ä¸Šæ–¹çš„ç‰©ä½“
 		castle_Up=new Castle_Up(programId,R,ANGLE_SPAN,HEIGHT2);
 	}
-	//×ÜµÄ»æÖÆ·½·¨drawSelf
+	//æ€»çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 	public void drawSelf(int[] texId, int dyFlag)
 	{
 		MatrixState.pushMatrix();
@@ -70,31 +70,31 @@ public class Castle extends BNDrawer
 		MatrixState.popMatrix();
 	} 
 	
-	//ÄÚ²¿Àà¡ª¡ªÔ²Öù
+	//å†…éƒ¨ç±»â€”â€”åœ†æŸ±
 	private class Cylinder
 	{
-		//×Ô¶¨ÒåShader³ÌĞòµÄÒıÓÃ
+		//è‡ªå®šä¹‰Shaderç¨‹åºçš„å¼•ç”¨
 		int mProgram;
-		//×Ü±ä»»¾ØÕóµÄÒıÓÃid
+		//æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µã×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
-		//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mTexCoorBuffer;
-		int vCount=0;//¶¥µãÊıÁ¿
+		int vCount=0;//é¡¶ç‚¹æ•°é‡
 		
-		//RÎªÔ²Öùµ×²¿µÄ°ë¾¶£¬rÎªÔ²ÖùÉÏ²¿µÄ°ë¾¶£¬angle_span±íÊ¾µÄÊÇÇĞ·ÖµÄ½Ç¶È
+		//Rä¸ºåœ†æŸ±åº•éƒ¨çš„åŠå¾„ï¼Œrä¸ºåœ†æŸ±ä¸Šéƒ¨çš„åŠå¾„ï¼Œangle_spanè¡¨ç¤ºçš„æ˜¯åˆ‡åˆ†çš„è§’åº¦
 		public Cylinder(int programId,float R,float r,float angle_span,float height)
 		{
 			initVertexData(R,r,angle_span,height);
 			initShader(programId);
 		}
-		//³õÊ¼»¯×ø±êÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–åæ ‡æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData(float R,float r,float angle_span,float height)
 		{
 			List<Float> tempList=new ArrayList<Float>();
@@ -124,7 +124,7 @@ public class Castle extends BNDrawer
 				tempList.add(x1); tempList.add(y1); tempList.add(z1);
 				tempList.add(x2); tempList.add(y2); tempList.add(z2);
 			}
-			vCount=tempList.size()/3;//¶¥µãÊıÁ¿
+			vCount=tempList.size()/3;//é¡¶ç‚¹æ•°é‡
 			float[] vertex=new float[tempList.size()];
 			for(int i=0;i<tempList.size();i++)
 			{
@@ -143,24 +143,24 @@ public class Castle extends BNDrawer
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊı¾İµÄÒıÓÃ
+			//è·å¾—é¡¶ç‚¹åæ ‡æ•°æ®çš„å¼•ç”¨
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+			//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+			//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//´«Èë×ø±êÊı¾İ
+			//ä¼ å…¥åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -170,7 +170,7 @@ public class Castle extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -180,29 +180,29 @@ public class Castle extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
-		//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+		//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh,float width,float height)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=width/bw;//ÁĞÊı
-	    	float sizeh=height/bh;//ĞĞÊı
+	    	float sizew=width/bw;//åˆ—æ•°
+	    	float sizeh=height/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			
@@ -228,31 +228,31 @@ public class Castle extends BNDrawer
 	    	return result;
 	    }
 	}
-	//¸ÃÀà±íÊ¾³Ç±¤ÉÏ²àµÄ²¿·Ö
+	//è¯¥ç±»è¡¨ç¤ºåŸå ¡ä¸Šä¾§çš„éƒ¨åˆ†
 	private class Castle_Up
 	{
-		//×Ô¶¨ÒåShader³ÌĞòµÄÒıÓÃ
+		//è‡ªå®šä¹‰Shaderç¨‹åºçš„å¼•ç”¨
 		int mProgram;
-		//×Ü±ä»»¾ØÕóµÄÒıÓÃid
+		//æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µã×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
-		//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mTexCoorBuffer;
-		int vCount=0;//¶¥µãÊıÁ¿
+		int vCount=0;//é¡¶ç‚¹æ•°é‡
 		
-		//RÎªÔ²Öùµ×²¿µÄ°ë¾¶£¬rÎªÔ²ÖùÉÏ²¿µÄ°ë¾¶£¬angle_span±íÊ¾µÄÊÇÇĞ·ÖµÄ½Ç¶È
+		//Rä¸ºåœ†æŸ±åº•éƒ¨çš„åŠå¾„ï¼Œrä¸ºåœ†æŸ±ä¸Šéƒ¨çš„åŠå¾„ï¼Œangle_spanè¡¨ç¤ºçš„æ˜¯åˆ‡åˆ†çš„è§’åº¦
 		public Castle_Up(int programId,float R,float angle_span,float height)
 		{
 			initVertexData(R,angle_span,height);
 			initShader(programId);
 		}
-		//³õÊ¼»¯×ø±êÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–åæ ‡æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData(float R,float angle_span,float height)
 		{
 			List<Float> vertexList=new ArrayList<Float>();
@@ -264,7 +264,7 @@ public class Castle extends BNDrawer
 				
 				float tempX1=(float) (R*Math.cos(Math.toRadians(vAngle+angle_span)));
 				float tempZ1=(float) (-R*Math.sin(Math.toRadians(vAngle+angle_span)));
-				//Á½µãÖ®¼äµÄ¼ä¾àÆ½·Ö3·İ
+				//ä¸¤ç‚¹ä¹‹é—´çš„é—´è·å¹³åˆ†3ä»½
 				float tempX=(tempX1-tempX0)/3;
 				float tempZ=(tempZ1-tempZ0)/3;
 				
@@ -299,19 +299,19 @@ public class Castle extends BNDrawer
 				float x7=tempX1;
 				float y7=-height;
 				float z7=tempZ1;
-				//µÚÒ»¸öÈı½ÇĞÎ
+				//ç¬¬ä¸€ä¸ªä¸‰è§’å½¢
 				vertexList.add(x0); vertexList.add(y0); vertexList.add(z0);
 				vertexList.add(x1); vertexList.add(y1); vertexList.add(z1);
 				vertexList.add(x3); vertexList.add(y3); vertexList.add(z3);
-				//µÚ¶ş¸öÈı½ÇĞÎ
+				//ç¬¬äºŒä¸ªä¸‰è§’å½¢
 				vertexList.add(x0); vertexList.add(y0); vertexList.add(z0);
 				vertexList.add(x3); vertexList.add(y3); vertexList.add(z3);
 				vertexList.add(x2); vertexList.add(y2); vertexList.add(z2);
-				//µÚÈı¸öÈı½ÇĞÎ
+				//ç¬¬ä¸‰ä¸ªä¸‰è§’å½¢
 				vertexList.add(x4); vertexList.add(y4); vertexList.add(z4);
 				vertexList.add(x5); vertexList.add(y5); vertexList.add(z5);
 				vertexList.add(x7); vertexList.add(y7); vertexList.add(z7);
-				//µÚËÄ¸öÈı½ÇĞÎ
+				//ç¬¬å››ä¸ªä¸‰è§’å½¢
 				vertexList.add(x4); vertexList.add(y4); vertexList.add(z4);
 				vertexList.add(x7); vertexList.add(y7); vertexList.add(z7);
 				vertexList.add(x6); vertexList.add(y6); vertexList.add(z6);
@@ -337,24 +337,24 @@ public class Castle extends BNDrawer
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊı¾İµÄÒıÓÃ
+			//è·å¾—é¡¶ç‚¹åæ ‡æ•°æ®çš„å¼•ç”¨
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+			//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+			//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//Îª´«Èë×ø±êÊı¾İ
+			//ä¸ºä¼ å…¥åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -364,7 +364,7 @@ public class Castle extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//Îª´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¸ºä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -374,32 +374,32 @@ public class Castle extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
-		//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+		//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh,float width,float height)
 	    {
 	    	float[] result=new float[bw*bh*12*2]; 
-	    	float sizew=width/bw;//ÁĞÊı
-	    	float sizeh=height/bh;//ĞĞÊı
+	    	float sizew=width/bw;//åˆ—æ•°
+	    	float sizeh=height/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
-	    			//µÚÒ»¸öÈı½ÇĞÎ
+	    			//ç¬¬ä¸€ä¸ªä¸‰è§’å½¢
 	    			result[c++]=s;
 	    			result[c++]=t;
 	    			
@@ -408,7 +408,7 @@ public class Castle extends BNDrawer
 	    			
 	    			result[c++]=s+sizew/3;
 	    			result[c++]=t+sizeh;
-	    			//µÚ¶ş¸öÈı½ÇĞÎ
+	    			//ç¬¬äºŒä¸ªä¸‰è§’å½¢
 	    			result[c++]=s;
 	    			result[c++]=t;
 	    			
@@ -417,7 +417,7 @@ public class Castle extends BNDrawer
 	    			
 	    			result[c++]=s+sizew/3;
 	    			result[c++]=t;
-	    			//µÚÈı¸öÈı½ÇĞÎ
+	    			//ç¬¬ä¸‰ä¸ªä¸‰è§’å½¢
 	    			result[c++]=s+sizew*2/3;
 	    			result[c++]=t;
 	    			
@@ -426,7 +426,7 @@ public class Castle extends BNDrawer
 	    			
 	    			result[c++]=s+sizew;
 	    			result[c++]=t+sizeh;
-	    			//µÚËÄ¸öÈı½ÇĞÎ
+	    			//ç¬¬å››ä¸ªä¸‰è§’å½¢
 	    			result[c++]=s+sizew*2/3;
 	    			result[c++]=t;
 	    			

@@ -12,7 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class MyActivity extends Activity {
-	//SensorManager¶ÔÏóÒıÓÃ
+	//SensorManagerå¯¹è±¡å¼•ç”¨
 	SensorManager mySensorManager;		
 	Sensor sensorAccelerometer;
 	MySurfaceView mySurfaceView;
@@ -21,27 +21,27 @@ public class MyActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        //È«ÆÁ
+        //å…¨å±
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
 		              WindowManager.LayoutParams.FLAG_FULLSCREEN);		
-		//ÉèÖÃÎªÆÁÄ£Ê½
+		//è®¾ç½®ä¸ºå±æ¨¡å¼
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
-		//»ñµÃSensorManager¶ÔÏó
+		//è·å¾—SensorManagerå¯¹è±¡
         mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         sensorAccelerometer=mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);       
         
         mySurfaceView = new MySurfaceView(this);
         this.setContentView(mySurfaceView);       
-        //»ñÈ¡½¹µã
+        //è·å–ç„¦ç‚¹
         mySurfaceView.requestFocus();
-        //ÉèÖÃÎª¿É´¥¿Ø
+        //è®¾ç½®ä¸ºå¯è§¦æ§
         mySurfaceView.setFocusableInTouchMode(true);
     }
     
 
-  //ÖØÁ¦´«¸ĞÆ÷µÄ¼àÌıÆ÷
+  //é‡åŠ›ä¼ æ„Ÿå™¨çš„ç›‘å¬å™¨
   	private SensorEventListener mek=new SensorEventListener()
   	{
   		@Override
@@ -50,32 +50,32 @@ public class MyActivity extends Activity {
   		@Override
   		public void onSensorChanged(SensorEvent event) 
   		{			
-  			//»ñÈ¡ÖØÁ¦¼ÓËÙ¶ÈÔÚÆÁÄ»ÉÏµÄXY·ÖÁ¿
+  			//è·å–é‡åŠ›åŠ é€Ÿåº¦åœ¨å±å¹•ä¸Šçš„XYåˆ†é‡
   			float gx=event.values[0];
   			float gy=event.values[1];
 
-  			//Çó³öÆÁÄ»ÉÏÖØÁ¦¼ÓËÙ¶ÈÏòÁ¿µÄ·ÖÁ¿³¤¶È
+  			//æ±‚å‡ºå±å¹•ä¸Šé‡åŠ›åŠ é€Ÿåº¦å‘é‡çš„åˆ†é‡é•¿åº¦
   			double mLength=gx*gx+gy*gy;
   			mLength=Math.sqrt(mLength);
-  			//Èô·ÖÁ¿Îª0Ôò·µ»Ø
+  			//è‹¥åˆ†é‡ä¸º0åˆ™è¿”å›
   			if(mLength==0)
   			{
   				return;
   			}
-  			//Èô·ÖÁ¿²»Îª0ÔòÉèÖÃÇò¹ö¶¯µÄ²½½ø
+  			//è‹¥åˆ†é‡ä¸ä¸º0åˆ™è®¾ç½®çƒæ»šåŠ¨çš„æ­¥è¿›
   			Constant.SPANX=(float)((gy/mLength)*0.08);
   			Constant.SPANZ=(float)((gx/mLength)*0.08);				
   		}		
   	};	
 
 	@Override
-	protected void onResume() {						//ÖØĞ´onResume·½·¨
+	protected void onResume() {						//é‡å†™onResumeæ–¹æ³•
 		mySensorManager.registerListener
 		(mek, sensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
 		super.onResume();
 	}
 	@Override
-	protected void onPause() {									//ÖØĞ´onPause·½·¨
+	protected void onPause() {									//é‡å†™onPauseæ–¹æ³•
 		mySensorManager.unregisterListener(mek);
 		super.onPause();
 	}

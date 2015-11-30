@@ -22,53 +22,53 @@ import static com.bn.st.xc.Constant.*;
 
 public class XCSurfaceView extends GLSurfaceView 
 {
-	final float TOUCH_SCALE_FACTOR = 180.0f/SCREEN_WIDTH;//½Ç¶ÈËõ·Å±ÈÀı
-    SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷
-    float mPreviousX;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃX×ø±ê
-    float mPreviousY;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃY×ø±ê
+	final float TOUCH_SCALE_FACTOR = 180.0f/SCREEN_WIDTH;//è§’åº¦ç¼©æ”¾æ¯”ä¾‹
+    SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨
+    float mPreviousX;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Xåæ ‡
+    float mPreviousY;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Yåæ ‡
 
-    int tex_index=0;//¹ã¸æÎÆÀíidË÷Òı   
+    int tex_index=0;//å¹¿å‘Šçº¹ç†idç´¢å¼•   
     
-    int textureUpId;//ÏµÍ³·ÖÅäµÄÓÎÏ·Ç°½øĞéÄâ°´Å¥ÎÆÀíid
-    int textureDownId;//ÏµÍ³·ÖÅäµÄÓÎÏ·ºóÍËĞéÄâ°´Å¥ÎÆÀíid
-    int texWallId[]=new int[3];  //¹ã¸æÇ½ÎÆÀíIdÊı×é
-    int texFloorId;//µØÃæÎÆÀíid
+    int textureUpId;//ç³»ç»Ÿåˆ†é…çš„æ¸¸æˆå‰è¿›è™šæ‹ŸæŒ‰é’®çº¹ç†id
+    int textureDownId;//ç³»ç»Ÿåˆ†é…çš„æ¸¸æˆåé€€è™šæ‹ŸæŒ‰é’®çº¹ç†id
+    int texWallId[]=new int[3];  //å¹¿å‘Šå¢™çº¹ç†Idæ•°ç»„
+    int texFloorId;//åœ°é¢çº¹ç†id
     
-    //´¬µÄÎÆÀíidÊı×é
+    //èˆ¹çš„çº¹ç†idæ•°ç»„
     int[] heroBoatTexId;
     int[] quickBoatTexId;
     int[] slowBoatTexId;
     
-    //´¬µÄÎÆÀíÍ¼Æ¬Êı×é
+    //èˆ¹çš„çº¹ç†å›¾ç‰‡æ•°ç»„
     static Bitmap[] heroBoatTexBitmap;
     static Bitmap[] quickBoatTexBitmap;
     static Bitmap[] slowBoatTexBitmap;
 	
-    static Bitmap bmUp;//Ç°½øĞéÄâ°´Å¥
-    static Bitmap bmDown;//ºóÍËĞéÄâ°´Å¥
-    static Bitmap[] bmaWall=new Bitmap[3];//¹ã¸æÇ½ÎÆÀíÊı×é
-    static Bitmap bmFloor;//µØÃæ
+    static Bitmap bmUp;//å‰è¿›è™šæ‹ŸæŒ‰é’®
+    static Bitmap bmDown;//åé€€è™šæ‹ŸæŒ‰é’®
+    static Bitmap[] bmaWall=new Bitmap[3];//å¹¿å‘Šå¢™çº¹ç†æ•°ç»„
+    static Bitmap bmFloor;//åœ°é¢
     
-	private float yAngle=0;//ÈÆYÖá×ª¶¯½Ç
-	private float xAngle=20;//Ñö½Ç
-	//ÉãÏñ»ú×ø±ê
+	private float yAngle=0;//ç»•Yè½´è½¬åŠ¨è§’
+	private float xAngle=20;//ä»°è§’
+	//æ‘„åƒæœºåæ ‡
 	private float cx;
 	private float cz;
 	private float cy;
-	//Ä¿±êµã×ø±ê
+	//ç›®æ ‡ç‚¹åæ ‡
 	private float tx=0;
 	private float tz=0;
 	private float ty=-HOUSE_GAO/3;
-	//ÉãÏñ»úÍ·¶¥Ö¸Ïò
+	//æ‘„åƒæœºå¤´é¡¶æŒ‡å‘
 	private float upX=0;
 	private float upY=1;
 	private float upZ=0;
-	//----´´½¨ÎïÌå----------------------
-	HouseForDraw house;//·¿¼ä
-	DisplayStation displayStation;//Õ¹Ì¨
-	Boat boat[]=new Boat[3];//´¬
-	TextureRect button;//°´Å¥
-	LoadedObjectVertexNormalXC rome;//´´½¨ÂŞÂíÖù×Ó
+	//----åˆ›å»ºç‰©ä½“----------------------
+	HouseForDraw house;//æˆ¿é—´
+	DisplayStation displayStation;//å±•å°
+	Boat boat[]=new Boat[3];//èˆ¹
+	TextureRect button;//æŒ‰é’®
+	LoadedObjectVertexNormalXC rome;//åˆ›å»ºç½—é©¬æŸ±å­
 	
 	private float half_width_button=0.15f;
 //	private float half_height_button=0.1f;
@@ -76,63 +76,63 @@ public class XCSurfaceView extends GLSurfaceView
 	private float offset_Y_Button1=-0.8f;
 	private float offset_X_Button2=0.7f;
 	private float offset_Y_Button2=-0.8f;
-	//°´Å¥µÄ·¶Î§
+	//æŒ‰é’®çš„èŒƒå›´
 	private float[] button1;
 	private float[] button2;
 	
-	public boolean flagForThread=true;//Ïß³Ì±êÖ¾
+	public boolean flagForThread=true;//çº¿ç¨‹æ ‡å¿—
 	
-	public int index_boat=0;//´¬µÄË÷Òı
-	private float ratio;//»æÖÆÍ¶Ó°¾ØÕóËõ·Å±ÈÀı
+	public int index_boat=0;//èˆ¹çš„ç´¢å¼•
+	private float ratio;//ç»˜åˆ¶æŠ•å½±çŸ©é˜µç¼©æ”¾æ¯”ä¾‹
 	
-	//--------²âÊÔ¹ßĞÔ---------------
-	private boolean flag_go;//ÔÊĞí¹ßĞÔ±êÖ¾Î» 
+	//--------æµ‹è¯•æƒ¯æ€§---------------
+	private boolean flag_go;//å…è®¸æƒ¯æ€§æ ‡å¿—ä½ 
 	final int countGoStepInitValue=35;
 	private int countGoStep=0;
 	private float acceleratedVelocity=0.06f;
-	private float ori_angle_speed=7;//³õÊ¼½ÇËÙ¶È
-	private float curr_angle_speed;//µ±Ç°½ÇËÙ¶È
-	private boolean isMoved;//ÅĞ¶ÏÊÇ·ñÒÆ¶¯¹ı
-	//---------ÎÆÀíÇ½Ç½ÉÏµÄ¹ã¸æ---------------
-	public boolean flag_display=true;//¹ã¸æ±êÖ¾Î»
+	private float ori_angle_speed=7;//åˆå§‹è§’é€Ÿåº¦
+	private float curr_angle_speed;//å½“å‰è§’é€Ÿåº¦
+	private boolean isMoved;//åˆ¤æ–­æ˜¯å¦ç§»åŠ¨è¿‡
+	//---------çº¹ç†å¢™å¢™ä¸Šçš„å¹¿å‘Š---------------
+	public boolean flag_display=true;//å¹¿å‘Šæ ‡å¿—ä½
 	public XCSurfaceView(Context context)
 	{
         super(context);
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
         this.setKeepScreenOn(true);
-        cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úx×ø±ê 
-        cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úz×ø±ê 
-        cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//ÉãÏñ»úy×ø±ê 
+        cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºxåæ ‡ 
+        cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºzåæ ‡ 
+        cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//æ‘„åƒæœºyåæ ‡ 
     }
-	//´¥ÃşÊÂ¼ş»Øµ÷·½·¨
+	//è§¦æ‘¸äº‹ä»¶å›è°ƒæ–¹æ³•
 	@Override 
     public boolean onTouchEvent(MotionEvent e) 
 	{
-        float y = e.getY();//µÃµ½°´ÏÂµÄXY×ø±ê
+        float y = e.getY();//å¾—åˆ°æŒ‰ä¸‹çš„XYåæ ‡
         float x = e.getX();
         float domain_span=5;
         switch (e.getAction())
         {
         case MotionEvent.ACTION_MOVE:
-            float dx = x - mPreviousX;//¼ÆËã´¥¿Ø±ÊXÎ»ÒÆ
+            float dx = x - mPreviousX;//è®¡ç®—è§¦æ§ç¬”Xä½ç§»
 			float dy = y-  mPreviousY;//
         	yAngle -= dx * TOUCH_SCALE_FACTOR;//
-        	xAngle -= dy * TOUCH_SCALE_FACTOR/2.0f;//Ñö½Ç¸Ä±ä
-        	if(xAngle>45)//Ñö½ÇµÄ×î´óÖµ
+        	xAngle -= dy * TOUCH_SCALE_FACTOR/2.0f;//ä»°è§’æ”¹å˜
+        	if(xAngle>45)//ä»°è§’çš„æœ€å¤§å€¼
         	{
         		xAngle=45;
         	}
-        	if(xAngle<10){//Ñö½ÇµÄ×îĞ¡Öµ
+        	if(xAngle<10){//ä»°è§’çš„æœ€å°å€¼
         		xAngle=10;
         	}
 
-            if(Math.abs(dx)>domain_span)//È·¶¨Ò»¸öãĞÖµ
+            if(Math.abs(dx)>domain_span)//ç¡®å®šä¸€ä¸ªé˜ˆå€¼
             {
-	            isMoved=true;//±íÊ¾µ±Ç°ÒÆ¶¯¹ı
-	            //ÉèÖÃµ±Ç°½ÇËÙ¶È
+	            isMoved=true;//è¡¨ç¤ºå½“å‰ç§»åŠ¨è¿‡
+	            //è®¾ç½®å½“å‰è§’é€Ÿåº¦
 	            curr_angle_speed=ori_angle_speed*(-dx/SCREEN_WIDTH);
 	            if(dx>20||dx<-20)
 	            {
@@ -146,17 +146,17 @@ public class XCSurfaceView extends GLSurfaceView
 		            }
 	            }
 	            
-	            //ÉèÖÃ¼ÓËÙ¶È´óĞ¡
+	            //è®¾ç½®åŠ é€Ÿåº¦å¤§å°
 	            acceleratedVelocity=0.03f;
-	            //Èôµ±Ç°½ÇËÙ¶È´óÓÚÁãÔò¼ÓËÙ¶ÈÖÃÎª¸º
+	            //è‹¥å½“å‰è§’é€Ÿåº¦å¤§äºé›¶åˆ™åŠ é€Ÿåº¦ç½®ä¸ºè´Ÿ
 	            if(curr_angle_speed>0)
 	            {
 	            	acceleratedVelocity=-0.03f;
 	            }
             }
-            cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úx×ø±ê 
-            cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úz×ø±ê 
-            cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//ÉãÏñ»úy×ø±ê
+            cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºxåæ ‡ 
+            cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºzåæ ‡ 
+            cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//æ‘„åƒæœºyåæ ‡
             break;
             
         case MotionEvent.ACTION_DOWN :
@@ -180,15 +180,15 @@ public class XCSurfaceView extends GLSurfaceView
         	}
         	break;
         }
-        mPreviousX = x;//¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ   
+        mPreviousX = x;//è®°å½•è§¦æ§ç¬”ä½ç½®   
         mPreviousY=y;
-        cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úx×ø±ê 
-        cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úz×ø±ê 
-        cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//ÉãÏñ»úy×ø±ê
+        cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºxåæ ‡ 
+        cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºzåæ ‡ 
+        cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//æ‘„åƒæœºyåæ ‡
         return true;
     }
 	
-	//´¬²¿¼şLoadedObjectVertexNormalÁĞ±í
+	//èˆ¹éƒ¨ä»¶LoadedObjectVertexNormalåˆ—è¡¨
 	static LoadedObjectVertexTexXC[][] parts=new LoadedObjectVertexTexXC[3][];
 	static 
 	{
@@ -227,56 +227,56 @@ public class XCSurfaceView extends GLSurfaceView
 			//System.out.println(1000000000.0/(currs-olds)+"FPS");
 			//olds=currs;
         	 
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT); 
             MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 2.5f, 1000);           
             MatrixState.setCamera(cx,cy,cz,tx,ty,tz,upX,upY,upZ);
             MatrixState.copyMVMatrix();
-            //³õÊ¼»¯¹âÔ´Î»ÖÃ
+            //åˆå§‹åŒ–å…‰æºä½ç½®
             MatrixState.setLightLocation(cx, cy+5, cz+3);            
-            //--------------------------»æÖÆ´¬ÔÚÇ½±ÚÉÏµÄµ¹Ó°-------------------------------------------            
+            //--------------------------ç»˜åˆ¶èˆ¹åœ¨å¢™å£ä¸Šçš„å€’å½±-------------------------------------------            
             drawBoatMirrorOnWall();
            
-            //ÔÚ»­Í¸Ã÷Ç½
-            GLES20.glEnable(GLES20.GL_BLEND);//¿ªÆô»ìºÏ
+            //åœ¨ç”»é€æ˜å¢™
+            GLES20.glEnable(GLES20.GL_BLEND);//å¼€å¯æ··åˆ
             GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
             house.drawTransparentWall();
-            GLES20.glDisable(GLES20.GL_BLEND); //¹Ø±Õ»ìºÏ
+            GLES20.glDisable(GLES20.GL_BLEND); //å…³é—­æ··åˆ
             
-            house.drawFloor(texFloorId);//»æÖÆµØ°å
-            //»æÖÆ¹ã¸æÇ½
+            house.drawFloor(texFloorId);//ç»˜åˆ¶åœ°æ¿
+            //ç»˜åˆ¶å¹¿å‘Šå¢™
             house.drawTexWall(texWallId,tex_index);
             
-            //--------------------------»æÖÆ´¬ÔÚÕ¹Ì¨ÉÏµÄµ¹Ó°-------------------------------------------
-            //»æÖÆÕ¹Ì¨µÄ²»Í¸Ã÷µÄÔ²Öù
+            //--------------------------ç»˜åˆ¶èˆ¹åœ¨å±•å°ä¸Šçš„å€’å½±-------------------------------------------
+            //ç»˜åˆ¶å±•å°çš„ä¸é€æ˜çš„åœ†æŸ±
             MatrixState.pushMatrix();
             MatrixState.translate(0, -Constant.HOUSE_GAO/2, 0);
             displayStation.drawSelfCylinder();
             MatrixState.popMatrix();
             
-            //»æÖÆ´¬ÔÚÕ¹Ì¨ÉÏµÄµ¹Ó°
+            //ç»˜åˆ¶èˆ¹åœ¨å±•å°ä¸Šçš„å€’å½±
             MatrixState.pushMatrix();
             drawBoatShadow();
             MatrixState.popMatrix(); 
             
-            //»æÖÆÍ¸Ã÷Ô²Ãæ,¿ªÆô»ìºÏ
-            GLES20.glEnable(GLES20.GL_BLEND);//¿ªÆô»ìºÏ
-            GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);//ÉèÖÃ»ìºÏÒò×Ó
+            //ç»˜åˆ¶é€æ˜åœ†é¢,å¼€å¯æ··åˆ
+            GLES20.glEnable(GLES20.GL_BLEND);//å¼€å¯æ··åˆ
+            GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);//è®¾ç½®æ··åˆå› å­
             displayStation.drawTransparentCircle();
-            GLES20.glDisable(GLES20.GL_BLEND); //¹Ø±Õ»ìºÏ            
+            GLES20.glDisable(GLES20.GL_BLEND); //å…³é—­æ··åˆ            
             
-            //»æÖÆÕæÊµ´¬
+            //ç»˜åˆ¶çœŸå®èˆ¹
             drawBoat();
-            //»æÖÆÖù×Ó
+            //ç»˜åˆ¶æŸ±å­
             drawRomeColumn();
-            //»æÖÆÉÏÒ»¸öÏÂÒ»¸ö°´Å¥
+            //ç»˜åˆ¶ä¸Šä¸€ä¸ªä¸‹ä¸€ä¸ªæŒ‰é’®
             drawButton();
         }  
         public void onSurfaceChanged(GL10 gl, int width, int height)
         {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             ratio = (float) width / height;            
             virtualButton();
             new Thread()
@@ -288,21 +288,21 @@ public class XCSurfaceView extends GLSurfaceView
             		{
             			try 
             			{
-            				//ÕâÀï½øĞĞ¹ßĞÔ²âÊÔ
-            				if(flag_go)//Èç¹ûÔÊĞí¹ßĞÔ
+            				//è¿™é‡Œè¿›è¡Œæƒ¯æ€§æµ‹è¯•
+            				if(flag_go)//å¦‚æœå…è®¸æƒ¯æ€§
             				{
             					countGoStep--;
             					if(countGoStep<=0)
             					{
-            						curr_angle_speed=curr_angle_speed+acceleratedVelocity;//¼ÆËãµ±Ç°½ÇËÙ¶È
+            						curr_angle_speed=curr_angle_speed+acceleratedVelocity;//è®¡ç®—å½“å‰è§’é€Ÿåº¦
             					}
             					
             					if(Math.abs(curr_angle_speed)>0.1f)
             					{
             						yAngle=yAngle+curr_angle_speed;
-                					cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úx×ø±ê 
-                				    cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//ÉãÏñ»úz×ø±ê 
-                				    cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//ÉãÏñ»úy×ø±ê 
+                					cx=(float)(tx+Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºxåæ ‡ 
+                				    cz=(float)(tz+Math.cos(Math.toRadians(xAngle))*Math.cos(Math.toRadians(yAngle))*XC_DISTANCE);//æ‘„åƒæœºzåæ ‡ 
+                				    cy=(float)(ty+Math.sin(Math.toRadians(xAngle))*XC_DISTANCE);//æ‘„åƒæœºyåæ ‡ 
             					}
             					else
             					{
@@ -327,12 +327,12 @@ public class XCSurfaceView extends GLSurfaceView
         	synchronized(MyActivity.boatInitLock)
         	{        		
             	ShaderManager.compileShaderReal();            	
-            	textureUpId=initTextureFromBitmap(bmUp);//ÉÏ°´Å¥
-                textureDownId=initTextureFromBitmap(bmDown);//ÏÂ°´Å¥
-                texWallId[0]=initTextureFromBitmap(bmaWall[0]);//¹ã¸æÎÆÀíÍ¼1    
-                texWallId[1]=initTextureFromBitmap(bmaWall[1]);//¹ã¸æÎÆÀíÍ¼2
-                texWallId[2]=initTextureFromBitmap(bmaWall[2]);//¹ã¸æÎÆÀíÍ¼3
-                texFloorId=initTextureFromBitmap(bmFloor);//µØÃæÎÆÀíÍ¼3   
+            	textureUpId=initTextureFromBitmap(bmUp);//ä¸ŠæŒ‰é’®
+                textureDownId=initTextureFromBitmap(bmDown);//ä¸‹æŒ‰é’®
+                texWallId[0]=initTextureFromBitmap(bmaWall[0]);//å¹¿å‘Šçº¹ç†å›¾1    
+                texWallId[1]=initTextureFromBitmap(bmaWall[1]);//å¹¿å‘Šçº¹ç†å›¾2
+                texWallId[2]=initTextureFromBitmap(bmaWall[2]);//å¹¿å‘Šçº¹ç†å›¾3
+                texFloorId=initTextureFromBitmap(bmFloor);//åœ°é¢çº¹ç†å›¾3   
                 
                 heroBoatTexId=new int[heroBoatTexBitmap.length];
                 quickBoatTexId=new int[quickBoatTexBitmap.length];
@@ -353,28 +353,28 @@ public class XCSurfaceView extends GLSurfaceView
                 	slowBoatTexId[i]=initTextureFromBitmap(slowBoatTexBitmap[i]);
                 }
             	
-                //ÉèÖÃÆÁÄ»±³¾°É«RGBA
+                //è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
                 GLES20.glClearColor(1f,1f,1f, 1.0f);
                                 
-                //Á¢ÌåÎïÌå==========================================================
-                house=new HouseForDraw();//´´½¨·¿¼ä
-                displayStation=new DisplayStation(RADIUS_DISPLAY, LENGTH_DISPLAY);//´´½¨Õ¹Ì¨
-                boat[0]=new Boat(parts[0],XCSurfaceView.this);//´´½¨´¬Ö»ltf
-                boat[1]=new Boat(parts[1],XCSurfaceView.this);//´´½¨´¬Ö»cjg
-                boat[2]=new Boat(parts[2],XCSurfaceView.this);//´´½¨´¬Ö»pjh
-            	button=new TextureRect(ShaderManager.getCommTextureShaderProgram(), half_width_button, XC_Self_Adapter_Data_TRASLATE[com.bn.clp.Constant.screenId][0]);//»æÖÆÏà¹Ø°´Å¥
+                //ç«‹ä½“ç‰©ä½“==========================================================
+                house=new HouseForDraw();//åˆ›å»ºæˆ¿é—´
+                displayStation=new DisplayStation(RADIUS_DISPLAY, LENGTH_DISPLAY);//åˆ›å»ºå±•å°
+                boat[0]=new Boat(parts[0],XCSurfaceView.this);//åˆ›å»ºèˆ¹åªltf
+                boat[1]=new Boat(parts[1],XCSurfaceView.this);//åˆ›å»ºèˆ¹åªcjg
+                boat[2]=new Boat(parts[2],XCSurfaceView.this);//åˆ›å»ºèˆ¹åªpjh
+            	button=new TextureRect(ShaderManager.getCommTextureShaderProgram(), half_width_button, XC_Self_Adapter_Data_TRASLATE[com.bn.clp.Constant.screenId][0]);//ç»˜åˆ¶ç›¸å…³æŒ‰é’®
             	
-             	//´´½¨ÂŞÂíÖù¶ÔÏó
+             	//åˆ›å»ºç½—é©¬æŸ±å¯¹è±¡
             	romeData.initShader(ShaderManager.getColorshaderProgram());
             	rome=romeData;
-            	//¿ªÆô±³Ãæ¼ô²Ã   
+            	//å¼€å¯èƒŒé¢å‰ªè£   
                 GLES20.glEnable(GLES20.GL_CULL_FACE);
-                //´ò¿ªÉî¶È¼ì²â
+                //æ‰“å¼€æ·±åº¦æ£€æµ‹
                 GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-                //´ò¿ª¶¶¶¯
+                //æ‰“å¼€æŠ–åŠ¨
                 GLES20.glEnable(GLES20.GL_DITHER);
                 MatrixState.setInitStack();
-                //--------------------------»æÖÆÎÆÀíÇ½------------------------------------------------
+                //--------------------------ç»˜åˆ¶çº¹ç†å¢™------------------------------------------------
     	          new Thread()
     	          {
     	          	@Override
@@ -382,7 +382,7 @@ public class XCSurfaceView extends GLSurfaceView
     	          	{
     	          		while(flag_display)
     	          		{
-    	          			tex_index=(tex_index+1)%texWallId.length;//Ã¿¸ôÁ½Ãë»»Ò»·ùÎÆÀíÍ¼
+    	          			tex_index=(tex_index+1)%texWallId.length;//æ¯éš”ä¸¤ç§’æ¢ä¸€å¹…çº¹ç†å›¾
     	          			
     	        			try
     	              		{
@@ -395,17 +395,17 @@ public class XCSurfaceView extends GLSurfaceView
     	          		}
     	          	}
     	          }.start();
-              //--------------------------»æÖÆÎÆÀíÇ½------------------------------------------------
+              //--------------------------ç»˜åˆ¶çº¹ç†å¢™------------------------------------------------
         	}
         }
-        //»æÖÆÖù×Ó
+        //ç»˜åˆ¶æŸ±å­
         public void drawRomeColumn()
         {
         	float ratio_column=0.55f;
         	float column_height=-18;
-        	float adjust=3f;//µ÷ÕûÖµ
+        	float adjust=3f;//è°ƒæ•´å€¼
            
-            //»æÖÆµÚÒ»¸öÖù×Ó
+            //ç»˜åˆ¶ç¬¬ä¸€ä¸ªæŸ±å­
             MatrixState.pushMatrix();
             MatrixState.rotate(30, 0, 1, 0);
             MatrixState.translate( 0,column_height, -WALL_WIDHT*2+adjust);
@@ -413,7 +413,7 @@ public class XCSurfaceView extends GLSurfaceView
             rome.drawSelf(1.0f);
             MatrixState.popMatrix();
             
-            //ÄæÊ±Õë»æÖÆµÚ¶ş¸ùÖù×Ó£¬´ËÊ±ÎªÕı·½Ïò  
+            //é€†æ—¶é’ˆç»˜åˆ¶ç¬¬äºŒæ ¹æŸ±å­ï¼Œæ­¤æ—¶ä¸ºæ­£æ–¹å‘  
             MatrixState.pushMatrix();
             MatrixState.rotate(90, 0, 1, 0);
             MatrixState.translate( 0,column_height, -WALL_WIDHT*2+adjust);
@@ -421,7 +421,7 @@ public class XCSurfaceView extends GLSurfaceView
             rome.drawSelf(1.0f);
             MatrixState.popMatrix();
             
-            //ÄæÊ±Õë»æÖÆµÚÈı¸ùÖù×Ó£¬´ËÊ±ÎªÕı·½Ïò
+            //é€†æ—¶é’ˆç»˜åˆ¶ç¬¬ä¸‰æ ¹æŸ±å­ï¼Œæ­¤æ—¶ä¸ºæ­£æ–¹å‘
             MatrixState.pushMatrix();
             MatrixState.rotate(150, 0, 1, 0);
             MatrixState.translate( 0,column_height, -WALL_WIDHT*2+adjust);
@@ -429,7 +429,7 @@ public class XCSurfaceView extends GLSurfaceView
             rome.drawSelf(1.0f);
             MatrixState.popMatrix();
             
-            //ÄæÊ±Õë»æÖÆµÚËÄ¸ùÖù×Ó£¬´ËÊ±ÎªÕı·½Ïò
+            //é€†æ—¶é’ˆç»˜åˆ¶ç¬¬å››æ ¹æŸ±å­ï¼Œæ­¤æ—¶ä¸ºæ­£æ–¹å‘
             MatrixState.pushMatrix();
             MatrixState.rotate(210, 0, 1, 0);  
             MatrixState.translate( 0,column_height, -WALL_WIDHT*2+adjust);
@@ -437,7 +437,7 @@ public class XCSurfaceView extends GLSurfaceView
             rome.drawSelf(1.0f);
             MatrixState.popMatrix();
             
-            //ÄæÊ±Õë»æÖÆµÚÎå¸ùÖù×Ó£¬´ËÊ±ÎªÕı·½Ïò
+            //é€†æ—¶é’ˆç»˜åˆ¶ç¬¬äº”æ ¹æŸ±å­ï¼Œæ­¤æ—¶ä¸ºæ­£æ–¹å‘
             MatrixState.pushMatrix();
             MatrixState.rotate(270, 0, 1, 0);
             MatrixState.translate( 0,column_height, -WALL_WIDHT*2+adjust);
@@ -445,7 +445,7 @@ public class XCSurfaceView extends GLSurfaceView
             rome.drawSelf(1.0f);
             MatrixState.popMatrix();
             
-            //ÄæÊ±Õë»æÖÆµÚÁù¸ùÖù×Ó£¬´ËÊ±ÎªÕı·½Ïò
+            //é€†æ—¶é’ˆç»˜åˆ¶ç¬¬å…­æ ¹æŸ±å­ï¼Œæ­¤æ—¶ä¸ºæ­£æ–¹å‘
             MatrixState.pushMatrix();
             MatrixState.rotate(330, 0, 1, 0);
             MatrixState.translate( 0,column_height, -WALL_WIDHT*2+adjust);
@@ -454,23 +454,23 @@ public class XCSurfaceView extends GLSurfaceView
             MatrixState.popMatrix();
         }
 
-        //»æÖÆ´¬µÄ·½·¨
+        //ç»˜åˆ¶èˆ¹çš„æ–¹æ³•
         public void drawBoat()
         {
         	 MatrixState.pushMatrix();
              switch(index_boat) 
              {  
-             case 0://ÌÚ·ÉµÄ´¬   
+             case 0://è…¾é£çš„èˆ¹   
                   MatrixState.translate(0, -10f, 0);             	  
                   MatrixState.scale(RATIO_BOAT, RATIO_BOAT, RATIO_BOAT);
                   boat[0].drawSelf(heroBoatTexId);  
              	break;   
-             case 1://´ó¹ãµÄ´¬  
+             case 1://å¤§å¹¿çš„èˆ¹  
             	 MatrixState.translate(0, -10f, 0);
                   MatrixState.scale(RATIO_BOAT, RATIO_BOAT, RATIO_BOAT);
                   boat[1].drawSelf(quickBoatTexId);
              	break;
-             case 2://ÅíÅíµÄ´¬
+             case 2://å½­å½­çš„èˆ¹
              	  MatrixState.translate(0, -10f, 0);             	  
                   MatrixState.scale(RATIO_BOAT, RATIO_BOAT, RATIO_BOAT);
                   boat[2].drawSelf(slowBoatTexId);
@@ -479,27 +479,27 @@ public class XCSurfaceView extends GLSurfaceView
              MatrixState.popMatrix();
         }
         
-        //»æÖÆ´¬µÄµ¹Ó°µÄ·½·¨
+        //ç»˜åˆ¶èˆ¹çš„å€’å½±çš„æ–¹æ³•
         public void drawBoatShadow()
         {
-			//¹Ø±Õ±³Ãæ¼ô²Ã
+			//å…³é—­èƒŒé¢å‰ªè£
             GLES20.glDisable(GLES20.GL_CULL_FACE);
             MatrixState.pushMatrix();   
 			switch(index_boat) 
             {  
-            case 0://ÌÚ·ÉµÄ´¬  
+            case 0://è…¾é£çš„èˆ¹  
                  MatrixState.translate(-1f, -14f, 0); 
                  MatrixState.rotate(180, 0, 0, 1);
                  MatrixState.scale(RATIO_BOAT, RATIO_BOAT, RATIO_BOAT);
                  boat[0].drawSelf(heroBoatTexId);  
             	break;   
-            case 1://´ó¹ãµÄ´¬  
+            case 1://å¤§å¹¿çš„èˆ¹  
            	 	MatrixState.translate(0.6f, -14f, 0);
            	 	MatrixState.rotate(180, 0, 0, 1);
                 MatrixState.scale(RATIO_BOAT, RATIO_BOAT, RATIO_BOAT);
                 boat[1].drawSelf(quickBoatTexId);
             	break;
-            case 2://ÅíÅíµÄ´¬
+            case 2://å½­å½­çš„èˆ¹
             	MatrixState.translate(0, -14f, 0); 
             	MatrixState.rotate(180, 0, 0, 1);
                 MatrixState.scale(RATIO_BOAT, RATIO_BOAT, RATIO_BOAT);
@@ -507,10 +507,10 @@ public class XCSurfaceView extends GLSurfaceView
             	break;
             }
             MatrixState.popMatrix();
-            //´ò¿ª±³Ãæ¼ô²Ã
+            //æ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);
         }
-        //»æÖÆ´¬ÔÚÇ½ÖĞµÄ¾µÏñ
+        //ç»˜åˆ¶èˆ¹åœ¨å¢™ä¸­çš„é•œåƒ
         public void drawBoatMirrorOnWall()
         {
         	final float ydistance=6f;
@@ -518,7 +518,7 @@ public class XCSurfaceView extends GLSurfaceView
         	int k=(int) Math.abs(yAngle)/360+2;
         	float yAngleTemp=(yAngle+360*k)%360;
         	final int span=68;
-        	//ÔÚµÚÒ»ÃæÇ½        	
+        	//åœ¨ç¬¬ä¸€é¢å¢™        	
         	if(yAngleTemp<=span&&yAngleTemp>=0||yAngleTemp>=360-span&&yAngleTemp<=360)
         	{
         		MatrixState.pushMatrix();
@@ -529,10 +529,10 @@ public class XCSurfaceView extends GLSurfaceView
             	MatrixState.popMatrix();   
         	}  
         	     	
-        	//ÄæÊ±ÕëÔÚµÚ¶şÃæÇ½»­¾µÏñ========================?
+        	//é€†æ—¶é’ˆåœ¨ç¬¬äºŒé¢å¢™ç”»é•œåƒ========================?
         	int bzAngle;
         	
-        	//ÄæÊ±ÕëÔÚµÚÈı¸öÇ½Ãæ¾µÏñ  
+        	//é€†æ—¶é’ˆåœ¨ç¬¬ä¸‰ä¸ªå¢™é¢é•œåƒ  
         	bzAngle=120;
         	if(yAngleTemp>bzAngle-span&&yAngleTemp<bzAngle+span)
         	{
@@ -544,7 +544,7 @@ public class XCSurfaceView extends GLSurfaceView
 		    	drawBoat();
 		    	MatrixState.popMatrix();    
         	}
-        	//ÄæÊ±ÕëµÚÎå¸öÃæ
+        	//é€†æ—¶é’ˆç¬¬äº”ä¸ªé¢
         	bzAngle=240;
         	if(yAngleTemp>bzAngle-span&&yAngleTemp<bzAngle+span)
         	{
@@ -558,40 +558,40 @@ public class XCSurfaceView extends GLSurfaceView
         	}
         }       
      
-        //»æÖÆÏà¹Ø°´Å¥
+        //ç»˜åˆ¶ç›¸å…³æŒ‰é’®
         public void drawButton()
         {
-        	//ÉèÖÃÕı½»¾ØÕó
+        	//è®¾ç½®æ­£äº¤çŸ©é˜µ
         	MatrixState.setProjectOrtho(-1,1,-1,1,1,100);
-        	//ÉèÖÃÉãÏñ»ú
+        	//è®¾ç½®æ‘„åƒæœº
         	MatrixState.setCamera(0, 0, 0, 0, 0,-1, 0, 1, 0);
         	MatrixState.copyMVMatrix();
-        	 //¿ªÆô»ìºÏ
+        	 //å¼€å¯æ··åˆ
             GLES20.glEnable(GLES20.GL_BLEND);  
-            //ÉèÖÃ»ìºÏÒò×Ó
+            //è®¾ç½®æ··åˆå› å­
             GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         	MatrixState.pushMatrix();
         	MatrixState.translate(-0.7f, -0.8f, -1);
-        	button.drawSelf(textureUpId);//»æÖÆºóÒÆ°´Å¥
+        	button.drawSelf(textureUpId);//ç»˜åˆ¶åç§»æŒ‰é’®
             MatrixState.popMatrix();
             MatrixState.pushMatrix();
             MatrixState.translate(0.7f, -0.8f, -1);
-            button.drawSelf(textureDownId);//»æÖÆºóÒÆ°´Å¥
+            button.drawSelf(textureDownId);//ç»˜åˆ¶åç§»æŒ‰é’®
             MatrixState.popMatrix();
-            //¹Ø±Õ»ìºÏ
+            //å…³é—­æ··åˆ
             GLES20.glDisable(GLES20.GL_BLEND);
         }
     }
-	//ĞéÄâ°´Å¥µÄ¼àÌı·½·¨
+	//è™šæ‹ŸæŒ‰é’®çš„ç›‘å¬æ–¹æ³•
 	public void virtualButton()
 	{
-		//°´Å¥1×ó±ßËùÕ¼µÄ±ÈÀı
+		//æŒ‰é’®1å·¦è¾¹æ‰€å çš„æ¯”ä¾‹
 		float leftEdge=(float)(1-half_width_button+offset_X_Button1)/2*SCREEN_WIDTH;
 		float rightEdge=(float)(1+half_width_button+offset_X_Button1)/2*SCREEN_WIDTH;
 		float topEdge=(float)(1-XC_Self_Adapter_Data_TRASLATE[com.bn.clp.Constant.screenId][0]-offset_Y_Button1)/2*SCREEN_HEIGHT;
 		float bottomEdge=(float)(1+XC_Self_Adapter_Data_TRASLATE[com.bn.clp.Constant.screenId][0]-offset_Y_Button1)/2*SCREEN_HEIGHT;
 		button1=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//°´Å¥2×ó±ßËùÕ¼µÄ±ÈÀı
+		//æŒ‰é’®2å·¦è¾¹æ‰€å çš„æ¯”ä¾‹
 		leftEdge=(float)(1-half_width_button+offset_X_Button2)/2*SCREEN_WIDTH;
 		rightEdge=(float)(1+half_width_button+offset_X_Button2)/2*SCREEN_WIDTH;
 		topEdge=(float)(1-XC_Self_Adapter_Data_TRASLATE[com.bn.clp.Constant.screenId][0]-offset_Y_Button2)/2*SCREEN_HEIGHT;
@@ -602,13 +602,13 @@ public class XCSurfaceView extends GLSurfaceView
 	}
 	public int initTextureFromBitmap(Bitmap bitmapTmp)//textureId
 	{
-		//Éú³ÉÎÆÀíID
+		//ç”Ÿæˆçº¹ç†ID
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊıÁ¿
-				textures,   //ÎÆÀíidµÄÊı×é
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
@@ -617,13 +617,13 @@ public class XCSurfaceView extends GLSurfaceView
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_REPEAT);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_REPEAT);    
         
-        //Êµ¼Ê¼ÓÔØÎÆÀí
+        //å®é™…åŠ è½½çº¹ç†
         GLUtils.texImage2D
         (
-        		GLES20.GL_TEXTURE_2D,   //ÎÆÀíÀàĞÍ£¬ÔÚOpenGL ESÖĞ±ØĞëÎªGL10.GL_TEXTURE_2D
-        		0, 					  //ÎÆÀíµÄ²ã´Î£¬0±íÊ¾»ù±¾Í¼Ïñ²ã£¬¿ÉÒÔÀí½âÎªÖ±½ÓÌùÍ¼
-        		bitmapTmp, 			  //ÎÆÀíÍ¼Ïñ
-        		0					  //ÎÆÀí±ß¿ò³ß´ç
+        		GLES20.GL_TEXTURE_2D,   //çº¹ç†ç±»å‹ï¼Œåœ¨OpenGL ESä¸­å¿…é¡»ä¸ºGL10.GL_TEXTURE_2D
+        		0, 					  //çº¹ç†çš„å±‚æ¬¡ï¼Œ0è¡¨ç¤ºåŸºæœ¬å›¾åƒå±‚ï¼Œå¯ä»¥ç†è§£ä¸ºç›´æ¥è´´å›¾
+        		bitmapTmp, 			  //çº¹ç†å›¾åƒ
+        		0					  //çº¹ç†è¾¹æ¡†å°ºå¯¸
         );
         
         return textureId;

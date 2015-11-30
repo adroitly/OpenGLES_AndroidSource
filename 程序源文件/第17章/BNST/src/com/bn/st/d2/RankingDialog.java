@@ -3,7 +3,7 @@ import com.bn.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-//Ãû´Î¶Ô»°¿ò
+//åæ¬¡å¯¹è¯æ¡†
 public class RankingDialog extends Dialog 
 {
 	public RankingDialog(Context context)

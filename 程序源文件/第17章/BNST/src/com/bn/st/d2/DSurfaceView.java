@@ -11,14 +11,14 @@ public class DSurfaceView extends MySFView
 {
 	MyActivity activity;
 	Paint paint;
-	int index=1;//¼ÆÊ±Ä£Ê½ºÍ¾ºËÙÄ£Ê½µÄÍ¼Æ¬Ë÷ÒıÖµ
-	List<String> alist=new ArrayList<String>();//´æ´¢ÔÚÊı¾İ¿âÖĞÈ¡³öÊı¾İµÄ¼¯ºÏ
+	int index=1;//è®¡æ—¶æ¨¡å¼å’Œç«é€Ÿæ¨¡å¼çš„å›¾ç‰‡ç´¢å¼•å€¼
+	List<String> alist=new ArrayList<String>();//å­˜å‚¨åœ¨æ•°æ®åº“ä¸­å–å‡ºæ•°æ®çš„é›†åˆ
 	float offset=55*ratio_width;
 	float tyoffset=20*ratio_width;
 	float clipYOffset=10*ratio_height;
-	//Ç°Ò»Ê±¿Ì´¥¿ØµãµÄYÎ»ÖÃ
+	//å‰ä¸€æ—¶åˆ»è§¦æ§ç‚¹çš„Yä½ç½®
 	float beY;
-	//ÉÏÏÂÆ«ÒÆÁ¿µÄÊıÖµ
+	//ä¸Šä¸‹åç§»é‡çš„æ•°å€¼
 	float uBOffset;
 	
 	float yOffset=0;
@@ -26,7 +26,7 @@ public class DSurfaceView extends MySFView
 	public DSurfaceView(MyActivity activity)
 	{
 		this.activity=activity;
-		//ÉèÖÃÉúÃüÖÜÆÚ»Øµ÷½Ó¿ÚµÄÊµÏÖÕß
+		//è®¾ç½®ç”Ÿå‘½å‘¨æœŸå›è°ƒæ¥å£çš„å®ç°è€…
 		paint=new Paint();
 		paint.setAntiAlias(true);
 	}
@@ -35,9 +35,9 @@ public class DSurfaceView extends MySFView
 	{
 		canvas.drawBitmap(recordBitmap[0], picLocation[0][0], picLocation[0][1], paint);   
 		canvas.drawBitmap(recordBitmap[index], picLocation[1][0], picLocation[1][1], paint);
-		canvas.save();//±£´æµ±Ç°»­²¼×´Ì¬
+		canvas.save();//ä¿å­˜å½“å‰ç”»å¸ƒçŠ¶æ€
 		canvas.clipRect(touchLocation[2][0], touchLocation[2][1]+clipYOffset, touchLocation[2][2], touchLocation[2][3]-clipYOffset);
-		if(index==1)//¼ÆÊ±Ä£Ê½
+		if(index==1)//è®¡æ—¶æ¨¡å¼
 		{
 			for(int i=0;i<alist.size();i++)
 			{
@@ -70,7 +70,7 @@ public class DSurfaceView extends MySFView
 				}
 			}
 		}
-		else if(index==2)//¾ºËÙÄ£Ê½
+		else if(index==2)//ç«é€Ÿæ¨¡å¼
 		{
 			for(int i=0;i<alist.size();i++)
 			{
@@ -117,16 +117,16 @@ public class DSurfaceView extends MySFView
 				}
 			}
 		}
-		canvas.restore();//»Ö¸´»­²¼×´Ì¬ 
+		canvas.restore();//æ¢å¤ç”»å¸ƒçŠ¶æ€ 
 	}
 	
-	//»æÖÆÈÕÆÚºÍÊ±¼äµÄ·½·¨
+	//ç»˜åˆ¶æ—¥æœŸå’Œæ—¶é—´çš„æ–¹æ³•
 	public void drawDate(Canvas canvas,float xoffset,float yoffset,float width,Paint paint,String str,Bitmap bmp0,Bitmap bmp1)
 	{
 		String[] tempStr=str.split(":");
 		for(int i=0;i<tempStr.length;i++)
 		{
-			//»æÖÆÊı×Ö
+			//ç»˜åˆ¶æ•°å­—
 			drawNum
 			(
 				canvas,
@@ -136,7 +136,7 @@ public class DSurfaceView extends MySFView
 				paint,
 				tempStr[i]
 			);
-			if(i==1)//»æÖÆºáÏß
+			if(i==1)//ç»˜åˆ¶æ¨ªçº¿
 			{
 				canvas.drawBitmap
 				(
@@ -158,13 +158,13 @@ public class DSurfaceView extends MySFView
 			}
 		}
 	}
-	//»æÖÆÊ±¼ä
+	//ç»˜åˆ¶æ—¶é—´
 	public void drawTime(Canvas canvas,float xoffset,float yoffset,float width,Paint paint,String str,Bitmap bmp)
 	{
 		String[] tempStr=str.split(":");
 		for(int i=0;i<tempStr.length;i++)
 		{
-			//»æÖÆÊı×Ö
+			//ç»˜åˆ¶æ•°å­—
 			drawNum
 			(
 				canvas,
@@ -174,7 +174,7 @@ public class DSurfaceView extends MySFView
 				paint,
 				tempStr[i]
 			);
-			if(i>=1&&i<3)//»æÖÆºáÏß
+			if(i>=1&&i<3)//ç»˜åˆ¶æ¨ªçº¿
 			{
 				canvas.drawBitmap
 				(
@@ -186,11 +186,11 @@ public class DSurfaceView extends MySFView
 			}
 		}
 	}
-	//¸ù¾İÊı×Ö×Ö·û´®»æÖÆÊı×ÖµÄ·½·¨
+	//æ ¹æ®æ•°å­—å­—ç¬¦ä¸²ç»˜åˆ¶æ•°å­—çš„æ–¹æ³•
 	public void drawNum(Canvas canvas,float xoffset,float yoffset,float width,Paint paint,String str)
 	{
 		for(int i=0;i<str.length();i++)
-		{//Ñ­»·»æÖÆµÃ·Ö
+		{//å¾ªç¯ç»˜åˆ¶å¾—åˆ†
     		int tempScore=str.charAt(i)-'0';
     		canvas.drawBitmap(recordNum[tempScore], xoffset+i*width,yoffset, paint);
     	}
@@ -205,7 +205,7 @@ public class DSurfaceView extends MySFView
 		{
 			case MotionEvent.ACTION_DOWN:
 				if(x>touchLocation[0][0]&&x<touchLocation[0][2]&&
-				   y>touchLocation[0][1]&&y<touchLocation[0][3])//¼ÆÊ±Ä£Ê½
+				   y>touchLocation[0][1]&&y<touchLocation[0][3])//è®¡æ—¶æ¨¡å¼
 				{
 					index=1;
 					yOffset=0;
@@ -213,7 +213,7 @@ public class DSurfaceView extends MySFView
 					uBOffset=(alist.size()/(index+1)<=2)?alist.size()/(index+1)*(recordNum[0].getHeight()+tyoffset):3*(recordNum[0].getHeight()+tyoffset);
 				}
 				else if(x>touchLocation[1][0]&&x<touchLocation[1][2]&&
-						y>touchLocation[1][1]&&y<touchLocation[1][3])//¾ºËÙÄ£Ê½
+						y>touchLocation[1][1]&&y<touchLocation[1][3])//ç«é€Ÿæ¨¡å¼
 				{
 					index=2;
 					yOffset=0;
@@ -224,7 +224,7 @@ public class DSurfaceView extends MySFView
 			break;
 			case MotionEvent.ACTION_MOVE:
 				if(x>touchLocation[2][0]&&x<touchLocation[2][2]&&
-				   y>touchLocation[2][1]&&y<touchLocation[2][3])//¾ºËÙÄ£Ê½
+				   y>touchLocation[2][1]&&y<touchLocation[2][3])//ç«é€Ÿæ¨¡å¼
 				{
 					yOffset=yOffset+y-beY;   
 					beY=y;
@@ -247,18 +247,18 @@ public class DSurfaceView extends MySFView
 
 	public void init()
 	{
-		index=1;//¼ÆÊ±Ä£Ê½ºÍ¾ºËÙÄ£Ê½µÄÍ¼Æ¬Ë÷ÒıÖµ
-		alist=new ArrayList<String>();//´æ´¢ÔÚÊı¾İ¿âÖĞÈ¡³öÊı¾İµÄ¼¯ºÏ
+		index=1;//è®¡æ—¶æ¨¡å¼å’Œç«é€Ÿæ¨¡å¼çš„å›¾ç‰‡ç´¢å¼•å€¼
+		alist=new ArrayList<String>();//å­˜å‚¨åœ¨æ•°æ®åº“ä¸­å–å‡ºæ•°æ®çš„é›†åˆ
 		offset=55*ratio_width;
 		tyoffset=20*ratio_width;
 		clipYOffset=10*ratio_height;
-		//Ç°Ò»Ê±¿Ì´¥¿ØµãµÄYÎ»ÖÃ
+		//å‰ä¸€æ—¶åˆ»è§¦æ§ç‚¹çš„Yä½ç½®
 		beY=0;
-		//ÉÏÏÂÆ«ÒÆÁ¿µÄÊıÖµ
+		//ä¸Šä¸‹åç§»é‡çš„æ•°å€¼
 		uBOffset=0;		
 		yOffset=0;
 		
-		//»ñÈ¡¼ÆÊ±Èüµ½µÄÊı¾İ
+		//è·å–è®¡æ—¶èµ›åˆ°çš„æ•°æ®
 		alist=DBUtil.queryDatabase("jsRecord");
 		uBOffset=(alist.size()/(index+1)<=2)?alist.size()/(index+1)*(recordNum[0].getHeight()+tyoffset):3*(recordNum[0].getHeight()+tyoffset);
 	}

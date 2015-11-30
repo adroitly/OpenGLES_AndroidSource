@@ -2,64 +2,64 @@ package com.bn.archieModel;
 import com.bn.commonObject.*;
 import com.bn.core.MatrixState;
 /*
- * »æÖÆÅÚ¹Ü,ÓÃÓÚ»æÖÆ¸ßÉäÅÚµÄÅÚ¹Ü²¿·Ö
+ * ç»˜åˆ¶ç‚®ç®¡,ç”¨äºç»˜åˆ¶é«˜å°„ç‚®çš„ç‚®ç®¡éƒ¨åˆ†
  */
 public class BarrelForDraw 
 {
-	CylinderForDraw longCylinder;//³¤ÅÚÍ²
-	CylinderForDraw shortCylinder;//¶ÌÅÚÍ²
-	CircleForDraw bigCircle;//´óÔ²,ÓÃÓÚ¶ÌÅÚÍ²
-	CircleForDraw shortCircle;//Ğ¡Ô²,ÓÃÓÚ³¤ÅÚÍ²
+	CylinderForDraw longCylinder;//é•¿ç‚®ç­’
+	CylinderForDraw shortCylinder;//çŸ­ç‚®ç­’
+	CircleForDraw bigCircle;//å¤§åœ†,ç”¨äºçŸ­ç‚®ç­’
+	CircleForDraw shortCircle;//å°åœ†,ç”¨äºé•¿ç‚®ç­’
 	
-	private float radius_ratio=1.2f;//¶ÌÅÚÍ²°ë¾¶Óë³¤ÅÚÍ²°ë¾¶µÄ±ÈÀı
-	private float cylinder_ratio=0.2f;//¶ÌÅÚÍ²Õ¼³¤ÅÚÍ²µÄ±ÈÀı
-	private float length_long;//³¤ÅÚÍ²µÄ³¤¶È
-	private float length_short;//¶ÌÅÚÍ²µÄ³¤¶È
-	private float radius_short;//¶ÌÅÚÍ²µÄ°ë¾¶
+	private float radius_ratio=1.2f;//çŸ­ç‚®ç­’åŠå¾„ä¸é•¿ç‚®ç­’åŠå¾„çš„æ¯”ä¾‹
+	private float cylinder_ratio=0.2f;//çŸ­ç‚®ç­’å é•¿ç‚®ç­’çš„æ¯”ä¾‹
+	private float length_long;//é•¿ç‚®ç­’çš„é•¿åº¦
+	private float length_short;//çŸ­ç‚®ç­’çš„é•¿åº¦
+	private float radius_short;//çŸ­ç‚®ç­’çš„åŠå¾„
 	
 	public BarrelForDraw(float length,float radius,int mProgram)
 	{
 		this.length_long=length;
 		this.length_short=length*cylinder_ratio;
 		this.radius_short=radius*radius_ratio;
-		longCylinder=new CylinderForDraw(radius, length, mProgram);//»æÖÆ³¤ÅÚÍ²
-		shortCircle=new CircleForDraw(mProgram, radius);//³¤ÅÚÍ²¶Ë¿ÚÔ²
-		shortCylinder=new CylinderForDraw(radius_short, length_short, mProgram);//»æÖÆ¶ÌÅÚÍ²
-		bigCircle=new CircleForDraw(mProgram, radius_short);//¶ÌÅÚÍ²¶Ë¿ÚÔ²
+		longCylinder=new CylinderForDraw(radius, length, mProgram);//ç»˜åˆ¶é•¿ç‚®ç­’
+		shortCircle=new CircleForDraw(mProgram, radius);//é•¿ç‚®ç­’ç«¯å£åœ†
+		shortCylinder=new CylinderForDraw(radius_short, length_short, mProgram);//ç»˜åˆ¶çŸ­ç‚®ç­’
+		bigCircle=new CircleForDraw(mProgram, radius_short);//çŸ­ç‚®ç­’ç«¯å£åœ†
 	}
-	public void drawSelf(int texBarrelId[])//ÆäÖĞ0±íÊ¾³¤ÅÚÍ²Ô²Öù,1±íÊ¾³¤ÅÚÍ²Ô²Ãæ,2±íÊ¾¶ÌÅÚÍ²Ô²Öù,3±íÊ¾¶ÌÅÚÍ²Ô²Ãæ
+	public void drawSelf(int texBarrelId[])//å…¶ä¸­0è¡¨ç¤ºé•¿ç‚®ç­’åœ†æŸ±,1è¡¨ç¤ºé•¿ç‚®ç­’åœ†é¢,2è¡¨ç¤ºçŸ­ç‚®ç­’åœ†æŸ±,3è¡¨ç¤ºçŸ­ç‚®ç­’åœ†é¢
 	{
-		//--------------------»æÖÆ³¤ÅÚÍ²------------------------
-		//»æÖÆ³¤ÅÚÍ²
+		//--------------------ç»˜åˆ¶é•¿ç‚®ç­’------------------------
+		//ç»˜åˆ¶é•¿ç‚®ç­’
 		MatrixState.pushMatrix();
 		longCylinder.drawSelf(texBarrelId[0]);
 		MatrixState.popMatrix();
-		//»æÖÆ³¤ÅÚÍ²ÉÏ²¿¶Ë¿ÚÔ²
+		//ç»˜åˆ¶é•¿ç‚®ç­’ä¸Šéƒ¨ç«¯å£åœ†
 		MatrixState.pushMatrix();
 		MatrixState.rotate(-90, 1, 0, 0);
 		MatrixState.translate(0, 0, length_long/2);
 		shortCircle.drawSelf(texBarrelId[1]);
 		MatrixState.popMatrix();
-		//»æÖÆ³¤ÅÚÍ²ÏÂ²¿µÄÔ²
+		//ç»˜åˆ¶é•¿ç‚®ç­’ä¸‹éƒ¨çš„åœ†
 		MatrixState.pushMatrix();
 		MatrixState.rotate(90, 1, 0, 0);
 		MatrixState.translate(0, 0, length_long/2);
 		shortCircle.drawSelf(texBarrelId[1]);
 		MatrixState.popMatrix();
-		//---------------------»æÖÆ¶ÌÅÚÍ²-------------------------
+		//---------------------ç»˜åˆ¶çŸ­ç‚®ç­’-------------------------
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, length_long/2-length_short, 0);
 		
 		MatrixState.pushMatrix();
 		shortCylinder.drawSelf(texBarrelId[2]);
 		MatrixState.popMatrix();
-		//»æÖÆ³¤ÅÚÍ²ÉÏ²¿¶Ë¿ÚÔ²
+		//ç»˜åˆ¶é•¿ç‚®ç­’ä¸Šéƒ¨ç«¯å£åœ†
 		MatrixState.pushMatrix();
 		MatrixState.rotate(-90, 1, 0, 0);
 		MatrixState.translate(0, 0, length_short/2);
 		bigCircle.drawSelf(texBarrelId[3]);
 		MatrixState.popMatrix();
-		//»æÖÆ³¤ÅÚÍ²ÏÂ²¿µÄÔ²
+		//ç»˜åˆ¶é•¿ç‚®ç­’ä¸‹éƒ¨çš„åœ†
 		MatrixState.pushMatrix();
 		MatrixState.rotate(90, 1, 0, 0);
 		MatrixState.translate(0, 0, length_short/2);

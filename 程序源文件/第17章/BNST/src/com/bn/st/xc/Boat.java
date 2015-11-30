@@ -6,7 +6,7 @@ import java.util.List;
 public class Boat 
 {  
 	List<LoadedObjectVertexTexXC> lovo=new ArrayList<LoadedObjectVertexTexXC>();
-	//str位文件的名称，color位每一个部分对应的颜色（其为二维数组）
+	//str浣嶆枃浠剁殑鍚嶇О锛宑olor浣嶆瘡涓�涓儴鍒嗗搴旂殑棰滆壊锛堝叾涓轰簩缁存暟缁勶級
 	public Boat(LoadedObjectVertexTexXC[] parts,XCSurfaceView mv)
 	{
 		for(int i=0;i<parts.length;i++)  

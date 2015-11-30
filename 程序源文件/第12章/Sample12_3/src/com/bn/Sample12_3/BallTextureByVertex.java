@@ -7,51 +7,51 @@ import android.opengl.GLES20;
 import static com.bn.Sample12_3.Constant.*;
 import static com.bn.Sample12_3.ShaderUtil.createProgram;
 
-//ÓÃÓÚ»æÖÆµÄÀºÇò
+//ç”¨äºç»˜åˆ¶çš„ç¯®çƒ
 public class BallTextureByVertex 
 {	
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃ
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃ  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃ  
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷´úÂë½Å±¾    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷´úÂë½Å±¾
-    static float[] mMMatrix = new float[16];//¾ßÌåÎïÌåµÄÒÆ¶¯Ğı×ª¾ØÕó
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨  
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨ä»£ç è„šæœ¬    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨ä»£ç è„šæœ¬
+    static float[] mMMatrix = new float[16];//å…·ä½“ç‰©ä½“çš„ç§»åŠ¨æ—‹è½¬çŸ©é˜µ
 	
-	FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	FloatBuffer   mTexCoorBuffer;//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
-    int vCount=0;   //¶¥µãÊıÁ¿
+	FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	FloatBuffer   mTexCoorBuffer;//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
+    int vCount=0;   //é¡¶ç‚¹æ•°é‡
     
     public BallTextureByVertex(MySurfaceView mv,float scale)
     {    	
-    	//³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İ
+    	//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®
     	initVertexData(scale);
-    	//³õÊ¼»¯shader        
+    	//åˆå§‹åŒ–shader        
     	intShader(mv);
     }
     
-    //³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İµÄ·½·¨
+    //åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®çš„æ–¹æ³•
     public void initVertexData(float scale)
     {
-    	//»ñÈ¡ÇĞ·ÖÕûÍ¼µÄÎÆÀíÊı×é
+    	//è·å–åˆ‡åˆ†æ•´å›¾çš„çº¹ç†æ•°ç»„
     	float[] texCoorArray= 
          generateTexCoor
     	 (
-    			 (int)(360/ANGLE_SPAN), //ÎÆÀíÍ¼ÇĞ·ÖµÄÁĞÊı
-    			 (int)(180/ANGLE_SPAN)  //ÎÆÀíÍ¼ÇĞ·ÖµÄĞĞÊı
+    			 (int)(360/ANGLE_SPAN), //çº¹ç†å›¾åˆ‡åˆ†çš„åˆ—æ•°
+    			 (int)(180/ANGLE_SPAN)  //çº¹ç†å›¾åˆ‡åˆ†çš„è¡Œæ•°
     	);
-        int tc=0;//ÎÆÀíÊı×é¼ÆÊıÆ÷
-        int ts=texCoorArray.length;//ÎÆÀíÊı×é³¤¶È
+        int tc=0;//çº¹ç†æ•°ç»„è®¡æ•°å™¨
+        int ts=texCoorArray.length;//çº¹ç†æ•°ç»„é•¿åº¦
     	
-    	ArrayList<Float> alVertix=new ArrayList<Float>();//´æ·Å¶¥µã×ø±êµÄArrayList
-    	ArrayList<Float> alTexture=new ArrayList<Float>();//´æ·ÅÎÆÀí×ø±êµÄArrayList
+    	ArrayList<Float> alVertix=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡çš„ArrayList
+    	ArrayList<Float> alTexture=new ArrayList<Float>();//å­˜æ”¾çº¹ç†åæ ‡çš„ArrayList
     	
-        for(float vAngle=90;vAngle>-90;vAngle=vAngle-ANGLE_SPAN)//´¹Ö±·½ÏòangleSpan¶ÈÒ»·İ
+        for(float vAngle=90;vAngle>-90;vAngle=vAngle-ANGLE_SPAN)//å‚ç›´æ–¹å‘angleSpanåº¦ä¸€ä»½
         {
-        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//Ë®Æ½·½ÏòangleSpan¶ÈÒ»·İ
+        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//æ°´å¹³æ–¹å‘angleSpanåº¦ä¸€ä»½
         	{
-        		//×İÏòºáÏò¸÷µ½Ò»¸ö½Ç¶Èºó¼ÆËã¶ÔÓ¦µÄ´ËµãÔÚÇòÃæÉÏµÄËÄ±ßĞÎ¶¥µã×ø±ê
-        		//²¢¹¹½¨Á½¸ö×é³ÉËÄ±ßĞÎµÄÈı½ÇĞÎ
+        		//çºµå‘æ¨ªå‘å„åˆ°ä¸€ä¸ªè§’åº¦åè®¡ç®—å¯¹åº”çš„æ­¤ç‚¹åœ¨çƒé¢ä¸Šçš„å››è¾¹å½¢é¡¶ç‚¹åæ ‡
+        		//å¹¶æ„å»ºä¸¤ä¸ªç»„æˆå››è¾¹å½¢çš„ä¸‰è§’å½¢
         		
         		double xozLength=scale*UNIT_SIZE*Math.cos(Math.toRadians(vAngle));
         		float x1=(float)(xozLength*Math.cos(Math.toRadians(hAngle)));
@@ -73,23 +73,23 @@ public class BallTextureByVertex
         		float z4=(float)(xozLength*Math.sin(Math.toRadians(hAngle-ANGLE_SPAN)));
         		float y4=(float)(scale*UNIT_SIZE*Math.sin(Math.toRadians(vAngle)));   
         		
-        		//¹¹½¨µÚÒ»Èı½ÇĞÎ
+        		//æ„å»ºç¬¬ä¸€ä¸‰è§’å½¢
         		alVertix.add(x1);alVertix.add(y1);alVertix.add(z1);
         		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
         		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);        		
-        		//¹¹½¨µÚ¶şÈı½ÇĞÎ
+        		//æ„å»ºç¬¬äºŒä¸‰è§’å½¢
         		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);
         		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
         		alVertix.add(x3);alVertix.add(y3);alVertix.add(z3); 
         		
-        		//µÚÒ»Èı½ÇĞÎ3¸ö¶¥µãµÄ6¸öÎÆÀí×ø±ê
+        		//ç¬¬ä¸€ä¸‰è§’å½¢3ä¸ªé¡¶ç‚¹çš„6ä¸ªçº¹ç†åæ ‡
         		alTexture.add(texCoorArray[tc++%ts]);
         		alTexture.add(texCoorArray[tc++%ts]);
         		alTexture.add(texCoorArray[tc++%ts]);        		
         		alTexture.add(texCoorArray[tc++%ts]);
         		alTexture.add(texCoorArray[tc++%ts]);
         		alTexture.add(texCoorArray[tc++%ts]);
-        		//µÚ¶şÈı½ÇĞÎ3¸ö¶¥µãµÄ6¸öÎÆÀí×ø±ê
+        		//ç¬¬äºŒä¸‰è§’å½¢3ä¸ªé¡¶ç‚¹çš„6ä¸ªçº¹ç†åæ ‡
         		alTexture.add(texCoorArray[tc++%ts]);
         		alTexture.add(texCoorArray[tc++%ts]);
         		alTexture.add(texCoorArray[tc++%ts]);        		
@@ -99,68 +99,68 @@ public class BallTextureByVertex
         	}
         } 	
         
-        vCount=alVertix.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
+        vCount=alVertix.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
     	
-        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öintÊı×éÖĞ
+        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªintæ•°ç»„ä¸­
         float vertices[]=new float[vCount*3];
     	for(int i=0;i<alVertix.size();i++)
     	{
     		vertices[i]=alVertix.get(i);
     	}
 		
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        //ÌØ±ğÌáÊ¾£ºÓÉÓÚ²»Í¬Æ½Ì¨×Ö½ÚË³Ğò²»Í¬Êı¾İµ¥Ôª²»ÊÇ×Ö½ÚµÄÒ»¶¨Òª¾­¹ıByteBuffer
-        //×ª»»£¬¹Ø¼üÊÇÒªÍ¨¹ıByteOrderÉèÖÃnativeOrder()£¬·ñÔòÓĞ¿ÉÄÜ»á³öÎÊÌâ
-        //¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================end============================
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        //ç‰¹åˆ«æç¤ºï¼šç”±äºä¸åŒå¹³å°å­—èŠ‚é¡ºåºä¸åŒæ•°æ®å•å…ƒä¸æ˜¯å­—èŠ‚çš„ä¸€å®šè¦ç»è¿‡ByteBuffer
+        //è½¬æ¢ï¼Œå…³é”®æ˜¯è¦é€šè¿‡ByteOrderè®¾ç½®nativeOrder()ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¼šå‡ºé—®é¢˜
+        //é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================end============================
         
-        //¶¥µãÎÆÀí×ø±êÊı¾İµÄ³õÊ¼»¯================begin============================
-        float texCoor[]=new float[alTexture.size()];//¶¥µãÎÆÀíÖµÊı×é
+        //é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin============================
+        float texCoor[]=new float[alTexture.size()];//é¡¶ç‚¹çº¹ç†å€¼æ•°ç»„
         for(int i=0;i<alTexture.size();i++) 
         {
         	texCoor[i]=alTexture.get(i);
         }
-        //´´½¨¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+        //åˆ›å»ºé¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
         ByteBuffer cbb = ByteBuffer.allocateDirect(texCoor.length*4);
-        cbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mTexCoorBuffer = cbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mTexCoorBuffer.put(texCoor);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-        mTexCoorBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        //ÌØ±ğÌáÊ¾£ºÓÉÓÚ²»Í¬Æ½Ì¨×Ö½ÚË³Ğò²»Í¬Êı¾İµ¥Ôª²»ÊÇ×Ö½ÚµÄÒ»¶¨Òª¾­¹ıByteBuffer
-        //×ª»»£¬¹Ø¼üÊÇÒªÍ¨¹ıByteOrderÉèÖÃnativeOrder()£¬·ñÔòÓĞ¿ÉÄÜ»á³öÎÊÌâ
-        //¶¥µãÎÆÀí×ø±êÊı¾İµÄ³õÊ¼»¯================end============================
+        cbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mTexCoorBuffer = cbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mTexCoorBuffer.put(texCoor);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+        mTexCoorBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        //ç‰¹åˆ«æç¤ºï¼šç”±äºä¸åŒå¹³å°å­—èŠ‚é¡ºåºä¸åŒæ•°æ®å•å…ƒä¸æ˜¯å­—èŠ‚çš„ä¸€å®šè¦ç»è¿‡ByteBuffer
+        //è½¬æ¢ï¼Œå…³é”®æ˜¯è¦é€šè¿‡ByteOrderè®¾ç½®nativeOrder()ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¼šå‡ºé—®é¢˜
+        //é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®çš„åˆå§‹åŒ–================end============================
 
     }
 
-    //³õÊ¼»¯shader
+    //åˆå§‹åŒ–shader
     public void intShader(MySurfaceView mv)
     {
-    	//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+    	//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mVertexShader=ShaderUtil.loadFromAssetsFile("vertex_tex.sh", mv.getResources());
-        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mFragmentShader=ShaderUtil.loadFromAssetsFile("frag_tex.sh", mv.getResources());  
-        //»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+        //åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
         mProgram = createProgram(mVertexShader, mFragmentShader);
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃ  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃ  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃ
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
     }
     
     public void drawSelf(int texId)
     {        
-    	 //ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	 //åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
     	 GLES20.glUseProgram(mProgram); 
-         //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+         //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
          GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-         //½«¶¥µãÎ»ÖÃÊı¾İ´«ÈëäÖÈ¾¹ÜÏß
+         //å°†é¡¶ç‚¹ä½ç½®æ•°æ®ä¼ å…¥æ¸²æŸ“ç®¡çº¿
          GLES20.glVertexAttribPointer  
          (
          		maPositionHandle,   
@@ -170,7 +170,7 @@ public class BallTextureByVertex
                 3*4,   
                 mVertexBuffer
          );       
-         //½«ÎÆÀí×ø±êÊı¾İ´«ÈëäÖÈ¾¹ÜÏß
+         //å°†çº¹ç†åæ ‡æ•°æ®ä¼ å…¥æ¸²æŸ“ç®¡çº¿
          GLES20.glVertexAttribPointer  
          (
         		maTexCoorHandle, 
@@ -180,30 +180,30 @@ public class BallTextureByVertex
                 2*4,   
                 mTexCoorBuffer
          );   
-         //ÆôÓÃ¶¥µãÎ»ÖÃ¡¢ÎÆÀí×ø±êÊı¾İ
+         //å¯ç”¨é¡¶ç‚¹ä½ç½®ã€çº¹ç†åæ ‡æ•°æ®
          GLES20.glEnableVertexAttribArray(maPositionHandle);  
          GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
          
-         //°ó¶¨ÎÆÀí
+         //ç»‘å®šçº¹ç†
          GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
          GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
          
-         //»æÖÆÎÆÀí¾ØĞÎ
+         //ç»˜åˆ¶çº¹ç†çŸ©å½¢
          GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
     }
     
-    //×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+    //è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
     public float[] generateTexCoor(int bw,int bh)
     {
     	float[] result=new float[bw*bh*6*2]; 
-    	float sizew=1.0f/bw;//ÁĞÊı
-    	float sizeh=1.0f/bh;//ĞĞÊı
+    	float sizew=1.0f/bw;//åˆ—æ•°
+    	float sizeh=1.0f/bh;//è¡Œæ•°
     	int c=0;
     	for(int i=0;i<bh;i++)
     	{
     		for(int j=0;j<bw;j++)
     		{
-    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
     			float s=j*sizew;
     			float t=i*sizeh;
     			

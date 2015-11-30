@@ -1,8 +1,8 @@
 package com.bn.Sample11_8;
-//³£Á¿Àà
+//å¸¸é‡ç±»
 public class Constant 
 {
-	public static final float UNIT_SIZE=0.8f;//Çòµ¥Î»³ß´ç
-	public static final float BALL_SCALE=1.0f;//Çòµ¥Î»³ß´ç
-	public static final float ANGLE_SPAN=11.25f;//½«Çò½øĞĞµ¥Î»ÇĞ·ÖµÄ½Ç¶È
+	public static final float UNIT_SIZE=0.8f;//çƒå•ä½å°ºå¯¸
+	public static final float BALL_SCALE=1.0f;//çƒå•ä½å°ºå¯¸
+	public static final float ANGLE_SPAN=11.25f;//å°†çƒè¿›è¡Œå•ä½åˆ‡åˆ†çš„è§’åº¦
 }

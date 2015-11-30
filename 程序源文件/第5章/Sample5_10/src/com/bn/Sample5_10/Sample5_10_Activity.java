@@ -16,22 +16,22 @@ public class Sample5_10_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) 
     {
     	 super.onCreate(savedInstanceState);         
-         //ÉèÖÃÎªÈ«ÆÁ
+         //è®¾ç½®ä¸ºå…¨å±
          requestWindowFeature(Window.FEATURE_NO_TITLE); 
  		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
  		              WindowManager.LayoutParams.FLAG_FULLSCREEN);
- 		//ÉèÖÃÎªºáÆÁÄ£Ê½
+ 		//è®¾ç½®ä¸ºæ¨ªå±æ¨¡å¼
  		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
- 		//ÇĞ»»µ½Ö÷½çÃæ
+ 		//åˆ‡æ¢åˆ°ä¸»ç•Œé¢
  		setContentView(R.layout.main);		
- 		//³õÊ¼»¯GLSurfaceView
+ 		//åˆå§‹åŒ–GLSurfaceView
          mGLSurfaceView = new MySurfaceView(this);
-         mGLSurfaceView.requestFocus();//»ñÈ¡½¹µã
-         mGLSurfaceView.setFocusableInTouchMode(true);//ÉèÖÃÎª¿É´¥¿Ø  
-         //½«×Ô¶¨ÒåµÄGLSurfaceViewÌí¼Óµ½Íâ²ãLinearLayoutÖĞ
+         mGLSurfaceView.requestFocus();//è·å–ç„¦ç‚¹
+         mGLSurfaceView.setFocusableInTouchMode(true);//è®¾ç½®ä¸ºå¯è§¦æ§  
+         //å°†è‡ªå®šä¹‰çš„GLSurfaceViewæ·»åŠ åˆ°å¤–å±‚LinearLayoutä¸­
          LinearLayout ll=(LinearLayout)findViewById(R.id.main_liner); 
          ll.addView(mGLSurfaceView);        
-         //¿ØÖÆÊÇ·ñ´ò¿ª±³Ãæ¼ô²ÃµÄToggleButton
+         //æ§åˆ¶æ˜¯å¦æ‰“å¼€èƒŒé¢å‰ªè£çš„ToggleButton
          ToggleButton tb=(ToggleButton)this.findViewById(R.id.ToggleButton01);
          tb.setOnCheckedChangeListener(
              new OnCheckedChangeListener()
@@ -41,18 +41,18 @@ public class Sample5_10_Activity extends Activity {
  	 			{
  	 				if(isChecked)
  	 				{
- 	 				    //ÊÓ½Ç²»ºÏÊÊµ¼ÖÂ±äĞÎ
- 	 		            //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+ 	 				    //è§†è§’ä¸åˆé€‚å¯¼è‡´å˜å½¢
+ 	 		            //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
  	 		            MatrixState.setProjectFrustum(-ratio*0.7f, ratio*0.7f, -0.7f, 0.7f, 1, 10);
- 	 		            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+ 	 		            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
  	 		            MatrixState.setCamera(0,0.5f,4,0f,0f,0f,0f,1.0f,0.0f);
  	 				}
  	 				else
  	 				{
-	 	 	             //ÊÓ½ÇºÏÊÊ²»±äĞÎ
-	 	 	             //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+	 	 	             //è§†è§’åˆé€‚ä¸å˜å½¢
+	 	 	             //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
 	 	 	             MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 20, 100);
-	 	 	             //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+	 	 	             //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
 	 	 	             MatrixState.setCamera(0,8f,45,0f,0f,0f,0f,1.0f,0.0f);
  	 				}
  	 			}        	   

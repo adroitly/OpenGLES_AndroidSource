@@ -16,20 +16,20 @@ public class DefaultOrientationUtil
 		
 		Display display;         
 	    display = activity.getWindowManager().getDefaultDisplay();
-	    int rotation = display.getRotation();//¶ÁÈ¡µ±Ç°×ËÌ¬Ïà¶ÔÓÚÔ­Ê¼×ËÌ¬µÄĞı×ª½Ç¶È
-	    int widthOrign=0;//ÆÁÄ»·Ö±æÂÊ
-	    int heightOrign=0;//ÆÁÄ»·Ö±æÂÊ
-	    DisplayMetrics dm = new DisplayMetrics();//DisplayMetrics¶ÔÏó
-	    display.getMetrics(dm);//¿í¸ßÎ¬¶È´æ·ÅÓÚDisplayMetrics¶ÔÏóÖĞ
+	    int rotation = display.getRotation();//è¯»å–å½“å‰å§¿æ€ç›¸å¯¹äºåŸå§‹å§¿æ€çš„æ—‹è½¬è§’åº¦
+	    int widthOrign=0;//å±å¹•åˆ†è¾¨ç‡
+	    int heightOrign=0;//å±å¹•åˆ†è¾¨ç‡
+	    DisplayMetrics dm = new DisplayMetrics();//DisplayMetricså¯¹è±¡
+	    display.getMetrics(dm);//å®½é«˜ç»´åº¦å­˜æ”¾äºDisplayMetricså¯¹è±¡ä¸­
 	    switch (rotation) 
 	    {
-	    //µ±Ç°×ËÌ¬Ïà¶ÔÓÚÔ­Ê¼×ËÌ¬Ğı×ªÁË0¶È»ò180¶È
+	    //å½“å‰å§¿æ€ç›¸å¯¹äºåŸå§‹å§¿æ€æ—‹è½¬äº†0åº¦æˆ–180åº¦
 		    case Surface.ROTATION_0:
 		    case Surface.ROTATION_180:
 		    	widthOrign=dm.widthPixels;
 		    	heightOrign=dm.heightPixels;
 		    break;
-		    //µ±Ç°×ËÌ¬Ïà¶ÔÓÚÔ­Ê¼×ËÌ¬Ğı×ªÁË90¶È»ò270¶È
+		    //å½“å‰å§¿æ€ç›¸å¯¹äºåŸå§‹å§¿æ€æ—‹è½¬äº†90åº¦æˆ–270åº¦
 		    case Surface.ROTATION_90:       
 		    case Surface.ROTATION_270:
 		    	widthOrign=dm.heightPixels;

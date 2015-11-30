@@ -21,27 +21,27 @@ public class BezierExMain extends JFrame
 	   new BezierExMain();
    }
    
-   int lineWidth=1;//»æÖÆÏß¿í
+   int lineWidth=1;//ç»˜åˆ¶çº¿å®½
    
    MyPanel mp;
-   JLabel jlfd=new JLabel("·Ö¶Î");   
+   JLabel jlfd=new JLabel("åˆ†æ®µ");   
    JSpinner jspfd;
-   JLabel jlbj=new JLabel("²½½ø");   
+   JLabel jlbj=new JLabel("æ­¥è¿›");   
    JSpinner jspbj;
-   JButton jbClear=new JButton("Çå¿Õ");
-   JButton jbFlush=new JButton("É¾³ýÎ²");
-   JButton jbLeft=new JButton("<-×óÒÆ");
-   JButton jbRight=new JButton("ÓÒÒÆ->");
-   JButton jbUp=new JButton("ÉÏÒÆ");
-   JButton jbDown=new JButton("ÏÂÒÆ");
+   JButton jbClear=new JButton("æ¸…ç©º");
+   JButton jbFlush=new JButton("åˆ é™¤å°¾");
+   JButton jbLeft=new JButton("<-å·¦ç§»");
+   JButton jbRight=new JButton("å³ç§»->");
+   JButton jbUp=new JButton("ä¸Šç§»");
+   JButton jbDown=new JButton("ä¸‹ç§»");
    JTextArea jta=new  JTextArea();
    JScrollPane jsp=new JScrollPane(jta);
-   JCheckBox jcb =new JCheckBox("ÏÔÊ¾¿ØÖÆµã");
-   JLabel jlLineWidth=new JLabel("    »æÖÆÏß¿í");
+   JCheckBox jcb =new JCheckBox("æ˜¾ç¤ºæŽ§åˆ¶ç‚¹");
+   JLabel jlLineWidth=new JLabel("    ç»˜åˆ¶çº¿å®½");
    JSlider jsLineWidth=new JSlider(1,3);
    public BezierExMain()
    {
-	   this.setTitle("BezierÇúÏß¹¤¾ß");
+	   this.setTitle("Bezieræ›²çº¿å·¥å…·");
 	   this.setLayout(null);
 	   
 	   mp=new MyPanel(this);

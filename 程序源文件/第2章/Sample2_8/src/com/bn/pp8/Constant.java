@@ -1,8 +1,8 @@
 package com.bn.pp8;
-//ÓÃÓÚÍ³Ò»¹ÜÀí³£Á¿µÄÀà
+//ç”¨äºç»Ÿä¸€ç®¡ç†å¸¸é‡çš„ç±»
 public class Constant {
-	public static final int SCREEN_WIDTH=480;//ÆÁÄ»¿í¶È
-	public static final int SCREEN_HEIGHT=320;//ÆÁÄ»¸ß¶È
-	public static final int EXPLOSION_X=270;//±¬Õ¨XÎ»ÖÃ
-	public static final float G = 1.0f;//ÖØÁ¦¼ÓËÙ¶ÈµÄÖµ
+	public static final int SCREEN_WIDTH=480;//å±å¹•å®½åº¦
+	public static final int SCREEN_HEIGHT=320;//å±å¹•é«˜åº¦
+	public static final int EXPLOSION_X=270;//çˆ†ç‚¸Xä½ç½®
+	public static final float G = 1.0f;//é‡åŠ›åŠ é€Ÿåº¦çš„å€¼
 }

@@ -31,7 +31,7 @@ public class Sample2_9_ClientActivity extends Activity
         	}
         );
     }
-    //Á¬½Ó·şÎñÆ÷¶ËµÄ·½·¨
+    //è¿æ¥æœåŠ¡å™¨ç«¯çš„æ–¹æ³•
     public void connectServer()
     {
     	String serverIp="192.168.0.103";

@@ -6,10 +6,10 @@ import java.nio.FloatBuffer;
 import android.opengl.GLES20;
 import com.bn.core.MatrixState;
 
-//´ú±í°ëÑÂ×ÓµÄÀà    
+//ä»£è¡¨åŠå´–å­çš„ç±»    
 public class B_YZ extends BNDrawer
 {
-	//µ¥Î»³¤¶È 
+	//å•ä½é•¿åº¦ 
 	float UNIT_SIZE=2.5f;    
 	X_BYZ x_byz;     
 	public B_YZ(int programId)
@@ -23,36 +23,36 @@ public class B_YZ extends BNDrawer
 		MatrixState.pushMatrix();
 		x_byz.drawSelf(texId[0], texId[1]);
 		MatrixState.popMatrix();
-		//ÓÒ²à 
+		//å³ä¾§ 
 		MatrixState.pushMatrix();
 		MatrixState.translate(22*UNIT_SIZE, 0, -4*UNIT_SIZE);
 		MatrixState.rotate(180, 0, 1, 0);
 		x_byz.drawSelf(texId[0], texId[1]);
 		MatrixState.popMatrix(); 
 	}
-	//°ëÑÂ×ÓÄÚ²¿Àà
+	//åŠå´–å­å†…éƒ¨ç±»
 	private class X_BYZ
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏßid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿id
 		int mProgram;
-		//¶¥µãÎ»ÖÃÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹ä½ç½®å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§çš„å¼•ç”¨id
 		int maTexCoorHandle;
-		//×Ü±ä»¯¾ØÕóµÄÒıÓÃid
+		//æ€»å˜åŒ–çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
 		
-		//²İµØµÄid
+		//è‰åœ°çš„id
 		int sTextureGrassHandle;
-		//Ê¯Í·µÄid
+		//çŸ³å¤´çš„id
 		int sTextureRockHandle;
-		//ÆğÊ¼xÖµ
+		//èµ·å§‹xå€¼
 		int b_YZ_StartXHandle;
-		//³¤¶È
+		//é•¿åº¦
 		int b_YZ_XSpanHandle;
 		
 		
-		//¶¥µã×ø±êÊı¾İ»º³åºÍ¶¥µãÎÆÀíÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²å’Œé¡¶ç‚¹çº¹ç†æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
 		int vCount=0;
@@ -62,14 +62,14 @@ public class B_YZ extends BNDrawer
 			initVertexData();
 			initShader(programId);
 		}
-		//³õÊ¼»¯¶¥µãÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData()
 		{
 			float[] vertex=new float[]
 	        {
-				//µ×²¿				
-				//ÖĞ¼ä²¿·Ö
-				//Ç°²à
+				//åº•éƒ¨				
+				//ä¸­é—´éƒ¨åˆ†
+				//å‰ä¾§
 				UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				UNIT_SIZE,2*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-UNIT_SIZE,
@@ -77,7 +77,7 @@ public class B_YZ extends BNDrawer
 				UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,5*UNIT_SIZE,-UNIT_SIZE,
-				//ÓÒ²à
+				//å³ä¾§
 				5*UNIT_SIZE,4*UNIT_SIZE,-UNIT_SIZE,
 				UNIT_SIZE,2*UNIT_SIZE,-UNIT_SIZE,
 				UNIT_SIZE,2*UNIT_SIZE,-3*UNIT_SIZE,
@@ -85,7 +85,7 @@ public class B_YZ extends BNDrawer
 				5*UNIT_SIZE,4*UNIT_SIZE,-UNIT_SIZE,
 				UNIT_SIZE,2*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-3*UNIT_SIZE,
-				//ºó²à
+				//åä¾§
 				UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-3*UNIT_SIZE,
 				UNIT_SIZE,2*UNIT_SIZE,-3*UNIT_SIZE,
@@ -93,7 +93,7 @@ public class B_YZ extends BNDrawer
 				UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,5*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-3*UNIT_SIZE,
-				//×ó²à
+				//å·¦ä¾§
 				5*UNIT_SIZE,5*UNIT_SIZE,-3*UNIT_SIZE,
 				UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
@@ -101,8 +101,8 @@ public class B_YZ extends BNDrawer
 				5*UNIT_SIZE,5*UNIT_SIZE,-3*UNIT_SIZE,
 				UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,5*UNIT_SIZE,-UNIT_SIZE,
-				//×îÉÏ²à²¿·Ö
-				//Ç°²à
+				//æœ€ä¸Šä¾§éƒ¨åˆ†
+				//å‰ä¾§
 				5*UNIT_SIZE,5*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-UNIT_SIZE,
@@ -110,7 +110,7 @@ public class B_YZ extends BNDrawer
 				5*UNIT_SIZE,5*UNIT_SIZE,-UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-UNIT_SIZE,
 				7*UNIT_SIZE,4.7f*UNIT_SIZE,-UNIT_SIZE,
-				//ÓÒ²à£¨ÏÂ£©
+				//å³ä¾§ï¼ˆä¸‹ï¼‰
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-3*UNIT_SIZE,
@@ -118,7 +118,7 @@ public class B_YZ extends BNDrawer
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-3*UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-3*UNIT_SIZE,
-				//ºó²à
+				//åä¾§
 				5*UNIT_SIZE,5*UNIT_SIZE,-3*UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-3*UNIT_SIZE,
@@ -126,7 +126,7 @@ public class B_YZ extends BNDrawer
 				5*UNIT_SIZE,5*UNIT_SIZE,-3*UNIT_SIZE,
 				7*UNIT_SIZE,4.7f*UNIT_SIZE,-3*UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-3*UNIT_SIZE,
-				//×ó²à£¨ÉÏ£©
+				//å·¦ä¾§ï¼ˆä¸Šï¼‰
 				7*UNIT_SIZE,4.7f*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,5*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,5*UNIT_SIZE,-UNIT_SIZE,
@@ -134,7 +134,7 @@ public class B_YZ extends BNDrawer
 				7*UNIT_SIZE,4.7f*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,5*UNIT_SIZE,-UNIT_SIZE,
 				7*UNIT_SIZE,4.7f*UNIT_SIZE,-UNIT_SIZE,
-				//×îÓÒ²àµÄ·â±Õ
+				//æœ€å³ä¾§çš„å°é—­
 				7*UNIT_SIZE,4.7f*UNIT_SIZE,-UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-UNIT_SIZE,
 				7*UNIT_SIZE,4.3f*UNIT_SIZE,-3*UNIT_SIZE,
@@ -152,33 +152,33 @@ public class B_YZ extends BNDrawer
 			
 			float[] texcoor=new float[]
   		    {
-  				//ÖĞ¼ä²¿·Ö
-  				//Ç°²à
+  				//ä¸­é—´éƒ¨åˆ†
+  				//å‰ä¾§
   				0.1f,0.4f,   0.1f,0.6f,   0.5f,0.2f,
   				0.1f,0.4f,   0.5f,0.2f,   0.5f,0,
-  				//ÓÒ²à
+  				//å³ä¾§
   				0.5f,0.2f,   0.1f,0.6f,   0.2f,1.0f,
   				0.5f,0.2f,   0.2f,1.0f,   0.6f,0.6f,
-  				//ºó²à
+  				//åä¾§
   				0.1f,0.4f,   0.5f,0.2f,   0.1f,0.6f,
   				0.1f,0.4f,   0.5f,0,   0.5f,0.2f,
-  				//×ó²à
+  				//å·¦ä¾§
   				0.6f,0.6f,   0.2f,1.0f,   0.1f,0.6f,
   				0.6f,0.6f,   0.1f,0.6f,   0.5f,0.2f,
-  				//×îÉÏ²à²¿·Ö
-  				//Ç°²à
+  				//æœ€ä¸Šä¾§éƒ¨åˆ†
+  				//å‰ä¾§
   				0.5f,0,   0.5f,0.2f,   0.7f,0.14f,
   				0.5f,0,   0.7f,0.14f,   0.7f,0.06f,
-  				//ÓÒ²à£¨ÏÂ£©
+  				//å³ä¾§ï¼ˆä¸‹ï¼‰
   				0.7f,0.14f,   0.5f,0.2f,   0.6f,0.6f,
   				0.7f,0.14f,   0.6f,0.6f,   0.8f,0.54f,
-  				//ºó²à
+  				//åä¾§
   				0.5f,0,   0.7f,0.14f,   0.5f,0.2f,
   				0.5f,0,   0.7f,0.06f,   0.7f,0.14f,
-  				//×ó²à£¨ÉÏ£©
+  				//å·¦ä¾§ï¼ˆä¸Šï¼‰
   				0.8f,0.54f,   0.6f,0.6f,   0.5f,0.2f,
   				0.8f,0.54f,   0.5f,0.2f,   0.7f,0.14f,
-  				//×îÓÒ²àµÄ·â±Õ
+  				//æœ€å³ä¾§çš„å°é—­
   				0.7f,0.06f,   0.7f,0.14f,   0.9f,0.14f,
   				0.7f,0.06f,   0.9f,0.14f,   0.9f,0.06f
   		    };
@@ -188,35 +188,35 @@ public class B_YZ extends BNDrawer
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊôĞÔµÄÒıÓÃid
+			//è·å¾—é¡¶ç‚¹åæ ‡å±æ€§çš„å¼•ç”¨id
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//»ñµÃ¶¥µãÎÆÀí×ø±êÊôĞÔµÄÒıÓÃid
+			//è·å¾—é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-			//»ñµÃ×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+			//è·å¾—æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");			
 			
-			//ÎÆÀí
-			//²İµØ
+			//çº¹ç†
+			//è‰åœ°
 			sTextureGrassHandle=GLES20.glGetUniformLocation(mProgram, "sTextureGrass");
-			//Ê¯Í·
+			//çŸ³å¤´
 			sTextureRockHandle=GLES20.glGetUniformLocation(mProgram, "sTextureRock");
-			//xÎ»ÖÃ
+			//xä½ç½®
 			b_YZ_StartXHandle=GLES20.glGetUniformLocation(mProgram, "b_YZ_StartX");
-			//x×î´ó
+			//xæœ€å¤§
 			b_YZ_XSpanHandle=GLES20.glGetUniformLocation(mProgram, "b_YZ_XSpan");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texIdGrass,int texIdRock)
 		{
-			//Ö¸¶¨Ä³Ì×Shader³ÌĞò
+			//æŒ‡å®šæŸå¥—Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×îÖÕ±ä»¯¾ØÕó´«Èëµ½Shader³ÌĞò
+			//å°†æœ€ç»ˆå˜åŒ–çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åº
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//Îª»­±ÊÖ¸¶¨¶¥µã×ø±ê¡ª¡ª>´Ë´¦½«×ø±ê´«ÈëShader??????
+			//ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹åæ ‡â€”â€”>æ­¤å¤„å°†åæ ‡ä¼ å…¥Shader??????
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -226,7 +226,7 @@ public class B_YZ extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«Èë¶¥µãÎÆÀí×ø±ê
+			//ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -236,23 +236,23 @@ public class B_YZ extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞíÊ¹ÓÃ¶¥µã×ø±êÒÔ¼°¶¥µãÎÆÀí×ø±ê
+			//å…è®¸ä½¿ç”¨é¡¶ç‚¹åæ ‡ä»¥åŠé¡¶ç‚¹çº¹ç†åæ ‡
 			GLES20.glEnableVertexAttribArray(maPositionHandle);
 			GLES20.glEnableVertexAttribArray(maTexCoorHandle);
 			
-			//ÆôÓÃÎÆÀí
+			//å¯ç”¨çº¹ç†
 			GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texIdGrass);
 			GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
 			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texIdRock);
-			GLES20.glUniform1i(sTextureGrassHandle, 0);//Ê¹ÓÃ0ºÅÎÆÀí
-	        GLES20.glUniform1i(sTextureRockHandle, 1); //Ê¹ÓÃ1ºÅÎÆÀí
+			GLES20.glUniform1i(sTextureGrassHandle, 0);//ä½¿ç”¨0å·çº¹ç†
+	        GLES20.glUniform1i(sTextureRockHandle, 1); //ä½¿ç”¨1å·çº¹ç†
 			
-	        //´«ËÍÏàÓ¦µÄx²ÎÊı
+	        //ä¼ é€ç›¸åº”çš„xå‚æ•°
 	        GLES20.glUniform1f(b_YZ_StartXHandle, 0);
 	        GLES20.glUniform1f(b_YZ_XSpanHandle, 7*UNIT_SIZE);
 	        
-			//»æÖÆÎïÌå
+			//ç»˜åˆ¶ç‰©ä½“
 			GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount);		
 		}
 	}

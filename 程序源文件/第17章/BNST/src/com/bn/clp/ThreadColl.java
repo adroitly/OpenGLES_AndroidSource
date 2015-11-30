@@ -2,7 +2,7 @@ package com.bn.clp;
 
 import static com.bn.clp.MyGLSurfaceView.*;
 
-//定时检查可以撞飞的部件，如交通筒灯部件，是否被碰撞的线程
+//瀹氭椂妫�鏌ュ彲浠ユ挒椋炵殑閮ㄤ欢锛屽浜ら�氱瓛鐏儴浠讹紝鏄惁琚鎾炵殑绾跨▼
 public class ThreadColl extends Thread
 {
 	MyGLSurfaceView surface;

@@ -1,27 +1,27 @@
 package com.bn.Sample8_7;
 
 /*
- * »æÖÆËş¶¥µÄÀà
+ * ç»˜åˆ¶å¡”é¡¶çš„ç±»
  */
 public class TowerTop {
-	float scale;//ËşµÄ´óĞ¡
+	float scale;//å¡”çš„å¤§å°
 	
-	TowerPart1 tower1;//ËşµÄµÚÒ»²¿·Ö
-	TowerPart2 tower2;//ËşÖĞÔ²Öù²¿·Ö
+	TowerPart1 tower1;//å¡”çš„ç¬¬ä¸€éƒ¨åˆ†
+	TowerPart2 tower2;//å¡”ä¸­åœ†æŸ±éƒ¨åˆ†
 	TowerPart3 tower3;//
 	
 	
-    float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+    float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
 	
 	TowerTop(MySurfaceView mv,float scale, int nCol ,int nRow)
 	{
-		this.scale=scale;//²èºø´óĞ¡¸³Öµ
+		this.scale=scale;//èŒ¶å£¶å¤§å°èµ‹å€¼
 		
-		//´´½¨¶ÔÏó
-		tower1=new TowerPart1(mv,0.4f*scale,20,40);//ñ·¶¥µÄµÚÒ»²¿·Ö
-		tower2=new TowerPart2(mv,0.35f*scale,20,40);//ñ·¶¥µÄµÚ¶ş²¿·Ö
+		//åˆ›å»ºå¯¹è±¡
+		tower1=new TowerPart1(mv,0.4f*scale,20,40);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
+		tower2=new TowerPart2(mv,0.35f*scale,20,40);//ç©¹é¡¶çš„ç¬¬äºŒéƒ¨åˆ†
 
 	}
 	public void drawSelf(int texId)
@@ -31,34 +31,34 @@ public class TowerTop {
    	 	MatrixState.rotate(zAngle, 0, 0, 1);
 		
 		
-		//ËşµÄµÚÒ»²¿·Ö
+		//å¡”çš„ç¬¬ä¸€éƒ¨åˆ†
 		MatrixState.pushMatrix();
 		MatrixState.translate(0f, 3.0f*scale, 0f);
-        tower1.drawSelf(texId);//ñ·¶¥µÄµÚÒ»²¿·Ö
+        tower1.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
         MatrixState.popMatrix();
         
-        //**************ËşµÄµÚ¶ş²¿·Ö****************************************
-        //ËÄ¸ùÔ²Öù
+        //**************å¡”çš„ç¬¬äºŒéƒ¨åˆ†****************************************
+        //å››æ ¹åœ†æŸ±
 		MatrixState.pushMatrix();
 		MatrixState.translate(0.62f*scale, 2.15f*scale, 0.62f*scale);
-        tower2.drawSelf(texId);//ñ·¶¥µÄµÚÒ»²¿·Ö
+        tower2.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
         MatrixState.popMatrix();
         
 		MatrixState.pushMatrix();
 		MatrixState.translate(-0.62f*scale, 2.15f*scale, 0.62f*scale);
-        tower2.drawSelf(texId);//ñ·¶¥µÄµÚÒ»²¿·Ö
+        tower2.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
         MatrixState.popMatrix();
         
 		MatrixState.pushMatrix();
 		MatrixState.translate(0.62f*scale, 2.15f*scale, -0.62f*scale);
-        tower2.drawSelf(texId);//ñ·¶¥µÄµÚÒ»²¿·Ö
+        tower2.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
         MatrixState.popMatrix();
         
 		MatrixState.pushMatrix();
 		MatrixState.translate(-0.62f*scale, 2.15f*scale, -0.62f*scale);
-        tower2.drawSelf(texId);//ñ·¶¥µÄµÚÒ»²¿·Ö
+        tower2.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
         MatrixState.popMatrix();
-      //**************ËşµÄµÚ¶ş²¿·Ö***************************************		
+      //**************å¡”çš„ç¬¬äºŒéƒ¨åˆ†***************************************		
 	}
 
 }

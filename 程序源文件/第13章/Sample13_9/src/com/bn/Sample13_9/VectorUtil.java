@@ -2,39 +2,39 @@ package com.bn.Sample13_9;
 
 import java.util.ArrayList;
 
-//¼ÆËãÈı½ÇĞÎ·¨ÏòÁ¿µÄ¹¤¾ßÀà
+//è®¡ç®—ä¸‰è§’å½¢æ³•å‘é‡çš„å·¥å…·ç±»
 public class VectorUtil {
-	//ÏòÁ¿¹æ¸ñ»¯µÄ·½·¨
+	//å‘é‡è§„æ ¼åŒ–çš„æ–¹æ³•
 	public static float[] normalizeVector(float [] vec){
 		float mod=module(vec);
-		return new float[]{vec[0]/mod, vec[1]/mod, vec[2]/mod};//·µ»Ø¹æ¸ñ»¯ºóµÄÏòÁ¿
+		return new float[]{vec[0]/mod, vec[1]/mod, vec[2]/mod};//è¿”å›è§„æ ¼åŒ–åçš„å‘é‡
 	}
-	//ÇóÏòÁ¿µÄÄ£µÄ·½·¨
+	//æ±‚å‘é‡çš„æ¨¡çš„æ–¹æ³•
 	public static float module(float [] vec){
 		return (float) Math.sqrt(vec[0]*vec[0]+vec[1]*vec[1]+vec[2]*vec[2]);
 	}
-	//Á½¸öÏòÁ¿²æ³ËµÄ·½·¨
+	//ä¸¤ä¸ªå‘é‡å‰ä¹˜çš„æ–¹æ³•
 	public static float[] crossTwoVectors(float[] a, float[] b)
 	{
 		float x=a[1]*b[2]-a[2]*b[1];
 		float y=a[2]*b[0]-a[0]*b[2];
 		float z=a[0]*b[1]-a[1]*b[0];
-		return new float[]{x, y, z};//·µ»Ø²æ³Ë½á¹û
+		return new float[]{x, y, z};//è¿”å›å‰ä¹˜ç»“æœ
 	}
-	//Á½¸öÏòÁ¿µã³ËµÄ·½·¨
+	//ä¸¤ä¸ªå‘é‡ç‚¹ä¹˜çš„æ–¹æ³•
 	public static float dotTwoVectors(float[] a, float[] b)
 	{
-		return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];//·µ»Øµã³Ë½á¹û
+		return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];//è¿”å›ç‚¹ä¹˜ç»“æœ
 	}
 
-	//¸ù¾İÔ­ÎÆÀí×ø±êºÍË÷Òı£¬¼ÆËã¾íÈÆºóµÄÎÆÀíµÄ·½·¨
+	//æ ¹æ®åŸçº¹ç†åæ ‡å’Œç´¢å¼•ï¼Œè®¡ç®—å·ç»•åçš„çº¹ç†çš„æ–¹æ³•
 	public static float[] calTextures(
-			ArrayList<Float> alST,//Ô­ÎÆÀí×ø±êÁĞ±í£¨Î´¾íÈÆ£©
-			ArrayList<Integer> alTexIndex//×éÖ¯³ÉÃæµÄÎÆÀí×ø±êµÄË÷ÒıÖµÁĞ±í£¨°´ÄæÊ±Õë¾íÈÆ£©
+			ArrayList<Float> alST,//åŸçº¹ç†åæ ‡åˆ—è¡¨ï¼ˆæœªå·ç»•ï¼‰
+			ArrayList<Integer> alTexIndex//ç»„ç»‡æˆé¢çš„çº¹ç†åæ ‡çš„ç´¢å¼•å€¼åˆ—è¡¨ï¼ˆæŒ‰é€†æ—¶é’ˆå·ç»•ï¼‰
 			)
 	{
 		float[] textures=new float[alTexIndex.size()*2];
-		//Éú³É¶¥µãµÄÊı×é
+		//ç”Ÿæˆé¡¶ç‚¹çš„æ•°ç»„
 		int stCount=0;
 		for(int i:alTexIndex){
 			textures[stCount++]=alST.get(2*i);
@@ -43,12 +43,12 @@ public class VectorUtil {
 		return textures;
 	}
 	public static float[] calVertices(
-			ArrayList<Float> alv,//Ô­¶¥µãÁĞ±í£¨Î´¾íÈÆ£©
-			ArrayList<Integer> alFaceIndex//×éÖ¯³ÉÃæµÄ¶¥µãµÄË÷ÒıÖµÁĞ±í£¨°´ÄæÊ±Õë¾íÈÆ£©
+			ArrayList<Float> alv,//åŸé¡¶ç‚¹åˆ—è¡¨ï¼ˆæœªå·ç»•ï¼‰
+			ArrayList<Integer> alFaceIndex//ç»„ç»‡æˆé¢çš„é¡¶ç‚¹çš„ç´¢å¼•å€¼åˆ—è¡¨ï¼ˆæŒ‰é€†æ—¶é’ˆå·ç»•ï¼‰
 			)
 	{
 		float[] vertices=new float[alFaceIndex.size()*3];
-		//Éú³É¶¥µãµÄÊı×é
+		//ç”Ÿæˆé¡¶ç‚¹çš„æ•°ç»„
 		int vCount=0;
 		for(int i:alFaceIndex){
 			vertices[vCount++]=alv.get(3*i);
@@ -57,75 +57,75 @@ public class VectorUtil {
 		}
 		return vertices;
 	}
-	//¼ÆËãÔ²»¡µÄnµÈ·Öµã×ø±êµÄ·½·¨
+	//è®¡ç®—åœ†å¼§çš„nç­‰åˆ†ç‚¹åæ ‡çš„æ–¹æ³•
 	public static float[] devideBall(
-			float r, //ÇòµÄ°ë¾¶
-			float[] start, //Ö¸ÏòÔ²»¡ÆğµãµÄÏòÁ¿
-			float[] end, //Ö¸ÏòÔ²»¡ÖÕµãµÄÏòÁ¿
-			int n, //Ô²»¡·ÖµÄ·İÊı
-			int i //ÇóµÚi·İÔÚÔ²»¡ÉÏµÄ×ø±ê£¨iÎª0ºÍnÊ±·Ö±ğ´ú±íÆğµãºÍÖÕµã×ø±ê£©
+			float r, //çƒçš„åŠå¾„
+			float[] start, //æŒ‡å‘åœ†å¼§èµ·ç‚¹çš„å‘é‡
+			float[] end, //æŒ‡å‘åœ†å¼§ç»ˆç‚¹çš„å‘é‡
+			int n, //åœ†å¼§åˆ†çš„ä»½æ•°
+			int i //æ±‚ç¬¬iä»½åœ¨åœ†å¼§ä¸Šçš„åæ ‡ï¼ˆiä¸º0å’Œnæ—¶åˆ†åˆ«ä»£è¡¨èµ·ç‚¹å’Œç»ˆç‚¹åæ ‡ï¼‰
 			)
 	{
 		/* 
-		 * ÏÈÇó³öËùÇóÏòÁ¿µÄ¹æ¸ñ»¯ÏòÁ¿£¬ÔÙ³ËÒÔ°ë¾¶r¼´¿É
-		 * s0*x+s1*y+s2*z=cos(angle1)//¸ù¾İËùÇóÏòÁ¿ºÍÆğµãÏòÁ¿¼Ğ½ÇÎªangle1---1Ê½
-		 * e0*x+e1*y+e2*z=cos(angle2)//¸ù¾İËùÇóÏòÁ¿ºÍÖÕµãÏòÁ¿¼Ğ½ÇÎªangle2---2Ê½
-		 * x*x+y*y+z*z=1//ËùÇòÏòÁ¿µÄ¹æ¸ñ»¯ÏòÁ¿Ä£Îª1---3Ê½
-		 * x*n0+y*n1+z*n2=0//ËùÇòÏòÁ¿Óë·¨ÏòÁ¿´¹Ö±---4Ê½
-		 * Ëã·¨Îª£º½«1¡¢2Á½Ê½ÓÃ»»Ôª·¨µÃ³öx=a1+b1*z£¬y=a2+b2*zµÄĞÎÊ½£¬
-		 * ½«Æä´úÈë4Ê½Çó³öz£¬ÔÙÇó³öx¡¢y£¬×îºó½«ÏòÁ¿(x,y,z)³ËÒÔr¼´ÎªËùÇó×ø±ê¡£
-		 * 1Ê½ºÍ2Ê½ÊÇ½«3Ê½´úÈëµÃµ½µÄ£¬Òò´ËÒÑ¾­ÓÃÉÏÁË¡£
-		 * ÓÉÓÚ²æ³ËµÄ½á¹û×öÁË·ÖÄ¸£¬Òò´ËÆğµã¡¢ÖÕµã¡¢ÇòĞÄÈıµã²»ÄÜ¹²Ïß
-		 * ×¢Òâ½á¹ûÊÇ½«ÁÓ»¡µÈ·Ö
+		 * å…ˆæ±‚å‡ºæ‰€æ±‚å‘é‡çš„è§„æ ¼åŒ–å‘é‡ï¼Œå†ä¹˜ä»¥åŠå¾„rå³å¯
+		 * s0*x+s1*y+s2*z=cos(angle1)//æ ¹æ®æ‰€æ±‚å‘é‡å’Œèµ·ç‚¹å‘é‡å¤¹è§’ä¸ºangle1---1å¼
+		 * e0*x+e1*y+e2*z=cos(angle2)//æ ¹æ®æ‰€æ±‚å‘é‡å’Œç»ˆç‚¹å‘é‡å¤¹è§’ä¸ºangle2---2å¼
+		 * x*x+y*y+z*z=1//æ‰€çƒå‘é‡çš„è§„æ ¼åŒ–å‘é‡æ¨¡ä¸º1---3å¼
+		 * x*n0+y*n1+z*n2=0//æ‰€çƒå‘é‡ä¸æ³•å‘é‡å‚ç›´---4å¼
+		 * ç®—æ³•ä¸ºï¼šå°†1ã€2ä¸¤å¼ç”¨æ¢å…ƒæ³•å¾—å‡ºx=a1+b1*zï¼Œy=a2+b2*zçš„å½¢å¼ï¼Œ
+		 * å°†å…¶ä»£å…¥4å¼æ±‚å‡ºzï¼Œå†æ±‚å‡ºxã€yï¼Œæœ€åå°†å‘é‡(x,y,z)ä¹˜ä»¥rå³ä¸ºæ‰€æ±‚åæ ‡ã€‚
+		 * 1å¼å’Œ2å¼æ˜¯å°†3å¼ä»£å…¥å¾—åˆ°çš„ï¼Œå› æ­¤å·²ç»ç”¨ä¸Šäº†ã€‚
+		 * ç”±äºå‰ä¹˜çš„ç»“æœåšäº†åˆ†æ¯ï¼Œå› æ­¤èµ·ç‚¹ã€ç»ˆç‚¹ã€çƒå¿ƒä¸‰ç‚¹ä¸èƒ½å…±çº¿
+		 * æ³¨æ„ç»“æœæ˜¯å°†åŠ£å¼§ç­‰åˆ†
 		 */
-		//ÏÈ½«Ö¸ÏòÆğµãºÍÖÕµãµÄÏòÁ¿¹æ¸ñ»¯
+		//å…ˆå°†æŒ‡å‘èµ·ç‚¹å’Œç»ˆç‚¹çš„å‘é‡è§„æ ¼åŒ–
 		float[] s=VectorUtil.normalizeVector(start);
 		float[] e=VectorUtil.normalizeVector(end);
-		if(n==0){//Èç¹ûnÎªÁã£¬·µ»ØÆğµã×ø±ê
+		if(n==0){//å¦‚æœnä¸ºé›¶ï¼Œè¿”å›èµ·ç‚¹åæ ‡
 			return new float[]{s[0]*r, s[1]*r, s[2]*r};
 		}
-		//ÇóÁ½¸öÏòÁ¿µÄ¼Ğ½Ç
-		double angrad=Math.acos(VectorUtil.dotTwoVectors(s, e));//ÆğµãÖÕµãÏòÁ¿¼Ğ½Ç
-		double angrad1=angrad*i/n;//ËùÇòÏòÁ¿ºÍÆğµãÏòÁ¿µÄ¼Ğ½Ç
-		double angrad2=angrad-angrad1;//ËùÇòÏòÁ¿ºÍÖÕµãÏòÁ¿µÄ¼Ğ½Ç
-		//Çó·¨ÏòÁ¿normal
+		//æ±‚ä¸¤ä¸ªå‘é‡çš„å¤¹è§’
+		double angrad=Math.acos(VectorUtil.dotTwoVectors(s, e));//èµ·ç‚¹ç»ˆç‚¹å‘é‡å¤¹è§’
+		double angrad1=angrad*i/n;//æ‰€çƒå‘é‡å’Œèµ·ç‚¹å‘é‡çš„å¤¹è§’
+		double angrad2=angrad-angrad1;//æ‰€çƒå‘é‡å’Œç»ˆç‚¹å‘é‡çš„å¤¹è§’
+		//æ±‚æ³•å‘é‡normal
 		float[] normal=VectorUtil.crossTwoVectors(s, e);
-		//ÓÃdoolittle·Ö½âËã·¨½ânÔªÒ»´ÎÏßĞÔ·½³Ì×é
-		double matrix[][]={//Ôö¹ã¾ØÕó
+		//ç”¨doolittleåˆ†è§£ç®—æ³•è§£nå…ƒä¸€æ¬¡çº¿æ€§æ–¹ç¨‹ç»„
+		double matrix[][]={//å¢å¹¿çŸ©é˜µ
 				{s[0],s[1],s[2],Math.cos(angrad1)},
 				{e[0],e[1],e[2],Math.cos(angrad2)},
 				{normal[0],normal[1],normal[2],0}
 		};
-		double result[]=MyMathUtil.doolittle(matrix);//½â
-		//Çó¹æ¸ñ»¯ÏòÁ¿xyzµÄÖµ
+		double result[]=MyMathUtil.doolittle(matrix);//è§£
+		//æ±‚è§„æ ¼åŒ–å‘é‡xyzçš„å€¼
 		float x=(float) result[0];
 		float y=(float) result[1];
 		float z=(float) result[2];
-		//·µ»ØÔ²»¡µÄnµÈ·Öµã×ø±ê
+		//è¿”å›åœ†å¼§çš„nç­‰åˆ†ç‚¹åæ ‡
 		return new float[]{x*r, y*r, z*r};
 	}
-	//¼ÆËãÏß¶ÎµÄnµÈ·Öµã×ø±êµÄ·½·¨
+	//è®¡ç®—çº¿æ®µçš„nç­‰åˆ†ç‚¹åæ ‡çš„æ–¹æ³•
 	public static float[] devideLine(
-			float[] start, //Ïß¶ÎÆğµã×ø±ê
-			float[] end, //Ïß¶ÎÖÕµã×ø±ê
-			int n, //Ïß¶Î·ÖµÄ·İÊı
-			int i //ÇóµÚi·İÔÚÏß¶ÎÉÏµÄ×ø±ê£¨iÎª0ºÍnÊ±·Ö±ğ´ú±íÆğµãºÍÖÕµã×ø±ê£©
+			float[] start, //çº¿æ®µèµ·ç‚¹åæ ‡
+			float[] end, //çº¿æ®µç»ˆç‚¹åæ ‡
+			int n, //çº¿æ®µåˆ†çš„ä»½æ•°
+			int i //æ±‚ç¬¬iä»½åœ¨çº¿æ®µä¸Šçš„åæ ‡ï¼ˆiä¸º0å’Œnæ—¶åˆ†åˆ«ä»£è¡¨èµ·ç‚¹å’Œç»ˆç‚¹åæ ‡ï¼‰
 			)
 	{
-		if(n==0){//Èç¹ûnÎªÁã£¬·µ»ØÆğµã×ø±ê
+		if(n==0){//å¦‚æœnä¸ºé›¶ï¼Œè¿”å›èµ·ç‚¹åæ ‡
 			return start;
 		}
-		//ÇóÆğµãµ½ÖÕµãµÄÏòÁ¿
+		//æ±‚èµ·ç‚¹åˆ°ç»ˆç‚¹çš„å‘é‡
 		float[] ab=new float[]{end[0]-start[0], end[1]-start[1], end[2]-start[2]};
-		//ÇóÏòÁ¿±ÈÀı
+		//æ±‚å‘é‡æ¯”ä¾‹
 		float vecRatio=i/(float)n;
-		//ÇóÆğµãµ½ËùÇóµãµÄÏòÁ¿
+		//æ±‚èµ·ç‚¹åˆ°æ‰€æ±‚ç‚¹çš„å‘é‡
 		float[] ac=new float[]{ab[0]*vecRatio, ab[1]*vecRatio, ab[2]*vecRatio};
-		//ËùÇó×ø±ê
+		//æ‰€æ±‚åæ ‡
 		float x=start[0]+ac[0];
 		float y=start[1]+ac[1];
 		float z=start[2]+ac[2];
-		//·µ»ØÏß¶ÎµÄnµÈ·Öµã×ø±ê
+		//è¿”å›çº¿æ®µçš„nç­‰åˆ†ç‚¹åæ ‡
 		return new float[]{x, y, z};
 	}
 }

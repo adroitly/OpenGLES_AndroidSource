@@ -1,15 +1,15 @@
 package com.bn.commonObject;
 import com.bn.core.MatrixState;
 
-/*	»æÖÆ³¤·½Ìå,ÆäÖĞĞÄµãÎ»ÓÚÔ­µã ÆäÖĞ³¤Æ½ĞĞÓÚXÖá,¿íÆ½ĞĞÓÚZÖá,¸ßÆ½ĞĞÓÚYÖá
-*	·Ö±ğÓÉ³¤¿í¸ßÀ´Ö¸¶¨
+/*	ç»˜åˆ¶é•¿æ–¹ä½“,å…¶ä¸­å¿ƒç‚¹ä½äºåŸç‚¹ å…¶ä¸­é•¿å¹³è¡ŒäºXè½´,å®½å¹³è¡ŒäºZè½´,é«˜å¹³è¡ŒäºYè½´
+*	åˆ†åˆ«ç”±é•¿å®½é«˜æ¥æŒ‡å®š
 */
 public class CubeForDraw 
 {
-	//³¤·½ÌåµÄÈı¸öÃæ
-	TextureRect sideXY;//Ç°Ãæ
-	TextureRect sideYZ;//²àÃæ
-	TextureRect sideXZ;//ÉÏÃæ
+	//é•¿æ–¹ä½“çš„ä¸‰ä¸ªé¢
+	TextureRect sideXY;//å‰é¢
+	TextureRect sideYZ;//ä¾§é¢
+	TextureRect sideXZ;//ä¸Šé¢
 	float length;
 	float width;
 	float height;
@@ -24,42 +24,42 @@ public class CubeForDraw
     	this.length=length;
     	this.width=width;
     	this.height=height;
-    	sideXY=new TextureRect( length, height,mProgram);//´´½¨Ç°Ãæ
-    	sideYZ=new TextureRect( width, height,mProgram);//´´½¨²àÃæ
-    	sideXZ=new TextureRect(length, width, mProgram);//´´½¨ÉÏÃæ
+    	sideXY=new TextureRect( length, height,mProgram);//åˆ›å»ºå‰é¢
+    	sideYZ=new TextureRect( width, height,mProgram);//åˆ›å»ºä¾§é¢
+    	sideXZ=new TextureRect(length, width, mProgram);//åˆ›å»ºä¸Šé¢
     }
     public void drawSelf(int texId)
     {        
-    	//»æÖÆÇ°Ãæ
+    	//ç»˜åˆ¶å‰é¢
     	MatrixState.pushMatrix();
     	MatrixState.translate(0, 0,width/2);
     	sideXY.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆºóÃæ
+    	//ç»˜åˆ¶åé¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(180, 0, 1, 0);
     	MatrixState.translate(0, 0, width/2);
     	sideXY.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆ×óÃæ
+    	//ç»˜åˆ¶å·¦é¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(-90, 0, 1, 0);
     	MatrixState.translate(0,0, length/2);
     	sideYZ.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆÓÒÃæ
+    	//ç»˜åˆ¶å³é¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(90, 0, 1, 0);
     	MatrixState.translate(0,0, length/2);
     	sideYZ.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆÉÏÃæ
+    	//ç»˜åˆ¶ä¸Šé¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(-90, 1, 0, 0);
     	MatrixState.translate(0,0, height/2);
     	sideXZ.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆÏÂÃæ
+    	//ç»˜åˆ¶ä¸‹é¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(90, 1, 0, 0);
     	MatrixState.translate(0,0, height/2);
@@ -68,30 +68,30 @@ public class CubeForDraw
     }
     public void drawSelf(int texId,int texId1)
     {        
-    	//»æÖÆÇ°Ãæ
+    	//ç»˜åˆ¶å‰é¢
     	MatrixState.pushMatrix();
     	MatrixState.translate(0, 0,width/2);
     	sideXY.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆºóÃæ
+    	//ç»˜åˆ¶åé¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(180, 0, 1, 0);
     	MatrixState.translate(0, 0, width/2);
     	sideXY.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆ×óÃæ
+    	//ç»˜åˆ¶å·¦é¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(-90, 0, 1, 0);
     	MatrixState.translate(0,0, length/2);
     	sideYZ.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆÓÒÃæ
+    	//ç»˜åˆ¶å³é¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(90, 0, 1, 0);
     	MatrixState.translate(0,0, length/2);
     	sideYZ.drawSelf(texId);
     	MatrixState.popMatrix();
-    	//»æÖÆÉÏÃæ
+    	//ç»˜åˆ¶ä¸Šé¢
     	MatrixState.pushMatrix();
     	MatrixState.rotate(-90, 1, 0, 0);
     	MatrixState.translate(0,0, height/2);

@@ -17,25 +17,25 @@ public class Sample5_6_Activity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃÎªÈ«ÆÁ
+		// è®¾ç½®ä¸ºå…¨å±
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// ³õÊ¼»¯GLSurfaceView
+		// åˆå§‹åŒ–GLSurfaceView
 		mGLSurfaceView = new MySurfaceView(this);
-		// ÇĞ»»µ½Ö÷½çÃæ
+		// åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 		setContentView(R.layout.main);
-		 //½«×Ô¶¨ÒåµÄSurfaceViewÌí¼Óµ½Íâ²ãLinearLayoutÖĞ
+		 //å°†è‡ªå®šä¹‰çš„SurfaceViewæ·»åŠ åˆ°å¤–å±‚LinearLayoutä¸­
         LinearLayout ll=(LinearLayout)findViewById(R.id.main_liner); 
         ll.addView(mGLSurfaceView);
-		mGLSurfaceView.requestFocus();// »ñÈ¡½¹µã
-		mGLSurfaceView.setFocusableInTouchMode(true);// ÉèÖÃÎª¿É´¥¿Ø		
+		mGLSurfaceView.requestFocus();// è·å–ç„¦ç‚¹
+		mGLSurfaceView.setFocusableInTouchMode(true);// è®¾ç½®ä¸ºå¯è§¦æ§		
 		
 		rb0 = (RadioButton) findViewById(R.id.RadioButton00);
 		rb1 = (RadioButton) findViewById(R.id.RadioButton01);
 		rb2 = (RadioButton) findViewById(R.id.RadioButton02);
 		rb3 = (RadioButton) findViewById(R.id.RadioButton03);
-		// GL_POINTS RadioButtonÌí¼Ó¼àÌıÆ÷
+		// GL_POINTS RadioButtonæ·»åŠ ç›‘å¬å™¨
 		rb0.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -48,7 +48,7 @@ public class Sample5_6_Activity extends Activity {
 				}
 			}
 		});
-		// GL_LINES RadioButtonÌí¼Ó¼àÌıÆ÷
+		// GL_LINES RadioButtonæ·»åŠ ç›‘å¬å™¨
 		rb1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -61,7 +61,7 @@ public class Sample5_6_Activity extends Activity {
 				}
 			}
 		});
-		// GL_LINE_STRIP RadioButtonÌí¼Ó¼àÌıÆ÷
+		// GL_LINE_STRIP RadioButtonæ·»åŠ ç›‘å¬å™¨
 		rb2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -74,7 +74,7 @@ public class Sample5_6_Activity extends Activity {
 				}
 			}
 		});
-		// GL_LINE_LOOP RadioButtonÌí¼Ó¼àÌıÆ÷
+		// GL_LINE_LOOP RadioButtonæ·»åŠ ç›‘å¬å™¨
 		rb3.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,

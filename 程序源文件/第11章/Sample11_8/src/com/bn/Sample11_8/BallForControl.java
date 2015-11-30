@@ -1,16 +1,16 @@
 package com.bn.Sample11_8;
 import static com.bn.Sample11_8.Constant.*;
-//´æ´¢ÇòÔË¶¯¹ı³ÌÖĞÎïÀíĞÅÏ¢µÄ¶ÔÏóËùÊôÀà
+//å­˜å‚¨çƒè¿åŠ¨è¿‡ç¨‹ä¸­ç‰©ç†ä¿¡æ¯çš„å¯¹è±¡æ‰€å±ç±»
 public class BallForControl   
 {	
-	public static final float TIME_SPAN=0.05f;//µ¥Î»Ê±¼ä¼ä¸ô
-	public static final float G=0.8f;//ÖØÁ¦¼ÓËÙ¶È
+	public static final float TIME_SPAN=0.05f;//å•ä½æ—¶é—´é—´éš”
+	public static final float G=0.8f;//é‡åŠ›åŠ é€Ÿåº¦
 	
-	BallTextureByVertex btv;//ÓÃÓÚ»æÖÆµÄÀºÇò
-	float startY;//Ã¿ÂÖÆğÊ¼µãÎ»ÖÃ
-	float timeLive=0;//´ËÖÜÆÚ´æ»îÊ±³¤
-	float currentY=0;//µ±Ç°YÎ»ÖÃ
-	float vy=0;//Ã¿ÂÖ³õÊ¼ËÙ¶È
+	BallTextureByVertex btv;//ç”¨äºç»˜åˆ¶çš„ç¯®çƒ
+	float startY;//æ¯è½®èµ·å§‹ç‚¹ä½ç½®
+	float timeLive=0;//æ­¤å‘¨æœŸå­˜æ´»æ—¶é•¿
+	float currentY=0;//å½“å‰Yä½ç½®
+	float vy=0;//æ¯è½®åˆå§‹é€Ÿåº¦
 	
 	public BallForControl(BallTextureByVertex btv,float startYIn)
 	{
@@ -18,26 +18,26 @@ public class BallForControl
 		this.startY=startYIn;		
 		currentY=startYIn;
 		new Thread()
-		{//¿ªÆôÒ»¸öÏß³ÌÔË¶¯ÀºÇò
+		{//å¼€å¯ä¸€ä¸ªçº¿ç¨‹è¿åŠ¨ç¯®çƒ
 			public void run()
 			{
 				while(true)
 				{
-					//´ËÂÖÔË¶¯Ê±¼äÔö¼Ó
+					//æ­¤è½®è¿åŠ¨æ—¶é—´å¢åŠ 
 					timeLive+=TIME_SPAN;
-					//¸ù¾İ´ËÂÖÆğÊ¼Y×ø±ê¡¢´ËÂÖÔË¶¯Ê±¼ä¡¢´ËÂÖÆğÊ¼ËÙ¶È¼ÆËãµ±Ç°Î»ÖÃ
+					//æ ¹æ®æ­¤è½®èµ·å§‹Yåæ ‡ã€æ­¤è½®è¿åŠ¨æ—¶é—´ã€æ­¤è½®èµ·å§‹é€Ÿåº¦è®¡ç®—å½“å‰ä½ç½®
 					float tempCurrY=startY-0.5f*G*timeLive*timeLive+vy*timeLive;
 					
 					
 					if(tempCurrY<=0)
-					{//Èôµ±Ç°Î»ÖÃµÍÓÚµØÃæÔòÅöµ½µØÃæ·´µ¯
-						//·´µ¯ºóÆğÊ¼Î»ÖÃÎª0
+					{//è‹¥å½“å‰ä½ç½®ä½äºåœ°é¢åˆ™ç¢°åˆ°åœ°é¢åå¼¹
+						//åå¼¹åèµ·å§‹ä½ç½®ä¸º0
 						startY=0;		
-						//·´µ¯ºóÆğÊ¼ËÙ¶È
+						//åå¼¹åèµ·å§‹é€Ÿåº¦
 						vy=-(vy-G*timeLive)*0.8f;
-						//·´µ¯ºó´ËÂÖÔË¶¯Ê±¼äÇå0
+						//åå¼¹åæ­¤è½®è¿åŠ¨æ—¶é—´æ¸…0
 						timeLive=0;
-						//ÈôËÙ¶ÈĞ¡ÓÚãĞÖµÔòÍ£Ö¹ÔË¶¯
+						//è‹¥é€Ÿåº¦å°äºé˜ˆå€¼åˆ™åœæ­¢è¿åŠ¨
 						if(vy<0.35f)
 						{
 							currentY=0;
@@ -45,7 +45,7 @@ public class BallForControl
 						}
 					}
 					else
-					{//ÈôÃ»ÓĞÅöµ½µØÃæÔòÕı³£ÔË¶¯
+					{//è‹¥æ²¡æœ‰ç¢°åˆ°åœ°é¢åˆ™æ­£å¸¸è¿åŠ¨
 						currentY=tempCurrY;
 					}
 					
@@ -63,7 +63,7 @@ public class BallForControl
 	}
 	
 	public void drawSelf(int texId)
-	{//»æÖÆÎïÌå×Ô¼º		
+	{//ç»˜åˆ¶ç‰©ä½“è‡ªå·±		
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, UNIT_SIZE*BALL_SCALE+currentY, 0);
 		btv.drawSelf(texId);		
@@ -71,7 +71,7 @@ public class BallForControl
 	}
 	
 	public void drawSelfMirror(int texId)
-	{//»æÖÆ ¾µÏñÌå		
+	{//ç»˜åˆ¶ é•œåƒä½“		
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -UNIT_SIZE*BALL_SCALE-currentY, 0);
 		btv.drawSelf(texId);		

@@ -9,13 +9,13 @@ import android.util.Log;
 
 public class LoadUtil 
 {
-	//´ÓobjÎÄ¼şÖĞ¼ÓÔØ½öĞ¯´ø¶¥µãĞÅÏ¢µÄÎïÌå
+	//ä»objæ–‡ä»¶ä¸­åŠ è½½ä»…æºå¸¦é¡¶ç‚¹ä¿¡æ¯çš„ç‰©ä½“
     public static LoadedObjectVertexOnly loadFromFile(String fname, Resources r,MySurfaceView mv)
     {
     	LoadedObjectVertexOnly lo=null;
     	
-    	ArrayList<Float> alv=new ArrayList<Float>();//Ô­Ê¼¶¥µã×ø±êÁĞ±í
-    	ArrayList<Float> alvResult=new ArrayList<Float>();//½á¹û¶¥µã×ø±êÁĞ±í
+    	ArrayList<Float> alv=new ArrayList<Float>();//åŸå§‹é¡¶ç‚¹åæ ‡åˆ—è¡¨
+    	ArrayList<Float> alvResult=new ArrayList<Float>();//ç»“æœé¡¶ç‚¹åæ ‡åˆ—è¡¨
     	
     	try
     	{
@@ -28,13 +28,13 @@ public class LoadUtil
 		    {
 		    	String[] tempsa=temps.split("[ ]+");
 		      	if(tempsa[0].trim().equals("v"))
-		      	{//´ËĞĞÎª¶¥µã×ø±ê
+		      	{//æ­¤è¡Œä¸ºé¡¶ç‚¹åæ ‡
 		      		alv.add(Float.parseFloat(tempsa[1]));
 		      		alv.add(Float.parseFloat(tempsa[2]));
 		      		alv.add(Float.parseFloat(tempsa[3]));
 		      	}
 		      	else if(tempsa[0].trim().equals("f"))
-		      	{//´ËĞĞÎªÈı½ÇĞÎÃæ
+		      	{//æ­¤è¡Œä¸ºä¸‰è§’å½¢é¢
 		      		int index=Integer.parseInt(tempsa[1].split("/")[0])-1;
 		      		alvResult.add(alv.get(3*index));
 		      		alvResult.add(alv.get(3*index+1));
@@ -52,14 +52,14 @@ public class LoadUtil
 		      	}		      		
 		    } 
 		    
-		    //Éú³É¶¥µãÊı×é
+		    //ç”Ÿæˆé¡¶ç‚¹æ•°ç»„
 		    int size=alvResult.size();
 		    float[] vXYZ=new float[size];
 		    for(int i=0;i<size;i++)
 		    {
 		    	vXYZ[i]=alvResult.get(i);
 		    }
-		    //´´½¨ÎïÌå¶ÔÏó
+		    //åˆ›å»ºç‰©ä½“å¯¹è±¡
 		    lo=new LoadedObjectVertexOnly(mv,vXYZ);
     	}
     	catch(Exception e)

@@ -31,23 +31,23 @@ import com.bn.commonObject.TextureRect;
 import com.bn.core.MatrixState;
 public class Arsenal_House 
 {
-	public House house;//Ä£ĞÍ
-	public float tx,ty,tz;//Ä£ĞÍÎ»ÖÃ
-	public NumberForDraw nm;//Êı×ÖÒıÓÃ
-	public TextureRect bfh;//°Ù·ÖºÅ
-	public TextureRect backgroundRect;//±³¾°
-	public int blood=com.bn.gameView.Constant.arsenal_blood;//Ñª
+	public House house;//æ¨¡å‹
+	public float tx,ty,tz;//æ¨¡å‹ä½ç½®
+	public NumberForDraw nm;//æ•°å­—å¼•ç”¨
+	public TextureRect bfh;//ç™¾åˆ†å·
+	public TextureRect backgroundRect;//èƒŒæ™¯
+	public int blood=com.bn.gameView.Constant.arsenal_blood;//è¡€
 	public int drawblood;
-	float yAngle=0;//ÑªÏÔÊ¾×ª¶¯½Ç¶È
+	float yAngle=0;//è¡€æ˜¾ç¤ºè½¬åŠ¨è§’åº¦
 	
-	public TextureRect mark_plane;//±ê¼Ç¾ØĞÎ
-	//±ê¼Ç¾ü»ğ¿âÎ»ÖÃµÄÑÕÉ«¾ØĞÎÎ»ÖÃ
+	public TextureRect mark_plane;//æ ‡è®°çŸ©å½¢
+	//æ ‡è®°å†›ç«åº“ä½ç½®çš„é¢œè‰²çŸ©å½¢ä½ç½®
 	float arsenal_x,arsenal_y,arsenal_z;
 	
-	public boolean this_isno_Lock;//ÊÇ·ñ±»Ëø¶¨
-	public TextureRect mark_lock;//±ê¼Ç±»Ëø¶¨µÄ¾ØĞÎ
+	public boolean this_isno_Lock;//æ˜¯å¦è¢«é”å®š
+	public TextureRect mark_lock;//æ ‡è®°è¢«é”å®šçš„çŸ©å½¢
 	
-	int row;//ËùÔÚĞĞÁĞ
+	int row;//æ‰€åœ¨è¡Œåˆ—
 	int col;
 	public Arsenal_House(House house,float tx,float ty,float tz,TextureRect mark_plane,TextureRect mark_lock,int col,int row){
 		this.mark_lock=mark_lock;
@@ -78,7 +78,7 @@ public class Arsenal_House
 		GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
     	if(this_isno_Lock&&!isOvercome)
     	{
-			MatrixState.pushMatrix();//»æÖÆËø¶¨µÄ
+			MatrixState.pushMatrix();//ç»˜åˆ¶é”å®šçš„
 			MatrixState.translate(tx, ty+ARSENAL_Y/2, tz);	
 			MatrixState.rotate(yAngle, 0,1, 0);
 			MatrixState.rotate(rotationAngle_Plane_Z, 0,0, 1);
@@ -95,9 +95,9 @@ public class Arsenal_House
     	MatrixState.popMatrix();
 	}
 	
-	//ÕâÀï¼ÆËã±êÖ¾°åµÄ³¯Ïò
+	//è¿™é‡Œè®¡ç®—æ ‡å¿—æ¿çš„æœå‘
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÑæ»ğÁ£×ÓÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—ç„°ç«ç²’å­é¢æœå‘
 		float currX_span=tx-cx;
 		float currZ_span=tz-cz;
 		if(currZ_span<0)
@@ -110,17 +110,17 @@ public class Arsenal_House
 		{
 			yAngle=180+(float)Math.toDegrees(Math.atan(currX_span/currZ_span));	
 		}
-		//¼ÆËãÆäÊÇ·ñ±»Ëø¶¨
+		//è®¡ç®—å…¶æ˜¯å¦è¢«é”å®š
 		float x1,y1,z1,x2,y2,z2;
 		x1=tx-PLANE_X;
 		y1=ty+ARSENAL_Y/2-PLANE_Y;
 		z1=tz-PLANE_Z;
 		float distance1=(float) Math.sqrt(x1*x1+y1*y1+z1*z1);
 		
-		if(distance1>minimumdistance){//Èç¹û¾àÀë³¬³ö·¶Î§£¬»òÕßÒÑ¾­ÓĞÒ»¸ö±»Ëø¶¨ÁË£¬Ôò×Ô¼º²»ÄÜ±»Ëø¶¨
+		if(distance1>minimumdistance){//å¦‚æœè·ç¦»è¶…å‡ºèŒƒå›´ï¼Œæˆ–è€…å·²ç»æœ‰ä¸€ä¸ªè¢«é”å®šäº†ï¼Œåˆ™è‡ªå·±ä¸èƒ½è¢«é”å®š
 			this_isno_Lock=false;
 			return;
-		}//¼ÆËã·É»ú·ÉĞĞµÄ·½ÏòÏòÁ¿
+		}//è®¡ç®—é£æœºé£è¡Œçš„æ–¹å‘å‘é‡
 		x2=directionX;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.sin(Math.toRadians(rotationAngle_Plane_Y)));
 		y2=directionY;//(float) (Math.sin(Math.toRadians(rotationAngle_Plane_X)));
 		z2=directionZ;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.cos(Math.toRadians(rotationAngle_Plane_Y)));
@@ -131,9 +131,9 @@ public class Arsenal_House
 				Lock_arsenal.this_isno_Lock=false;
 				}
 			this.this_isno_Lock=true;			
-			minimumdistance=distance1;//×îĞ¡¾àÀëÉèÖÃÎª¸Ã¾àÀë
-			nx=x1;ny=y1+ARSENAL_Y/3;nz=z1;//·¢Éä×Óµ¯·½ÏòÏòÁ¿
-			isno_Lock=true;//ÒÑ¾­±»Ëø¶¨
+			minimumdistance=distance1;//æœ€å°è·ç¦»è®¾ç½®ä¸ºè¯¥è·ç¦»
+			nx=x1;ny=y1+ARSENAL_Y/3;nz=z1;//å‘å°„å­å¼¹æ–¹å‘å‘é‡
+			isno_Lock=true;//å·²ç»è¢«é”å®š
 			Lock_arsenal=this;	
 		}else{
 			this_isno_Lock=false;

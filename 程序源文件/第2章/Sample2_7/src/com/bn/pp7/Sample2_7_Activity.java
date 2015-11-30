@@ -12,38 +12,38 @@ import android.widget.Toast;
 
 public class Sample2_7_Activity extends Activity {
 	@Override
-    public void onCreate(Bundle savedInstanceState) {		//ÖØĞ´onCreate·½·¨
+    public void onCreate(Bundle savedInstanceState) {		//é‡å†™onCreateæ–¹æ³•
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);						//ÉèÖÃlayout        
-        Button ok=(Button)this.findViewById(R.id.Button01);	//»ñÈ¡´ò¿ªButton
-        ok.setOnClickListener								//Îª´ò¿ª°´Å¥Ìí¼Ó¼àÌıÆ÷
+        setContentView(R.layout.main);						//è®¾ç½®layout        
+        Button ok=(Button)this.findViewById(R.id.Button01);	//è·å–æ‰“å¼€Button
+        ok.setOnClickListener								//ä¸ºæ‰“å¼€æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
         (   new OnClickListener()
         {	public void onClick(View v) 
 			{
 				EditText et1=(EditText)findViewById(R.id.EditText01);
-				//µ÷ÓÃloadText·½·¨»ñÈ¡¶ÔÓ¦ÎÄ¼şÃûµÄÎÄ¼ş
+				//è°ƒç”¨loadTextæ–¹æ³•è·å–å¯¹åº”æ–‡ä»¶åçš„æ–‡ä»¶
 				String nr=loadText(et1.getText().toString().trim());
 				EditText et2=(EditText)findViewById(R.id.EditText02);
-				//ÉèÖÃÏÔÊ¾¿òÄÚÈİ
+				//è®¾ç½®æ˜¾ç¤ºæ¡†å†…å®¹
 				et2.setText(nr);
 			}});}    
-    public String loadText(String name)						//¼ÓÔØassetsÎÄ¼ş·½·¨
-    { 	String nr=null;    									//ÄÚÈİ×Ö·û´®	
+    public String loadText(String name)						//åŠ è½½assetsæ–‡ä»¶æ–¹æ³•
+    { 	String nr=null;    									//å†…å®¹å­—ç¬¦ä¸²	
     	try 
-    	{	//´ò¿ª¶ÔÓ¦Ãû³ÆÎÄ¼şµÄÊäÈëÁ÷
+    	{	//æ‰“å¼€å¯¹åº”åç§°æ–‡ä»¶çš„è¾“å…¥æµ
     		InputStream is=this.getResources().getAssets().open(name);
     		int ch=0;										
-    		//´´½¨×Ö½ÚÊı×éÊä³öÁ÷
+    		//åˆ›å»ºå­—èŠ‚æ•°ç»„è¾“å‡ºæµ
     		ByteArrayOutputStream baos=new ByteArrayOutputStream();
     		while((ch=is.read())!=-1)
-    		{	baos.write(ch);		}						//¶ÁÈ¡ÎÄ¼ş
-    		byte[] buff=baos.toByteArray();					//×ª»¯Îª×Ö½ÚÊı×é
-    		baos.close();									//¹Ø±ÕÊäÈëÊä³öÁ÷
-    		is.close();										//¹Ø±ÕÊäÈëÊä³öÁ÷
-			nr=new String(buff,"utf-8");					//×ªÂëÉú²úĞÂ×Ö·û´®
-			nr=nr.replaceAll("\\r\\n","\n");				//Ìæ»»»»ĞĞ·ûµÈ¿Õ°××Ö·û
+    		{	baos.write(ch);		}						//è¯»å–æ–‡ä»¶
+    		byte[] buff=baos.toByteArray();					//è½¬åŒ–ä¸ºå­—èŠ‚æ•°ç»„
+    		baos.close();									//å…³é—­è¾“å…¥è¾“å‡ºæµ
+    		is.close();										//å…³é—­è¾“å…¥è¾“å‡ºæµ
+			nr=new String(buff,"utf-8");					//è½¬ç ç”Ÿäº§æ–°å­—ç¬¦ä¸²
+			nr=nr.replaceAll("\\r\\n","\n");				//æ›¿æ¢æ¢è¡Œç¬¦ç­‰ç©ºç™½å­—ç¬¦
 		} catch (Exception e) 
-    	{	//Ã»ÓĞÕÒµ½¶ÔÓ¦ÎÄ¼ş£¬½øĞĞÌáÊ¾
-			Toast.makeText(getBaseContext(), "¶Ô²»Æğ£¬Ã»ÓĞÕÒµ½Ö¸¶¨ÎÄ¼ş¡£", Toast.LENGTH_LONG).show();	}    	
-		return nr;    										//·µ»ØÄÚÈİ×Ö·û´®	
+    	{	//æ²¡æœ‰æ‰¾åˆ°å¯¹åº”æ–‡ä»¶ï¼Œè¿›è¡Œæç¤º
+			Toast.makeText(getBaseContext(), "å¯¹ä¸èµ·ï¼Œæ²¡æœ‰æ‰¾åˆ°æŒ‡å®šæ–‡ä»¶ã€‚", Toast.LENGTH_LONG).show();	}    	
+		return nr;    										//è¿”å›å†…å®¹å­—ç¬¦ä¸²	
 }}

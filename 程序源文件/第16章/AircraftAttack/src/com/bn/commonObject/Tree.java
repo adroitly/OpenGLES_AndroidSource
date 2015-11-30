@@ -10,7 +10,7 @@ public class Tree implements Comparable<Tree>
 {
 	public TextureRect rect;
 	public float tx,ty,tz;
-	public float yAngle;//Ê÷µÄ³¯Ïò
+	public float yAngle;//æ ‘çš„æœå‘
 	int texId;
 	int col,row;
 	public Tree(TextureRect rect,float tx,float ty,float tz,int texId,int col,int row)
@@ -23,7 +23,7 @@ public class Tree implements Comparable<Tree>
 		this.col=col;
 		this.row=row;
 	}
-	public void drawSelf(int ii,int jj,int rowR,int colR){//»æÖÆÊ÷
+	public void drawSelf(int ii,int jj,int rowR,int colR){//ç»˜åˆ¶æ ‘
 		if(row<ii||row>rowR||col<jj||col>colR)
 		{
 			return;
@@ -34,9 +34,9 @@ public class Tree implements Comparable<Tree>
 		rect.drawSelf(texId);
 		MatrixState.popMatrix();
 	}
-	//ÕâÀï¼ÆËã±êÖ¾°åµÄ³¯Ïò
+	//è¿™é‡Œè®¡ç®—æ ‡å¿—æ¿çš„æœå‘
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÑæ»ğÁ£×ÓÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—ç„°ç«ç²’å­é¢æœå‘
 		float currX_span=tx-cx;
 		float currZ_span=tz-cz;
 		if(currZ_span<0)
@@ -54,7 +54,7 @@ public class Tree implements Comparable<Tree>
 	}
 	@Override
 	public int compareTo(Tree another) 
-	{//ÖØĞ´µÄ±È½ÏÁ½¸öÁ£×ÓÀëÉãÏñ»ú¾àÀëµÄ·½·¨   ´Ó´óµ½Ğ¡½øĞĞÅÅĞò
+	{//é‡å†™çš„æ¯”è¾ƒä¸¤ä¸ªç²’å­ç¦»æ‘„åƒæœºè·ç¦»çš„æ–¹æ³•   ä»å¤§åˆ°å°è¿›è¡Œæ’åº
 		float x=tx-cx;
 		float z=ty-cz;
 		float y=tz-cy;

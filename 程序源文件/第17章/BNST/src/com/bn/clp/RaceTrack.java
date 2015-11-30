@@ -7,58 +7,58 @@ import java.nio.FloatBuffer;
 import com.bn.core.MatrixState;
 import android.opengl.GLES20;
 
-//´ú±íÈüÍ§ÈüµÀÖĞÊúÖ±µÄÈüµÀÀà
+//ä»£è¡¨èµ›è‰‡èµ›é“ä¸­ç«–ç›´çš„èµ›é“ç±»
 public class RaceTrack
 {
-	//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòµÄid
+	//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºçš„id
 	private int mProgram;
-	//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+	//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 	private int muMVPMatrixHandle;
-	//Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕó
+	//ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µ
 	int muMMatrixHandle;
-	//¶¥µãÎ»ÖÃÊôĞÔµÄid
+	//é¡¶ç‚¹ä½ç½®å±æ€§çš„id
 	private int maPositionHandle;
-	//¶¥µãÎÆÀíÊôĞÔÒıÓÃµÄid
+	//é¡¶ç‚¹çº¹ç†å±æ€§å¼•ç”¨çš„id
 	private int maTexCoorHandle;
-	//ĞÂÌí¼ÓµÄ==========================================================================
-	//²İµØµÄid
+	//æ–°æ·»åŠ çš„==========================================================================
+	//è‰åœ°çš„id
 	int sTextureGrassHandle;
-	//Ê¯Í·µÄid
+	//çŸ³å¤´çš„id
 	int sTextureRockHandle;
-	//ÆğÊ¼xÖµ
+	//èµ·å§‹xå€¼
 	int b_YZ_StartYHandle;
-	//³¤¶È
+	//é•¿åº¦
 	int b_YZ_YSpanHandle;
-	//ÊÇ·ñÎªËíµÀÉ½µÄ±êÖ¾Î»µÄÒıÓÃid
+	//æ˜¯å¦ä¸ºéš§é“å±±çš„æ ‡å¿—ä½çš„å¼•ç”¨id
 	int sdflagHandle;
-	//´Ë´¦flagÖµÎª0±íÊ¾ËíµÀÉ½£¬ÖµÎª1±íÊ¾ÎªÆÕÍ¨É½
+	//æ­¤å¤„flagå€¼ä¸º0è¡¨ç¤ºéš§é“å±±ï¼Œå€¼ä¸º1è¡¨ç¤ºä¸ºæ™®é€šå±±
 	private int flag=1;
-	//ĞÂÌí¼ÓµÄ=============================================================================
+	//æ–°æ·»åŠ çš„=============================================================================
 	
-	//¶¥µã×ø±ê»º³å
+	//é¡¶ç‚¹åæ ‡ç¼“å†²
 	private FloatBuffer mVertexBuffer;
-	//Æ¬ÔªÎÆÀí»º³å
+	//ç‰‡å…ƒçº¹ç†ç¼“å†²
 	private FloatBuffer mTexCoorBuffer;
-	//¶¥µãµÄÊıÁ¿
+	//é¡¶ç‚¹çš„æ•°é‡
 	private int vCount=0;
 	
-	//ÊÇ·ñÎªÖ±µÀ±ê¼Ç
+	//æ˜¯å¦ä¸ºç›´é“æ ‡è®°
 	boolean isZD;
 	
 	/*
-	 * ±¾ÀàµÄÓĞ²Î¹¹ÔìÆ÷£¬ÆäÖĞmvÎªMyGLSurfaceViewÀàµÄÒıÓÃ£¬
-	 * yArrayÎªÏàÓ¦»Ò¶ÈÍ¼¶¥µãµÄy×ø±ê£¬rowsÎª¸Ã»Ò¶ÈÍ¼µÄĞĞÊı£¬colsÎª¸Ã»Ò¶ÈÍ¼µÄÁĞÊı
+	 * æœ¬ç±»çš„æœ‰å‚æ„é€ å™¨ï¼Œå…¶ä¸­mvä¸ºMyGLSurfaceViewç±»çš„å¼•ç”¨ï¼Œ
+	 * yArrayä¸ºç›¸åº”ç°åº¦å›¾é¡¶ç‚¹çš„yåæ ‡ï¼Œrowsä¸ºè¯¥ç°åº¦å›¾çš„è¡Œæ•°ï¼Œcolsä¸ºè¯¥ç°åº¦å›¾çš„åˆ—æ•°
 	*/
 	public RaceTrack(int programId,float[][] yArray,int rows,int cols,boolean isZD)
 	{
 		this.isZD=isZD;
-		//³õÊ¼»¯¶¥µãÊı¾İ
+		//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®
 		initVertexData(yArray,rows,cols,isZD);
-		//³õÊ¼»¯Shader
+		//åˆå§‹åŒ–Shader
 		initShader(programId);
 	}
 	
-	//³õÊ¼»¯¶¥µãÊı¾İµÄinitVertexData·½·¨
+	//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„initVertexDataæ–¹æ³•
 	public void initVertexData(float[][] yArray,int rows,int cols,boolean isZD)
 	{
 		if(isZD)
@@ -71,22 +71,22 @@ public class RaceTrack
 		}
 	}
 	
-	//³õÊ¼»¯ÆÕÍ¨Ö±µÀ¶¥µãÊı¾İµÄ·½·¨
+	//åˆå§‹åŒ–æ™®é€šç›´é“é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 	public void initVertexDataZD(float[][] yArray,int rows,int cols)
 	{
-		float width=UNIT_SIZE/cols;//·Ö³É¸ñ×ÓµÄ¿í¶È
-		float height=UNIT_SIZE/rows;//·Ö³É¸ñ×ÓµÄ¿í¸ß¶È
+		float width=UNIT_SIZE/cols;//åˆ†æˆæ ¼å­çš„å®½åº¦
+		float height=UNIT_SIZE/rows;//åˆ†æˆæ ¼å­çš„å®½é«˜åº¦
 		
-		vCount=rows*cols*2*3;//¶¥µãµÄÊıÁ¿
+		vCount=rows*cols*2*3;//é¡¶ç‚¹çš„æ•°é‡
 		float[] vertex=new float[vCount*3];
 		float[] texture=new float[vCount*2];
 		
-		float tempWidth=2.0f/cols;//·Ö³É¸ñ×ÓµÄÎÆÀí¿í¶È
-		float tempHeight=2.0f/rows;//·Ö³É¸ñ×ÓµÄÎÆÀí¸ß¶È		
+		float tempWidth=2.0f/cols;//åˆ†æˆæ ¼å­çš„çº¹ç†å®½åº¦
+		float tempHeight=2.0f/rows;//åˆ†æˆæ ¼å­çš„çº¹ç†é«˜åº¦		
 		int countv=0;
 		int countt=0;
 		
-		int state=0;//0--Ò»¿ªÊ¼  1--¸ß¶ÈÎª0  2--»Ö¸´
+		int state=0;//0--ä¸€å¼€å§‹  1--é«˜åº¦ä¸º0  2--æ¢å¤
 		
 		for(int j=0;j<cols;j++)
 		{
@@ -95,62 +95,62 @@ public class RaceTrack
 			{
             	if(j!=0&&i==0)
             	{
-            		//±¾ÁĞÓÒÃæµã
+            		//æœ¬åˆ—å³é¢ç‚¹
     				vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
     				vertex[countv++]=yArray[i][j+1];
     				vertex[countv++]=height*i-UNIT_SIZE/2;
     				
-    				//ÎÆÀíµÄS¡¢T×ø±ê
+    				//çº¹ç†çš„Sã€Tåæ ‡
     				texture[countt++]=tempWidth*(j+1)-width/2;
     				texture[countt++]=tempHeight*i-height/2; 
     				
-    				//±¾ÁĞÓÒÃæµã
+    				//æœ¬åˆ—å³é¢ç‚¹
     				vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
     				vertex[countv++]=yArray[i][j+1];
     				vertex[countv++]=height*i-UNIT_SIZE/2;
     				
-    				//ÎÆÀíµÄS¡¢T×ø±ê
+    				//çº¹ç†çš„Sã€Tåæ ‡
     				texture[countt++]=tempWidth*(j+1)-width/2;
     				texture[countt++]=tempHeight*i-height/2; 
             	}  
 				if(state==0)
 				{
-					//±¾ÁĞÓÒÃæµã
+					//æœ¬åˆ—å³é¢ç‚¹
 					vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j+1];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíµÄS¡¢T×ø±ê
+					//çº¹ç†çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*(j+1)-width/2;
 					texture[countt++]=tempHeight*i-height/2; 
 	            	
-	            	//±¾ĞĞ×óÃæµã
+	            	//æœ¬è¡Œå·¦é¢ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíµÄS¡¢T×ø±ê
+					//çº¹ç†çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*j-width/2;
 					texture[countt++]=tempHeight*i-height/2;  
 					
 					if(yArray[i][j]==0&&yArray[i][j+1]==0&&yArray[i+1][j]==0&&yArray[i+1][j+1]==0)
 					{
 						state=1;
-						//±¾ĞĞ×óÃæµã
+						//æœ¬è¡Œå·¦é¢ç‚¹
 						vertex[countv++]=width*j-UNIT_SIZE/2;
 						vertex[countv++]=yArray[i][j];
 						vertex[countv++]=height*i-UNIT_SIZE/2;
 						
-						//ÎÆÀíµÄS¡¢T×ø±ê
+						//çº¹ç†çš„Sã€Tåæ ‡
 						texture[countt++]=tempWidth*j-width/2;
 						texture[countt++]=tempHeight*i-height/2;
 						
-						//±¾ĞĞ×óÃæµã
+						//æœ¬è¡Œå·¦é¢ç‚¹
 						vertex[countv++]=width*j-UNIT_SIZE/2;
 						vertex[countv++]=yArray[i][j];
 						vertex[countv++]=height*i-UNIT_SIZE/2;
 						
-						//ÎÆÀíµÄS¡¢T×ø±ê
+						//çº¹ç†çš„Sã€Tåæ ‡
 						texture[countt++]=tempWidth*j-width/2;
 						texture[countt++]=tempHeight*i-height/2;
 					}
@@ -159,39 +159,39 @@ public class RaceTrack
 				{
 					if(!(yArray[i+1][j]==0&&yArray[i+1][j+1]==0))
 					{
-						//±¾ÁĞÓÒÃæµã
+						//æœ¬åˆ—å³é¢ç‚¹
 						vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 						vertex[countv++]=yArray[i][j+1];
 						vertex[countv++]=height*i-UNIT_SIZE/2;
 						
-						//ÎÆÀíµÄS¡¢T×ø±ê
+						//çº¹ç†çš„Sã€Tåæ ‡
 						texture[countt++]=tempWidth*(j+1)-width/2;
 						texture[countt++]=tempHeight*i-height/2; 
 						
-						//±¾ÁĞÓÒÃæµã
+						//æœ¬åˆ—å³é¢ç‚¹
 						vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 						vertex[countv++]=yArray[i][j+1];
 						vertex[countv++]=height*i-UNIT_SIZE/2;
 						
-						//ÎÆÀíµÄS¡¢T×ø±ê
+						//çº¹ç†çš„Sã€Tåæ ‡
 						texture[countt++]=tempWidth*(j+1)-width/2;
 						texture[countt++]=tempHeight*i-height/2; 
 						
-						//±¾ÁĞÓÒÃæµã
+						//æœ¬åˆ—å³é¢ç‚¹
 						vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 						vertex[countv++]=yArray[i][j+1];
 						vertex[countv++]=height*i-UNIT_SIZE/2;
 						
-						//ÎÆÀíµÄS¡¢T×ø±ê
+						//çº¹ç†çš„Sã€Tåæ ‡
 						texture[countt++]=tempWidth*(j+1)-width/2;
 						texture[countt++]=tempHeight*i-height/2; 
 		            	
-		            	//±¾ĞĞ×óÃæµã
+		            	//æœ¬è¡Œå·¦é¢ç‚¹
 						vertex[countv++]=width*j-UNIT_SIZE/2;
 						vertex[countv++]=yArray[i][j];
 						vertex[countv++]=height*i-UNIT_SIZE/2;
 						
-						//ÎÆÀíµÄS¡¢T×ø±ê
+						//çº¹ç†çš„Sã€Tåæ ‡
 						texture[countt++]=tempWidth*j-width/2;
 						texture[countt++]=tempHeight*i-height/2;  
 						state=2;
@@ -199,21 +199,21 @@ public class RaceTrack
 				}
 				else if(state==2)
 				{
-					//±¾ÁĞÓÒÃæµã
+					//æœ¬åˆ—å³é¢ç‚¹
 					vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j+1];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíµÄS¡¢T×ø±ê
+					//çº¹ç†çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*(j+1)-width/2;
 					texture[countt++]=tempHeight*i-height/2; 
 	            	
-	            	//±¾ĞĞ×óÃæµã
+	            	//æœ¬è¡Œå·¦é¢ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíµÄS¡¢T×ø±ê
+					//çº¹ç†çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*j-width/2;
 					texture[countt++]=tempHeight*i-height/2;  
 				}
@@ -221,21 +221,21 @@ public class RaceTrack
 				
 				if(i==rows&&j!=cols-1)
 				{
-					//±¾ĞĞ×óÃæµã
+					//æœ¬è¡Œå·¦é¢ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíµÄS¡¢T×ø±ê
+					//çº¹ç†çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*j-width/2;
 					texture[countt++]=tempHeight*i-height/2;   
 					   
-					//±¾ĞĞ×óÃæµã
+					//æœ¬è¡Œå·¦é¢ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;  
 					vertex[countv++]=yArray[i][j];  
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíµÄS¡¢T×ø±ê
+					//çº¹ç†çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*j-width/2;
 					texture[countt++]=tempHeight*i-height/2;   
 				}                     
@@ -243,7 +243,7 @@ public class RaceTrack
 		}
 		vCount=countt/2;
 		
-		//²úÉú°üÀ¨µ¹Ó°µÄ¶à¼ÓÁ½¸ö¶¥µãµÄÊı×é
+		//äº§ç”ŸåŒ…æ‹¬å€’å½±çš„å¤šåŠ ä¸¤ä¸ªé¡¶ç‚¹çš„æ•°ç»„
 		float[] vertexL=new float[vCount*3];
 		for(int i=0;i<vertexL.length;i++)
 		{
@@ -304,14 +304,14 @@ public class RaceTrack
 		
 		vCount=vCount*2+2;
 		
-		//´´½¨¶¥µã»º³åÇø×ø±ê
+		//åˆ›å»ºé¡¶ç‚¹ç¼“å†²åŒºåæ ‡
 		ByteBuffer vbb=ByteBuffer.allocateDirect(vertexL.length*4);
 		vbb.order(ByteOrder.nativeOrder());
 		mVertexBuffer=vbb.asFloatBuffer();
 		mVertexBuffer.put(vertexL);
 		mVertexBuffer.position(0);
 		
-		//ÇĞ·ÖÎÆÀíÍ¼Æ¬µÄ·½·¨
+		//åˆ‡åˆ†çº¹ç†å›¾ç‰‡çš„æ–¹æ³•
 		ByteBuffer cbb=ByteBuffer.allocateDirect(textureL.length*4);
 		cbb.order(ByteOrder.nativeOrder());
 		mTexCoorBuffer=cbb.asFloatBuffer();
@@ -319,74 +319,74 @@ public class RaceTrack
 		mTexCoorBuffer.position(0);
 	}
 	
-	//³õÊ¼»¯·ÇÆÕÍ¨Ö±µÀ¶¥µãÊı¾İµÄ·½·¨
+	//åˆå§‹åŒ–éæ™®é€šç›´é“é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 	public void initVertexDataFZD(float[][] yArray,int rows,int cols)
 	{
-		float width=UNIT_SIZE/cols;//·Ö³É¸ñ×ÓµÄ¿í¶È
-		float height=UNIT_SIZE/rows;//·Ö³É¸ñ×ÓµÄ¿í¸ß¶È
+		float width=UNIT_SIZE/cols;//åˆ†æˆæ ¼å­çš„å®½åº¦
+		float height=UNIT_SIZE/rows;//åˆ†æˆæ ¼å­çš„å®½é«˜åº¦
 		
-		vCount=rows*cols*2*3;//¶¥µãµÄÊıÁ¿
+		vCount=rows*cols*2*3;//é¡¶ç‚¹çš„æ•°é‡
 		float[] vertex=new float[vCount*3];
 		float[] texture=new float[vCount*2];
 		
-		float tempWidth=2.0f/cols;//·Ö³É¸ñ×ÓµÄ¿í¶È
-		float tempHeight=2.0f/rows;//·Ö³É¸ñ×ÓµÄ¿í¸ß¶È
+		float tempWidth=2.0f/cols;//åˆ†æˆæ ¼å­çš„å®½åº¦
+		float tempHeight=2.0f/rows;//åˆ†æˆæ ¼å­çš„å®½é«˜åº¦
 		
 		int countv=0;
 		int countt=0;
-		//Ñ­»·±éÀú¶¥µã£¬ĞĞ->ÁĞ
+		//å¾ªç¯éå†é¡¶ç‚¹ï¼Œè¡Œ->åˆ—
 		for(int i=0;i<rows;i++)
 		{
 			for(int j=0;j<cols;j++)
 			{				
 				if(yArray[i][j]!=0||yArray[i+1][j]!=0||yArray[i][j+1]!=0)
 				{
-					//ÄæÊ±Õë¾íÈÆµÚÒ»¸öÈı½ÇĞÎµÄ×óÉÏ½ÇµÄ¶¥µã
+					//é€†æ—¶é’ˆå·ç»•ç¬¬ä¸€ä¸ªä¸‰è§’å½¢çš„å·¦ä¸Šè§’çš„é¡¶ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
-					//ÄæÊ±Õë¾íÈÆµÚÒ»¸öÈı½ÇĞÎµÄ×óÏÂ½ÇµÄ¶¥µã
+					//é€†æ—¶é’ˆå·ç»•ç¬¬ä¸€ä¸ªä¸‰è§’å½¢çš„å·¦ä¸‹è§’çš„é¡¶ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i+1][j];
 					vertex[countv++]=height*(i+1)-UNIT_SIZE/2;
-					//ÄæÊ±Õë¾íÈÆµÚÒ»¸öÈı½ÇĞÎµÄÓÒÉÏ½ÇµÄ¶¥µã
+					//é€†æ—¶é’ˆå·ç»•ç¬¬ä¸€ä¸ªä¸‰è§’å½¢çš„å³ä¸Šè§’çš„é¡¶ç‚¹
 					vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j+1];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
 					
-					//ÎÆÀíÍ¼ĞÎÖĞµÚÒ»¸öÈı½ÇĞÎ×óÉÏ½ÇµÄS¡¢T×ø±ê
+					//çº¹ç†å›¾å½¢ä¸­ç¬¬ä¸€ä¸ªä¸‰è§’å½¢å·¦ä¸Šè§’çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*i-width/2;
 					texture[countt++]=tempHeight*j-height/2;
-					//ÎÆÀíÍ¼ĞÎÖĞµÚÒ»¸öÈı½ÇĞÎ×óÏÂ½ÇµÄS¡¢T×ø±ê
+					//çº¹ç†å›¾å½¢ä¸­ç¬¬ä¸€ä¸ªä¸‰è§’å½¢å·¦ä¸‹è§’çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*(i+1)-width/2;
 					texture[countt++]=tempHeight*j-height/2;
-					//ÎÆÀíÍ¼ĞÎÖĞµÚÒ»¸öÈı½ÇĞÎÓÒÉÏ½ÇµÄS¡¢T×ø±ê
+					//çº¹ç†å›¾å½¢ä¸­ç¬¬ä¸€ä¸ªä¸‰è§’å½¢å³ä¸Šè§’çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*i-width/2;
 					texture[countt++]=tempHeight*(j+1)-height/2;
 				}
 				
 				if(yArray[i][j+1]!=0||yArray[i+1][j]!=0||yArray[i+1][j+1]!=0)
 				{
-					//ÄæÊ±Õë¾íÈÆµÚ¶ş¸öÈı½ÇĞÎµÄÓÒÉÏ½ÇµÄ¶¥µã
+					//é€†æ—¶é’ˆå·ç»•ç¬¬äºŒä¸ªä¸‰è§’å½¢çš„å³ä¸Šè§’çš„é¡¶ç‚¹
 					vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i][j+1];
 					vertex[countv++]=height*i-UNIT_SIZE/2;
-					//ÄæÊ±Õë¾íÈÆµÚ¶ş¸öÈı½ÇĞÎµÄ×óÏÂ½ÇµÄ¶¥µã
+					//é€†æ—¶é’ˆå·ç»•ç¬¬äºŒä¸ªä¸‰è§’å½¢çš„å·¦ä¸‹è§’çš„é¡¶ç‚¹
 					vertex[countv++]=width*j-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i+1][j];
 					vertex[countv++]=height*(i+1)-UNIT_SIZE/2;
-					//ÄæÊ±Õë¾íÈÆµÚ¶ş¸öÈı½ÇĞÎµÄÓÒÏÂ½ÇµÄ¶¥µã
+					//é€†æ—¶é’ˆå·ç»•ç¬¬äºŒä¸ªä¸‰è§’å½¢çš„å³ä¸‹è§’çš„é¡¶ç‚¹
 					vertex[countv++]=width*(j+1)-UNIT_SIZE/2;
 					vertex[countv++]=yArray[i+1][j+1];
 					vertex[countv++]=height*(i+1)-UNIT_SIZE/2;
 					
-					//ÎÆÀíÍ¼ĞÎÖĞµÚ¶ş¸öÈı½ÇĞÎÓÒÉÏ½ÇµÄS¡¢T×ø±ê
+					//çº¹ç†å›¾å½¢ä¸­ç¬¬äºŒä¸ªä¸‰è§’å½¢å³ä¸Šè§’çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*i-width/2;
 					texture[countt++]=tempHeight*(j+1)-height/2;
-					//ÎÆÀíÍ¼ĞÎÖĞµÚ¶ş¸öÈı½ÇĞÎ×óÏÂ½ÇµÄS¡¢T×ø±ê
+					//çº¹ç†å›¾å½¢ä¸­ç¬¬äºŒä¸ªä¸‰è§’å½¢å·¦ä¸‹è§’çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*(i+1)-width/2;
 					texture[countt++]=tempHeight*j-height/2;
-					//ÎÆÀíÍ¼ĞÎÖĞµÚ¶ş¸öÈı½ÇĞÎÓÒÉÏ½ÇµÄS¡¢T×ø±ê
+					//çº¹ç†å›¾å½¢ä¸­ç¬¬äºŒä¸ªä¸‰è§’å½¢å³ä¸Šè§’çš„Sã€Tåæ ‡
 					texture[countt++]=tempWidth*(i+1)-width/2;
 					texture[countt++]=tempHeight*(j+1)-height/2;
 				}
@@ -394,7 +394,7 @@ public class RaceTrack
 		}
 		vCount=countt/2;
 		
-		//²úÉú°üÀ¨µ¹Ó°µÄ¶à¼ÓÁ½¸ö¶¥µãµÄÊı×é
+		//äº§ç”ŸåŒ…æ‹¬å€’å½±çš„å¤šåŠ ä¸¤ä¸ªé¡¶ç‚¹çš„æ•°ç»„
 		float[] vertexL=new float[vCount*3];
 		for(int i=0;i<vertexL.length;i++)
 		{
@@ -443,14 +443,14 @@ public class RaceTrack
 		
 		vCount=vCount*2;
 		
-		//´´½¨¶¥µã»º³åÇø×ø±ê
+		//åˆ›å»ºé¡¶ç‚¹ç¼“å†²åŒºåæ ‡
 		ByteBuffer vbb=ByteBuffer.allocateDirect(vertexL.length*4);
 		vbb.order(ByteOrder.nativeOrder());
 		mVertexBuffer=vbb.asFloatBuffer();
 		mVertexBuffer.put(vertexL);
 		mVertexBuffer.position(0);
 		
-		//ÇĞ·ÖÎÆÀíÍ¼Æ¬µÄ·½·¨
+		//åˆ‡åˆ†çº¹ç†å›¾ç‰‡çš„æ–¹æ³•
 		ByteBuffer cbb=ByteBuffer.allocateDirect(textureL.length*4);
 		cbb.order(ByteOrder.nativeOrder());
 		mTexCoorBuffer=cbb.asFloatBuffer();
@@ -458,100 +458,100 @@ public class RaceTrack
 		mTexCoorBuffer.position(0);
 	}
 	
-	//³õÊ¼»¯×ÅÉ«Æ÷µÄ·½·¨
+	//åˆå§‹åŒ–ç€è‰²å™¨çš„æ–¹æ³•
 	public void initShader(int programId)
 	{
-		//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+		//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 		mProgram=programId;  
-		//»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+		//è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 		maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-		//»ñÈ¡³ÌĞòÖĞÆ¬ÔªÊôĞÔÒıÓÃid
+		//è·å–ç¨‹åºä¸­ç‰‡å…ƒå±æ€§å¼•ç”¨id
 		maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-		//»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+		//è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 		muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
-		//»ñÈ¡Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕóÒıÓÃid
+		//è·å–ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMMatrix");  
         
-        //ĞÂÌí¼ÓµÄ=========================================================================
-        //ÎÆÀí
-		//²İµØ
+        //æ–°æ·»åŠ çš„=========================================================================
+        //çº¹ç†
+		//è‰åœ°
 		sTextureGrassHandle=GLES20.glGetUniformLocation(mProgram, "sTextureGrass");
-		//Ê¯Í·
+		//çŸ³å¤´
 		sTextureRockHandle=GLES20.glGetUniformLocation(mProgram, "sTextureRock");
-		//xÎ»ÖÃ
+		//xä½ç½®
 		b_YZ_StartYHandle=GLES20.glGetUniformLocation(mProgram, "b_YZ_StartY");
-		//x×î´ó
+		//xæœ€å¤§
 		b_YZ_YSpanHandle=GLES20.glGetUniformLocation(mProgram, "b_YZ_YSpan");
     	sdflagHandle=GLES20.glGetUniformLocation(mProgram, "sdflag");
-    	//ĞÂÌí¼ÓµÄ=========================================================================
+    	//æ–°æ·»åŠ çš„=========================================================================
 	}   
 		  
-	//»æÖÆÍ¼ĞÎµÄ·½·¨
+	//ç»˜åˆ¶å›¾å½¢çš„æ–¹æ³•
 	public void drawSelf(int rock_textId,int textureId)
 	{  
 		realDrawTask(textureId,rock_textId);  
 	}
 	
-	//ÕæÕıµÄ»æÖÆÈÎÎñ
+	//çœŸæ­£çš„ç»˜åˆ¶ä»»åŠ¡
 	public void realDrawTask(int textureId,int rock_textId)
 	{
-		//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+		//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 		GLES20.glUseProgram(mProgram);
-		//½«×îÖÕ±ä»»¾ØÕó´«ÈëShader³ÌĞò   
+		//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥Shaderç¨‹åº   
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-        //½«Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMMatrixHandle, 1, false, MatrixState.getMMatrix(), 0); 
         
-        //ĞÂÌí¼ÓµÄ============================================================
-        //½«ÊÇ·ñÎªÆÕÍ¨É½µÄ±êÖ¾Î»´«µ½Shader³ÌĞòÖĞ
+        //æ–°æ·»åŠ çš„============================================================
+        //å°†æ˜¯å¦ä¸ºæ™®é€šå±±çš„æ ‡å¿—ä½ä¼ åˆ°Shaderç¨‹åºä¸­
         GLES20.glUniform1i(sdflagHandle, flag);
-        //ĞÂÌí¼ÓµÄ============================================================
+        //æ–°æ·»åŠ çš„============================================================
         
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
         GLES20.glVertexAttribPointer
         (
         	maPositionHandle, 
     		3, 
     		GLES20.GL_FLOAT, 
-    		false,				//Õâ¸ö²ÎÊıµÄ¾ßÌåÒâÒå£¿£¿£¿£¿£¿£¿£¿ 
-    		3*4,				//3ÊÇ¶¥µãµÄ×ø±êÊıÁ¿£¬µ«ÊÇ4µ½µ×ÊÇÊ²Ã´£¿£¿£¿£¿£¿
-    		mVertexBuffer		//¶¥µã×ø±ê»º³åÊı¾İ
+    		false,				//è¿™ä¸ªå‚æ•°çš„å…·ä½“æ„ä¹‰ï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿ 
+    		3*4,				//3æ˜¯é¡¶ç‚¹çš„åæ ‡æ•°é‡ï¼Œä½†æ˜¯4åˆ°åº•æ˜¯ä»€ä¹ˆï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
+    		mVertexBuffer		//é¡¶ç‚¹åæ ‡ç¼“å†²æ•°æ®
         );
-        //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
         GLES20.glVertexAttribPointer
         (
         	maTexCoorHandle, 
     		2, 
     		GLES20.GL_FLOAT, 
-    		false,				//Õâ¸ö²ÎÊıµÄ¾ßÌåÒâÒå£¿£¿£¿£¿£¿£¿£¿ 
-    		2*4,				//3ÊÇ¶¥µãµÄ×ø±êÊıÁ¿£¬µ«ÊÇ4µ½µ×ÊÇÊ²Ã´£¿£¿£¿£¿£¿
-    		mTexCoorBuffer		//¶¥µã×ø±ê»º³åÊı¾İ
+    		false,				//è¿™ä¸ªå‚æ•°çš„å…·ä½“æ„ä¹‰ï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿ 
+    		2*4,				//3æ˜¯é¡¶ç‚¹çš„åæ ‡æ•°é‡ï¼Œä½†æ˜¯4åˆ°åº•æ˜¯ä»€ä¹ˆï¼Ÿï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
+    		mTexCoorBuffer		//é¡¶ç‚¹åæ ‡ç¼“å†²æ•°æ®
         );
-        //ÔÊĞí¶¥µãÎ»ÖÃ¡¢ÎÆÀí×ø±êÊı¾İÊı×é
-        GLES20.glEnableVertexAttribArray(maPositionHandle);//¶¥µã×ø±ê
-        GLES20.glEnableVertexAttribArray(maTexCoorHandle);//ÎÆÀí×ø±ê
-        //°ó¶¨ÎÆÀí
+        //å…è®¸é¡¶ç‚¹ä½ç½®ã€çº¹ç†åæ ‡æ•°æ®æ•°ç»„
+        GLES20.glEnableVertexAttribArray(maPositionHandle);//é¡¶ç‚¹åæ ‡
+        GLES20.glEnableVertexAttribArray(maTexCoorHandle);//çº¹ç†åæ ‡
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
-        //ĞÂÌí¼ÓµÄ===============================================================
+        //æ–°æ·»åŠ çš„===============================================================
         GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, rock_textId);
-		GLES20.glUniform1i(sTextureGrassHandle, 0);//Ê¹ÓÃ0ºÅÎÆÀí
-        GLES20.glUniform1i(sTextureRockHandle, 1); //Ê¹ÓÃ1ºÅÎÆÀí
+		GLES20.glUniform1i(sTextureGrassHandle, 0);//ä½¿ç”¨0å·çº¹ç†
+        GLES20.glUniform1i(sTextureRockHandle, 1); //ä½¿ç”¨1å·çº¹ç†
         
-        //´«ËÍÏàÓ¦µÄx²ÎÊı
+        //ä¼ é€ç›¸åº”çš„xå‚æ•°
         GLES20.glUniform1f(b_YZ_StartYHandle, 0);
         
         GLES20.glUniform1f(b_YZ_YSpanHandle, LAND_MAX_HIGHEST); 
-        //ĞÂÌí¼ÓµÄ===============================================================
+        //æ–°æ·»åŠ çš„===============================================================
         if(isZD)
         {
-        	//»æÖÆÎÆÀí¾ØĞÎ
+        	//ç»˜åˆ¶çº¹ç†çŸ©å½¢
     		GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vCount);
         }
         else
         {
-        	//»æÖÆÎÆÀí¾ØĞÎ
+        	//ç»˜åˆ¶çº¹ç†çŸ©å½¢
     		GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount);
         }
 	}

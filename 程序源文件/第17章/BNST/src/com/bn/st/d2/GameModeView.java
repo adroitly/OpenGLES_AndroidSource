@@ -12,28 +12,28 @@ import com.bn.R;
 
 public class GameModeView extends MySFView
 {
-	MyActivity activity;		//ActivityÒýÓÃ
-	Canvas c;					//»­²¼µÄÒýÓÃ	
-	SurfaceHolder holder;		//SurfaceViewËøµÄÒýÓÃ
-    Bitmap background;			//±³¾°Í¼
-	Bitmap back;				//·µ»Ø°´Å¥Í¼Æ¬
+	MyActivity activity;		//Activityå¼•ç”¨
+	Canvas c;					//ç”»å¸ƒçš„å¼•ç”¨	
+	SurfaceHolder holder;		//SurfaceViewé”çš„å¼•ç”¨
+    Bitmap background;			//èƒŒæ™¯å›¾
+	Bitmap back;				//è¿”å›žæŒ‰é’®å›¾ç‰‡
     
-    Bitmap timer_mode;			//¼ÆÊ±Ä£Ê½Í¼Æ¬
-    Bitmap speed_mode;			//¾ºËÙÄ£Ê½Í¼Æ¬
-    Bitmap record_select;   	//¼ÇÂ¼²éÑ¯Í¼Æ¬
+    Bitmap timer_mode;			//è®¡æ—¶æ¨¡å¼å›¾ç‰‡
+    Bitmap speed_mode;			//ç«žé€Ÿæ¨¡å¼å›¾ç‰‡
+    Bitmap record_select;   	//è®°å½•æŸ¥è¯¢å›¾ç‰‡
     
-    Bitmap timer_mode_press;	//¼ÆÊ±Ä£Ê½°´ÏÂÍ¼Æ¬
-    Bitmap speed_mode_press;	//¾ºËÙÄ£Ê½°´ÏÂÍ¼Æ¬
-    Bitmap record_select_press;	//¼ÇÂ¼²éÑ¯°´ÏÂÍ¼Æ¬
+    Bitmap timer_mode_press;	//è®¡æ—¶æ¨¡å¼æŒ‰ä¸‹å›¾ç‰‡
+    Bitmap speed_mode_press;	//ç«žé€Ÿæ¨¡å¼æŒ‰ä¸‹å›¾ç‰‡
+    Bitmap record_select_press;	//è®°å½•æŸ¥è¯¢æŒ‰ä¸‹å›¾ç‰‡
     Bitmap back_press;
     
-    private float timer_mode_x;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float timer_mode_y;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float speed_mode_x;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float speed_mode_y;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float record_select_x;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float record_select_y;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê 
-    private float button_back_x=20f*ratio_width;//backÍ¼Æ¬°´Å¥µÄ×óÉÏ½ÇµÄµãµÄ×ø±ê
+    private float timer_mode_x;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float timer_mode_y;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float speed_mode_x;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float speed_mode_y;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float record_select_x;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float record_select_y;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡ 
+    private float button_back_x=20f*ratio_width;//backå›¾ç‰‡æŒ‰é’®çš„å·¦ä¸Šè§’çš„ç‚¹çš„åæ ‡
 	private float button_back_y=415f*ratio_height;
 	
 	boolean time_flag=false;
@@ -42,13 +42,13 @@ public class GameModeView extends MySFView
 	boolean back_flag=false;
     
     public boolean flag_go=true;
-    int move_flag=1;		//0---²»ÒÆ¶¯   -1---ÏòÁ½²àÒÆ¶¯    1---ÍùÖÐ¼äÒÆ¶¯
-    float move_span=MOVE_V;//°´Å¥ÒÆ¶¯ËÙ¶È
+    int move_flag=1;		//0---ä¸ç§»åŠ¨   -1---å‘ä¸¤ä¾§ç§»åŠ¨    1---å¾€ä¸­é—´ç§»åŠ¨
+    float move_span=MOVE_V;//æŒ‰é’®ç§»åŠ¨é€Ÿåº¦
 
 	public GameModeView(Context context) 
 	{
-		this.activity = (MyActivity) context;//³õÊ¼»¯activityµÄÒýÓÃ
-		initBitmap();			//³õÊ¼»¯Í¼Æ¬
+		this.activity = (MyActivity) context;//åˆå§‹åŒ–activityçš„å¼•ç”¨
+		initBitmap();			//åˆå§‹åŒ–å›¾ç‰‡
 	}
 	
 	public void initThread()
@@ -58,13 +58,13 @@ public class GameModeView extends MySFView
 		record_flag=false;
 		back_flag=false;	    
 	    flag_go=true;
-	    move_flag=1;		//0---²»ÒÆ¶¯   -1---ÏòÁ½²àÒÆ¶¯    1---ÍùÖÐ¼äÒÆ¶¯
+	    move_flag=1;		//0---ä¸ç§»åŠ¨   -1---å‘ä¸¤ä¾§ç§»åŠ¨    1---å¾€ä¸­é—´ç§»åŠ¨
 	    
-	    timer_mode_x=-timer_mode.getWidth();//¼ÆÊ±Ä£Ê½Í¼Æ¬µÄ³õÊ¼×óÉÏ½ÇÎ»ÖÃ
+	    timer_mode_x=-timer_mode.getWidth();//è®¡æ—¶æ¨¡å¼å›¾ç‰‡çš„åˆå§‹å·¦ä¸Šè§’ä½ç½®
 		timer_mode_y=190*ratio_height;
-		speed_mode_x=SCREEN_WIDTH;			//¾ºËÙÄ£Ê½Í¼Æ¬µÄ³õÊ¼×óÉÏ½ÇÎ»ÖÃ
+		speed_mode_x=SCREEN_WIDTH;			//ç«žé€Ÿæ¨¡å¼å›¾ç‰‡çš„åˆå§‹å·¦ä¸Šè§’ä½ç½®
 		speed_mode_y=275*ratio_height;
-		record_select_x=timer_mode_x;		//¼ÇÂ¼²éÑ¯Í¼Æ¬µÄ³õÊ¼×óÉÏ½ÇÎ»ÖÃ
+		record_select_x=timer_mode_x;		//è®°å½•æŸ¥è¯¢å›¾ç‰‡çš„åˆå§‹å·¦ä¸Šè§’ä½ç½®
 		record_select_y=360*ratio_height;
 		
 		
@@ -105,7 +105,7 @@ public class GameModeView extends MySFView
 					}
 					try
 					{
-						Thread.sleep(MOVE_TIME);//ÐÝÃß200ºÁÃë
+						Thread.sleep(MOVE_TIME);//ä¼‘çœ 200æ¯«ç§’
 					}catch(InterruptedException e)
 					{
 						e.printStackTrace();
@@ -115,11 +115,11 @@ public class GameModeView extends MySFView
 		}.start();
 	}
 	   
-	//½«Í¼Æ¬¼ÓÔØ
+	//å°†å›¾ç‰‡åŠ è½½
 	public void initBitmap()
 	{
-		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.background),ratio_width,ratio_height);//²Ëµ¥½çÃæ±³¾°Í¼Æ¬
-		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
+		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.background),ratio_width,ratio_height);//èœå•ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
 		timer_mode = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.timer_mode),ratio_width,ratio_height);//
 		speed_mode = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.speed_mode),ratio_width,ratio_height);//
 		record_select = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.record_select),ratio_width,ratio_height);//	
@@ -127,21 +127,21 @@ public class GameModeView extends MySFView
 		timer_mode_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.timer_mode_press),ratio_width,ratio_height);//
 		speed_mode_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.speed_mode_press),ratio_width,ratio_height);//
 		record_select_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.record_select_press),ratio_width,ratio_height);//
-		back_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
+		back_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
 	}
 	 
 	@Override
 	public void onDraw(Canvas canvas) 
 	{
 		super.onDraw(canvas);
-		canvas.drawColor(Color.argb(255, 0, 0, 0));//ÇåÆÁÎªºÚÉ«
-		canvas.drawBitmap(background,0,0, null);//»­±³¾°
+		canvas.drawColor(Color.argb(255, 0, 0, 0));//æ¸…å±ä¸ºé»‘è‰²
+		canvas.drawBitmap(background,0,0, null);//ç”»èƒŒæ™¯
 		if(!back_flag)
 		{
-			canvas.drawBitmap(back, button_back_x, button_back_y, null);//»æÖÆback°´Å¥
+			canvas.drawBitmap(back, button_back_x, button_back_y, null);//ç»˜åˆ¶backæŒ‰é’®
 		}else
 		{
-			canvas.drawBitmap(back_press, button_back_x, button_back_y, null);//»æÖÆback°´Å¥
+			canvas.drawBitmap(back_press, button_back_x, button_back_y, null);//ç»˜åˆ¶backæŒ‰é’®
 		}
 		if(!time_flag)
 		{
@@ -169,11 +169,11 @@ public class GameModeView extends MySFView
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		int x = (int) event.getX();//»ñÈ¡´¥¿ØµãµÄX×ø±ê
-		int y = (int) event.getY();//»ñÈ¡´¥¿ØµãµÄY×ø±ê
+		int x = (int) event.getX();//èŽ·å–è§¦æŽ§ç‚¹çš„Xåæ ‡
+		int y = (int) event.getY();//èŽ·å–è§¦æŽ§ç‚¹çš„Yåæ ‡
 		switch(event.getAction())
 		{
-		case MotionEvent.ACTION_DOWN://°´ÏÂÊÂ¼þ
+		case MotionEvent.ACTION_DOWN://æŒ‰ä¸‹äº‹ä»¶
 			if(x>timer_mode_x&&x<timer_mode_x+timer_mode.getWidth()&&y>timer_mode_y&&y<timer_mode_y+timer_mode.getHeight())
 			{
 				time_flag=true;
@@ -184,11 +184,11 @@ public class GameModeView extends MySFView
 			{
 				record_flag=true;
 			}else if(x>button_back_x&&x<button_back_x+back.getWidth()&&y>button_back_y&&y<button_back_y+back.getHeight())
-			{//·µ»Ø°´Å¥
+			{//è¿”å›žæŒ‰é’®
     			back_flag=true;
 			}
 			break;
-		case MotionEvent.ACTION_UP://Ì§ÆðÊÂ¼þ
+		case MotionEvent.ACTION_UP://æŠ¬èµ·äº‹ä»¶
 			time_flag=false;
 			speed_flag=false;
 			record_flag=false;
@@ -206,7 +206,7 @@ public class GameModeView extends MySFView
 				flag_go=false;
 				activity.hd.sendEmptyMessage(10);				
 			}else if(x>button_back_x&&x<button_back_x+back.getWidth()&&y>button_back_y&&y<button_back_y+back.getHeight())
-			{//·µ»Ø°´Å¥
+			{//è¿”å›žæŒ‰é’®
     			move_flag=-1;
 			}
 			break;

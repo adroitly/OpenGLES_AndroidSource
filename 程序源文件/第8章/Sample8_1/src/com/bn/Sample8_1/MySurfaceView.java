@@ -17,41 +17,41 @@ import android.graphics.BitmapFactory;
 
 class MySurfaceView extends GLSurfaceView {
     
-	private final float TOUCH_SCALE_FACTOR = 180.0f/320;//½Ç¶ÈËõ·Å±ÈÀı
-	private float mPreviousY;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃY×ø±ê
-    private float mPreviousX;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃX×ø±ê
+	private final float TOUCH_SCALE_FACTOR = 180.0f/320;//è§’åº¦ç¼©æ”¾æ¯”ä¾‹
+	private float mPreviousY;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Yåæ ‡
+    private float mPreviousX;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Xåæ ‡
 	
-	private SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷
-    int textureId;      //ÏµÍ³·ÖÅäµÄÎÆÀíid 
+	private SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨
+    int textureId;      //ç³»ç»Ÿåˆ†é…çš„çº¹ç†id 
     
-    boolean drawWhatFlag=true;	//»æÖÆÏßÌî³ä·½Ê½µÄ±êÖ¾Î»
+    boolean drawWhatFlag=true;	//ç»˜åˆ¶çº¿å¡«å……æ–¹å¼çš„æ ‡å¿—ä½
     boolean lightFlag=true;
 
 	public MySurfaceView(Context context) {
         super(context);
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
     }
 	
-	//´¥ÃşÊÂ¼ş»Øµ÷·½·¨
+	//è§¦æ‘¸äº‹ä»¶å›è°ƒæ–¹æ³•
     @Override 
     public boolean onTouchEvent(MotionEvent e) {
         float y = e.getY();
         float x = e.getX();
         switch (e.getAction()) {
         case MotionEvent.ACTION_MOVE:
-            float dy = y - mPreviousY;//¼ÆËã´¥¿Ø±ÊYÎ»ÒÆ
-            float dx = x - mPreviousX;//¼ÆËã´¥¿Ø±ÊXÎ»ÒÆ
-            mRenderer.cylinder.yAngle += dx * TOUCH_SCALE_FACTOR;//ÉèÖÃÈÆyÖáĞı×ª½Ç¶È
-            mRenderer.cylinder.zAngle+= dy * TOUCH_SCALE_FACTOR;//ÉèÖÃÈÆzÖáĞı×ª½Ç¶È
+            float dy = y - mPreviousY;//è®¡ç®—è§¦æ§ç¬”Yä½ç§»
+            float dx = x - mPreviousX;//è®¡ç®—è§¦æ§ç¬”Xä½ç§»
+            mRenderer.cylinder.yAngle += dx * TOUCH_SCALE_FACTOR;//è®¾ç½®ç»•yè½´æ—‹è½¬è§’åº¦
+            mRenderer.cylinder.zAngle+= dy * TOUCH_SCALE_FACTOR;//è®¾ç½®ç»•zè½´æ—‹è½¬è§’åº¦
             
-            mRenderer.cylinderl.yAngle += dx * TOUCH_SCALE_FACTOR;//ÉèÖÃÈÆyÖáĞı×ª½Ç¶È
-            mRenderer.cylinderl.zAngle+= dy * TOUCH_SCALE_FACTOR;//ÉèÖÃÈÆzÖáĞı×ª½Ç¶È
+            mRenderer.cylinderl.yAngle += dx * TOUCH_SCALE_FACTOR;//è®¾ç½®ç»•yè½´æ—‹è½¬è§’åº¦
+            mRenderer.cylinderl.zAngle+= dy * TOUCH_SCALE_FACTOR;//è®¾ç½®ç»•zè½´æ—‹è½¬è§’åº¦
         }
-        mPreviousY = y;//¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
-        mPreviousX = x;//¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
+        mPreviousY = y;//è®°å½•è§¦æ§ç¬”ä½ç½®
+        mPreviousX = x;//è®°å½•è§¦æ§ç¬”ä½ç½®
         return true;
     }
     
@@ -63,10 +63,10 @@ class MySurfaceView extends GLSurfaceView {
 		
         public void onDrawFrame(GL10 gl) 
         { 
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);   
             
-            //±£»¤ÏÖ³¡
+            //ä¿æŠ¤ç°åœº
             MatrixState.pushMatrix();
             MatrixState.translate(0, 0, -10);
             if(drawWhatFlag)
@@ -81,19 +81,19 @@ class MySurfaceView extends GLSurfaceView {
         }   
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             float ratio= (float) width / height;
-            //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
             MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 4f, 100);
-            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
             MatrixState.setCamera(0,0,8.0f,0f,0f,0f,0f,1.0f,0.0f); 
             
-	        //³õÊ¼»¯¹âÔ´
+	        //åˆå§‹åŒ–å…‰æº
 	        MatrixState.setLightLocation(10 , 0 , -10);
 	                      
-	        //Æô¶¯Ò»¸öÏß³Ì¶¨Ê±ĞŞ¸ÄµÆ¹âµÄÎ»ÖÃ
+	        //å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å®šæ—¶ä¿®æ”¹ç¯å…‰çš„ä½ç½®
 	        new Thread()
 	        {
 				public void run()
@@ -101,7 +101,7 @@ class MySurfaceView extends GLSurfaceView {
 					float redAngle = 0;
 					while(lightFlag)
 					{	
-						//¸ù¾İ½Ç¶È¼ÆËãµÆ¹âµÄÎ»ÖÃ
+						//æ ¹æ®è§’åº¦è®¡ç®—ç¯å…‰çš„ä½ç½®
 						redAngle=(redAngle+5)%360;
 						float rx=(float) (15*Math.sin(Math.toRadians(redAngle)));
 						float rz=(float) (15*Math.cos(Math.toRadians(redAngle)));
@@ -118,19 +118,19 @@ class MySurfaceView extends GLSurfaceView {
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            //ÉèÖÃÆÁÄ»±³¾°É«RGBA
+            //è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0.0f,0.0f,0.0f, 1.0f);  
-            //ÆôÓÃÉî¶È²âÊÔ
+            //å¯ç”¨æ·±åº¦æµ‹è¯•
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-    		//ÉèÖÃÎª´ò¿ª±³Ãæ¼ô²Ã
+    		//è®¾ç½®ä¸ºæ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);
-            //³õÊ¼»¯±ä»»¾ØÕó
+            //åˆå§‹åŒ–å˜æ¢çŸ©é˜µ
             MatrixState.setInitStack();
-            //¼ÓÔØÎÆÀí
+            //åŠ è½½çº¹ç†
             textureId=initTexture(R.drawable.android_robot0);
-            //´´½¨Ô²Öù¶ÔÏó
+            //åˆ›å»ºåœ†æŸ±å¯¹è±¡
             cylinder = new Cylinder(MySurfaceView.this,1,1.2f,3.9f,36,textureId,textureId,textureId);
-            //´´½¨Ô²Öù¹Ç¼Ü¶ÔÏó
+            //åˆ›å»ºåœ†æŸ±éª¨æ¶å¯¹è±¡
             cylinderl= new CylinderL(MySurfaceView.this,1,1.2f,3.9f,36);
             
         }
@@ -138,13 +138,13 @@ class MySurfaceView extends GLSurfaceView {
 	
 	public int initTexture(int drawableId)//textureId
 	{
-		//Éú³ÉÎÆÀíID
+		//ç”Ÿæˆçº¹ç†ID
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊıÁ¿
-				textures,   //ÎÆÀíidµÄÊı×é
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
@@ -153,7 +153,7 @@ class MySurfaceView extends GLSurfaceView {
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_CLAMP_TO_EDGE);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_CLAMP_TO_EDGE);
         
-        //Í¨¹ıÊäÈëÁ÷¼ÓÔØÍ¼Æ¬===============begin===================
+        //é€šè¿‡è¾“å…¥æµåŠ è½½å›¾ç‰‡===============begin===================
         InputStream is = this.getResources().openRawResource(drawableId);
         Bitmap bitmapTmp;
         try 
@@ -171,17 +171,17 @@ class MySurfaceView extends GLSurfaceView {
                 e.printStackTrace();
             }
         }
-        //Í¨¹ıÊäÈëÁ÷¼ÓÔØÍ¼Æ¬===============end=====================  
+        //é€šè¿‡è¾“å…¥æµåŠ è½½å›¾ç‰‡===============end=====================  
         
-        //Êµ¼Ê¼ÓÔØÎÆÀí
+        //å®é™…åŠ è½½çº¹ç†
         GLUtils.texImage2D
         (
-        		GLES20.GL_TEXTURE_2D,   //ÎÆÀíÀàĞÍ£¬ÔÚOpenGL ESÖĞ±ØĞëÎªGL10.GL_TEXTURE_2D
-        		0, 					  //ÎÆÀíµÄ²ã´Î£¬0±íÊ¾»ù±¾Í¼Ïñ²ã£¬¿ÉÒÔÀí½âÎªÖ±½ÓÌùÍ¼
-        		bitmapTmp, 			  //ÎÆÀíÍ¼Ïñ
-        		0					  //ÎÆÀí±ß¿ò³ß´ç
+        		GLES20.GL_TEXTURE_2D,   //çº¹ç†ç±»å‹ï¼Œåœ¨OpenGL ESä¸­å¿…é¡»ä¸ºGL10.GL_TEXTURE_2D
+        		0, 					  //çº¹ç†çš„å±‚æ¬¡ï¼Œ0è¡¨ç¤ºåŸºæœ¬å›¾åƒå±‚ï¼Œå¯ä»¥ç†è§£ä¸ºç›´æ¥è´´å›¾
+        		bitmapTmp, 			  //çº¹ç†å›¾åƒ
+        		0					  //çº¹ç†è¾¹æ¡†å°ºå¯¸
         );
-        bitmapTmp.recycle(); 		  //ÎÆÀí¼ÓÔØ³É¹¦ºóÊÍ·ÅÍ¼Æ¬
+        bitmapTmp.recycle(); 		  //çº¹ç†åŠ è½½æˆåŠŸåé‡Šæ”¾å›¾ç‰‡
         
         return textureId;
 	}

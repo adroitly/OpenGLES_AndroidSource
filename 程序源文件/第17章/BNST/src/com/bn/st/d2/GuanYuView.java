@@ -14,13 +14,13 @@ import android.view.SurfaceHolder;
 
 public class GuanYuView extends MySFView
 {
-	MyActivity activity;		//ActivityÒýÓÃ
-	Canvas c;					//»­²¼µÄÒýÓÃ	
-	SurfaceHolder holder;		//SurfaceViewËøµÄÒýÓÃ
-    Bitmap background;			//±³¾°Í¼
+	MyActivity activity;		//Activityå¼•ç”¨
+	Canvas c;					//ç”»å¸ƒçš„å¼•ç”¨	
+	SurfaceHolder holder;		//SurfaceViewé”çš„å¼•ç”¨
+    Bitmap background;			//èƒŒæ™¯å›¾
 	Bitmap back;
 	Bitmap back_press;
-    private float button_back_x=20f*ratio_width;//backÍ¼Æ¬°´Å¥µÄ×óÉÏ½ÇµÄµãµÄ×ø±ê
+    private float button_back_x=20f*ratio_width;//backå›¾ç‰‡æŒ‰é’®çš„å·¦ä¸Šè§’çš„ç‚¹çš„åæ ‡
 	private float button_back_y=415f*ratio_height;
 	
 	boolean back_flag=false;
@@ -28,30 +28,30 @@ public class GuanYuView extends MySFView
     
 	public GuanYuView(Context context) 
 	{
-		this.activity = (MyActivity) context;//³õÊ¼»¯activityµÄÒýÓÃ
-		initBitmap();			//³õÊ¼»¯Í¼Æ¬
+		this.activity = (MyActivity) context;//åˆå§‹åŒ–activityçš„å¼•ç”¨
+		initBitmap();			//åˆå§‹åŒ–å›¾ç‰‡
 	}
 	
-	//½«Í¼Æ¬¼ÓÔØ
+	//å°†å›¾ç‰‡åŠ è½½
 	public void initBitmap()
 	{
-		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.guanyu),ratio_width,ratio_height);//²Ëµ¥½çÃæ±³¾°Í¼Æ¬
-		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-		back_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
+		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.guanyu),ratio_width,ratio_height);//èœå•ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		back_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
 	}
 	
 	@Override
 	public void onDraw(Canvas canvas) 
 	{
 		super.onDraw(canvas);
-		canvas.drawColor(Color.argb(255, 0, 0, 0));//ÇåÆÁÎªºÚÉ«
-		canvas.drawBitmap(background,0,0, null);//»­±³¾°   
+		canvas.drawColor(Color.argb(255, 0, 0, 0));//æ¸…å±ä¸ºé»‘è‰²
+		canvas.drawBitmap(background,0,0, null);//ç”»èƒŒæ™¯   
 		if(!back_flag)
 		{
-			canvas.drawBitmap(back, button_back_x, button_back_y, null);//»æÖÆback°´Å¥ 
+			canvas.drawBitmap(back, button_back_x, button_back_y, null);//ç»˜åˆ¶backæŒ‰é’® 
 		}else
 		{
-			canvas.drawBitmap(back_press, button_back_x, button_back_y, null);//»æÖÆback°´Å¥ 
+			canvas.drawBitmap(back_press, button_back_x, button_back_y, null);//ç»˜åˆ¶backæŒ‰é’® 
 		}
 	}
 	
@@ -64,14 +64,14 @@ public class GuanYuView extends MySFView
 		{
 		case MotionEvent.ACTION_DOWN:
 			if(x>button_back_x&&x<button_back_x+back.getWidth()&&y>button_back_y&&y<button_back_y+back.getHeight())
-			{//·µ»Ø°´Å¥
+			{//è¿”å›žæŒ‰é’®
 				back_flag=true;
 			}  
 			break;
 		case MotionEvent.ACTION_UP:
 			back_flag=false;
 			if(x>button_back_x&&x<button_back_x+back.getWidth()&&y>button_back_y&&y<button_back_y+back.getHeight())
-			{//·µ»Ø°´Å¥
+			{//è¿”å›žæŒ‰é’®
 				activity.hd.sendEmptyMessage(1);
 			}  
 			break;

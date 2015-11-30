@@ -1,32 +1,32 @@
 package com.bn.Sample8_7;
 
 /*
- * »æÖÆñ·¶¥µÄÀà
+ * ç»˜åˆ¶ç©¹é¡¶çš„ç±»
  */
 
 public class Top {
-	float scale;//ñ·¶¥µÄ´óĞ¡
+	float scale;//ç©¹é¡¶çš„å¤§å°
 	
-	TopPart1 top1;//ñ·¶¥µÄµÚÒ»²¿·Ö
-	TopPart2 top2;//ñ·¶¥µÄµÚ¶ş²¿·Ö
-	TopPart3 top3;//ñ·¶¥µÄµÚÈı²¿·Ö
-	TopPart4 top4;//ñ·¶¥µÄµÚËÄ²¿·Ö
+	TopPart1 top1;//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
+	TopPart2 top2;//ç©¹é¡¶çš„ç¬¬äºŒéƒ¨åˆ†
+	TopPart3 top3;//ç©¹é¡¶çš„ç¬¬ä¸‰éƒ¨åˆ†
+	TopPart4 top4;//ç©¹é¡¶çš„ç¬¬å››éƒ¨åˆ†
 	
 	
-    float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+    float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
 	
 	
 	Top(MySurfaceView mv,float scale, int nCol ,int nRow)
 	{
-		this.scale=scale;//²èºø´óĞ¡¸³Öµ
+		this.scale=scale;//èŒ¶å£¶å¤§å°èµ‹å€¼
 		
-		//´´½¨¶ÔÏó
-		top1=new TopPart1(mv,0.4f*scale,nCol,nRow);//ñ·¶¥µÄµÚÒ»²¿·Ö
-		top2=new TopPart2(mv,0.4f*scale,nCol,nRow);//ñ·¶¥µÄµÚ¶ş²¿·Ö
-		top3=new TopPart3(mv,0.8f*scale,nCol,nRow);//ñ·¶¥µÄµÚÈı²¿·Ö
-		top4=new TopPart4(mv,0.8f*scale,nCol,nRow);//ñ·¶¥µÄµÚËÄ²¿·Ö
+		//åˆ›å»ºå¯¹è±¡
+		top1=new TopPart1(mv,0.4f*scale,nCol,nRow);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
+		top2=new TopPart2(mv,0.4f*scale,nCol,nRow);//ç©¹é¡¶çš„ç¬¬äºŒéƒ¨åˆ†
+		top3=new TopPart3(mv,0.8f*scale,nCol,nRow);//ç©¹é¡¶çš„ç¬¬ä¸‰éƒ¨åˆ†
+		top4=new TopPart4(mv,0.8f*scale,nCol,nRow);//ç©¹é¡¶çš„ç¬¬å››éƒ¨åˆ†
 
 	}
 	public void drawSelf(int texId)
@@ -37,22 +37,22 @@ public class Top {
    	 	MatrixState.rotate(zAngle, 0, 0, 1);
 		
 		
-		//ñ·¶¥µÄµÚÒ»²¿·Ö
+		//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
 		MatrixState.pushMatrix();
 		MatrixState.translate(0f, 4.0f*scale, 0f);
-        top1.drawSelf(texId);//ñ·¶¥µÄµÚÒ»²¿·Ö
+        top1.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬ä¸€éƒ¨åˆ†
         MatrixState.popMatrix();
-		//ñ·¶¥µÄµÚ¶ş²¿·Ö
+		//ç©¹é¡¶çš„ç¬¬äºŒéƒ¨åˆ†
     	MatrixState.pushMatrix();
     	MatrixState.translate(0f, 3.7f*scale, 0f);
-        top2.drawSelf(texId);//ñ·¶¥µÄµÚ¶ş²¿·Ö
+        top2.drawSelf(texId);//ç©¹é¡¶çš„ç¬¬äºŒéƒ¨åˆ†
         MatrixState.popMatrix();
-		//ñ·¶¥µÄµÚÈı²¿·Ö
+		//ç©¹é¡¶çš„ç¬¬ä¸‰éƒ¨åˆ†
     	MatrixState.pushMatrix();
     	MatrixState.translate(0f, 0f*scale, 0f);
         top3.drawSelf(texId);
         MatrixState.popMatrix();
-		//ñ·¶¥µÄµÚËÄ²¿·Ö
+		//ç©¹é¡¶çš„ç¬¬å››éƒ¨åˆ†
     	MatrixState.pushMatrix();
     	MatrixState.translate(0f, -1.9f*scale, 0f);
         top4.drawSelf(texId);

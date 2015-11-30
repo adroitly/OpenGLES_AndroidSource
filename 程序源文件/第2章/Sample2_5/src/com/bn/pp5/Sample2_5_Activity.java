@@ -1,6 +1,6 @@
 package com.bn.pp5;
 
-import java.io.File;										//ÒıÈëÏà¹Ø°ü
+import java.io.File;										//å¼•å…¥ç›¸å…³åŒ…
 import java.io.FileInputStream;
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,34 +10,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Sample2_5_Activity extends Activity {			//´´½¨Activity   
+public class Sample2_5_Activity extends Activity {			//åˆ›å»ºActivity   
     @Override
-    public void onCreate(Bundle savedInstanceState) {		//ÖØĞ´onCreate·½·¨
+    public void onCreate(Bundle savedInstanceState) {		//é‡å†™onCreateæ–¹æ³•
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);						//ÉèÖÃlayout        
-        Button ok=(Button)this.findViewById(R.id.Button01);	//»ñÈ¡´ò¿ªButton
-        ok.setOnClickListener								//Îª´ò¿ª°´Å¥Ìí¼Ó¼àÌıÆ÷
+        setContentView(R.layout.main);						//è®¾ç½®layout        
+        Button ok=(Button)this.findViewById(R.id.Button01);	//è·å–æ‰“å¼€Button
+        ok.setOnClickListener								//ä¸ºæ‰“å¼€æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
         (	new OnClickListener()
         	{	public void onClick(View v) 
 				{	EditText et1=(EditText)findViewById(R.id.EditText01);
-					//µ÷ÓÃloadText·½·¨»ñÈ¡¶ÔÓ¦ÎÄ¼şÃûµÄÎÄ¼ş
+					//è°ƒç”¨loadTextæ–¹æ³•è·å–å¯¹åº”æ–‡ä»¶åçš„æ–‡ä»¶
 					String nr=loadText(et1.getText().toString().trim());
 					EditText et2=(EditText)findViewById(R.id.EditText02);
-					//ÉèÖÃÏÔÊ¾¿òÄÚÈİ
+					//è®¾ç½®æ˜¾ç¤ºæ¡†å†…å®¹
 					et2.setText(nr);
 		}});}    
-    public String loadText(String name)						//¼ÓÔØSD¿¨ÎÄ¼ş·½·¨
-    {  	String nr=null;										//ÄÚÈİ×Ö·û´®
+    public String loadText(String name)						//åŠ è½½SDå¡æ–‡ä»¶æ–¹æ³•
+    {  	String nr=null;										//å†…å®¹å­—ç¬¦ä¸²
     	try 
-    	{	File f=new File("/sdcard/"+name);				//´´½¨¶ÔÓ¦ÎÄ¼ş
-        	byte[] buff=new byte[(int) f.length()];			//´´½¨ÏìÓ¦´óĞ¡µÄbyteÊı×é
+    	{	File f=new File("/sdcard/"+name);				//åˆ›å»ºå¯¹åº”æ–‡ä»¶
+        	byte[] buff=new byte[(int) f.length()];			//åˆ›å»ºå“åº”å¤§å°çš„byteæ•°ç»„
 			FileInputStream fis=new FileInputStream(f);
-			fis.read(buff);									//¶ÁÈëÎÄ¼ş
-			fis.close();									//¹Ø±ÕÊäÈëÁ÷
-			nr=new String(buff,"utf-8");					//×ªÂëÉú³É×Ö·û´®
-			nr=nr.replaceAll("\\r\\n","\n");} 				//Ìæ»»»»ĞĞ·û
+			fis.read(buff);									//è¯»å…¥æ–‡ä»¶
+			fis.close();									//å…³é—­è¾“å…¥æµ
+			nr=new String(buff,"utf-8");					//è½¬ç ç”Ÿæˆå­—ç¬¦ä¸²
+			nr=nr.replaceAll("\\r\\n","\n");} 				//æ›¿æ¢æ¢è¡Œç¬¦
     	catch (Exception e) 
-    	{	//Ã»ÓĞÕÒµ½ÎÄ¼şÌáÊ¾
-    		Toast.makeText(getBaseContext(), "¶Ô²»Æğ£¬Ã»ÓĞÕÒµ½Ö¸¶¨ÎÄ¼ş¡£", Toast.LENGTH_LONG).show();	}
-		return nr; 											//·µ»ØÄÚÈİ×Ö·û´®   	
+    	{	//æ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶æç¤º
+    		Toast.makeText(getBaseContext(), "å¯¹ä¸èµ·ï¼Œæ²¡æœ‰æ‰¾åˆ°æŒ‡å®šæ–‡ä»¶ã€‚", Toast.LENGTH_LONG).show();	}
+		return nr; 											//è¿”å›å†…å®¹å­—ç¬¦ä¸²   	
     }}

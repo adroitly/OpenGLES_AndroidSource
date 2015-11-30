@@ -13,98 +13,98 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Sample2_2_Activity extends Activity {
-	MediaPlayer mp; // ÉùÃ÷MediaPlayerµÄÒıÓÃ
-	AudioManager am; // ÉùÃ÷AudioManagerµÄÒıÓÃ
-	private int maxVolume; // ×î´óÒôÁ¿Öµ   
-	private int currVolume; // µ±Ç°ÒôÁ¿Öµ   
-	private int stepVolume; // Ã¿´Îµ÷ÕûµÄÒôÁ¿·ù¶È   
+	MediaPlayer mp; // å£°æ˜MediaPlayerçš„å¼•ç”¨
+	AudioManager am; // å£°æ˜AudioManagerçš„å¼•ç”¨
+	private int maxVolume; // æœ€å¤§éŸ³é‡å€¼   
+	private int currVolume; // å½“å‰éŸ³é‡å€¼   
+	private int stepVolume; // æ¯æ¬¡è°ƒæ•´çš„éŸ³é‡å¹…åº¦   
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) // ÖØĞ´onCreate·½·¨
+	public void onCreate(Bundle savedInstanceState) // é‡å†™onCreateæ–¹æ³•
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main); // ÉèÖÃlayout
-		mp = new MediaPlayer(); // ´´½¨MediaPlayerÊµÀı¶ÔÏó
+		setContentView(R.layout.main); // è®¾ç½®layout
+		mp = new MediaPlayer(); // åˆ›å»ºMediaPlayerå®ä¾‹å¯¹è±¡
 		try {
-			mp.setDataSource("/sdcard/gsls.mp3"); // ÎªMediaPlayerÉèÖÃÒª²¥·ÅÎÄ¼ş×ÊÔ´
-			mp.prepare(); // MediaPlayer½øĞĞ»º³å×¼±¸
+			mp.setDataSource("/sdcard/gsls.mp3"); // ä¸ºMediaPlayerè®¾ç½®è¦æ’­æ”¾æ–‡ä»¶èµ„æº
+			mp.prepare(); // MediaPlayerè¿›è¡Œç¼“å†²å‡†å¤‡
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE); // »ñÈ¡AudioManager¶ÔÏóÒıÓÃ
-		// »ñÈ¡×î´óÒôÀÖÒôÁ¿   
+		am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE); // è·å–AudioManagerå¯¹è±¡å¼•ç”¨
+		// è·å–æœ€å¤§éŸ³ä¹éŸ³é‡   
 		maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);  		
-		// Ã¿´Îµ÷ÕûµÄÒôÁ¿´ó¸ÅÎª×î´óÒôÁ¿µÄ1/6   
+		// æ¯æ¬¡è°ƒæ•´çš„éŸ³é‡å¤§æ¦‚ä¸ºæœ€å¤§éŸ³é‡çš„1/6   
 		stepVolume = maxVolume / 6;  
 
-		Button bstart = (Button) this.findViewById(R.id.Button01); // »ñÈ¡¿ªÊ¼°´Å¥
-		bstart.setOnClickListener // Îª¿ªÊ¼°´Å¥Ìí¼Ó¼àÌıÆ÷
+		Button bstart = (Button) this.findViewById(R.id.Button01); // è·å–å¼€å§‹æŒ‰é’®
+		bstart.setOnClickListener // ä¸ºå¼€å§‹æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mp.start(); // µ÷ÓÃMediaPlayerµÄstart·½·¨À´²¥·ÅÒôÀÖ
-				Toast.makeText(getBaseContext(), "¿ªÊ¼²¥·Å'¸ßÉ½Á÷Ë®Çú'",
+				mp.start(); // è°ƒç”¨MediaPlayerçš„startæ–¹æ³•æ¥æ’­æ”¾éŸ³ä¹
+				Toast.makeText(getBaseContext(), "å¼€å§‹æ’­æ”¾'é«˜å±±æµæ°´æ›²'",
 						Toast.LENGTH_LONG).show();
 			}
 		});
-		Button bpause = (Button) this.findViewById(R.id.Button02); // »ñÈ¡ÔİÍ£°´Å¥
-		bpause.setOnClickListener // ÎªÔİÍ£°´Å¥Ìí¼Ó¼àÌıÆ÷
+		Button bpause = (Button) this.findViewById(R.id.Button02); // è·å–æš‚åœæŒ‰é’®
+		bpause.setOnClickListener // ä¸ºæš‚åœæŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mp.pause(); // µ÷ÓÃMediaPlayerµÄpause·½·¨ÔİÍ£²¥·ÅÒôÀÖ
-				Toast.makeText(getBaseContext(), "ÔİÍ£²¥·Å'¸ßÉ½Á÷Ë®Çú'",
+				mp.pause(); // è°ƒç”¨MediaPlayerçš„pauseæ–¹æ³•æš‚åœæ’­æ”¾éŸ³ä¹
+				Toast.makeText(getBaseContext(), "æš‚åœæ’­æ”¾'é«˜å±±æµæ°´æ›²'",
 						Toast.LENGTH_LONG).show();
 			}
 		});
-		Button bstop = (Button) this.findViewById(R.id.Button03); // »ñÈ¡Í£Ö¹°´Å¥
-		bstop.setOnClickListener // ÎªÍ£Ö¹°´Å¥Ìí¼Ó¼àÌıÆ÷
+		Button bstop = (Button) this.findViewById(R.id.Button03); // è·å–åœæ­¢æŒ‰é’®
+		bstop.setOnClickListener // ä¸ºåœæ­¢æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mp.stop(); // µ÷ÓÃMediaPlayerµÄstop·½·¨Í£Ö¹²¥·ÅÒôÀÖ
+				mp.stop(); // è°ƒç”¨MediaPlayerçš„stopæ–¹æ³•åœæ­¢æ’­æ”¾éŸ³ä¹
 				try {
-					mp.prepare();//½øÈë×¼±¸×´Ì¬
-				} catch (IllegalStateException e) {//²¶»ñÒì³£
+					mp.prepare();//è¿›å…¥å‡†å¤‡çŠ¶æ€
+				} catch (IllegalStateException e) {//æ•è·å¼‚å¸¸
 					e.printStackTrace();
-				} catch (IOException e) {//²¶»ñÒì³£
+				} catch (IOException e) {//æ•è·å¼‚å¸¸
 					e.printStackTrace();
 				}
-				Toast.makeText(getBaseContext(), "Í£Ö¹²¥·Å'¸ßÉ½Á÷Ë®Çú'",
+				Toast.makeText(getBaseContext(), "åœæ­¢æ’­æ”¾'é«˜å±±æµæ°´æ›²'",
 						Toast.LENGTH_LONG).show();
 			}
 		});
 
-		Button bUp = (Button) this.findViewById(R.id.Button04); // »ñÈ¡Ôö´óÒôÁ¿°´Å¥
-		bUp.setOnClickListener // ÎªÔö´óÒôÁ¿°´Å¥Ìí¼Ó¼àÌıÆ÷
+		Button bUp = (Button) this.findViewById(R.id.Button04); // è·å–å¢å¤§éŸ³é‡æŒ‰é’®
+		bUp.setOnClickListener // ä¸ºå¢å¤§éŸ³é‡æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// »ñÈ¡µ±Ç°ÒôÁ¿  
+				// è·å–å½“å‰éŸ³é‡  
 				currVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);    
-				//Ôö¼ÓÒôÁ¿£¬µ«²»³¬¹ı×î´óÒôÁ¿Öµ
-				int tmpVolume = currVolume + stepVolume; //ÁÙÊ±ÒôÁ¿
+				//å¢åŠ éŸ³é‡ï¼Œä½†ä¸è¶…è¿‡æœ€å¤§éŸ³é‡å€¼
+				int tmpVolume = currVolume + stepVolume; //ä¸´æ—¶éŸ³é‡
 				currVolume = tmpVolume < maxVolume ? tmpVolume:maxVolume;
 				am.setStreamVolume(AudioManager.STREAM_MUSIC, currVolume,
 						AudioManager.FLAG_PLAY_SOUND);
-				Toast.makeText(getBaseContext(), "Ôö´óÒôÁ¿",
+				Toast.makeText(getBaseContext(), "å¢å¤§éŸ³é‡",
 						Toast.LENGTH_SHORT).show();
 			}
 		});
-		Button bDown = (Button) this.findViewById(R.id.Button05); // »ñÈ¡¼õĞ¡ÒôÁ¿°´Å¥
-		bDown.setOnClickListener // Îª¼õĞ¡ÒôÁ¿°´Å¥Ìí¼Ó¼àÌıÆ÷
+		Button bDown = (Button) this.findViewById(R.id.Button05); // è·å–å‡å°éŸ³é‡æŒ‰é’®
+		bDown.setOnClickListener // ä¸ºå‡å°éŸ³é‡æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// »ñÈ¡µ±Ç°ÒôÁ¿  
+				// è·å–å½“å‰éŸ³é‡  
 				currVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);    
-				//¼õĞ¡ÒôÁ¿£¬µ«²»Ğ¡ÓÚ0
-				int tmpVolume = currVolume - stepVolume; //ÁÙÊ±ÒôÁ¿
+				//å‡å°éŸ³é‡ï¼Œä½†ä¸å°äº0
+				int tmpVolume = currVolume - stepVolume; //ä¸´æ—¶éŸ³é‡
 				currVolume = tmpVolume > 0 ? tmpVolume:0;		
 				am.setStreamVolume(AudioManager.STREAM_MUSIC, currVolume,
 						AudioManager.FLAG_PLAY_SOUND);
-				Toast.makeText(getBaseContext(), "¼õĞ¡ÒôÁ¿",
+				Toast.makeText(getBaseContext(), "å‡å°éŸ³é‡",
 						Toast.LENGTH_SHORT).show();
 			}
 		});

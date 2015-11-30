@@ -5,7 +5,7 @@ import static com.bn.clp.Constant.head_Angle;
 import static com.bn.clp.Constant.head_Angle_A;
 import static com.bn.clp.Constant.head_Angle_Max;
 
-//晶体旋转线程
+//鏅朵綋鏃嬭浆绾跨▼
 public class RotateThread extends Thread
 {	
 	public RotateThread()

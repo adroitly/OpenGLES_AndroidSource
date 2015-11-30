@@ -5,20 +5,20 @@ import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-//Êı¾İ¿â¹¤¾ßÀà
+//æ•°æ®åº“å·¥å…·ç±»
 public class DBUtil
 {
 	static SQLiteDatabase sld;
-	//´ò¿ª»ò´´½¨Êı¾İ¿â
+	//æ‰“å¼€æˆ–åˆ›å»ºæ•°æ®åº“
 	public static void createorOpenDatabase()
 	{
 		try
 		{
 			sld=SQLiteDatabase.openDatabase
 	    	(
-    			"/data/data/com.bn/mydb", //Êı¾İ¿âËùÔÚÂ·¾¶
+    			"/data/data/com.bn/mydb", //æ•°æ®åº“æ‰€åœ¨è·¯å¾„
     			null, 								//CursorFactory
-    			SQLiteDatabase.OPEN_READWRITE|SQLiteDatabase.CREATE_IF_NECESSARY //¶ÁĞ´¡¢Èô²»´æÔÚÔò´´½¨
+    			SQLiteDatabase.OPEN_READWRITE|SQLiteDatabase.CREATE_IF_NECESSARY //è¯»å†™ã€è‹¥ä¸å­˜åœ¨åˆ™åˆ›å»º
 	    	);
 		}
 		catch(Exception e)
@@ -26,7 +26,7 @@ public class DBUtil
 			e.printStackTrace();
 		}
 	}
-	//¹Ø±ÕÊı¾İ¿â
+	//å…³é—­æ•°æ®åº“
 	public static void closeDatabase()
 	{
 		try
@@ -38,7 +38,7 @@ public class DBUtil
 			e.printStackTrace();
 		}
 	}
-	//´´½¨±í
+	//åˆ›å»ºè¡¨
 	public static void createTable()
 	{
 		createorOpenDatabase();
@@ -66,7 +66,7 @@ public class DBUtil
 		}
 		closeDatabase();
 	}
-	//²åÈëµ½¼ÆÊ±ÈüÊı¾İ¿âµÄ·½·¨
+	//æ’å…¥åˆ°è®¡æ—¶èµ›æ•°æ®åº“çš„æ–¹æ³•
 	public static void insertJSDatabase(String date,String time)
 	{
 		createorOpenDatabase();
@@ -81,7 +81,7 @@ public class DBUtil
 		}
 		closeDatabase();
 	}
-	//²åÈëµ½¼ÆÊ±ÈüÊı¾İ¿âµÄ·½·¨
+	//æ’å…¥åˆ°è®¡æ—¶èµ›æ•°æ®åº“çš„æ–¹æ³•
 	public static void insertRcRDatabase(String date,String time,int ranking)
 	{
 		createorOpenDatabase();
@@ -96,7 +96,7 @@ public class DBUtil
 		}
 		closeDatabase(); 
 	}
-	//²éÑ¯Êı¾İ¿â
+	//æŸ¥è¯¢æ•°æ®åº“
 	public static List<String> queryDatabase(String tableName)
 	{
 		createorOpenDatabase();
@@ -122,7 +122,7 @@ public class DBUtil
 		closeDatabase();
 		return alist;
 	}
-	//É¾³ı±í
+	//åˆ é™¤è¡¨
 	public static void dropDatabase()
 	{
 		createorOpenDatabase();
@@ -139,7 +139,7 @@ public class DBUtil
 		}
 		closeDatabase();
 	}
-	//²éÑ¯¼ÆÊ±Ä£Ê½±íÖĞµÄÓÃÊ±
+	//æŸ¥è¯¢è®¡æ—¶æ¨¡å¼è¡¨ä¸­çš„ç”¨æ—¶
 	public static List<String> getTimeFromJSDatabase()
 	{
 		createorOpenDatabase();

@@ -8,31 +8,31 @@ import com.bn.core.MatrixState;
 
 import android.opengl.GLES20;
 import static com.bn.gameView.Constant.*;
-//¹¹½¨µØĞÎµÄÀà   µØĞÎÆ½ĞĞÓÚXZÆ½Ãæ    ²¢ÇÒÎ»ÓÚXZÆ½ÃæµÄµÚËÄÏóÏŞ
-//ÕâÀïµÄÉ½µØÒªÌùËÄ¸±ÎÆÀí,ÔÚ×ÅÉ«Æ÷ÖĞ¸ù¾İ¸ß¶ÈÀ´ÅĞ¶¨
+//æ„å»ºåœ°å½¢çš„ç±»   åœ°å½¢å¹³è¡ŒäºXZå¹³é¢    å¹¶ä¸”ä½äºXZå¹³é¢çš„ç¬¬å››è±¡é™
+//è¿™é‡Œçš„å±±åœ°è¦è´´å››å‰¯çº¹ç†,åœ¨ç€è‰²å™¨ä¸­æ ¹æ®é«˜åº¦æ¥åˆ¤å®š
 public class LandForm
 {
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
     
-    int uTuCengTexHandle;//ÍÁ²ãÎÆÀíÊôĞÔÒıÓÃid  
-    int uCaoDiTexHandle;//²İµØÎÆÀíÊôĞÔÒıÓÃid  
-    int uShiTouTexHandle;//Ê¯Í·ÎÆÀíÊôĞÔÒıÓÃid  
-    int uShanDingTexHandle;//É½¶¥ÎÆÀíÊôĞÔÒıÓÃid  
+    int uTuCengTexHandle;//åœŸå±‚çº¹ç†å±æ€§å¼•ç”¨id  
+    int uCaoDiTexHandle;//è‰åœ°çº¹ç†å±æ€§å¼•ç”¨id  
+    int uShiTouTexHandle;//çŸ³å¤´çº¹ç†å±æ€§å¼•ç”¨id  
+    int uShanDingTexHandle;//å±±é¡¶çº¹ç†å±æ€§å¼•ç”¨id  
 
-    int muHightHandle;//½¥±ä¸ß¶È
+    int muHightHandle;//æ¸å˜é«˜åº¦
     int muHightspanHandle;
-    int uLandFlagHandle;//²»Í¬ÀàĞÍµÄÉ½µÄ±êÖ¾Èç¹ûÎª1±íÊ¾µØÃæÉÏµÄÉ½
-    private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    private FloatBuffer   mTextureBuffer;//¶¥µã×ÅÉ«Êı¾İ»º³å
-    int vCount;//¶¥µãÊıÁ¿
-    private boolean ishuidutu=false;//ÊÇ·ñÊÇ»Ò¶ÈÍ¼»¹ÊÇ³ÌĞòÉú³É
+    int uLandFlagHandle;//ä¸åŒç±»å‹çš„å±±çš„æ ‡å¿—å¦‚æœä¸º1è¡¨ç¤ºåœ°é¢ä¸Šçš„å±±
+    private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    private FloatBuffer   mTextureBuffer;//é¡¶ç‚¹ç€è‰²æ•°æ®ç¼“å†²
+    int vCount;//é¡¶ç‚¹æ•°é‡
+    private boolean ishuidutu=false;//æ˜¯å¦æ˜¯ç°åº¦å›¾è¿˜æ˜¯ç¨‹åºç”Ÿæˆ
     public LandForm(int terrainId,int mProgram)
     {
     	this.mProgram=mProgram;
-    	if(terrainId==3||terrainId==5||terrainId==6)//Èç¹ûÊÇÂ½µØÉÏµÄÉ½,Ôò²»»æÖÆµ¹Ó°
+    	if(terrainId==3||terrainId==5||terrainId==6)//å¦‚æœæ˜¯é™†åœ°ä¸Šçš„å±±,åˆ™ä¸ç»˜åˆ¶å€’å½±
     	{
     		ishuidutu=true;
     	}
@@ -41,41 +41,41 @@ public class LandForm
     }
     public void initVertexData(int terrainId)
     {
-    	int cols=LANDS_HEIGHT_ARRAY[terrainId][0].length-1;//ÁĞÊı
-    	int rows=LANDS_HEIGHT_ARRAY[terrainId].length-1;//ĞĞÊı
-    	//»æÖÆ³ÌĞòÉú³ÉµÄÉ½
+    	int cols=LANDS_HEIGHT_ARRAY[terrainId][0].length-1;//åˆ—æ•°
+    	int rows=LANDS_HEIGHT_ARRAY[terrainId].length-1;//è¡Œæ•°
+    	//ç»˜åˆ¶ç¨‹åºç”Ÿæˆçš„å±±
     	if(!ishuidutu)
     	{
-	        //ÎÆÀíµÄ¿éÊı
+	        //çº¹ç†çš„å—æ•°
 	    	float textureSize=1f;
-	    	float sizew=textureSize/cols;//ÁĞ¿í
-	    	float sizeh=textureSize/rows;//ĞĞ¿í
-	    	//¶¥µãµÄ¼¯ºÏ
+	    	float sizew=textureSize/cols;//åˆ—å®½
+	    	float sizeh=textureSize/rows;//è¡Œå®½
+	    	//é¡¶ç‚¹çš„é›†åˆ
 	    	ArrayList<Float> alVertex=new ArrayList<Float>();
-	    	//ÎÆÀíµÄ ¼¯ºÏ
+	    	//çº¹ç†çš„ é›†åˆ
 	    	ArrayList<Float> alTexture=new ArrayList<Float>();
 	        for(int i=0;i<rows;i++)
 	        {
 	        	for(int j=0;j<cols;j++)
 	        	{        		
-	        		//¼ÆËãµ±Ç°¸ñ×Ó×óÉÏ²àµã×ø±ê       
-	        		float zsx=j*LAND_UNIT_SIZE;//µ±Ç°µãx×ø±ê
-	        		float zsz=i*LAND_UNIT_SIZE;//µ±Ç°µãz×ø±ê 
+	        		//è®¡ç®—å½“å‰æ ¼å­å·¦ä¸Šä¾§ç‚¹åæ ‡       
+	        		float zsx=j*LAND_UNIT_SIZE;//å½“å‰ç‚¹xåæ ‡
+	        		float zsz=i*LAND_UNIT_SIZE;//å½“å‰ç‚¹zåæ ‡ 
 	        		
-	        		float s=j*sizew;  //s×ø±ê
-	    			float t=i*sizeh;  //t×ø±ê
+	        		float s=j*sizew;  //såæ ‡
+	    			float t=i*sizeh;  //tåæ ‡
 	    			
 	        		if(LANDS_HEIGHT_ARRAY[terrainId][i][j]!=0||LANDS_HEIGHT_ARRAY[terrainId][i+1][j]!=0||LANDS_HEIGHT_ARRAY[terrainId][i][j+1]!=0)
 	        		{
-	        			//×óÉÏµã
+	        			//å·¦ä¸Šç‚¹
 	            		alVertex.add(zsx);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i][j]);
 	            		alVertex.add(zsz);
-	            		//×óÏÂµã
+	            		//å·¦ä¸‹ç‚¹
 	            		alVertex.add(zsx);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i+1][j]);
 	            		alVertex.add(zsz+LAND_UNIT_SIZE);
-	            		//ÓÒÉÏµã
+	            		//å³ä¸Šç‚¹
 	            		
 	            		alVertex.add(zsx+LAND_UNIT_SIZE);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i][j+1]);
@@ -89,16 +89,16 @@ public class LandForm
 	        			
 	        			alTexture.add(s+sizew);
 	        			alTexture.add(t);
-            			//--------------------»æÖÆµ¹Ó°-------------        		
-                		//×óÉÏµã
+            			//--------------------ç»˜åˆ¶å€’å½±-------------        		
+                		//å·¦ä¸Šç‚¹
                 		alVertex.add(zsx);
 	            		alVertex.add(-LANDS_HEIGHT_ARRAY[terrainId][i][j]);
 	            		alVertex.add(zsz);
-                		//ÓÒÉÏµã
+                		//å³ä¸Šç‚¹
                 		alVertex.add(zsx+LAND_UNIT_SIZE);
 	            		alVertex.add(-LANDS_HEIGHT_ARRAY[terrainId][i][j+1]);
 	            		alVertex.add(zsz);
-                		//×óÏÂµã
+                		//å·¦ä¸‹ç‚¹
                 		alVertex.add(zsx);
 	            		alVertex.add(-LANDS_HEIGHT_ARRAY[terrainId][i+1][j]);
 	            		alVertex.add(zsz+LAND_UNIT_SIZE);
@@ -113,15 +113,15 @@ public class LandForm
 	        			alTexture.add(t+sizeh);
 	        		}
 	        		if(LANDS_HEIGHT_ARRAY[terrainId][i][j+1]!=0||LANDS_HEIGHT_ARRAY[terrainId][i+1][j]!=0||LANDS_HEIGHT_ARRAY[terrainId][i+1][j+1]!=0){
-	        			//ÓÒÉÏµã
+	        			//å³ä¸Šç‚¹
 	            		alVertex.add(zsx+LAND_UNIT_SIZE);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i][j+1]);
 	            		alVertex.add(zsz);
-	            		//×óÏÂµã
+	            		//å·¦ä¸‹ç‚¹
 	            		alVertex.add(zsx);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i+1][j]);
 	            		alVertex.add(zsz+LAND_UNIT_SIZE);
-	            		//ÓÒÏÂµã
+	            		//å³ä¸‹ç‚¹
 	            		alVertex.add(zsx+LAND_UNIT_SIZE);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i+1][j+1]);
 	            		alVertex.add(zsz+LAND_UNIT_SIZE);
@@ -134,15 +134,15 @@ public class LandForm
 	        			
 	        			alTexture.add(s+sizew);
 	        			alTexture.add(t+sizeh);
-            			//ÓÒÉÏµã
+            			//å³ä¸Šç‚¹
                 		alVertex.add(zsx+LAND_UNIT_SIZE);
                 		alVertex.add(-LANDS_HEIGHT_ARRAY[terrainId][i][j+1]);
                 		alVertex.add(zsz);
-                		//ÓÒÏÂµã
+                		//å³ä¸‹ç‚¹
                 		alVertex.add(zsx+LAND_UNIT_SIZE);
                 		alVertex.add(-LANDS_HEIGHT_ARRAY[terrainId][i+1][j+1]);
                 		alVertex.add(zsz+LAND_UNIT_SIZE);
-                		//×óÏÂµã
+                		//å·¦ä¸‹ç‚¹
                 		alVertex.add(zsx);
                 		alVertex.add(-LANDS_HEIGHT_ARRAY[terrainId][i+1][j]);
                 		alVertex.add(zsz+LAND_UNIT_SIZE);
@@ -165,46 +165,46 @@ public class LandForm
 	        	vertices[i]=alVertex.get(i);
 	        }
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-	    	//´´½¨¶¥µãÎÆÀí»º³å
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+	    	//åˆ›å»ºé¡¶ç‚¹çº¹ç†ç¼“å†²
 	        float textures[]=new float[alTexture.size()];
 	        for(int i=0;i<alTexture.size();i++)
 	        {
 	        	textures[i]=alTexture.get(i);
 	        }
 	        ByteBuffer tbb = ByteBuffer.allocateDirect(textures.length*4);
-	        tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-	        mTextureBuffer= tbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-	        mTextureBuffer.put(textures);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-	        mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+	        mTextureBuffer= tbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+	        mTextureBuffer.put(textures);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+	        mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
     	}
-    	else//¼ÓÔØµÄ»Ò¶ÈÍ¼,»æÖÆµÄÊ±ºòÓÃtrangle_strip·½Ê½µÄ
+    	else//åŠ è½½çš„ç°åº¦å›¾,ç»˜åˆ¶çš„æ—¶å€™ç”¨trangle_stripæ–¹å¼çš„
     	{
-	        //ÎÆÀíµÄ¿éÊı
+	        //çº¹ç†çš„å—æ•°
 	    	float textureSize=1f;
-	    	float sizew=textureSize/cols;//ÁĞ¿í
-	    	float sizeh=textureSize/rows;//ĞĞ¿í
-	    	//¶¥µãµÄ¼¯ºÏ
+	    	float sizew=textureSize/cols;//åˆ—å®½
+	    	float sizeh=textureSize/rows;//è¡Œå®½
+	    	//é¡¶ç‚¹çš„é›†åˆ
 	    	ArrayList<Float> alVertex=new ArrayList<Float>();
-	    	//ÎÆÀíµÄ ¼¯ºÏ
+	    	//çº¹ç†çš„ é›†åˆ
 	    	ArrayList<Float> alTexture=new ArrayList<Float>();
 	        for(int i=0;i<rows;i++)
 	        {
 	        	for(int j=0;j<cols;j++)
 	        	{        		
-	        		//¼ÆËãµ±Ç°¸ñ×Ó×óÉÏ²àµã×ø±ê       
-	        		float zsx=j*LAND_UNIT_SIZE;//µ±Ç°µãx×ø±ê
-	        		float zsz=i*LAND_UNIT_SIZE;//µ±Ç°µãz×ø±ê 
+	        		//è®¡ç®—å½“å‰æ ¼å­å·¦ä¸Šä¾§ç‚¹åæ ‡       
+	        		float zsx=j*LAND_UNIT_SIZE;//å½“å‰ç‚¹xåæ ‡
+	        		float zsz=i*LAND_UNIT_SIZE;//å½“å‰ç‚¹zåæ ‡ 
 	        		
-	        		float s=j*sizew;  //s×ø±ê
-	    			float t=i*sizeh;  //t×ø±ê
+	        		float s=j*sizew;  //såæ ‡
+	    			float t=i*sizeh;  //tåæ ‡
 	    			
 	    			if(i!=0&&j==0)
 	    			{
-	    				//×óÉÏµã
+	    				//å·¦ä¸Šç‚¹
 		    			alVertex.add(zsx);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i][j]);
 	            		alVertex.add(zsz);
@@ -212,14 +212,14 @@ public class LandForm
 	            		alTexture.add(s);
 	        			alTexture.add(t);
 	    			}
-    				//×óÉÏµã
+    				//å·¦ä¸Šç‚¹
 	    			alVertex.add(zsx);
             		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i][j]);
             		alVertex.add(zsz);
             		
             		alTexture.add(s);
         			alTexture.add(t);
-            		//×óÏÂµã
+            		//å·¦ä¸‹ç‚¹
             		alVertex.add(zsx);
             		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i+1][j]);
             		alVertex.add(zsz+LAND_UNIT_SIZE);
@@ -229,14 +229,14 @@ public class LandForm
         			
 	    			if(j==cols-1)
 	    			{
-	    				//ÓÒÉÏµã
+	    				//å³ä¸Šç‚¹
 		    			alVertex.add(zsx+LAND_UNIT_SIZE);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i][j+1]);
 	            		alVertex.add(zsz);
 	            		
 	            		alTexture.add(s+sizew);
 	        			alTexture.add(t);
-	            		//ÓÒÏÂµã
+	            		//å³ä¸‹ç‚¹
 	            		alVertex.add(zsx+LAND_UNIT_SIZE);
 	            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i+1][j+1]);
 	            		alVertex.add(zsz+LAND_UNIT_SIZE);
@@ -245,7 +245,7 @@ public class LandForm
 	        			alTexture.add(t+sizeh);
 	            		if(i!=rows-1)
 	            		{
-	            			//ÓÒÏÂµã
+	            			//å³ä¸‹ç‚¹
 		            		alVertex.add(zsx+LAND_UNIT_SIZE);
 		            		alVertex.add(LANDS_HEIGHT_ARRAY[terrainId][i+1][j+1]);
 		            		alVertex.add(zsz+LAND_UNIT_SIZE);
@@ -263,33 +263,33 @@ public class LandForm
 	        	vertices[i]=alVertex.get(i);
 	        }
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-	    	//´´½¨¶¥µãÎÆÀí»º³å
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+	    	//åˆ›å»ºé¡¶ç‚¹çº¹ç†ç¼“å†²
 	        float textures[]=new float[alTexture.size()];
 	        for(int i=0;i<alTexture.size();i++)
 	        {
 	        	textures[i]=alTexture.get(i);
 	        }
 	        ByteBuffer tbb = ByteBuffer.allocateDirect(textures.length*4);
-	        tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mTextureBuffer= tbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-	        mTextureBuffer.put(textures);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-	        mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mTextureBuffer= tbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+	        mTextureBuffer.put(textures);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+	        mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
     	}
     }
-    //³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+    //åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
     public void initShader()
     {
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
-        //É½µØµÄÈı·ùÎÆÀíÍ¼
+        //å±±åœ°çš„ä¸‰å¹…çº¹ç†å›¾
         uShanDingTexHandle=GLES20.glGetUniformLocation(mProgram, "usTextureShanDing");  
         uTuCengTexHandle=GLES20.glGetUniformLocation(mProgram, "usTextureTuCeng");  
         uCaoDiTexHandle=GLES20.glGetUniformLocation(mProgram, "usTextureCaoDi");  
@@ -300,14 +300,14 @@ public class LandForm
     }
    public void drawSelf(int landFlag,int tex_terrain_shandingId,int texTuCengId,int texCaoDiId,int texShiTouId,float height,float height_span)
     {  
-    	//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram);        
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-        GLES20.glUniform1f(muHightHandle, height);//´«Èë½¥±äµÄ¸ß¶È
-        GLES20.glUniform1f(muHightspanHandle, height_span);//´«Èë½¥±äµÄ¸ß¶È
-        GLES20.glUniform1i(uLandFlagHandle, landFlag);//´«ÈëÉ½µÄ±êÖ¾
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+        GLES20.glUniform1f(muHightHandle, height);//ä¼ å…¥æ¸å˜çš„é«˜åº¦
+        GLES20.glUniform1f(muHightspanHandle, height_span);//ä¼ å…¥æ¸å˜çš„é«˜åº¦
+        GLES20.glUniform1i(uLandFlagHandle, landFlag);//ä¼ å…¥å±±çš„æ ‡å¿—
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
         GLES20.glVertexAttribPointer  
         (
         		maPositionHandle,   
@@ -317,7 +317,7 @@ public class LandForm
                3*4,   
                mVertexBuffer
         );       
-        //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
         GLES20.glVertexAttribPointer  
         (
        		maTexCoorHandle, 
@@ -327,10 +327,10 @@ public class LandForm
                2*4,   
                mTextureBuffer
         );   
-        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texTuCengId);    
         GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
@@ -345,12 +345,12 @@ public class LandForm
         GLES20.glUniform1i(uShanDingTexHandle, 3);  
         if(!ishuidutu)
         {
-        	//»æÖÆÎÆÀí¾ØĞÎ
+        	//ç»˜åˆ¶çº¹ç†çŸ©å½¢
             GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
         }
         else
         {
-        	//»æÖÆÎÆÀí¾ØĞÎ
+        	//ç»˜åˆ¶çº¹ç†çŸ©å½¢
             GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vCount);
         }
     }

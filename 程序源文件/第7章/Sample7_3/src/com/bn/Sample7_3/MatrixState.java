@@ -2,26 +2,26 @@ package com.bn.Sample7_3;
 
 import android.opengl.Matrix;
 
-//´æ´¢ÏµÍ³¾ØÕó×´Ì¬µÄÀà
+//å­˜å‚¨ç³»ç»ŸçŸ©é˜µçŠ¶æ€çš„ç±»
 public class MatrixState 
 {
-	private static float[] mProjMatrix = new float[16];//4x4¾ØÕó Í¶Ó°ÓÃ
-    private static float[] mVMatrix = new float[16];//ÉãÏñ»úÎ»ÖÃ³¯Ïò9²ÎÊı¾ØÕó
-    private static float[] mMVPMatrix;//×îºóÆğ×÷ÓÃµÄ×Ü±ä»»¾ØÕó
+	private static float[] mProjMatrix = new float[16];//4x4çŸ©é˜µ æŠ•å½±ç”¨
+    private static float[] mVMatrix = new float[16];//æ‘„åƒæœºä½ç½®æœå‘9å‚æ•°çŸ©é˜µ
+    private static float[] mMVPMatrix;//æœ€åèµ·ä½œç”¨çš„æ€»å˜æ¢çŸ©é˜µ
     
-    static float[] mMMatrix ;//¾ßÌåÎïÌåµÄÒÆ¶¯Ğı×ª¾ØÕó
+    static float[] mMMatrix ;//å…·ä½“ç‰©ä½“çš„ç§»åŠ¨æ—‹è½¬çŸ©é˜µ
     
-    //±£»¤±ä»»¾ØÕóµÄÕ»
+    //ä¿æŠ¤å˜æ¢çŸ©é˜µçš„æ ˆ
     static float[][] mStack=new float[10][16];
     static int stackTop=-1;
     
-    public static void setInitStack()//»ñÈ¡²»±ä»»³õÊ¼¾ØÕó
+    public static void setInitStack()//è·å–ä¸å˜æ¢åˆå§‹çŸ©é˜µ
     {
     	mMMatrix = new float[16];
     	Matrix.setRotateM(mMMatrix, 0, 0, 1, 0, 0);
     }
     
-    public static void pushMatrix()//±£»¤±ä»»¾ØÕó
+    public static void pushMatrix()//ä¿æŠ¤å˜æ¢çŸ©é˜µ
     {
     	stackTop++;
     	for(int i=0;i<16;i++)
@@ -30,7 +30,7 @@ public class MatrixState
     	}
     }
     
-    public static void popMatrix()//»Ö¸´±ä»»¾ØÕó
+    public static void popMatrix()//æ¢å¤å˜æ¢çŸ©é˜µ
     {
     	for(int i=0;i<16;i++)
     	{
@@ -39,12 +39,12 @@ public class MatrixState
     	stackTop--;
     }
     
-    public static void translate(float x,float y,float z)//ÉèÖÃÑØxyzÖáÒÆ¶¯
+    public static void translate(float x,float y,float z)//è®¾ç½®æ²¿xyzè½´ç§»åŠ¨
     {
     	Matrix.translateM(mMMatrix, 0, x, y, z);
     }
     
-    public static void rotate(float angle,float x,float y,float z)//ÉèÖÃÈÆxyzÖá×ª¶¯
+    public static void rotate(float angle,float x,float y,float z)//è®¾ç½®ç»•xyzè½´è½¬åŠ¨
     {
     	Matrix.rotateM(mMMatrix,0,angle,x,y,z);
     }
@@ -53,18 +53,18 @@ public class MatrixState
     	Matrix.scaleM(mMMatrix,0, x, y, z);
     }
     
-    //ÉèÖÃÉãÏñ»ú
+    //è®¾ç½®æ‘„åƒæœº
     public static void setCamera
     (
-    		float cx,	//ÉãÏñ»úÎ»ÖÃx
-    		float cy,   //ÉãÏñ»úÎ»ÖÃy
-    		float cz,   //ÉãÏñ»úÎ»ÖÃz
-    		float tx,   //ÉãÏñ»úÄ¿±êµãx
-    		float ty,   //ÉãÏñ»úÄ¿±êµãy
-    		float tz,   //ÉãÏñ»úÄ¿±êµãz
-    		float upx,  //ÉãÏñ»úUPÏòÁ¿X·ÖÁ¿
-    		float upy,  //ÉãÏñ»úUPÏòÁ¿Y·ÖÁ¿
-    		float upz   //ÉãÏñ»úUPÏòÁ¿Z·ÖÁ¿		
+    		float cx,	//æ‘„åƒæœºä½ç½®x
+    		float cy,   //æ‘„åƒæœºä½ç½®y
+    		float cz,   //æ‘„åƒæœºä½ç½®z
+    		float tx,   //æ‘„åƒæœºç›®æ ‡ç‚¹x
+    		float ty,   //æ‘„åƒæœºç›®æ ‡ç‚¹y
+    		float tz,   //æ‘„åƒæœºç›®æ ‡ç‚¹z
+    		float upx,  //æ‘„åƒæœºUPå‘é‡Xåˆ†é‡
+    		float upy,  //æ‘„åƒæœºUPå‘é‡Yåˆ†é‡
+    		float upz   //æ‘„åƒæœºUPå‘é‡Zåˆ†é‡		
     )
     {
     	Matrix.setLookAtM
@@ -83,21 +83,21 @@ public class MatrixState
         );
     }
     
-    //ÉèÖÃÍ¸ÊÓÍ¶Ó°²ÎÊı
+    //è®¾ç½®é€è§†æŠ•å½±å‚æ•°
     public static void setProjectFrustum
     (
-    	float left,		//nearÃæµÄleft
-    	float right,    //nearÃæµÄright
-    	float bottom,   //nearÃæµÄbottom
-    	float top,      //nearÃæµÄtop
-    	float near,		//nearÃæ¾àÀë
-    	float far       //farÃæ¾àÀë
+    	float left,		//nearé¢çš„left
+    	float right,    //nearé¢çš„right
+    	float bottom,   //nearé¢çš„bottom
+    	float top,      //nearé¢çš„top
+    	float near,		//nearé¢è·ç¦»
+    	float far       //faré¢è·ç¦»
     )
     {
     	Matrix.frustumM(mProjMatrix, 0, left, right, bottom, top, near, far);
     }
    
-    //»ñÈ¡¾ßÌåÎïÌåµÄ×Ü±ä»»¾ØÕó
+    //è·å–å…·ä½“ç‰©ä½“çš„æ€»å˜æ¢çŸ©é˜µ
     public static float[] getFinalMatrix()
     {
     	mMVPMatrix=new float[16];

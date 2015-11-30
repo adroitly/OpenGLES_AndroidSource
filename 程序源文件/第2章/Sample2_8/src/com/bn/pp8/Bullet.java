@@ -6,50 +6,50 @@ import android.graphics.Paint;
 
 public class Bullet {
 	MySurfaceView gameView;
-	private Bitmap bitmap;// Î»Í¼
-	private Bitmap[] bitmaps;// ±¬Õ¨¶¯»­Í¼×é
-	float x;// x·½ÏòÎ»ÒÆ
-	float y;// y·½ÏòÎ»ÒÆ
-	float vx;// x·½ÏòËÙ¶È
-	float vy;// y·½ÏòËÙ¶È
-	private float t = 0;// Ê±¼ä
-	private float timeSpan = 0.5f;// Ê±¼ä¼ä¸ô
-	int size;// ×Óµ¯³ß´ç
-	boolean explodeFlag = false;// ÊÇ·ñ»æÖÆ×Óµ¯µÄ±ê¼Ç
-	Explosion mExplosion;// ±¬Õ¨¶ÔÏóÒıÓÃ
+	private Bitmap bitmap;// ä½å›¾
+	private Bitmap[] bitmaps;// çˆ†ç‚¸åŠ¨ç”»å›¾ç»„
+	float x;// xæ–¹å‘ä½ç§»
+	float y;// yæ–¹å‘ä½ç§»
+	float vx;// xæ–¹å‘é€Ÿåº¦
+	float vy;// yæ–¹å‘é€Ÿåº¦
+	private float t = 0;// æ—¶é—´
+	private float timeSpan = 0.5f;// æ—¶é—´é—´éš”
+	int size;// å­å¼¹å°ºå¯¸
+	boolean explodeFlag = false;// æ˜¯å¦ç»˜åˆ¶å­å¼¹çš„æ ‡è®°
+	Explosion mExplosion;// çˆ†ç‚¸å¯¹è±¡å¼•ç”¨
 
-	// ¹¹ÔìÆ÷
+	// æ„é€ å™¨
 	public Bullet(MySurfaceView gameView, Bitmap bitmap, Bitmap[] bitmaps,
 			float x, float y, float vx, float vy) {
-		this.gameView = gameView;// ³ÉÔ±±äÁ¿¸³Öµ
+		this.gameView = gameView;// æˆå‘˜å˜é‡èµ‹å€¼
 		this.bitmap = bitmap;
 		this.bitmaps = bitmaps;
-		this.x = x;// ³ÉÔ±±äÁ¿¸³Öµ
+		this.x = x;// æˆå‘˜å˜é‡èµ‹å€¼
 		this.y = y;
 		this.vx = vx;
 		this.vy = vy;
-		size = bitmap.getHeight();// »ñµÃÍ¼Æ¬µÄ¸ß¶È
+		size = bitmap.getHeight();// è·å¾—å›¾ç‰‡çš„é«˜åº¦
 	}
 
-	// »æÖÆ×Óµ¯µÄ·½·¨
+	// ç»˜åˆ¶å­å¼¹çš„æ–¹æ³•
 	public void drawSelf(Canvas canvas, Paint paint) {
-		if (explodeFlag && mExplosion != null) {// Èç¹ûÒÑ¾­±¬Õ¨£¬»æÖÆ±¬Õ¨¶¯»­
+		if (explodeFlag && mExplosion != null) {// å¦‚æœå·²ç»çˆ†ç‚¸ï¼Œç»˜åˆ¶çˆ†ç‚¸åŠ¨ç”»
 			mExplosion.drawSelf(canvas, paint);
 		} else {
-			go();// ×Óµ¯Ç°½ø
-			canvas.drawBitmap(bitmap, x, y, paint);// »æÖÆ×Óµ¯
+			go();// å­å¼¹å‰è¿›
+			canvas.drawBitmap(bitmap, x, y, paint);// ç»˜åˆ¶å­å¼¹
 		}
 	}
 
-	// ×Óµ¯Ç°½øµÄ·½·¨
+	// å­å¼¹å‰è¿›çš„æ–¹æ³•
 	public void go() {
-		x += vx * t;// Ë®Æ½·½ÏòÔÈËÙÖ±ÏßÔË¶¯
-		y += vy * t + 0.5f * Constant.G * t * t;// ÊúÖ±·½ÏòÔÈ¼ÓËÙÖ±ÏßÔË¶¯
-		if (x >= Constant.EXPLOSION_X || y >= Constant.SCREEN_HEIGHT) {// ×Óµ¯ÔÚÌØ¶¨Î»ÖÃ±¬Õ¨
-			mExplosion = new Explosion(gameView, bitmaps, x, y);// ´´½¨±¬Õ¨¶ÔÏó
-			explodeFlag = true;// ²»ÔÙ»æÖÆ×Óµ¯
+		x += vx * t;// æ°´å¹³æ–¹å‘åŒ€é€Ÿç›´çº¿è¿åŠ¨
+		y += vy * t + 0.5f * Constant.G * t * t;// ç«–ç›´æ–¹å‘åŒ€åŠ é€Ÿç›´çº¿è¿åŠ¨
+		if (x >= Constant.EXPLOSION_X || y >= Constant.SCREEN_HEIGHT) {// å­å¼¹åœ¨ç‰¹å®šä½ç½®çˆ†ç‚¸
+			mExplosion = new Explosion(gameView, bitmaps, x, y);// åˆ›å»ºçˆ†ç‚¸å¯¹è±¡
+			explodeFlag = true;// ä¸å†ç»˜åˆ¶å­å¼¹
 			return;
 		}
-		t += timeSpan;// Ê±¼ä¼ä¸ô
+		t += timeSpan;// æ—¶é—´é—´éš”
 	}
 }

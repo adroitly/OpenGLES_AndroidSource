@@ -55,7 +55,7 @@ public class BezierUtil
 	   return result;
    }
    
-   //Çó½×³Ë
+   //æ±‚é˜¶ä¹˜
    public  static long jiecheng(int n)
    {
 	   long result=1;

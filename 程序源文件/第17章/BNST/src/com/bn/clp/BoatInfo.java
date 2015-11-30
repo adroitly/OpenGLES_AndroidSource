@@ -5,7 +5,7 @@ import com.bn.R;
 public class BoatInfo 
 {
 	public static int cuttBoatIndex=2;
-	//船部件的名字
+	//鑸归儴浠剁殑鍚嶅瓧
 	public static String[][] boatPartNames=
 	{
 		{
@@ -23,7 +23,7 @@ public class BoatInfo
 	 		"three_shangmianqian.obj",
 	 		"three_weiyi.obj"
 		},
-		{//彭彭
+		{//褰江
 			"two_ceyi.obj",
 			"two_chuanshen.obj",   
 			"two_pentong.obj", 

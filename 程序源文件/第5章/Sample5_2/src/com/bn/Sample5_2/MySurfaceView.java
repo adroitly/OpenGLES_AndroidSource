@@ -8,49 +8,49 @@ import android.content.Context;
 
 class MySurfaceView extends GLSurfaceView 
 {
-	private final float TOUCH_SCALE_FACTOR = 180.0f/320;//½Ç¶ÈËõ·Å±ÈÀı
-    private SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷
+	private final float TOUCH_SCALE_FACTOR = 180.0f/320;//è§’åº¦ç¼©æ”¾æ¯”ä¾‹
+    private SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨
 	 
-	private float mPreviousY;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃY×ø±ê
-    private float mPreviousX;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃX×ø±ê
+	private float mPreviousY;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Yåæ ‡
+    private float mPreviousX;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Xåæ ‡
 	
 	public MySurfaceView(Context context) {
         super(context);
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
     }
 	
-	//´¥ÃşÊÂ¼ş»Øµ÷·½·¨
+	//è§¦æ‘¸äº‹ä»¶å›è°ƒæ–¹æ³•
     @Override 
     public boolean onTouchEvent(MotionEvent e) {
         float y = e.getY();
         float x = e.getX();
         switch (e.getAction()) {
         case MotionEvent.ACTION_MOVE:
-            float dy = y - mPreviousY;//¼ÆËã´¥¿Ø±ÊYÎ»ÒÆ
-            float dx = x - mPreviousX;//¼ÆËã´¥¿Ø±ÊXÎ»ÒÆ            
+            float dy = y - mPreviousY;//è®¡ç®—è§¦æ§ç¬”Yä½ç§»
+            float dx = x - mPreviousX;//è®¡ç®—è§¦æ§ç¬”Xä½ç§»            
             for(SixPointedStar h:mRenderer.ha)
             {
-            	h.yAngle += dx * TOUCH_SCALE_FACTOR;//ÉèÖÃÁù½ÇĞÇÊı×éÖĞµÄ¸÷¸öÁù½ÇĞÇÈÆyÖáĞı×ª½Ç¶È
-                h.xAngle+= dy * TOUCH_SCALE_FACTOR;//ÉèÖÃÁù½ÇĞÇÊı×éÖĞµÄ¸÷¸öÁù½ÇĞÇÈÆxÖáĞı×ª½Ç¶È
+            	h.yAngle += dx * TOUCH_SCALE_FACTOR;//è®¾ç½®å…­è§’æ˜Ÿæ•°ç»„ä¸­çš„å„ä¸ªå…­è§’æ˜Ÿç»•yè½´æ—‹è½¬è§’åº¦
+                h.xAngle+= dy * TOUCH_SCALE_FACTOR;//è®¾ç½®å…­è§’æ˜Ÿæ•°ç»„ä¸­çš„å„ä¸ªå…­è§’æ˜Ÿç»•xè½´æ—‹è½¬è§’åº¦
             }
         }
-        mPreviousY = y;//¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
-        mPreviousX = x;//¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
+        mPreviousY = y;//è®°å½•è§¦æ§ç¬”ä½ç½®
+        mPreviousX = x;//è®°å½•è§¦æ§ç¬”ä½ç½®
         return true;
     }
 
 	private class SceneRenderer implements GLSurfaceView.Renderer 
     {   
-    	SixPointedStar[] ha=new SixPointedStar[6];//Áù½ÇĞÇÊı×é
+    	SixPointedStar[] ha=new SixPointedStar[6];//å…­è§’æ˜Ÿæ•°ç»„
     	
         public void onDrawFrame(GL10 gl) 
         { 
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
-            //»æÖÆÁù½ÇĞÇÊı×éÖĞµÄ¸÷¸öÁù½ÇĞÇ
+            //ç»˜åˆ¶å…­è§’æ˜Ÿæ•°ç»„ä¸­çš„å„ä¸ªå…­è§’æ˜Ÿ
             for(SixPointedStar h:ha)
             {
             	h.drawSelf();
@@ -58,24 +58,24 @@ class MySurfaceView extends GLSurfaceView
         }  
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
         	float ratio= (float) width / height;
-            //ÉèÖÃÍ¸ÊÓÍ¶Ó°
+            //è®¾ç½®é€è§†æŠ•å½±
         	MatrixState.setProjectFrustum(-ratio*0.4f, ratio*0.4f, -1*0.4f, 1*0.4f, 1, 50); 
         	
-            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
             MatrixState.setCamera(0,0,6,0f,0f,0f,0f,1.0f,0.0f);
         }
 
 		public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-			GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f); // ÉèÖÃÆÁÄ»±³¾°É«RGBA
-			// ´´½¨Áù½ÇĞÇÊı×éÖĞµÄ¸÷¸ö¶ÔÏó
+			GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f); // è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
+			// åˆ›å»ºå…­è§’æ˜Ÿæ•°ç»„ä¸­çš„å„ä¸ªå¯¹è±¡
 			for (int i = 0; i < ha.length; i++) {
 				ha[i] = new SixPointedStar(MySurfaceView.this, 0.4f, 1.0f,-1.0f * i);						
 			}			
-			GLES20.glEnable(GLES20.GL_DEPTH_TEST);// ´ò¿ªÉî¶È¼ì²â
+			GLES20.glEnable(GLES20.GL_DEPTH_TEST);// æ‰“å¼€æ·±åº¦æ£€æµ‹
 		}
     }
 }

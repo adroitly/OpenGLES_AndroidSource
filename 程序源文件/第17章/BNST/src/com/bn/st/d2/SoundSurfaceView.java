@@ -16,40 +16,40 @@ public class SoundSurfaceView extends MySFView
 	MyActivity activity;
 	Canvas c;
 	SurfaceHolder holder;
-	Bitmap background;				//±³¾°Í¼
+	Bitmap background;				//èƒŒæ™¯å›¾
 	Bitmap back;
 	Bitmap back_press;
 	
-	Bitmap button_bgsound;			//±³¾°ÒôÀÖ
-	Bitmap button_bgsound_open;		//±³¾°ÒôÀÖ¿ªÍ¼Æ¬°´Å¥
-	Bitmap button_bgsound_close;	//±³¾°ÒôÀÖ¹ØÍ¼Æ¬°´Å¥
+	Bitmap button_bgsound;			//èƒŒæ™¯éŸ³ä¹
+	Bitmap button_bgsound_open;		//èƒŒæ™¯éŸ³ä¹å¼€å›¾ç‰‡æŒ‰é’®
+	Bitmap button_bgsound_close;	//èƒŒæ™¯éŸ³ä¹å…³å›¾ç‰‡æŒ‰é’®
 
-	Bitmap button_gameeffect;		//ÓÎÏ·ÒôÐ§
-	Bitmap button_gameeffect_open;	//ÓÎÏ·ÒôÐ§¿ª°´Å¥
-	Bitmap button_gameeffect_close;	//ÓÎÏ·ÒôÐ§¹Ø°´Å¥
+	Bitmap button_gameeffect;		//æ¸¸æˆéŸ³æ•ˆ
+	Bitmap button_gameeffect_open;	//æ¸¸æˆéŸ³æ•ˆå¼€æŒ‰é’®
+	Bitmap button_gameeffect_close;	//æ¸¸æˆéŸ³æ•ˆå…³æŒ‰é’®
 	
-	private float button_bgsound_x;//±³¾°ÒôÀÖÍ¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-	private float button_bgsound_y;//±³¾°ÒôÀÖÍ¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_bgsound_open_x;//±³¾°ÒôÀÖ¿ªÍ¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float button_bgsound_open_y;//±³¾°ÒôÀÖ¹ØÍ¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
+	private float button_bgsound_x;//èƒŒæ™¯éŸ³ä¹å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+	private float button_bgsound_y;//èƒŒæ™¯éŸ³ä¹å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_bgsound_open_x;//èƒŒæ™¯éŸ³ä¹å¼€å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float button_bgsound_open_y;//èƒŒæ™¯éŸ³ä¹å…³å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
     
-    private float button_gameeffect_x;//ÓÎÏ·ÒôÐ§Í¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float button_gameeffect_y;//ÓÎÏ·ÒôÐ§Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_gameeffect_open_x;//ÓÎÏ·ÒôÐ§¿ªÍ¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float button_gameeffect_open_y;//ÓÎÏ·ÒôÐ§¿ªÍ¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_back_x=20f*ratio_width;//backÍ¼Æ¬°´Å¥µÄ×óÉÏ½ÇµÄµãµÄ×ø±ê
+    private float button_gameeffect_x;//æ¸¸æˆéŸ³æ•ˆå›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float button_gameeffect_y;//æ¸¸æˆéŸ³æ•ˆå›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_gameeffect_open_x;//æ¸¸æˆéŸ³æ•ˆå¼€å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float button_gameeffect_open_y;//æ¸¸æˆéŸ³æ•ˆå¼€å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_back_x=20f*ratio_width;//backå›¾ç‰‡æŒ‰é’®çš„å·¦ä¸Šè§’çš„ç‚¹çš„åæ ‡
 	private float button_back_y=415f*ratio_height;
     
     public boolean flag_go=true;
-    int move_flag=1;		//0---²»ÒÆ¶¯   -1---ÏòÁ½²àÒÆ¶¯    1---ÍùÖÐ¼äÒÆ¶¯
-    float move_span=MOVE_V;//°´Å¥ÒÆ¶¯ËÙ¶È
+    int move_flag=1;		//0---ä¸ç§»åŠ¨   -1---å‘ä¸¤ä¾§ç§»åŠ¨    1---å¾€ä¸­é—´ç§»åŠ¨
+    float move_span=MOVE_V;//æŒ‰é’®ç§»åŠ¨é€Ÿåº¦
     
     boolean back_flag=false;
     
 	public SoundSurfaceView(MyActivity activity) 
 	{
 		this.activity = activity;
-		initBitmap();					//³õÊ¼»¯Í¼Æ¬
+		initBitmap();					//åˆå§‹åŒ–å›¾ç‰‡
 		
 		button_bgsound_x=-button_bgsound.getWidth();
 		button_bgsound_y=222f*ratio_height;
@@ -65,7 +65,7 @@ public class SoundSurfaceView extends MySFView
 	public void initThread()
 	{
 		flag_go=true;
-	    move_flag=1;		//0---²»ÒÆ¶¯   -1---ÏòÁ½²àÒÆ¶¯    1---ÍùÖÐ¼äÒÆ¶¯
+	    move_flag=1;		//0---ä¸ç§»åŠ¨   -1---å‘ä¸¤ä¾§ç§»åŠ¨    1---å¾€ä¸­é—´ç§»åŠ¨
 		
 		button_bgsound_x=-button_bgsound.getWidth();
 		button_bgsound_y=222f*ratio_height;
@@ -82,29 +82,29 @@ public class SoundSurfaceView extends MySFView
 			@Override
 			public void run()
 			{  
-				while(flag_go)//ÒÆ¶¯±êÖ¾Î»ÎªÕæ
+				while(flag_go)//ç§»åŠ¨æ ‡å¿—ä½ä¸ºçœŸ
 				{
 					if(move_flag==1)   
 					{  
-						//¸ü¸ÄÁ½·ù°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇµãµÄX×ø±ê
+						//æ›´æ”¹ä¸¤å¹…æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Xåæ ‡
 						button_bgsound_x=button_bgsound_x+move_span*ratio_width;
 						button_bgsound_open_x=button_bgsound_open_x-move_span*ratio_width;
 						button_gameeffect_x=button_bgsound_x;
 						button_gameeffect_open_x=button_bgsound_open_x;
-						//µ±×ø±êÖµ´ïµ½ÁÙ½çÖµÊ±
+						//å½“åæ ‡å€¼è¾¾åˆ°ä¸´ç•Œå€¼æ—¶
 						if(button_bgsound_x>=200*ratio_width)
 						{    
-							//µÃµ½´ËÊ±µÄX×ø±ê
+							//å¾—åˆ°æ­¤æ—¶çš„Xåæ ‡
 							button_bgsound_x=200*ratio_width;
 							button_bgsound_open_x=485*ratio_width;
 							button_gameeffect_x=button_bgsound_x;
 							button_gameeffect_open_x=button_bgsound_open_x; 
-							move_flag=0;//½«ÒÆ¶¯±êÖ¾Î»ÖÃÎª0
+							move_flag=0;//å°†ç§»åŠ¨æ ‡å¿—ä½ç½®ä¸º0
 						}
 					}
 					else if(move_flag==-1)   
 					{
-						//¸ü¸ÄÁ½·ù°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇµãµÄX×ø±ê             
+						//æ›´æ”¹ä¸¤å¹…æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Xåæ ‡             
 						button_bgsound_x=button_bgsound_x-move_span*ratio_width;
 						button_bgsound_open_x=button_bgsound_open_x+move_span*ratio_width;
 						button_gameeffect_x=button_bgsound_x;
@@ -122,7 +122,7 @@ public class SoundSurfaceView extends MySFView
 					}
 					try
 					{
-						Thread.sleep(MOVE_TIME);//ÐÝÃß200ºÁÃë
+						Thread.sleep(MOVE_TIME);//ä¼‘çœ 200æ¯«ç§’
 					}catch(InterruptedException e)
 					{
 						e.printStackTrace();
@@ -132,49 +132,49 @@ public class SoundSurfaceView extends MySFView
 		}.start();
 	}
 	
-	//½«Í¼Æ¬¼ÓÔØ 
+	//å°†å›¾ç‰‡åŠ è½½ 
 	public void initBitmap()
 	{	
-		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.background),ratio_width,ratio_height);//²Ëµ¥½çÃæ±³¾°Í¼Æ¬
-		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-		back_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-		button_bgsound=scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_music),ratio_width,ratio_height);//±³¾°Í¼Æ¬
-		button_bgsound_open=scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.open),ratio_width,ratio_height);//±³¾°ÒôÀÖ¿ªÍ¼Æ¬
-		button_bgsound_close=scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.close),ratio_width,ratio_height);//±³¾°ÒôÀÖ¹ØÍ¼Æ¬
+		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.background),ratio_width,ratio_height);//èœå•ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		back_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		button_bgsound=scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_music),ratio_width,ratio_height);//èƒŒæ™¯å›¾ç‰‡
+		button_bgsound_open=scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.open),ratio_width,ratio_height);//èƒŒæ™¯éŸ³ä¹å¼€å›¾ç‰‡
+		button_bgsound_close=scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.close),ratio_width,ratio_height);//èƒŒæ™¯éŸ³ä¹å…³å›¾ç‰‡
 		
-		button_gameeffect=scaleToFit(BitmapFactory.decodeResource(activity.getResources(),R.drawable.game_music),ratio_width,ratio_height);//ÓÎÏ·ÒôÐ§Í¼Æ¬
-		button_gameeffect_open=scaleToFit(BitmapFactory.decodeResource(activity.getResources(),R.drawable.open),ratio_width,ratio_height);//ÓÎÏ·ÒôÐ§¿ªÍ¼Æ¬
-		button_gameeffect_close=scaleToFit(BitmapFactory.decodeResource(activity.getResources(),R.drawable.close),ratio_width,ratio_height);//ÓÎÏ·ÒôÐ§¹ØÍ¼Æ¬
+		button_gameeffect=scaleToFit(BitmapFactory.decodeResource(activity.getResources(),R.drawable.game_music),ratio_width,ratio_height);//æ¸¸æˆéŸ³æ•ˆå›¾ç‰‡
+		button_gameeffect_open=scaleToFit(BitmapFactory.decodeResource(activity.getResources(),R.drawable.open),ratio_width,ratio_height);//æ¸¸æˆéŸ³æ•ˆå¼€å›¾ç‰‡
+		button_gameeffect_close=scaleToFit(BitmapFactory.decodeResource(activity.getResources(),R.drawable.close),ratio_width,ratio_height);//æ¸¸æˆéŸ³æ•ˆå…³å›¾ç‰‡
 	}
 	  
 	@Override
 	public void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
-		canvas.drawColor(Color.argb(255, 0, 0, 0));//ÇåÆÁÎªºÚÉ«
-		canvas.drawBitmap(background,0,0, null);//»­±³¾°
+		canvas.drawColor(Color.argb(255, 0, 0, 0));//æ¸…å±ä¸ºé»‘è‰²
+		canvas.drawBitmap(background,0,0, null);//ç”»èƒŒæ™¯
 		if(!back_flag)
 		{
-			canvas.drawBitmap(back, button_back_x, button_back_y, null);//»æÖÆback°´Å¥
+			canvas.drawBitmap(back, button_back_x, button_back_y, null);//ç»˜åˆ¶backæŒ‰é’®
 		}else
 		{
-			canvas.drawBitmap(back_press, button_back_x, button_back_y, null);//»æÖÆback°´Å¥
+			canvas.drawBitmap(back_press, button_back_x, button_back_y, null);//ç»˜åˆ¶backæŒ‰é’®
 		}
-		canvas.drawBitmap(button_bgsound, button_bgsound_x, button_bgsound_y, null);//»æÖÆ±³¾°ÒôÀÖÍ¼Æ¬
-		canvas.drawBitmap(button_gameeffect, button_gameeffect_x, button_gameeffect_y, null);//»æÖÆÓÎÏ·ÒôÐ§Í¼Æ¬
-		if(com.bn.clp.Constant.BgSoundFlag)//¸ù¾Ý±³¾°ÒôÀÖµÄ±êÖ¾Î»À´»æÖÆÍ¼Æ¬  
+		canvas.drawBitmap(button_bgsound, button_bgsound_x, button_bgsound_y, null);//ç»˜åˆ¶èƒŒæ™¯éŸ³ä¹å›¾ç‰‡
+		canvas.drawBitmap(button_gameeffect, button_gameeffect_x, button_gameeffect_y, null);//ç»˜åˆ¶æ¸¸æˆéŸ³æ•ˆå›¾ç‰‡
+		if(com.bn.clp.Constant.BgSoundFlag)//æ ¹æ®èƒŒæ™¯éŸ³ä¹çš„æ ‡å¿—ä½æ¥ç»˜åˆ¶å›¾ç‰‡  
 		{
 			canvas.drawBitmap(button_bgsound_open, button_bgsound_open_x, button_bgsound_open_y, null);
 		}
-		else if(!com.bn.clp.Constant.BgSoundFlag)//±³¾°ÒôÀÖ¹Ø±Õ
+		else if(!com.bn.clp.Constant.BgSoundFlag)//èƒŒæ™¯éŸ³ä¹å…³é—­
 		{
 			canvas.drawBitmap(button_bgsound_close, button_bgsound_open_x, button_bgsound_open_y, null);
 		}
-		if(com.bn.clp.Constant.SoundEffectFlag)//ÓÎÏ·ÒôÐ§´ò¿ª  
+		if(com.bn.clp.Constant.SoundEffectFlag)//æ¸¸æˆéŸ³æ•ˆæ‰“å¼€  
 		{
 			canvas.drawBitmap(button_gameeffect_open, button_gameeffect_open_x, button_gameeffect_open_y, null);
 		}
-		else if(!com.bn.clp.Constant.SoundEffectFlag)//ÓÎÏ·¹Ø±Õ
+		else if(!com.bn.clp.Constant.SoundEffectFlag)//æ¸¸æˆå…³é—­
 		{
 			canvas.drawBitmap(button_gameeffect_close, button_gameeffect_open_x, button_gameeffect_open_y, null);
 		}
@@ -190,16 +190,16 @@ public class SoundSurfaceView extends MySFView
     	case MotionEvent.ACTION_DOWN:
     		if(x>button_bgsound_open_x&&x<button_bgsound_open_x+button_bgsound_open.getWidth()&&
     					y>button_bgsound_open_y&&y<button_bgsound_open_y+button_bgsound_open.getHeight())
-			{//±³¾°ÒôÀÖ¿ª¹ØÍ¼Æ¬£¬µã»÷»»Í¼
+			{//èƒŒæ™¯éŸ³ä¹å¼€å…³å›¾ç‰‡ï¼Œç‚¹å‡»æ¢å›¾
     			
 			}
     		else if(x>button_gameeffect_open_x&&x<button_gameeffect_open_x+button_gameeffect_open.getWidth()&&
     				y>button_gameeffect_open_y&&y<button_gameeffect_open_y+button_gameeffect_open.getHeight())
-			{//ÓÎÏ·ÒôÐ§¿ª¹ØÍ¼Æ¬£¬µã»÷»»Í¼
+			{//æ¸¸æˆéŸ³æ•ˆå¼€å…³å›¾ç‰‡ï¼Œç‚¹å‡»æ¢å›¾
     			
 			}
     		else if(x>button_back_x&&x<button_back_x+back.getWidth()&&y>button_back_y&&y<button_back_y+back.getHeight())
-			{//·µ»Ø°´Å¥
+			{//è¿”å›žæŒ‰é’®
     			back_flag=true;
 			}
     		break;
@@ -208,7 +208,7 @@ public class SoundSurfaceView extends MySFView
     		if(x>button_bgsound_open_x&&x<button_bgsound_open_x+button_bgsound_open.getWidth()&&
     					y>button_bgsound_open_y&&y<button_bgsound_open_y+button_bgsound_open.getHeight())
 			{
-    	        //ÏòSharedPreferencesÖÐÐ´»Ø±¾´ÎÐÞ¸ÄÐÅÏ¢
+    	        //å‘SharedPreferencesä¸­å†™å›žæœ¬æ¬¡ä¿®æ”¹ä¿¡æ¯
     	        SharedPreferences.Editor editor=activity.sp.edit();
     	        editor.putBoolean("bgSoundFlag", !com.bn.clp.Constant.BgSoundFlag);
     	        editor.commit();
@@ -216,17 +216,17 @@ public class SoundSurfaceView extends MySFView
     			com.bn.clp.Constant.BgSoundFlag=!com.bn.clp.Constant.BgSoundFlag;
     			if(com.bn.clp.Constant.BgSoundFlag)
     			{
-    				//Toast.makeText(activity, "±³¾°ÒôÀÖ¿ª", Toast.LENGTH_SHORT).show();
+    				//Toast.makeText(activity, "èƒŒæ™¯éŸ³ä¹å¼€", Toast.LENGTH_SHORT).show();
     			}
     			else
     			{
-    				//Toast.makeText(activity, "±³¾°ÒôÀÖ¹Ø", Toast.LENGTH_SHORT).show();
+    				//Toast.makeText(activity, "èƒŒæ™¯éŸ³ä¹å…³", Toast.LENGTH_SHORT).show();
     			}
 			}
     		else if(x>button_gameeffect_open_x&&x<button_gameeffect_open_x+button_gameeffect_open.getWidth()&&
     				y>button_gameeffect_open_y&&y<button_gameeffect_open_y+button_gameeffect_open.getHeight())
 			{
-    			//ÏòSharedPreferencesÖÐÐ´»Ø±¾´ÎÐÞ¸ÄÐÅÏ¢
+    			//å‘SharedPreferencesä¸­å†™å›žæœ¬æ¬¡ä¿®æ”¹ä¿¡æ¯
     	        SharedPreferences.Editor editor=activity.sp.edit();
     	        editor.putBoolean("soundEffectFlag", !com.bn.clp.Constant.SoundEffectFlag);
     	        editor.commit();
@@ -234,15 +234,15 @@ public class SoundSurfaceView extends MySFView
     			com.bn.clp.Constant.SoundEffectFlag=!com.bn.clp.Constant.SoundEffectFlag;
     			if(com.bn.clp.Constant.SoundEffectFlag)
     			{
-    				//Toast.makeText(activity, "ÓÎÏ·ÒôÐ§¿ª", Toast.LENGTH_SHORT).show();
+    				//Toast.makeText(activity, "æ¸¸æˆéŸ³æ•ˆå¼€", Toast.LENGTH_SHORT).show();
     			}  
     			else
     			{
-    				//Toast.makeText(activity, "ÓÎÏ·ÒôÐ§¹Ø", Toast.LENGTH_SHORT).show();
+    				//Toast.makeText(activity, "æ¸¸æˆéŸ³æ•ˆå…³", Toast.LENGTH_SHORT).show();
     			}
 			}
     		else if(x>button_back_x&&x<button_back_x+back.getWidth()&&y>button_back_y&&y<button_back_y+back.getHeight())
-			{//·µ»Ø°´Å¥
+			{//è¿”å›žæŒ‰é’®
     			move_flag=-1;
 			}
     		break;
@@ -251,14 +251,14 @@ public class SoundSurfaceView extends MySFView
 	}
 
 
-	//Ëõ·ÅÍ¼Æ¬µÄ·½·¨
+	//ç¼©æ”¾å›¾ç‰‡çš„æ–¹æ³•
 	public static Bitmap scaleToFit(Bitmap bm,float width_Ratio,float height_Ratio)
 	{		
-    	int width = bm.getWidth(); 						//Í¼Æ¬¿í¶È
-    	int height = bm.getHeight();					//Í¼Æ¬¸ß¶È
+    	int width = bm.getWidth(); 						//å›¾ç‰‡å®½åº¦
+    	int height = bm.getHeight();					//å›¾ç‰‡é«˜åº¦
     	Matrix matrix = new Matrix(); 
-    	matrix.postScale((float)width_Ratio, (float)height_Ratio);//Í¼Æ¬µÈ±ÈÀýËõÐ¡ÎªÔ­À´µÄfblRatio±¶
-    	Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);//ÉùÃ÷Î»Í¼        	
-    	return bmResult;								//·µ»Ø±»Ëõ·ÅµÄÍ¼Æ¬
+    	matrix.postScale((float)width_Ratio, (float)height_Ratio);//å›¾ç‰‡ç­‰æ¯”ä¾‹ç¼©å°ä¸ºåŽŸæ¥çš„fblRatioå€
+    	Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);//å£°æ˜Žä½å›¾        	
+    	return bmResult;								//è¿”å›žè¢«ç¼©æ”¾çš„å›¾ç‰‡
     }
 }

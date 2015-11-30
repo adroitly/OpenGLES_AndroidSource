@@ -11,7 +11,7 @@ public class Sample3_1Activity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //ÉèÖÃÎªÊúÆÁÄ£Ê½
+        //è®¾ç½®ä¸ºç«–å±æ¨¡å¼
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mview=new MyTDView(this);
         mview.requestFocus();

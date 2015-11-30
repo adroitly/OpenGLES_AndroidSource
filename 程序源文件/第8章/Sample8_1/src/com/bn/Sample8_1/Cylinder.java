@@ -1,19 +1,19 @@
 package com.bn.Sample8_1;
-//Ô²ÖùÀà
+//åœ†æŸ±ç±»
 public class Cylinder
 {
-	Circle bottomCircle;//µ×Ô²
-	Circle topCircle;//¶¥Ô²
-	CylinderSide cylinderSide;//²àÃæ
-	float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+	Circle bottomCircle;//åº•åœ†
+	Circle topCircle;//é¡¶åœ†
+	CylinderSide cylinderSide;//ä¾§é¢
+	float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
     float h;
     float scale;
 
-    int topTexId; //¶¥ÃæÎÆÀí
-    int BottomTexId;  //µ×ÃæÎÆÀí
-    int sideTexId;  //²àÃæÎÆÀí
+    int topTexId; //é¡¶é¢çº¹ç†
+    int BottomTexId;  //åº•é¢çº¹ç†
+    int sideTexId;  //ä¾§é¢çº¹ç†
     
 	public Cylinder(MySurfaceView mySurfaceView,float scale,float r, float h,int n,
 			int topTexId, int BottomTexId, int sideTexId)
@@ -25,23 +25,23 @@ public class Cylinder
 		this.BottomTexId=BottomTexId;
 		this.sideTexId=sideTexId;
 		
-		topCircle=new Circle(mySurfaceView,scale,r,n);	//´´½¨¶¥ÃæÔ²¶ÔÏó
-		bottomCircle=new Circle(mySurfaceView,scale,r,n);  //´´½¨µ×ÃæÔ²¶ÔÏó
-		cylinderSide=new CylinderSide(mySurfaceView,scale,r,h,n); //´´½¨²àÃæÎŞ¶¥Ô²Öù¶ÔÏó
+		topCircle=new Circle(mySurfaceView,scale,r,n);	//åˆ›å»ºé¡¶é¢åœ†å¯¹è±¡
+		bottomCircle=new Circle(mySurfaceView,scale,r,n);  //åˆ›å»ºåº•é¢åœ†å¯¹è±¡
+		cylinderSide=new CylinderSide(mySurfaceView,scale,r,h,n); //åˆ›å»ºä¾§é¢æ— é¡¶åœ†æŸ±å¯¹è±¡
 	}
 	public void drawSelf()
 	{
 		MatrixState.rotate(xAngle, 1, 0, 0);
 		MatrixState.rotate(yAngle, 0, 1, 0);
 		MatrixState.rotate(zAngle, 0, 0, 1);		
-		//¶¥Ãæ
+		//é¡¶é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, h/2*scale, 0);
 		MatrixState.rotate(-90, 1, 0, 0);
 		topCircle.drawSelf(topTexId);
 		MatrixState.popMatrix();
 		
-		//µ×Ãæ
+		//åº•é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -h/2*scale, 0);
 		MatrixState.rotate(90, 1, 0, 0);
@@ -49,7 +49,7 @@ public class Cylinder
 		bottomCircle.drawSelf(BottomTexId);
 		MatrixState.popMatrix();
 		
-		//²àÃæ
+		//ä¾§é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -h/2*scale, 0);
 		cylinderSide.drawSelf(sideTexId);

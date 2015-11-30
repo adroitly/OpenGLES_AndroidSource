@@ -13,39 +13,39 @@ import android.view.SurfaceView;
  */
 public class MySurfaceView extends SurfaceView implements
 		SurfaceHolder.Callback {
-	Sample2_8_Activity activity;// activityµÄÒıÓÃ
-	Paint paint;// »­±ÊÒıÓÃ
-	DrawThread drawThread;// »æÖÆÏß³ÌÒıÓÃ
-	Bitmap bgBmp;//±³¾°Í¼Æ¬
-	Bitmap bulletBmp;// ×Óµ¯Î»Í¼
-	Bitmap[] explodeBmps;//±¬Õ¨Î»Í¼Êı×é
-	Bullet bullet;//×Óµ¯¶ÔÏóÒıÓÃ
-	public MySurfaceView(Sample2_8_Activity activity) {//¹¹ÔìÆ÷
+	Sample2_8_Activity activity;// activityçš„å¼•ç”¨
+	Paint paint;// ç”»ç¬”å¼•ç”¨
+	DrawThread drawThread;// ç»˜åˆ¶çº¿ç¨‹å¼•ç”¨
+	Bitmap bgBmp;//èƒŒæ™¯å›¾ç‰‡
+	Bitmap bulletBmp;// å­å¼¹ä½å›¾
+	Bitmap[] explodeBmps;//çˆ†ç‚¸ä½å›¾æ•°ç»„
+	Bullet bullet;//å­å¼¹å¯¹è±¡å¼•ç”¨
+	public MySurfaceView(Sample2_8_Activity activity) {//æ„é€ å™¨
 		super(activity);
 		this.activity = activity;
-		// »ñµÃ½¹µã²¢ÉèÖÃÎª¿É´¥¿Ø
+		// è·å¾—ç„¦ç‚¹å¹¶è®¾ç½®ä¸ºå¯è§¦æ§
 		this.requestFocus();
 		this.setFocusableInTouchMode(true);
-		getHolder().addCallback(this);// ×¢²á»Øµ÷½Ó¿Ú
+		getHolder().addCallback(this);// æ³¨å†Œå›è°ƒæ¥å£
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {//»æÖÆ½çÃæµÄ·½·¨
+	protected void onDraw(Canvas canvas) {//ç»˜åˆ¶ç•Œé¢çš„æ–¹æ³•
 		super.onDraw(canvas);
-		canvas.drawBitmap(bgBmp, 0, 0, paint);//»æÖÆ±³¾°
-		bullet.drawSelf(canvas, paint);//»æÖÆ×Óµ¯
+		canvas.drawBitmap(bgBmp, 0, 0, paint);//ç»˜åˆ¶èƒŒæ™¯
+		bullet.drawSelf(canvas, paint);//ç»˜åˆ¶å­å¼¹
 	}
 
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
-			int height) {//½çÃæ±ä»¯Ê±µ÷ÓÃµÄ·½·¨
+			int height) {//ç•Œé¢å˜åŒ–æ—¶è°ƒç”¨çš„æ–¹æ³•
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		paint = new Paint();// ´´½¨»­±Ê
-		paint.setAntiAlias(true);// ´ò¿ª¿¹¾â³İ
-		//¼ÓÔØÍ¼Æ¬×ÊÔ´
+		paint = new Paint();// åˆ›å»ºç”»ç¬”
+		paint.setAntiAlias(true);// æ‰“å¼€æŠ—é”¯é½¿
+		//åŠ è½½å›¾ç‰‡èµ„æº
 		bulletBmp = BitmapFactory.decodeResource(this.getResources(), R.drawable.bullet);
 		bgBmp = BitmapFactory.decodeResource(this.getResources(), R.drawable.bg);
 		explodeBmps=new Bitmap[]{
@@ -56,13 +56,13 @@ public class MySurfaceView extends SurfaceView implements
 				BitmapFactory.decodeResource(this.getResources(), R.drawable.explode4),
 				BitmapFactory.decodeResource(this.getResources(), R.drawable.explode5),
 		};
-		bullet = new Bullet(this, bulletBmp,explodeBmps,0,290,1.3f,-5.9f);//´´½¨×Óµ¯¶ÔÏó
-		drawThread = new DrawThread(this);//´´½¨»æÖÆÏß³Ì
-		drawThread.start();//Æô¶¯»æÖÆÏß³Ì
+		bullet = new Bullet(this, bulletBmp,explodeBmps,0,290,1.3f,-5.9f);//åˆ›å»ºå­å¼¹å¯¹è±¡
+		drawThread = new DrawThread(this);//åˆ›å»ºç»˜åˆ¶çº¿ç¨‹
+		drawThread.start();//å¯åŠ¨ç»˜åˆ¶çº¿ç¨‹
 	}
 
 	@Override
-	public void surfaceDestroyed(SurfaceHolder holder) {//½çÃæÏú»ÙÊ±µ÷ÓÃµÄ·½·¨
-		drawThread.setFlag(false);//Í£Ö¹»æÖÆÏß³Ì
+	public void surfaceDestroyed(SurfaceHolder holder) {//ç•Œé¢é”€æ¯æ—¶è°ƒç”¨çš„æ–¹æ³•
+		drawThread.setFlag(false);//åœæ­¢ç»˜åˆ¶çº¿ç¨‹
 	}
 }

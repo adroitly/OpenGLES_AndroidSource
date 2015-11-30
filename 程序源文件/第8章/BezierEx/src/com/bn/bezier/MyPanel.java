@@ -26,18 +26,18 @@ public class MyPanel extends JPanel implements MouseListener,MouseMotionListener
 	
     public void paint(Graphics g)
     {
-    	g.setColor(new Color(0,0,0));	//ºÚÉ«±³¾°
+    	g.setColor(new Color(0,0,0));	//é»‘è‰²èƒŒæ™¯
     	g.fillRect(0, 0, 1000, 1000);    	
     	
-    	//ÉèÖÃÏß¿í
+    	//è®¾ç½®çº¿å®½
     	Graphics2D g2d=(Graphics2D)g;
     	g2d.setStroke(new BasicStroke(father.lineWidth));
     	
-    	//¿¹¾â³Ý
+    	//æŠ—é”¯é½¿
     	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); 
 
     	
-    	father.jta.setText("ÒÔÏÂÎª¿ØÖÆµãÁÐ±í£º\n");    	
+    	father.jta.setText("ä»¥ä¸‹ä¸ºæŽ§åˆ¶ç‚¹åˆ—è¡¨ï¼š\n");    	
     	father.jta.append("  x\t  y\n"); 
     	for(int i=0;i<BezierUtil.al.size()-1;i++)
     	{
@@ -71,7 +71,7 @@ public class MyPanel extends JPanel implements MouseListener,MouseMotionListener
     		}
     	}
     	father.jta.append("=========================\n"); 
-    	father.jta.append("ÒÔÏÂÎªBezierÇúÏßÖÐµãÁÐ±í(·Ö¶Î"+Constant.FD+")£º\n"); 
+    	father.jta.append("ä»¥ä¸‹ä¸ºBezieræ›²çº¿ä¸­ç‚¹åˆ—è¡¨(åˆ†æ®µ"+Constant.FD+")ï¼š\n"); 
     	father.jta.append("  x\t  y\n"); 
     	g.setColor(new Color(0,255,0));    	
     	
@@ -90,8 +90,8 @@ public class MyPanel extends JPanel implements MouseListener,MouseMotionListener
         	father.jta.append(yilou.x+"\t"+yilou.y+"\n");
     	}
     	father.jta.append("=========================\n"); 
-    	father.jta.append("ÒÔÏÂÎª×Ô¶¯Éú³ÉµÄ´úÂë£º\n");
-    	father.jta.append("//¼ÓÈëÊý¾Ýµã\n");
+    	father.jta.append("ä»¥ä¸‹ä¸ºè‡ªåŠ¨ç”Ÿæˆçš„ä»£ç ï¼š\n");
+    	father.jta.append("//åŠ å…¥æ•°æ®ç‚¹\n");
     	for(BNPosition pos:BezierUtil.al)
     	{
     		father.jta.append("BezierUtil.al.add(new BNPosition("+pos.x+", "+pos.y+"));\n");
@@ -99,7 +99,7 @@ public class MyPanel extends JPanel implements MouseListener,MouseMotionListener
     	father.jta.setCaretPosition(0);
     }
 
-    int state=0;//0-³õÊ¼Ì¬  1-×¥×¡
+    int state=0;//0-åˆå§‹æ€  1-æŠ“ä½
     int currIndex=-1;
 	@Override
 	public void mouseClicked(MouseEvent arg0) 
@@ -118,7 +118,7 @@ public class MyPanel extends JPanel implements MouseListener,MouseMotionListener
 	{
 		int x=arg0.getX();
 		int y=arg0.getY();
-		//ÅÐ¶ÏÓÐÃ»ÓÐ°´ÏÂ¿ØÖÆµã
+		//åˆ¤æ–­æœ‰æ²¡æœ‰æŒ‰ä¸‹æŽ§åˆ¶ç‚¹
 		for(int i=0;i<BezierUtil.al.size();i++)
 		{
 			BNPosition bnp=BezierUtil.al.get(i);

@@ -7,7 +7,7 @@ import static com.bn.gameView.Constant.*;
 /**
  * 
  * @author lishengjie
- *	重写VideoView,主要是将视频铺满全屏
+ *	閲嶅啓VideoView,涓昏鏄皢瑙嗛閾烘弧鍏ㄥ睆
  */
 public class MyVideoView extends VideoView 
 {

@@ -5,15 +5,15 @@ import com.bn.core.MatrixState;
 
 import android.opengl.GLES20;
 /*
- * ÓÃÓÚ»æÖÆÕ¹Ì¨
+ * ç”¨äºç»˜åˆ¶å±•å°
  */
 public class DisplayStation 
 {
-	CylinderTextureByVertex cylinderStation;//Õ¾Ì¨Ô²Öù
-	private float aspan=8;//Ë®Æ½ÇĞ·Ö
-	private float lspan=1;//ÊúÖ±ÇĞ·Ö
+	CylinderTextureByVertex cylinderStation;//ç«™å°åœ†æŸ±
+	private float aspan=8;//æ°´å¹³åˆ‡åˆ†
+	private float lspan=1;//ç«–ç›´åˆ‡åˆ†
 	private float length;
-	CircleForDraw circle;//»æÖÆÔ²Ãæ
+	CircleForDraw circle;//ç»˜åˆ¶åœ†é¢
 	
 	private float alpha1=1.0f;
 	private float alpha2=0.5f;
@@ -23,14 +23,14 @@ public class DisplayStation
 		cylinderStation=new CylinderTextureByVertex(ShaderManager.getColorshaderProgram(),radius,length,aspan,lspan,COLOR_CYLINDER);
 		circle=new CircleForDraw(ShaderManager.getColorshaderProgram(), aspan, radius,COLOR_CIRCLE);
 	}
-	//»æÖÆ×ÔÉíµÄÔ²ÖùÃæ
+	//ç»˜åˆ¶è‡ªèº«çš„åœ†æŸ±é¢
 	public void drawSelfCylinder()
 	{
 		GLES20.glDisable(GLES20.GL_CULL_FACE);
 		cylinderStation.drawSelf(alpha1);
 		GLES20.glEnable(GLES20.GL_CULL_FACE);
 	}
-	//»æÖÆ×ÔÉíµÄÔ²Ãæ
+	//ç»˜åˆ¶è‡ªèº«çš„åœ†é¢
 	public void drawSelfCircle()
 	{
 		MatrixState.pushMatrix();
@@ -39,7 +39,7 @@ public class DisplayStation
 		circle.drawSelf(alpha1);
 		MatrixState.popMatrix();
 	}
-	//»­Í¸Ã÷µÄÔ²Ãæ
+	//ç”»é€æ˜çš„åœ†é¢
 	public void drawTransparentCircle()
 	{
 		MatrixState.pushMatrix();

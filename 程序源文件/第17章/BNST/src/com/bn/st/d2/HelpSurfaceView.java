@@ -13,22 +13,22 @@ import com.bn.R;
 
 public class HelpSurfaceView extends MySFView
 {
-	MyActivity activity;//ActivityµÄÒıÓÃ 
-	Canvas c;//»­±ÊµÄÒıÓÃ
-	Paint paint;//»­±ÊµÄÒıÓÃ
-	SurfaceHolder holder;//ËøµÄÒıÓÃ
-	Bitmap[] bg_bitmap;					//±³¾°Í¼
-	Bitmap pre_page;					//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-	Bitmap next_page;					//ÏÂÒ»Ò³°´Å¥Í¼Æ¬
+	MyActivity activity;//Activityçš„å¼•ç”¨ 
+	Canvas c;//ç”»ç¬”çš„å¼•ç”¨
+	Paint paint;//ç”»ç¬”çš„å¼•ç”¨
+	SurfaceHolder holder;//é”çš„å¼•ç”¨
+	Bitmap[] bg_bitmap;					//èƒŒæ™¯å›¾
+	Bitmap pre_page;					//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+	Bitmap next_page;					//ä¸‹ä¸€é¡µæŒ‰é’®å›¾ç‰‡
 	Bitmap back;
 	
-	Bitmap pre_page_press;				//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-	Bitmap next_page_press;				//ÏÂÒ»Ò³°´Å¥Í¼Æ¬
+	Bitmap pre_page_press;				//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+	Bitmap next_page_press;				//ä¸‹ä¸€é¡µæŒ‰é’®å›¾ç‰‡
 	Bitmap back_press;
 	
-	//°ïÖú½çÃæÖĞµÄÉÁË¸ÌáÊ¾
+	//å¸®åŠ©ç•Œé¢ä¸­çš„é—ªçƒæç¤º
 	Bitmap[] mark_bitmap;
-	//Ã¿ÕÅÉÁË¸ÌáÊ¾Í¼Æ¬µÄxy×ø±ê
+	//æ¯å¼ é—ªçƒæç¤ºå›¾ç‰‡çš„xyåæ ‡
 	private final float[][] mark_xy=
 	{
 			{246,308},
@@ -37,22 +37,22 @@ public class HelpSurfaceView extends MySFView
 			{50,160},
 			{184,242}
 	};
-	int fullTime=0;//¼ÇÂ¼´Ó¿ªÊ¼µ½µ±Ç°µÄÊ±¼ä
-	long startTime;//¿ªÊ¼Ê±¼ä
+	int fullTime=0;//è®°å½•ä»å¼€å§‹åˆ°å½“å‰çš„æ—¶é—´
+	long startTime;//å¼€å§‹æ—¶é—´
 	
-	private float button_pre_x=20f*ratio_width;//backÍ¼Æ¬°´Å¥µÄ×óÉÏ½ÇµÄµãµÄ×ø±ê
+	private float button_pre_x=20f*ratio_width;//backå›¾ç‰‡æŒ‰é’®çš„å·¦ä¸Šè§’çš„ç‚¹çš„åæ ‡
 	private float button_pre_y=415f*ratio_height;
-	private float button_next_x=710f*ratio_width;//nextÍ¼Æ¬°´Å¥µÄ×óÉÏ½ÇµãµÄ×ø±ê
+	private float button_next_x=710f*ratio_width;//nextå›¾ç‰‡æŒ‰é’®çš„å·¦ä¸Šè§’ç‚¹çš„åæ ‡
 	private float button_next_y=415f*ratio_height;
 	
-	private int  next_flag=0;//0±íÊ¾²»ÒÆ¶¯,-1±íÊ¾×óÒÆ,1±íÊ¾ÓÒÒÆ
+	private int  next_flag=0;//0è¡¨ç¤ºä¸ç§»åŠ¨,-1è¡¨ç¤ºå·¦ç§»,1è¡¨ç¤ºå³ç§»
 
-	private float bg_bitmap_curr_x=0;//µ±Ç°±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄX×ø±ê
-	private float bg_bitmap_curr_y=0;//µ±Ç°±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄY×ø±ê
-	private float bg_bitmap_next_x;//ÏÂÒ»·ù±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄX×ø±ê
-	private float bg_bitmap_next_y=0;//ÏÂÒ»·ù±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄY×ø±ê
-	private float move_span=80;//Í¼Æ¬ÒÆ¶¯µÄËÙ¶È
-	int page_index=0;//µ±Ç°°ïÖúÒ³ÃæµÄË÷ÒıÖµ
+	private float bg_bitmap_curr_x=0;//å½“å‰èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Xåæ ‡
+	private float bg_bitmap_curr_y=0;//å½“å‰èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Yåæ ‡
+	private float bg_bitmap_next_x;//ä¸‹ä¸€å¹…èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Xåæ ‡
+	private float bg_bitmap_next_y=0;//ä¸‹ä¸€å¹…èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Yåæ ‡
+	private float move_span=80;//å›¾ç‰‡ç§»åŠ¨çš„é€Ÿåº¦
+	int page_index=0;//å½“å‰å¸®åŠ©é¡µé¢çš„ç´¢å¼•å€¼
 	public boolean flag_go=true;
 	
 	boolean back_flag=false;
@@ -65,24 +65,24 @@ public class HelpSurfaceView extends MySFView
 	public HelpSurfaceView(MyActivity activity)
 	{
 		this.activity = activity;
-		paint = new Paint();	 //´´½¨»­±Ê
-		bg_bitmap=new Bitmap[5];//´´½¨°ïÖú½çÃæ±³¾°Í¼Æ¬Êı×é¶ÔÏó
-		mark_bitmap=new Bitmap[5];//´´½¨°ïÖú½çÃæÖĞ±ê×¢ÌáĞÑÍ¼Æ¬Êı×é¶ÔÏó
-		paint.setAntiAlias(true);//´ò¿ª¿¹¾â³İ
-		initBitmap();			//³õÊ¼»¯ÓÃµ½µÄÍ¼Æ¬×ÊÔ´
+		paint = new Paint();	 //åˆ›å»ºç”»ç¬”
+		bg_bitmap=new Bitmap[5];//åˆ›å»ºå¸®åŠ©ç•Œé¢èƒŒæ™¯å›¾ç‰‡æ•°ç»„å¯¹è±¡
+		mark_bitmap=new Bitmap[5];//åˆ›å»ºå¸®åŠ©ç•Œé¢ä¸­æ ‡æ³¨æé†’å›¾ç‰‡æ•°ç»„å¯¹è±¡
+		paint.setAntiAlias(true);//æ‰“å¼€æŠ—é”¯é½¿
+		initBitmap();			//åˆå§‹åŒ–ç”¨åˆ°çš„å›¾ç‰‡èµ„æº
 		startTime=System.currentTimeMillis();
 	}
 	
 	public void initThread()
 	{
-		next_flag=0;//0±íÊ¾²»ÒÆ¶¯,-1±íÊ¾×óÒÆ,1±íÊ¾ÓÒÒÆ
+		next_flag=0;//0è¡¨ç¤ºä¸ç§»åŠ¨,-1è¡¨ç¤ºå·¦ç§»,1è¡¨ç¤ºå³ç§»
 
-		bg_bitmap_curr_x=0;//µ±Ç°±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄX×ø±ê
-		bg_bitmap_curr_y=0;//µ±Ç°±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄY×ø±ê
-		bg_bitmap_next_x=0;//ÏÂÒ»·ù±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄX×ø±ê
-		bg_bitmap_next_y=0;//ÏÂÒ»·ù±³¾°Í¼Æ¬µÄ×óÉÏ½ÇµãµÄY×ø±ê
-		move_span=80;//Í¼Æ¬ÒÆ¶¯µÄËÙ¶È
-		page_index=0;//µ±Ç°°ïÖúÒ³ÃæµÄË÷ÒıÖµ
+		bg_bitmap_curr_x=0;//å½“å‰èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Xåæ ‡
+		bg_bitmap_curr_y=0;//å½“å‰èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Yåæ ‡
+		bg_bitmap_next_x=0;//ä¸‹ä¸€å¹…èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Xåæ ‡
+		bg_bitmap_next_y=0;//ä¸‹ä¸€å¹…èƒŒæ™¯å›¾ç‰‡çš„å·¦ä¸Šè§’ç‚¹çš„Yåæ ‡
+		move_span=80;//å›¾ç‰‡ç§»åŠ¨çš„é€Ÿåº¦
+		page_index=0;//å½“å‰å¸®åŠ©é¡µé¢çš„ç´¢å¼•å€¼
 		flag_go=true;
 		
 		back_flag=false;
@@ -92,15 +92,15 @@ public class HelpSurfaceView extends MySFView
 		isHaveNextFlag=true;
 		isHavePreFlag=false;		
 		
-		new Thread()//´´½¨Ò»¸öÏß³Ìµ÷ÓÃdoDraw·½·¨
+		new Thread()//åˆ›å»ºä¸€ä¸ªçº¿ç¨‹è°ƒç”¨doDrawæ–¹æ³•
 		{
 			@Override
 			public void run()
 			{
 				while(flag_go)
 				{
-					//ÅĞ¶ÏÊÇ×óÒÆ»¹ÊÇÓÒÒÆ
-					if(next_flag==-1)//×óÒÆ
+					//åˆ¤æ–­æ˜¯å·¦ç§»è¿˜æ˜¯å³ç§»
+					if(next_flag==-1)//å·¦ç§»
 					{
 						bg_bitmap_curr_x=bg_bitmap_curr_x-move_span;
 						bg_bitmap_next_x=bg_bitmap_next_x-move_span;
@@ -117,7 +117,7 @@ public class HelpSurfaceView extends MySFView
 							}
 						}
 					}
-					if(next_flag==1)//ÓÒÒÆ
+					if(next_flag==1)//å³ç§»
 					{
 						bg_bitmap_curr_x=bg_bitmap_curr_x+move_span;
 						bg_bitmap_next_x=bg_bitmap_next_x+move_span;
@@ -136,7 +136,7 @@ public class HelpSurfaceView extends MySFView
 					}
 					try
 					{  
-						Thread.sleep(10);//Ïß³ÌĞİÃß100ºÁÃë
+						Thread.sleep(10);//çº¿ç¨‹ä¼‘çœ 100æ¯«ç§’
 					}
 					catch (InterruptedException e)  
 					{
@@ -147,23 +147,23 @@ public class HelpSurfaceView extends MySFView
 		}.start();
 	}
 	
-	//ÖØĞ´onDraw·½·¨
+	//é‡å†™onDrawæ–¹æ³•
 	@Override
 	public void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
-		canvas.drawColor(Color.argb(255, 0, 0, 0));//ÇåÆÁÎªºÚÉ«
-		canvas.drawBitmap(bg_bitmap[page_index],bg_bitmap_curr_x,bg_bitmap_curr_y, null);//»­µ±Ç°±³¾°
+		canvas.drawColor(Color.argb(255, 0, 0, 0));//æ¸…å±ä¸ºé»‘è‰²
+		canvas.drawBitmap(bg_bitmap[page_index],bg_bitmap_curr_x,bg_bitmap_curr_y, null);//ç”»å½“å‰èƒŒæ™¯
 		
-		//µ±½çÃæÃ»ÓĞÔÚÒÆ¶¯µÄÊ±ºò£¬»æÖÆµ±Ç°°ïÖú½çÃæµÄÉÁË¸Í¼±êÌáÊ¾
+		//å½“ç•Œé¢æ²¡æœ‰åœ¨ç§»åŠ¨çš„æ—¶å€™ï¼Œç»˜åˆ¶å½“å‰å¸®åŠ©ç•Œé¢çš„é—ªçƒå›¾æ ‡æç¤º
 		if(next_flag==0)
 		{
-			//»æÖÆ°ïÖú½çÃæÉÁ¶¯µÄÍ¼±ê
-			long currentTime=System.currentTimeMillis();//¼ÇÂ¼µ±Ç°Ê±¼ä
-			fullTime=(int) ((currentTime-startTime));//¼ÇÂ¼×ÜÊ±¼ä	
-			//½«1Ãë·Ö³ÉÁ½·İ£¬ÔÚ0.7ÃëÄÚ»æÖÆ£¬0.3ÃëÄÚ²»»æÖÆ
+			//ç»˜åˆ¶å¸®åŠ©ç•Œé¢é—ªåŠ¨çš„å›¾æ ‡
+			long currentTime=System.currentTimeMillis();//è®°å½•å½“å‰æ—¶é—´
+			fullTime=(int) ((currentTime-startTime));//è®°å½•æ€»æ—¶é—´	
+			//å°†1ç§’åˆ†æˆä¸¤ä»½ï¼Œåœ¨0.7ç§’å†…ç»˜åˆ¶ï¼Œ0.3ç§’å†…ä¸ç»˜åˆ¶
 			if((fullTime/100)%10 < 7) {
-				//»æÖÆ·­Ò³Ö¸Ê¾Í¼±ê
+				//ç»˜åˆ¶ç¿»é¡µæŒ‡ç¤ºå›¾æ ‡
 				System.out.println(ratio_width+"  "+ratio_height);
 				canvas.drawBitmap(mark_bitmap[page_index], mark_xy[page_index][0]*ratio_width, mark_xy[page_index][1]*ratio_height, paint);			
 			}
@@ -171,64 +171,64 @@ public class HelpSurfaceView extends MySFView
 				
 		if(next_flag==-1)
 		{
-			canvas.drawBitmap(bg_bitmap[page_index+1],bg_bitmap_next_x,bg_bitmap_next_y, null);//»­ÏÂÒ»·ù±³¾°
+			canvas.drawBitmap(bg_bitmap[page_index+1],bg_bitmap_next_x,bg_bitmap_next_y, null);//ç”»ä¸‹ä¸€å¹…èƒŒæ™¯
 		}
 		if(next_flag==1)
 		{
-			canvas.drawBitmap(bg_bitmap[page_index-1],bg_bitmap_next_x,bg_bitmap_next_y, null);//»­ÏÂÒ»·ù±³¾°
+			canvas.drawBitmap(bg_bitmap[page_index-1],bg_bitmap_next_x,bg_bitmap_next_y, null);//ç”»ä¸‹ä¸€å¹…èƒŒæ™¯
 		}
 		if(isHaveNextFlag==false)
 		{
 			if(!back_flag)
 			{
-				canvas.drawBitmap(back, button_next_x, button_next_y, null);//»æÖÆback°´Å¥
+				canvas.drawBitmap(back, button_next_x, button_next_y, null);//ç»˜åˆ¶backæŒ‰é’®
 			}
 			else
 			{
-				canvas.drawBitmap(back_press, button_next_x, button_next_y, null);//»æÖÆback°´Å¥
+				canvas.drawBitmap(back_press, button_next_x, button_next_y, null);//ç»˜åˆ¶backæŒ‰é’®
 			}
 		}
-		if(page_index>0)//µ±Ç°µÄÒ³ÃæË÷Òı´óÓÚ0
+		if(page_index>0)//å½“å‰çš„é¡µé¢ç´¢å¼•å¤§äº0
 		{
 			if(!pre_page_flag)
 			{
-				canvas.drawBitmap(pre_page, button_pre_x, button_pre_y, paint);//»æÖÆÉÏÒ»Ò³°´Å¥
+				canvas.drawBitmap(pre_page, button_pre_x, button_pre_y, paint);//ç»˜åˆ¶ä¸Šä¸€é¡µæŒ‰é’®
 			}else
 			{
-				canvas.drawBitmap(pre_page_press, button_pre_x, button_pre_y, paint);//»æÖÆÉÏÒ»Ò³°´Å¥
+				canvas.drawBitmap(pre_page_press, button_pre_x, button_pre_y, paint);//ç»˜åˆ¶ä¸Šä¸€é¡µæŒ‰é’®
 			}
 		}
 		if(!isHavePreFlag)
 		{
 			if(!back_flag)
 			{
-				canvas.drawBitmap(back, button_pre_x, button_pre_y, null);//»æÖÆback°´Å¥
+				canvas.drawBitmap(back, button_pre_x, button_pre_y, null);//ç»˜åˆ¶backæŒ‰é’®
 			}
 			else
 			{
-				canvas.drawBitmap(back_press, button_pre_x, button_pre_y, null);//»æÖÆback°´Å¥
+				canvas.drawBitmap(back_press, button_pre_x, button_pre_y, null);//ç»˜åˆ¶backæŒ‰é’®
 			}
 		}
-		if(page_index<bg_bitmap.length-1)//µ±Ç°Ò³ÃæË÷ÒıÖµĞ¡ÓÚ°ïÖúÍ¼Æ¬Êı×é-1
+		if(page_index<bg_bitmap.length-1)//å½“å‰é¡µé¢ç´¢å¼•å€¼å°äºå¸®åŠ©å›¾ç‰‡æ•°ç»„-1
 		{
 			if(!next_page_flag)
 			{
-				canvas.drawBitmap(next_page, button_next_x, button_next_y, paint);//»æÖÆÏÂÒ»Ò³°´Å¥
+				canvas.drawBitmap(next_page, button_next_x, button_next_y, paint);//ç»˜åˆ¶ä¸‹ä¸€é¡µæŒ‰é’®
 			}else
 			{
-				canvas.drawBitmap(next_page_press, button_next_x, button_next_y, paint);//»æÖÆÏÂÒ»Ò³°´Å¥
+				canvas.drawBitmap(next_page_press, button_next_x, button_next_y, paint);//ç»˜åˆ¶ä¸‹ä¸€é¡µæŒ‰é’®
 			}
 		}
 	}
-	//ÖØĞ´´¥ÃşÊÂ¼ş·½·¨
+	//é‡å†™è§¦æ‘¸äº‹ä»¶æ–¹æ³•
 	@Override
 	public boolean onTouchEvent(MotionEvent e)
 	{
-		int x=(int)e.getX();//»ñÈ¡´¥¿ØµãµÄXY×ø±ê
+		int x=(int)e.getX();//è·å–è§¦æ§ç‚¹çš„XYåæ ‡
 		int y=(int)e.getY();
 		switch(e.getAction())
 		{
-		case MotionEvent.ACTION_DOWN://Ì§ÆğÊÂ¼ş
+		case MotionEvent.ACTION_DOWN://æŠ¬èµ·äº‹ä»¶
 			if(next_flag==0&&x>button_pre_x&&x<button_pre_x+pre_page.getWidth()&&y>button_pre_y&&y<button_pre_y+pre_page.getHeight())
 			{
 				if(!isHavePreFlag)
@@ -253,14 +253,14 @@ public class HelpSurfaceView extends MySFView
 				
 			}
 //			else if(page_index==0&&x>button_next_x&&x<button_next_x+back.getWidth()&&y>button_next_y&&y<button_next_y+back.getHeight())
-//			{//·µ»Ø°´Å¥
+//			{//è¿”å›æŒ‰é’®
 //    			back_flag=true;
 //			}else if(page_index==bg_bitmap.length-1&&x>button_pre_x&&x<button_pre_x+back.getWidth()&&y>button_pre_y&&y<button_pre_y+back.getHeight())
-//			{//·µ»Ø°´Å¥
+//			{//è¿”å›æŒ‰é’®
 //    			back_flag=true;
 //			}
 			break;
-		case MotionEvent.ACTION_UP://Ì§ÆğÊÂ¼ş 
+		case MotionEvent.ACTION_UP://æŠ¬èµ·äº‹ä»¶ 
 			pre_page_flag=false;
 			next_page_flag=false;
 			back_flag=false;
@@ -268,7 +268,7 @@ public class HelpSurfaceView extends MySFView
 			{
 				if(!isHavePreFlag)
 				{
-					//·µ»Øµ½Ö÷²Ëµ¥
+					//è¿”å›åˆ°ä¸»èœå•
 					flag_go=false;
 					activity.hd.sendEmptyMessage(1);
 				}
@@ -276,7 +276,7 @@ public class HelpSurfaceView extends MySFView
 				{
 					isHavePreFlag=true;
 					isHaveNextFlag=true;
-					//ÓÒÒÆ   
+					//å³ç§»   
 					next_flag=1;
 					bg_bitmap_next_x=-SCREEN_WIDTH;
 				}
@@ -285,7 +285,7 @@ public class HelpSurfaceView extends MySFView
 			{
 				if(!isHaveNextFlag)
 				{
-					//·µ»ØÖ÷²Ëµ¥
+					//è¿”å›ä¸»èœå•
 					flag_go=false;
 					activity.hd.sendEmptyMessage(1);
 				}
@@ -293,7 +293,7 @@ public class HelpSurfaceView extends MySFView
 				{
 					isHaveNextFlag=true;
 					isHavePreFlag=true;
-					//×óÒÆ
+					//å·¦ç§»
 					next_flag=-1;
 					bg_bitmap_next_x=SCREEN_WIDTH;
 				}
@@ -303,36 +303,36 @@ public class HelpSurfaceView extends MySFView
 		}
 		return true;
 	}
-	//³õÊ¼»¯Í¼Æ¬µÄ·½·¨
+	//åˆå§‹åŒ–å›¾ç‰‡çš„æ–¹æ³•
 	public void initBitmap()
 	{
-		bg_bitmap[0] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap0),ratio_width,ratio_height);//°ïÖú½çÃæ±³¾°Í¼Æ¬
-		bg_bitmap[1] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap1),ratio_width,ratio_height);//°ïÖú½çÃæ±³¾°Í¼Æ¬
-		bg_bitmap[2] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap2),ratio_width,ratio_height);//°ïÖú½çÃæ±³¾°Í¼Æ¬
-		bg_bitmap[3] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap3),ratio_width,ratio_height);//°ïÖú½çÃæ±³¾°Í¼Æ¬
-		bg_bitmap[4] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap4),ratio_width,ratio_height);//°ïÖú½çÃæ±³¾°Í¼Æ¬
+		bg_bitmap[0] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap0),ratio_width,ratio_height);//å¸®åŠ©ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		bg_bitmap[1] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap1),ratio_width,ratio_height);//å¸®åŠ©ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		bg_bitmap[2] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap2),ratio_width,ratio_height);//å¸®åŠ©ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		bg_bitmap[3] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap3),ratio_width,ratio_height);//å¸®åŠ©ç•Œé¢èƒŒæ™¯å›¾ç‰‡
+		bg_bitmap[4] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.bg_bitmap4),ratio_width,ratio_height);//å¸®åŠ©ç•Œé¢èƒŒæ™¯å›¾ç‰‡
 		mark_bitmap[0] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.mark0),ratio_width,ratio_height);
 		mark_bitmap[1] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.mark1),ratio_width,ratio_height);
 		mark_bitmap[2] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.mark2),ratio_width,ratio_height);
 		mark_bitmap[3] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.mark3),ratio_width,ratio_height);
 		mark_bitmap[4] = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.mark4),ratio_width,ratio_height);
-		pre_page = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.pre_page),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-		next_page = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.next_page),ratio_width,ratio_height);//ÏÂÒ»Ò³°´Å¥Í¼Æ¬
-		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
+		pre_page = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.pre_page),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		next_page = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.next_page),ratio_width,ratio_height);//ä¸‹ä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		back = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
 		
-		pre_page_press= scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.pre_page_press),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
-		next_page_press= scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.next_page_press),ratio_width,ratio_height);//ÏÂÒ»Ò³°´Å¥Í¼Æ¬
-		back_press= scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ÉÏÒ»Ò³°´Å¥Í¼Æ¬
+		pre_page_press= scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.pre_page_press),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		next_page_press= scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.next_page_press),ratio_width,ratio_height);//ä¸‹ä¸€é¡µæŒ‰é’®å›¾ç‰‡
+		back_press= scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.back_press),ratio_width,ratio_height);//ä¸Šä¸€é¡µæŒ‰é’®å›¾ç‰‡
 	}
 
-	//Ëõ·ÅÍ¼Æ¬µÄ·½·¨
+	//ç¼©æ”¾å›¾ç‰‡çš„æ–¹æ³•
 	public static Bitmap scaleToFit(Bitmap bm,float width_Ratio,float height_Ratio)
 	{		
-    	int width = bm.getWidth(); 						//Í¼Æ¬¿í¶È
-    	int height = bm.getHeight();					//Í¼Æ¬¸ß¶È
+    	int width = bm.getWidth(); 						//å›¾ç‰‡å®½åº¦
+    	int height = bm.getHeight();					//å›¾ç‰‡é«˜åº¦
     	Matrix matrix = new Matrix(); 
-    	matrix.postScale((float)width_Ratio, (float)height_Ratio);//Í¼Æ¬µÈ±ÈÀıËõĞ¡ÎªÔ­À´µÄfblRatio±¶
-    	Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);//ÉùÃ÷Î»Í¼
-    	return bmResult;								//·µ»Ø±»Ëõ·ÅµÄÍ¼Æ¬
+    	matrix.postScale((float)width_Ratio, (float)height_Ratio);//å›¾ç‰‡ç­‰æ¯”ä¾‹ç¼©å°ä¸ºåŸæ¥çš„fblRatioå€
+    	Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);//å£°æ˜ä½å›¾
+    	return bmResult;								//è¿”å›è¢«ç¼©æ”¾çš„å›¾ç‰‡
     }
 }

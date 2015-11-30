@@ -109,16 +109,16 @@ import com.bn.core.SQLiteUtil;
 
 public class KeyThread extends Thread 
 {
-	public boolean flag_go;//Ïß³Ì±êÖ¾Î»
-	private boolean isPlaneNoUp;//·É»ú²»ÔÙÉÏÉı±êÖ¾Î»
-	GLGameView gv;//Ö÷³¡¾°ÀàµÄÒıÓÃ
-	private float oldTimeBullet=0;//ÓÃÓÚ¼ÇÂ¼ÉÏ´Î·¢Éä×Óµ¯µÄÊ±¼ä
-	private float oldTimeBomb=0;//ÓÃÓÚ¼ÇÂ¼ÉÏ´Î·¢Éä×Óµ¯µÄÊ±¼ä
+	public boolean flag_go;//çº¿ç¨‹æ ‡å¿—ä½
+	private boolean isPlaneNoUp;//é£æœºä¸å†ä¸Šå‡æ ‡å¿—ä½
+	GLGameView gv;//ä¸»åœºæ™¯ç±»çš„å¼•ç”¨
+	private float oldTimeBullet=0;//ç”¨äºè®°å½•ä¸Šæ¬¡å‘å°„å­å¼¹çš„æ—¶é—´
+	private float oldTimeBomb=0;//ç”¨äºè®°å½•ä¸Šæ¬¡å‘å°„å­å¼¹çš„æ—¶é—´
 	int time;
-	public float planeY;//·É»ú×¹»Ù´¦µÄµØÃæ¸ß¶È
-	int playId=1;//ÊÓÆµ²¥·Å
-	public boolean isno_adjust;//ÊÇ·ñµ÷Õû·É»ú·½Ïò
-	int playIdArray;//Êı×éÏÂ±ê
+	public float planeY;//é£æœºå æ¯å¤„çš„åœ°é¢é«˜åº¦
+	int playId=1;//è§†é¢‘æ’­æ”¾
+	public boolean isno_adjust;//æ˜¯å¦è°ƒæ•´é£æœºæ–¹å‘
+	int playIdArray;//æ•°ç»„ä¸‹æ ‡
 	public KeyThread(GLGameView gv)
 	{
 		this.gv=gv;
@@ -133,22 +133,22 @@ public class KeyThread extends Thread
 	{
 		while(flag_go)
 		{
-			if(gv.isGameOn)//Èç¹ûÓÎÏ·¿ªÊ¼
+			if(gv.isGameOn)//å¦‚æœæ¸¸æˆå¼€å§‹
 			{
 				synchronized(lock)
 				{
-					if(!isVideo&&is_button_return)//°´ÏÂÔİÍ£°´Å¥£¬»òÕß·µ»Ø°´Å¥
+					if(!isVideo&&is_button_return)//æŒ‰ä¸‹æš‚åœæŒ‰é’®ï¼Œæˆ–è€…è¿”å›æŒ‰é’®
 					{
 						continue;
 					}
 					time+=50;			
-					if(isVideo)//Èç¹ûÊÇÊÓÆµ²¥·ÅÊ±
+					if(isVideo)//å¦‚æœæ˜¯è§†é¢‘æ’­æ”¾æ—¶
 					{
 						if(!isVideoPlaying)
 						{
 							continue;
 						}
-						PLANE_MOVE_SPAN=40;//·É»úËÙ¶È
+						PLANE_MOVE_SPAN=40;//é£æœºé€Ÿåº¦
 						float nx,nz;
 						nx=ArchieArray[mapId][6][(playIdArray)*2]*WIDTH_LALNDFORM-PLANE_X;
 						nz=ArchieArray[mapId][6][(playIdArray)*2+1]*WIDTH_LALNDFORM-PLANE_Z;
@@ -176,19 +176,19 @@ public class KeyThread extends Thread
 							playIdArray%=ArchieArray[mapId][6].length/2;
 						}
 					}
-					//=====ÌØ±ğĞĞ¶¯Ê±¼ÇÂ¼Ê±¼ä
+					//=====ç‰¹åˆ«è¡ŒåŠ¨æ—¶è®°å½•æ—¶é—´
 					if(gv.isGameMode==1&&!is_button_return&&!isVideo&&System.nanoTime()-gv.oldTime>1000000000)
         			{
 						gv.goTime--;
 						gv.oldTime=System.nanoTime();
         			}
-					//-----ÌØ±ğĞĞ¶¯--------------------
+					//-----ç‰¹åˆ«è¡ŒåŠ¨--------------------
 					if(gv.isGameMode==1)
 					{
-						//Ê±¼äµ½ÁË
+						//æ—¶é—´åˆ°äº†
 						if(gv.goTime<0)
 						{
-							//ĞĞ¶¯Ê§°Ü
+							//è¡ŒåŠ¨å¤±è´¥
 							gv.isSpecActionState=2;
 							if(gv.activity.bgMusic[1].isPlaying())
 							{
@@ -196,63 +196,63 @@ public class KeyThread extends Thread
 							}
 							isOvercome=true;
 						}
-						//Ê±¼äÃ»ÓĞµ½----·É»úÕ¨»ÙÁË---------------------------
+						//æ—¶é—´æ²¡æœ‰åˆ°----é£æœºç‚¸æ¯äº†---------------------------
 						else if(gv.plane.blood<=0)
 						{
-							//ĞĞ¶¯Ê§°Ü
+							//è¡ŒåŠ¨å¤±è´¥
 							gv.isSpecActionState=2;
 							if(gv.activity.bgMusic[1].isPlaying())
 							{
 								gv.activity.bgMusic[1].pause();
 							}
-							isCrash=true;//·É»ú×¹»Ù
+							isCrash=true;//é£æœºå æ¯
 						}
-						//Ê±¼ä»¹Ã»ÓĞµ½,³É¹¦½ú¼¶
+						//æ—¶é—´è¿˜æ²¡æœ‰åˆ°,æˆåŠŸæ™‹çº§
 						else
 						{
 							switch(mapId)
 							{
-							case 3://Åùö¨ĞĞ¶¯
-								if(enemy.size()==0)//Õ½»ú
+							case 3://éœ¹é›³è¡ŒåŠ¨
+								if(enemy.size()==0)//æˆ˜æœº
 								{
 									if(gv.activity.bgMusic[1].isPlaying())
 									{
 										gv.activity.bgMusic[1].pause();
 									}
 									isOvercome=true;
-									//ĞĞ¶¯³É¹¦
+									//è¡ŒåŠ¨æˆåŠŸ
 									gv.isSpecActionState=1;
 								}
 								break;
-							case 4://É³Ä®·ç±©
-								if(tankeList.size()==0&&archie_List.size()==0)//Ì¹¿ËºÍ¸ßÉäÅÚ
+							case 4://æ²™æ¼ é£æš´
+								if(tankeList.size()==0&&archie_List.size()==0)//å¦å…‹å’Œé«˜å°„ç‚®
 								{
 									if(gv.activity.bgMusic[1].isPlaying())
 									{
 										gv.activity.bgMusic[1].pause();
 									}
 									isOvercome=true;
-									//ĞĞ¶¯³É¹¦
+									//è¡ŒåŠ¨æˆåŠŸ
 									gv.isSpecActionState=1;
 								}
 								break;
-							case 5://Õ¶Ê×ĞĞ¶¯
-								if(arsenal.size()==0)//¾ü»ğ¿âÍê
+							case 5://æ–©é¦–è¡ŒåŠ¨
+								if(arsenal.size()==0)//å†›ç«åº“å®Œ
 								{
 									if(gv.activity.bgMusic[1].isPlaying())
 									{
 										gv.activity.bgMusic[1].pause();
 									}
 									isOvercome=true;
-									//ĞĞ¶¯³É¹¦
+									//è¡ŒåŠ¨æˆåŠŸ
 									gv.isSpecActionState=1;
 								}
 								break;
 							}
 						}
 					}
-					//------Õ½ÒÛÄ£Ê½ÏÂ·É»ú±¬Õ¨--------
-					if(gv.isGameMode==0&&gv.plane.blood<=0)//Èç¹û·É»úµÄÑªÃ»ÁË£¬Ôò·É»ú×¹»Ù
+					//------æˆ˜å½¹æ¨¡å¼ä¸‹é£æœºçˆ†ç‚¸--------
+					if(gv.isGameMode==0&&gv.plane.blood<=0)//å¦‚æœé£æœºçš„è¡€æ²¡äº†ï¼Œåˆ™é£æœºå æ¯
 					{
 						if(gv.activity.bgMusic[1].isPlaying())
 						{
@@ -261,7 +261,7 @@ public class KeyThread extends Thread
 						isCrash=true;
 						isFireOn=false;
 						gradeArray[0]=mapId;
-						gradeArray[2]=time/1000;//ºÄÊ±·ÖÖÓ
+						gradeArray[2]=time/1000;//è€—æ—¶åˆ†é’Ÿ
 						Date d=new Date();
 						String month=d.getMonth()+1>=10?d.getMonth()+1+"":"0"+d.getMonth()+1;
 						String day=d.getDate()>=10?d.getDate()+"":"0"+d.getDate();
@@ -270,7 +270,7 @@ public class KeyThread extends Thread
 								"'"+gradeArray[2]+""+"','"+date+"');";
 				        SQLiteUtil.insert(sql);
 					}
-					//-----Õ½ÒÛÄ£Ê½-------³É¹¦¹ı¹Ø
+					//-----æˆ˜å½¹æ¨¡å¼-------æˆåŠŸè¿‡å…³
 					if(gv.isGameMode==0&&arsenal.size()==0&&tankeList.size()==0&&archie_List.size()==0&&enemy.size()==0)
 					{
 						if(gv.activity.bgMusic[1].isPlaying())
@@ -278,7 +278,7 @@ public class KeyThread extends Thread
 							gv.activity.bgMusic[1].pause();
 						}
 						gradeArray[0]=mapId;
-						gradeArray[2]=time/1000;//ºÄÊ±·ÖÖÓ
+						gradeArray[2]=time/1000;//è€—æ—¶åˆ†é’Ÿ
 						Date d=new Date();
 						String month=d.getMonth()+1>=10?d.getMonth()+1+"":"0"+d.getMonth()+1;
 						String day=d.getDate()>=10?d.getDate()+"":"0"+d.getDate();
@@ -288,14 +288,14 @@ public class KeyThread extends Thread
 				        SQLiteUtil.insert(sql);
 						isOvercome=true;
 					}
-					if(isCrash)//Èç¹û·É»ú×¹»Ù
+					if(isCrash)//å¦‚æœé£æœºå æ¯
 					{
 						isFireOn=false;
-						archie_List.clear();//¸ßÉäÅÚÇåÁã
-						bomb_List.clear();//ÅÚµ¯ÇåÁã
-						archie_bomb_List.clear();//¸ßÉäÅÚÅÚµ¯ÇåÁã
-						bullet_List.clear();//·É»ú·¢ÉäµÄ×Óµ¯ÇåÁã
-						flag_go=false;//¹Øµô´ËÏß³Ì
+						archie_List.clear();//é«˜å°„ç‚®æ¸…é›¶
+						bomb_List.clear();//ç‚®å¼¹æ¸…é›¶
+						archie_bomb_List.clear();//é«˜å°„ç‚®ç‚®å¼¹æ¸…é›¶
+						bullet_List.clear();//é£æœºå‘å°„çš„å­å¼¹æ¸…é›¶
+						flag_go=false;//å…³æ‰æ­¤çº¿ç¨‹
 				    		new Thread()
 				    		{
 				    			int time=0;
@@ -303,23 +303,23 @@ public class KeyThread extends Thread
 				    			boolean isnoStart;
 				    			public void run()
 				    			{
-				    				isno_draw_arsenal=false;//²»»æÖÆ¾ü»ğ¿â
+				    				isno_draw_arsenal=false;//ä¸ç»˜åˆ¶å†›ç«åº“
 				    				while(time<15000)
 				    				{
 				    					time+=50;
-				    					planeY=	isYachtHeadCollectionsWithLandPaodan(PLANE_X,PLANE_Y-PLANE_Y_R,PLANE_Z);//²é¿´ÊÇ·ñÅö×²µØÃæ
-				    					if(planeY<0&&!isnoStart)//Èç¹ûÃ»ÓĞÅö×²µ½µØ£¬·É»ú×¹»ÙÏÂ½µ
+				    					planeY=	isYachtHeadCollectionsWithLandPaodan(PLANE_X,PLANE_Y-PLANE_Y_R,PLANE_Z);//æŸ¥çœ‹æ˜¯å¦ç¢°æ’åœ°é¢
+				    					if(planeY<0&&!isnoStart)//å¦‚æœæ²¡æœ‰ç¢°æ’åˆ°åœ°ï¼Œé£æœºå æ¯ä¸‹é™
 				    					{
 				    						PLANE_Y-=10;
-				    						tx=PLANE_X;//ÉãÏñ»úÄ¿±êÎ»ÖÃ¸ú×Å·É»ú×ß£¬ÉãÏñ»úÎ»ÖÃ²»±ä
+				    						tx=PLANE_X;//æ‘„åƒæœºç›®æ ‡ä½ç½®è·Ÿç€é£æœºèµ°ï¼Œæ‘„åƒæœºä½ç½®ä¸å˜
 				    			    		ty=PLANE_Y;
 				    			    		tz=PLANE_Z;
 				    					}
 				    					else 
-				    					{//Èç¹ûÒÑ¾­×¹»Ùµ½µØÃæ£¬À­ÉìÉãÏñ»ú£¬
+				    					{//å¦‚æœå·²ç»å æ¯åˆ°åœ°é¢ï¼Œæ‹‰ä¼¸æ‘„åƒæœºï¼Œ
 				    						if(!isnoStart)
 				    						{
-				    							thistime=time;//¼ÇÂ¼¶¯»­²¥·ÅÁËµÄÊ±¼ä
+				    							thistime=time;//è®°å½•åŠ¨ç”»æ’­æ”¾äº†çš„æ—¶é—´
 				    							isnoStart=true;
 					    						ty=PLANE_Y=isYachtHeadCollectionsWithLandPaodan(PLANE_X,PLANE_Y-PLANE_Y_R,PLANE_Z)+PLANE_Y_R;
 				    						}
@@ -327,24 +327,24 @@ public class KeyThread extends Thread
 				    					if(isnoStart&&time-thistime<=2000)
 				    					{
 				    						ELEVATION_CAMERA=30;
-				    						cx=(float)(tx+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.sin(Math.toRadians(DIRECTION_CAMERA))*Crash_DISTANCE_start);//ÉãÏñ»úx×ø±ê 
-				    					    cz=(float)(tz+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.cos(Math.toRadians(DIRECTION_CAMERA))*Crash_DISTANCE_start);//ÉãÏñ»úz×ø±ê 
-				    					    cy=(float)(ty+Math.sin(Math.toRadians(ELEVATION_CAMERA))*Crash_DISTANCE_start);//ÉãÏñ»úy×ø±ê
+				    						cx=(float)(tx+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.sin(Math.toRadians(DIRECTION_CAMERA))*Crash_DISTANCE_start);//æ‘„åƒæœºxåæ ‡ 
+				    					    cz=(float)(tz+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.cos(Math.toRadians(DIRECTION_CAMERA))*Crash_DISTANCE_start);//æ‘„åƒæœºzåæ ‡ 
+				    					    cy=(float)(ty+Math.sin(Math.toRadians(ELEVATION_CAMERA))*Crash_DISTANCE_start);//æ‘„åƒæœºyåæ ‡
 				    					    if(Crash_DISTANCE_start<Crash_DISTANCE_stop*4){
 				    					    	 Crash_DISTANCE_start+=20f;
-				    					    	 rotationAngle_Plane_Y=DIRECTION_CAMERA+=5;//ÉãÏñ»úÎ§×Å·É»ú×ª¶¯
+				    					    	 rotationAngle_Plane_Y=DIRECTION_CAMERA+=5;//æ‘„åƒæœºå›´ç€é£æœºè½¬åŠ¨
 				    					    }
 				    					    else
 				    					    {
-				    					    	rotationAngle_Plane_Y=DIRECTION_CAMERA+=5;//ÉãÏñ»úÎ§×Å·É»ú×ª¶¯
+				    					    	rotationAngle_Plane_Y=DIRECTION_CAMERA+=5;//æ‘„åƒæœºå›´ç€é£æœºè½¬åŠ¨
 				    					    }
 				    					   if(time%800==0)
 				    					   {
-				    						   baoZhaList.add(new DrawBomb(bombRectr,PLANE_X,PLANE_Y,PLANE_Z));//Ìí¼Ó±¬Õ¨Ğ§¹û
+				    						   baoZhaList.add(new DrawBomb(bombRectr,PLANE_X,PLANE_Y,PLANE_Z));//æ·»åŠ çˆ†ç‚¸æ•ˆæœ
 				    						   gv.activity.playSound(1,0);
 				    					   }
 				    					}
-				    					else if(isnoStart&&time-thistime>2000&&time-thistime<=5500)//²¥·Å×îºó´ó±¬Õ¨
+				    					else if(isnoStart&&time-thistime>2000&&time-thistime<=5500)//æ’­æ”¾æœ€åå¤§çˆ†ç‚¸
 				    					{
 				    						if(time-thistime<4000)
 				    						{
@@ -355,19 +355,19 @@ public class KeyThread extends Thread
 				    						}
 				    						else if(time-thistime>=4000&&time-thistime<=4500)
 				    						{
-				    							isno_draw_plane=false;//²»»á×ö·É»ú
-				    							isno_draw_arsenal=false;//²»»æÖÆ¾ü»ğ¿â
+				    							isno_draw_plane=false;//ä¸ä¼šåšé£æœº
+				    							isno_draw_arsenal=false;//ä¸ç»˜åˆ¶å†›ç«åº“
 				    							if(time%100==0){
 					    							 BaoZha_scal-=3.5f;
 					    							 if(BaoZha_scal<0){
-					    								 baoZhaList.add(new DrawBomb(bombRect,PLANE_X,PLANE_Y,PLANE_Z));//Ìí¼Ó±¬Õ¨Ğ§¹û
+					    								 baoZhaList.add(new DrawBomb(bombRect,PLANE_X,PLANE_Y,PLANE_Z));//æ·»åŠ çˆ†ç‚¸æ•ˆæœ
 					    								 BaoZha_scal=0;
 					    							 }
 						    					   }
 				    						}else if(time-thistime>=4500)
 				    						{
-				    							 isCrashCartoonOver=true;//¶¯»­²¥·ÅÍê±Ï
-				    							 isno_draw_plane=false;//²»»æÖÆ·É»ú
+				    							 isCrashCartoonOver=true;//åŠ¨ç”»æ’­æ”¾å®Œæ¯•
+				    							 isno_draw_plane=false;//ä¸ç»˜åˆ¶é£æœº
 					    						 gv.activity.playSound(0,1);
 					    						 break;
 				    						}
@@ -381,51 +381,51 @@ public class KeyThread extends Thread
 											e.printStackTrace();
 										}
 				    				}
-				    				isCrashCartoonOver=true;//¶¯»­²¥·ÅÍê±Ï
+				    				isCrashCartoonOver=true;//åŠ¨ç”»æ’­æ”¾å®Œæ¯•
 				    			}
 				    		}.start();
 						break;
 					}
-					if(isOvercome)//Èç¹ûÍê³ÉÓÎÏ·
+					if(isOvercome)//å¦‚æœå®Œæˆæ¸¸æˆ
 					{
 						isFireOn=false;
 						flag_go=false;
-						archie_List.clear();//¸ßÉäÅÚÇåÁã
-						bomb_List.clear();//ÅÚµ¯ÇåÁã
-						archie_bomb_List.clear();//¸ßÉäÅÚÅÚµ¯ÇåÁã
-						bullet_List.clear();//·É»ú·¢ÉäµÄ×Óµ¯ÇåÁã
-						isCrashCartoonOver=true;//¶¯»­²¥·ÅÍê±Ï
+						archie_List.clear();//é«˜å°„ç‚®æ¸…é›¶
+						bomb_List.clear();//ç‚®å¼¹æ¸…é›¶
+						archie_bomb_List.clear();//é«˜å°„ç‚®ç‚®å¼¹æ¸…é›¶
+						bullet_List.clear();//é£æœºå‘å°„çš„å­å¼¹æ¸…é›¶
+						isCrashCartoonOver=true;//åŠ¨ç”»æ’­æ”¾å®Œæ¯•
 						break;
 					}
-					//Èç¹ûÓĞup¼ü°´ÏÂµÄ»°
+					//å¦‚æœæœ‰upé”®æŒ‰ä¸‹çš„è¯
 					if((!isPlaneNoUp)&&(keyState&0x1)!=0)
 					{
-						//·É»úÏòÉÏÑö
+						//é£æœºå‘ä¸Šä»°
 						if(rotationAngle_Plane_X<PLANE_UP_ROTATION_DOMAIN_X)
 						{
 							rotationAngle_Plane_X+=PLANE_ROTATION_SPEED_SPAN_X;
 						}
-						//ÉãÏñ»úÏòÉÏÑö
+						//æ‘„åƒæœºå‘ä¸Šä»°
 						if(ELEVATION_CAMERA>ELEVATION_CAMERA_DOWN)
 						{
 							ELEVATION_CAMERA-=ELEVATION_CAMERA_SPAN;
 						}
 					}
-					//Èç¹ûÓĞdown¼ü°´ÏÂµÄ»°
+					//å¦‚æœæœ‰downé”®æŒ‰ä¸‹çš„è¯
 					else if((keyState&0x2)!=0)
 					{
-						//·É»úÏòÏÂ¸©
+						//é£æœºå‘ä¸‹ä¿¯
 						if(rotationAngle_Plane_X>PLANE_DOWN_ROTATION_DOMAIN_X)
 						{
 							rotationAngle_Plane_X-=PLANE_ROTATION_SPEED_SPAN_X;
 						}
-						//ÉãÏñ»úÏòÏÂ¸©
+						//æ‘„åƒæœºå‘ä¸‹ä¿¯
 						if(ELEVATION_CAMERA<ELEVATION_CAMERA_UP)
 						{
 							ELEVATION_CAMERA+=ELEVATION_CAMERA_SPAN;
 						}
 					}
-					//Èç¹ûupºÍdown¶¼Ã»ÓĞ°´ÏÂµÄ»°,Ôò·É»úÆ½ĞĞ·ÉĞĞ   ÉãÏñ»ú³ÖÆ½
+					//å¦‚æœupå’Œdownéƒ½æ²¡æœ‰æŒ‰ä¸‹çš„è¯,åˆ™é£æœºå¹³è¡Œé£è¡Œ   æ‘„åƒæœºæŒå¹³
 					else if((isPlaneNoUp||((keyState&0x1)==0)&&((keyState&0x2)==0)))
 					{
 						if(isno_Lock)
@@ -443,35 +443,35 @@ public class KeyThread extends Thread
 							rotationAngle_Plane_Y+=180;
 						}
 								rotationAngle_Plane_X=(float) Math.toDegrees(Math.atan(ny/Math.sqrt(nx*nx+nz*nz)));
-								DIRECTION_CAMERA=rotationAngle_Plane_Y;//ÉãÏñ»ú·½ÏòºÍ·É»ú·ÉĞĞ·½ÏòÒ»ÖÂ
+								DIRECTION_CAMERA=rotationAngle_Plane_Y;//æ‘„åƒæœºæ–¹å‘å’Œé£æœºé£è¡Œæ–¹å‘ä¸€è‡´
 							}
 						}
 						else
 						{
 							isno_adjust=false;
-							//·É»úĞ£Õı
-							if(Math.abs(rotationAngle_Plane_X)<PLANE_ROTATION_SPEED_SPAN_X+0.1f)//Èç¹û·É»úµÄ¸©Ñö½Ç¶ÈĞ¡ÓÚÒ»¸öãĞÖµ,ÔòÖÃÎª0
+							//é£æœºæ ¡æ­£
+							if(Math.abs(rotationAngle_Plane_X)<PLANE_ROTATION_SPEED_SPAN_X+0.1f)//å¦‚æœé£æœºçš„ä¿¯ä»°è§’åº¦å°äºä¸€ä¸ªé˜ˆå€¼,åˆ™ç½®ä¸º0
 							{
-								rotationAngle_Plane_X=0;//·É»úÇ°ºó³ÖÆ½
+								rotationAngle_Plane_X=0;//é£æœºå‰åæŒå¹³
 							}
-							else if(rotationAngle_Plane_X>0)//Èç¹û·É»ú´¦ÓÚÑöµÄÎ»ÖÃ,Ôò½Ç¶È¼õÉÙ
+							else if(rotationAngle_Plane_X>0)//å¦‚æœé£æœºå¤„äºä»°çš„ä½ç½®,åˆ™è§’åº¦å‡å°‘
 							{
 								rotationAngle_Plane_X-=PLANE_ROTATION_SPEED_SPAN_X;
 							}
-							else//Èç¹û·É»ú´¦ÓÚ¸©µÄÎ»ÖÃ,Ôò½Ç¶ÈÔö¼Ó
+							else//å¦‚æœé£æœºå¤„äºä¿¯çš„ä½ç½®,åˆ™è§’åº¦å¢åŠ 
 							{
 								rotationAngle_Plane_X+=PLANE_ROTATION_SPEED_SPAN_X;
 							}
-							//ÉãÏñ»úĞ£Õı
-							if(Math.abs(ELEVATION_CAMERA-ELEVATION_CAMERA_ORI)<ELEVATION_CAMERA_SPAN+0.1f)//Èç¹û·É»úµÄ¸©Ñö½Ç¶ÈĞ¡ÓÚÒ»¸öãĞÖµ,ÔòÖÃÎª0
+							//æ‘„åƒæœºæ ¡æ­£
+							if(Math.abs(ELEVATION_CAMERA-ELEVATION_CAMERA_ORI)<ELEVATION_CAMERA_SPAN+0.1f)//å¦‚æœé£æœºçš„ä¿¯ä»°è§’åº¦å°äºä¸€ä¸ªé˜ˆå€¼,åˆ™ç½®ä¸º0
 							{
-								ELEVATION_CAMERA=ELEVATION_CAMERA_ORI;//ÉãÏñ»úÑö½Ç½ÃÕıºÃ
+								ELEVATION_CAMERA=ELEVATION_CAMERA_ORI;//æ‘„åƒæœºä»°è§’çŸ«æ­£å¥½
 							}
-							else if(ELEVATION_CAMERA-ELEVATION_CAMERA_ORI>0)//Èç¹ûÉãÏñ»ú´¦ÓÚÑöµÄÎ»ÖÃ,Ôò½Ç¶È¼õÉÙ
+							else if(ELEVATION_CAMERA-ELEVATION_CAMERA_ORI>0)//å¦‚æœæ‘„åƒæœºå¤„äºä»°çš„ä½ç½®,åˆ™è§’åº¦å‡å°‘
 							{
 								ELEVATION_CAMERA-=ELEVATION_CAMERA_SPAN;
 							}
-							else//Èç¹ûÉãÏñ»ú´¦ÓÚ¸©µÄÎ»ÖÃ,Ôò½Ç¶ÈÔö¼Ó
+							else//å¦‚æœæ‘„åƒæœºå¤„äºä¿¯çš„ä½ç½®,åˆ™è§’åº¦å¢åŠ 
 							{
 								ELEVATION_CAMERA+=ELEVATION_CAMERA_SPAN;
 							}
@@ -479,33 +479,33 @@ public class KeyThread extends Thread
 					}
 					if(!isVideo)
 					{
-						//Èç¹ûÓĞleft¼ü°´ÏÂµÄ»°
+						//å¦‚æœæœ‰lefté”®æŒ‰ä¸‹çš„è¯
 						if((keyState&0x4)!=0)
 						{
-							//Ğı×ªËÙ¶ÈµÄ±ÈÀı
+							//æ—‹è½¬é€Ÿåº¦çš„æ¯”ä¾‹
 							float temp_ratio=Math.abs(gv.activity.directionDotXY[0]-gv.activity.lr_domain)/30;
-							//ÉãÏñ»ú×ó×ª
+							//æ‘„åƒæœºå·¦è½¬
 							DIRECTION_CAMERA+=DIRECTION_CAMERA_SPAN*temp_ratio;
-							//·É»úÏò×óĞı×ª
+							//é£æœºå‘å·¦æ—‹è½¬
 							rotationAngle_Plane_Y+=DIRECTION_CAMERA_SPAN*temp_ratio;
-							//·É»úÊÓ¾õÉÏÏò×óĞı×ªÇãĞ±
+							//é£æœºè§†è§‰ä¸Šå‘å·¦æ—‹è½¬å€¾æ–œ
 							rotationAngle_Plane_Z=-gv.activity.directionDotXY[0]*5f;
 						}
-						//Èç¹ûÓĞright¼ü°´ÏÂµÄ»°
+						//å¦‚æœæœ‰righté”®æŒ‰ä¸‹çš„è¯
 						else if((keyState&0x8)!=0)
 						{
 							float temp_ratio=Math.abs(gv.activity.directionDotXY[0]-gv.activity.lr_domain)/30;
-							//ÉãÏñ»úÓÒ×ª
+							//æ‘„åƒæœºå³è½¬
 							DIRECTION_CAMERA-=DIRECTION_CAMERA_SPAN*temp_ratio;
-							//·É»úÏòÓÒĞı×ª
+							//é£æœºå‘å³æ—‹è½¬
 							rotationAngle_Plane_Y-=DIRECTION_CAMERA_SPAN*temp_ratio;
-							//·É»úÊÓ¾õÉÏÏòÓÒĞı×ªÇãĞ±
+							//é£æœºè§†è§‰ä¸Šå‘å³æ—‹è½¬å€¾æ–œ
 							rotationAngle_Plane_Z=-gv.activity.directionDotXY[0]*5f;
 						}
-						//¼ÈÃ»ÓĞÏò×óÓÖÃ»ÓĞÏòÓÒ,·É»ú×ËÊÆ°ÚÕı
+						//æ—¢æ²¡æœ‰å‘å·¦åˆæ²¡æœ‰å‘å³,é£æœºå§¿åŠ¿æ‘†æ­£
 						else if((keyState&0x3)==0)
 						{
-							//·É»ú×óÓÒÇãĞ±Ğ£Õı
+							//é£æœºå·¦å³å€¾æ–œæ ¡æ­£
 							if(Math.abs(rotationAngle_Plane_Z)<PLANE_ROTATION_SPEED_SPAN_Z+0.5f)
 							{
 								rotationAngle_Plane_Z=0;
@@ -518,7 +518,7 @@ public class KeyThread extends Thread
 							{
 								rotationAngle_Plane_Z-=PLANE_ROTATION_SPEED_SPAN_Z;
 							}
-							//·É»úÊÓ¾õÉÏdirectionÓëÉãÏñ»údirectionĞ£Õı
+							//é£æœºè§†è§‰ä¸Šdirectionä¸æ‘„åƒæœºdirectionæ ¡æ­£
 							if(Math.abs(rotationAngle_Plane_Y-DIRECTION_CAMERA)<2.1f)
 							{
 								rotationAngle_Plane_Y=DIRECTION_CAMERA;
@@ -533,13 +533,13 @@ public class KeyThread extends Thread
 							}
 						}	
 					}
-					planezAngle+=10;//·É»úÂİĞı»ú×ª¶¯½Ç¶È
+					planezAngle+=10;//é£æœºèºæ—‹æœºè½¬åŠ¨è§’åº¦
 					planezAngle%=360;
-					//·É»úÏòÇ°ĞĞÊ»,È·¶¨·É»úµÄÎ»ÖÃ
+					//é£æœºå‘å‰è¡Œé©¶,ç¡®å®šé£æœºçš„ä½ç½®
 		    		PLANE_X-=Math.sin(Math.toRadians(rotationAngle_Plane_Y))*Math.cos(Math.toRadians(rotationAngle_Plane_X))*PLANE_MOVE_SPAN;
 		    		PLANE_Z-=Math.cos(Math.toRadians(rotationAngle_Plane_Y))*Math.cos(Math.toRadians(rotationAngle_Plane_X))*PLANE_MOVE_SPAN;
 		    		float PLANE_Yt=(float) (PLANE_Y+Math.sin(Math.toRadians(rotationAngle_Plane_X))*PLANE_MOVE_SPAN);
-		    		//ÅĞ¶Ï·É»ú²»ÄÜ³öÈ¥
+		    		//åˆ¤æ–­é£æœºä¸èƒ½å‡ºå»
 		    		int gellSize=2;
 		    		if(PLANE_X<(-gellSize+0.5f)*WIDTH_LALNDFORM)
 		    		{
@@ -559,7 +559,7 @@ public class KeyThread extends Thread
 		    		}
 		    		try
 		    		{
-		    			//Åö×²¼ì²â
+		    			//ç¢°æ’æ£€æµ‹
 			    		if(!isnoHitHill(PLANE_X,PLANE_Yt,PLANE_Z,rotationAngle_Plane_Y,rotationAngle_Plane_X))
 			    		{
 			    			PLANE_Y=PLANE_Yt;
@@ -569,15 +569,15 @@ public class KeyThread extends Thread
 			    			if(!isVideo)
 			    			{
 			    				gv.plane.blood-=ArchieArray[mapId][9][4];
-			    				gv.activity.playSound(0,0);//²¥·Å·É»ú±¬Õ¨µÄÉùÒô
-			    				gv.activity.shake();//ÊÖ»úÕğ¶¯Ò»´Î
+			    				gv.activity.playSound(0,0);//æ’­æ”¾é£æœºçˆ†ç‚¸çš„å£°éŸ³
+			    				gv.activity.shake();//æ‰‹æœºéœ‡åŠ¨ä¸€æ¬¡
 			    			}
 			    		}
 		    		}catch(Exception e)
 		    		{
 		    			e.printStackTrace();
 		    		}
-		    		//ÕâÀï¶Ô·É»úµÄ¸ß¶È½øĞĞ¼ì²â,Èç¹ûµ½´ïÒ»¶¨¸ß¶Èºó,Ôò·É»ú²»ÔÙÉÏÉı
+		    		//è¿™é‡Œå¯¹é£æœºçš„é«˜åº¦è¿›è¡Œæ£€æµ‹,å¦‚æœåˆ°è¾¾ä¸€å®šé«˜åº¦å,åˆ™é£æœºä¸å†ä¸Šå‡
 		    		if(PLANE_Y>=PLANE_HEIGHT_MAX)
 		    		{
 		    			isPlaneNoUp=false;
@@ -587,18 +587,18 @@ public class KeyThread extends Thread
 		    		{
 		    			isPlaneNoUp=false;
 		    		}
-		    		//Ìì¿Õñ·Ğı×ª½Ç¶È
+		    		//å¤©ç©ºç©¹æ—‹è½¬è§’åº¦
 		    		rotationAngle_SkyBall+=0.1f;
-		    		//ÕâÀï¼ÆËãÀ×´ïÖ¸ÕëµÄĞı×ª½Ç¶È
+		    		//è¿™é‡Œè®¡ç®—é›·è¾¾æŒ‡é’ˆçš„æ—‹è½¬è§’åº¦
 		    		RADAR_DIRECTION=rotationAngle_Plane_Y;
-					//ÖØĞÂ¼ÆËãÉãÏñ»úµÄÎ»ÖÃ
+					//é‡æ–°è®¡ç®—æ‘„åƒæœºçš„ä½ç½®
 		    		tx=PLANE_X;
 		    		ty=PLANE_Y;
 		    		tz=PLANE_Z;
-		    		cx=(float)(tx+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.sin(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//ÉãÏñ»úx×ø±ê 
-				    cz=(float)(tz+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.cos(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//ÉãÏñ»úz×ø±ê 
-				    cy=(float)(ty+Math.sin(Math.toRadians(ELEVATION_CAMERA))*DISTANCE);//ÉãÏñ»úy×ø±ê
-		    		//¼ÆËã±ê¼Ç·É»úÎ»ÖÃµÄ×ø±ê
+		    		cx=(float)(tx+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.sin(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//æ‘„åƒæœºxåæ ‡ 
+				    cz=(float)(tz+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.cos(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//æ‘„åƒæœºzåæ ‡ 
+				    cy=(float)(ty+Math.sin(Math.toRadians(ELEVATION_CAMERA))*DISTANCE);//æ‘„åƒæœºyåæ ‡
+		    		//è®¡ç®—æ ‡è®°é£æœºä½ç½®çš„åæ ‡
 		    		gv.plane.arsenal_x=-scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-tx)/(MapArray[mapId].length*WIDTH_LALNDFORM/2);
 		    		gv.plane.arsenal_y=scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-tz)/(MapArray[mapId].length*WIDTH_LALNDFORM/2);
 		    		if(gv.plane.arsenal_x*gv.plane.arsenal_x+gv.plane.arsenal_y*gv.plane.arsenal_y>BUTTON_RADAR_BG_WIDTH*BUTTON_RADAR_BG_WIDTH*0.4f*0.4f){
@@ -610,13 +610,13 @@ public class KeyThread extends Thread
 		    		
 				    try
 				    {
-				    	Collections.sort(treeList);//¶ÔÊ÷ÅÅĞò
+				    	Collections.sort(treeList);//å¯¹æ ‘æ’åº
 				    }
 				    catch(Exception e)
 				    {
 				    	e.printStackTrace();
 				    }
-				    // ¼ÆËãÊ÷µÄ³¯Ïò
+				    // è®¡ç®—æ ‘çš„æœå‘
 				    for(Tree tree:treeList)
 				    {
 				    	try
@@ -628,10 +628,10 @@ public class KeyThread extends Thread
 				    		e.printStackTrace();
 				    	}
 			    	}
-				    //ÕâÀï½øĞĞ·¢Éä×Óµ¯
-				    if(WEAPON_INDEX==0&&isFireOn&&(System.nanoTime()-oldTimeBullet>150000000))//ÕâÀïÉèÖÃÁ¬Ğø·¢Éä×Óµ¯
+				    //è¿™é‡Œè¿›è¡Œå‘å°„å­å¼¹
+				    if(WEAPON_INDEX==0&&isFireOn&&(System.nanoTime()-oldTimeBullet>150000000))//è¿™é‡Œè®¾ç½®è¿ç»­å‘å°„å­å¼¹
 				    {
-		        		//ÏòÁĞ±íÖĞÌí¼Ó×Óµ¯¶ÔÏó 
+		        		//å‘åˆ—è¡¨ä¸­æ·»åŠ å­å¼¹å¯¹è±¡ 
 		        		try
 		        		{
 		        			if(bullet_number>0)
@@ -642,7 +642,7 @@ public class KeyThread extends Thread
 			        			bullet_List.add(new BulletForControl(gv,gv.bullet_rect, PLANE_X, PLANE_Y, PLANE_Z, 
 			        					rotationAngle_Plane_X, rotationAngle_Plane_Y,rotationAngle_Plane_X,
 			        					rotationAngle_Plane_Y,rotationAngle_Plane_Z,1,0));
-			        			gv.activity.playSound(3,0);//²¥·Å×Óµ¯µÄÉùÒô
+			        			gv.activity.playSound(3,0);//æ’­æ”¾å­å¼¹çš„å£°éŸ³
 			        			bullet_number-=2;
 			        			Collections.sort(bullet_List);
 		        			}
@@ -653,12 +653,12 @@ public class KeyThread extends Thread
 		        		}
 		        		oldTimeBullet=System.nanoTime();
 				    }
-				    //ÕâÀï·É»ú½øĞĞ·¢ÉäÅÚµ¯
-				    if(WEAPON_INDEX==1&&isFireOn&&(System.nanoTime()-oldTimeBomb>1000000000))//ÕâÀï·¢ÉäÅÚµ¯
+				    //è¿™é‡Œé£æœºè¿›è¡Œå‘å°„ç‚®å¼¹
+				    if(WEAPON_INDEX==1&&isFireOn&&(System.nanoTime()-oldTimeBomb>1000000000))//è¿™é‡Œå‘å°„ç‚®å¼¹
 	        		{
 	        			if(bomb_number>0)
 	        			{
-			        		//ÏòÁĞ±íÖĞÌí¼Ó×Óµ¯¶ÔÏó
+			        		//å‘åˆ—è¡¨ä¸­æ·»åŠ å­å¼¹å¯¹è±¡
 			        		try
 			        		{
 			        			gv.activity.shake();
@@ -670,17 +670,17 @@ public class KeyThread extends Thread
 			        		{
 			        			ee.printStackTrace();
 			        		}
-			        		//Éè¶¨·¢ÉäÅÚµ¯µÄ»úÒíÎ»ÖÃ
+			        		//è®¾å®šå‘å°„ç‚®å¼¹çš„æœºç¿¼ä½ç½®
 			        		fire_index=(fire_index+1)%2;
-			        		gv.activity.playSound(4,0);//²¥·ÅÉùÒô
+			        		gv.activity.playSound(4,0);//æ’­æ”¾å£°éŸ³
 			        		bomb_number--;
 			        		isno_Vibrate=true;
 			        		oldTimeBomb=System.nanoTime();
 	        			}
 	        		}
-				    //¶Ô¸ßÉäÅÚ½øĞĞĞĞÄ£Äâ
-				    if(!isVideo){//Èç¹ûÊÇÊÓÆµ²¥·Å½çÃæÔò²»¶ÔÆä½øĞĞÄ£Äâ
-				    	 //¶Ô×Óµ¯·ÉĞĞ½øĞĞÄ£Äâ
+				    //å¯¹é«˜å°„ç‚®è¿›è¡Œè¡Œæ¨¡æ‹Ÿ
+				    if(!isVideo){//å¦‚æœæ˜¯è§†é¢‘æ’­æ”¾ç•Œé¢åˆ™ä¸å¯¹å…¶è¿›è¡Œæ¨¡æ‹Ÿ
+				    	 //å¯¹å­å¼¹é£è¡Œè¿›è¡Œæ¨¡æ‹Ÿ
 					    for(int i=0;i<cop_bullet_List.size();i++)
 					    {
 					    	try
@@ -692,7 +692,7 @@ public class KeyThread extends Thread
 					    		e.printStackTrace();
 					    	}
 					    }
-				    	//¶ÔÅÚµ¯µÄ·ÉĞĞ½øĞĞÄ£Äâ
+				    	//å¯¹ç‚®å¼¹çš„é£è¡Œè¿›è¡Œæ¨¡æ‹Ÿ
 					    for(int i=0;i<cop_bomb_List.size();i++)
 					    {
 					    	try
@@ -704,19 +704,19 @@ public class KeyThread extends Thread
 					    		e.printStackTrace();
 					    	}
 					    }
-					    minimumdistance=Lock_Distance;//¾àÀëÌøµ½×î´ó
-				    	isno_Lock=false;//ÒÑ¾­ÓĞ¶«Î÷±»Ëø¶¨±êÖ¾ÖÃÎªfalse
-				    	//·É»ú·ÉĞĞµÄ·½ÏòÏòÁ¿
+					    minimumdistance=Lock_Distance;//è·ç¦»è·³åˆ°æœ€å¤§
+				    	isno_Lock=false;//å·²ç»æœ‰ä¸œè¥¿è¢«é”å®šæ ‡å¿—ç½®ä¸ºfalse
+				    	//é£æœºé£è¡Œçš„æ–¹å‘å‘é‡
 				    	directionX=-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.sin(Math.toRadians(rotationAngle_Plane_Y)));
 				    	directionY=(float) (Math.sin(Math.toRadians(rotationAngle_Plane_X)));
 				    	directionZ=-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.cos(Math.toRadians(rotationAngle_Plane_Y)));
 				    	
 				    	for(Arsenal_House ah:arsenal)
 				    	{
-				    		//¼ÆËã¾ü»ğ¿â
-				    		ah.calculateBillboardDirection();//²é¿´¾ü»ğ¿âÊÇ·ñ±»Ëø¶¨
+				    		//è®¡ç®—å†›ç«åº“
+				    		ah.calculateBillboardDirection();//æŸ¥çœ‹å†›ç«åº“æ˜¯å¦è¢«é”å®š
 				    	}
-				    	 //¶ÔÌ¹¿Ë½øĞĞÄ£Äâ
+				    	 //å¯¹å¦å…‹è¿›è¡Œæ¨¡æ‹Ÿ
 					    for(int i=0;i<tankeList.size();i++)
 					    {
 					    	try
@@ -728,7 +728,7 @@ public class KeyThread extends Thread
 					    		e.printStackTrace();
 					    	}
 					    }
-					    //¶Ô¸ßÉäÅÚ½øĞĞÄ£Äâ
+					    //å¯¹é«˜å°„ç‚®è¿›è¡Œæ¨¡æ‹Ÿ
 				    	for(int i=0;i<cop_archie_List.size();i++)
 					    {
 					    	try
@@ -741,7 +741,7 @@ public class KeyThread extends Thread
 					    	}
 					    }
 				    	
-				    	//¶ÔµĞ»úÄ£Äâ
+				    	//å¯¹æ•Œæœºæ¨¡æ‹Ÿ
 					    for(int i=0;i<enemy.size();i++)
 					    {
 					    	try
@@ -753,7 +753,7 @@ public class KeyThread extends Thread
 					    		e.printStackTrace();
 					    	}
 					    }
-					    //¶ÔÌ¹¿ËÅÚµ¯½øĞĞÄ£Äâ
+					    //å¯¹å¦å…‹ç‚®å¼¹è¿›è¡Œæ¨¡æ‹Ÿ
 					    for(int i=0;i<tank_bomb_List.size();i++)
 					    {
 					    	try
@@ -765,7 +765,7 @@ public class KeyThread extends Thread
 					    		e.printStackTrace();
 					    	}
 					    }
-					    //¶Ô¸ßÉäÅÚÅÚµ¯½øĞĞÄ£Äâ
+					    //å¯¹é«˜å°„ç‚®ç‚®å¼¹è¿›è¡Œæ¨¡æ‹Ÿ
 					    for(int i=0;i<cop_archie_bomb_List.size();i++)
 					    {
 					    	try
@@ -780,12 +780,12 @@ public class KeyThread extends Thread
 				    } 
 				}
 			}
-			else//-----------------²Ëµ¥½çÃæ-------------------------------
+			else//-----------------èœå•ç•Œé¢-------------------------------
 			{
-				//ÕâÀï½øĞĞ¹ßĞÔ²âÊÔ
-				if(gv.hasInertia)//Èç¹ûÓĞ¹ßĞÔ
+				//è¿™é‡Œè¿›è¡Œæƒ¯æ€§æµ‹è¯•
+				if(gv.hasInertia)//å¦‚æœæœ‰æƒ¯æ€§
 				{
-					gv.curr_angle_speed=gv.curr_angle_speed+gv.curr_acceleratedSpeed;//¼ÆËãµ±Ç°½ÇËÙ¶È
+					gv.curr_angle_speed=gv.curr_angle_speed+gv.curr_acceleratedSpeed;//è®¡ç®—å½“å‰è§’é€Ÿåº¦
 					if(Math.abs(gv.curr_angle_speed)>2f)
 					{
 						if(gv.missile_rotation+gv.curr_angle_speed>0)
@@ -809,17 +809,17 @@ public class KeyThread extends Thread
 					{
 						gv.curr_angle_speed=0;
 						gv.hasInertia=false;
-						gv.auto_adjust=true;//ÕâÀïÆô¶¯ÖÇÄÜµ÷Õû
+						gv.auto_adjust=true;//è¿™é‡Œå¯åŠ¨æ™ºèƒ½è°ƒæ•´
 					}
 				}
-				if(gv.auto_adjust)//ÕâÀïĞèÒªÆô¶¯ÖÇÄÜµ÷Õû
+				if(gv.auto_adjust)//è¿™é‡Œéœ€è¦å¯åŠ¨æ™ºèƒ½è°ƒæ•´
 				{
 					gv.curr_menu_index=(int) (Math.abs(gv.missile_rotation-22.5f)/45%8);
 					if(Math.abs(gv.missile_rotation+gv.curr_menu_index*45)<3.1f)
 					{
-						gv.activity.playSound(9,0);//²¥·Å²Ëµ¥Ğı×ªµÄÉùÒô
+						gv.activity.playSound(9,0);//æ’­æ”¾èœå•æ—‹è½¬çš„å£°éŸ³
 						gv.missile_rotation=-gv.curr_menu_index*45;
-						gv.auto_adjust=false;//²»ÔÙµ÷Õû
+						gv.auto_adjust=false;//ä¸å†è°ƒæ•´
 					}
 					else if(gv.missile_rotation+gv.curr_menu_index*45>3.1f)
 					{
@@ -830,7 +830,7 @@ public class KeyThread extends Thread
 						gv.missile_rotation+=3f;
 					}
 				}
-				//ÕâÀï½øĞĞµ¼µ¯ÏÂÂäµÄÄ£Äâ
+				//è¿™é‡Œè¿›è¡Œå¯¼å¼¹ä¸‹è½çš„æ¨¡æ‹Ÿ
 				if(gv.isMissileDowning)
 				{
 					gv.missile_ZOffset_Speed+=gv.missile_ZOffset_AcceSpeed;
@@ -838,12 +838,12 @@ public class KeyThread extends Thread
 					if(gv.missile_ZOffset<-100)
 					{
 						gv.activity.playSound(2,0);
-						gv.isDrawBaozha=true;//»æÖÆ±¬Õ¨Í¼
+						gv.isDrawBaozha=true;//ç»˜åˆ¶çˆ†ç‚¸å›¾
 						gv.isMissileDowning=false;
 						gv.missile_rotation=0;
 					}
 				}
-				//ÕâÀï¶Ôµ¼µ¯²Ëµ¥°´Å¥ÓÒÒÆ½øĞĞÄ£Äâ
+				//è¿™é‡Œå¯¹å¯¼å¼¹èœå•æŒ‰é’®å³ç§»è¿›è¡Œæ¨¡æ‹Ÿ
 				if(gv.menu_button_move)
 				{
 					gv.menu_button_XOffset+=gv.menu_button_speed;
@@ -851,42 +851,42 @@ public class KeyThread extends Thread
 					{
 						gv.menu_button_move=false;
 						gv.isMissileDowning=true;
-						gv.activity.playSound(4,0);//²¥·Åµ¼µ¯ÏÂÂäµÄÉùÒô
+						gv.activity.playSound(4,0);//æ’­æ”¾å¯¼å¼¹ä¸‹è½çš„å£°éŸ³
 					}
 				}
-				//ÕâÀï¶Ôµ¼µ¯±¬Õ¨½øĞĞÄ£Äâ
+				//è¿™é‡Œå¯¹å¯¼å¼¹çˆ†ç‚¸è¿›è¡Œæ¨¡æ‹Ÿ
 				if(gv.isDrawBaozha)
 				{
 					gv.baozha_ratio+=gv.baozha_increase;
 					if(gv.baozha_ratio>1.0f)
 					{
-						gv.isMenuLevel=2;//½øÈë¶ş¼¶²Ëµ¥
+						gv.isMenuLevel=2;//è¿›å…¥äºŒçº§èœå•
 						gv.isDrawBaozha=false;
-						gv.menu_button_XOffset=0;//µ¼µ¯²Ëµ¥°´Å¥µÄÎ»ÖÃ¸´Î»
+						gv.menu_button_XOffset=0;//å¯¼å¼¹èœå•æŒ‰é’®çš„ä½ç½®å¤ä½
 						gv.baozha_ratio=0;
 						gv.missile_ZOffset_Speed=0;
 						gv.missile_ZOffset=gv.missile_ZOffset_Ori;
 					}
 				}
-				//ÕâÀï¶Ô¹Ø²Õ½øĞĞÄ£Äâ
+				//è¿™é‡Œå¯¹å…³èˆ±è¿›è¡Œæ¨¡æ‹Ÿ
 				if(gv.doorState==0)
 				{
-					gv.door_YOffset-=gv.door_YSpan;//»ú²ÕÃÅÔË¶¯
-					if(gv.door_YOffset<0.5f)//»ú²ÕÃÅ¹ØÉÏÁË
+					gv.door_YOffset-=gv.door_YSpan;//æœºèˆ±é—¨è¿åŠ¨
+					if(gv.door_YOffset<0.5f)//æœºèˆ±é—¨å…³ä¸Šäº†
 					{
 						gv.door_YOffset=0.5f;
 						gv.door_YSpan=-gv.door_YSpan;
-						gv.doorState=2;//»ú²ÕÃÅÎª¹Ø±Õ
+						gv.doorState=2;//æœºèˆ±é—¨ä¸ºå…³é—­
 						
 					}
-					else if(gv.door_YOffset>1.5f)//»ú²ÕÃÅ´ò¿ªÁË
+					else if(gv.door_YOffset>1.5f)//æœºèˆ±é—¨æ‰“å¼€äº†
 					{
 						gv.door_YOffset=1.5f;
 						gv.door_YSpan=-gv.door_YSpan;
-						gv.doorState=1;//»ú²ÕÃÅÎª´ò¿ª
+						gv.doorState=1;//æœºèˆ±é—¨ä¸ºæ‰“å¼€
 					}
 				}
-				//ÕâÀï½«µ¼µ¯²Ëµ¥Ğı×ªµ½Exit´¦
+				//è¿™é‡Œå°†å¯¼å¼¹èœå•æ—‹è½¬åˆ°Exitå¤„
 				if(gv.moveToExit)
 				{
 					gv.missile_rotation-=40;
@@ -895,10 +895,10 @@ public class KeyThread extends Thread
 						gv.activity.shake();
 						gv.missile_rotation=-225;
 						gv.moveToExit=false;
-						gv.curr_menu_index=5;//µ±Ç°ÎªExit²Ëµ¥´¦
+						gv.curr_menu_index=5;//å½“å‰ä¸ºExitèœå•å¤„
 					}
 				}
-				//ÕâÀï¶Ô°ïÖú½çÃæ½øĞĞÄ£Äâ
+				//è¿™é‡Œå¯¹å¸®åŠ©ç•Œé¢è¿›è¡Œæ¨¡æ‹Ÿ
 				if(gv.doorState==2&&gv.curr_menu_index==3)
 				{
 					gv.help_YOffset+=0.004f;
@@ -911,7 +911,7 @@ public class KeyThread extends Thread
 						gv.help_YOffset=1+HELP_HEIGHT/2;
 					}
 				}
-				//ÕâÀï¶Ô¹ØÓÚ½çÃæ½øĞĞÄ£Äâ
+				//è¿™é‡Œå¯¹å…³äºç•Œé¢è¿›è¡Œæ¨¡æ‹Ÿ
 				if(gv.doorState==2&&gv.curr_menu_index==4)
 				{
 					gv.about_YOffset+=0.004f;
@@ -924,7 +924,7 @@ public class KeyThread extends Thread
 						gv.about_YOffset=1+ABOUT_HEIGHT/2;
 					}
 				}
-				//µ±´¦ÓÚÑ¡Ôñ·É»ú³¡¾°ÖĞÊ±
+				//å½“å¤„äºé€‰æ‹©é£æœºåœºæ™¯ä¸­æ—¶
 				if(2==gv.isMenuLevel)
 				{
 					gv.planeRotate=(gv.planeRotate+1)%360;
@@ -943,7 +943,7 @@ public class KeyThread extends Thread
 	}
 	public boolean isnoHitHill(float fjX,float fjY,float fjZ,float yAngle,float xAngle)
 	{
-		float fjLeftX,fjRightX;//,fjBackLeftX,fjBackRightX;//·É»ú°üÎ§ºĞËÄ¸ö¶¥µãµÄ×ø±ê
+		float fjLeftX,fjRightX;//,fjBackLeftX,fjBackRightX;//é£æœºåŒ…å›´ç›’å››ä¸ªé¡¶ç‚¹çš„åæ ‡
 		float fjLeftY,fjRightY;//,fjBackLeftY,fjBackRightY;
 		float fjLeftZ,fjRightZ;//,fjBackLeftZ,fjBackRightZ;
 		fjLeftX=fjX-(float)(Math.cos(Math.toRadians(xAngle))*Math.sin(Math.toRadians(yAngle+ANGLE_X_Z))
@@ -968,13 +968,13 @@ public class KeyThread extends Thread
 		}
 		return false;
 	}
-	//ÅĞ¶ÏÄ³Ò»µãÊÇ·ñÔÚÉ½µØÏÂÃæ
+	//åˆ¤æ–­æŸä¸€ç‚¹æ˜¯å¦åœ¨å±±åœ°ä¸‹é¢
 	public  boolean isYachtHeadCollectionsWithLand(float ctx,float ctyh,float ctz)
 	{
-		//ÅĞ¶ÏÆäÊÇ·ñ×²¾ü»ğ¿âÁË
+		//åˆ¤æ–­å…¶æ˜¯å¦æ’å†›ç«åº“äº†
 		for(Arsenal_House as:arsenal)
 		{
-			if(ctyh>as.ty&&ctyh<as.ty+ARSENAL_Y//Óë¾ü»ğ¿âÏà×²ÁË
+			if(ctyh>as.ty&&ctyh<as.ty+ARSENAL_Y//ä¸å†›ç«åº“ç›¸æ’äº†
 					&&ctx>as.tx-ARSENAL_X&&ctx<as.tx+ARSENAL_X
 					&&ctz>as.tz-ARSENAL_Z&&ctz<as.tz+ARSENAL_Z){
 				gv.plane.blood-=ArchieArray[mapId][9][3];
@@ -983,7 +983,7 @@ public class KeyThread extends Thread
 				return true;
 			}	
 		}
-		//ÅĞ¶ÏÊÇ·ñÓëÆ½Ãñ·¿ÏàÅö
+		//åˆ¤æ–­æ˜¯å¦ä¸å¹³æ°‘æˆ¿ç›¸ç¢°
 		for(int i=0;i<ArchieArray[mapId][4].length/2;i++)
 		{
 			float positionX=ArchieArray[mapId][4][2*i]*WIDTH_LALNDFORM;//,LAND_HIGHEST+house_height/2, ArchieArray[mapId][4][2*i+1]*WIDTH_LALNDFORM
@@ -1002,61 +1002,61 @@ public class KeyThread extends Thread
 			}
 		}
 		
-		float UNIT_SIZE=LAND_UNIT_SIZE;//Â½µØÃ¿Ò»¸ö¸ñ×ÓµÄ´óĞ¡
-		int COLS=LANDS_HEIGHT_ARRAY[0].length;//WATER_COLS;//ĞĞÊıºÍÁĞÊı
+		float UNIT_SIZE=LAND_UNIT_SIZE;//é™†åœ°æ¯ä¸€ä¸ªæ ¼å­çš„å¤§å°
+		int COLS=LANDS_HEIGHT_ARRAY[0].length;//WATER_COLS;//è¡Œæ•°å’Œåˆ—æ•°
 		int ROWS=LANDS_HEIGHT_ARRAY[0].length;//WATER_ROWS;
 		
-		float cellCount=0;//ĞèÒªÒÆ¶¯µÄ¸ñ×ÓÊı
+		float cellCount=0;//éœ€è¦ç§»åŠ¨çš„æ ¼å­æ•°
 		
-		float smallBlockLength=WIDTH_LALNDFORM;//UNIT_SIZE*COLS;//Ã¿Ò»¸öÖĞ¸ñ×ÓµÄ´óĞ¡
+		float smallBlockLength=WIDTH_LALNDFORM;//UNIT_SIZE*COLS;//æ¯ä¸€ä¸ªä¸­æ ¼å­çš„å¤§å°
 		ctx=ctx+cellCount*smallBlockLength;
-		ctz=ctz+cellCount*smallBlockLength;//½«µØÍ¼ÒÆ¶¯µ½¶¼´óÓÚÁãµÄÇøÓò£¬ ´Ë´¦Ö»ÓĞËÄ¸öÖĞ¸ñ×Ó×é³ÉµÄµØÍ¼
-		int col=(int)(ctx/smallBlockLength);//·É»úËùÔÚµÄĞĞÁĞ
+		ctz=ctz+cellCount*smallBlockLength;//å°†åœ°å›¾ç§»åŠ¨åˆ°éƒ½å¤§äºé›¶çš„åŒºåŸŸï¼Œ æ­¤å¤„åªæœ‰å››ä¸ªä¸­æ ¼å­ç»„æˆçš„åœ°å›¾
+		int col=(int)(ctx/smallBlockLength);//é£æœºæ‰€åœ¨çš„è¡Œåˆ—
 		int row=(int)(ctz/smallBlockLength);
 		if(col<0||row<0||col>MapArray[mapId].length-1||row>MapArray[mapId].length-1)
 		{
 			if(ctyh<0){
 				PLANE_Y+=0-ctyh;
-				return true;//Èç¹ûÊÇµØÍ¼°æ¿éÒÔÎª£¬Èç¹ûĞ¡ÓÚË®ÃæÔòÎªÅö×²µ½µØÁË
+				return true;//å¦‚æœæ˜¯åœ°å›¾ç‰ˆå—ä»¥ä¸ºï¼Œå¦‚æœå°äºæ°´é¢åˆ™ä¸ºç¢°æ’åˆ°åœ°äº†
 			}else{
 				return false;
 			}
 		}
 		ctx=ctx-col*smallBlockLength;
-		ctz=ctz-row*smallBlockLength;//½«¸ÃµãÒÆ¶¯µ½Ïà¶ÔÓÚÔ­µãµÄ×ø±ê´¦
-		int mapArrayId=MapArray[mapId][row][col];//´Ë´¦»¹µÃ´ÓĞ´
-		float moderXZ=0;//ÖĞ¼ä±äÁ¿
+		ctz=ctz-row*smallBlockLength;//å°†è¯¥ç‚¹ç§»åŠ¨åˆ°ç›¸å¯¹äºåŸç‚¹çš„åæ ‡å¤„
+		int mapArrayId=MapArray[mapId][row][col];//æ­¤å¤„è¿˜å¾—ä»å†™
+		float moderXZ=0;//ä¸­é—´å˜é‡
 		switch (mapArrayId) {
-		case 4://Ğı×ª¾ÅÊ®¶È
+		case 4://æ—‹è½¬ä¹ååº¦
 			moderXZ=ctz;
 			ctz=ctx;
 			ctx=smallBlockLength-moderXZ;
 			mapArrayId=0;
 			break;
-		case 5://Ğı×ª180¶È
+		case 5://æ—‹è½¬180åº¦
 			ctx=smallBlockLength-ctx;
 			ctz=smallBlockLength-ctz;
 			mapArrayId=0;
 			break;
-		case 6://Ğı×ª270¶È
+		case 6://æ—‹è½¬270åº¦
 			moderXZ=ctz;			
 			ctz=smallBlockLength-ctx;
 			ctx=moderXZ;
 			mapArrayId=0;
 			break;
 			
-		case 7://Ğı×ª¾ÅÊ®¶È
+		case 7://æ—‹è½¬ä¹ååº¦
 			moderXZ=ctz;
 			ctz=ctx;
 			ctx=smallBlockLength-moderXZ;
 			mapArrayId=1;
 			break;
-		case 8://Ğı×ª180¶È
+		case 8://æ—‹è½¬180åº¦
 			ctx=smallBlockLength-ctx;
 			ctz=smallBlockLength-ctz;
 			mapArrayId=1;
 			break;
-		case 9://Ğı×ª270¶È
+		case 9://æ—‹è½¬270åº¦
 			moderXZ=ctz;			
 			ctz=smallBlockLength-ctx;
 			ctx=moderXZ;
@@ -1064,18 +1064,18 @@ public class KeyThread extends Thread
 			break;
 			
 			
-		case 10://Ğı×ª¾ÅÊ®¶È
+		case 10://æ—‹è½¬ä¹ååº¦
 			moderXZ=ctz;
 			ctz=ctx;
 			ctx=smallBlockLength-moderXZ;
 			mapArrayId=2;
 			break;
-		case 11://Ğı×ª180¶È
+		case 11://æ—‹è½¬180åº¦
 			ctx=smallBlockLength-ctx;
 			ctz=smallBlockLength-ctz;
 			mapArrayId=2;
 			break;
-		case 12://Ğı×ª270¶È
+		case 12://æ—‹è½¬270åº¦
 			moderXZ=ctz;			
 			ctz=smallBlockLength-ctx;
 			ctx=moderXZ;
@@ -1135,9 +1135,9 @@ public class KeyThread extends Thread
 		}
 		try
 		{
-			int tempCol=(int)(ctx/UNIT_SIZE)%7;//µÃµ½ËùÔÚĞ¡Ä£¿éµÄĞĞÁĞ
+			int tempCol=(int)(ctx/UNIT_SIZE)%7;//å¾—åˆ°æ‰€åœ¨å°æ¨¡å—çš„è¡Œåˆ—
 		    int tempRow=(int)(ctz/UNIT_SIZE)%7;
-			float yArray[][]=Constant.LANDS_HEIGHT_ARRAY[mapArrayId];//¸ù¾İÄ£¿éIdµÃ³ö¸ÃÄ£¿éµÄYÖáÊı×é
+			float yArray[][]=Constant.LANDS_HEIGHT_ARRAY[mapArrayId];//æ ¹æ®æ¨¡å—Idå¾—å‡ºè¯¥æ¨¡å—çš„Yè½´æ•°ç»„
 			float x0=tempCol*UNIT_SIZE;
 		    float z0=tempRow*UNIT_SIZE; 
 		    float y0=yArray[tempRow][tempCol];
@@ -1153,11 +1153,11 @@ public class KeyThread extends Thread
 		    float x3=x0;
 		    float z3=z0+UNIT_SIZE;
 		    float y3=yArray[(tempRow+1)%ROWS][(tempCol)%COLS];    
-		    //´¬Í·´¦µÄÂ½µØ¸ß¶È
+		    //èˆ¹å¤´å¤„çš„é™†åœ°é«˜åº¦
 		    float cty=0;
 		    if(isInTriangle(x0,z0,x1,z1,x3,z3,ctx,ctz))
-		    {//ÅĞ¶Ï¸ÃµãÊÇ·ñÎ»ÓÚ0-1-3Èı½ÇĞÎ
-		    	//Çó0-1-3ÃæÔÚ´¬Í·´¦µÄ¸ß¶È
+		    {//åˆ¤æ–­è¯¥ç‚¹æ˜¯å¦ä½äº0-1-3ä¸‰è§’å½¢
+		    	//æ±‚0-1-3é¢åœ¨èˆ¹å¤´å¤„çš„é«˜åº¦
 		    	cty=fromXZToY
 			    (
 				    	x0,y0,z0,
@@ -1168,7 +1168,7 @@ public class KeyThread extends Thread
 		    }
 		    else if(isInTriangle(x2,z2,x3,z3,x1,z1,ctx,ctz))
 		    {
-		    	//Çó1-2-3ÃæÔÚ¸Äµã´¦µÄ¸ß¶È
+		    	//æ±‚1-2-3é¢åœ¨æ”¹ç‚¹å¤„çš„é«˜åº¦
 		    	cty=fromXZToY
 			    (
 				    	x1,y1,z1,
@@ -1178,7 +1178,7 @@ public class KeyThread extends Thread
 				);
 		    }	    
 		    if(cty>ctyh)
-		    {//Èô·É»ú´¦µÄÂ½µØµÍÓÚ·É»ú¸ß¶ÈÔò·µ»Øtrue
+		    {//è‹¥é£æœºå¤„çš„é™†åœ°ä½äºé£æœºé«˜åº¦åˆ™è¿”å›true
 		    	PLANE_Y+=cty-ctyh;
 		    	return true;
 		    }
@@ -1191,25 +1191,25 @@ public class KeyThread extends Thread
 	    return false;
 	}
 	
-	//ÅĞ¶ÏÄ³Ò»µãÊÇ·ñÔÚÉ½µØÏÂÃæ
+	//åˆ¤æ–­æŸä¸€ç‚¹æ˜¯å¦åœ¨å±±åœ°ä¸‹é¢
 	public static float isYachtHeadCollectionsWithLandPaodan(float ctx,float ctyh,float ctz)
 	{
-		float UNIT_SIZE=LAND_UNIT_SIZE;//Â½µØÃ¿Ò»¸ö¸ñ×ÓµÄ´óĞ¡
-		int COLS=LANDS_HEIGHT_ARRAY[0].length;//WATER_COLS;//ĞĞÊıºÍÁĞÊı
+		float UNIT_SIZE=LAND_UNIT_SIZE;//é™†åœ°æ¯ä¸€ä¸ªæ ¼å­çš„å¤§å°
+		int COLS=LANDS_HEIGHT_ARRAY[0].length;//WATER_COLS;//è¡Œæ•°å’Œåˆ—æ•°
 		int ROWS=LANDS_HEIGHT_ARRAY[0].length;//WATER_ROWS;
 		
-		float cellCount=0;//ĞèÒªÒÆ¶¯µÄ¸ñ×ÓÊı
+		float cellCount=0;//éœ€è¦ç§»åŠ¨çš„æ ¼å­æ•°
 		
-		float smallBlockLength=WIDTH_LALNDFORM;//UNIT_SIZE*COLS;//Ã¿Ò»¸öÖĞ¸ñ×ÓµÄ´óĞ¡
+		float smallBlockLength=WIDTH_LALNDFORM;//UNIT_SIZE*COLS;//æ¯ä¸€ä¸ªä¸­æ ¼å­çš„å¤§å°
 		ctx=ctx+cellCount*smallBlockLength;
-		ctz=ctz+cellCount*smallBlockLength;//½«µØÍ¼ÒÆ¶¯µ½¶¼´óÓÚÁãµÄÇøÓò£¬ ´Ë´¦Ö»ÓĞËÄ¸öÖĞ¸ñ×Ó×é³ÉµÄµØÍ¼
-		int col=(int)(ctx/smallBlockLength);//·É»úËùÔÚµÄĞĞÁĞ
+		ctz=ctz+cellCount*smallBlockLength;//å°†åœ°å›¾ç§»åŠ¨åˆ°éƒ½å¤§äºé›¶çš„åŒºåŸŸï¼Œ æ­¤å¤„åªæœ‰å››ä¸ªä¸­æ ¼å­ç»„æˆçš„åœ°å›¾
+		int col=(int)(ctx/smallBlockLength);//é£æœºæ‰€åœ¨çš„è¡Œåˆ—
 		int row=(int)(ctz/smallBlockLength);
 		if(col<0||row<0||col>MapArray[mapId].length-1||row>MapArray[mapId].length-1)
 		{
 			if(ctyh<0)
 			{
-				return 0;//Èç¹ûÊÇµØÍ¼°æ¿éÒÔÎª£¬Èç¹ûĞ¡ÓÚË®ÃæÔòÎªÅö×²µ½µØÁË
+				return 0;//å¦‚æœæ˜¯åœ°å›¾ç‰ˆå—ä»¥ä¸ºï¼Œå¦‚æœå°äºæ°´é¢åˆ™ä¸ºç¢°æ’åˆ°åœ°äº†
 			}
 			else
 			{
@@ -1217,41 +1217,41 @@ public class KeyThread extends Thread
 			}
 		}
 		ctx=ctx-col*smallBlockLength;
-		ctz=ctz-row*smallBlockLength;//½«¸ÃµãÒÆ¶¯µ½Ïà¶ÔÓÚÔ­µãµÄ×ø±ê´¦
-		int mapArrayId=MapArray[mapId][row][col];//´Ë´¦»¹µÃ´ÓĞ´
-		float moderXZ=0;//ÖĞ¼ä±äÁ¿
+		ctz=ctz-row*smallBlockLength;//å°†è¯¥ç‚¹ç§»åŠ¨åˆ°ç›¸å¯¹äºåŸç‚¹çš„åæ ‡å¤„
+		int mapArrayId=MapArray[mapId][row][col];//æ­¤å¤„è¿˜å¾—ä»å†™
+		float moderXZ=0;//ä¸­é—´å˜é‡
 		switch (mapArrayId) 
 		{
-		case 4://Ğı×ª¾ÅÊ®¶È
+		case 4://æ—‹è½¬ä¹ååº¦
 			moderXZ=ctz;
 			ctz=ctx;
 			ctx=smallBlockLength-moderXZ;
 			mapArrayId=0;
 			break;
-		case 5://Ğı×ª180¶È
+		case 5://æ—‹è½¬180åº¦
 			ctx=smallBlockLength-ctx;
 			ctz=smallBlockLength-ctz;
 			mapArrayId=0;
 			break;
-		case 6://Ğı×ª270¶È
+		case 6://æ—‹è½¬270åº¦
 			moderXZ=ctz;			
 			ctz=smallBlockLength-ctx;
 			ctx=moderXZ;
 			mapArrayId=0;
 			break;
 			
-		case 7://Ğı×ª¾ÅÊ®¶È
+		case 7://æ—‹è½¬ä¹ååº¦
 			moderXZ=ctz;
 			ctz=ctx;
 			ctx=smallBlockLength-moderXZ;
 			mapArrayId=1;
 			break;
-		case 8://Ğı×ª180¶È
+		case 8://æ—‹è½¬180åº¦
 			ctx=smallBlockLength-ctx;
 			ctz=smallBlockLength-ctz;
 			mapArrayId=1;
 			break;
-		case 9://Ğı×ª270¶È
+		case 9://æ—‹è½¬270åº¦
 			moderXZ=ctz;			
 			ctz=smallBlockLength-ctx;
 			ctx=moderXZ;
@@ -1259,18 +1259,18 @@ public class KeyThread extends Thread
 			break;
 			
 			
-		case 10://Ğı×ª¾ÅÊ®¶È
+		case 10://æ—‹è½¬ä¹ååº¦
 			moderXZ=ctz;
 			ctz=ctx;
 			ctx=smallBlockLength-moderXZ;
 			mapArrayId=2;
 			break;
-		case 11://Ğı×ª180¶È
+		case 11://æ—‹è½¬180åº¦
 			ctx=smallBlockLength-ctx;
 			ctz=smallBlockLength-ctz;
 			mapArrayId=2;
 			break;
-		case 12://Ğı×ª270¶È
+		case 12://æ—‹è½¬270åº¦
 			moderXZ=ctz;			
 			ctz=smallBlockLength-ctx;
 			ctx=moderXZ;
@@ -1322,10 +1322,10 @@ public class KeyThread extends Thread
 		default:
 			return -5;
 		}
-		int tempCol=(int)(ctx/UNIT_SIZE)%7;//µÃµ½ËùÔÚĞ¡Ä£¿éµÄĞĞÁĞ
+		int tempCol=(int)(ctx/UNIT_SIZE)%7;//å¾—åˆ°æ‰€åœ¨å°æ¨¡å—çš„è¡Œåˆ—
 	    int tempRow=(int)(ctz/UNIT_SIZE)%7;
 	    
-		float yArray[][]=Constant.LANDS_HEIGHT_ARRAY[mapArrayId];//¸ù¾İÄ£¿éIdµÃ³ö¸ÃÄ£¿éµÄYÖáÊı×é
+		float yArray[][]=Constant.LANDS_HEIGHT_ARRAY[mapArrayId];//æ ¹æ®æ¨¡å—Idå¾—å‡ºè¯¥æ¨¡å—çš„Yè½´æ•°ç»„
 		
 		float x0=tempCol*UNIT_SIZE;
 	    float z0=tempRow*UNIT_SIZE; 
@@ -1342,12 +1342,12 @@ public class KeyThread extends Thread
 	    float x3=x0;
 	    float z3=z0+UNIT_SIZE;
 	    float y3=yArray[(tempRow+1)%ROWS][(tempCol)%COLS];    
-	    //´¬Í·´¦µÄÂ½µØ¸ß¶È
+	    //èˆ¹å¤´å¤„çš„é™†åœ°é«˜åº¦
 	    float cty=0;
 	    
 	    if(isInTriangle(x0,z0,x1,z1,x3,z3,ctx,ctz))
-	    {//ÅĞ¶Ï¸ÃµãÊÇ·ñÎ»ÓÚ0-1-3Èı½ÇĞÎ
-	    	//Çó0-1-3ÃæÔÚ´¬Í·´¦µÄ¸ß¶È
+	    {//åˆ¤æ–­è¯¥ç‚¹æ˜¯å¦ä½äº0-1-3ä¸‰è§’å½¢
+	    	//æ±‚0-1-3é¢åœ¨èˆ¹å¤´å¤„çš„é«˜åº¦
 	    	cty=fromXZToY
 		    (
 			    	x0,y0,z0,
@@ -1358,7 +1358,7 @@ public class KeyThread extends Thread
 	    }
 	    else if(isInTriangle(x2,z2,x3,z3,x1,z1,ctx,ctz))
 	    {
-	    	//Çó1-2-3ÃæÔÚ¸Äµã´¦µÄ¸ß¶È
+	    	//æ±‚1-2-3é¢åœ¨æ”¹ç‚¹å¤„çš„é«˜åº¦
 	    	cty=fromXZToY
 		    (
 			    	x1,y1,z1,
@@ -1368,7 +1368,7 @@ public class KeyThread extends Thread
 			);
 	    }	    
 	    if(cty>ctyh)
-	    {//Èô·É»ú´¦µÄÂ½µØµÍÓÚ·É»ú¸ß¶ÈÔò·µ»Øtrue
+	    {//è‹¥é£æœºå¤„çš„é™†åœ°ä½äºé£æœºé«˜åº¦åˆ™è¿”å›true
 	    	return cty;
 	    }
 	    
@@ -1378,90 +1378,90 @@ public class KeyThread extends Thread
 	
 	
 	
-	//ÅĞ¶ÏÒ»¸öµãÊÇ·ñÔÚÈı½ÇĞÎÄÚµÄ·½·¨
-	//»ù±¾Ëã·¨Ë¼ÏëÊÇÊ×ÏÈÇóÒª±»ÅĞ¶ÏµÄµãµ½Èı½ÇĞÎÈı¸ö¶¥µãµÄÊ¸Á¿1¡¢2¡¢3
-	//È»ºóÈı¸öÊ¸Á¿Çó²æ»ı£¬ÈôÈı¸ö²æ»ıÍ¬ºÅÔòµãÎ»ÓÚÈı½ÇĞÎÄÚ£¬·ñÔòÎ»ÓÚÈı½ÇĞÎÍâ
+	//åˆ¤æ–­ä¸€ä¸ªç‚¹æ˜¯å¦åœ¨ä¸‰è§’å½¢å†…çš„æ–¹æ³•
+	//åŸºæœ¬ç®—æ³•æ€æƒ³æ˜¯é¦–å…ˆæ±‚è¦è¢«åˆ¤æ–­çš„ç‚¹åˆ°ä¸‰è§’å½¢ä¸‰ä¸ªé¡¶ç‚¹çš„çŸ¢é‡1ã€2ã€3
+	//ç„¶åä¸‰ä¸ªçŸ¢é‡æ±‚å‰ç§¯ï¼Œè‹¥ä¸‰ä¸ªå‰ç§¯åŒå·åˆ™ç‚¹ä½äºä¸‰è§’å½¢å†…ï¼Œå¦åˆ™ä½äºä¸‰è§’å½¢å¤–
 	public static boolean isInTriangle
 	(
-			//Èı½ÇĞÎµÚÒ»¸öµãµÄXY×ø±ê
+			//ä¸‰è§’å½¢ç¬¬ä¸€ä¸ªç‚¹çš„XYåæ ‡
 			float x1,
 			float y1,
-			//Èı½ÇĞÎµÚ¶ş¸öµãµÄXY×ø±ê
+			//ä¸‰è§’å½¢ç¬¬äºŒä¸ªç‚¹çš„XYåæ ‡
 			float x2,
 			float y2,
-			//Èı½ÇĞÎµÚÈı¸öµãµÄXY×ø±ê
+			//ä¸‰è§’å½¢ç¬¬ä¸‰ä¸ªç‚¹çš„XYåæ ‡
 			float x3,
 			float y3,
-			//±»ÅĞ¶ÏµãµÄXY×ø±ê
+			//è¢«åˆ¤æ–­ç‚¹çš„XYåæ ‡
 			float dx,
 			float dy
 	)
 	{
-		//±»ÅĞ¶Ïµãµ½Èı½ÇĞÎµÚÒ»¸öµãµÄÊ¸Á¿
+		//è¢«åˆ¤æ–­ç‚¹åˆ°ä¸‰è§’å½¢ç¬¬ä¸€ä¸ªç‚¹çš„çŸ¢é‡
 		float vector1x=dx-x1;
 		float vector1y=dy-y1;
 		
-		//±»ÅĞ¶Ïµãµ½Èı½ÇĞÎµÚ¶ş¸öµãµÄÊ¸Á¿
+		//è¢«åˆ¤æ–­ç‚¹åˆ°ä¸‰è§’å½¢ç¬¬äºŒä¸ªç‚¹çš„çŸ¢é‡
 		float vector2x=dx-x2;
 		float vector2y=dy-y2;
 		
-		//±»ÅĞ¶Ïµãµ½Èı½ÇĞÎµÚÈı¸öµãµÄÊ¸Á¿
+		//è¢«åˆ¤æ–­ç‚¹åˆ°ä¸‰è§’å½¢ç¬¬ä¸‰ä¸ªç‚¹çš„çŸ¢é‡
 		float vector3x=dx-x3;
 		float vector3y=dy-y3;
 		
-		//¼ÆËãµÚ1¡¢2Ê¸Á¿¸ö²æ»ı
+		//è®¡ç®—ç¬¬1ã€2çŸ¢é‡ä¸ªå‰ç§¯
 		float crossProduct1=vector1x*vector2y-vector1y*vector2x;
 		
-		//¼ÆËãµÚ2¡¢3Ê¸Á¿¸ö²æ»ı
+		//è®¡ç®—ç¬¬2ã€3çŸ¢é‡ä¸ªå‰ç§¯
 		float crossProduct2=vector2x*vector3y-vector2y*vector3x;
 		
-		//¼ÆËãµÚ3¡¢1Ê¸Á¿¸ö²æ»ı
+		//è®¡ç®—ç¬¬3ã€1çŸ¢é‡ä¸ªå‰ç§¯
 		float crossProduct3=vector3x*vector1y-vector3y*vector1x;
 		
 		if(crossProduct1<0&&crossProduct2<0&&crossProduct3<0)
-		{//ÈôÈı¸ö²æ»ıÍ¬ºÅ·µ»Øtrue
+		{//è‹¥ä¸‰ä¸ªå‰ç§¯åŒå·è¿”å›true
 			return true;
 		}
 		
 		if(crossProduct1>0&&crossProduct2>0&&crossProduct3>0)
-		{//ÈôÈı¸ö²æ»ıÍ¬ºÅ·µ»Øtrue
+		{//è‹¥ä¸‰ä¸ªå‰ç§¯åŒå·è¿”å›true
 			return true;
 		}
 		
 		return false;
 	}
 	
-	//¼ÆËãÓÉÈı¸öµã0¡¢1¡¢2È·¶¨µÄÆ½ÃæÔÚÖ¸¶¨XZ×ø±ê´¦µÄ¸ß¶È
-	//»ù±¾Ëã·¨Ë¼Ïë£¬Ê×ÏÈÇó³ö0ºÅµãµ½1¡¢2ºÅµãµÄÊ¸Á¿
-	//È»ºóÕâÁ½¸öÊ¸Á¿Çó²æ»ıµÃµ½Èı½ÇĞÎÆ½ÃæµÄ·¨Ê¸Á¿{A,B,C}
-	//½Ó×ÅÍ¨¹ı·¨Ê¸Á¿ºÍ0ºÅµã×ø±ê¿ÉÒÔĞ´³öÈı½ÇĞÎÆ½ÃæµÄ·½³Ì
+	//è®¡ç®—ç”±ä¸‰ä¸ªç‚¹0ã€1ã€2ç¡®å®šçš„å¹³é¢åœ¨æŒ‡å®šXZåæ ‡å¤„çš„é«˜åº¦
+	//åŸºæœ¬ç®—æ³•æ€æƒ³ï¼Œé¦–å…ˆæ±‚å‡º0å·ç‚¹åˆ°1ã€2å·ç‚¹çš„çŸ¢é‡
+	//ç„¶åè¿™ä¸¤ä¸ªçŸ¢é‡æ±‚å‰ç§¯å¾—åˆ°ä¸‰è§’å½¢å¹³é¢çš„æ³•çŸ¢é‡{A,B,C}
+	//æ¥ç€é€šè¿‡æ³•çŸ¢é‡å’Œ0å·ç‚¹åæ ‡å¯ä»¥å†™å‡ºä¸‰è§’å½¢å¹³é¢çš„æ–¹ç¨‹
 	// A(x-x0)+B(y-y0)+c(z-z0)=0
-	//È»ºó¿ÉÒÔÍÆµ¼³öÖ¸¶¨xz×ø±ê´¦yµÄÇóÖµ¹«Ê½
+	//ç„¶åå¯ä»¥æ¨å¯¼å‡ºæŒ‡å®šxzåæ ‡å¤„yçš„æ±‚å€¼å…¬å¼
 	//y=(C(z0-z)+A(x0-x))/B+y0;
-	//×îºóÍ¨¹ıÇóÖµ¹«Ê½Çó³öÖ¸¶¨xz×ø±ê´¦yµÄÖµ
+	//æœ€åé€šè¿‡æ±‚å€¼å…¬å¼æ±‚å‡ºæŒ‡å®šxzåæ ‡å¤„yçš„å€¼
 	public static  float fromXZToY
 	(
-		float tx0,float ty0,float tz0,//È·¶¨Æ½ÃæµÄµã0
-		float tx1,float ty1,float tz1,//È·¶¨Æ½ÃæµÄµã1
-		float tx2,float ty2,float tz2,//È·¶¨Æ½ÃæµÄµã2
-		float ctx,float ctz//´¬Í·µÄXZ×ø±ê
+		float tx0,float ty0,float tz0,//ç¡®å®šå¹³é¢çš„ç‚¹0
+		float tx1,float ty1,float tz1,//ç¡®å®šå¹³é¢çš„ç‚¹1
+		float tx2,float ty2,float tz2,//ç¡®å®šå¹³é¢çš„ç‚¹2
+		float ctx,float ctz//èˆ¹å¤´çš„XZåæ ‡
 	)
 	{
-		//Çó³ö0ºÅµãµ½1ºÅµãµÄÊ¸Á¿
+		//æ±‚å‡º0å·ç‚¹åˆ°1å·ç‚¹çš„çŸ¢é‡
         float x1=tx1-tx0;
         float y1=ty1-ty0;
         float z1=tz1-tz0;
-        //Çó³ö0ºÅµãµ½2ºÅµãµÄÊ¸Á¿
+        //æ±‚å‡º0å·ç‚¹åˆ°2å·ç‚¹çš„çŸ¢é‡
         float x2=tx2-tx0;
         float y2=ty2-ty0;
         float z2=tz2-tz0;
-        //Çó³öÁ½¸öÊ¸Á¿²æ»ıÊ¸Á¿ÔÚXYZÖáµÄ·ÖÁ¿ABC
+        //æ±‚å‡ºä¸¤ä¸ªçŸ¢é‡å‰ç§¯çŸ¢é‡åœ¨XYZè½´çš„åˆ†é‡ABC
         float A=y1*z2-y2*z1;
         float B=z1*x2-z2*x1;
         float C=x1*y2-x2*y1;
-        //Í¨¹ıÇóÖµ¹«Ê½ÇóÖ¸¶¨xz´¦µÄyÖµ
+        //é€šè¿‡æ±‚å€¼å…¬å¼æ±‚æŒ‡å®šxzå¤„çš„yå€¼
 		float yResult=(C*(tz0-ctz)+A*(tx0-ctx))/B+ty0;
-		//·µ»Ø½á¹û
+		//è¿”å›ç»“æœ
 		return yResult;
 	}	
 

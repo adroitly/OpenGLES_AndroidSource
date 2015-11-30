@@ -3,38 +3,38 @@ import static com.bn.st.xc.Constant.*;
 
 import com.bn.core.MatrixState;
 
-//´ËÀàÖ÷ÒªÊÇÓÃÀ´»æÖÆ·¿¼ä
+//æ­¤ç±»ä¸»è¦æ˜¯ç”¨æ¥ç»˜åˆ¶æˆ¿é—´
 public class HouseForDraw 
 {
-	//µØÃæµÄ³¤¡¢¿íºÍÏòÏÂÆ½ÒÆµÄ¾àÀë
+	//åœ°é¢çš„é•¿ã€å®½å’Œå‘ä¸‹å¹³ç§»çš„è·ç¦»
 	private float floorWidth=60;
 	private float floorHeight=60;
 	private float floorDownOffset=-WALL_HEIGHT;
 	
-	//Ç½µÄ¿í¸ß   ÕâÀïÊÇÖ¸  ¿í¸ßµÄÒ»°ë
+	//å¢™çš„å®½é«˜   è¿™é‡Œæ˜¯æŒ‡  å®½é«˜çš„ä¸€åŠ
 	private float wallWidth=WALL_WIDHT;
 	private float wallHeight=WALL_HEIGHT;
 	private float wall_z_offset=(float) Math.cos((float)(Math.PI/6))*wallWidth*2;
 	
-	TextureRect floor;//µØ°å
-	ColorLightRect wall;//Î§Ç½
-	TextureRect wall_tex;//ÎÆÀíÇ½£¬ÓÃÀ´·ÅÖÃ¹ã¸æ
+	TextureRect floor;//åœ°æ¿
+	ColorLightRect wall;//å›´å¢™
+	TextureRect wall_tex;//çº¹ç†å¢™ï¼Œç”¨æ¥æ”¾ç½®å¹¿å‘Š
 	
-	//Í¸Ã÷¶È
+	//é€æ˜åº¦
 	private float alpha1=1.0f;
 	private float alpha2=0.3f;
 	
-	//»æÖÆÕ¹ÌüµÄ·½·¨
+	//ç»˜åˆ¶å±•å…çš„æ–¹æ³•
 	public HouseForDraw ()	
 	{  
-		//´´½¨µØÃæ
+		//åˆ›å»ºåœ°é¢
 		floor=new TextureRect(ShaderManager.getCommTextureShaderProgram(),floorWidth,floorHeight);
-		//´´½¨Î§Ç½
+		//åˆ›å»ºå›´å¢™
 		wall=new ColorLightRect(ShaderManager.getColorshaderProgram(),wallWidth,wallHeight,HOUSE_COLOR[1]);
-		//´´½¨·ÅÖÃ¹ã¸æµÄÎÆÀíÇ½
+		//åˆ›å»ºæ”¾ç½®å¹¿å‘Šçš„çº¹ç†å¢™
 		wall_tex=new TextureRect(ShaderManager.getCommTextureShaderProgram(),wallWidth,wallHeight);
 	}
-	//»æÖÆµØ°åµÄ·½·¨
+	//ç»˜åˆ¶åœ°æ¿çš„æ–¹æ³•
 	public void drawFloor(int texId)
 	{
 		MatrixState.pushMatrix();
@@ -43,20 +43,20 @@ public class HouseForDraw
     	floor.drawSelf(texId);
 		MatrixState.popMatrix();
 	}
-	public void drawSelf()//²»Í¸Ã÷
+	public void drawSelf()//ä¸é€æ˜
 	{
-		//»æÖÆÎ§Ç½1
+		//ç»˜åˆ¶å›´å¢™1
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, 0,-wall_z_offset);
 		wall.drawSelf(alpha1);
 		MatrixState.popMatrix();
-		//»æÖÆÎ§Ç½3
+		//ç»˜åˆ¶å›´å¢™3
 		MatrixState.pushMatrix();
 		MatrixState.rotate(120, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset);
 		wall.drawSelf(alpha1);
 		MatrixState.popMatrix();
-		//»æÖÆÎ§Ç½5
+		//ç»˜åˆ¶å›´å¢™5
 		MatrixState.pushMatrix();
 		MatrixState.rotate(240, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset);
@@ -64,24 +64,24 @@ public class HouseForDraw
 		MatrixState.popMatrix();
 	}
 	
-	//»æÖÆ¹ã¸æÇ½µÄ·½·¨
+	//ç»˜åˆ¶å¹¿å‘Šå¢™çš„æ–¹æ³•
 	public void drawTexWall(int[] texId,int index)
 	{
-		//»æÖÆÎ§Ç½2
+		//ç»˜åˆ¶å›´å¢™2
 		MatrixState.pushMatrix();
 		MatrixState.rotate(60, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset);
 		wall_tex.drawSelf(texId[index]);
 		MatrixState.popMatrix();
 		
-		//»æÖÆÎ§Ç½4
+		//ç»˜åˆ¶å›´å¢™4
 		MatrixState.pushMatrix();
 		MatrixState.rotate(180, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset);
 		wall_tex.drawSelf(texId[index]);
 		MatrixState.popMatrix();
 		
-		//»æÖÆÎ§Ç½6
+		//ç»˜åˆ¶å›´å¢™6
 		MatrixState.pushMatrix();
 		MatrixState.rotate(300, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset);
@@ -91,18 +91,18 @@ public class HouseForDraw
 	
 	public void drawTransparentWall()
 	{
-		//»æÖÆÎ§Ç½1
+		//ç»˜åˆ¶å›´å¢™1
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, 0,-wall_z_offset+0.05f);
 		wall.drawSelf(alpha2);
 		MatrixState.popMatrix();
-		//»æÖÆÎ§Ç½3
+		//ç»˜åˆ¶å›´å¢™3
 		MatrixState.pushMatrix();
 		MatrixState.rotate(120, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset+0.05f);
 		wall.drawSelf(alpha2);
 		MatrixState.popMatrix();
-		//»æÖÆÎ§Ç½5
+		//ç»˜åˆ¶å›´å¢™5
 		MatrixState.pushMatrix();
 		MatrixState.rotate(240, 0,1, 0);
 		MatrixState.translate(0,0, -wall_z_offset+0.05f);

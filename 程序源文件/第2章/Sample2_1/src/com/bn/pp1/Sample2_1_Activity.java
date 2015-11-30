@@ -12,60 +12,60 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Sample2_1_Activity extends Activity {
-	SoundPool sp; // ÉùÃ÷SoundPoolµÄÒıÓÃ
-	HashMap<Integer, Integer> hm; // ÉùÃ÷Ò»¸öHashMapÀ´´æ·ÅÉùÒôÎÄ¼ş
-	int currStreamId;// µ±Ç°Õı²¥·ÅµÄstreamId
+	SoundPool sp; // å£°æ˜SoundPoolçš„å¼•ç”¨
+	HashMap<Integer, Integer> hm; // å£°æ˜ä¸€ä¸ªHashMapæ¥å­˜æ”¾å£°éŸ³æ–‡ä»¶
+	int currStreamId;// å½“å‰æ­£æ’­æ”¾çš„streamId
 
 	@Override
-	// ÖØĞ´onCreate·½·¨
+	// é‡å†™onCreateæ–¹æ³•
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main); // ÉèÖÃlayout
-		initSoundPool(); // ³õÊ¼»¯ÉùÒô³ØµÄ·½·¨
-		Button b1 = (Button) this.findViewById(R.id.Button01); // »ñÈ¡²¥·Å°´Å¥
-		b1.setOnClickListener // Îª²¥·Å°´Å¥Ìí¼Ó¼àÌıÆ÷
+		setContentView(R.layout.main); // è®¾ç½®layout
+		initSoundPool(); // åˆå§‹åŒ–å£°éŸ³æ± çš„æ–¹æ³•
+		Button b1 = (Button) this.findViewById(R.id.Button01); // è·å–æ’­æ”¾æŒ‰é’®
+		b1.setOnClickListener // ä¸ºæ’­æ”¾æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				playSound(1, 0); // ²¥·Å1ºÅÉùÒô×ÊÔ´£¬ÇÒ²¥·ÅÒ»´Î
-				// ÌáÊ¾²¥·Å¼´Ê±ÒôĞ§
-				Toast.makeText(getBaseContext(), "²¥·Å¼´Ê±ÒôĞ§", Toast.LENGTH_SHORT)
+				playSound(1, 0); // æ’­æ”¾1å·å£°éŸ³èµ„æºï¼Œä¸”æ’­æ”¾ä¸€æ¬¡
+				// æç¤ºæ’­æ”¾å³æ—¶éŸ³æ•ˆ
+				Toast.makeText(getBaseContext(), "æ’­æ”¾å³æ—¶éŸ³æ•ˆ", Toast.LENGTH_SHORT)
 						.show();
 			}
 		});
-		Button b2 = (Button) this.findViewById(R.id.Button02); // »ñÈ¡Í£Ö¹°´Å¥
-		b2.setOnClickListener // ÎªÍ£Ö¹°´Å¥Ìí¼Ó¼àÌıÆ÷
+		Button b2 = (Button) this.findViewById(R.id.Button02); // è·å–åœæ­¢æŒ‰é’®
+		b2.setOnClickListener // ä¸ºåœæ­¢æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				sp.stop(currStreamId); // Í£Ö¹ÕıÔÚ²¥·ÅµÄÄ³¸öÉùÒô
-				// ÌáÊ¾Í£Ö¹²¥·Å
-				Toast.makeText(getBaseContext(), "Í£Ö¹²¥·Å¼´Ê±ÒôĞ§", Toast.LENGTH_SHORT)
+				sp.stop(currStreamId); // åœæ­¢æ­£åœ¨æ’­æ”¾çš„æŸä¸ªå£°éŸ³
+				// æç¤ºåœæ­¢æ’­æ”¾
+				Toast.makeText(getBaseContext(), "åœæ­¢æ’­æ”¾å³æ—¶éŸ³æ•ˆ", Toast.LENGTH_SHORT)
 						.show();
 			}
 		});
 	}
 
-	// ³õÊ¼»¯ÉùÒô³ØµÄ·½·¨
+	// åˆå§‹åŒ–å£°éŸ³æ± çš„æ–¹æ³•
 	public void initSoundPool() {
-		sp = new SoundPool(4, AudioManager.STREAM_MUSIC, 0); // ´´½¨SoundPool¶ÔÏó
-		hm = new HashMap<Integer, Integer>(); // ´´½¨HashMap¶ÔÏó
-		hm.put(1, sp.load(this, R.raw.musictest, 1)); // ¼ÓÔØÉùÒôÎÄ¼şmusictest²¢ÇÒÉèÖÃÎª1ºÅÉùÒô·ÅÈëhmÖĞ
+		sp = new SoundPool(4, AudioManager.STREAM_MUSIC, 0); // åˆ›å»ºSoundPoolå¯¹è±¡
+		hm = new HashMap<Integer, Integer>(); // åˆ›å»ºHashMapå¯¹è±¡
+		hm.put(1, sp.load(this, R.raw.musictest, 1)); // åŠ è½½å£°éŸ³æ–‡ä»¶musictestå¹¶ä¸”è®¾ç½®ä¸º1å·å£°éŸ³æ”¾å…¥hmä¸­
 	}
 
-	// ²¥·ÅÉùÒôµÄ·½·¨
-	public void playSound(int sound, int loop) { // »ñÈ¡AudioManagerÒıÓÃ
+	// æ’­æ”¾å£°éŸ³çš„æ–¹æ³•
+	public void playSound(int sound, int loop) { // è·å–AudioManagerå¼•ç”¨
 		AudioManager am = (AudioManager) this
 				.getSystemService(Context.AUDIO_SERVICE);
-		// »ñÈ¡µ±Ç°ÒôÁ¿
+		// è·å–å½“å‰éŸ³é‡
 		float streamVolumeCurrent = am
 				.getStreamVolume(AudioManager.STREAM_MUSIC);
-		// »ñÈ¡ÏµÍ³×î´óÒôÁ¿
+		// è·å–ç³»ç»Ÿæœ€å¤§éŸ³é‡
 		float streamVolumeMax = am
 				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		// ¼ÆËãµÃµ½²¥·ÅÒôÁ¿
+		// è®¡ç®—å¾—åˆ°æ’­æ”¾éŸ³é‡
 		float volume = streamVolumeCurrent / streamVolumeMax;
-		// µ÷ÓÃSoundPoolµÄplay·½·¨À´²¥·ÅÉùÒôÎÄ¼ş
+		// è°ƒç”¨SoundPoolçš„playæ–¹æ³•æ¥æ’­æ”¾å£°éŸ³æ–‡ä»¶
 		currStreamId = sp.play(hm.get(sound), volume, volume, 1, loop, 1.0f);
 	}
 }

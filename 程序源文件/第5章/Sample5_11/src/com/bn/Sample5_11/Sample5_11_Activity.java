@@ -14,24 +14,24 @@ public class Sample5_11_Activity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃÎªÈ«ÆÁ
+		// è®¾ç½®ä¸ºå…¨å±
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//ÉèÖÃÎªºáÆÁ
+		//è®¾ç½®ä¸ºæ¨ªå±
     	this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		// ³õÊ¼»¯GLSurfaceView
+		// åˆå§‹åŒ–GLSurfaceView
 		mGLSurfaceView = new MySurfaceView(this);
-		// ÇĞ»»µ½Ö÷½çÃæ
+		// åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 		setContentView(R.layout.main);
-		//½«×Ô¶¨ÒåµÄSurfaceViewÌí¼Óµ½Íâ²ãLinearLayoutÖĞ
+		//å°†è‡ªå®šä¹‰çš„SurfaceViewæ·»åŠ åˆ°å¤–å±‚LinearLayoutä¸­
         LinearLayout ll=(LinearLayout)findViewById(R.id.main_liner); 
         ll.addView(mGLSurfaceView);
-		mGLSurfaceView.requestFocus();// »ñÈ¡½¹µã
-		mGLSurfaceView.setFocusableInTouchMode(true);// ÉèÖÃÎª¿É´¥¿Ø	
+		mGLSurfaceView.requestFocus();// è·å–ç„¦ç‚¹
+		mGLSurfaceView.setFocusableInTouchMode(true);// è®¾ç½®ä¸ºå¯è§¦æ§	
 		RadioButton rb = (RadioButton) findViewById(R.id.RadioButton01);
 		
-		// RadioButtonÌí¼Ó¼àÌıÆ÷
+		// RadioButtonæ·»åŠ ç›‘å¬å™¨
 		rb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -40,7 +40,7 @@ public class Sample5_11_Activity extends Activity {
 			}
 		});
 		rb = (RadioButton) findViewById(R.id.RadioButton03);
-        // RadioButtonÌí¼Ó¼àÌıÆ÷
+        // RadioButtonæ·»åŠ ç›‘å¬å™¨
 		rb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,

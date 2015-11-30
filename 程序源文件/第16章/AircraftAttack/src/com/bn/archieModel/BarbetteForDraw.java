@@ -5,12 +5,12 @@ import com.bn.commonObject.CylinderForDraw;
 import com.bn.core.MatrixState;
 
 /*
- * ´´½¨ÅÚÌ¨,ÎªÔ²ÖùÌåÅÚÌ¨,Æä¼¸ºÎÖĞĞÄÎ»ÓÚÔ­µã
+ * åˆ›å»ºç‚®å°,ä¸ºåœ†æŸ±ä½“ç‚®å°,å…¶å‡ ä½•ä¸­å¿ƒä½äºåŸç‚¹
  */
 public class BarbetteForDraw 
 {
-	CylinderForDraw cylinder;//Ô²Öù
-	CircleForDraw circle;//Ô²Ãæ
+	CylinderForDraw cylinder;//åœ†æŸ±
+	CircleForDraw circle;//åœ†é¢
 	private float length;
 	public BarbetteForDraw(float length,float radius,int mProgram)
 	{
@@ -18,16 +18,16 @@ public class BarbetteForDraw
 		cylinder=new CylinderForDraw(radius, length, mProgram);
 		circle=new CircleForDraw(mProgram, radius);
 	}
-	public void drawSelf(int texBarbetteId[])//0±íÊ¾Ô²Öù,1±íÊ¾Ô²Ãæ
+	public void drawSelf(int texBarbetteId[])//0è¡¨ç¤ºåœ†æŸ±,1è¡¨ç¤ºåœ†é¢
 	{
 		MatrixState.pushMatrix();
-		cylinder.drawSelf(texBarbetteId[0]);//Ô²Öù
+		cylinder.drawSelf(texBarbetteId[0]);//åœ†æŸ±
 		MatrixState.popMatrix();
 		
 		MatrixState.pushMatrix();
 		MatrixState.rotate(-90, 1, 0, 0);
 		MatrixState.translate(0, 0, length/2 );
-		circle.drawSelf(texBarbetteId[1]);//ÉÏ°ëÔ²
+		circle.drawSelf(texBarbetteId[1]);//ä¸ŠåŠåœ†
 		MatrixState.popMatrix();
 		
 	}

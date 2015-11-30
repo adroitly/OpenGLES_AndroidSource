@@ -7,15 +7,15 @@ import java.util.Collections;
 import java.util.List;
 import com.bn.core.MatrixState;
 
-//±íÊ¾µ¥¸ö¹àÄ¾µÄÀà
+//è¡¨ç¤ºå•ä¸ªçŒæœ¨çš„ç±»
 public class SingleShrub
 {
-	//Áù°êµÄÁĞ±í
+	//å…­ç“£çš„åˆ—è¡¨
 	List<float []> all=new ArrayList<float []>();
-	//ÓÃÓÚ»æÖÆ¸÷¸ö°êµÄÎÆÀí¾ØĞÎ
+	//ç”¨äºç»˜åˆ¶å„ä¸ªç“£çš„çº¹ç†çŸ©å½¢
 	ShrubForDraw sfd;
 	
-	//ÎÆÀíÊı×é£¬Ã¿¸öÊ÷µÄÎÆÀí×ø±ê¿ÉÄÜ²»Í¬
+	//çº¹ç†æ•°ç»„ï¼Œæ¯ä¸ªæ ‘çš„çº¹ç†åæ ‡å¯èƒ½ä¸åŒ
 	float[] texList=
 	{
 		 0,0, 0,1, 0.5f,0,
@@ -24,7 +24,7 @@ public class SingleShrub
 	
 	public SingleShrub(int programId)
 	{		
-		//³õÊ¼»¯ÓÃÓÚ»æÖÆµ¥¸ö¹àÄ¾µÄ¶ÔÏó
+		//åˆå§‹åŒ–ç”¨äºç»˜åˆ¶å•ä¸ªçŒæœ¨çš„å¯¹è±¡
     	sfd=new ShrubForDraw
     	(
     		programId,
@@ -34,7 +34,7 @@ public class SingleShrub
 		
 	public void drawSelf(int texIds,int id,float x,float y,float z,int dyFlag)
 	{		
-    	//Éú³ÉÁù°êÊ÷µÄĞÅÏ¢
+    	//ç”Ÿæˆå…­ç“£æ ‘çš„ä¿¡æ¯
 		float[][] tempData=
 		{
 			{x,z,0},
@@ -46,12 +46,12 @@ public class SingleShrub
 		};		
 		all=Arrays.asList(tempData);
 				
-		//¶ÔÁù°ê½øĞĞÅÅĞò
+		//å¯¹å…­ç“£è¿›è¡Œæ’åº
 		Collections.sort(all, new MyComparable());
 		
-		if(dyFlag==0)//»æÖÆÊµÌå 
+		if(dyFlag==0)//ç»˜åˆ¶å®ä½“ 
 		{
-			//Ñ­»·ÁĞ±í½øĞĞÊ÷Ä¾µÄ»æÖÆ  
+			//å¾ªç¯åˆ—è¡¨è¿›è¡Œæ ‘æœ¨çš„ç»˜åˆ¶  
 			for(float []tt:all)
 			{
 				MatrixState.pushMatrix();
@@ -61,14 +61,14 @@ public class SingleShrub
 				MatrixState.popMatrix();   
 			}
 		}
-		else if(dyFlag==1)//»æÖÆµ¹Ó°
+		else if(dyFlag==1)//ç»˜åˆ¶å€’å½±
 		{
-			//Êµ¼Ê»æÖÆÊ±YµÄÁãµã============!!!!!!!!!!!????????????
+			//å®é™…ç»˜åˆ¶æ—¶Yçš„é›¶ç‚¹============!!!!!!!!!!!????????????
 			float yTranslate=y;
-			//½øĞĞ¾µÏñ»æÖÆÊ±µÄµ÷ÕûÖµ
+			//è¿›è¡Œé•œåƒç»˜åˆ¶æ—¶çš„è°ƒæ•´å€¼
 			float yjx=(0-yTranslate)*2;
 			
-			//Ñ­»·ÁĞ±í½øĞĞÊ÷Ä¾µÄ»æÖÆ
+			//å¾ªç¯åˆ—è¡¨è¿›è¡Œæ ‘æœ¨çš„ç»˜åˆ¶
 			for(float []tt:all)
 			{
 				MatrixState.pushMatrix();				

@@ -1,41 +1,41 @@
 package com.bn.Sample8_7;
 
 /*
- * ÕûÌå½¨ÖşÎï
+ * æ•´ä½“å»ºç­‘ç‰©
  */
 
 public class Building {
-	float scale;//½¨ÖşµÄ´óĞ¡
+	float scale;//å»ºç­‘çš„å¤§å°
 	
-	Top top;//ñ·¶¥	
-	Tower tower;//Ëş
+	Top top;//ç©¹é¡¶	
+	Tower tower;//å¡”
 	TowerTop towertop;
-	Cube cube;//Á¢·½Ìå
-	Cube cube2;//Á¢·½Ìå
-	Cube cube3;//Á¢·½Ìå
-	Cube cube4;//Á¢·½Ìå
+	Cube cube;//ç«‹æ–¹ä½“
+	Cube cube2;//ç«‹æ–¹ä½“
+	Cube cube3;//ç«‹æ–¹ä½“
+	Cube cube4;//ç«‹æ–¹ä½“
 	
-    float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+    float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
 	
 	Building( MySurfaceView mv,
-			float scale,//½¨ÖşµÄ´óĞ¡
+			float scale,//å»ºç­‘çš„å¤§å°
 			int nCol,int nRow)
 	{
 		this.scale=scale;
-		//´´½¨¶ÔÏó
-		top=new Top(mv,0.5f*scale,nCol,nRow);//ñ·¶¥
-		tower=new Tower(mv,1*scale,nCol,nRow);//Ëş
+		//åˆ›å»ºå¯¹è±¡
+		top=new Top(mv,0.5f*scale,nCol,nRow);//ç©¹é¡¶
+		tower=new Tower(mv,1*scale,nCol,nRow);//å¡”
 		
-		towertop=new TowerTop(mv,1*scale,nCol,nRow);//Ëş
+		towertop=new TowerTop(mv,1*scale,nCol,nRow);//å¡”
 		
 		
-        cube=new Cube(mv,1.4f*scale,new float[]{2,3f,3f} );//Á¢·½Ìå
-        cube2=new Cube(mv,1.4f*scale,new float[]{2f,3f,2f} );//Á¢·½Ìå
-        cube3=new Cube(mv,1.4f*scale,new float[]{1.4f,3f,1.4f} );//Á¢·½Ìå
+        cube=new Cube(mv,1.4f*scale,new float[]{2,3f,3f} );//ç«‹æ–¹ä½“
+        cube2=new Cube(mv,1.4f*scale,new float[]{2f,3f,2f} );//ç«‹æ–¹ä½“
+        cube3=new Cube(mv,1.4f*scale,new float[]{1.4f,3f,1.4f} );//ç«‹æ–¹ä½“
         
-        cube4=new Cube(mv,1.4f*scale,new float[]{10f,1f,10f} );//Á¢·½Ìå
+        cube4=new Cube(mv,1.4f*scale,new float[]{10f,1f,10f} );//ç«‹æ–¹ä½“
 
 	}
 	public void drawSelf(int texId)
@@ -47,51 +47,51 @@ public class Building {
 		
 		MatrixState.pushMatrix();
 		
-		//ñ·¶¥
+		//ç©¹é¡¶
 		MatrixState.pushMatrix();
         MatrixState.translate(0f, 0f*scale, 0f);
-        top.drawSelf(texId);//ñ·¶¥
+        top.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
         
-		//****************************Ëş********************************
+		//****************************å¡”********************************
 		MatrixState.pushMatrix();
         MatrixState.translate(6f*scale, -1.6f*scale, 6f*scale);
-        tower.drawSelf(texId);//ñ·¶¥
+        tower.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
         
-		//Ëş
+		//å¡”
 		MatrixState.pushMatrix();
         MatrixState.translate(-6f*scale, -1.6f*scale, 6f*scale);
-        tower.drawSelf(texId);//ñ·¶¥
+        tower.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
         
-		//Ëş
+		//å¡”
 		MatrixState.pushMatrix();
         MatrixState.translate(6f*scale, -1.6f*scale, -6f*scale);
-        tower.drawSelf(texId);//ñ·¶¥
+        tower.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
         
-		//Ëş
+		//å¡”
 		MatrixState.pushMatrix();
         MatrixState.translate(-6f*scale, -1.6f*scale, -6f*scale);
-        tower.drawSelf(texId);//ñ·¶¥
+        tower.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
-        //****************************Ëş********************************
+        //****************************å¡”********************************
         
-        //*******************Ëş¶¥************************
+        //*******************å¡”é¡¶************************
 		MatrixState.pushMatrix();
         MatrixState.translate(-2.5f*scale, -3.8f*scale, 0f);
-        towertop.drawSelf(texId);//ñ·¶¥
+        towertop.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
         
 		MatrixState.pushMatrix();
         MatrixState.translate(2.5f*scale, -3.8f*scale, 0f);
-        towertop.drawSelf(texId);//ñ·¶¥
+        towertop.drawSelf(texId);//ç©¹é¡¶
         MatrixState.popMatrix();
         
-        //*******************Ëş¶¥************************
+        //*******************å¡”é¡¶************************
         
-        //*********************Á¢·½Ìå*********************************
+        //*********************ç«‹æ–¹ä½“*********************************
 		MatrixState.pushMatrix();
         MatrixState.translate(0f, -2.7f*scale, 0f);
         MatrixState.translate(0, 0.05f, 0f);
@@ -122,7 +122,7 @@ public class Building {
         cube3.drawSelf(texId);
         MatrixState.popMatrix();
         
-      //*********************Á¢·½Ìå*********************************
+      //*********************ç«‹æ–¹ä½“*********************************
         
 		MatrixState.pushMatrix();
         MatrixState.translate(0f, -5f*scale, 0f);

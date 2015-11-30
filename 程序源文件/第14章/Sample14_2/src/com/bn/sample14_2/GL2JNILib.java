@@ -16,14 +16,14 @@ public class GL2JNILib {
      public static native void init(GLSurfaceView gsv,int width, int height);
      public static native void step();
      public static native void setCamera(    		
-    		float cx,	//摄像机位置x
-     		float cy,   //摄像机位置y
-     		float cz,   //摄像机位置z
-     		float tx,   //摄像机目标点x
-     		float ty,   //摄像机目标点y
-     		float tz,   //摄像机目标点z
-     		float upx,  //摄像机UP向量X分量
-     		float upy,  //摄像机UP向量Y分量
-     		float upz   //摄像机UP向量Z分量		
+    		float cx,	//鎽勫儚鏈轰綅缃畑
+     		float cy,   //鎽勫儚鏈轰綅缃畒
+     		float cz,   //鎽勫儚鏈轰綅缃畓
+     		float tx,   //鎽勫儚鏈虹洰鏍囩偣x
+     		float ty,   //鎽勫儚鏈虹洰鏍囩偣y
+     		float tz,   //鎽勫儚鏈虹洰鏍囩偣z
+     		float upx,  //鎽勫儚鏈篣P鍚戦噺X鍒嗛噺
+     		float upy,  //鎽勫儚鏈篣P鍚戦噺Y鍒嗛噺
+     		float upz   //鎽勫儚鏈篣P鍚戦噺Z鍒嗛噺		
      		);
 }

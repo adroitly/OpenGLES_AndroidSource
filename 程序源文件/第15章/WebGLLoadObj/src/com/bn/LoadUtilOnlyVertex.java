@@ -3,11 +3,11 @@ import java.io.*;
 import java.util.*;
 public class LoadUtilOnlyVertex 
 {
-	//´ÓobjÎÄ¼şÖĞ¼ÓÔØ½öĞ¯´ø¶¥µãĞÅÏ¢µÄÎïÌå
+	//ä»objæ–‡ä»¶ä¸­åŠ è½½ä»…æºå¸¦é¡¶ç‚¹ä¿¡æ¯çš„ç‰©ä½“
     public static void loadFromFile(String fname)
     {    	
-    	ArrayList<Float> alv=new ArrayList<Float>();//Ô­Ê¼¶¥µã×ø±êÁĞ±í
-    	ArrayList<Float> alvResult=new ArrayList<Float>();//½á¹û¶¥µã×ø±êÁĞ±í
+    	ArrayList<Float> alv=new ArrayList<Float>();//åŸå§‹é¡¶ç‚¹åæ ‡åˆ—è¡¨
+    	ArrayList<Float> alvResult=new ArrayList<Float>();//ç»“æœé¡¶ç‚¹åæ ‡åˆ—è¡¨
     	
     	try
     	{
@@ -20,13 +20,13 @@ public class LoadUtilOnlyVertex
 		    {
 		    	String[] tempsa=temps.split("[ ]+");
 		      	if(tempsa[0].trim().equals("v"))
-		      	{//´ËĞĞÎª¶¥µã×ø±ê
+		      	{//æ­¤è¡Œä¸ºé¡¶ç‚¹åæ ‡
 		      		alv.add(Float.parseFloat(tempsa[1]));
 		      		alv.add(Float.parseFloat(tempsa[2]));
 		      		alv.add(Float.parseFloat(tempsa[3]));
 		      	}
 		      	else if(tempsa[0].trim().equals("f"))
-		      	{//´ËĞĞÎªÈı½ÇĞÎÃæ
+		      	{//æ­¤è¡Œä¸ºä¸‰è§’å½¢é¢
 		      		int index=Integer.parseInt(tempsa[1].split("/")[0])-1;
 		      		alvResult.add(alv.get(3*index));
 		      		alvResult.add(alv.get(3*index+1));
@@ -44,7 +44,7 @@ public class LoadUtilOnlyVertex
 		      	}		      		
 		    }   
 		    
-		    //Êä³öµ½JSÎÄ¼ş
+		    //è¾“å‡ºåˆ°JSæ–‡ä»¶
 		    StringBuilder sb=new StringBuilder();
 		    sb.append("var vertexDataFromObj=[\n");		    
 		    int size=alvResult.size();		    

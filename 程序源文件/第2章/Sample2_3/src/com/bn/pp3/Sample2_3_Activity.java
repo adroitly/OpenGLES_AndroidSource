@@ -9,19 +9,19 @@ import android.widget.TextView;
 
 public class Sample2_3_Activity extends Activity {
    @Override
-    public void onCreate(Bundle savedInstanceState) {	//ÖØĞ´onCreate·½·¨
+    public void onCreate(Bundle savedInstanceState) {	//é‡å†™onCreateæ–¹æ³•
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);					//ÉèÖÃlayout
-        //»ñÈ¡SharedPreferencesÒıÓÃ£¬´æ´¢Ãû³ÆÎªbn.xml£¬¶ÁĞ´Ä£Ê½ÎªË½ÓĞ
+        setContentView(R.layout.main);					//è®¾ç½®layout
+        //è·å–SharedPreferenceså¼•ç”¨ï¼Œå­˜å‚¨åç§°ä¸ºbn.xmlï¼Œè¯»å†™æ¨¡å¼ä¸ºç§æœ‰
         SharedPreferences sp=this.getSharedPreferences("bn", Context.MODE_PRIVATE);        
-        String lastLoginTime=sp.getString("time", null);//»ñÈ¡¼üÎª¡°time¡±µÄÖµ       
-        if(lastLoginTime==null)			//ÈôÖµÎª¿Õ£¬ÔòÎªµÚÒ»´ÎµÇÂ¼±¾³ÌĞò
-        {  	lastLoginTime="ÓÃ»§ÄúºÃ£¬»¶Ó­ÄúµÚÒ»´Î¹âÁÙ±¾Èí¼ş¡£";    }
-        else							//²»Îª¿Õ£¬ÔòĞŞ¸Ä×Ö·û´®ÎªÉÏ´ÎµÇÂ¼Ê±¼ä
-        {  	lastLoginTime="ÓÃ»§ÄúºÃ£¬ÄúÉÏ´Î½øÈëÊ±¼äÎª:"+lastLoginTime;    }        
-        SharedPreferences.Editor editor=sp.edit();	//ĞŞ¸ÄPreferencesÎÄ¼ş
-        editor.putString("time", new Date().toLocaleString());	//ĞŞ¸Ä¼üÎª¡°time¡±µÄÖµÎªµ±Ç°Ê±¼ä
-        editor.commit();	//Ìá½»ĞŞ¸Ä        
-        TextView tv=(TextView)this.findViewById(R.id.TextView01);	//»ñÈ¡ÓÃÀ´ÏÔÊ¾µÄTextView
-        tv.setText(lastLoginTime);	//ÉèÖÃÏÔÊ¾µÄ×Ö·û´®
+        String lastLoginTime=sp.getString("time", null);//è·å–é”®ä¸ºâ€œtimeâ€çš„å€¼       
+        if(lastLoginTime==null)			//è‹¥å€¼ä¸ºç©ºï¼Œåˆ™ä¸ºç¬¬ä¸€æ¬¡ç™»å½•æœ¬ç¨‹åº
+        {  	lastLoginTime="ç”¨æˆ·æ‚¨å¥½ï¼Œæ¬¢è¿æ‚¨ç¬¬ä¸€æ¬¡å…‰ä¸´æœ¬è½¯ä»¶ã€‚";    }
+        else							//ä¸ä¸ºç©ºï¼Œåˆ™ä¿®æ”¹å­—ç¬¦ä¸²ä¸ºä¸Šæ¬¡ç™»å½•æ—¶é—´
+        {  	lastLoginTime="ç”¨æˆ·æ‚¨å¥½ï¼Œæ‚¨ä¸Šæ¬¡è¿›å…¥æ—¶é—´ä¸º:"+lastLoginTime;    }        
+        SharedPreferences.Editor editor=sp.edit();	//ä¿®æ”¹Preferencesæ–‡ä»¶
+        editor.putString("time", new Date().toLocaleString());	//ä¿®æ”¹é”®ä¸ºâ€œtimeâ€çš„å€¼ä¸ºå½“å‰æ—¶é—´
+        editor.commit();	//æäº¤ä¿®æ”¹        
+        TextView tv=(TextView)this.findViewById(R.id.TextView01);	//è·å–ç”¨æ¥æ˜¾ç¤ºçš„TextView
+        tv.setText(lastLoginTime);	//è®¾ç½®æ˜¾ç¤ºçš„å­—ç¬¦ä¸²
 }}

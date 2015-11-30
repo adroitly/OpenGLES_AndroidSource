@@ -10,18 +10,18 @@ import android.opengl.GLES20;
 
 public class Triangle
 {
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
     
-    private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    private FloatBuffer   mTexCoorBuffer;//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
-    int vCount=0;//¶¥µãÊıÁ¿
+    private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    private FloatBuffer   mTexCoorBuffer;//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
+    int vCount=0;//é¡¶ç‚¹æ•°é‡
 	public Triangle(int  mProgram,float width,float height)
 	{
 		this.mProgram=mProgram;
-    	//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨        
+    	//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•        
     	initShader();
 		 vCount=3;
 	        float vertices[]=new float[]    
@@ -33,37 +33,37 @@ public class Triangle
 	        	
 	        };
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	     
-	        float texCoor[]=new float[]//¶¥µãÑÕÉ«ÖµÊı×é£¬Ã¿¸ö¶¥µã4¸öÉ«²ÊÖµRGBA
+	        float texCoor[]=new float[]//é¡¶ç‚¹é¢œè‰²å€¼æ•°ç»„ï¼Œæ¯ä¸ªé¡¶ç‚¹4ä¸ªè‰²å½©å€¼RGBA
 	        {
 	      		0.5f,0, 0,1, 1,1,	      		       		
 	        };        
-	       //´´½¨¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+	       //åˆ›å»ºé¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 	       ByteBuffer cbb = ByteBuffer.allocateDirect(texCoor.length*4);
-	       cbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-	       mTexCoorBuffer = cbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-	       mTexCoorBuffer.put(texCoor);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-	       mTexCoorBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	       cbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+	       mTexCoorBuffer = cbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+	       mTexCoorBuffer.put(texCoor);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+	       mTexCoorBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	}
 	 public void initShader()
 	    {
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+	        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 	    }
 	 public void drawSelf(int texId)
 	    {        
-	    	//ÖÆ¶¨Ê¹ÓÃÄ³Ì××ÅÉ«Æ÷³ÌĞò  
+	    	//åˆ¶å®šä½¿ç”¨æŸå¥—ç€è‰²å™¨ç¨‹åº  
 	   	 	GLES20.glUseProgram(mProgram);   
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èë×ÅÉ«Æ÷³ÌĞò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥ç€è‰²å™¨ç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-	         //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+	         //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 	         GLES20.glVertexAttribPointer  
 	         (
 	         		maPositionHandle,   
@@ -73,7 +73,7 @@ public class Triangle
 	                3*4,   
 	                mVertexBuffer
 	         );       
-	         //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+	         //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
 	         GLES20.glVertexAttribPointer  
 	         (
 	        		maTexCoorHandle, 
@@ -83,13 +83,13 @@ public class Triangle
 	                2*4,   
 	                mTexCoorBuffer
 	         );   
-	         //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+	         //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	         GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-	         //°ó¶¨ÎÆÀí
+	         //ç»‘å®šçº¹ç†
 	         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-	         //»æÖÆÎÆÀí¾ØĞÎ
+	         //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 	    }
 }

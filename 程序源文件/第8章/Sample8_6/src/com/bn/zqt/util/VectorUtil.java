@@ -1,24 +1,24 @@
 package com.bn.zqt.util;
 
-//ÏòÁ¿¼ÆËã·½·¨µÄ·â×°Àà
+//å‘é‡è®¡ç®—æ–¹æ³•çš„å°è£…ç±»
 public class VectorUtil 
 {
-	//ÇóÁ½¸öÏòÁ¿µÄ²æ»ý
+	//æ±‚ä¸¤ä¸ªå‘é‡çš„å‰ç§¯
 	public static float[] getCrossProduct(float x1,float y1,float z1,float x2,float y2,float z2){		
-		//Çó³öÁ½¸öÊ¸Á¿²æ»ýÊ¸Á¿ÔÚXYZÖáµÄ·ÖÁ¿ABC
+		//æ±‚å‡ºä¸¤ä¸ªçŸ¢é‡å‰ç§¯çŸ¢é‡åœ¨XYZè½´çš„åˆ†é‡ABC
         float A=y1*z2-y2*z1;
         float B=z1*x2-z2*x1;
         float C=x1*y2-x2*y1;
 		return new float[]{A,B,C};
 	}
 	
-	//ÏòÁ¿¹æ¸ñ»¯ 
+	//å‘é‡è§„æ ¼åŒ– 
 	public static float[] vectorNormal(float[] vector){
-		//ÇóÏòÁ¿µÄÄ£
+		//æ±‚å‘é‡çš„æ¨¡
 		float module=(float)Math.sqrt(vector[0]*vector[0]+vector[1]*vector[1]+vector[2]*vector[2]);
 		return new float[]{vector[0]/module,vector[1]/module,vector[2]/module};
 	}
-	//ÇóÁ½¸öÏòÁ¿µÄµã»ý
+	//æ±‚ä¸¤ä¸ªå‘é‡çš„ç‚¹ç§¯
 	public static float dotProduct(float[] vec1,float[] vec2){
 	    	return
 			vec1[0]*vec2[0]+
@@ -27,22 +27,22 @@ public class VectorUtil
 		
 	}   
 	
-	//ÇóÏòÁ¿µÄÄ£
+	//æ±‚å‘é‡çš„æ¨¡
 	public static float mould(float[] vec){
 		return (float)Math.sqrt(vec[0]*vec[0]+vec[1]*vec[1]+vec[2]*vec[2]);
 	}
 	
-	//ÇóÁ½¸öÏòÁ¿µÄ¼Ð½Ç
+	//æ±‚ä¸¤ä¸ªå‘é‡çš„å¤¹è§’
 	public static float angle(float[] vec1,float[] vec2){
-		//ÏÈÇóµã»ý
+		//å…ˆæ±‚ç‚¹ç§¯
 		float dp=dotProduct(vec1,vec2);
-		//ÔÙÇóÁ½¸öÏòÁ¿µÄÄ£
+		//å†æ±‚ä¸¤ä¸ªå‘é‡çš„æ¨¡
 		float m1=mould(vec1);
 		float m2=mould(vec2);
 		
 		float acos=dp/(m1*m2);
 		
-		//ÎªÁË±ÜÃâ¼ÆËãÎó²î´øÀ´µÄÎÊÌâ
+		//ä¸ºäº†é¿å…è®¡ç®—è¯¯å·®å¸¦æ¥çš„é—®é¢˜
 		if(acos>1)	{
 			acos=1;
 		}

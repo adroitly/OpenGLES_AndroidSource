@@ -12,88 +12,88 @@ import android.graphics.BitmapFactory;
 
 class MySurfaceView extends GLSurfaceView 
 {
-    private SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷
+    private SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨
     
-    int currenttexId32;				//µ±Ç°ÎÆÀíµÄid 
-    int currenttexId256;				//µ±Ç°ÎÆÀíµÄid 
-    int[] texId = new int[8];          //ÏµÍ³·ÖÅäµÄÎÆÀíid
+    int currenttexId32;				//å½“å‰çº¹ç†çš„id 
+    int currenttexId256;				//å½“å‰çº¹ç†çš„id 
+    int[] texId = new int[8];          //ç³»ç»Ÿåˆ†é…çš„çº¹ç†id
     
 	public MySurfaceView(Context context) {
         super(context);
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
     }
 	private class SceneRenderer implements GLSurfaceView.Renderer 
     {   
-    	TextureRect texRect; 	//ÎÆÀí¾ØĞÎ¶ÔÏóµÄÒıÓÃ
+    	TextureRect texRect; 	//çº¹ç†çŸ©å½¢å¯¹è±¡çš„å¼•ç”¨
         public void onDrawFrame(GL10 gl) 
         { 
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
-            //»æÖÆĞ¡ÎÆÀí¾ØĞÎ
-            MatrixState.pushMatrix();	//½øÕ»
-            MatrixState.translate(0, 1.3f, 1);	//Æ½ÒÆ 
-            MatrixState.rotate(-20, 0, 0, 1);	//Ğı×ª
-            MatrixState.scale(0.3f, 0.3f, 0.3f); //Ëõ·Å
-            texRect.drawSelf(currenttexId256);	//»æÖÆĞ¡ËÄ±ßĞÎ 
-            MatrixState.popMatrix();//³öÕ»
+            //ç»˜åˆ¶å°çº¹ç†çŸ©å½¢
+            MatrixState.pushMatrix();	//è¿›æ ˆ
+            MatrixState.translate(0, 1.3f, 1);	//å¹³ç§» 
+            MatrixState.rotate(-20, 0, 0, 1);	//æ—‹è½¬
+            MatrixState.scale(0.3f, 0.3f, 0.3f); //ç¼©æ”¾
+            texRect.drawSelf(currenttexId256);	//ç»˜åˆ¶å°å››è¾¹å½¢ 
+            MatrixState.popMatrix();//å‡ºæ ˆ
             
-            //»æÖÆ´óÎÆÀí¾ØĞÎ
-            MatrixState.pushMatrix();	//½øÕ»
-            MatrixState.translate(0, -0.6f, 1);	//Æ½ÒÆ   
-            MatrixState.rotate(-20, 0, 0, 1);	//Ğı×ª         
-            texRect.drawSelf(currenttexId32);	//»æÖÆ´óËÄ±ßĞÎ 
-            MatrixState.popMatrix();//³öÕ»
+            //ç»˜åˆ¶å¤§çº¹ç†çŸ©å½¢
+            MatrixState.pushMatrix();	//è¿›æ ˆ
+            MatrixState.translate(0, -0.6f, 1);	//å¹³ç§»   
+            MatrixState.rotate(-20, 0, 0, 1);	//æ—‹è½¬         
+            texRect.drawSelf(currenttexId32);	//ç»˜åˆ¶å¤§å››è¾¹å½¢ 
+            MatrixState.popMatrix();//å‡ºæ ˆ
         }  
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             float ratio = (float) width / height;
-            //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
             MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 1, 10);
-            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
             MatrixState.setCamera(0,0,3,0f,0f,0f,0f,1.0f,0.0f);
-            //³õÊ¼»¯Ğı×ª¾ØÕó
+            //åˆå§‹åŒ–æ—‹è½¬çŸ©é˜µ
             MatrixState.setInitStack();
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            //ÉèÖÃÆÁÄ»±³¾°É«RGBA
+            //è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0.5f,0.5f,0.5f, 1.0f);  
-            //´´½¨ÎÆÀí¾ØĞÎ¶ÔÏó
+            //åˆ›å»ºçº¹ç†çŸ©å½¢å¯¹è±¡
             texRect = new TextureRect(MySurfaceView.this);
-            //´ò¿ªÉî¶È¼ì²â
+            //æ‰“å¼€æ·±åº¦æ£€æµ‹
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-            //³õÊ¼»¯32*32ÏñËØµÄËÄ¸öÎÆÀí
+            //åˆå§‹åŒ–32*32åƒç´ çš„å››ä¸ªçº¹ç†
             texId[0] = initTexture(R.drawable.bw32,GLES20.GL_NEAREST,GLES20.GL_NEAREST);
             texId[1] = initTexture(R.drawable.bw32,GLES20.GL_LINEAR,GLES20.GL_LINEAR);
             texId[2] = initTexture(R.drawable.bw32,GLES20.GL_NEAREST,GLES20.GL_LINEAR);
             texId[3] = initTexture(R.drawable.bw32,GLES20.GL_LINEAR,GLES20.GL_NEAREST);
-            //³õÊ¼»¯256*256ÏñËØµÄËÄ¸öÎÆÀí
+            //åˆå§‹åŒ–256*256åƒç´ çš„å››ä¸ªçº¹ç†
             texId[4] = initTexture(R.drawable.bw256,GLES20.GL_NEAREST,GLES20.GL_NEAREST);
             texId[5] = initTexture(R.drawable.bw256,GLES20.GL_LINEAR,GLES20.GL_LINEAR);
             texId[6] = initTexture(R.drawable.bw256,GLES20.GL_NEAREST,GLES20.GL_LINEAR);
             texId[7] = initTexture(R.drawable.bw256,GLES20.GL_LINEAR,GLES20.GL_NEAREST);
             
-            currenttexId32 = texId[0];	//ÉèÖÃÄ¬ÈÏÎÆÀí
-            currenttexId256 = texId[4];	//ÉèÖÃÄ¬ÈÏÎÆÀí
-            //¹Ø±Õ±³Ãæ¼ô²Ã   
+            currenttexId32 = texId[0];	//è®¾ç½®é»˜è®¤çº¹ç†
+            currenttexId256 = texId[4];	//è®¾ç½®é»˜è®¤çº¹ç†
+            //å…³é—­èƒŒé¢å‰ªè£   
             GLES20.glDisable(GLES20.GL_CULL_FACE);
         }
     }
 		
 	public int initTexture(int drawableId,float sample1,float sample2){
-		//Éú³ÉÎÆÀíID
+		//ç”Ÿæˆçº¹ç†ID
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊıÁ¿
-				textures,   //ÎÆÀíidµÄÊı×é
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
@@ -103,7 +103,7 @@ class MySurfaceView extends GLSurfaceView
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_CLAMP_TO_EDGE);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_CLAMP_TO_EDGE);
         
-        //Í¨¹ıÊäÈëÁ÷¼ÓÔØÍ¼Æ¬===============begin===================
+        //é€šè¿‡è¾“å…¥æµåŠ è½½å›¾ç‰‡===============begin===================
         InputStream is = this.getResources().openRawResource(drawableId);
         Bitmap bitmapTmp;
         try {
@@ -117,15 +117,15 @@ class MySurfaceView extends GLSurfaceView
                 e.printStackTrace();
             }
         }
-        //Êµ¼Ê¼ÓÔØÎÆÀí
+        //å®é™…åŠ è½½çº¹ç†
         GLUtils.texImage2D
         (
-        		GLES20.GL_TEXTURE_2D,   //ÎÆÀíÀàĞÍ£¬ÔÚOpenGL ESÖĞ±ØĞëÎªGL10.GL_TEXTURE_2D
-        		0, 					  //ÎÆÀíµÄ²ã´Î£¬0±íÊ¾»ù±¾Í¼Ïñ²ã£¬¿ÉÒÔÀí½âÎªÖ±½ÓÌùÍ¼
-        		bitmapTmp, 			  //ÎÆÀíÍ¼Ïñ
-        		0					  //ÎÆÀí±ß¿ò³ß´ç
+        		GLES20.GL_TEXTURE_2D,   //çº¹ç†ç±»å‹ï¼Œåœ¨OpenGL ESä¸­å¿…é¡»ä¸ºGL10.GL_TEXTURE_2D
+        		0, 					  //çº¹ç†çš„å±‚æ¬¡ï¼Œ0è¡¨ç¤ºåŸºæœ¬å›¾åƒå±‚ï¼Œå¯ä»¥ç†è§£ä¸ºç›´æ¥è´´å›¾
+        		bitmapTmp, 			  //çº¹ç†å›¾åƒ
+        		0					  //çº¹ç†è¾¹æ¡†å°ºå¯¸
         );
-        bitmapTmp.recycle(); 		  //ÎÆÀí¼ÓÔØ³É¹¦ºóÊÍ·ÅÍ¼Æ¬
+        bitmapTmp.recycle(); 		  //çº¹ç†åŠ è½½æˆåŠŸåé‡Šæ”¾å›¾ç‰‡
         
         return textureId;
 	}

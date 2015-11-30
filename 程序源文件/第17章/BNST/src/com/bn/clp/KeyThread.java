@@ -9,7 +9,7 @@ import java.util.List;
 import com.bn.st.d2.DBUtil;
 import com.bn.st.d2.MyActivity;
 
-//¼àÌı¼üÅÌ×´Ì¬µÄÏß³Ì
+//ç›‘å¬é”®ç›˜çŠ¶æ€çš„çº¿ç¨‹
 public class KeyThread extends Thread
 {
 	MyGLSurfaceView mgmv; 
@@ -21,15 +21,15 @@ public class KeyThread extends Thread
 	public static boolean upFlag=true;
 	float bOldZ;
 	
-	int[] stepIndex;//´ó²½Ë÷Òı
-	int[] stepStatus;//0-´ó²½ 0-Ğ¡²½  2-½áÊø
+	int[] stepIndex;//å¤§æ­¥ç´¢å¼•
+	int[] stepStatus;//0-å¤§æ­¥ 0-å°æ­¥  2-ç»“æŸ
 	  
-	int[] stepIndexC;//Ğ¡²½Ë÷Òı
-	float[][] bdbqs;//±¾´ó²½ÆğÊ¼
-	float[][] bdbjb;//±¾´ó²½½¥±ä
-	int[] bdbzxb;//±¾´ó²½×ÜĞ¡²½
+	int[] stepIndexC;//å°æ­¥ç´¢å¼•
+	float[][] bdbqs;//æœ¬å¤§æ­¥èµ·å§‹
+	float[][] bdbjb;//æœ¬å¤§æ­¥æ¸å˜
+	int[] bdbzxb;//æœ¬å¤§æ­¥æ€»å°æ­¥
 	
-	int dqCount=0;//µªÆø¼ÆÊıÆ÷
+	int dqCount=0;//æ°®æ°”è®¡æ•°å™¨
 	
 	public KeyThread(MyGLSurfaceView mv,MyActivity ma)
 	{
@@ -83,18 +83,18 @@ public class KeyThread extends Thread
 					}
 					
 					if((MyGLSurfaceView.keyState&0x1)!=0) 
-					{//ÓĞUP¼ü°´ÏÂ
-						float xOffset=0;//´Ë²½µÄXÎ»ÒÆ
-			    		float zOffset=0;//´Ë²½µÄZÎ»ÒÆ  
+					{//æœ‰UPé”®æŒ‰ä¸‹
+						float xOffset=0;//æ­¤æ­¥çš„Xä½ç§»
+			    		float zOffset=0;//æ­¤æ­¥çš„Zä½ç§»  
 			    		
 			    		xOffset=(float)-Math.sin(Math.toRadians(sight_angle))*CURR_BOAT_V;
 		  			    zOffset=(float)-Math.cos(Math.toRadians(sight_angle))*CURR_BOAT_V;
 		  			    
-		  			    //¼ÆËãÔË¶¯ºóµÄ´¬µÄXZÖµ
+		  			    //è®¡ç®—è¿åŠ¨åçš„èˆ¹çš„XZå€¼
 		  			    float tempbx=bx+xOffset;
 		  			    float tempbz=bz+zOffset;
 	  			    
-		  			    //ÅĞ¶Ï´¬Í·ËùÔÚÎ»ÖÃµÄÂ½µØ¸ß¶ÈÊÇ·ñµÍÓÚË®Ãæ²¢ÇÒÃ»ÓĞÓëÇÅ¶Õ·¢ÉúÅö×²
+		  			    //åˆ¤æ–­èˆ¹å¤´æ‰€åœ¨ä½ç½®çš„é™†åœ°é«˜åº¦æ˜¯å¦ä½äºæ°´é¢å¹¶ä¸”æ²¡æœ‰ä¸æ¡¥å¢©å‘ç”Ÿç¢°æ’
 		  			    if(isYachtHeadCollectionsWithLand(tempbx,tempbz)&&!isPZ(tempbx,tempbz))
 		  			    {
 		  			    	bOldZ=bz;
@@ -118,10 +118,10 @@ public class KeyThread extends Thread
 					}					
 					
 					if((MyGLSurfaceView.keyState&0x4)!=0)
-					{//ÓĞleft¼ü°´ÏÂ
-						//Ïò×ó×ª¶¯·«´¬
+					{//æœ‰lefté”®æŒ‰ä¸‹
+						//å‘å·¦è½¬åŠ¨å¸†èˆ¹
 						sight_angle=sight_angle+DEGREE_SPAN;
-						//·«´¬ÊÓ¾õÉÏÏò×óĞ±
+						//å¸†èˆ¹è§†è§‰ä¸Šå‘å·¦æ–œ
 						if(yachtLeftOrRightAngle<yachtLeftOrRightAngleMax)
 						{
 							yachtLeftOrRightAngle=yachtLeftOrRightAngle+yachtLeftOrRightAngleA;
@@ -132,10 +132,10 @@ public class KeyThread extends Thread
 						}
 					}
 					else if((MyGLSurfaceView.keyState&0x8)!=0)
-					{//ÓĞright¼ü°´ÏÂ
-						//ÏòÓÒ×ª¶¯·«´¬
+					{//æœ‰righté”®æŒ‰ä¸‹
+						//å‘å³è½¬åŠ¨å¸†èˆ¹
 						sight_angle=sight_angle-DEGREE_SPAN; 
-						//·«´¬ÊÓ¾õÉÏÏòÓÒĞ±
+						//å¸†èˆ¹è§†è§‰ä¸Šå‘å³æ–œ
 						if(yachtLeftOrRightAngle>-yachtLeftOrRightAngleMax)
 						{
 							yachtLeftOrRightAngle=yachtLeftOrRightAngle-yachtLeftOrRightAngleA;
@@ -146,7 +146,7 @@ public class KeyThread extends Thread
 						}
 					}
 					else
-					{//Èô×óºó¼ü¶¼Ã»ÓĞ°´ÏÂ£¬Ôò·«´¬ÊÓ¾õÉÏ²»ÇãĞ±
+					{//è‹¥å·¦åé”®éƒ½æ²¡æœ‰æŒ‰ä¸‹ï¼Œåˆ™å¸†èˆ¹è§†è§‰ä¸Šä¸å€¾æ–œ
 						if(yachtLeftOrRightAngle<0)
 						{
 							yachtLeftOrRightAngle=yachtLeftOrRightAngle+yachtLeftOrRightAngleA;
@@ -159,23 +159,23 @@ public class KeyThread extends Thread
 					
 //					if(isFirstPersonView)
 //					{
-//						//ÉèÖÃĞÂµÄÉãÏñ»úXZ×ø±ê
-//				    	cx=(float)(bx);//ÉãÏñ»úx×ø±ê
-//				        cz=(float)(bz);//ÉãÏñ»úz×ø±ê
+//						//è®¾ç½®æ–°çš„æ‘„åƒæœºXZåæ ‡
+//				    	cx=(float)(bx);//æ‘„åƒæœºxåæ ‡
+//				        cz=(float)(bz);//æ‘„åƒæœºzåæ ‡
 //						
-//						//ÉèÖÃĞÂµÄ¹Û²ìÄ¿±êµãXZ×ø±ê
-//				    	tx=(float)(cx-Math.sin(Math.toRadians(sight_angle))*DISTANCE+0.5f);//¹Û²ìÄ¿±êµãx×ø±ê 
-//				        tz=(float)(cz-Math.cos(Math.toRadians(sight_angle))*DISTANCE);//¹Û²ìÄ¿±êµãz×ø±ê   
+//						//è®¾ç½®æ–°çš„è§‚å¯Ÿç›®æ ‡ç‚¹XZåæ ‡
+//				    	tx=(float)(cx-Math.sin(Math.toRadians(sight_angle))*DISTANCE+0.5f);//è§‚å¯Ÿç›®æ ‡ç‚¹xåæ ‡ 
+//				        tz=(float)(cz-Math.cos(Math.toRadians(sight_angle))*DISTANCE);//è§‚å¯Ÿç›®æ ‡ç‚¹zåæ ‡   
 //					}
 //					else
 //					{
-						//ÉèÖÃĞÂµÄÉãÏñ»úXZ×ø±ê
-				    	cx=(float)(bx+Math.sin(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//ÉãÏñ»úx×ø±ê
-				        cz=(float)(bz+Math.cos(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//ÉãÏñ»úz×ø±ê
+						//è®¾ç½®æ–°çš„æ‘„åƒæœºXZåæ ‡
+				    	cx=(float)(bx+Math.sin(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//æ‘„åƒæœºxåæ ‡
+				        cz=(float)(bz+Math.cos(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//æ‘„åƒæœºzåæ ‡
 				    	
-				    	//ÉèÖÃĞÂµÄ¹Û²ìÄ¿±êµãXZ×ø±ê
-				    	tx=(float)(cx-Math.sin(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//¹Û²ìÄ¿±êµãx×ø±ê 
-				        tz=(float)(cz-Math.cos(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//¹Û²ìÄ¿±êµãz×ø±ê  
+				    	//è®¾ç½®æ–°çš„è§‚å¯Ÿç›®æ ‡ç‚¹XZåæ ‡
+				    	tx=(float)(cx-Math.sin(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//è§‚å¯Ÿç›®æ ‡ç‚¹xåæ ‡ 
+				        tz=(float)(cz-Math.cos(Math.toRadians(sight_angle-yachtLeftOrRightAngle/2))*DISTANCE);//è§‚å¯Ÿç›®æ ‡ç‚¹zåæ ‡  
 //					}
 				}
 			}
@@ -188,7 +188,7 @@ public class KeyThread extends Thread
 				for(int i=0;i<mgmv.otherPaths.size();i++)
 	  		  	{
 	  			  if(stepStatus[i]==0)
-	  			  {//ÈôÊÇ´ó²½µ÷Õû
+	  			  {//è‹¥æ˜¯å¤§æ­¥è°ƒæ•´
 	  				  ArrayList<float[]> pathCurr=mgmv.otherPaths.get(i); 
 	      			  bdbqs[i][0]=pathCurr.get(stepIndex[i])[0];
 	      			  bdbqs[i][1]=pathCurr.get(stepIndex[i])[1];
@@ -204,7 +204,7 @@ public class KeyThread extends Thread
 	          			  {
 	          				  stepIndex[i]=0; 
 	          				  Constant.BOAT_LAP_NUMBER_OTHER[i]=Constant.BOAT_LAP_NUMBER_OTHER[i]+1;
-	          				  //ÈôÈ¦Êıµ½ÁË
+	          				  //è‹¥åœˆæ•°åˆ°äº†
 	          				  if(Constant.BOAT_LAP_NUMBER_OTHER[i]==3)
 	          				  {
 	          					stepStatus[i]=2;
@@ -228,7 +228,7 @@ public class KeyThread extends Thread
 	          			  {
 	          				  stepIndex[i]=0; 
 	          				  Constant.BOAT_LAP_NUMBER_OTHER[i]=Constant.BOAT_LAP_NUMBER_OTHER[i]+1;
-	          				  //ÈôÈ¦Êıµ½ÁË
+	          				  //è‹¥åœˆæ•°åˆ°äº†
 	          				  if(Constant.BOAT_LAP_NUMBER_OTHER[i]==3)
 	          				  {
 	          					stepStatus[i]=2;
@@ -276,15 +276,15 @@ public class KeyThread extends Thread
 			}
 		}
 	} 
-	//ÅĞ¶ÏÊÇ·ñÓëÇÅ¶Õ·¢ÉúÅö×²µÄ·½·¨
+	//åˆ¤æ–­æ˜¯å¦ä¸æ¡¥å¢©å‘ç”Ÿç¢°æ’çš„æ–¹æ³•
 	public boolean isPZ(float bx,float bz)
 	{
 		
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		float bPointX=(float) (bx-BOAT_UNIT_SIZE*Math.sin(Math.toRadians(sight_angle)));
 		float bPointZ=(float) (bz-BOAT_UNIT_SIZE*Math.cos(Math.toRadians(sight_angle)));
 		
-		//¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float carCol=(float) Math.floor((bPointX+UNIT_SIZE/2)/UNIT_SIZE);  
 		float carRow=(float) Math.floor((bPointZ+UNIT_SIZE/2)/UNIT_SIZE);
 		
@@ -301,16 +301,16 @@ public class KeyThread extends Thread
 		return false;
 	}
 	
-	//ÅĞ¶Ï´¬Í·ËùÔÚÎ»ÖÃµÄÂ½µØ¸ß¶ÈÊÇ·ñµÍÓÚË®Ãæ
+	//åˆ¤æ–­èˆ¹å¤´æ‰€åœ¨ä½ç½®çš„é™†åœ°é«˜åº¦æ˜¯å¦ä½äºæ°´é¢
 	public boolean isYachtHeadCollectionsWithLand(float bx,float bz)
 	{
 		final float PRE_UNIT_SIZE=UNIT_SIZE/(yArray_ZD.length-1);
 		
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		float tempbx=(float) (bx-BOAT_UNIT_SIZE*Math.sin(Math.toRadians(sight_angle)));
 		float tempbz=(float) (bz-BOAT_UNIT_SIZE*Math.cos(Math.toRadians(sight_angle)));  
 		
-	    //¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+	    //è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float col=(float) Math.floor((tempbx+UNIT_SIZE/2)/UNIT_SIZE);
 		float row=(float) Math.floor((tempbz+UNIT_SIZE/2)/UNIT_SIZE);	
 		
@@ -323,7 +323,7 @@ public class KeyThread extends Thread
 		float colx=col*UNIT_SIZE-UNIT_SIZE/2;
 		float rowz=row*UNIT_SIZE-UNIT_SIZE/2;
 				
-		//¼ÆËãÅö×²µãÔÚ¶ÔÓ¦µÄĞĞÁĞ¸ñ×ÓÖĞµÄx¡¢z×ø±ê£¬Ã¿¸öĞ¡¸ñ×ÓµÄÖĞĞÄµã¼´Îª¸Ã¸ñ×ÓµÄ×ø±êÔ­µã
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨å¯¹åº”çš„è¡Œåˆ—æ ¼å­ä¸­çš„xã€zåæ ‡ï¼Œæ¯ä¸ªå°æ ¼å­çš„ä¸­å¿ƒç‚¹å³ä¸ºè¯¥æ ¼å­çš„åæ ‡åŸç‚¹
 		float rawXIn=tempbx-colx;
 		float rawZIn=tempbz-rowz;
 	    
@@ -357,23 +357,23 @@ public class KeyThread extends Thread
     	}
 		
 		 float[][] yArrayCurr=null;
-		 if(id==0||id==1||id==9||id==10)	//Ö±µÀ(°üÀ¨ºáÊú)
+		 if(id==0||id==1||id==9||id==10)	//ç›´é“(åŒ…æ‹¬æ¨ªç«–)
 		 {
 			 yArrayCurr=yArray_ZD;
 		 }
-		 else if(id==2||id==3||id==11||id==12)	//Ö±µÀ(°üÀ¨ºáÊú´øĞ¡É½)
+		 else if(id==2||id==3||id==11||id==12)	//ç›´é“(åŒ…æ‹¬æ¨ªç«–å¸¦å°å±±)
 		 {
 			 yArrayCurr=yArray_ZD_DXD;
 		 }
-		 else if(id==4||id==5||id==6||id==7||id==13||id==14|id==15|id==16)	//ÍäµÀ
+		 else if(id==4||id==5||id==6||id==7||id==13||id==14|id==15|id==16)	//å¼¯é“
 		 {
 			 yArrayCurr=yArray_WD;
 		 }
-		//¼ÆËã´¬Í·¶ÔÓ¦µÄÂ½µØ¸ñ×ÓµÄĞĞ¡¢ÁĞ
+		//è®¡ç®—èˆ¹å¤´å¯¹åº”çš„é™†åœ°æ ¼å­çš„è¡Œã€åˆ—
 	    int tempCol=(int)(xIn/PRE_UNIT_SIZE);
 	    int tempRow=(int)(zIn/PRE_UNIT_SIZE);		    
     	
-    	//¼ÆËã´¬Í·¶ÔÓ¦µÄÂ½µØ¸ñ×ÓµÄËÄ¸öµãµÄ×ø±ê 
+    	//è®¡ç®—èˆ¹å¤´å¯¹åº”çš„é™†åœ°æ ¼å­çš„å››ä¸ªç‚¹çš„åæ ‡ 
 	    float x0=tempCol*PRE_UNIT_SIZE;
 	    float z0=tempRow*PRE_UNIT_SIZE;
 	    float y0=yArrayCurr[tempRow][tempCol]; 
@@ -390,12 +390,12 @@ public class KeyThread extends Thread
 	    float z3=z0+PRE_UNIT_SIZE;
 	    float y3=yArrayCurr[tempRow+1][tempCol];
 	    		    
-	    //´¬Í·´¦µÄÂ½µØ¸ß¶È
+	    //èˆ¹å¤´å¤„çš„é™†åœ°é«˜åº¦
 	    float cty=0;
 	    
 	    if(isInTriangle(x0,z0,x1,z1,x3,z3,xIn,zIn))
-	    {//ÅĞ¶Ï·«´¬´¬Í·ÊÇ·ñÎ»ÓÚ0-1-3Èı½ÇĞÎ
-	    	//Çó0-1-3ÃæÔÚ´¬Í·´¦µÄ¸ß¶È
+	    {//åˆ¤æ–­å¸†èˆ¹èˆ¹å¤´æ˜¯å¦ä½äº0-1-3ä¸‰è§’å½¢
+	    	//æ±‚0-1-3é¢åœ¨èˆ¹å¤´å¤„çš„é«˜åº¦
 	    	cty=fromXZToY
 		    (
 			    	x0,y0,z0,				    	
@@ -406,7 +406,7 @@ public class KeyThread extends Thread
 	    }
 	    else
 	    {
-	    	//Çó1-2-3ÃæÔÚ´¬Í·´¦µÄ¸ß¶È
+	    	//æ±‚1-2-3é¢åœ¨èˆ¹å¤´å¤„çš„é«˜åº¦
 	    	cty=fromXZToY
 		    (
 			    	x1,y1,z1,
@@ -416,100 +416,100 @@ public class KeyThread extends Thread
 			);
 	    }
 	    if(cty<=0)
-	    {//Èô´¬Í·´¦µÄÂ½µØµÍÓÚË®ÃæÔò·µ»Øtrue
+	    {//è‹¥èˆ¹å¤´å¤„çš„é™†åœ°ä½äºæ°´é¢åˆ™è¿”å›true
 	    	return true;
 	    }
 	    return false;
 	}
 	
-	//ÅĞ¶ÏÒ»¸öµãÊÇ·ñÔÚÈı½ÇĞÎÄÚµÄ·½·¨
-	//»ù±¾Ëã·¨Ë¼ÏëÊÇÊ×ÏÈÇóÒª±»ÅĞ¶ÏµÄµãµ½Èı½ÇĞÎÈı¸ö¶¥µãµÄÊ¸Á¿1¡¢2¡¢3
-	//È»ºóÈı¸öÊ¸Á¿Çó²æ»ı£¬ÈôÈı¸ö²æ»ıÍ¬ºÅÔòµãÎ»ÓÚÈı½ÇĞÎÄÚ£¬·ñÔòÎ»ÓÚÈı½ÇĞÎÍâ
+	//åˆ¤æ–­ä¸€ä¸ªç‚¹æ˜¯å¦åœ¨ä¸‰è§’å½¢å†…çš„æ–¹æ³•
+	//åŸºæœ¬ç®—æ³•æ€æƒ³æ˜¯é¦–å…ˆæ±‚è¦è¢«åˆ¤æ–­çš„ç‚¹åˆ°ä¸‰è§’å½¢ä¸‰ä¸ªé¡¶ç‚¹çš„çŸ¢é‡1ã€2ã€3
+	//ç„¶åä¸‰ä¸ªçŸ¢é‡æ±‚å‰ç§¯ï¼Œè‹¥ä¸‰ä¸ªå‰ç§¯åŒå·åˆ™ç‚¹ä½äºä¸‰è§’å½¢å†…ï¼Œå¦åˆ™ä½äºä¸‰è§’å½¢å¤–
 	public boolean isInTriangle
 	(
-			//Èı½ÇĞÎµÚÒ»¸öµãµÄXY×ø±ê
+			//ä¸‰è§’å½¢ç¬¬ä¸€ä¸ªç‚¹çš„XYåæ ‡
 			float x1,
 			float y1,
-			//Èı½ÇĞÎµÚ¶ş¸öµãµÄXY×ø±ê
+			//ä¸‰è§’å½¢ç¬¬äºŒä¸ªç‚¹çš„XYåæ ‡
 			float x2,
 			float y2,
-			//Èı½ÇĞÎµÚÈı¸öµãµÄXY×ø±ê
+			//ä¸‰è§’å½¢ç¬¬ä¸‰ä¸ªç‚¹çš„XYåæ ‡
 			float x3,
 			float y3,
-			//±»ÅĞ¶ÏµãµÄXY×ø±ê
+			//è¢«åˆ¤æ–­ç‚¹çš„XYåæ ‡
 			float dx,
 			float dy
 	)
 	{
-		//±»ÅĞ¶Ïµãµ½Èı½ÇĞÎµÚÒ»¸öµãµÄÊ¸Á¿
+		//è¢«åˆ¤æ–­ç‚¹åˆ°ä¸‰è§’å½¢ç¬¬ä¸€ä¸ªç‚¹çš„çŸ¢é‡
 		float vector1x=dx-x1;
 		float vector1y=dy-y1;
 		
-		//±»ÅĞ¶Ïµãµ½Èı½ÇĞÎµÚ¶ş¸öµãµÄÊ¸Á¿
+		//è¢«åˆ¤æ–­ç‚¹åˆ°ä¸‰è§’å½¢ç¬¬äºŒä¸ªç‚¹çš„çŸ¢é‡
 		float vector2x=dx-x2;
 		float vector2y=dy-y2;
 		
-		//±»ÅĞ¶Ïµãµ½Èı½ÇĞÎµÚÈı¸öµãµÄÊ¸Á¿
+		//è¢«åˆ¤æ–­ç‚¹åˆ°ä¸‰è§’å½¢ç¬¬ä¸‰ä¸ªç‚¹çš„çŸ¢é‡
 		float vector3x=dx-x3;
 		float vector3y=dy-y3;
 		
-		//¼ÆËãµÚ1¡¢2Ê¸Á¿¸ö²æ»ı
+		//è®¡ç®—ç¬¬1ã€2çŸ¢é‡ä¸ªå‰ç§¯
 		float crossProduct1=vector1x*vector2y-vector1y*vector2x;
 		
-		//¼ÆËãµÚ2¡¢3Ê¸Á¿¸ö²æ»ı
+		//è®¡ç®—ç¬¬2ã€3çŸ¢é‡ä¸ªå‰ç§¯
 		float crossProduct2=vector2x*vector3y-vector2y*vector3x;
 		
-		//¼ÆËãµÚ3¡¢1Ê¸Á¿¸ö²æ»ı
+		//è®¡ç®—ç¬¬3ã€1çŸ¢é‡ä¸ªå‰ç§¯
 		float crossProduct3=vector3x*vector1y-vector3y*vector1x;
 		
 		if(crossProduct1<0&&crossProduct2<0&&crossProduct3<0)
-		{//ÈôÈı¸ö²æ»ıÍ¬ºÅ·µ»Øtrue
+		{//è‹¥ä¸‰ä¸ªå‰ç§¯åŒå·è¿”å›true
 			return true;
 		}
 		
 		if(crossProduct1>0&&crossProduct2>0&&crossProduct3>0)
-		{//ÈôÈı¸ö²æ»ıÍ¬ºÅ·µ»Øtrue
+		{//è‹¥ä¸‰ä¸ªå‰ç§¯åŒå·è¿”å›true
 			return true;
 		}
 		
 		return false;
 	}
 	
-	//¼ÆËãÓÉÈı¸öµã0¡¢1¡¢2È·¶¨µÄÆ½ÃæÔÚÖ¸¶¨XZ×ø±ê´¦µÄ¸ß¶È
-	//»ù±¾Ëã·¨Ë¼Ïë£¬Ê×ÏÈÇó³ö0ºÅµãµ½1¡¢2ºÅµãµÄÊ¸Á¿
-	//È»ºóÕâÁ½¸öÊ¸Á¿Çó²æ»ıµÃµ½Èı½ÇĞÎÆ½ÃæµÄ·¨Ê¸Á¿{A,B,C}
-	//½Ó×ÅÍ¨¹ı·¨Ê¸Á¿ºÍ0ºÅµã×ø±ê¿ÉÒÔĞ´³öÈı½ÇĞÎÆ½ÃæµÄ·½³Ì
+	//è®¡ç®—ç”±ä¸‰ä¸ªç‚¹0ã€1ã€2ç¡®å®šçš„å¹³é¢åœ¨æŒ‡å®šXZåæ ‡å¤„çš„é«˜åº¦
+	//åŸºæœ¬ç®—æ³•æ€æƒ³ï¼Œé¦–å…ˆæ±‚å‡º0å·ç‚¹åˆ°1ã€2å·ç‚¹çš„çŸ¢é‡
+	//ç„¶åè¿™ä¸¤ä¸ªçŸ¢é‡æ±‚å‰ç§¯å¾—åˆ°ä¸‰è§’å½¢å¹³é¢çš„æ³•çŸ¢é‡{A,B,C}
+	//æ¥ç€é€šè¿‡æ³•çŸ¢é‡å’Œ0å·ç‚¹åæ ‡å¯ä»¥å†™å‡ºä¸‰è§’å½¢å¹³é¢çš„æ–¹ç¨‹
 	// A(x-x0)+B(y-y0)+c(z-z0)=0
-	//È»ºó¿ÉÒÔÍÆµ¼³öÖ¸¶¨xz×ø±ê´¦yµÄÇóÖµ¹«Ê½
+	//ç„¶åå¯ä»¥æ¨å¯¼å‡ºæŒ‡å®šxzåæ ‡å¤„yçš„æ±‚å€¼å…¬å¼
 	//y=(C(z0-z)+A(x0-x))/B+y0;
-	//×îºóÍ¨¹ıÇóÖµ¹«Ê½Çó³öÖ¸¶¨xz×ø±ê´¦yµÄÖµ
+	//æœ€åé€šè¿‡æ±‚å€¼å…¬å¼æ±‚å‡ºæŒ‡å®šxzåæ ‡å¤„yçš„å€¼
 	public float fromXZToY
 	(
-		float tx0,float ty0,float tz0,//È·¶¨Æ½ÃæµÄµã0
-		float tx1,float ty1,float tz1,//È·¶¨Æ½ÃæµÄµã1
-		float tx2,float ty2,float tz2,//È·¶¨Æ½ÃæµÄµã2
-		float ctx,float ctz//´¬Í·µÄXZ×ø±ê
+		float tx0,float ty0,float tz0,//ç¡®å®šå¹³é¢çš„ç‚¹0
+		float tx1,float ty1,float tz1,//ç¡®å®šå¹³é¢çš„ç‚¹1
+		float tx2,float ty2,float tz2,//ç¡®å®šå¹³é¢çš„ç‚¹2
+		float ctx,float ctz//èˆ¹å¤´çš„XZåæ ‡
 	)
 	{
-		//Çó³ö0ºÅµãµ½1ºÅµãµÄÊ¸Á¿
+		//æ±‚å‡º0å·ç‚¹åˆ°1å·ç‚¹çš„çŸ¢é‡
         float x1=tx1-tx0;
         float y1=ty1-ty0;
         float z1=tz1-tz0;
-        //Çó³ö0ºÅµãµ½2ºÅµãµÄÊ¸Á¿
+        //æ±‚å‡º0å·ç‚¹åˆ°2å·ç‚¹çš„çŸ¢é‡
         float x2=tx2-tx0;
         float y2=ty2-ty0;
         float z2=tz2-tz0;
-        //Çó³öÁ½¸öÊ¸Á¿²æ»ıÊ¸Á¿ÔÚXYZÖáµÄ·ÖÁ¿ABC
+        //æ±‚å‡ºä¸¤ä¸ªçŸ¢é‡å‰ç§¯çŸ¢é‡åœ¨XYZè½´çš„åˆ†é‡ABC
         float A=y1*z2-y2*z1;
         float B=z1*x2-z2*x1;
         float C=x1*y2-x2*y1;
-        //Í¨¹ıÇóÖµ¹«Ê½ÇóÖ¸¶¨xz´¦µÄyÖµ
+        //é€šè¿‡æ±‚å€¼å…¬å¼æ±‚æŒ‡å®šxzå¤„çš„yå€¼
 		float yResult=(C*(tz0-ctz)+A*(tx0-ctx))/B+ty0;
-		//·µ»Ø½á¹û
+		//è¿”å›ç»“æœ
 		return yResult;
 	}
 	
-	//ĞÂÌí¼ÓµÄ£¬Ö÷ÒªÊÇÅĞ¶ÏÊÇ·ñÒ»È¦½áÊø====================================================
+	//æ–°æ·»åŠ çš„ï¼Œä¸»è¦æ˜¯åˆ¤æ–­æ˜¯å¦ä¸€åœˆç»“æŸ====================================================
 	final float RACE_HALF_X=14*UNIT_SIZE;
 	final float RACE_HALF_Z=20*UNIT_SIZE;
 	final float RACE_BEGIN_X=30;
@@ -526,7 +526,7 @@ public class KeyThread extends Thread
 			halfFlag=true;
 		}
 	}
-	//ÊÇ·ñÅÜÍêÒ»È¦µÄ·½·¨
+	//æ˜¯å¦è·‘å®Œä¸€åœˆçš„æ–¹æ³•
 	public void isOneCycleForBoat(float carTempX,float carTempZ)
 	{
 		double dis=Math.sqrt
@@ -539,8 +539,8 @@ public class KeyThread extends Thread
 		{
 			if(halfFlag==true)
 			{
-				numberOfTurns=numberOfTurns+1;//È¦Êı¼Ó1
-				if(numberOfTurns==3&&isSpeedMode)	//ÈôÎª¾ºËÙÄ£Ê½£¬ÔÚÅÜÍêÈ¦Êıºó£¬»ñµÃµ±Ç°µÄÃû´Î£¬²¢ÇÒ°ÑËÙ¶ÈºÍ¼ÓËÙ¶ÈÉèÖÃÎª0
+				numberOfTurns=numberOfTurns+1;//åœˆæ•°åŠ 1
+				if(numberOfTurns==3&&isSpeedMode)	//è‹¥ä¸ºç«é€Ÿæ¨¡å¼ï¼Œåœ¨è·‘å®Œåœˆæ•°åï¼Œè·å¾—å½“å‰çš„åæ¬¡ï¼Œå¹¶ä¸”æŠŠé€Ÿåº¦å’ŒåŠ é€Ÿåº¦è®¾ç½®ä¸º0
 				{
 					RANK_FOR_HERO_BOAT=RANK_FOR_HELP;
 					CURR_BOAT_V=0;
@@ -548,10 +548,10 @@ public class KeyThread extends Thread
 					String currSysTime=Constant.getCurrTime();
 					String currUseTime=Constant.getUseTime();
 					DBUtil.insertRcRDatabase(currSysTime, currUseTime, RANK_FOR_HERO_BOAT); 
-					//µ¯³ö¶Ô»°¿ò
+					//å¼¹å‡ºå¯¹è¯æ¡†
 					ma.hd.sendEmptyMessage(12);
 				}
-				else if(numberOfTurns==3&&!isSpeedMode)		//ÈôÎª¼ÆÊ±Ä£Ê½
+				else if(numberOfTurns==3&&!isSpeedMode)		//è‹¥ä¸ºè®¡æ—¶æ¨¡å¼
 				{
 					CURR_BOAT_V=0;
 					BOAT_A=0;
@@ -560,7 +560,7 @@ public class KeyThread extends Thread
 					List<String> alist=DBUtil.getTimeFromJSDatabase();
 					isBreakRecord=isFast(currUseTime,alist);
 					DBUtil.insertJSDatabase(currSysTime, currUseTime);
-					//µ¯³öÊÇ·ñÆÆ¼ÍÂ¼µÄ¶Ô»°¿ò
+					//å¼¹å‡ºæ˜¯å¦ç ´çºªå½•çš„å¯¹è¯æ¡†
 					ma.hd.sendEmptyMessage(11);
 				}
 			} 
@@ -571,11 +571,11 @@ public class KeyThread extends Thread
 			halfFlag=false;
 		}
 	}	
-	//±¾´ÎÍæ¼ÒÓÃÊ±ÊÇ·ñÎª×î¶ÌÊ±¼äµÄÅĞ¶Ï·½·¨
+	//æœ¬æ¬¡ç©å®¶ç”¨æ—¶æ˜¯å¦ä¸ºæœ€çŸ­æ—¶é—´çš„åˆ¤æ–­æ–¹æ³•
 	public static boolean isFast(String currTime,List<String> aList)
-	{//ÕâÀïµÄtrue±íÊÇµ±Ç°Ê±¼äÎª×î¶ÌÊ±¼ä£¬¼´ÆÆ¼ÍÂ¼£¬ÕâÀï°Ñµ±Ç°Ê±¼äÏÈµ±×ö×î¶ÌÊ±¼ä
+	{//è¿™é‡Œçš„trueè¡¨æ˜¯å½“å‰æ—¶é—´ä¸ºæœ€çŸ­æ—¶é—´ï¼Œå³ç ´çºªå½•ï¼Œè¿™é‡ŒæŠŠå½“å‰æ—¶é—´å…ˆå½“åšæœ€çŸ­æ—¶é—´
 		boolean result=false;
-		//½«µ±Ç°µÄÊ±¼äÒÔ¡°:¡±·Ö¿ª
+		//å°†å½“å‰çš„æ—¶é—´ä»¥â€œ:â€åˆ†å¼€
 		String[] str=currTime.split(":");
 		int currT=Integer.parseInt(str[0])*60*100+Integer.parseInt(str[1])*100+Integer.parseInt(str[2]);
 		List<Integer> tempInteger=new ArrayList<Integer>();

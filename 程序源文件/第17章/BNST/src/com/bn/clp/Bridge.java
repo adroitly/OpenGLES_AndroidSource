@@ -24,22 +24,22 @@ public class Bridge extends BNDrawer
 	
 	private class Bridge_In
 	{
-		//µ¥Î»³¤¶È
+		//å•ä½é•¿åº¦
 		float UNIT_SIZE=2.1f;
 		
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏßµÄid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿çš„id
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóÒýÓÃµÄid
+		//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 		int muMVPMatrixHandle;
-		//¶¥µãÎ»ÖÃÊôÐÔÒýÓÃid
+		//é¡¶ç‚¹ä½ç½®å±žæ€§å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôÐÔÒýÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±žæ€§å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µãÊý¾Ý»º³åºÍÎÆÀí×ø±êÊý¾Ý»º³å
+		//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊýÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount=0;
 		
 		public Bridge_In(int programId) 
@@ -47,12 +47,12 @@ public class Bridge extends BNDrawer
 			initVertexData();
 			initShader(programId);
 		}
-		//³õÊ¼»¯¶¥µãÊý¾ÝµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData()
 		{
 			float[] vertex=new float[]
 		    {
-				//ÇÅÃæµÄÇ°²à
+				//æ¡¥é¢çš„å‰ä¾§
 				-6*UNIT_SIZE,4.5f*UNIT_SIZE,0,
 				-6*UNIT_SIZE,4*UNIT_SIZE,0,
 				23*UNIT_SIZE,4*UNIT_SIZE,0,
@@ -60,7 +60,7 @@ public class Bridge extends BNDrawer
 				-6*UNIT_SIZE,4.5f*UNIT_SIZE,0,
 				23*UNIT_SIZE,4*UNIT_SIZE,0,
 				23*UNIT_SIZE,4.5f*UNIT_SIZE,0,
-				//ÇÅÃæÏÂ²à
+				//æ¡¥é¢ä¸‹ä¾§
 				23*UNIT_SIZE,4*UNIT_SIZE,0,
 				-6*UNIT_SIZE,4*UNIT_SIZE,0,
 				-6*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
@@ -68,7 +68,7 @@ public class Bridge extends BNDrawer
 				23*UNIT_SIZE,4*UNIT_SIZE,0,
 				-6*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				23*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
-				//ÇÅÃæºó²à
+				//æ¡¥é¢åŽä¾§
 				-6*UNIT_SIZE,4.5f*UNIT_SIZE,-4*UNIT_SIZE,
 				23*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				-6*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
@@ -76,9 +76,9 @@ public class Bridge extends BNDrawer
 				-6*UNIT_SIZE,4.5f*UNIT_SIZE,-4*UNIT_SIZE,
 				23*UNIT_SIZE,4.5f*UNIT_SIZE,-4*UNIT_SIZE,
 				23*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ª×ó²àµÄ
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÌÝÐÎ¡ª¡ª×ó²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”å·¦ä¾§çš„
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”æ¢¯å½¢â€”â€”å·¦ä¾§çš„
+				//å‰ä¾§
 				2*UNIT_SIZE,4*UNIT_SIZE,0,
 				3*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
@@ -86,7 +86,7 @@ public class Bridge extends BNDrawer
 				2*UNIT_SIZE,4*UNIT_SIZE,0,
 				4*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,0,
-				//ÓÒ²à
+				//å³ä¾§
 				5*UNIT_SIZE,4*UNIT_SIZE,0,
 				4*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
@@ -94,7 +94,7 @@ public class Bridge extends BNDrawer
 				5*UNIT_SIZE,4*UNIT_SIZE,0,
 				4*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
-				//ºó²à
+				//åŽä¾§
 				2*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				3*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
@@ -102,7 +102,7 @@ public class Bridge extends BNDrawer
 				2*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				5*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
-				//×ó²à
+				//å·¦ä¾§
 				2*UNIT_SIZE,4*UNIT_SIZE,0,
 				2*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				3*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
@@ -110,8 +110,8 @@ public class Bridge extends BNDrawer
 				2*UNIT_SIZE,4*UNIT_SIZE,0,
 				3*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				3*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÁ¢·½Ìå¡ª¡ª×ó²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”ç«‹æ–¹ä½“â€”â€”å·¦ä¾§çš„
+				//å‰ä¾§
 				3*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				3*UNIT_SIZE,0,-UNIT_SIZE,
 				4*UNIT_SIZE,0,-UNIT_SIZE,
@@ -119,7 +119,7 @@ public class Bridge extends BNDrawer
 				3*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				4*UNIT_SIZE,0,-UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
-				//ÓÒ²à
+				//å³ä¾§
 				4*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				4*UNIT_SIZE,0,-UNIT_SIZE,
 				4*UNIT_SIZE,0,-3*UNIT_SIZE,
@@ -127,7 +127,7 @@ public class Bridge extends BNDrawer
 				4*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				4*UNIT_SIZE,0,-3*UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
-				//ºó²à
+				//åŽä¾§
 				3*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				4*UNIT_SIZE,0,-3*UNIT_SIZE,
 				3*UNIT_SIZE,0,-3*UNIT_SIZE,
@@ -135,7 +135,7 @@ public class Bridge extends BNDrawer
 				3*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				4*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				4*UNIT_SIZE,0,-3*UNIT_SIZE,
-				//×ó²à
+				//å·¦ä¾§
 				3*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				3*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				3*UNIT_SIZE,0,-3*UNIT_SIZE,
@@ -143,11 +143,11 @@ public class Bridge extends BNDrawer
 				3*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				3*UNIT_SIZE,0,-3*UNIT_SIZE,
 				3*UNIT_SIZE,0,-UNIT_SIZE,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ª×ó²àµÄ
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”å·¦ä¾§çš„
 
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÓÒ²àµÄ
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÌÝÐÎ¡ª¡ªÓÒ²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”å³ä¾§çš„
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”æ¢¯å½¢â€”â€”å³ä¾§çš„
+				//å‰ä¾§
 				10*UNIT_SIZE,4*UNIT_SIZE,0,
 				11*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
@@ -155,7 +155,7 @@ public class Bridge extends BNDrawer
 				10*UNIT_SIZE,4*UNIT_SIZE,0,
 				12*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				13*UNIT_SIZE,4*UNIT_SIZE,0,
-				//ÓÒ²à
+				//å³ä¾§
 				13*UNIT_SIZE,4*UNIT_SIZE,0,
 				12*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
@@ -163,7 +163,7 @@ public class Bridge extends BNDrawer
 				13*UNIT_SIZE,4*UNIT_SIZE,0,
 				12*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				13*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
-				//ºó²à
+				//åŽä¾§
 				10*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				11*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
@@ -171,7 +171,7 @@ public class Bridge extends BNDrawer
 				10*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				13*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
-				//×ó²à
+				//å·¦ä¾§
 				10*UNIT_SIZE,4*UNIT_SIZE,0,
 				10*UNIT_SIZE,4*UNIT_SIZE,-4*UNIT_SIZE,
 				11*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
@@ -179,8 +179,8 @@ public class Bridge extends BNDrawer
 				10*UNIT_SIZE,4*UNIT_SIZE,0,
 				11*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				11*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÁ¢·½Ìå¡ª¡ªÓÒ²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”ç«‹æ–¹ä½“â€”â€”å³ä¾§çš„
+				//å‰ä¾§
 				11*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				11*UNIT_SIZE,0,-UNIT_SIZE,
 				12*UNIT_SIZE,0,-UNIT_SIZE,
@@ -188,7 +188,7 @@ public class Bridge extends BNDrawer
 				11*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				12*UNIT_SIZE,0,-UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
-				//ÓÒ²à
+				//å³ä¾§
 				12*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				12*UNIT_SIZE,0,-UNIT_SIZE,
 				12*UNIT_SIZE,0,-3*UNIT_SIZE,
@@ -196,7 +196,7 @@ public class Bridge extends BNDrawer
 				12*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				12*UNIT_SIZE,0,-3*UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
-				//ºó²à
+				//åŽä¾§
 				11*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				12*UNIT_SIZE,0,-3*UNIT_SIZE,
 				11*UNIT_SIZE,0,-3*UNIT_SIZE,
@@ -204,7 +204,7 @@ public class Bridge extends BNDrawer
 				11*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				12*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				12*UNIT_SIZE,0,-3*UNIT_SIZE,
-				//×ó²à
+				//å·¦ä¾§
 				11*UNIT_SIZE,3*UNIT_SIZE,-UNIT_SIZE,
 				11*UNIT_SIZE,3*UNIT_SIZE,-3*UNIT_SIZE,
 				11*UNIT_SIZE,0,-3*UNIT_SIZE,
@@ -222,69 +222,69 @@ public class Bridge extends BNDrawer
 			
 			float[] texcoor=new float[]
 	        {
-				//ÇÅÃæµÄÇ°²à
+				//æ¡¥é¢çš„å‰ä¾§
 				0,0,   0,0.1f,   2,0.1f,
 				0,0,   2,0.1f,   2,0,
-				//ÇÅÃæÏÂ²à
+				//æ¡¥é¢ä¸‹ä¾§
 				2,0,    0,0,   0,0.7f,
 				2,0,    0,0.7f,   2,0.7f,
-				//ÇÅÃæºó²à
+				//æ¡¥é¢åŽä¾§
 				0,0,   2,0.1f,   0,0.1f,
 				0,0,   2,0,   2,0.1f,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ª×ó²àµÄ
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÌÝÐÎ¡ª¡ª×ó²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”å·¦ä¾§çš„
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”æ¢¯å½¢â€”â€”å·¦ä¾§çš„
+				//å‰ä¾§
 				0.0667f,0.2f,   0.1333f,0.4f,   0.2667f,0.4f,
 				0.0667f,0.2f,   0.2667f,0.4f,   0.3333f,0.2f,
-				//ÓÒ²à
+				//å³ä¾§
 				0.0667f,0.2f,   0.1333f,0.4f,   0.2667f,0.4f,
 				0.0667f,0.2f,   0.2667f,0.4f,   0.3333f,0.2f,
-				//ºó²à
+				//åŽä¾§
 				0.0667f,0.2f,   0.2667f,0.4f,   0.1333f,0.4f,
 				0.0667f,0.2f,   0.3333f,0.2f,   0.2667f,0.4f,
-				//×ó²à
+				//å·¦ä¾§
 				0.3333f,0.2f,   0.0667f,0.2f,   0.1333f,0.4f,
 				0.3333f,0.2f,   0.1333f,0.4f,   0.2667f,0.4f,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÁ¢·½Ìå¡ª¡ª×ó²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”ç«‹æ–¹ä½“â€”â€”å·¦ä¾§çš„
+				//å‰ä¾§
 				0.1333f,0.4f,   0.1333f,1,   0.2667f,1,
 				0.1333f,0.4f,   0.2667f,1,   0.2667f,0.4f,
-				//ÓÒ²à
+				//å³ä¾§
 				0.1333f,0.4f,   0.1333f,1,   0.2667f,1,
 				0.1333f,0.4f,   0.2667f,1,   0.2667f,0.4f,
-				//ºó²à
+				//åŽä¾§
 				0.1333f,0.4f,   0.2667f,1,   0.1333f,1,
 				0.1333f,0.4f,   0.2667f,0.4f,   0.2667f,1,
-				//×ó²à
+				//å·¦ä¾§
 				0.2667f,0.4f,   0.1333f,0.4f,   0.1333f,1,
 				0.2667f,0.4f,   0.1333f,1,   0.2667f,1,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ª×ó²àµÄ
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”å·¦ä¾§çš„
 
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÓÒ²àµÄ
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÌÝÐÎ¡ª¡ªÓÒ²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”å³ä¾§çš„
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”æ¢¯å½¢â€”â€”å³ä¾§çš„
+				//å‰ä¾§
 				0.6667f,0.2f,   0.7333f,0.4f,   0.8667f,0.4f,
 				0.6667f,0.2f,   0.8667f,0.4f,   0.9333f,0.2f,
-				//ÓÒ²à
+				//å³ä¾§
 				0.6667f,0.2f,   0.7333f,0.4f,   0.8667f,0.4f,
 				0.6667f,0.2f,   0.8667f,0.4f,   0.9333f,0.2f,
-				//ºó²à
+				//åŽä¾§
 				0.6667f,0.2f,   0.8667f,0.4f,   0.7333f,0.4f,
 				0.6667f,0.2f,   0.9333f,0.2f,   0.8667f,0.4f,
-				//×ó²à
+				//å·¦ä¾§
 				0.9333f,0.2f,   0.6667f,0.2f,   0.7333f,0.4f,
 				0.9333f,0.2f,   0.7333f,0.4f,   0.8667f,0.4f,
-				//ÇÅÏÂ²àµÄÖ§Öù¡ª¡ªÁ¢·½Ìå¡ª¡ªÓÒ²àµÄ
-				//Ç°²à
+				//æ¡¥ä¸‹ä¾§çš„æ”¯æŸ±â€”â€”ç«‹æ–¹ä½“â€”â€”å³ä¾§çš„
+				//å‰ä¾§
 				0.7333f,0.4f,   0.7333f,1,   0.8667f,1,
 				0.7333f,0.4f,   0.8667f,1,   0.8667f,0.4f,
-				//ÓÒ²à
+				//å³ä¾§
 				0.7333f,0.4f,   0.7333f,1,   0.8667f,1,
 				0.7333f,0.4f,   0.8667f,1,   0.8667f,0.4f,
-				//ºó²à
+				//åŽä¾§
 				0.7333f,0.4f,   0.8667f,1,   0.7333f,1,
 				0.7333f,0.4f,   0.8667f,0.4f,   0.8667f,1,
-				//×ó²à
+				//å·¦ä¾§
 				0.8667f,0.4f,   0.7333f,0.4f,   0.7333f,1,
 				0.8667f,0.4f,   0.7333f,1,   0.8667f,1,
 	        };
@@ -295,28 +295,28 @@ public class Bridge extends BNDrawer
 			mTexCoorBuffer.position(0);
 		}
 		
-		//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
 		public void initShader(int programId) 
 		{
-			//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌÐò
+			//åŸºäºŽé¡¶ç‚¹ç€è‰²å™¨ä¸Žç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 	        mProgram = programId;
-	        //»ñÈ¡³ÌÐòÖÐ¶¥µãÎ»ÖÃÊôÐÔÒýÓÃid  
+	        //èŽ·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±žæ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌÐòÖÐ¶¥µãÎÆÀí×ø±êÊôÐÔÒýÓÃid  
+	        //èŽ·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±žæ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌÐòÖÐ×Ü±ä»»¾ØÕóÒýÓÃid
+	        //èŽ·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 		}
 		
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨drawSelf
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 		public void realDrawSelf(int texId)
 		{
-			//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌÐò
+			//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram); 
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌÐò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
 	        
-			//´«Èë¶¥µãÎ»ÖÃÊý¾Ý
+			//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -326,7 +326,7 @@ public class Bridge extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊý¾Ý
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -336,15 +336,15 @@ public class Bridge extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊÐí¶¥µãÎ»ÖÃÊý¾ÝÊý×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØÐÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}

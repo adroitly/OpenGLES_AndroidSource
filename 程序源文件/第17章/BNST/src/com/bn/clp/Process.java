@@ -8,33 +8,33 @@ import com.bn.core.MatrixState;
 
 public class Process
 {
-	//×Ô¶¨ÒåäÖÈ¾¹ÜÏßµÄid
+	//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿çš„id
 	int mProgram;
-	//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+	//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 	int muMVPMatrixHandle;
-	//¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+	//é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 	int maPositionHandle;
-	//¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid
+	//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id
 	int maTexCoorHandle;
-	int maPrograss;//j½ø¶ÈÌõÎ»ÖÃ×ø±ê
+	int maPrograss;//jè¿›åº¦æ¡ä½ç½®åæ ‡
 	
-	//¶¥µãÊı¾İ»º³åºÍÎÆÀí×ø±êÊı¾İ»º³å
+	//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 	FloatBuffer mVertexBuffer;  
 	FloatBuffer mTexCoorBuffer;
-	//¶¥µãÊıÁ¿
+	//é¡¶ç‚¹æ•°é‡
 	int vCount=0;
 	
-	//Ñ­»·±êÖ¾Î»
+	//å¾ªç¯æ ‡å¿—ä½
 	boolean flag=true;
-	float currPrograss;//µ±Ç°½ø¶È
+	float currPrograss;//å½“å‰è¿›åº¦
 	float width;
 	float percent;
-	//percent±íÊ¾½ø¶ÈÖµ
+	//percentè¡¨ç¤ºè¿›åº¦å€¼
 	public Process(int programId,float width,float height,float[] texCoor,float percent)
 	{
 		this.width=width;
 		this.percent=percent;
-		//³õÊ¼»¯¶¥µãÊı¾İ  
+		//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®  
 		initVertexData(width,height,texCoor);
 		initShader(programId);
 		
@@ -64,7 +64,7 @@ public class Process
 		}.start();
 	}
 	
-	//³õÊ¼»¯¶¥µãÊı¾İµÄ·½·¨
+	//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 	public void initVertexData(float width,float height,float[] texCoor)
 	{
 		float[] vertex=new float[]
@@ -84,7 +84,7 @@ public class Process
 		mVertexBuffer.put(vertex);
 		mVertexBuffer.position(0);
 		
-		//ÎÆÀí×ø±êÊı¾İ»º³å
+		//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		ByteBuffer tbb=ByteBuffer.allocateDirect(texCoor.length*4);
 		tbb.order(ByteOrder.nativeOrder());
 		mTexCoorBuffer=tbb.asFloatBuffer();
@@ -92,32 +92,32 @@ public class Process
 		mTexCoorBuffer.position(0);
 	}
 	
-	//³õÊ¼»¯×ÅÉ«Æ÷µÄ·½·¨
+	//åˆå§‹åŒ–ç€è‰²å™¨çš„æ–¹æ³•
 	public void initShader(int programId) 
 	{
-		//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+		//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
         mProgram =programId;
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
-        //½ø¶ÈµÄÒıÓÃid
+        //è¿›åº¦çš„å¼•ç”¨id
         maPrograss= GLES20.glGetUniformLocation(mProgram, "aPrograss");
 	}
 	
-	//×Ô¶¨ÒåµÄ»æÖÆ·½·¨drawSelf
+	//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 	public void drawSelf(int texId)
 	{
-		//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+		//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram); 
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-        //½«µ±Ç°µÄ½ø¶È´«Èëµ½Shader³ÌĞò
+        //å°†å½“å‰çš„è¿›åº¦ä¼ å…¥åˆ°Shaderç¨‹åº
         GLES20.glUniform1f(maPrograss, currPrograss);
         
-		//´«Èë¶¥µãÎ»ÖÃÊı¾İ
+		//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maPositionHandle, 
@@ -127,7 +127,7 @@ public class Process
 			3*4, 
 			mVertexBuffer
 		);
-		//´«ÈëÎÆÀí×ø±êÊı¾İ
+		//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maTexCoorHandle, 
@@ -137,19 +137,19 @@ public class Process
 			2*4, 
 			mTexCoorBuffer
 		);
-		//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+		//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
         
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
         
-        //»æÖÆÎÆÀí¾ØĞÎ
+        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 	}
 	
-	//½«°Ù·Ö±È¶ÔÓ¦³ÉÓëwidthÏà¹ØµÄÊı¾İ£¬percentÎª°Ù·Ö±È£¬widthÎªÏàÓ¦µÄÆÁÄ»µÄ°ë¿í¶È
+	//å°†ç™¾åˆ†æ¯”å¯¹åº”æˆä¸widthç›¸å…³çš„æ•°æ®ï¼Œpercentä¸ºç™¾åˆ†æ¯”ï¼Œwidthä¸ºç›¸åº”çš„å±å¹•çš„åŠå®½åº¦
 	public float percentToWidth(float percent,float width)
 	{
 		return percent*width*2-width;

@@ -9,104 +9,104 @@ import android.opengl.GLES20;
 
 import com.bn.core.MatrixState;
 /*
- * ÓÃÓÚ»æÖÆÔ²Öù    ¶¥µãºÍÎÆÀí
+ * ç”¨äºç»˜åˆ¶åœ†æŸ±    é¡¶ç‚¹å’Œçº¹ç†
  */
 public class Column
 {
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷´úÂë½Å±¾    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷´úÂë½Å±¾
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨ä»£ç è„šæœ¬    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨ä»£ç è„šæœ¬
 	
-	private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    private FloatBuffer mTextureBuffer;//¶¥µãÎÆÀíÊı¾İ»º³å
-    private int vCount;    //¶¥µãÊıÁ¿
+	private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    private FloatBuffer mTextureBuffer;//é¡¶ç‚¹çº¹ç†æ•°æ®ç¼“å†²
+    private int vCount;    //é¡¶ç‚¹æ•°é‡
 
-    public float mAngleX;//ÈÆxÖáĞı×ª½Ç¶È
-    public float mAngleY;//ÈÆyÖáĞı×ª½Ç¶È
-    public float mAngleZ;//ÈÆzÖáĞı×ª½Ç¶È
+    public float mAngleX;//ç»•xè½´æ—‹è½¬è§’åº¦
+    public float mAngleY;//ç»•yè½´æ—‹è½¬è§’åº¦
+    public float mAngleZ;//ç»•zè½´æ—‹è½¬è§’åº¦
     
-    float mOffsetX;//ÑØxÖáÆ½ÒÆ¾àÀë
-    float mOffsetY;//ÑØyÖáÆ½ÒÆ¾àÀë
-    float mOffsetZ;//ÑØzÖáÆ½ÒÆ¾àÀë
+    float mOffsetX;//æ²¿xè½´å¹³ç§»è·ç¦»
+    float mOffsetY;//æ²¿yè½´å¹³ç§»è·ç¦»
+    float mOffsetZ;//æ²¿zè½´å¹³ç§»è·ç¦»
     
-    float height;//ÉèÖÃ¸ß
-    float radius;//ÉèÖÃ°ë¾¶
+    float height;//è®¾ç½®é«˜
+    float radius;//è®¾ç½®åŠå¾„
     
-    private float heightSpan=0.05f; //¸ß¶ÈÇĞ·Öµ¥Ôª
-    private float angleSpan=30;		//½Ç¶ÈÇĞ·Ö´óĞ¡
+    private float heightSpan=0.05f; //é«˜åº¦åˆ‡åˆ†å•å…ƒ
+    private float angleSpan=30;		//è§’åº¦åˆ‡åˆ†å¤§å°
 	
-    //Ô²ÖùµÄÇĞ·ÖĞĞÊıºÍÁĞÊı
-    int col=(int) (360/angleSpan);//Ô²ÖùµÄÇĞ·ÖÁĞÊı
-    int row=10;					  //Ô²ÖùµÄÇĞ·ÖĞĞÊıºÍÁĞÊı
+    //åœ†æŸ±çš„åˆ‡åˆ†è¡Œæ•°å’Œåˆ—æ•°
+    int col=(int) (360/angleSpan);//åœ†æŸ±çš„åˆ‡åˆ†åˆ—æ•°
+    int row=10;					  //åœ†æŸ±çš„åˆ‡åˆ†è¡Œæ•°å’Œåˆ—æ•°
     
     public Column(float height,float radius,int mProgram)
     {
     	this.mProgram=mProgram;
     	this.height=height;
     	this.radius=radius;
-    	heightSpan=height/row;		//¸ß¶ÈÇĞ·Öµ¥Ôª
-    	initVertex();				//³õÊ¼»¯¶¥µã×ø±êÊı¾İ
-    	initTexture();				//³õÊ¼»¯¶¥µãÎÆÀíÊı¾İ
+    	heightSpan=height/row;		//é«˜åº¦åˆ‡åˆ†å•å…ƒ
+    	initVertex();				//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡æ•°æ®
+    	initTexture();				//åˆå§‹åŒ–é¡¶ç‚¹çº¹ç†æ•°æ®
     	initShader();
     }
-    //³õÊ¼»¯¶¥µãĞÅÏ¢
+    //åˆå§‹åŒ–é¡¶ç‚¹ä¿¡æ¯
     public void initVertex()
 	{    	
-    	ArrayList<Float> alVertex=new ArrayList<Float>();//´æ·Å¶¥µã
+    	ArrayList<Float> alVertex=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹
 		for(int i=0;i<=row;i++)
 		{
-			float y=(i-row/2.0f)*heightSpan;//¹¹½¨Èı½ÇĞÎ¶¥µãµÄy×ø±êµÄ±äÁ¿
-			float hAngle=0;					//Ë®Æ½Ãæ½Ç¶È
+			float y=(i-row/2.0f)*heightSpan;//æ„å»ºä¸‰è§’å½¢é¡¶ç‚¹çš„yåæ ‡çš„å˜é‡
+			float hAngle=0;					//æ°´å¹³é¢è§’åº¦
 			for(int j=0;j<=col;j++)
 			{
-				hAngle=j*angleSpan;			//Ë®Æ½ÃæÉÏµÄ½Ç¶È
+				hAngle=j*angleSpan;			//æ°´å¹³é¢ä¸Šçš„è§’åº¦
 				
-				float x=(float) (radius*Math.cos(Math.toRadians(hAngle)));//¹¹½¨Èı½ÇĞÎ¶¥µãµÄx×ø±êµÄ±äÁ¿
-				float z=(float) (radius*Math.sin(Math.toRadians(hAngle)));//¹¹½¨Èı½ÇĞÎ¶¥µãµÄz×ø±êµÄ±äÁ¿
-				alVertex.add(x);			//Ìí¼Óx×ø±ê
-				alVertex.add(y);			//Ìí¼Óy×ø±ê
-				alVertex.add(z);			//Ìí¼Óz×ø±ê
+				float x=(float) (radius*Math.cos(Math.toRadians(hAngle)));//æ„å»ºä¸‰è§’å½¢é¡¶ç‚¹çš„xåæ ‡çš„å˜é‡
+				float z=(float) (radius*Math.sin(Math.toRadians(hAngle)));//æ„å»ºä¸‰è§’å½¢é¡¶ç‚¹çš„zåæ ‡çš„å˜é‡
+				alVertex.add(x);			//æ·»åŠ xåæ ‡
+				alVertex.add(y);			//æ·»åŠ yåæ ‡
+				alVertex.add(z);			//æ·»åŠ zåæ ‡
 			}
 		}
-		ArrayList<Integer> alIndex=new ArrayList<Integer>();		//´´½¨Ë÷Òı
-		int ncol=col+1;					//Ã¿ĞĞÊµ¼Ê¶¥µãÊıÁ¿
+		ArrayList<Integer> alIndex=new ArrayList<Integer>();		//åˆ›å»ºç´¢å¼•
+		int ncol=col+1;					//æ¯è¡Œå®é™…é¡¶ç‚¹æ•°é‡
 		for(int i=0;i<row;i++)
 		{
 			for(int j=0;j<col;j++)
 			{
-				int k=i*ncol+j;			//Èı½ÇĞÎË÷Òı
-				alIndex.add(k);			//ÉÏÈı½ÇĞÎ
+				int k=i*ncol+j;			//ä¸‰è§’å½¢ç´¢å¼•
+				alIndex.add(k);			//ä¸Šä¸‰è§’å½¢
 				alIndex.add(k+ncol);
 				alIndex.add(k+1);
-				alIndex.add(k+ncol);	//ÏÂÈı½ÇĞÎ
+				alIndex.add(k+ncol);	//ä¸‹ä¸‰è§’å½¢
 				alIndex.add(k+ncol+1);
 				alIndex.add(k+1);
 			}
 		}
-  		vCount=alIndex.size();			//¶¥µãÊıÁ¿
-  		float vertices[]=new float[alIndex.size()*3];//¶¥µã×ø±êÊı×é
-		for(int i=0;i<vCount;i++)				//ÏòÊı×éÖĞÌí¼Ó¶¥µã
+  		vCount=alIndex.size();			//é¡¶ç‚¹æ•°é‡
+  		float vertices[]=new float[alIndex.size()*3];//é¡¶ç‚¹åæ ‡æ•°ç»„
+		for(int i=0;i<vCount;i++)				//å‘æ•°ç»„ä¸­æ·»åŠ é¡¶ç‚¹
 		{
-			int k=alIndex.get(i);				//È¡³öÈı½ÇĞÎË÷Òı
-			vertices[i*3]=alVertex.get(k*3);	//Ìí¼ÓÈı½ÇĞÎx×ø±ê
-			vertices[i*3+1]=alVertex.get(k*3+1);//Ìí¼ÓÈı½ÇĞÎy×ø±ê
-			vertices[i*3+2]=alVertex.get(k*3+2);//Ìí¼ÓÈı½ÇĞÎz×ø±ê
+			int k=alIndex.get(i);				//å–å‡ºä¸‰è§’å½¢ç´¢å¼•
+			vertices[i*3]=alVertex.get(k*3);	//æ·»åŠ ä¸‰è§’å½¢xåæ ‡
+			vertices[i*3+1]=alVertex.get(k*3+1);//æ·»åŠ ä¸‰è§’å½¢yåæ ‡
+			vertices[i*3+2]=alVertex.get(k*3+2);//æ·»åŠ ä¸‰è§’å½¢zåæ ‡
 		}
-		ByteBuffer vbb=ByteBuffer.allocateDirect(vertices.length*4);//Ò»¸öfloatĞÍ4¸öbyte
-		vbb.order(ByteOrder.nativeOrder());							//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-		mVertexBuffer=vbb.asFloatBuffer();							//×°»»Îªfloat»º³å
-		mVertexBuffer.put(vertices);								//·ÅÈë¶¥µãÊı×é
-		mVertexBuffer.position(0);									//ÉèÖÃÆğÊ¼Î»ÖÃ 
+		ByteBuffer vbb=ByteBuffer.allocateDirect(vertices.length*4);//ä¸€ä¸ªfloatå‹4ä¸ªbyte
+		vbb.order(ByteOrder.nativeOrder());							//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+		mVertexBuffer=vbb.asFloatBuffer();							//è£…æ¢ä¸ºfloatç¼“å†²
+		mVertexBuffer.put(vertices);								//æ”¾å…¥é¡¶ç‚¹æ•°ç»„
+		mVertexBuffer.position(0);									//è®¾ç½®èµ·å§‹ä½ç½® 
 	}
-    //³õÊ¼»¯ÎÆÀíĞÅÏ¢
+    //åˆå§‹åŒ–çº¹ç†ä¿¡æ¯
     public void initTexture()
 	{
-		int tCount=row*col*2*3*2;					//¶¥µãÊıÁ¿
-		float[] textures=new float[tCount];			//ÎÆÀí×ø±êÊı×é
-		float sizew=1.0f/col;						//ºáÏòÎÆÀí×ø±êµ¥Ôª
+		int tCount=row*col*2*3*2;					//é¡¶ç‚¹æ•°é‡
+		float[] textures=new float[tCount];			//çº¹ç†åæ ‡æ•°ç»„
+		float sizew=1.0f/col;						//æ¨ªå‘çº¹ç†åæ ‡å•å…ƒ
 		float sizeh=1.0f/row;
 		for(int i=0,temp=0;i<row;i++)
 		{
@@ -114,7 +114,7 @@ public class Column
 			for(int j=0;j<col;j++) 
 			{
 				float s=j*sizew;
-				//×óÉÏÈı½ÇĞÎ
+				//å·¦ä¸Šä¸‰è§’å½¢
 				textures[temp++]=s;
 				textures[temp++]=t;
 				
@@ -124,7 +124,7 @@ public class Column
 				textures[temp++]=s+sizew;
 				textures[temp++]=t;
 				
-				//ÓÒÏÂÈı½ÇĞÎ
+				//å³ä¸‹ä¸‰è§’å½¢
 				textures[temp++]=s;
 				textures[temp++]=t+sizeh;
 				
@@ -135,31 +135,31 @@ public class Column
 				textures[temp++]=t;
 			}
 		}
-		ByteBuffer tbb=ByteBuffer.allocateDirect(textures.length*4);//Ò»¸öfloatĞÍ4¸öbyte
-		tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-		mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªFLOATĞÍ»º³å
-		mTextureBuffer.put(textures);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-		mTextureBuffer.position(0);//»º³åÇøµÄÆğÊ¼Î»ÖÃ		
+		ByteBuffer tbb=ByteBuffer.allocateDirect(textures.length*4);//ä¸€ä¸ªfloatå‹4ä¸ªbyte
+		tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+		mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºFLOATå‹ç¼“å†²
+		mTextureBuffer.put(textures);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+		mTextureBuffer.position(0);//ç¼“å†²åŒºçš„èµ·å§‹ä½ç½®		
 	}
-    //³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+    //åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
     public void initShader()
     {
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
     }
 	public void drawSelf(int texId)
 	{
 		MatrixState.pushMatrix();
 		MatrixState.translate(mOffsetX, mOffsetY, mOffsetZ);
-		//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+		//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram);        
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
         GLES20.glVertexAttribPointer  
         (
         		maPositionHandle,   
@@ -169,7 +169,7 @@ public class Column
                3*4,   
                mVertexBuffer
         );       
-        //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
         GLES20.glVertexAttribPointer  
         (
        		maTexCoorHandle, 
@@ -179,13 +179,13 @@ public class Column
     		2*4,   
     		mTextureBuffer
         );   
-        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-        //»æÖÆÎÆÀí¾ØĞÎ
+        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
         MatrixState.popMatrix();
 	}
@@ -193,9 +193,9 @@ public class Column
 	 {
 		float[] lwh=
 		{
-			this.radius*2,//³¤
-			this.radius*2,//¿í
-			this.height	//¸ß
+			this.radius*2,//é•¿
+			this.radius*2,//å®½
+			this.height	//é«˜
 		};			
 		return lwh;
 	}

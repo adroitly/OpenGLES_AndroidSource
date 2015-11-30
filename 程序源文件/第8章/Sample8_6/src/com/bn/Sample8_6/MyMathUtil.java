@@ -1,13 +1,13 @@
 package com.bn.Sample8_6;
 public class MyMathUtil{
 	static double a[][];
-	//Í¨¹ıdoolittle·Ö½â½ânÔªÒ»´ÎÏßĞÔ·½³Ì×éµÄ¹¤¾ß·½·¨
+	//é€šè¿‡doolittleåˆ†è§£è§£nå…ƒä¸€æ¬¡çº¿æ€§æ–¹ç¨‹ç»„çš„å·¥å…·æ–¹æ³•
 	static double[] doolittle(double a[][]){
 		MyMathUtil.a=a;
-		int rowNum = a.length ;//»ñµÃÎ´ÖªÊıµÄ¸öÊı
-		int xnum = a[0].length-rowNum;// ËùÇó½âµÄ×éÊı£¨Ò»£©
+		int rowNum = a.length ;//è·å¾—æœªçŸ¥æ•°çš„ä¸ªæ•°
+		int xnum = a[0].length-rowNum;// æ‰€æ±‚è§£çš„ç»„æ•°ï¼ˆä¸€ï¼‰
 		
-		double AugMatrix[][]=new double[10][20];//ÍØÕ¹µÄÔö¹ã¾ØÕó
+		double AugMatrix[][]=new double[10][20];//æ‹“å±•çš„å¢å¹¿çŸ©é˜µ
 		
 		readData(a,rowNum,xnum,AugMatrix);
 		
@@ -30,7 +30,7 @@ public class MyMathUtil{
 	}
 	
 	static void readData(double a[][],int rowNum,int xnum,double AugMatrix[][])
-	{//Ôö¹ã¾ØÕóµÄÍØÕ¹
+	{//å¢å¹¿çŸ©é˜µçš„æ‹“å±•
 		for(int i=0;i<=rowNum;i++)
 		{
 			AugMatrix[i][0]=0;
@@ -45,7 +45,7 @@ public class MyMathUtil{
 	}
 	
 	static void prepareChoose(int times,int rowNum,double AugMatrix[][])
-	{//¼ÆËã×¼±¸Ñ¡Ö÷Ôª
+	{//è®¡ç®—å‡†å¤‡é€‰ä¸»å…ƒ
 		for(int i=times;i<=rowNum;i++)
 		{
 			for(int j=times-1;j>=1;j--)
@@ -55,19 +55,19 @@ public class MyMathUtil{
 		}
 	}
 	static void choose(int times,int rowNum,int xnum,double AugMatrix[][])
-	{//Ñ¡Ö÷Ôª
+	{//é€‰ä¸»å…ƒ
 		int line=times;
-		for(int i=times+1;i<=rowNum;i++)//Ñ¡×î´óĞĞ
+		for(int i=times+1;i<=rowNum;i++)//é€‰æœ€å¤§è¡Œ
 		{
 			if(AugMatrix[i][times]*AugMatrix[i][times]>AugMatrix[line][times]*AugMatrix[line][times])
 				line=i;
 		}
-		if(AugMatrix[line][times]==0)//×î´óÊıµÈÓÚÁã
+		if(AugMatrix[line][times]==0)//æœ€å¤§æ•°ç­‰äºé›¶
 		{
 			System.out.println("doolittle fail !!!");
 			
 		}
-		if(line!=times)//½»»»
+		if(line!=times)//äº¤æ¢
 		{
 			double temp;
 			for(int i=1;i<=rowNum+xnum;i++)
@@ -79,7 +79,7 @@ public class MyMathUtil{
 		}
 	}
 	static void resolve(int times,int rowNum,int xnum,double AugMatrix[][])
-	{//·Ö½â
+	{//åˆ†è§£
 		for(int i=times+1;i<=rowNum;i++)
 		{
 			AugMatrix[i][times]=AugMatrix[i][times]/AugMatrix[times][times];
@@ -93,7 +93,7 @@ public class MyMathUtil{
 		}
 	}
 	static void findX(int rowNum,int xnum,double AugMatrix[][])
-	{//Çó½â
+	{//æ±‚è§£
 		for(int k=1;k<=xnum;k++)
 		{
 			AugMatrix[rowNum][rowNum+k]=AugMatrix[rowNum][rowNum+k]/AugMatrix[rowNum][rowNum];

@@ -8,81 +8,81 @@ import android.opengl.GLSurfaceView;
 
 class MySurfaceView extends GLSurfaceView 
 {
-    private SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷	  
+    private SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨	  
 	public MySurfaceView(Context context) {
         super(context);
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
     }
 	
-	boolean cullFaceFlag=false;//ÊÇ·ñ¿ªÆô±³Ãæ¼ô²ÃµÄ±êÖ¾Î»
-	//ÉèÖÃÊÇ·ñ¿ªÆô±³Ãæ¼ô²ÃµÄ±êÖ¾Î»
+	boolean cullFaceFlag=false;//æ˜¯å¦å¼€å¯èƒŒé¢å‰ªè£çš„æ ‡å¿—ä½
+	//è®¾ç½®æ˜¯å¦å¼€å¯èƒŒé¢å‰ªè£çš„æ ‡å¿—ä½
 	public void setCullFace(boolean flag)
 	{
 		cullFaceFlag=flag;
 	}
 	
-	boolean cwCcwFlag=false;//ÊÇ·ñ´ò¿ª×Ô¶¨Òå¾íÈÆµÄ±êÖ¾Î»
-	//ÉèÖÃÊÇ·ñ´ò¿ª×Ô¶¨Òå¾íÈÆµÄ±êÖ¾Î»
+	boolean cwCcwFlag=false;//æ˜¯å¦æ‰“å¼€è‡ªå®šä¹‰å·ç»•çš„æ ‡å¿—ä½
+	//è®¾ç½®æ˜¯å¦æ‰“å¼€è‡ªå®šä¹‰å·ç»•çš„æ ‡å¿—ä½
 	public void setCwOrCcw(boolean flag)
 	{
 		cwCcwFlag=flag;
 	}
 	private class SceneRenderer implements GLSurfaceView.Renderer 
     {		 
-		TrianglePair tp;//Èı½ÇĞÎ¶Ô
+		TrianglePair tp;//ä¸‰è§’å½¢å¯¹
         public void onDrawFrame(GL10 gl) 
         {        	
-        	//ÅĞ¶ÏÊÇ·ñÒª´ò¿ª±³Ãæ¼ô²Ã
+        	//åˆ¤æ–­æ˜¯å¦è¦æ‰“å¼€èƒŒé¢å‰ªè£
         	if(cullFaceFlag)
 			{
-				GLES20.glEnable(GLES20.GL_CULL_FACE);//´ò¿ª±³Ãæ¼ô²Ã   
+				GLES20.glEnable(GLES20.GL_CULL_FACE);//æ‰“å¼€èƒŒé¢å‰ªè£   
 			}
 			else
 			{
-				GLES20.glDisable(GLES20.GL_CULL_FACE);//¹Ø±Õ±³Ãæ¼ô²Ã   
+				GLES20.glDisable(GLES20.GL_CULL_FACE);//å…³é—­èƒŒé¢å‰ªè£   
 			}
         	
-        	//ÅĞ¶ÏÊÇ·ñĞèÒª´ò¿ª×Ô¶¨Òå¾íÈÆ
+        	//åˆ¤æ–­æ˜¯å¦éœ€è¦æ‰“å¼€è‡ªå®šä¹‰å·ç»•
         	if(cwCcwFlag)
 		    {
-		    	GLES20.glFrontFace(GLES20.GL_CCW);//Ê¹ÓÃ×Ô¶¨Òå¾íÈÆ
+		    	GLES20.glFrontFace(GLES20.GL_CCW);//ä½¿ç”¨è‡ªå®šä¹‰å·ç»•
 		    }
 		    else
 		    {
-		    	GLES20.glFrontFace(GLES20.GL_CW);//²»Ê¹ÓÃ×Ô¶¨Òå¾íÈÆ
+		    	GLES20.glFrontFace(GLES20.GL_CW);//ä¸ä½¿ç”¨è‡ªå®šä¹‰å·ç»•
 		    } 
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
-            //»æÖÆÈı½ÇĞÎ¶Ô
-            MatrixState.pushMatrix();            //±£»¤ÏÖ³¡
-            MatrixState.translate(0, -1.4f, 0);//ÑØy·½ÏòÆ½ÒÆ
+            //ç»˜åˆ¶ä¸‰è§’å½¢å¯¹
+            MatrixState.pushMatrix();            //ä¿æŠ¤ç°åœº
+            MatrixState.translate(0, -1.4f, 0);//æ²¿yæ–¹å‘å¹³ç§»
             tp.drawSelf();    
-            MatrixState.popMatrix();        //»Ö¸´ÏÖ³¡
+            MatrixState.popMatrix();        //æ¢å¤ç°åœº
         }  
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             Constant.ratio = (float) width / height;
-			// µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+			// è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
             MatrixState.setProjectFrustum(-Constant.ratio, Constant.ratio, -1, 1, 10, 100);
-			// µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+			// è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
 			MatrixState.setCamera(0, 0f, 20, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
             
-            //³õÊ¼»¯±ä»»¾ØÕó
+            //åˆå§‹åŒ–å˜æ¢çŸ©é˜µ
             MatrixState.setInitStack();
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            //ÉèÖÃÆÁÄ»±³¾°É«RGBA
+            //è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0.5f,0.5f,0.5f, 1.0f);  
-            //´´½¨Èı½ÇĞÎ¶Ô¶ÔÏó
+            //åˆ›å»ºä¸‰è§’å½¢å¯¹å¯¹è±¡
             tp=new TrianglePair(MySurfaceView.this);
-            //´ò¿ªÉî¶È¼ì²â
+            //æ‰“å¼€æ·±åº¦æ£€æµ‹
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
         }
     }

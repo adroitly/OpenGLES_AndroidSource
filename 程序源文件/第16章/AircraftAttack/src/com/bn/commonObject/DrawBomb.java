@@ -9,8 +9,8 @@ public class DrawBomb
 {
 	float x,y,z;
 	float xAngle,yAngle,zAngle;
-	int index;//µ±Ç°²¥·ÅÁËµÚ¼¸·ùÍ¼	
-	TextureRect recw;//¾ØĞÎÒıÓÃ
+	int index;//å½“å‰æ’­æ”¾äº†ç¬¬å‡ å¹…å›¾	
+	TextureRect recw;//çŸ©å½¢å¼•ç”¨
 	public DrawBomb(TextureRect recw,float x,float y,float z)
 	{
 		this.x=x;
@@ -53,7 +53,7 @@ public class DrawBomb
 		MatrixState.popMatrix();
 	}
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËã±¬Õ¨ÎÆÀíÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—çˆ†ç‚¸çº¹ç†é¢æœå‘
 		float xspan=x-cx;
 		float zspan=z-cz;
 		float yspan=y-cy;

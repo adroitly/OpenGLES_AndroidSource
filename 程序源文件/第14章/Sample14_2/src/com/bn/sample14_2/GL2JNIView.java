@@ -30,14 +30,14 @@ import static com.bn.sample14_2.Sample14_2Activity.*;
 class GL2JNIView extends GLSurfaceView {
     Renderer renderer;
     
-	static float direction=0;//ÊÓÏß·½Ïò
-    static float cx=0;//ÉãÏñ»úx×ø±ê 
-    static float cz=20;//ÉãÏñ»úz×ø±ê
+	static float direction=0;//è§†çº¿æ–¹å‘
+    static float cx=0;//æ‘„åƒæœºxåæ ‡ 
+    static float cz=20;//æ‘„åƒæœºzåæ ‡
     
-    static float tx=0;//¹Û²ìÄ¿±êµãx×ø±ê
-    static float tz=0;//¹Û²ìÄ¿±êµãz×ø±ê
-    static final float DEGREE_SPAN=(float)(3.0/180.0f*Math.PI);//ÉãÏñ»úÃ¿´Î×ª¶¯µÄ½Ç¶È
-    //Ïß³ÌÑ­»·µÄ±êÖ¾Î»  
+    static float tx=0;//è§‚å¯Ÿç›®æ ‡ç‚¹xåæ ‡
+    static float tz=0;//è§‚å¯Ÿç›®æ ‡ç‚¹zåæ ‡
+    static final float DEGREE_SPAN=(float)(3.0/180.0f*Math.PI);//æ‘„åƒæœºæ¯æ¬¡è½¬åŠ¨çš„è§’åº¦
+    //çº¿ç¨‹å¾ªçŽ¯çš„æ ‡å¿—ä½  
     boolean flag=true;
     float x;
     float y;
@@ -59,12 +59,12 @@ class GL2JNIView extends GLSurfaceView {
 						while(flag)
 						{
 							if(x>0&&x<WIDTH/2&&y>0&&y<HEIGHT/2)
-							{//ÏòÇ°
+							{//å‘å‰
 								cx=cx-(float)Math.sin(direction)*1.0f;
 								cz=cz-(float)Math.cos(direction)*1.0f;
 							}
 							else if(x>WIDTH/2&&x<WIDTH&&y>0&&y<HEIGHT/2)
-							{//Ïòºó
+							{//å‘åŽ
 								cx=cx+(float)Math.sin(direction)*1.0f;
 								cz=cz+(float)Math.cos(direction)*1.0f;
 							}
@@ -92,11 +92,11 @@ class GL2JNIView extends GLSurfaceView {
 				flag=false;
 			break;
 		}
-			//ÉèÖÃÐÂµÄ¹Û²ìÄ¿±êµãXZ×ø±ê
-			tx=(float)(cx-Math.sin(direction)*Offset);//¹Û²ìÄ¿±êµãx×ø±ê 
-	        tz=(float)(cz-Math.cos(direction)*Offset);//¹Û²ìÄ¿±êµãz×ø±ê
+			//è®¾ç½®æ–°çš„è§‚å¯Ÿç›®æ ‡ç‚¹XZåæ ‡
+			tx=(float)(cx-Math.sin(direction)*Offset);//è§‚å¯Ÿç›®æ ‡ç‚¹xåæ ‡ 
+	        tz=(float)(cz-Math.cos(direction)*Offset);//è§‚å¯Ÿç›®æ ‡ç‚¹zåæ ‡
 	        
-	        //ÉèÖÃÐÂµÄÉãÏñ»úÎ»ÖÃ
+	        //è®¾ç½®æ–°çš„æ‘„åƒæœºä½ç½®
 	        GL2JNILib.setCamera(cx,5,cz,tx,1,tz,0,1,0);
 			return true;
 	}
@@ -124,16 +124,16 @@ class GL2JNIView extends GLSurfaceView {
         }
     }
     
-	//¼ÓÔØÎÆÀíµÄ·½·¨
+	//åŠ è½½çº¹ç†çš„æ–¹æ³•
 	public static int initTextureRepeat(GLSurfaceView gsv,String pname)
 	{
-		//Éú³ÉÎÆÀíID
+		//ç”Ÿæˆçº¹ç†ID
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊýÁ¿
-				textures,   //ÎÆÀíidµÄÊý×é
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
@@ -143,7 +143,7 @@ class GL2JNIView extends GLSurfaceView {
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_REPEAT);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_REPEAT);
         
-        //Í¨¹ýÊäÈëÁ÷¼ÓÔØÍ¼Æ¬===============begin===================
+        //é€šè¿‡è¾“å…¥æµåŠ è½½å›¾ç‰‡===============begin===================
 		InputStream is = null;
 		try {
 			is = gsv.getResources().getAssets().open(pname);
@@ -162,15 +162,15 @@ class GL2JNIView extends GLSurfaceView {
                 e.printStackTrace();
             }
         }
-        //Êµ¼Ê¼ÓÔØÎÆÀí
+        //å®žé™…åŠ è½½çº¹ç†
         GLUtils.texImage2D
         (
-        		GLES20.GL_TEXTURE_2D,   //ÎÆÀíÀàÐÍ£¬ÔÚOpenGL ESÖÐ±ØÐëÎªGL10.GL_TEXTURE_2D
-        		0, 					  	//ÎÆÀíµÄ²ã´Î£¬0±íÊ¾»ù±¾Í¼Ïñ²ã£¬¿ÉÒÔÀí½âÎªÖ±½ÓÌùÍ¼
-        		bitmapTmp, 			  	//ÎÆÀíÍ¼Ïñ
-        		0					  	//ÎÆÀí±ß¿ò³ß´ç
+        		GLES20.GL_TEXTURE_2D,   //çº¹ç†ç±»åž‹ï¼Œåœ¨OpenGL ESä¸­å¿…é¡»ä¸ºGL10.GL_TEXTURE_2D
+        		0, 					  	//çº¹ç†çš„å±‚æ¬¡ï¼Œ0è¡¨ç¤ºåŸºæœ¬å›¾åƒå±‚ï¼Œå¯ä»¥ç†è§£ä¸ºç›´æŽ¥è´´å›¾
+        		bitmapTmp, 			  	//çº¹ç†å›¾åƒ
+        		0					  	//çº¹ç†è¾¹æ¡†å°ºå¯¸
         );
-        bitmapTmp.recycle(); 		  	//ÎÆÀí¼ÓÔØ³É¹¦ºóÊÍ·ÅÍ¼Æ¬ 
+        bitmapTmp.recycle(); 		  	//çº¹ç†åŠ è½½æˆåŠŸåŽé‡Šæ”¾å›¾ç‰‡ 
         return textureId;
 	}
 }

@@ -4,7 +4,7 @@ public class KeyThread extends Thread {
 
 	MySurfaceView mv;
 	public static boolean flag = true;
-	// ±íÊ¾°´Å¥×´Ì¬µÄ³£Á¿
+	// è¡¨ç¤ºæŒ‰é’®çŠ¶æ€çš„å¸¸é‡
 	public static final int Stop = 0;
 	public static final int up = 1;
 	public static final int down = 2;
@@ -17,16 +17,16 @@ public class KeyThread extends Thread {
 
 	public void run() {
 		while (flag) {
-			if (MySurfaceView.rectState == up) {// ÉÏ
+			if (MySurfaceView.rectState == up) {// ä¸Š
 				MySurfaceView.rectY += MySurfaceView.moveSpan;
 			}
-			else if (MySurfaceView.rectState == down) {// ÏÂ
+			else if (MySurfaceView.rectState == down) {// ä¸‹
 				MySurfaceView.rectY -= MySurfaceView.moveSpan;
 			}
-			else if (MySurfaceView.rectState == left) {// ×ó
+			else if (MySurfaceView.rectState == left) {// å·¦
 				MySurfaceView.rectX -= MySurfaceView.moveSpan;
 			}
-			else if (MySurfaceView.rectState == right) {// ÓÒ
+			else if (MySurfaceView.rectState == right) {// å³
 				MySurfaceView.rectX += MySurfaceView.moveSpan;
 			}
 			try {

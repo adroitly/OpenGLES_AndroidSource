@@ -23,38 +23,38 @@ import com.bn.commonObject.TextureRect;
 import com.bn.core.MatrixState;
 import com.bn.gameView.GLGameView;
 /*
- * ÕûÌå·É»úµÄ¼Ü¹¹
+ * æ•´ä½“é£æœºçš„æ¶æ„
  */
 public class Plane
 {
-	GLGameView gv;		//MySurfaceView µÄÒıÓÃ
-	DrawSpheroid bodyback;		//»úÉíÒıÓÃ
-	DrawSpheroid bodyhead;		//»úÍ·ÒıÓÃ
-	DrawSpheroid cabin;			//»ú²ÕÒıÓÃ
-	Plane_Wing frontwing;		//Ç°»úÒí
-	Plane_Wing frontwing2;		//Ç°»úÒí
-	Plane_BackWing backwing;	//ºó»úÒí
-	Plane_TopWing topwing;		//ÉÏÎ²Òí
-	Column cylinder;			//Ô²ÖùÌå
-	Column cylinder2;			//Ô²ÖùÌå
-	Column cylinder3;			//ÅÚ¹Ü
-	Airscrew screw;   			//ÂİĞı½°
-    float initAngleY=-90;		//³õÊ¼Ê±ÑØxÖáµÄÇã½Ç
-    float[] planePartLWH=		//»ñµÃ·É»úµÄ³¤¸ß¿í
+	GLGameView gv;		//MySurfaceView çš„å¼•ç”¨
+	DrawSpheroid bodyback;		//æœºèº«å¼•ç”¨
+	DrawSpheroid bodyhead;		//æœºå¤´å¼•ç”¨
+	DrawSpheroid cabin;			//æœºèˆ±å¼•ç”¨
+	Plane_Wing frontwing;		//å‰æœºç¿¼
+	Plane_Wing frontwing2;		//å‰æœºç¿¼
+	Plane_BackWing backwing;	//åæœºç¿¼
+	Plane_TopWing topwing;		//ä¸Šå°¾ç¿¼
+	Column cylinder;			//åœ†æŸ±ä½“
+	Column cylinder2;			//åœ†æŸ±ä½“
+	Column cylinder3;			//ç‚®ç®¡
+	Airscrew screw;   			//èºæ—‹æ¡¨
+    float initAngleY=-90;		//åˆå§‹æ—¶æ²¿xè½´çš„å€¾è§’
+    float[] planePartLWH=		//è·å¾—é£æœºçš„é•¿é«˜å®½
 	{
-    	BODYBACK_B*2,BODYBACK_C*2,BODYBACK_A+BODYHEAD_A,	//»úÉí
+    	BODYBACK_B*2,BODYBACK_C*2,BODYBACK_A+BODYHEAD_A,	//æœºèº«
 	};
     
     public int blood=plane_blood;
     
-    public TextureRect mark_plane;//±ê¼Ç¾ØĞÎ
-	//±ê¼Ç¾ü»ğ¿âÎ»ÖÃµÄÑÕÉ«¾ØĞÎÎ»ÖÃ
+    public TextureRect mark_plane;//æ ‡è®°çŸ©å½¢
+	//æ ‡è®°å†›ç«åº“ä½ç½®çš„é¢œè‰²çŸ©å½¢ä½ç½®
 	public float arsenal_x,arsenal_y,arsenal_z;
     
 	public Plane(GLGameView gv,int mProgram, TextureRect mark_plane) 
 	{
 		this.gv=gv;      
-		//»ñµÃ¸÷²¿¼şµÄÒıÓÃ 
+		//è·å¾—å„éƒ¨ä»¶çš„å¼•ç”¨ 
 		bodyback=new DrawSpheroid(BODYBACK_A*PLANE_SIZE,BODYBACK_B*PLANE_SIZE,BODYBACK_C*PLANE_SIZE,18,-90,90,-90,90,mProgram);
 		bodyhead=new DrawSpheroid(BODYHEAD_A*PLANE_SIZE,BODYHEAD_B*PLANE_SIZE,BODYHEAD_C*PLANE_SIZE,18,-90,90,-90,90,mProgram);
 		cabin=new DrawSpheroid(CABIN_A*PLANE_SIZE,CABIN_B*PLANE_SIZE,CABIN_C*PLANE_SIZE,18,0,360,-90,90,mProgram);
@@ -64,9 +64,9 @@ public class Plane
 		backwing = new Plane_BackWing(0.14f*PLANE_SIZE*1.5f,0.06f*PLANE_SIZE*1.5f,0.004f*PLANE_SIZE*1.5f,mProgram);
 		topwing = new Plane_TopWing(0.05f*PLANE_SIZE*1.5f,0.07f*PLANE_SIZE*1.5f,0.01f*PLANE_SIZE*1.5f,mProgram);
 	 	
-		cylinder = new Column(0.18f*PLANE_SIZE,0.006f*PLANE_SIZE,mProgram);//»úÉíÔ²Öù	
-		cylinder2 = new Column(0.1f*PLANE_SIZE,0.015f*PLANE_SIZE,mProgram);//»úÉíÔ²Öù
-		cylinder3 = new Column(0.15f*PLANE_SIZE,0.02f*PLANE_SIZE,mProgram);//»úÉíÔ²
+		cylinder = new Column(0.18f*PLANE_SIZE,0.006f*PLANE_SIZE,mProgram);//æœºèº«åœ†æŸ±	
+		cylinder2 = new Column(0.1f*PLANE_SIZE,0.015f*PLANE_SIZE,mProgram);//æœºèº«åœ†æŸ±
+		cylinder3 = new Column(0.15f*PLANE_SIZE,0.02f*PLANE_SIZE,mProgram);//æœºèº«åœ†
 		screw =  new Airscrew(0.30f*PLANE_SIZE,mProgram);
 		
 		this.mark_plane=mark_plane;
@@ -81,37 +81,37 @@ public class Plane
 		MatrixState.rotate(initAngleY, 0, 1, 0);
 		MatrixState.pushMatrix();
 		MatrixState.rotate(180, 0, 1, 0);
-		bodyhead.drawSelf(texBodyHeadId); //»­»úÍ·			
+		bodyhead.drawSelf(texBodyHeadId); //ç”»æœºå¤´			
 		MatrixState.rotate(90, 0, 1, 0);
 		MatrixState.translate(0, 0, 0.2f*ENEMYPLANE_SIZE);
-		screw.drawSelf(texScrewId); //ÂİĞı½°	
+		screw.drawSelf(texScrewId); //èºæ—‹æ¡¨	
 		MatrixState.popMatrix();
 		
 		MatrixState.pushMatrix();
 		MatrixState.rotate(180, 1, 0, 0);
-		bodyback.drawSelf(texBodyBackId);//»­»úÉí
+		bodyback.drawSelf(texBodyBackId);//ç”»æœºèº«
 		MatrixState.popMatrix();
 		
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, BODYBACK_B*ENEMYPLANE_SIZE/5f, 0);
-		cabin.drawSelf(texCabinId);						//»ú²Õ
+		cabin.drawSelf(texCabinId);						//æœºèˆ±
 		MatrixState.popMatrix();
 		
-		//Ç°»úÒí
+		//å‰æœºç¿¼
 		MatrixState.pushMatrix();
 		MatrixState.rotate(90, 0, 1, 0);
 		MatrixState.rotate(-90, 1, 0, 0);
 		MatrixState.translate(0, 0, 0.12f*PLANE_SIZE);
-        frontwing.drawSelf(texFrontWingId);					//ÉÏÇ°»úÒí	
+        frontwing.drawSelf(texFrontWingId);					//ä¸Šå‰æœºç¿¼	
         MatrixState.translate(0, 0, -0.2f*PLANE_SIZE);
-        frontwing2.drawSelf(texFrontWing2Id);				//ÏÂÇ°»úÒí
+        frontwing2.drawSelf(texFrontWing2Id);				//ä¸‹å‰æœºç¿¼
         MatrixState.translate(-0.12f*PLANE_SIZE, 0,0.03f*PLANE_SIZE );
-        cylinder3.drawSelf(texCylinder3Id);					//»úÉíÔ²Öù1
+        cylinder3.drawSelf(texCylinder3Id);					//æœºèº«åœ†æŸ±1
         MatrixState.translate(0.24f*PLANE_SIZE, 0,0 );
-        cylinder3.drawSelf(texCylinder3Id);					//»úÉíÔ²Öù2
+        cylinder3.drawSelf(texCylinder3Id);					//æœºèº«åœ†æŸ±2
         MatrixState.popMatrix();
         
-        //»úÒíÔ²Öù
+        //æœºç¿¼åœ†æŸ±
         MatrixState.pushMatrix();
         MatrixState.translate(0.07f*PLANE_SIZE, 0.016f*PLANE_SIZE, -0.4f*PLANE_SIZE);
         cylinder.drawSelf(texCylinderId);
@@ -123,7 +123,7 @@ public class Plane
         cylinder.drawSelf(texCylinderId);
         MatrixState.popMatrix();
         
-        //»úÉíÔ²Öù 
+        //æœºèº«åœ†æŸ± 
         MatrixState.pushMatrix();
         MatrixState.translate(0, 0.096f*PLANE_SIZE, 0.08f*PLANE_SIZE);
         MatrixState.rotate(30, 1, 0, 0);
@@ -133,7 +133,7 @@ public class Plane
         cylinder2.drawSelf(texCylinder2Id);
         MatrixState.popMatrix();
         
-      //Î²Òí			
+      //å°¾ç¿¼			
         MatrixState.pushMatrix();												
         MatrixState.translate(0.6f*PLANE_SIZE, 0, 0);
         MatrixState.rotate(90, 0, 1, 0);
@@ -141,14 +141,14 @@ public class Plane
         backwing.drawSelf(texBackWingId);
         MatrixState.popMatrix();
  
-        //ÉÏÎ²Òí
+        //ä¸Šå°¾ç¿¼
         MatrixState.pushMatrix();	
         MatrixState.translate(0.6f*PLANE_SIZE, 0, 0);
         topwing.drawSelf(texTopWingId); 
         MatrixState.popMatrix();
         MatrixState.popMatrix();
 	}
-	public void drawSelfMark(int texId){//ÒÇ±íÅÌÉÏµÄ±ê¼ÇÎ»ÖÃµÄÑÕÉ«¿ò
+	public void drawSelfMark(int texId){//ä»ªè¡¨ç›˜ä¸Šçš„æ ‡è®°ä½ç½®çš„é¢œè‰²æ¡†
 		MatrixState.pushMatrix();
     	MatrixState.translate(arsenal_x,arsenal_y,0);
     	mark_plane.drawSelf(texId);

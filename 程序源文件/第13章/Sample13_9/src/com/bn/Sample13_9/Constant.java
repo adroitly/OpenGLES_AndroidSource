@@ -1,32 +1,32 @@
 package com.bn.Sample13_9;
-//³£Á¿Àà
+//å¸¸é‡ç±»
 public class Constant 
 {
 	public static final float  SCALE=1;	
 	
-	//»Æ½ğ³¤·½ĞÎ³¤±ßµÄÒ»°ë
+	//é»„é‡‘é•¿æ–¹å½¢é•¿è¾¹çš„ä¸€åŠ
 	public static final float AHALF=1;
 	
-	//¸ø¶¨Ä¾¿é°¼²ÛµÄÊı¾İ
-	public static final float CUBE_LENGTH=18;	//¾ØĞÎÆ½ÃæµÄ³¤¶È
-	public static final float CUBE_HEIGHT=1;	//Ç½µÄ¸ß¶È
-	public static final float CUBE_WIDTH=12;	//¾ØĞÎÆ½ÃæµÄ¿í¶È
-	public static final float WALL_WIDTH=1f;	//Ç½µÄºñ¶È
-	//----------------------------Êı¾İ¸ø¶¨½áÊø-----------------------------------------
+	//ç»™å®šæœ¨å—å‡¹æ§½çš„æ•°æ®
+	public static final float CUBE_LENGTH=18;	//çŸ©å½¢å¹³é¢çš„é•¿åº¦
+	public static final float CUBE_HEIGHT=1;	//å¢™çš„é«˜åº¦
+	public static final float CUBE_WIDTH=12;	//çŸ©å½¢å¹³é¢çš„å®½åº¦
+	public static final float WALL_WIDTH=1f;	//å¢™çš„åšåº¦
+	//----------------------------æ•°æ®ç»™å®šç»“æŸ-----------------------------------------
 	
-	public static float D3_CUBE_LENGTH=CUBE_LENGTH*SCALE;	//ÈıÎ¬¿Õ¼äÖĞµ×Ãæ¾ØĞÎµÄÕæÕı³¤¶È
-	public static float D3_CUBE_WIDTH=CUBE_WIDTH*SCALE;	//ÈıÎ¬¿Õ¼äÖĞµ×Ãæ¾ØĞÎµÄÕæÕı¿í¶È
-	public static float D3_WALL_WIDTH=WALL_WIDTH*SCALE;	//ÈıÎ¬¿Õ¼äÖĞÇ½µÄÕæÕıºñ¶È
-	public static float BALLR=(float) Math.sqrt(SCALE*AHALF*SCALE*AHALF+SCALE*AHALF*0.618034f*SCALE*AHALF*0.618034f);		//ÇòµÄ°ë¾¶
+	public static float D3_CUBE_LENGTH=CUBE_LENGTH*SCALE;	//ä¸‰ç»´ç©ºé—´ä¸­åº•é¢çŸ©å½¢çš„çœŸæ­£é•¿åº¦
+	public static float D3_CUBE_WIDTH=CUBE_WIDTH*SCALE;	//ä¸‰ç»´ç©ºé—´ä¸­åº•é¢çŸ©å½¢çš„çœŸæ­£å®½åº¦
+	public static float D3_WALL_WIDTH=WALL_WIDTH*SCALE;	//ä¸‰ç»´ç©ºé—´ä¸­å¢™çš„çœŸæ­£åšåº¦
+	public static float BALLR=(float) Math.sqrt(SCALE*AHALF*SCALE*AHALF+SCALE*AHALF*0.618034f*SCALE*AHALF*0.618034f);		//çƒçš„åŠå¾„
 	
-	//µ×Ãæ°¼²ÛµÄ±ß½ç,¾ùÎªÕıÖµ
-	public static float XBOUNDARY=D3_CUBE_LENGTH/2-D3_WALL_WIDTH-BALLR;	//x·½ÏòÉÏµÄ±ß½ç
-	public static float ZBOUNDARY=D3_CUBE_WIDTH/2-D3_WALL_WIDTH-BALLR;	//z·½ÏòÉÏµÄ±ß½ç
+	//åº•é¢å‡¹æ§½çš„è¾¹ç•Œ,å‡ä¸ºæ­£å€¼
+	public static float XBOUNDARY=D3_CUBE_LENGTH/2-D3_WALL_WIDTH-BALLR;	//xæ–¹å‘ä¸Šçš„è¾¹ç•Œ
+	public static float ZBOUNDARY=D3_CUBE_WIDTH/2-D3_WALL_WIDTH-BALLR;	//zæ–¹å‘ä¸Šçš„è¾¹ç•Œ
 	
 	
-	public static float XOFFSET=0;	//ÇòÎ»ÖÃ×ø±ê
+	public static float XOFFSET=0;	//çƒä½ç½®åæ ‡
 	public static float ZOFFSET=0;
 	
-	public static float SPANX=0;	//ÇòµÄ²½½ø
+	public static float SPANX=0;	//çƒçš„æ­¥è¿›
 	public static float SPANZ=0;
 }

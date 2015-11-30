@@ -44,13 +44,13 @@ import com.bn.tankemodel.Model;
 import com.bn.tankemodel.TanKe;
 public class GLGameView extends GLSurfaceView 
 {
-	public Aircraft_Activity activity;//Ö÷ActivityÒıÓÃ
-	private final float TOUCH_SCALE_FACTOR = 180.0f/480;//½Ç¶ÈËõ·Å±ÈÀı
-    private SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷
-    private int load_step=0;//¼ÓÔØ×ÊÔ´µÄ²½Êı
-	private boolean isLoadedOk=false;//ÊÇ·ñ¼ÓÔØÍê³ÉµÄ±êÖ¾Î»
-    private float mPreviousY;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃY×ø±ê
-    //ÉãÏñ»úµÄÏà¹Ø²ÎÊı ¹©ÆäËûµØ·½µ÷ÓÃ
+	public Aircraft_Activity activity;//ä¸»Activityå¼•ç”¨
+	private final float TOUCH_SCALE_FACTOR = 180.0f/480;//è§’åº¦ç¼©æ”¾æ¯”ä¾‹
+    private SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨
+    private int load_step=0;//åŠ è½½èµ„æºçš„æ­¥æ•°
+	private boolean isLoadedOk=false;//æ˜¯å¦åŠ è½½å®Œæˆçš„æ ‡å¿—ä½
+    private float mPreviousY;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Yåæ ‡
+    //æ‘„åƒæœºçš„ç›¸å…³å‚æ•° ä¾›å…¶ä»–åœ°æ–¹è°ƒç”¨
     public static float cx;    
     public static float cy;
     public static float cz;
@@ -60,7 +60,7 @@ public class GLGameView extends GLSurfaceView
     public static float upX=0;
     public static float upY=1;
     public static float upZ=0;
-    //--------µ±È»Ö¡µÄÊıÖµ
+    //--------å½“ç„¶å¸§çš„æ•°å€¼
     float curr_cx;
 	float curr_cy;
 	float curr_cz;
@@ -77,152 +77,152 @@ public class GLGameView extends GLSurfaceView
 	float curr_rot_Plane_Y;
 	float curr_rot_Plane_Z;
 	public KeyThread kThread;
-	public static boolean isVideoPlaying=true;//ÊÇ·ñÔÚ²¥·Å½çÃæ»òÕßÔİÍ£½çÃæ£¬trueÎª²¥·Å×´Ì¬
-    //Í¸ÊÓÍ¶Ó°µÄËõ·Å±È
+	public static boolean isVideoPlaying=true;//æ˜¯å¦åœ¨æ’­æ”¾ç•Œé¢æˆ–è€…æš‚åœç•Œé¢ï¼Œtrueä¸ºæ’­æ”¾çŠ¶æ€
+    //é€è§†æŠ•å½±çš„ç¼©æ”¾æ¯”
     public  float ratio;
-    //--------3DÎï¼ş------------------------------
-    TextureRect loadingView;//3DÖĞµÄ¼ÓÔØ½çÃæ
-    TextureRect processBar;//¼ÓÔØ½çÃæÖĞµÄ½ø¶ÈÌõ
-    LandForm terrain[]=new LandForm[LANDS_SIZE];//´´½¨Â½µØ    0 ±íÊ¾yz·½ÏòÉÏÇãĞ±£¬1±íÊ¾¹Õ½ÇÎ»ÖÃ£¬µÈ¸ßÏßÏòÀï°¼
-    TextureRect terrain_plain;//´´½¨Æ½ÃæµØÍ¼     Æ½ĞĞÓÚXYÆ½ÃæµÄ
-    TextureRect water;//Ë®Ãæ
+    //--------3Dç‰©ä»¶------------------------------
+    TextureRect loadingView;//3Dä¸­çš„åŠ è½½ç•Œé¢
+    TextureRect processBar;//åŠ è½½ç•Œé¢ä¸­çš„è¿›åº¦æ¡
+    LandForm terrain[]=new LandForm[LANDS_SIZE];//åˆ›å»ºé™†åœ°    0 è¡¨ç¤ºyzæ–¹å‘ä¸Šå€¾æ–œï¼Œ1è¡¨ç¤ºæ‹è§’ä½ç½®ï¼Œç­‰é«˜çº¿å‘é‡Œå‡¹
+    TextureRect terrain_plain;//åˆ›å»ºå¹³é¢åœ°å›¾     å¹³è¡ŒäºXYå¹³é¢çš„
+    TextureRect water;//æ°´é¢
     //----------------------------------
-    TextureRect fireButton;//¿ª»ğ°´Å¥ 
-    TextureRect radar_bg;//À×´ï±³¾°
-    TextureRect radar_plane;//À×´ïµÄÖ¸Õë·É»ú
-    TextureRect weapon_button;//ÎäÆ÷Ñ¡Ôñ°´Å¥
-    NumberForDraw weapon_number;//ÓÃÓÚ±êÊ¶×Óµ¯ºÍÅÚµ¯µÄÊıÁ¿
+    TextureRect fireButton;//å¼€ç«æŒ‰é’® 
+    TextureRect radar_bg;//é›·è¾¾èƒŒæ™¯
+    TextureRect radar_plane;//é›·è¾¾çš„æŒ‡é’ˆé£æœº
+    TextureRect weapon_button;//æ­¦å™¨é€‰æ‹©æŒ‰é’®
+    NumberForDraw weapon_number;//ç”¨äºæ ‡è¯†å­å¼¹å’Œç‚®å¼¹çš„æ•°é‡
     
-    TextureRect up_button;//ÏòÉÏ°´Å¥
-    TextureRect down_button;//ÏòÏÂÑ¡Ôñ°´Å¥
-    NumberForDraw numberRect;//Êı×Ö
-    TextureRect leftTimeRect;//Ê£ÓàÊ±¼ä
-    TextureRect backgroundRect_blood;//ÏÔÊ¾Ñª±³¾°¾ØĞÎ
-    TextureRect plane_Hit;//·É»ú±»»÷ÖĞ±íÊ¾¾ØĞÎ
-    DamForDraw dam;//´ó°Ó
+    TextureRect up_button;//å‘ä¸ŠæŒ‰é’®
+    TextureRect down_button;//å‘ä¸‹é€‰æ‹©æŒ‰é’®
+    NumberForDraw numberRect;//æ•°å­—
+    TextureRect leftTimeRect;//å‰©ä½™æ—¶é—´
+    TextureRect backgroundRect_blood;//æ˜¾ç¤ºè¡€èƒŒæ™¯çŸ©å½¢
+    TextureRect plane_Hit;//é£æœºè¢«å‡»ä¸­è¡¨ç¤ºçŸ©å½¢
+    DamForDraw dam;//å¤§å
     
     
     
-    public static TextureRect bombRect;//±¬Õ¨¾ØĞÎ 
-    public static TextureRect bombRectr;//±¬Õ¨¾ØĞÎ
+    public static TextureRect bombRect;//çˆ†ç‚¸çŸ©å½¢ 
+    public static TextureRect bombRectr;//çˆ†ç‚¸çŸ©å½¢
     public static float bomb_width=40;
-    public static float bomb_height=50;//±¬Õ¨ÎÆÀí¾ØĞÎµÄ´óĞ¡
+    public static float bomb_height=50;//çˆ†ç‚¸çº¹ç†çŸ©å½¢çš„å¤§å°
     
-    SkyBall skyBall;//Ìì¿ÕÇò°×Ìì
-    SkyBall skyBallsmall;//¾Å¹¬¸ñÁıÕÖµÄÌì¿Õ
-    SkyNight skynight;//ÍíÉÏµÄÌì¿Õ
-    SkyNight skynightBig;//´óÒ»µãµÄĞÇĞÇ
-    public  Plane plane;//·É»ú
-    BallTextureByVertex bullet_ball;//×Óµ¯ÎÆÀíÇò
-    public TextureRect bullet_rect;//×Óµ¯ÎÆÀí¾ØĞÎ
-    //´´½¨¸ßÉäÅÚ×é¼ş
+    SkyBall skyBall;//å¤©ç©ºçƒç™½å¤©
+    SkyBall skyBallsmall;//ä¹å®«æ ¼ç¬¼ç½©çš„å¤©ç©º
+    SkyNight skynight;//æ™šä¸Šçš„å¤©ç©º
+    SkyNight skynightBig;//å¤§ä¸€ç‚¹çš„æ˜Ÿæ˜Ÿ
+    public  Plane plane;//é£æœº
+    BallTextureByVertex bullet_ball;//å­å¼¹çº¹ç†çƒ
+    public TextureRect bullet_rect;//å­å¼¹çº¹ç†çŸ©å½¢
+    //åˆ›å»ºé«˜å°„ç‚®ç»„ä»¶
     BarrelForDraw barrel;
     BarbetteForDraw barbette;
     CubeForDraw cube;
-    ArchieForControl archie;//¸ßÉäÅÚ
+    ArchieForControl archie;//é«˜å°„ç‚®
 
-    public Model tanke_body;//Ì¹¿ËÉíÌå
-    public Model tanke_gun;//Ì¹¿ËÅÚ¹Ü
+    public Model tanke_body;//å¦å…‹èº«ä½“
+    public Model tanke_gun;//å¦å…‹ç‚®ç®¡
     public static ArrayList<TanKe> tankeList=new ArrayList<TanKe>();
-    public static ArrayList<DrawBomb> baoZhaList=new ArrayList<DrawBomb>();//Ì¹¿Ë±¬Õ¨»æÖÆÁĞ±í
-    public  ArrayList<DrawBomb> copybaozhaList=new ArrayList<DrawBomb>();//Ì¹¿Ë±¬Õ¨»æÖÆÁĞ±í
+    public static ArrayList<DrawBomb> baoZhaList=new ArrayList<DrawBomb>();//å¦å…‹çˆ†ç‚¸ç»˜åˆ¶åˆ—è¡¨
+    public  ArrayList<DrawBomb> copybaozhaList=new ArrayList<DrawBomb>();//å¦å…‹çˆ†ç‚¸ç»˜åˆ¶åˆ—è¡¨
     public static ArrayList<EnemyPlane> enemy=new ArrayList<EnemyPlane>();
-    Light_Tower lighttower;//µÆËş
-    public static ArrayList<BombForControl> cop_archie_bomb_List=new ArrayList<BombForControl>();//¸ßÉäÅÚÅÚµ¯µÄÁĞ±í
-    public static ArrayList<BombForControl> cop_bomb_List=new ArrayList<BombForControl>();//·¢Éä³öÈ¥µÄ×Óµ¯ÁĞ±í
-    public static ArrayList<ArchieForControl> cop_archie_List=new ArrayList<ArchieForControl>();//¸ßÉäÅÚµÄÁĞ±í
-    public static ArrayList<BulletForControl> cop_bullet_List=new ArrayList<BulletForControl>();//·¢Éä³öÈ¥µÄ×Óµ¯ÁĞ±í
-    public static ArrayList<BombForControl> copy_tank_bomb_List=new ArrayList<BombForControl>();//·¢Éä³öÈ¥µÄÌ¹¿ËÅÚµ¯ÁĞ±í
-    public static ArrayList<Tree> treeList=new ArrayList<Tree>();//µØĞÎÉÏµÄÊ÷
-    House house;//¾ü»ğ¿âÄ£ĞÍ
-    public static ArrayList<Arsenal_House> arsenal=new ArrayList<Arsenal_House>();//¾ü»ğ¿â
+    Light_Tower lighttower;//ç¯å¡”
+    public static ArrayList<BombForControl> cop_archie_bomb_List=new ArrayList<BombForControl>();//é«˜å°„ç‚®ç‚®å¼¹çš„åˆ—è¡¨
+    public static ArrayList<BombForControl> cop_bomb_List=new ArrayList<BombForControl>();//å‘å°„å‡ºå»çš„å­å¼¹åˆ—è¡¨
+    public static ArrayList<ArchieForControl> cop_archie_List=new ArrayList<ArchieForControl>();//é«˜å°„ç‚®çš„åˆ—è¡¨
+    public static ArrayList<BulletForControl> cop_bullet_List=new ArrayList<BulletForControl>();//å‘å°„å‡ºå»çš„å­å¼¹åˆ—è¡¨
+    public static ArrayList<BombForControl> copy_tank_bomb_List=new ArrayList<BombForControl>();//å‘å°„å‡ºå»çš„å¦å…‹ç‚®å¼¹åˆ—è¡¨
+    public static ArrayList<Tree> treeList=new ArrayList<Tree>();//åœ°å½¢ä¸Šçš„æ ‘
+    House house;//å†›ç«åº“æ¨¡å‹
+    public static ArrayList<Arsenal_House> arsenal=new ArrayList<Arsenal_House>();//å†›ç«åº“
     public ArrayList<PlaneHouse> houseplane=new ArrayList<PlaneHouse>();
-    public CubeForDraw housePlane;//Æ½·¿
-    public Light_Tower chimney;//ÑÌ´Ñ
+    public CubeForDraw housePlane;//å¹³æˆ¿
+    public Light_Tower chimney;//çƒŸå›±
 
-    //²Ëµ¥£¬ÊÓÆµ²¥·Å½çÃæµÈÎÆÀí
-    TextureRect menu_Rect;//·É»ú±¬Õ¨ºóµÄ²Ëµ¥ÏÔÊ¾¾ØĞÎ
-    TextureRect menu_video;//ÊÓÆµ²¥·Å½çÃæµÄ¸÷¸ö°´Å¥¾ØĞÎ
-    TextureRect mark_placeRect;//±êÖ¾ÆäÎ»ÖÃµÄÔÚÒÇ±íÅÌÉÏµÄ¡£
-    public TextureRect mark_lock;//±ê¼Ç±»Ëø¶¨µÄ¾ØĞÎ
+    //èœå•ï¼Œè§†é¢‘æ’­æ”¾ç•Œé¢ç­‰çº¹ç†
+    TextureRect menu_Rect;//é£æœºçˆ†ç‚¸åçš„èœå•æ˜¾ç¤ºçŸ©å½¢
+    TextureRect menu_video;//è§†é¢‘æ’­æ”¾ç•Œé¢çš„å„ä¸ªæŒ‰é’®çŸ©å½¢
+    TextureRect mark_placeRect;//æ ‡å¿—å…¶ä½ç½®çš„åœ¨ä»ªè¡¨ç›˜ä¸Šçš„ã€‚
+    public TextureRect mark_lock;//æ ‡è®°è¢«é”å®šçš„çŸ©å½¢
     public TextureRect treeRect;
-    public TextureRect mark_aim;//Ä¿±ê±ê¼Ç¿ò
-    public TextureRect noticeRect;//Õ½ÕùËµÃ÷ÎÄ×Ö
-    public float initNoticeHeight=-0.8f;//³õÊ¼ÌáÊ¾ÎÄ×ÖµÄ¸ß¶È
+    public TextureRect mark_aim;//ç›®æ ‡æ ‡è®°æ¡†
+    public TextureRect noticeRect;//æˆ˜äº‰è¯´æ˜æ–‡å­—
+    public float initNoticeHeight=-0.8f;//åˆå§‹æç¤ºæ–‡å­—çš„é«˜åº¦
 
-    //------ÓÎÏ·Ïà¹ØÎÆÀíID---------------------------------------------------
-    //---------ÓÎÏ·¿ªÊ¼Ç°µÄËµÃ÷ÎÄ×Ö
+    //------æ¸¸æˆç›¸å…³çº¹ç†ID---------------------------------------------------
+    //---------æ¸¸æˆå¼€å§‹å‰çš„è¯´æ˜æ–‡å­—
     private int tex_noticeId[]=new int[6];
-    private int tex_actionWinId;//ÌØÊâĞĞ¶¯³É¹¦¶Ô»°¿ò
-    private int tex_actionFailId;//Ê§°Ü¶Ô»°¿ò
-    private int tex_numberRectId;//Êı×ÖÎÆÀí
-    private int tex_backgroundRectId;//Ñª±³¾°Í¼Æ¬
-    private int tex_lefttimeId;//Ê£ÓàÊ±¼äÎÆÀí
+    private int tex_actionWinId;//ç‰¹æ®Šè¡ŒåŠ¨æˆåŠŸå¯¹è¯æ¡†
+    private int tex_actionFailId;//å¤±è´¥å¯¹è¯æ¡†
+    private int tex_numberRectId;//æ•°å­—çº¹ç†
+    private int tex_backgroundRectId;//è¡€èƒŒæ™¯å›¾ç‰‡
+    private int tex_lefttimeId;//å‰©ä½™æ—¶é—´çº¹ç†
     private int tex_lighttowerid;
-    private int tex_lightid;//µÆÖù×ÓÎÆÀí
-    private int tex_loadingviewId;//¼ÓÔØ½çÃæµÄID
-    private int tex_processId;//½ø¶ÈÌõ
-    private int tex_terrain_tuceng_Id;//µØĞÎÎÆÀí ----ÍÁ²ã
-    private int tex_terrain_caodiId;//µØĞÎÎÆÀí-----²İµØ
-    private int tex_terrain_shitouId;//µØĞÎÎÆÀí------Ê¯Í·
-    private int tex_terrain_shandingId;//µØĞÎÎÆÀí------Ê¯Í·
-    private int tex_fireButtonId;//¿ª»ğ°´Å¥µÄÎÆÀí
-    private int tex_skyBallId;//Ìì¿ÕÇòÎÆÀí
-    private int tex_nightId;//ÍíÉÏÌì¿ÕÎÆÀí
-    private int tex_waterId;//Ë®ÃæÎÆÀí
-    private int tex_bulletId;//×Óµ¯ÎÆÀí
-    private int tex_radar_bg_Id;//À×´ï±³¾°ÎÆÀí
-    private int tex_radar_plane_Id;//À×´ïµÄ·É»úÖ¸Õë
-    private int tex_button_weaponId[]=new int[2];//ÎäÆ÷°´Å¥Í¼±ê
-    private int tex_button_upId;//ÏòÉÏ°´Å¥ÎÆÀí
-    private int tex_button_downId;//ÏòÏÂ°´Å¥ÎÆÀí
-    private int tex_tankeid;//Ì¹¿ËID
-    private int tex_roofId;//Îİ¶¥
-    private int tex_frontId;//·¿Îİ²àÃæÎÆÀí
-    private int tex_AnnulusId;//Î§ÈÆ·¿Îİ×ªµÄÔ²»·ÎÆÀí
-    private int tex_damId;//´ó°ÓµÄÎÆÀí
-    private int tex_chimneyId;//ÑÌ´ÑÎÆÀíid
-    private int tex_housePlaneId[]=new int[2];//Æ½·¿µÄÎÆÀíId
-    private int tex_housePlaneSmallId[]=new int[2];//Ğ¡Æ½·¿ÎÆÀí
-    public int treeTexId;//Ê÷ÎÆÀí
-    public int treeTexId_2;//µÚ¶şÖÖÊ÷
-    public static int baoZhaXiaoguo2;//±¬Õ¨Ğ§¹û2
-    public static  int baoZhaXiaoguo;//±¬Õ¨Ğ§¹ûÎÆÀí
-    public static  int baoZhaTexId[];//±¬Õ¨ÎÆÀíÊı×é
-    //·É»ú±­»÷ÖĞµÄÎÆÀí
-    public int tex_plane_hitId;//·É»ú±»»÷ÖĞµÄ±íÊ¾ÎÆÀí¾ØĞÎ
-    public int tex_locktexId;//Ëø¶¨¾ØĞÎÎÆÀí
-    public int tx_lockaimtexId;//Ä¿±ê¿òËø¶¨
-    //½çÃæ²Ëµ¥¸÷ÖÖÎÆÀí£¬·É»ú×¹»ÙºóµÄ
-    public int tex_menu_text;//ÎÄ×Ö
-    public int tex_menu_text_win;//Ó®²Ëµ¥
-    //ÊÓÆµ²¥·Å°´Å¥£¬ÑİÊ¾¹ı³Ì°´Å¥
-    public int stopId;//Í£Ö¹°´Å¥
-	public int pauseId;//ÔİÍ£°´Å¥
-	public int playId;//²¥·Å°´Å¥
-    //±êÖ¾ÆäÎ»ÖÃµÄÔÚÒÇ±íÅÌÉÏµÄ
-	public int tex_mark_tanke;//Ì¹¿ËºÍ¸ßÉäÅÚÒÇ±íÅÌÍ¼±ê
-	public int tex_mark_ackId;//µĞ»úÒÇ±íÅÌÍ¼±ê
-	public int tex_mark_arsenalId;//¾ü»ğ¿âÒÇ±íÅÌÍ¼±ê
-	public int tex_mark_planeId;//·É»úÒÇ±íÅÌÍ¼±ê
-    //-------·É»úµÄÏà¹ØÎÆÀí
-    public int planeHeadId;				//»úÍ·
-	public int frontWingId;				//Ç°»úÒíÎÆÀï
-	public int frontWing2Id;			//Ç°»úÒíÎÆÀï2
-	public int bacckWingId;				//ºó»úÒíÎÆÀí
-	public int topWingId;				//ÉÏ»úÒíÎÆÀí
-	public int planeBodyId;				//»úÉíÎÆÀí
-	public int planeCabinId;			//»ú²ÕÎÆÀí
-	public int cylinder1Id;				//Ô²ÖùÎÆÀí1
-	public int cylinder2Id;				//Ô²ÖùÎÆÀí2
-	public int screw1Id;				//ÂİĞı½°ÎÆÀí
-	//---------¸ßÉäÅÚµÄÏà¹ØÎÆÀí
-	public int[] texBarbetteId=new int[2];//0±íÊ¾ÅÚÌ¨Ô²ÖùÎÆÀí1±íÊ¾ÅÚÌ¨ÉÏÔ²ÃæÎÆÀí
-	public int texCubeId;//µ²°åÎÆÀí
-	public int[] texBarrelId=new int[4];//ÆäÖĞ0±íÊ¾³¤ÅÚÍ²Ô²Öù,1±íÊ¾³¤ÅÚÍ²Ô²Ãæ,2±íÊ¾¶ÌÅÚÍ²Ô²Öù,3±íÊ¾¶ÌÅÚÍ²Ô²Ãæ
-    //ÉãÏñ»úÒÆ¶¯
-    float time_span=10;//ÕâÀïÖ»Ã¿´ÎÒÆ¶¯µÄ¾àÀë
-    float degree_span=10;//ÕâÀïÖ»Ã¿´ÎĞı×ªµØ½Ç¶È
+    private int tex_lightid;//ç¯æŸ±å­çº¹ç†
+    private int tex_loadingviewId;//åŠ è½½ç•Œé¢çš„ID
+    private int tex_processId;//è¿›åº¦æ¡
+    private int tex_terrain_tuceng_Id;//åœ°å½¢çº¹ç† ----åœŸå±‚
+    private int tex_terrain_caodiId;//åœ°å½¢çº¹ç†-----è‰åœ°
+    private int tex_terrain_shitouId;//åœ°å½¢çº¹ç†------çŸ³å¤´
+    private int tex_terrain_shandingId;//åœ°å½¢çº¹ç†------çŸ³å¤´
+    private int tex_fireButtonId;//å¼€ç«æŒ‰é’®çš„çº¹ç†
+    private int tex_skyBallId;//å¤©ç©ºçƒçº¹ç†
+    private int tex_nightId;//æ™šä¸Šå¤©ç©ºçº¹ç†
+    private int tex_waterId;//æ°´é¢çº¹ç†
+    private int tex_bulletId;//å­å¼¹çº¹ç†
+    private int tex_radar_bg_Id;//é›·è¾¾èƒŒæ™¯çº¹ç†
+    private int tex_radar_plane_Id;//é›·è¾¾çš„é£æœºæŒ‡é’ˆ
+    private int tex_button_weaponId[]=new int[2];//æ­¦å™¨æŒ‰é’®å›¾æ ‡
+    private int tex_button_upId;//å‘ä¸ŠæŒ‰é’®çº¹ç†
+    private int tex_button_downId;//å‘ä¸‹æŒ‰é’®çº¹ç†
+    private int tex_tankeid;//å¦å…‹ID
+    private int tex_roofId;//å±‹é¡¶
+    private int tex_frontId;//æˆ¿å±‹ä¾§é¢çº¹ç†
+    private int tex_AnnulusId;//å›´ç»•æˆ¿å±‹è½¬çš„åœ†ç¯çº¹ç†
+    private int tex_damId;//å¤§åçš„çº¹ç†
+    private int tex_chimneyId;//çƒŸå›±çº¹ç†id
+    private int tex_housePlaneId[]=new int[2];//å¹³æˆ¿çš„çº¹ç†Id
+    private int tex_housePlaneSmallId[]=new int[2];//å°å¹³æˆ¿çº¹ç†
+    public int treeTexId;//æ ‘çº¹ç†
+    public int treeTexId_2;//ç¬¬äºŒç§æ ‘
+    public static int baoZhaXiaoguo2;//çˆ†ç‚¸æ•ˆæœ2
+    public static  int baoZhaXiaoguo;//çˆ†ç‚¸æ•ˆæœçº¹ç†
+    public static  int baoZhaTexId[];//çˆ†ç‚¸çº¹ç†æ•°ç»„
+    //é£æœºæ¯å‡»ä¸­çš„çº¹ç†
+    public int tex_plane_hitId;//é£æœºè¢«å‡»ä¸­çš„è¡¨ç¤ºçº¹ç†çŸ©å½¢
+    public int tex_locktexId;//é”å®šçŸ©å½¢çº¹ç†
+    public int tx_lockaimtexId;//ç›®æ ‡æ¡†é”å®š
+    //ç•Œé¢èœå•å„ç§çº¹ç†ï¼Œé£æœºå æ¯åçš„
+    public int tex_menu_text;//æ–‡å­—
+    public int tex_menu_text_win;//èµ¢èœå•
+    //è§†é¢‘æ’­æ”¾æŒ‰é’®ï¼Œæ¼”ç¤ºè¿‡ç¨‹æŒ‰é’®
+    public int stopId;//åœæ­¢æŒ‰é’®
+	public int pauseId;//æš‚åœæŒ‰é’®
+	public int playId;//æ’­æ”¾æŒ‰é’®
+    //æ ‡å¿—å…¶ä½ç½®çš„åœ¨ä»ªè¡¨ç›˜ä¸Šçš„
+	public int tex_mark_tanke;//å¦å…‹å’Œé«˜å°„ç‚®ä»ªè¡¨ç›˜å›¾æ ‡
+	public int tex_mark_ackId;//æ•Œæœºä»ªè¡¨ç›˜å›¾æ ‡
+	public int tex_mark_arsenalId;//å†›ç«åº“ä»ªè¡¨ç›˜å›¾æ ‡
+	public int tex_mark_planeId;//é£æœºä»ªè¡¨ç›˜å›¾æ ‡
+    //-------é£æœºçš„ç›¸å…³çº¹ç†
+    public int planeHeadId;				//æœºå¤´
+	public int frontWingId;				//å‰æœºç¿¼çº¹é‡Œ
+	public int frontWing2Id;			//å‰æœºç¿¼çº¹é‡Œ2
+	public int bacckWingId;				//åæœºç¿¼çº¹ç†
+	public int topWingId;				//ä¸Šæœºç¿¼çº¹ç†
+	public int planeBodyId;				//æœºèº«çº¹ç†
+	public int planeCabinId;			//æœºèˆ±çº¹ç†
+	public int cylinder1Id;				//åœ†æŸ±çº¹ç†1
+	public int cylinder2Id;				//åœ†æŸ±çº¹ç†2
+	public int screw1Id;				//èºæ—‹æ¡¨çº¹ç†
+	//---------é«˜å°„ç‚®çš„ç›¸å…³çº¹ç†
+	public int[] texBarbetteId=new int[2];//0è¡¨ç¤ºç‚®å°åœ†æŸ±çº¹ç†1è¡¨ç¤ºç‚®å°ä¸Šåœ†é¢çº¹ç†
+	public int texCubeId;//æŒ¡æ¿çº¹ç†
+	public int[] texBarrelId=new int[4];//å…¶ä¸­0è¡¨ç¤ºé•¿ç‚®ç­’åœ†æŸ±,1è¡¨ç¤ºé•¿ç‚®ç­’åœ†é¢,2è¡¨ç¤ºçŸ­ç‚®ç­’åœ†æŸ±,3è¡¨ç¤ºçŸ­ç‚®ç­’åœ†é¢
+    //æ‘„åƒæœºç§»åŠ¨
+    float time_span=10;//è¿™é‡Œåªæ¯æ¬¡ç§»åŠ¨çš„è·ç¦»
+    float degree_span=10;//è¿™é‡Œåªæ¯æ¬¡æ—‹è½¬åœ°è§’åº¦
     
     float[] fa=new float[16];
     float[] fb=new float[16];
@@ -231,160 +231,160 @@ public class GLGameView extends GLSurfaceView
 	float[] resultxUp=new float[4];
 	float[] YB=new float[4];
     float lightAngle=0;
-    //--------------------------µ¼µ¯²Ëµ¥²¿·Ö
-    public MissileMenuForDraw missile_menu;//´´½¨µ¼µ¯²Ëµ¥
-    public TextureRect menu_Background;//µ¼µ¯²Ëµ¥²¿·ÖµÄ´óµØ±³¾°
-    public TextureRect menu_clouds;//µ¼µ¯²Ëµ¥²¿·ÖµÄÔÆ²Ê
-    public TextureRect front_frame;//µ¼µ¯²Ëµ¥²¿·Ö×îÇ°ÃæµÄ¿ò¼Ü
-    public TextureRect front_cover_button;//µ¼µ¯²Ëµ¥²¿·Ö×îÇ°ÃæµÄÕÖ×Ó
-    public TextureRect front_door;//µ¼µ¯²Ëµ¥²¿·Ö»ú²ÕÃÅ
-    public TextureRect front_door_bg;//µ½µ×²Å²Ëµ¥µÄ²¿·Ö»ú²ÖÃÅ
-    public TextureRect menu_setting;//ÉèÖÃÒ³ÃæµÄ°´Å¥
-    public TextureRect helpView;//°ïÖú½çÃæ
-    public TextureRect aboutView;//¹ØÓÚ½çÃæ
-    public NumberForDraw rank_number;//ÅÅĞĞ°ñ½çÃæÖĞÊı×Ö 
-    public TextureRect map_name;//ÅÅĞĞ°ñ½çÃæµØÍ¼µÄÃû³Æ
-    //-----------------Ñ¡·É»ú³¡¾°Ïà¹Ø²ÎÊı--------------------------------------
+    //--------------------------å¯¼å¼¹èœå•éƒ¨åˆ†
+    public MissileMenuForDraw missile_menu;//åˆ›å»ºå¯¼å¼¹èœå•
+    public TextureRect menu_Background;//å¯¼å¼¹èœå•éƒ¨åˆ†çš„å¤§åœ°èƒŒæ™¯
+    public TextureRect menu_clouds;//å¯¼å¼¹èœå•éƒ¨åˆ†çš„äº‘å½©
+    public TextureRect front_frame;//å¯¼å¼¹èœå•éƒ¨åˆ†æœ€å‰é¢çš„æ¡†æ¶
+    public TextureRect front_cover_button;//å¯¼å¼¹èœå•éƒ¨åˆ†æœ€å‰é¢çš„ç½©å­
+    public TextureRect front_door;//å¯¼å¼¹èœå•éƒ¨åˆ†æœºèˆ±é—¨
+    public TextureRect front_door_bg;//åˆ°åº•æ‰èœå•çš„éƒ¨åˆ†æœºä»“é—¨
+    public TextureRect menu_setting;//è®¾ç½®é¡µé¢çš„æŒ‰é’®
+    public TextureRect helpView;//å¸®åŠ©ç•Œé¢
+    public TextureRect aboutView;//å…³äºç•Œé¢
+    public NumberForDraw rank_number;//æ’è¡Œæ¦œç•Œé¢ä¸­æ•°å­— 
+    public TextureRect map_name;//æ’è¡Œæ¦œç•Œé¢åœ°å›¾çš„åç§°
+    //-----------------é€‰é£æœºåœºæ™¯ç›¸å…³å‚æ•°--------------------------------------
     public float planeRotate=0;
     
     
     
-    //-------------------------------¶ş¼¶²Ëµ¥ÖĞ----------------------------
-	public int planeModelIndex=0;//0±íÊ¾µÚÒ»¼Ò·É»ú,1µÚ¶ş¼Ü·É»ú,2µÚÈı¼Ü·É»ú
-    CircleForDraw circle_station;//·É»úµÄÕ¹Ê¾Ì¨
-    TextureRect backgroundRect;//·É»úÕ¹Ê¾Ì¨µÄ±³¾°
+    //-------------------------------äºŒçº§èœå•ä¸­----------------------------
+	public int planeModelIndex=0;//0è¡¨ç¤ºç¬¬ä¸€å®¶é£æœº,1ç¬¬äºŒæ¶é£æœº,2ç¬¬ä¸‰æ¶é£æœº
+    CircleForDraw circle_station;//é£æœºçš„å±•ç¤ºå°
+    TextureRect backgroundRect;//é£æœºå±•ç¤ºå°çš„èƒŒæ™¯
     
     Model planeModel[]=new Model[3];
     int planeModelTexId[]=new int[3];
-    //Èı¼Ü·É»úµÄËõ·Å±ÈÀı
+    //ä¸‰æ¶é£æœºçš„ç¼©æ”¾æ¯”ä¾‹
 	public static final float RATIO_PLANE=1.0f;
 	
-	TextureRect plane_select_head;//Ñ¡·É»ú³¡¾°ÖĞµÄ±êÌâÀ¸
-	TextureRect plane_select_plane;//Ñ¡Ôñ·É»ú°´Å¥
-	TextureRect menu_two_game_model_btn;//Ñ¡ÔñÓÎÏ·Ä£Ê½°´Å¥
+	TextureRect plane_select_head;//é€‰é£æœºåœºæ™¯ä¸­çš„æ ‡é¢˜æ 
+	TextureRect plane_select_plane;//é€‰æ‹©é£æœºæŒ‰é’®
+	TextureRect menu_two_game_model_btn;//é€‰æ‹©æ¸¸æˆæ¨¡å¼æŒ‰é’®
 	
-	TextureRect menu_two_button;//¶ş¼¶²Ëµ¥ÖĞµÄ°´Å¥
-	TextureRect menu_two_plane_icon;//¶ş¼¶²Ëµ¥ÖĞµÄÈı¸ö·É»úµÄÄ£ĞÍÍ¼Æ¬
+	TextureRect menu_two_button;//äºŒçº§èœå•ä¸­çš„æŒ‰é’®
+	TextureRect menu_two_plane_icon;//äºŒçº§èœå•ä¸­çš„ä¸‰ä¸ªé£æœºçš„æ¨¡å‹å›¾ç‰‡
 	
-	int tex_plane_select_head;//±êÌâÎÆÀí
-	int tex_plane_select_planeIndex=0;//Ñ¡·É»ú°´Å¥ÎÆÀíË÷Òı
-	int tex_plane_select_modelIndex=0;//Ñ¡Ä£Ê½°´Å¥ÎÆÀí
+	int tex_plane_select_head;//æ ‡é¢˜çº¹ç†
+	int tex_plane_select_planeIndex=0;//é€‰é£æœºæŒ‰é’®çº¹ç†ç´¢å¼•
+	int tex_plane_select_modelIndex=0;//é€‰æ¨¡å¼æŒ‰é’®çº¹ç†
 	int tex_menu_two_war_btnIndex=1;
-	int tex_menu_two_war_btnId[]=new int[2];//Õ½ÒÛÄ£Ê½
+	int tex_menu_two_war_btnId[]=new int[2];//æˆ˜å½¹æ¨¡å¼
 	int tex_menu_two_action_btnIndex;
-	int tex_menu_two_action_btnId[]=new int[2];//ÌØ±ğĞĞ¶¯
-	int tex_model_select_promptId;//Ñ¡ÔñÄ£Ê½ÌáÊ¾
-	int tex_menu_two_okIndex;//È·¶¨°´Å¥
-	int tex_menu_two_leftIndex;//×ó°´°´Å¥
-	int tex_menu_two_rightIndex;//ÓÒ°´°´Å¥
-	int tex_menu_two_okId[]=new int[2];//È·ÈÏ°´Å¥
-	int tex_menu_two_leftId[]=new int[2];//×ó°´°´Å¥
-	int tex_menu_two_rightId[]=new int[2];//ÓÒ°´°´Å¥
-	int tex_special_action_bgId;//ÌØ±ğĞĞ¶¯±³¾°Í¼
-	int tex_menu_two_plane_iconIndex[]={1,0,0};//²Ëµ¥¶şÖĞ·É»úÍ¼Æ¬ÎÆÀíID 
-	int tex_menu_two_plane_iconId[][]=new int[3][2];//²Ëµ¥¶şÖĞ·É»úÍ¼Æ¬ÎÆÀí
+	int tex_menu_two_action_btnId[]=new int[2];//ç‰¹åˆ«è¡ŒåŠ¨
+	int tex_model_select_promptId;//é€‰æ‹©æ¨¡å¼æç¤º
+	int tex_menu_two_okIndex;//ç¡®å®šæŒ‰é’®
+	int tex_menu_two_leftIndex;//å·¦æŒ‰æŒ‰é’®
+	int tex_menu_two_rightIndex;//å³æŒ‰æŒ‰é’®
+	int tex_menu_two_okId[]=new int[2];//ç¡®è®¤æŒ‰é’®
+	int tex_menu_two_leftId[]=new int[2];//å·¦æŒ‰æŒ‰é’®
+	int tex_menu_two_rightId[]=new int[2];//å³æŒ‰æŒ‰é’®
+	int tex_special_action_bgId;//ç‰¹åˆ«è¡ŒåŠ¨èƒŒæ™¯å›¾
+	int tex_menu_two_plane_iconIndex[]={1,0,0};//èœå•äºŒä¸­é£æœºå›¾ç‰‡çº¹ç†ID 
+	int tex_menu_two_plane_iconId[][]=new int[3][2];//èœå•äºŒä¸­é£æœºå›¾ç‰‡çº¹ç†
 	
 	
 	
-	public boolean isPlaneBtnSelected=false;//·É»úÑ¡Ôñ°´Å¥×´Ì¬
-	public boolean isDrawGameModelView=false;//·É»úÑ¡Ôñ°´Å¥×´Ì¬
-	public boolean idPlaneSelectedPrompt=true;//Ñ¡Ôñ·É»úµÄÌáÊ¾
-	public boolean isModelSelectedPrompt=false;//Ñ¡ÔñÄ£Ê½µÄÌáÊ¾
-	public boolean isPlaneSelectOk=false;//µ¯³ö·É»úÑ¡Ôñ°´Å¥ºóµÄOK°´Å¥
-	public boolean isModelSelectOk=false;//µ¯³öÄ£Ê½Ñ¡Ôñ°´Å¥ºóµÄOK°´Å¥
-	public boolean isPlaneBtnDown=false;//Ñ¡·É»ú°´Å¥ÊÇ·ñÒÑ¾­°´ÏÂ
-	public boolean isModeBtnDown=false;//Ñ¡Ä£Ê½°´Å¥ÊÇ·ñÒÑ¾­°´ÏÂ
+	public boolean isPlaneBtnSelected=false;//é£æœºé€‰æ‹©æŒ‰é’®çŠ¶æ€
+	public boolean isDrawGameModelView=false;//é£æœºé€‰æ‹©æŒ‰é’®çŠ¶æ€
+	public boolean idPlaneSelectedPrompt=true;//é€‰æ‹©é£æœºçš„æç¤º
+	public boolean isModelSelectedPrompt=false;//é€‰æ‹©æ¨¡å¼çš„æç¤º
+	public boolean isPlaneSelectOk=false;//å¼¹å‡ºé£æœºé€‰æ‹©æŒ‰é’®åçš„OKæŒ‰é’®
+	public boolean isModelSelectOk=false;//å¼¹å‡ºæ¨¡å¼é€‰æ‹©æŒ‰é’®åçš„OKæŒ‰é’®
+	public boolean isPlaneBtnDown=false;//é€‰é£æœºæŒ‰é’®æ˜¯å¦å·²ç»æŒ‰ä¸‹
+	public boolean isModeBtnDown=false;//é€‰æ¨¡å¼æŒ‰é’®æ˜¯å¦å·²ç»æŒ‰ä¸‹
 	
-	//----------------ÓÎÏ·Ä£Ê½------
-	public int isGameMode;//0Õ½ÒÛÄ£Ê½1ÌØ±ğĞĞ¶¯
+	//----------------æ¸¸æˆæ¨¡å¼------
+	public int isGameMode;//0æˆ˜å½¹æ¨¡å¼1ç‰¹åˆ«è¡ŒåŠ¨
 	
-	//-----Ñ¡Ôñ·É»ú°´Å¥µÄÄ£Ê½   0±íÊ¾Õı³£Ä£Ê½  1±íÊ¾Ñ­»·±ä»»Ä£Ê½ ,2 ±íÊ¾°´ÏÂÄ£Ê½
+	//-----é€‰æ‹©é£æœºæŒ‰é’®çš„æ¨¡å¼   0è¡¨ç¤ºæ­£å¸¸æ¨¡å¼  1è¡¨ç¤ºå¾ªç¯å˜æ¢æ¨¡å¼ ,2 è¡¨ç¤ºæŒ‰ä¸‹æ¨¡å¼
 	public int planeModeType=1;
-	//-----Ñ¡ÔñÄ£Ê½°´Å¥µÄÄ£Ê½   0±íÊ¾Õı³£Ä£Ê½  1±íÊ¾Ñ­»·±ä»»Ä£Ê½ ,2 ±íÊ¾°´ÏÂÄ£Ê½
+	//-----é€‰æ‹©æ¨¡å¼æŒ‰é’®çš„æ¨¡å¼   0è¡¨ç¤ºæ­£å¸¸æ¨¡å¼  1è¡¨ç¤ºå¾ªç¯å˜æ¢æ¨¡å¼ ,2 è¡¨ç¤ºæŒ‰ä¸‹æ¨¡å¼
 	public int war_button_mode=1;
-	//----°´Å¥°´ÏÂÈ¥Ñ¡·É»ú½çÃæ---0±íÊ¾Õ¹¿ª,1±íÊ¾¹Ø±Õ,2±íÊ¾Õı³£ÏÔÊ¾
+	//----æŒ‰é’®æŒ‰ä¸‹å»é€‰é£æœºç•Œé¢---0è¡¨ç¤ºå±•å¼€,1è¡¨ç¤ºå…³é—­,2è¡¨ç¤ºæ­£å¸¸æ˜¾ç¤º
 	public int selectPlaneOPen=0;
-	//----°´Å¥°´ÏÂÈ¥Ñ¡Ä£Ê½½çÃæ---0±íÊ¾Õ¹¿ª,1±íÊ¾¹Ø±Õ,2±íÊ¾Õı³£ÏÔÊ¾
+	//----æŒ‰é’®æŒ‰ä¸‹å»é€‰æ¨¡å¼ç•Œé¢---0è¡¨ç¤ºå±•å¼€,1è¡¨ç¤ºå…³é—­,2è¡¨ç¤ºæ­£å¸¸æ˜¾ç¤º
 	public int selectModelOPen=0;
-    //µ±Ç°µÄ²»Í¸Ã÷¶È
+    //å½“å‰çš„ä¸é€æ˜åº¦
 	public float currAlpha_planeBtn=1.0f;
 	public float operator_planeBtn=-1;
 	public float currAlpha_modelBtn=1.0f;
 	public float operator_modelBtn=-1;
-	//µ±Ç°µãµÄÎ»ÖÃ
+	//å½“å‰ç‚¹çš„ä½ç½®
 	public float currX=0;
 	public float operator2=1;
     
-    //-------------------²Ëµ¥²¿·ÖµÄÎÆÀí--------------------------------
-    public int tex_rectId[]=new int[11];//µ¼µ¯²Ëµ¥µÄÎÆÀí
-    public int tex_bgId;//µ¼µ¯²Ëµ¥ÏÂµÄ±³¾°Í¼
-    public int tex_cloudsId;//µ¼µ¯²Ëµ¥ÏÂµÄÔÆ²Ê
-    public int tex_front_frameId;//µ¼µ¯²Ëµ¥×îÇ°±ßµÄÇ°¾°Í¼
-    public int tex_front_coverId;//µ¼µ¯²Ëµ¥×îÇ°±ßµÄÕÖ×Ó
-    public int tex_menu_doorId;//»ú²ÕÃÅÎÆÀí
-    public int tex_musicId[]=new int[2];//ÊÇ·ñ¿ªÆôÒôÀÖÎÆÀí
-    public int tex_soundId[]=new int[2];//ÊÇ·ñ¿ªÆôÌØĞ§ÉùÒôÎÆÀí
-    public int tex_vibrateId[]=new int[2];//ÊÇ·ñ¿ªÆôÕğ¶¯
-    public int tex_helpId;//°ïÖú½çÃæId
-    public int tex_aboutId;//¹ØÓÚ½çÃæId
-    public int tex_mapSelectedBgId;//µØÍ¼Ñ¡Ôñ½çÃæµÄ±³¾°
-    public int tex_mapId[]=new int[3];//µØÍ¼Ãû³ÆÎÆÀíÍ¼
-    public int tex_rankBgId;//ÅÅĞĞ°ñ±³¾°Í¼
-    public int tex_rankNumberId;//ÅÅĞĞ°ñÊı×ÖÎÆÀí
+    //-------------------èœå•éƒ¨åˆ†çš„çº¹ç†--------------------------------
+    public int tex_rectId[]=new int[11];//å¯¼å¼¹èœå•çš„çº¹ç†
+    public int tex_bgId;//å¯¼å¼¹èœå•ä¸‹çš„èƒŒæ™¯å›¾
+    public int tex_cloudsId;//å¯¼å¼¹èœå•ä¸‹çš„äº‘å½©
+    public int tex_front_frameId;//å¯¼å¼¹èœå•æœ€å‰è¾¹çš„å‰æ™¯å›¾
+    public int tex_front_coverId;//å¯¼å¼¹èœå•æœ€å‰è¾¹çš„ç½©å­
+    public int tex_menu_doorId;//æœºèˆ±é—¨çº¹ç†
+    public int tex_musicId[]=new int[2];//æ˜¯å¦å¼€å¯éŸ³ä¹çº¹ç†
+    public int tex_soundId[]=new int[2];//æ˜¯å¦å¼€å¯ç‰¹æ•ˆå£°éŸ³çº¹ç†
+    public int tex_vibrateId[]=new int[2];//æ˜¯å¦å¼€å¯éœ‡åŠ¨
+    public int tex_helpId;//å¸®åŠ©ç•Œé¢Id
+    public int tex_aboutId;//å…³äºç•Œé¢Id
+    public int tex_mapSelectedBgId;//åœ°å›¾é€‰æ‹©ç•Œé¢çš„èƒŒæ™¯
+    public int tex_mapId[]=new int[3];//åœ°å›¾åç§°çº¹ç†å›¾
+    public int tex_rankBgId;//æ’è¡Œæ¦œèƒŒæ™¯å›¾
+    public int tex_rankNumberId;//æ’è¡Œæ¦œæ•°å­—çº¹ç†
     
-    //-------------------------²Ëµ¥²¿·ÖÏà¹Ø²ÎÊı
-    public  boolean isGameOn=false;//ÅĞ¶ÏÓÎÏ·ÊÇ·ñÒÑ¾­¿ªÊ¼
-    public float missile_rotation=0;//µ¼µ¯µÄĞı×ª
-    public boolean isTouchMoved=false;//µ±Ç°ÊÇ·ñÕıÔÚ´¥ÃşÒÆ¶¯ÖĞ
-    public boolean hasInertia=false;//ÅĞ¶Ïµ±Ç°ÊÇ·ñĞèÒª¹ßĞÔ
-    public float ori_angle_speed=15;//µ¼µ¯²Ëµ¥×î´óµÄ½ÇËÙ¶È
-    public float curr_angle_speed;//µ±Ç°µ¼µ¯²Ëµ¥Ğı×ªµØ½ÇËÙ¶È
-    public float ori_acceleratedSpeed=0.1f;//³õÊ¼¼ÓËÙ¶È
-    public float curr_acceleratedSpeed;//µ±Ç°¼ÓËÙ¶È
-    public boolean auto_adjust=false;//ÊÇ·ñ½øĞĞ×Ô¶¯µ÷Õû
-    public int curr_menu_index=0;//µ±Ç°²Ëµ¥Ñ¡ÏîµÄË÷Òı
-    public boolean isMissileDowning;//ÅĞ¶Ïµ¼µ¯ÊÇ·ñÕıÔÚÏÂÂä
-    public float missile_ZOffset_AcceSpeed=-0.4f;//µ¼µ¯µÄZÖáÆ«ÒÆÁ¿µÄ¼ÓËÙ¶È
-    public float missile_ZOffset_Speed;//µ¼µ¯µÄZÖáÆ«ÒÆÁ¿µÄËÙ¶È
-    public float missile_ZOffset_Ori=-1.5f;//µ¼µ¯µÄZÖá³õÊ¼Æ«ÒÆÁ¿
-    public float missile_ZOffset=missile_ZOffset_Ori;//µ¼µ¯µÄZÖáÆ«ÒÆÁ¿
-    public float missile_YOffset=0;//µ¼µ¯ YÖáµÄÆ«ÒÆÁ¿
-    public int doorState=1;//1±íÊ¾´ò¿ª,2±íÊ¾¹Ø±Õ 0±íÊ¾ÔË¶¯
-    public float door_YOffset=1.5f;//»ú²ÕÃÅµÄYÖáÆ«ÒÆÁ¿   1.5~0.5
-    public float door_YSpan=0.08f;//»ú²ÕÃÅµÄËÙ¶È
+    //-------------------------èœå•éƒ¨åˆ†ç›¸å…³å‚æ•°
+    public  boolean isGameOn=false;//åˆ¤æ–­æ¸¸æˆæ˜¯å¦å·²ç»å¼€å§‹
+    public float missile_rotation=0;//å¯¼å¼¹çš„æ—‹è½¬
+    public boolean isTouchMoved=false;//å½“å‰æ˜¯å¦æ­£åœ¨è§¦æ‘¸ç§»åŠ¨ä¸­
+    public boolean hasInertia=false;//åˆ¤æ–­å½“å‰æ˜¯å¦éœ€è¦æƒ¯æ€§
+    public float ori_angle_speed=15;//å¯¼å¼¹èœå•æœ€å¤§çš„è§’é€Ÿåº¦
+    public float curr_angle_speed;//å½“å‰å¯¼å¼¹èœå•æ—‹è½¬åœ°è§’é€Ÿåº¦
+    public float ori_acceleratedSpeed=0.1f;//åˆå§‹åŠ é€Ÿåº¦
+    public float curr_acceleratedSpeed;//å½“å‰åŠ é€Ÿåº¦
+    public boolean auto_adjust=false;//æ˜¯å¦è¿›è¡Œè‡ªåŠ¨è°ƒæ•´
+    public int curr_menu_index=0;//å½“å‰èœå•é€‰é¡¹çš„ç´¢å¼•
+    public boolean isMissileDowning;//åˆ¤æ–­å¯¼å¼¹æ˜¯å¦æ­£åœ¨ä¸‹è½
+    public float missile_ZOffset_AcceSpeed=-0.4f;//å¯¼å¼¹çš„Zè½´åç§»é‡çš„åŠ é€Ÿåº¦
+    public float missile_ZOffset_Speed;//å¯¼å¼¹çš„Zè½´åç§»é‡çš„é€Ÿåº¦
+    public float missile_ZOffset_Ori=-1.5f;//å¯¼å¼¹çš„Zè½´åˆå§‹åç§»é‡
+    public float missile_ZOffset=missile_ZOffset_Ori;//å¯¼å¼¹çš„Zè½´åç§»é‡
+    public float missile_YOffset=0;//å¯¼å¼¹ Yè½´çš„åç§»é‡
+    public int doorState=1;//1è¡¨ç¤ºæ‰“å¼€,2è¡¨ç¤ºå…³é—­ 0è¡¨ç¤ºè¿åŠ¨
+    public float door_YOffset=1.5f;//æœºèˆ±é—¨çš„Yè½´åç§»é‡   1.5~0.5
+    public float door_YSpan=0.08f;//æœºèˆ±é—¨çš„é€Ÿåº¦
   
-    public int dialog_YesId=0;//¶Ô»°¿òÖĞÈ·¶¨°´Å¥µÄÍ¼Æ¬Ë÷Òı
-    public int dialog_NoId=0;//¶Ô»°¿òÖĞ·µ»Ø°´Å¥µÄÍ¼Æ¬Ë÷Òı
-    public boolean moveToExit;//°´·µ»Ø¼üÊÇ·ñÒÆ¶¯µ½ÍË³ö°´Å¥²Ëµ¥´¦
-    public float help_YOffset=0;//°ïÖú½çÃæµÄYÖáÆ«ÒÆÁ¿
-    public float about_YOffset=0;//¹ØÓÚ½çÃæµÄYÖáÆ«ÒÆÁ¿
-    public boolean isPoint;//µã»÷°´Å¥ÊÂ¼şÊÇ·ñ³É¹¦
-    public int isMenuLevel=0;//ÉèÖÃ²Ëµ¥¼¶±ğ½çÃæ Ò»¼¶,¶ş¼¶,Èı¼¶²Ëµ¥
-    public float rank_move;//ÅÅĞĞ°ñÖĞ´¥Ãş»¬¶¯µÄ±ÈÀı
-    public boolean isDrawBaozha;//µ¼µ¯²Ëµ¥ÖĞÊÇ·ñ»æÖÆ±¬Õ¨Í¼
-    public float baozha_ratio;//µ¼µ¯±¬Õ¨Í¼µÄËõ·Å±ÈÀı
-    public float baozha_increase=0.05f;//µ¼µ¯±¬Õ¨Í¼µÄÔöÕ³±ÈÀı
-    public boolean menu_button_move;//²Ëµ¥°´Å¥ÊÇ·ñÓÒÒÆ,µ±µã»÷¿ªÊ¼ºó,²Ëµ¥°´Å¥ÓÒÒÆ
-    public float menu_button_speed=0.15f;//²Ëµ¥°´Å¥µÄÓÒÒÆËÙ¶È
-    public float menu_button_XOffset;//²Ëµ¥°´Å¥µÄÓÒÒÆËÙ¶È
-    //-------Êı¾İ¿âÏà¹Ø²Ù×÷-------
-    ArrayList<String[]> rank=new ArrayList<String[]>();//ÓÃÓÚÊı¾İ¿â¼ÇÂ¼ĞÅÏ¢
-    //---------ÌØ±ğĞĞ¶¯ÖĞÓÃÓÚ¼ÇÂ¼Ê±¼ä
+    public int dialog_YesId=0;//å¯¹è¯æ¡†ä¸­ç¡®å®šæŒ‰é’®çš„å›¾ç‰‡ç´¢å¼•
+    public int dialog_NoId=0;//å¯¹è¯æ¡†ä¸­è¿”å›æŒ‰é’®çš„å›¾ç‰‡ç´¢å¼•
+    public boolean moveToExit;//æŒ‰è¿”å›é”®æ˜¯å¦ç§»åŠ¨åˆ°é€€å‡ºæŒ‰é’®èœå•å¤„
+    public float help_YOffset=0;//å¸®åŠ©ç•Œé¢çš„Yè½´åç§»é‡
+    public float about_YOffset=0;//å…³äºç•Œé¢çš„Yè½´åç§»é‡
+    public boolean isPoint;//ç‚¹å‡»æŒ‰é’®äº‹ä»¶æ˜¯å¦æˆåŠŸ
+    public int isMenuLevel=0;//è®¾ç½®èœå•çº§åˆ«ç•Œé¢ ä¸€çº§,äºŒçº§,ä¸‰çº§èœå•
+    public float rank_move;//æ’è¡Œæ¦œä¸­è§¦æ‘¸æ»‘åŠ¨çš„æ¯”ä¾‹
+    public boolean isDrawBaozha;//å¯¼å¼¹èœå•ä¸­æ˜¯å¦ç»˜åˆ¶çˆ†ç‚¸å›¾
+    public float baozha_ratio;//å¯¼å¼¹çˆ†ç‚¸å›¾çš„ç¼©æ”¾æ¯”ä¾‹
+    public float baozha_increase=0.05f;//å¯¼å¼¹çˆ†ç‚¸å›¾çš„å¢ç²˜æ¯”ä¾‹
+    public boolean menu_button_move;//èœå•æŒ‰é’®æ˜¯å¦å³ç§»,å½“ç‚¹å‡»å¼€å§‹å,èœå•æŒ‰é’®å³ç§»
+    public float menu_button_speed=0.15f;//èœå•æŒ‰é’®çš„å³ç§»é€Ÿåº¦
+    public float menu_button_XOffset;//èœå•æŒ‰é’®çš„å³ç§»é€Ÿåº¦
+    //-------æ•°æ®åº“ç›¸å…³æ“ä½œ-------
+    ArrayList<String[]> rank=new ArrayList<String[]>();//ç”¨äºæ•°æ®åº“è®°å½•ä¿¡æ¯
+    //---------ç‰¹åˆ«è¡ŒåŠ¨ä¸­ç”¨äºè®°å½•æ—¶é—´
     public int goTime;
     public float oldTime;
-    //-------------ÌØÊâĞĞ¶¯³É¹¦Ê§°ÜµÄ×´Ì¬  1±íÊ¾³É¹¦2±íÊ¾Ê§°Ü
+    //-------------ç‰¹æ®Šè¡ŒåŠ¨æˆåŠŸå¤±è´¥çš„çŠ¶æ€  1è¡¨ç¤ºæˆåŠŸ2è¡¨ç¤ºå¤±è´¥
     public int isSpecActionState;
-    public boolean isTrueButtonAction=false;//ÊµÌå¼ü»¹ÊÇĞéÄâ°´Å¥
-    //Ì¨×ÓµÄÎÆÀíid
-    public int stageId;//Õ¹ÀÀÌ¨×ÓÎÆÀíid
-    //--------------´¥ÃşÊÂ¼şÏà¹Ø²ÎÊı----------------
+    public boolean isTrueButtonAction=false;//å®ä½“é”®è¿˜æ˜¯è™šæ‹ŸæŒ‰é’®
+    //å°å­çš„çº¹ç†id
+    public int stageId;//å±•è§ˆå°å­çº¹ç†id
+    //--------------è§¦æ‘¸äº‹ä»¶ç›¸å…³å‚æ•°----------------
     private boolean isOKButtonDown;
     private boolean isLeftButtonDown;
     private boolean isRightButtonDown;
     private boolean isWarButtonDown;
     private boolean isActionButtonDown;
     
-    //------------------¶ş¼¶²Ëµ¥ÖĞ¸Ä±ä°´Å¥µÄ²»Í¸Ã÷¶È
+    //------------------äºŒçº§èœå•ä¸­æ”¹å˜æŒ‰é’®çš„ä¸é€æ˜åº¦
     private boolean isChangeAlpha=true;
     private float currAlpha=1.0f;
     private int direction=-1;
@@ -395,29 +395,29 @@ public class GLGameView extends GLSurfaceView
 	{
         super(context);
         activity=(Aircraft_Activity)context;
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
         this.setKeepScreenOn(true);        
         tx=PLANE_X=MapArray[mapId].length*WIDTH_LALNDFORM/2;
-		ty=PLANE_Y;//¼ÆËãÉãÏñ»úµÄÎ»ÖÃ
+		ty=PLANE_Y;//è®¡ç®—æ‘„åƒæœºçš„ä½ç½®
 		tz=PLANE_Z=MapArray[mapId].length*WIDTH_LALNDFORM/2;
-        cx=(float)(tx+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.sin(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//ÉãÏñ»úx×ø±ê 
-        cz=(float)(tz+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.cos(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//ÉãÏñ»úz×ø±ê 
-        cy=(float)(ty+Math.sin(Math.toRadians(ELEVATION_CAMERA))*DISTANCE);//ÉãÏñ»úy×ø±ê
+        cx=(float)(tx+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.sin(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//æ‘„åƒæœºxåæ ‡ 
+        cz=(float)(tz+Math.cos(Math.toRadians(ELEVATION_CAMERA))*Math.cos(Math.toRadians(DIRECTION_CAMERA))*DISTANCE);//æ‘„åƒæœºzåæ ‡ 
+        cy=(float)(ty+Math.sin(Math.toRadians(ELEVATION_CAMERA))*DISTANCE);//æ‘„åƒæœºyåæ ‡
     }
-	int shootId=2;//·¢Éä°´Å¥µÄID
+	int shootId=2;//å‘å°„æŒ‰é’®çš„ID
 	int upId=2;
 	long time;
-	//´¥ÃşÊÂ¼ş»Øµ÷·½·¨
+	//è§¦æ‘¸äº‹ä»¶å›è°ƒæ–¹æ³•
 	@Override 
     public boolean onTouchEvent(MotionEvent e) 
 	{
 		if(isGameOn)
 		{
-			int actionId=e.getAction()&MotionEvent.ACTION_MASK;//»ñÈ¡´¥¿ØÊÂ¼şID	
-			//»ñÈ¡Ö÷¡¢¸¨µãid£¨downÊ±Ö÷¸¨µãid½ÔÕıÈ·£¬upÊ±¸¨µãidÕıÈ·£¬Ö÷µãidÒª²éÑ¯MapÖĞÊ£ÏÂµÄÒ»¸öµãµÄid£©
+			int actionId=e.getAction()&MotionEvent.ACTION_MASK;//è·å–è§¦æ§äº‹ä»¶ID	
+			//è·å–ä¸»ã€è¾…ç‚¹idï¼ˆdownæ—¶ä¸»è¾…ç‚¹idçš†æ­£ç¡®ï¼Œupæ—¶è¾…ç‚¹idæ­£ç¡®ï¼Œä¸»ç‚¹idè¦æŸ¥è¯¢Mapä¸­å‰©ä¸‹çš„ä¸€ä¸ªç‚¹çš„idï¼‰
 			int id=(e.getAction()&MotionEvent.ACTION_POINTER_ID_MASK)>>>MotionEvent.ACTION_POINTER_ID_SHIFT;	
 			float x=e.getX(id);
 			float y=e.getY(id);
@@ -425,41 +425,41 @@ public class GLGameView extends GLSurfaceView
 			{
 			case MotionEvent.ACTION_POINTER_DOWN:	
 			case MotionEvent.ACTION_DOWN:
-				if(isGameMode==1&&isSpecActionState==1)//ÌØ±ğĞĞ¶¯----------³É¹¦
+				if(isGameMode==1&&isSpecActionState==1)//ç‰¹åˆ«è¡ŒåŠ¨----------æˆåŠŸ
 	            {
-					if(x>280*ratio_width&&x<540*ratio_width&&y>186*ratio_height&&y<270*ratio_height)//ÏÂÒ»ÈÎÎñ
+					if(x>280*ratio_width&&x<540*ratio_width&&y>186*ratio_height&&y<270*ratio_height)//ä¸‹ä¸€ä»»åŠ¡
 					{
-						kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+						kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 						plane.blood=plane_blood;
 						if(mapId+1<6)
 						{
 							mapId++;
 							goTime=actionTimeSpan[mapId-3];
 							oldTime=0;
-							initMap();//ÖØĞÂ´´½¨¸ßÉäÅÚºÍÌ¹¿Ë
-							initMap_Value();//³õÊ¼»¯¸÷ÖÖÖµ
+							initMap();//é‡æ–°åˆ›å»ºé«˜å°„ç‚®å’Œå¦å…‹
+							initMap_Value();//åˆå§‹åŒ–å„ç§å€¼
 							kThread=new KeyThread(this);
 							kThread.start();
 							if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
 							{
 								activity.bgMusic[1].start();
 							}
-							isSpecActionState=0;//ÌØ±ğĞĞ¶¯×´Ì¬:¼ÈÃ»ÓĞ³É¹¦Ò²Ã»ÓĞÊ§°Ü
+							isSpecActionState=0;//ç‰¹åˆ«è¡ŒåŠ¨çŠ¶æ€:æ—¢æ²¡æœ‰æˆåŠŸä¹Ÿæ²¡æœ‰å¤±è´¥
 						}
 						else
 						{
-							Toast.makeText(activity, "Ã»ÓĞĞÂµÄĞĞ¶¯,Çëµã»÷²Ëµ¥°´Å¥,·µ»Ø²Ëµ¥½çÃæ!!!", Toast.LENGTH_LONG).show();
+							Toast.makeText(activity, "æ²¡æœ‰æ–°çš„è¡ŒåŠ¨,è¯·ç‚¹å‡»èœå•æŒ‰é’®,è¿”å›èœå•ç•Œé¢!!!", Toast.LENGTH_LONG).show();
 						}
  					}
-					else if(x>280*ratio_width&&x<540*ratio_width&&y>270*ratio_height&&y<370*ratio_height)//²Ëµ¥
+					else if(x>280*ratio_width&&x<540*ratio_width&&y>270*ratio_height&&y<370*ratio_height)//èœå•
 					{
-						Toast.makeText(activity, "--------²Ëµ¥--------------------", 1000).show();
-						kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+						Toast.makeText(activity, "--------èœå•--------------------", 1000).show();
+						kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 						missile_ZOffset=missile_ZOffset_Ori;
 						missile_rotation=0;
 						isCrash=false;
 						is_button_return=false;
-						isGameOn=false;//ÓÎÏ·ÊÇ·ñ½øĞĞÖĞÉèÎª²»ÔÚ½øĞĞÖĞ
+						isGameOn=false;//æ¸¸æˆæ˜¯å¦è¿›è¡Œä¸­è®¾ä¸ºä¸åœ¨è¿›è¡Œä¸­
 						plane.blood=plane_blood;
 						kThread=new KeyThread(this);
 						kThread.start();
@@ -471,19 +471,19 @@ public class GLGameView extends GLSurfaceView
 						{
 							activity.bgMusic[0].start();
 						}
-						isSpecActionState=0;//ÌØ±ğĞĞ¶¯×´Ì¬:¼ÈÃ»ÓĞ³É¹¦Ò²Ã»ÓĞÊ§°Ü
+						isSpecActionState=0;//ç‰¹åˆ«è¡ŒåŠ¨çŠ¶æ€:æ—¢æ²¡æœ‰æˆåŠŸä¹Ÿæ²¡æœ‰å¤±è´¥
 					}
 	            }
-	            else if(isGameMode==1&&isSpecActionState==2)//ÌØ±ğĞĞ¶¯--------------Ê§°Ü
+	            else if(isGameMode==1&&isSpecActionState==2)//ç‰¹åˆ«è¡ŒåŠ¨--------------å¤±è´¥
 	            {
-	            	if(x>280*ratio_width&&x<540*ratio_width&&y>175*ratio_height&&y<270*ratio_height)//ÖØĞÂÌôÕ½
+	            	if(x>280*ratio_width&&x<540*ratio_width&&y>175*ratio_height&&y<270*ratio_height)//é‡æ–°æŒ‘æˆ˜
 					{
-						kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+						kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 						plane.blood=plane_blood;
 						goTime=actionTimeSpan[mapId-3];
 						oldTime=0;
-						initMap();//ÖØĞÂ´´½¨¸ßÉäÅÚºÍÌ¹¿Ë
-						initMap_Value();//³õÊ¼»¯¸÷ÖÖÖµ
+						initMap();//é‡æ–°åˆ›å»ºé«˜å°„ç‚®å’Œå¦å…‹
+						initMap_Value();//åˆå§‹åŒ–å„ç§å€¼
 						kThread=new KeyThread(this);
 						kThread.start();
 						if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
@@ -492,18 +492,18 @@ public class GLGameView extends GLSurfaceView
 						}
 						else
 						{
-							Toast.makeText(activity, "Ã»ÓĞĞÂµÄĞĞ¶¯,Çëµã»÷²Ëµ¥°´Å¥,·µ»Ø²Ëµ¥½çÃæ!!!", Toast.LENGTH_LONG).show();
+							Toast.makeText(activity, "æ²¡æœ‰æ–°çš„è¡ŒåŠ¨,è¯·ç‚¹å‡»èœå•æŒ‰é’®,è¿”å›èœå•ç•Œé¢!!!", Toast.LENGTH_LONG).show();
 						}
-						isSpecActionState=0;//ÌØ±ğĞĞ¶¯×´Ì¬:¼ÈÃ»ÓĞ³É¹¦Ò²Ã»ÓĞÊ§°Ü
+						isSpecActionState=0;//ç‰¹åˆ«è¡ŒåŠ¨çŠ¶æ€:æ—¢æ²¡æœ‰æˆåŠŸä¹Ÿæ²¡æœ‰å¤±è´¥
 					}
-					else if(x>280*ratio_width&&x<540*ratio_width&&y>270*ratio_height&&y<370*ratio_height)//²Ëµ¥
+					else if(x>280*ratio_width&&x<540*ratio_width&&y>270*ratio_height&&y<370*ratio_height)//èœå•
 					{
-						kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+						kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 						missile_ZOffset=missile_ZOffset_Ori;
 						missile_rotation=0;
 						isCrash=false;
 						is_button_return=false;
-						isGameOn=false;//ÓÎÏ·ÊÇ·ñ½øĞĞÖĞÉèÎª²»ÔÚ½øĞĞÖĞ
+						isGameOn=false;//æ¸¸æˆæ˜¯å¦è¿›è¡Œä¸­è®¾ä¸ºä¸åœ¨è¿›è¡Œä¸­
 						plane.blood=plane_blood;
 						kThread=new KeyThread(this);
 						kThread.start();
@@ -515,18 +515,18 @@ public class GLGameView extends GLSurfaceView
 						{
 							activity.bgMusic[0].start();
 						}
-						isSpecActionState=0;//ÌØ±ğĞĞ¶¯×´Ì¬:¼ÈÃ»ÓĞ³É¹¦Ò²Ã»ÓĞÊ§°Ü
+						isSpecActionState=0;//ç‰¹åˆ«è¡ŒåŠ¨çŠ¶æ€:æ—¢æ²¡æœ‰æˆåŠŸä¹Ÿæ²¡æœ‰å¤±è´¥
 					}
 	            	return true;
 	            }
-	            else//--------------------È»ºóÊÇÆäËûÇé¿ö
+	            else//--------------------ç„¶åæ˜¯å…¶ä»–æƒ…å†µ
 	            {
-	            	//--------------------------Õ½ÒÛÄ£Ê½Ê§°ÜÁË--------»òÕß------ÊÓÆµÇ°µÄ¶Ô»°¿ò---------------------------------------------
+	            	//--------------------------æˆ˜å½¹æ¨¡å¼å¤±è´¥äº†--------æˆ–è€…------è§†é¢‘å‰çš„å¯¹è¯æ¡†---------------------------------------------
 					if((!isVideo&&isCrash&&isCrashCartoonOver)||(!isVideo&&is_button_return)||(isVideo&&!isVideoPlaying&&(!isVideoPlaying&&isTrueButtonAction)))
 					{
-						if(x>200*ratio_width&&x<600*ratio_width&&y>174*ratio_height&&y<200*ratio_height)//------¼ÌĞø°´Å¥
+						if(x>200*ratio_width&&x<600*ratio_width&&y>174*ratio_height&&y<200*ratio_height)//------ç»§ç»­æŒ‰é’®
 						{
-							if(!isVideo&&is_button_return)//Èç¹û²»ÊÇÔÚÊÓÆµ²¥·Å½çÃæ
+							if(!isVideo&&is_button_return)//å¦‚æœä¸æ˜¯åœ¨è§†é¢‘æ’­æ”¾ç•Œé¢
 							{
 								is_button_return=!is_button_return;
 								if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
@@ -534,7 +534,7 @@ public class GLGameView extends GLSurfaceView
 									activity.bgMusic[1].start();
 								}
 							}
-							else if(isVideo&&!isVideoPlaying&&(!isVideoPlaying&&isTrueButtonAction))//Èç¹ûÔÚÊÓÆµ²¥·Å½çÃæ
+							else if(isVideo&&!isVideoPlaying&&(!isVideoPlaying&&isTrueButtonAction))//å¦‚æœåœ¨è§†é¢‘æ’­æ”¾ç•Œé¢
 							{
 								isVideoPlaying=true;
 								if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
@@ -542,12 +542,12 @@ public class GLGameView extends GLSurfaceView
 									activity.bgMusic[1].start();
 								}
 							}
-							else//--------Õ½ÒÛÄ£Ê½Ê§°ÜÁË----------------------------
+							else//--------æˆ˜å½¹æ¨¡å¼å¤±è´¥äº†----------------------------
 							{
-								kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+								kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 								plane.blood=plane_blood;
-								initMap();//ÖØĞÂ´´½¨¸ßÉäÅÚºÍÌ¹¿Ë
-								initMap_Value();//³õÊ¼»¯¸÷ÖÖÖµ
+								initMap();//é‡æ–°åˆ›å»ºé«˜å°„ç‚®å’Œå¦å…‹
+								initMap_Value();//åˆå§‹åŒ–å„ç§å€¼
 								kThread=new KeyThread(this);
 								kThread.start();
 								if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
@@ -557,15 +557,15 @@ public class GLGameView extends GLSurfaceView
 							} 
 							return true;
 						}
-						else if(x>200*ratio_width&&x<600*ratio_width&&y>250*ratio_height&&y<310*ratio_height)//·µ»Ø²Ëµ¥²Ëµ¥
+						else if(x>200*ratio_width&&x<600*ratio_width&&y>250*ratio_height&&y<310*ratio_height)//è¿”å›èœå•èœå•
 						{
-							kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+							kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 							missile_ZOffset=missile_ZOffset_Ori;
 							missile_rotation=0;
 							isCrash=false;
 							is_button_return=false;
 							isVideoPlaying=true;
-							isGameOn=false;//ÓÎÏ·ÊÇ·ñ½øĞĞÖĞÉèÎª²»ÔÚ½øĞĞÖĞ
+							isGameOn=false;//æ¸¸æˆæ˜¯å¦è¿›è¡Œä¸­è®¾ä¸ºä¸åœ¨è¿›è¡Œä¸­
 							plane.blood=plane_blood;
 							kThread=new KeyThread(this);
 							kThread.start();
@@ -581,18 +581,18 @@ public class GLGameView extends GLSurfaceView
 						}
 						
 					}
-					//------------------------------Ó®µÃ±¾¹Ø¶Ô»°¿ò----------------------------------------------
+					//------------------------------èµ¢å¾—æœ¬å…³å¯¹è¯æ¡†----------------------------------------------
 					if(isOvercome&&isCrashCartoonOver)
 					{
-						if(x>200*ratio_width&&x<600*ratio_width&&y>124*ratio_height&&y<180*ratio_height)//ÏÂÒ»¹Ø°´Å¥
+						if(x>200*ratio_width&&x<600*ratio_width&&y>124*ratio_height&&y<180*ratio_height)//ä¸‹ä¸€å…³æŒ‰é’®
 						{
-							kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+							kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 							plane.blood=plane_blood;
 							if(mapId+1<3)
 							{
 								mapId++;
-								initMap();//ÖØĞÂ´´½¨¸ßÉäÅÚºÍÌ¹¿Ë
-								initMap_Value();//³õÊ¼»¯¸÷ÖÖÖµ
+								initMap();//é‡æ–°åˆ›å»ºé«˜å°„ç‚®å’Œå¦å…‹
+								initMap_Value();//åˆå§‹åŒ–å„ç§å€¼
 								kThread=new KeyThread(this);
 								kThread.start();
 								if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
@@ -602,15 +602,15 @@ public class GLGameView extends GLSurfaceView
 							}
 							else
 							{
-								Toast.makeText(activity,"Ã»ÓĞĞÂµÄÕ½ÒÛ,Çëµã»÷²Ëµ¥°´Å¥,·µ»Ø²Ëµ¥½çÃæ!!!", Toast.LENGTH_LONG).show(); 
+								Toast.makeText(activity,"æ²¡æœ‰æ–°çš„æˆ˜å½¹,è¯·ç‚¹å‡»èœå•æŒ‰é’®,è¿”å›èœå•ç•Œé¢!!!", Toast.LENGTH_LONG).show(); 
 							}
 						}
-						else if(x>200*ratio_width&&x<600*ratio_width&&y>200*ratio_height&&y<260*ratio_height)//ÖØÍæ°´Å¥
+						else if(x>200*ratio_width&&x<600*ratio_width&&y>200*ratio_height&&y<260*ratio_height)//é‡ç©æŒ‰é’®
 						{
-							kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+							kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 							plane.blood=plane_blood;
-							initMap();//ÖØĞÂ´´½¨¸ßÉäÅÚºÍÌ¹¿Ë
-							initMap_Value();//³õÊ¼»¯¸÷ÖÖÖµ
+							initMap();//é‡æ–°åˆ›å»ºé«˜å°„ç‚®å’Œå¦å…‹
+							initMap_Value();//åˆå§‹åŒ–å„ç§å€¼
 							kThread=new KeyThread(this);
 							kThread.start();			
 							if(isMusicOn==0&&!activity.bgMusic[1].isPlaying())
@@ -618,14 +618,14 @@ public class GLGameView extends GLSurfaceView
 								activity.bgMusic[1].start();
 							}
 						}
-						else if(x>200*ratio_width&&x<600*ratio_width&&y>300*ratio_height&&y<360*ratio_height)//·µ»Ø²Ëµ¥°´Å¥
+						else if(x>200*ratio_width&&x<600*ratio_width&&y>300*ratio_height&&y<360*ratio_height)//è¿”å›èœå•æŒ‰é’®
 						{
-							kThread.flag_go=false;//Ïß³Ì±êÖ¾Î»
+							kThread.flag_go=false;//çº¿ç¨‹æ ‡å¿—ä½
 							missile_ZOffset=missile_ZOffset_Ori;
 							missile_rotation=0;
 							isCrash=false;
 							is_button_return=false;
-							isGameOn=false;//ÓÎÏ·ÊÇ·ñ½øĞĞÖĞÉèÎª²»ÔÚ½øĞĞÖĞ
+							isGameOn=false;//æ¸¸æˆæ˜¯å¦è¿›è¡Œä¸­è®¾ä¸ºä¸åœ¨è¿›è¡Œä¸­
 							plane.blood=plane_blood;
 							kThread=new KeyThread(this);
 							kThread.start();
@@ -642,17 +642,17 @@ public class GLGameView extends GLSurfaceView
 					}
 	            }
 				if(isCrash||isOvercome)
-				{//Èç¹ûÊÇ·É»ú»òÕß¾ü»ğ¿âÕ¨»ÙÁË£¬´¥Ãş²»¹ÜÓÃ
+				{//å¦‚æœæ˜¯é£æœºæˆ–è€…å†›ç«åº“ç‚¸æ¯äº†ï¼Œè§¦æ‘¸ä¸ç®¡ç”¨
 	        		break;
 	        	}
 				//-------------------------------------------------------------------------------
-				if(isVideo&&!(!isVideoPlaying&&isTrueButtonAction))//Èç¹ûÊÇÊÓÆµ²¥·Å½çÃæ
+				if(isVideo&&!(!isVideoPlaying&&isTrueButtonAction))//å¦‚æœæ˜¯è§†é¢‘æ’­æ”¾ç•Œé¢
 				{
 					isFireOn=false;
-	        		if(x<160*ratio_width&&y>404*ratio_height)//--------------²¥·ÅÔİÍ£½çÃæ---------------------
+	        		if(x<160*ratio_width&&y>404*ratio_height)//--------------æ’­æ”¾æš‚åœç•Œé¢---------------------
 	        		{
-	        			isTrueButtonAction=false;//ĞéÄâ°´Å¥¶¯×÷
-	        			isVideoPlaying=!isVideoPlaying;//²¥·Å»òÕßÔİÍ£°´Å¥´¦£¬ÔİÍ£Ê±²¥·Å£¬²¥·ÅÊ±ÔİÍ£
+	        			isTrueButtonAction=false;//è™šæ‹ŸæŒ‰é’®åŠ¨ä½œ
+	        			isVideoPlaying=!isVideoPlaying;//æ’­æ”¾æˆ–è€…æš‚åœæŒ‰é’®å¤„ï¼Œæš‚åœæ—¶æ’­æ”¾ï¼Œæ’­æ”¾æ—¶æš‚åœ
 	        			if(isVideoPlaying&&isMusicOn==0&&!activity.bgMusic[1].isPlaying())
 	        			{
 	        				activity.bgMusic[1].start();
@@ -663,12 +663,12 @@ public class GLGameView extends GLSurfaceView
 	        			}
 	        			return true;	
 	        		}
-	        		if(!is_button_return&&x>680*ratio_width&&y>404*ratio_height)//----½øÈëÓÎÏ·
+	        		if(!is_button_return&&x>680*ratio_width&&y>404*ratio_height)//----è¿›å…¥æ¸¸æˆ
 	        		{
 	        			
 	        			plane.blood=plane_blood;
-	        			isno_draw_plane=true;//¿ªÊ¼»æÖÆ·É»ú
-	        			PLANE_MOVE_SPAN=15;//·É»úµÄËÙ¶È
+	        			isno_draw_plane=true;//å¼€å§‹ç»˜åˆ¶é£æœº
+	        			PLANE_MOVE_SPAN=15;//é£æœºçš„é€Ÿåº¦
 	        			PLANE_X=-100;
 	        			PLANE_Y=300;
 	        			PLANE_Z=-100;
@@ -676,39 +676,39 @@ public class GLGameView extends GLSurfaceView
 	        			rotationAngle_Plane_X=0;
 	        			rotationAngle_Plane_Z=0;
 	        			DIRECTION_CAMERA=225;
-	        			isVideo=false;//½çÃæÉèÖÃÎªÓÎÏ·½çÃæ
-	        			isVideoPlaying=true;//ÊÓÆµ²¥·ÅÉèÖÃÎª²¥·Å
+	        			isVideo=false;//ç•Œé¢è®¾ç½®ä¸ºæ¸¸æˆç•Œé¢
+	        			isVideoPlaying=true;//è§†é¢‘æ’­æ”¾è®¾ç½®ä¸ºæ’­æ”¾
 	        			kThread.time=0;
 	        			return true;	
 	        		}
 	        	}
-	        	//¿ª»ğ°´Å¥
+	        	//å¼€ç«æŒ‰é’®
 	        	if(!isVideo&&x>BUTTON_FIRE_AREA[0]&&x<BUTTON_FIRE_AREA[1]&&y>BUTTON_FIRE_AREA[2]&&y<BUTTON_FIRE_AREA[3])
 	        	{
-	        		fireButton.isButtonDown=1;//¿ª»ğ°´Å¥±êÖ¾Î»ÖÃÎªtrue,½øĞĞ²»Í¸Ã÷¶ÈµÄ±ä»¯
+	        		fireButton.isButtonDown=1;//å¼€ç«æŒ‰é’®æ ‡å¿—ä½ç½®ä¸ºtrue,è¿›è¡Œä¸é€æ˜åº¦çš„å˜åŒ–
 	        		shootId=id;
 	        		isFireOn=true;
 	        	}
-	        	//Ñ¡ÔñÎäÆ÷°´Å¥
+	        	//é€‰æ‹©æ­¦å™¨æŒ‰é’®
 	        	if(!isVideo&&x>BUTTON_WEAPON_AREA[0]&&x<BUTTON_WEAPON_AREA[1]&&y>BUTTON_WEAPON_AREA[2]&&y<BUTTON_WEAPON_AREA[3])
 	        	{
-	        		WEAPON_INDEX=(WEAPON_INDEX+1)%tex_button_weaponId.length;//¸ü»»ÎäÆ÷Í¼Æ¬
+	        		WEAPON_INDEX=(WEAPON_INDEX+1)%tex_button_weaponId.length;//æ›´æ¢æ­¦å™¨å›¾ç‰‡
 	        	} 
-	        	//ÏòÉÏ°´Å¥
+	        	//å‘ä¸ŠæŒ‰é’®
 	        	if(!isVideo&&x>BUTTON_UP_AREA[0]&&x<BUTTON_UP_AREA[1]&&y>BUTTON_UP_AREA[2]&&y<BUTTON_UP_AREA[3])
 	        	{
 	        		upId=id;
-	        		up_button.isButtonDown=1;//¿ª»ğ°´Å¥±êÖ¾Î»ÖÃÎªtrue,½øĞĞ²»Í¸Ã÷¶ÈµÄ±ä»¯
-	        		//ÉÏ
+	        		up_button.isButtonDown=1;//å¼€ç«æŒ‰é’®æ ‡å¿—ä½ç½®ä¸ºtrue,è¿›è¡Œä¸é€æ˜åº¦çš„å˜åŒ–
+	        		//ä¸Š
 					keyState=keyState|0x1;
 					keyState=keyState&0xD;
 	        	} 
-	        	//ÏòÏÂ°´Å¥
+	        	//å‘ä¸‹æŒ‰é’®
 	        	if(!isVideo&&x>BUTTON_DOWN_AREA[0]&&x<BUTTON_DOWN_AREA[1]&&y>BUTTON_DOWN_AREA[2]&&y<BUTTON_DOWN_AREA[3])
 	        	{
 	        		upId=id;
-	        		down_button.isButtonDown=1;//¿ª»ğ°´Å¥±êÖ¾Î»ÖÃÎªtrue,½øĞĞ²»Í¸Ã÷¶ÈµÄ±ä»¯
-	        		//ÏÂ
+	        		down_button.isButtonDown=1;//å¼€ç«æŒ‰é’®æ ‡å¿—ä½ç½®ä¸ºtrue,è¿›è¡Œä¸é€æ˜åº¦çš„å˜åŒ–
+	        		//ä¸‹
 					keyState=keyState|0x2;
 					keyState=keyState&0xE;
 	        	} 
@@ -728,9 +728,9 @@ public class GLGameView extends GLSurfaceView
 	        	}
 	        	else if(id==upId)
 	        	{
-	        		fireButton.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-		        	up_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-		        	down_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
+	        		fireButton.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+		        	up_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+		        	down_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
 		        	keyState=keyState&0xc;
 		        	upId=2;
 	        	}
@@ -743,9 +743,9 @@ public class GLGameView extends GLSurfaceView
 	        	if(e.getPointerCount()==1)
 	        	{
 	        		isFireOn=false;
-	        		fireButton.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-		        	up_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-		        	down_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
+	        		fireButton.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+		        	up_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+		        	down_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
 		        	keyState=keyState&0xc;
 		        	upId=2;
 		        	shootId=2;
@@ -759,9 +759,9 @@ public class GLGameView extends GLSurfaceView
 	        		}
 	        		else if(upId==0)
 	        		{
-	        			fireButton.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-	    	        	up_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-	    	        	down_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
+	        			fireButton.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+	    	        	up_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+	    	        	down_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
 	    	        	keyState=keyState&0xc;
 	    	        	upId=2;
 	        		}
@@ -769,99 +769,99 @@ public class GLGameView extends GLSurfaceView
 	        	break;
 	        }
 		}
-		else//ÓÎÏ·»¹Ã»ÓĞ¿ªÊ¼,´ËÊ±´¦ÓÚ²Ëµ¥²¿·Ö
+		else//æ¸¸æˆè¿˜æ²¡æœ‰å¼€å§‹,æ­¤æ—¶å¤„äºèœå•éƒ¨åˆ†
 		{
 			float x=e.getX();
 			float y=e.getY();
 			switch(e.getAction())
 			{
 			case MotionEvent.ACTION_DOWN:
-				if(1==isMenuLevel)//Ò»¼¶²Ëµ¥
+				if(1==isMenuLevel)//ä¸€çº§èœå•
 				{
-					if(doorState==1)//µ±Ç°Îª¿ª²Ö×´Ì¬,²¢ÇÒÃ»ÓĞµ¯³ö¶Ô»°¿ò
+					if(doorState==1)//å½“å‰ä¸ºå¼€ä»“çŠ¶æ€,å¹¶ä¸”æ²¡æœ‰å¼¹å‡ºå¯¹è¯æ¡†
 					{
-						if(hasInertia)//°´ÏÂÊ±,Èç¹ûÓĞ¹ßĞÔ,ÄÇÃ´Ö±½ÓÍ£Ö¹
+						if(hasInertia)//æŒ‰ä¸‹æ—¶,å¦‚æœæœ‰æƒ¯æ€§,é‚£ä¹ˆç›´æ¥åœæ­¢
 						{
 							hasInertia=false;
 							curr_angle_speed=0;
 						}
-						//ÕâÀï¶Ô¹öÂÖ²Ëµ¥ÏÂµÄ°´ÏÂÊÂ¼ş½øĞĞ¼àÌı
+						//è¿™é‡Œå¯¹æ»šè½®èœå•ä¸‹çš„æŒ‰ä¸‹äº‹ä»¶è¿›è¡Œç›‘å¬
 						if(x>MENU_BUTTON_AREA[0]&&x<MENU_BUTTON_AREA[1]&&y>MENU_BUTTON_AREA[2]&&y<MENU_BUTTON_AREA[3])
 			        	{
-							isPoint=true;//µã»÷ÁËÏàÓ¦µÄ²Ëµ¥°´Å¥
+							isPoint=true;//ç‚¹å‡»äº†ç›¸åº”çš„èœå•æŒ‰é’®
 			        	}
 					}
 				}
-				else if(2==isMenuLevel)//---½øÈë¶ş¼¶²Ëµ¥
+				else if(2==isMenuLevel)//---è¿›å…¥äºŒçº§èœå•
 				{
-					//--------Èç¹û°´ÏÂÁËÈ·¶¨°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†ç¡®å®šæŒ‰é’®------
 					if(x>MENU_TWO_BUTTON_OK_AREA[0]&&x<MENU_TWO_BUTTON_OK_AREA[1]&&y>MENU_TWO_BUTTON_OK_AREA[2]&&y<MENU_TWO_BUTTON_OK_AREA[3])
 		        	{
 						isOKButtonDown=true;
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_okIndex=1;
 		        	}
-					//--------Èç¹û°´ÏÂÁË×ó°´°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†å·¦æŒ‰æŒ‰é’®------
 					if(x>MENU_TWO_BUTTON_LEFT_AREA[0]&&x<MENU_TWO_BUTTON_LEFT_AREA[1]&&y>MENU_TWO_BUTTON_LEFT_AREA[2]&&y<MENU_TWO_BUTTON_LEFT_AREA[3])
 		        	{
 						isLeftButtonDown=true;
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_leftIndex=1;
 						
 		        	}
-					//--------Èç¹û°´ÏÂÁËÓÒ°´°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†å³æŒ‰æŒ‰é’®------
 					if(x>MENU_TWO_BUTTON_RIGHT_AREA[0]&&x<MENU_TWO_BUTTON_RIGHT_AREA[1]&&y>MENU_TWO_BUTTON_RIGHT_AREA[2]&&y<MENU_TWO_BUTTON_RIGHT_AREA[3])
 		        	{
 						isRightButtonDown=true;
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_rightIndex=1;
 						
 		        	}
-					//--------Èç¹û°´ÏÂÁËÕ½ÒÛÄ£Ê½°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†æˆ˜å½¹æ¨¡å¼æŒ‰é’®------
 					if(x>MENU_TWO_WAR_BUTTON_AREA[0]&&x<MENU_TWO_WAR_BUTTON_AREA[1]&&y>MENU_TWO_WAR_BUTTON_AREA[2]&&y<MENU_TWO_WAR_BUTTON_AREA[3])
 		        	{
 						isChangeAlpha=false;
 						isWarButtonDown=true;
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_war_btnIndex=1;
 		        	}
-					//--------Èç¹û°´ÏÂÁËÌØ±ğĞĞ¶¯°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†ç‰¹åˆ«è¡ŒåŠ¨æŒ‰é’®------
 					if(x>MENU_TWO_ACTION_BUTTON_AREA[0]&&x<MENU_TWO_ACTION_BUTTON_AREA[1]&&y>MENU_TWO_ACTION_BUTTON_AREA[2]&&y<MENU_TWO_ACTION_BUTTON_AREA[3])
 		        	{
 						isChangeAlpha=false;
 						isActionButtonDown=true;
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_action_btnIndex=1;
 		        	}
-					//-----------µÚÒ»¸ö·É»ú
+					//-----------ç¬¬ä¸€ä¸ªé£æœº
 					if(x>MENU_TWO_PLANE_ICON_ONE_AREA[0]&&x<MENU_TWO_PLANE_ICON_ONE_AREA[1]&&y>MENU_TWO_PLANE_ICON_ONE_AREA[2]&&y<MENU_TWO_PLANE_ICON_ONE_AREA[3])
 		        	{
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_plane_iconIndex[0]=1;
 						tex_menu_two_plane_iconIndex[1]=0;
 						tex_menu_two_plane_iconIndex[2]=0;
 						planeModelIndex=0;
 		        	}
-					//-----------µÚ¶ş¸ö·É»ú
+					//-----------ç¬¬äºŒä¸ªé£æœº
 					if(x>MENU_TWO_PLANE_ICON_TWO_AREA[0]&&x<MENU_TWO_PLANE_ICON_TWO_AREA[1]&&y>MENU_TWO_PLANE_ICON_TWO_AREA[2]&&y<MENU_TWO_PLANE_ICON_TWO_AREA[3])
 		        	{
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_plane_iconIndex[0]=0;
 						tex_menu_two_plane_iconIndex[1]=1;
 						tex_menu_two_plane_iconIndex[2]=0;
 						planeModelIndex=1;
 		        	}
-					//-----------µÚÈı¸ö·É»ú
+					//-----------ç¬¬ä¸‰ä¸ªé£æœº
 					if(x>MENU_TWO_PLANE_ICON_THREE_AREA[0]&&x<MENU_TWO_PLANE_ICON_THREE_AREA[1]&&y>MENU_TWO_PLANE_ICON_THREE_AREA[2]&&y<MENU_TWO_PLANE_ICON_THREE_AREA[3])
 		        	{
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_plane_iconIndex[0]=0;
 						tex_menu_two_plane_iconIndex[1]=0;
 						tex_menu_two_plane_iconIndex[2]=1;
 						planeModelIndex=2;
 		        	}
 				}
-				//-------------------------------Èı¼¶²Ëµ¥-----------------------------------------
+				//-------------------------------ä¸‰çº§èœå•-----------------------------------------
 				else if(3==isMenuLevel)
 				{
 					if(x>MAP_ONE_AREA[0]&&x<MAP_ONE_AREA[1]&&y>MAP_ONE_AREA[2]&&y<MAP_ONE_AREA[3])
@@ -882,7 +882,7 @@ public class GLGameView extends GLSurfaceView
 							}
 							isGameOn=true;
 						}
-						else//Åùö¨ĞĞ¶¯  --- ´ò·É»ú
+						else//éœ¹é›³è¡ŒåŠ¨  --- æ‰“é£æœº
 						{
 							goTime=actionTimeSpan[0];
 							oldTime=0;
@@ -919,7 +919,7 @@ public class GLGameView extends GLSurfaceView
 							}
 							isGameOn=true;
 						}
-						else//É³Ä®·ç±©  -Ì¹¿Ë,¸ßÉäÅÚ
+						else//æ²™æ¼ é£æš´  -å¦å…‹,é«˜å°„ç‚®
 						{
 							goTime=actionTimeSpan[1];
 							oldTime=0;
@@ -956,7 +956,7 @@ public class GLGameView extends GLSurfaceView
 							}
 							isGameOn=true;
 						}
-						else//Õ¶Ê×ĞĞ¶¯  ¾ü»ğ¿â
+						else//æ–©é¦–è¡ŒåŠ¨  å†›ç«åº“
 						{
 							goTime=actionTimeSpan[2];
 							oldTime=0;
@@ -980,11 +980,11 @@ public class GLGameView extends GLSurfaceView
 				break;
 			case MotionEvent.ACTION_MOVE:
 				float dy=y-mPreviousY;
-				if(1==isMenuLevel)//Ò»¼¶²Ëµ¥
+				if(1==isMenuLevel)//ä¸€çº§èœå•
 				{
-					if(doorState==1)//µ±Ç°Îª¿ª²Ö×´Ì¬,²¢ÇÒÃ»ÓĞµ¯³ö¶Ô»°¿ò
+					if(doorState==1)//å½“å‰ä¸ºå¼€ä»“çŠ¶æ€,å¹¶ä¸”æ²¡æœ‰å¼¹å‡ºå¯¹è¯æ¡†
 					{
-						//ÕâÀï½øĞĞ·¶Î§ÏŞÖÆ
+						//è¿™é‡Œè¿›è¡ŒèŒƒå›´é™åˆ¶
 						if(missile_rotation+dy*TOUCH_SCALE_FACTOR>20)
 						{
 							missile_rotation=20;
@@ -995,21 +995,21 @@ public class GLGameView extends GLSurfaceView
 						}
 						else
 						{
-							missile_rotation+=dy*TOUCH_SCALE_FACTOR;//µ±Ç°µ¼µ¯²Ëµ¥Ğı×ªµØ½Ç¶È
+							missile_rotation+=dy*TOUCH_SCALE_FACTOR;//å½“å‰å¯¼å¼¹èœå•æ—‹è½¬åœ°è§’åº¦
 						}
-						if(Math.abs(dy)>8)//Éè¶¨Ò»¸öãĞÖµ,Èç¹û´óÓÚÕâ¸öãĞÖµ,ËÉ¿ªÊÖÖ¸ºó,Ìí¼Ó¹ßĞÔ
+						if(Math.abs(dy)>8)//è®¾å®šä¸€ä¸ªé˜ˆå€¼,å¦‚æœå¤§äºè¿™ä¸ªé˜ˆå€¼,æ¾å¼€æ‰‹æŒ‡å,æ·»åŠ æƒ¯æ€§
 						{
-							isTouchMoved=true;//µ±Ç°ÕıÔÚ´¥Ãş ÒÆ¶¯ÖĞ
+							isTouchMoved=true;//å½“å‰æ­£åœ¨è§¦æ‘¸ ç§»åŠ¨ä¸­
 							curr_angle_speed=ori_angle_speed*(dy/SCREEN_WIDTH);
 						}
-						if(isPoint&&Math.abs(dy)>10)//Èç¹ûµã»÷ÊÂ¼şÎªtrue,µ«ÊÇÓÖÒÆ¶¯ÁË,ËùÒÔµã»÷ÊÂ¼şÉèÎªfalse
+						if(isPoint&&Math.abs(dy)>10)//å¦‚æœç‚¹å‡»äº‹ä»¶ä¸ºtrue,ä½†æ˜¯åˆç§»åŠ¨äº†,æ‰€ä»¥ç‚¹å‡»äº‹ä»¶è®¾ä¸ºfalse
 						{
 							isPoint=false;
 						}
 					}
-					if(doorState==2&&curr_menu_index==2)//ÅÅĞĞ°ñ½çÃæµÄÒÆ¶¯
+					if(doorState==2&&curr_menu_index==2)//æ’è¡Œæ¦œç•Œé¢çš„ç§»åŠ¨
 					{
-						if(rank_move-dy*TOUCH_SCALE_FACTOR*0.002f>0)//È·¶¨ÒÆ¶¯µÄ·¶Î§
+						if(rank_move-dy*TOUCH_SCALE_FACTOR*0.002f>0)//ç¡®å®šç§»åŠ¨çš„èŒƒå›´
 						{
 							rank_move-=dy*TOUCH_SCALE_FACTOR*0.002f;
 						}
@@ -1018,85 +1018,85 @@ public class GLGameView extends GLSurfaceView
 							rank_move=0;
 						}
 					}
-					if(doorState==2&&curr_menu_index==3)//°ïÖú½çÃæµÄÒÆ¶¯
+					if(doorState==2&&curr_menu_index==3)//å¸®åŠ©ç•Œé¢çš„ç§»åŠ¨
 					{
 						help_YOffset-=dy*TOUCH_SCALE_FACTOR*0.01f;
 						
 					}
-					if(doorState==2&&curr_menu_index==4)//¹ØÓÚ½çÃæµÄÒÆ¶¯
+					if(doorState==2&&curr_menu_index==4)//å…³äºç•Œé¢çš„ç§»åŠ¨
 					{
 						about_YOffset-=dy*TOUCH_SCALE_FACTOR*0.01f;
 					}
 				}
 				break;
 			case MotionEvent.ACTION_UP:
-				//µ¼µ¯²Ëµ¥½çÃæ
+				//å¯¼å¼¹èœå•ç•Œé¢
 				if(1==isMenuLevel)
 				{
-					if(doorState==1)//µ±Ç°Îª¿ª²Ö×´Ì¬,²¢ÇÒÃ»ÓĞµ¯³ö¶Ô»°¿ò
+					if(doorState==1)//å½“å‰ä¸ºå¼€ä»“çŠ¶æ€,å¹¶ä¸”æ²¡æœ‰å¼¹å‡ºå¯¹è¯æ¡†
 					{
-						if(isTouchMoved)//Èç¹ûµ±Ç°»¬¶¯¹ı
+						if(isTouchMoved)//å¦‚æœå½“å‰æ»‘åŠ¨è¿‡
 						{
 							isTouchMoved=false;
-							hasInertia=true;//¾ßÓĞ¹ßĞÔ
-							  //Èôµ±Ç°½ÇËÙ¶È´óÓÚÁãÔò¼ÓËÙ¶ÈÖÃÎª¸º
+							hasInertia=true;//å…·æœ‰æƒ¯æ€§
+							  //è‹¥å½“å‰è§’é€Ÿåº¦å¤§äºé›¶åˆ™åŠ é€Ÿåº¦ç½®ä¸ºè´Ÿ
 							curr_acceleratedSpeed=ori_acceleratedSpeed;
 				            if(curr_angle_speed>0)
 				            {
 				            	curr_acceleratedSpeed=-ori_acceleratedSpeed;
 				            }
 						}
-						else//ÕâÀïÆô¶¯½Ç¶ÈÖÇÄÜµ÷Õû
+						else//è¿™é‡Œå¯åŠ¨è§’åº¦æ™ºèƒ½è°ƒæ•´
 						{
 							auto_adjust=true;
 						}
-						//---------------°´Å¥
-						//ÕâÀï¶Ô¹öÂÖ²Ëµ¥ÏÂµÄ°´ÏÂÊÂ¼ş½øĞĞ¼àÌı
+						//---------------æŒ‰é’®
+						//è¿™é‡Œå¯¹æ»šè½®èœå•ä¸‹çš„æŒ‰ä¸‹äº‹ä»¶è¿›è¡Œç›‘å¬
 						if(x>MENU_BUTTON_AREA[0]&&x<MENU_BUTTON_AREA[1]&&y>MENU_BUTTON_AREA[2]&&y<MENU_BUTTON_AREA[3])
 			        	{
-							if(isPoint)//Èç¹ûµã»÷ÊÂ¼şÎªtrue
+							if(isPoint)//å¦‚æœç‚¹å‡»äº‹ä»¶ä¸ºtrue
 							{
 								isPoint=false;
 								switch(curr_menu_index)
 								{
-								case 0://¿ªÊ¼ÓÎÏ·
-									menu_button_move=true;//µ¼µ¯²Ëµ¥°´Å¥ÓÒÒÆ¿ªÊ¼
+								case 0://å¼€å§‹æ¸¸æˆ
+									menu_button_move=true;//å¯¼å¼¹èœå•æŒ‰é’®å³ç§»å¼€å§‹
 									break;
-								case 1://ÉèÖÃ°´Å¥
-									doorState=0;//½øĞĞ¹Ø²Õ
+								case 1://è®¾ç½®æŒ‰é’®
+									doorState=0;//è¿›è¡Œå…³èˆ±
 									break;
-								case 2://ÅÅĞĞ°ñ
-									doorState=0;//½øĞĞ¹Ø²Õ
-									rank_move=0;//´¥ÃşÒÆ¶¯·¶Î§ÉèÖÃÎª0
-									//³õÊ¼»¯Êı¾İ¿â,»ñÈ¡Êı¾İ
+								case 2://æ’è¡Œæ¦œ
+									doorState=0;//è¿›è¡Œå…³èˆ±
+									rank_move=0;//è§¦æ‘¸ç§»åŠ¨èŒƒå›´è®¾ç½®ä¸º0
+									//åˆå§‹åŒ–æ•°æ®åº“,è·å–æ•°æ®
 									String sql="select * from plane ;";
 									rank=SQLiteUtil.query(sql);
-									Collections.reverse(rank);//°´Ê±¼äµ¹ÅÅĞò
+									Collections.reverse(rank);//æŒ‰æ—¶é—´å€’æ’åº
 									break;
-								case 3://°ïÖú
-									doorState=0;//½øĞĞ¹Ø²Õ
-									help_YOffset=-HELP_HEIGHT/2.5f;//°ïÖú½çÃæµÄYÖáÆ«ÒÆÁ¿
+								case 3://å¸®åŠ©
+									doorState=0;//è¿›è¡Œå…³èˆ±
+									help_YOffset=-HELP_HEIGHT/2.5f;//å¸®åŠ©ç•Œé¢çš„Yè½´åç§»é‡
 									break;
-								case 4://¹ØÓÚ
-									doorState=0;//½øĞĞ¹Ø²Õ
-									about_YOffset=-ABOUT_HEIGHT/2.5f;//¹ØÓÚ½çÃæµÄYÖáÆ«ÒÆÁ¿
+								case 4://å…³äº
+									doorState=0;//è¿›è¡Œå…³èˆ±
+									about_YOffset=-ABOUT_HEIGHT/2.5f;//å…³äºç•Œé¢çš„Yè½´åç§»é‡
 									break;
-								case 5://ÍË³ö
+								case 5://é€€å‡º
 									activity.exitRelease();
 									break;
 								}
 							}
 			        	}
 					}
-					if(doorState==2)//Èç¹ûµ±Ç°Îª¹Ø²Õ×´Ì¬
+					if(doorState==2)//å¦‚æœå½“å‰ä¸ºå…³èˆ±çŠ¶æ€
 					{
-						if(curr_menu_index==1)//Èç¹ûµ±Ç°ÎªÉèÖÃ½çÃæ
+						if(curr_menu_index==1)//å¦‚æœå½“å‰ä¸ºè®¾ç½®ç•Œé¢
 						{
-							//ÊÇ·ñÉèÖÃ¿ªÆô±³¾°ÒôÀÖ
+							//æ˜¯å¦è®¾ç½®å¼€å¯èƒŒæ™¯éŸ³ä¹
 							if(x>SETTING_BUTTON_AREA1[0]&&x<SETTING_BUTTON_AREA1[1]&&y>SETTING_BUTTON_AREA1[2]&&y<SETTING_BUTTON_AREA1[3])
 							{
 								isMusicOn=(isMusicOn+1)%2;
-								if(isMusicOn==1&&activity.bgMusic[0].isPlaying())//Èç¹û²Ëµ¥½çÃæµÄÒôÀÖÕıÔÚ²¥·Å
+								if(isMusicOn==1&&activity.bgMusic[0].isPlaying())//å¦‚æœèœå•ç•Œé¢çš„éŸ³ä¹æ­£åœ¨æ’­æ”¾
 								{
 									activity.bgMusic[0].pause();
 								}
@@ -1105,12 +1105,12 @@ public class GLGameView extends GLSurfaceView
 									activity.bgMusic[0].start();
 								}
 							}
-							//ÊÇ·ñÉèÖÃ¿ªÆôÌØĞ§ÉùÒô
+							//æ˜¯å¦è®¾ç½®å¼€å¯ç‰¹æ•ˆå£°éŸ³
 							if(x>SETTING_BUTTON_AREA2[0]&&x<SETTING_BUTTON_AREA2[1]&&y>SETTING_BUTTON_AREA2[2]&&y<SETTING_BUTTON_AREA2[3])
 							{
 								isSoundOn=(isSoundOn+1)%2;
 							}
-							//ÊÇ·ñÉèÖÃ¿ªÆôÌØĞ§Õğ¶¯
+							//æ˜¯å¦è®¾ç½®å¼€å¯ç‰¹æ•ˆéœ‡åŠ¨
 							if(x>SETTING_BUTTON_AREA3[0]&&x<SETTING_BUTTON_AREA3[1]&&y>SETTING_BUTTON_AREA3[2]&&y<SETTING_BUTTON_AREA3[3])
 							{
 								isVibrateOn=(isVibrateOn+1)%2;
@@ -1118,10 +1118,10 @@ public class GLGameView extends GLSurfaceView
 						}
 					}
 				}
-				//-------------------Ñ¡·É»ú³¡¾°½çÃæ½çÃæ-------------------
+				//-------------------é€‰é£æœºåœºæ™¯ç•Œé¢ç•Œé¢-------------------
 				else if(2==isMenuLevel)
 				{
-					//--------Èç¹û°´ÏÂÁËÈ·¶¨°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†ç¡®å®šæŒ‰é’®------
 					if(isOKButtonDown)
 					{
 						if(x>MENU_TWO_BUTTON_OK_AREA[0]&&x<MENU_TWO_BUTTON_OK_AREA[1]&&y>MENU_TWO_BUTTON_OK_AREA[2]&&y<MENU_TWO_BUTTON_OK_AREA[3])
@@ -1131,7 +1131,7 @@ public class GLGameView extends GLSurfaceView
 						tex_menu_two_okIndex=0;
 						isOKButtonDown=false;
 					}
-					//--------Èç¹û°´ÏÂÁË×ó°´°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†å·¦æŒ‰æŒ‰é’®------
 					if(isLeftButtonDown)
 					{
 						if(x>MENU_TWO_BUTTON_LEFT_AREA[0]&&x<MENU_TWO_BUTTON_LEFT_AREA[1]&&y>MENU_TWO_BUTTON_LEFT_AREA[2]&&y<MENU_TWO_BUTTON_LEFT_AREA[3])
@@ -1147,11 +1147,11 @@ public class GLGameView extends GLSurfaceView
 							tex_menu_two_plane_iconIndex[2]=0;
 							tex_menu_two_plane_iconIndex[planeModelIndex]=1;
 			        	}
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_leftIndex=0;
 						isLeftButtonDown=false;
 					}
-					//--------Èç¹û°´ÏÂÁËÓÒ°´°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†å³æŒ‰æŒ‰é’®------
 					if(isRightButtonDown)
 					{
 						if(x>MENU_TWO_BUTTON_RIGHT_AREA[0]&&x<MENU_TWO_BUTTON_RIGHT_AREA[1]&&y>MENU_TWO_BUTTON_RIGHT_AREA[2]&&y<MENU_TWO_BUTTON_RIGHT_AREA[3])
@@ -1167,45 +1167,45 @@ public class GLGameView extends GLSurfaceView
 							tex_menu_two_plane_iconIndex[2]=0;
 							tex_menu_two_plane_iconIndex[planeModelIndex]=1;	
 			        	}
-						//ÕâÀïĞèÒª»»Í¼
+						//è¿™é‡Œéœ€è¦æ¢å›¾
 						tex_menu_two_rightIndex=0;
 						isRightButtonDown=false;
 					}
-					//--------Èç¹û°´ÏÂÁËÕ½ÒÛÄ£Ê½°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†æˆ˜å½¹æ¨¡å¼æŒ‰é’®------
 					if(isWarButtonDown)
 					{
 						isChangeAlpha=true;
 						if(x>MENU_TWO_WAR_BUTTON_AREA[0]&&x<MENU_TWO_WAR_BUTTON_AREA[1]&&y>MENU_TWO_WAR_BUTTON_AREA[2]&&y<MENU_TWO_WAR_BUTTON_AREA[3])
 			        	{
 							isGameMode=0;
-							//ÕâÀïĞèÒª»»Í¼
+							//è¿™é‡Œéœ€è¦æ¢å›¾
 							tex_menu_two_action_btnIndex=0;
 			        	}
 						else
 						{
 							if(isGameMode!=0)
 							{
-								//ÕâÀïĞèÒª»»Í¼
+								//è¿™é‡Œéœ€è¦æ¢å›¾
 								tex_menu_two_war_btnIndex=0;
 							}
 						}
 						isWarButtonDown=false;
 					}
-					//--------Èç¹û°´ÏÂÁËÌØ±ğĞĞ¶¯°´Å¥------
+					//--------å¦‚æœæŒ‰ä¸‹äº†ç‰¹åˆ«è¡ŒåŠ¨æŒ‰é’®------
 					if(isActionButtonDown)
 					{
 						isChangeAlpha=true;
 						if(x>MENU_TWO_ACTION_BUTTON_AREA[0]&&x<MENU_TWO_ACTION_BUTTON_AREA[1]&&y>MENU_TWO_ACTION_BUTTON_AREA[2]&&y<MENU_TWO_ACTION_BUTTON_AREA[3])
 			        	{
 							isGameMode=1;
-							//ÕâÀïĞèÒª»»Í¼
+							//è¿™é‡Œéœ€è¦æ¢å›¾
 							tex_menu_two_war_btnIndex=0;
 			        	}
 						else
 						{
 							if(isGameMode!=1)
 							{
-								//ÕâÀïĞèÒª»»Í¼
+								//è¿™é‡Œéœ€è¦æ¢å›¾
 								tex_menu_two_action_btnIndex=0;
 							}
 						}
@@ -1220,89 +1220,89 @@ public class GLGameView extends GLSurfaceView
     }
 	private class SceneRenderer implements GLSurfaceView.Renderer 
     {   
-		//ÊÇ·ñÊÇµÚÒ»Ö¡
+		//æ˜¯å¦æ˜¯ç¬¬ä¸€å¸§
 		private boolean isFirstFrame=true;
 		int plane_hit_id=0;
 		
         public void onDrawFrame(GL10 gl) 
         {   
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
-            if(!isLoadedOk)//Èç¹ıÃ»ÓĞ¼ÓÔØÍê³É
+            if(!isLoadedOk)//å¦‚è¿‡æ²¡æœ‰åŠ è½½å®Œæˆ
             {
             	 drawOrthLoadingView();
             }
-            else//Èç¹û¼ÓÔØÍê³É
+            else//å¦‚æœåŠ è½½å®Œæˆ
             {
-            	if(isGameOn)//½øÈëÓÎÏ·³¡¾°
+            	if(isGameOn)//è¿›å…¥æ¸¸æˆåœºæ™¯
             	{
-            		drawPerspective();//»æÖÆÓÎÏ·³¡¾°
-                	drawVirtualIcon();//»æÖÆĞéÄâ°´Å¥
-                	drawVideoDirection();//»æÖÆÊÓÆµ²¥·Å½çÃæ
-                	drawGameDialog();//»æÖÆ·É»ú×¹»ÙºóµÄ²Ëµ¥½çÃæ
+            		drawPerspective();//ç»˜åˆ¶æ¸¸æˆåœºæ™¯
+                	drawVirtualIcon();//ç»˜åˆ¶è™šæ‹ŸæŒ‰é’®
+                	drawVideoDirection();//ç»˜åˆ¶è§†é¢‘æ’­æ”¾ç•Œé¢
+                	drawGameDialog();//ç»˜åˆ¶é£æœºå æ¯åçš„èœå•ç•Œé¢
             	}
-            	else//½øÈë²Ëµ¥²¿·Ö
+            	else//è¿›å…¥èœå•éƒ¨åˆ†
             	{
-            		drawGameMenu();//»æÖÆµ¼µ¯²Ëµ¥²¿·Ö
+            		drawGameMenu();//ç»˜åˆ¶å¯¼å¼¹èœå•éƒ¨åˆ†
             	}
             }
         }
         public void onSurfaceChanged(GL10 gl, int width, int height)
         {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             ratio = (float) width / height;
-            ConfigVirtualButtonArea();//¶Ô°´Å¥µÄ·¶Î§½øĞĞÏàÓ¦µÄÅäÖÃ
+            ConfigVirtualButtonArea();//å¯¹æŒ‰é’®çš„èŒƒå›´è¿›è¡Œç›¸åº”çš„é…ç½®
         }
         public void onSurfaceCreated(GL10 gl, EGLConfig config) 
         {	
-            //ÉèÖÃÆÁÄ»±³¾°É«RGBA
+            //è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0.0f,0.0f,0.0f, 1.0f);
-            //´ò¿ª±³Ãæ¼ô²Ã   
+            //æ‰“å¼€èƒŒé¢å‰ªè£   
             GLES20.glEnable(GLES20.GL_CULL_FACE);
-            //´ò¿ªÉî¶È¼ì²â
+            //æ‰“å¼€æ·±åº¦æ£€æµ‹
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-            //³õÊ¼»¯×Ô¶¨ÒåÕ»
+            //åˆå§‹åŒ–è‡ªå®šä¹‰æ ˆ
             MatrixState.setInitStack();
-            ShaderManager.loadFirstViewCodeFromFile(GLGameView.this.getResources());//¼ÓÔØshader
-            ShaderManager.compileFirstViewShader();//±àÒëshader
-            //´´½¨¼ÓÔØ½çÃæµÄÎÆÀí¾ØĞÎ
+            ShaderManager.loadFirstViewCodeFromFile(GLGameView.this.getResources());//åŠ è½½shader
+            ShaderManager.compileFirstViewShader();//ç¼–è¯‘shader
+            //åˆ›å»ºåŠ è½½ç•Œé¢çš„çº¹ç†çŸ©å½¢
             loadingView=new TextureRect(2, 2, ShaderManager.getFirstViewShaderProgram());
             tex_loadingviewId=initTexture(GLGameView.this.getResources(),R.drawable.loading,false);
             processBar=new TextureRect(2, 0.1f, ShaderManager.getFirstViewShaderProgram());
             tex_processId=initTexture(GLGameView.this.getResources(),R.drawable.process,false);
         }
-        //Õı½»Í¶Ó°»æÖÆ¼ÓÔØ½çÃæ
+        //æ­£äº¤æŠ•å½±ç»˜åˆ¶åŠ è½½ç•Œé¢
         public void drawOrthLoadingView(){
-            if(isFirstFrame){ //Èç¹ûÊÇµÚÒ»Ö¡
+            if(isFirstFrame){ //å¦‚æœæ˜¯ç¬¬ä¸€å¸§
             	MatrixState.pushMatrix();
-	            MatrixState.setProjectOrtho(-1, 1, -1, 1, 1, 10);//ÉèÖÃÕı½»Í¶Ó°
-	            MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);//ÉèÖÃÉãÏñ»ú
+	            MatrixState.setProjectOrtho(-1, 1, -1, 1, 1, 10);//è®¾ç½®æ­£äº¤æŠ•å½±
+	            MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);//è®¾ç½®æ‘„åƒæœº
 	            MatrixState.copyMVMatrix();
 	            loadingView.drawSelf(tex_loadingviewId);
 	            MatrixState.popMatrix();
             	isFirstFrame=false;
-            } else {//ÕâÀï½øĞĞ×ÊÔ´µÄ¼ÓÔØ
+            } else {//è¿™é‡Œè¿›è¡Œèµ„æºçš„åŠ è½½
             	MatrixState.pushMatrix();
-	            MatrixState.setProjectOrtho(-1, 1, -1, 1, 1, 10);//ÉèÖÃÕı½»Í¶Ó°
-	            MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);//ÉèÖÃÉãÏñ»ú
+	            MatrixState.setProjectOrtho(-1, 1, -1, 1, 1, 10);//è®¾ç½®æ­£äº¤æŠ•å½±
+	            MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);//è®¾ç½®æ‘„åƒæœº
 	            MatrixState.copyMVMatrix();
-	            MatrixState.pushMatrix();  //ÉèÖÃ½ø¶ÈÌõ
+	            MatrixState.pushMatrix();  //è®¾ç½®è¿›åº¦æ¡
 	            MatrixState.translate(-2+2*load_step/(float)40, -1+0.05f, 0f);
 	            processBar.drawSelf(tex_processId);
 	            MatrixState.popMatrix();
-	            loadingView.drawSelf(tex_loadingviewId);//»æÖÆ±³¾°Í¼
+	            loadingView.drawSelf(tex_loadingviewId);//ç»˜åˆ¶èƒŒæ™¯å›¾
 	            MatrixState.popMatrix();
-	            loadResource();//¼ÓÔØ×ÊÔ´µÄ·½·¨
+	            loadResource();//åŠ è½½èµ„æºçš„æ–¹æ³•
 	            return;    
             }}
-        //Í¸ÊÓÍ¶Ó°»æÖÆ ÓÎÏ·³¡¾°
+        //é€è§†æŠ•å½±ç»˜åˆ¶ æ¸¸æˆåœºæ™¯
         public void drawPerspective()
         {
-        	MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 3, 40000);//ÉèÖÃÍ¸ÊÓÍ¶Ó°
+        	MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 3, 40000);//è®¾ç½®é€è§†æŠ•å½±
         	MatrixState.pushMatrix();
-        	//ÕâÀï½øĞĞÏà¹Ø±äÁ¿µÄ¸´ÖÆ,ÓÃÓÚ²»Í¬Ïß³ÌÖ®¼äµÄ²»Í¬²½,»á·¢Éú¶¶¶¯ÏÖÏó
+        	//è¿™é‡Œè¿›è¡Œç›¸å…³å˜é‡çš„å¤åˆ¶,ç”¨äºä¸åŒçº¿ç¨‹ä¹‹é—´çš„ä¸åŒæ­¥,ä¼šå‘ç”ŸæŠ–åŠ¨ç°è±¡
         	synchronized(lock)
 			{
         		curr_cx=cx;
@@ -1322,7 +1322,7 @@ public class GLGameView extends GLSurfaceView
 	        	curr_rot_Plane_Y=rotationAngle_Plane_Y;
 	        	curr_rot_Plane_Z=rotationAngle_Plane_Z;
 	        	
-	        	Matrix.setRotateM(fa, 0, curr_rot_Plane_Y, 0, 1, 0);//µÃµ½Ğı×ª¾ØÕó
+	        	Matrix.setRotateM(fa, 0, curr_rot_Plane_Y, 0, 1, 0);//å¾—åˆ°æ—‹è½¬çŸ©é˜µ
 	        	YB[0]=(float) (Math.sin(Math.toRadians(-curr_rot_Plane_Z)));
 	        	YB[1]=(float) (Math.cos(Math.toRadians(-curr_rot_Plane_Z))* Math.cos(Math.toRadians(rotationAngle_Plane_X)));
 	        	YB[2]=(float) (Math.cos(Math.toRadians(-curr_rot_Plane_Z))* Math.sin(Math.toRadians(rotationAngle_Plane_X)));
@@ -1330,80 +1330,80 @@ public class GLGameView extends GLSurfaceView
 	        	Matrix.multiplyMV(resultUp, 0, fa, 0, YB, 0);
 	        	
 	        	MatrixState.setCamera(curr_cx,curr_cy,curr_cz,curr_tx,curr_ty,curr_tz,
-	        			resultUp[0],resultUp[1],resultUp[2]);//ÉèÖÃÉãÏñ»úµÄÎ»ÖÃ
+	        			resultUp[0],resultUp[1],resultUp[2]);//è®¾ç½®æ‘„åƒæœºçš„ä½ç½®
 	        	MatrixState.copyMVMatrix();
 	        	MatrixState.translate(-20*(float)Math.sin(Math.toRadians(curr_rot_Plane_Z/4)),
 	        			-20*(float)Math.cos(Math.toRadians(curr_rot_Plane_Z/4)),0);
-	        	copybaozhaList.clear();//¸´ÔÓ±¬Õ¨Ğ§¹ûÁĞ±í
+	        	copybaozhaList.clear();//å¤æ‚çˆ†ç‚¸æ•ˆæœåˆ—è¡¨
 	        	for(DrawBomb db:baoZhaList)
 	        	{
 	        		copybaozhaList.add(db);
 	        	}
-	        	cop_archie_bomb_List.clear();//¸´ÖÆ¸ßÉäÅÚ×Óµ¯
+	        	cop_archie_bomb_List.clear();//å¤åˆ¶é«˜å°„ç‚®å­å¼¹
 	        	for(BombForControl db:archie_bomb_List)
 	        	{
 	        		cop_archie_bomb_List.add(db);
 	        	}
-	        	cop_bomb_List.clear();//¸´ÖÆÅÚµ¯ÁĞ±í
+	        	cop_bomb_List.clear();//å¤åˆ¶ç‚®å¼¹åˆ—è¡¨
 	        	for(BombForControl db:bomb_List)
 	        	{
 	        		cop_bomb_List.add(db);
 	        	}
 	        	cop_archie_List.clear();
-	        	for(ArchieForControl db:archie_List)//¸ßÉäÅÚÅÚµ¯¸´ÖÆ
+	        	for(ArchieForControl db:archie_List)//é«˜å°„ç‚®ç‚®å¼¹å¤åˆ¶
 	        	{
 	        		cop_archie_List.add(db);
 	        	}
-	        	cop_bullet_List.clear();//×Óµ¯¸´ÖÆ
+	        	cop_bullet_List.clear();//å­å¼¹å¤åˆ¶
 	        	for(BulletForControl db:bullet_List)
 	        	{
 	        		cop_bullet_List.add(db);
 	        	}
-	        	copy_tank_bomb_List.clear();//ÅÚµ¯¸´ÖÆ
+	        	copy_tank_bomb_List.clear();//ç‚®å¼¹å¤åˆ¶
 	        	for(BombForControl db:tank_bomb_List)
 	        	{
 	        		copy_tank_bomb_List.add(db);
 	        	}
 			}
         	lightAngle+=2;
-          //¼ÆËãµ±Ç°¾Å¹¬¸ñ,²¢µ÷ÓÃÏàÓ¦µÄ·½·¨»æÖÆÏàÓ¦µÄÎïÌå
+          //è®¡ç®—å½“å‰ä¹å®«æ ¼,å¹¶è°ƒç”¨ç›¸åº”çš„æ–¹æ³•ç»˜åˆ¶ç›¸åº”çš„ç‰©ä½“
            drawAll();
           MatrixState.popMatrix();
         }
-        //¼ÆËãµ±Ç°¾Å¹¬¸ñ,²¢µ÷ÓÃÏàÓ¦µÄ·½·¨»æÖÆÏàÓ¦µÄÎïÌå
+        //è®¡ç®—å½“å‰ä¹å®«æ ¼,å¹¶è°ƒç”¨ç›¸åº”çš„æ–¹æ³•ç»˜åˆ¶ç›¸åº”çš„ç‰©ä½“
         public void drawAll()
         {
-        	int rowi=0;//ÆğÊ¼ĞĞÁĞ
+        	int rowi=0;//èµ·å§‹è¡Œåˆ—
     		int colj=0;
-    		int colT=CELL_SIZE;//ÖÕÖ¹ĞĞÁĞ
+    		int colT=CELL_SIZE;//ç»ˆæ­¢è¡Œåˆ—
     		int rowT=CELL_SIZE;
-    		int col=(int)(curr_PlaneX/WIDTH_LALNDFORM);//-CELL_SIZE/2;//µÃµ½µ±Ç°ËùÔÚµÄĞĞÁĞ
+    		int col=(int)(curr_PlaneX/WIDTH_LALNDFORM);//-CELL_SIZE/2;//å¾—åˆ°å½“å‰æ‰€åœ¨çš„è¡Œåˆ—
     		int row=(int)(curr_PlaneZ/HEIGHT_LANDFORM);//-CELL_SIZE/2;
-    		int rcCount=2;//ÏòÇ°·ÉÊ±ºóÃæÒª»æÖÆµÄµØ¿éÊı
-    		//²Ã¼õ
+    		int rcCount=2;//å‘å‰é£æ—¶åé¢è¦ç»˜åˆ¶çš„åœ°å—æ•°
+    		//è£å‡
     		curr_rot_Plane_Y%=360;
     		if(curr_rot_Plane_Y<0)
     		{
     			curr_rot_Plane_Y=360+curr_rot_Plane_Y;
     		}
     		if((curr_rot_Plane_Y>=0&&curr_rot_Plane_Y<=45)||(curr_rot_Plane_Y>=315&&curr_rot_Plane_Y<=360))
-    		{//Èç¹ûÔ­ZÖá¸º·½Ïò·ÉĞĞ
-    			if(curr_PlaneZ<0)//ÔÚ±³µº¶ø·ÉÊ±£¬È«µº¶¼²»»æÖÆ
+    		{//å¦‚æœåŸZè½´è´Ÿæ–¹å‘é£è¡Œ
+    			if(curr_PlaneZ<0)//åœ¨èƒŒå²›è€Œé£æ—¶ï¼Œå…¨å²›éƒ½ä¸ç»˜åˆ¶
     			{
     				rowi=0;
     				rowT=1;
-    				colj=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				colj=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=MapArray[mapId].length;
     			}
-    			else if(curr_PlaneZ>MapArray[mapId].length*WIDTH_LALNDFORM)//Èç¹ûÊÇÔÚ½øÈëµºµÄ¹ı³ÌÖĞ
+    			else if(curr_PlaneZ>MapArray[mapId].length*WIDTH_LALNDFORM)//å¦‚æœæ˜¯åœ¨è¿›å…¥å²›çš„è¿‡ç¨‹ä¸­
     			{
-    				rowi=MapArray[mapId].length-CELL_SIZE/2;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=MapArray[mapId].length-CELL_SIZE/2;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=MapArray[mapId].length;
-    				colj=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				colj=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=MapArray[mapId].length;
     				
     			}
-    			else//·ñÔòÔÚµºÖĞ¼ä£¬¾ÍÖ»»æÖÆ·É»úÇ°ÃæµÄ²¿·Ö
+    			else//å¦åˆ™åœ¨å²›ä¸­é—´ï¼Œå°±åªç»˜åˆ¶é£æœºå‰é¢çš„éƒ¨åˆ†
     			{
     				rowi=row-CELL_SIZE/2;
     				if(rowi<0)
@@ -1418,7 +1418,7 @@ public class GLGameView extends GLSurfaceView
     				}else if(rowT<0){
     					rowT=0;
     				}
-    				colj=col-CELL_SIZE/2;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				colj=col-CELL_SIZE/2;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=col+CELL_SIZE/2;
     				if(colj<0)
     				{
@@ -1441,22 +1441,22 @@ public class GLGameView extends GLSurfaceView
     		else if(curr_rot_Plane_Y>=45&&curr_rot_Plane_Y<135)
     		{
     			
-    			if(curr_PlaneX<0)//ÔÚ±³µº¶ø·ÉÊ±£¬È«µº¶¼²»»æÖÆ
+    			if(curr_PlaneX<0)//åœ¨èƒŒå²›è€Œé£æ—¶ï¼Œå…¨å²›éƒ½ä¸ç»˜åˆ¶
     			{
     				colj=0;
     				colT=1;
-    				rowi=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=MapArray[mapId].length;
     			}
     			else if(curr_PlaneX>=MapArray[mapId].length*WIDTH_LALNDFORM)
-    			{//Èç¹ûÊÇÔÚ½øÈëµºµÄ¹ı³ÌÖĞ
-    				colj=MapArray[mapId].length-CELL_SIZE/2;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    			{//å¦‚æœæ˜¯åœ¨è¿›å…¥å²›çš„è¿‡ç¨‹ä¸­
+    				colj=MapArray[mapId].length-CELL_SIZE/2;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=MapArray[mapId].length;
-    				rowi=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=MapArray[mapId].length;
     			}
     			else
-    			{//·ñÔòÔÚµºÖĞ¼ä£¬¾ÍÖ»»æÖÆ·É»úÇ°ÃæµÄ²¿·Ö
+    			{//å¦åˆ™åœ¨å²›ä¸­é—´ï¼Œå°±åªç»˜åˆ¶é£æœºå‰é¢çš„éƒ¨åˆ†
     				colj=col-CELL_SIZE/2;
     				if(colj<0)
     				{
@@ -1469,7 +1469,7 @@ public class GLGameView extends GLSurfaceView
     				}else if(colT<0){
     					colT=0;
     				}
-    				rowi=row-CELL_SIZE/2;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=row-CELL_SIZE/2;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=row+CELL_SIZE/2;
     				if(rowi<0)
     				{
@@ -1492,21 +1492,21 @@ public class GLGameView extends GLSurfaceView
     		else if(curr_rot_Plane_Y>=135&&curr_rot_Plane_Y<225)
     		{
     			if(curr_PlaneZ<0)
-    			{//½øÈëµº¶ø·ÉÊ±£¬È«µº¶¼»æÖÆ
-    				rowi=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    			{//è¿›å…¥å²›è€Œé£æ—¶ï¼Œå…¨å²›éƒ½ç»˜åˆ¶
+    				rowi=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=CELL_SIZE/2;
-    				colj=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				colj=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=MapArray[mapId].length;
     			}
     			else if(curr_PlaneZ>MapArray[mapId].length*WIDTH_LALNDFORM)
-    			{//Èç¹ûÊÇÔÚ±³µº¶ø·ÉµÄ¹ı³ÌÖĞ
-    				rowi=MapArray[mapId].length-1;//²»»æÖÆµº
+    			{//å¦‚æœæ˜¯åœ¨èƒŒå²›è€Œé£çš„è¿‡ç¨‹ä¸­
+    				rowi=MapArray[mapId].length-1;//ä¸ç»˜åˆ¶å²›
     				rowT=MapArray[mapId].length;
-    				colj=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				colj=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=MapArray[mapId].length;
     			}
     			else
-    			{//·ñÔòÔÚµºÖĞ¼ä£¬¾ÍÖ»»æÖÆ·É»úÇ°ÃæµÄ²¿·Ö
+    			{//å¦åˆ™åœ¨å²›ä¸­é—´ï¼Œå°±åªç»˜åˆ¶é£æœºå‰é¢çš„éƒ¨åˆ†
     				rowi=row-rcCount;
     				if(rowi<0)
     				{
@@ -1519,7 +1519,7 @@ public class GLGameView extends GLSurfaceView
     				}else if(rowT<0){
     					rowT=0;
     				}
-    				colj=col-CELL_SIZE/2;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				colj=col-CELL_SIZE/2;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=col+CELL_SIZE/2;
     				if(colj<0)
     				{
@@ -1542,21 +1542,21 @@ public class GLGameView extends GLSurfaceView
     		else
     		{
     			if(curr_PlaneX<0)
-    			{//ÔÚ½øµº¶ø·ÉÊ±£¬È«µº¶¼»æÖÆ
-    				colj=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    			{//åœ¨è¿›å²›è€Œé£æ—¶ï¼Œå…¨å²›éƒ½ç»˜åˆ¶
+    				colj=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				colT=CELL_SIZE/2;//MapArray[mapId].length;
-    				rowi=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=MapArray[mapId].length;
     			}
     			else if(curr_PlaneX>MapArray[mapId].length*WIDTH_LALNDFORM)
-    			{//Èç¹ûÊÇÔÚ±³µº¶ø·ÉµÄ¹ı³ÌÖĞ
+    			{//å¦‚æœæ˜¯åœ¨èƒŒå²›è€Œé£çš„è¿‡ç¨‹ä¸­
     				colj=0;
     				colT=1;
-    				rowi=0;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=0;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=MapArray[mapId].length;
     			}
     			else
-    			{//·ñÔòÔÚµºÖĞ¼ä£¬¾ÍÖ»»æÖÆ·É»úÇ°ÃæµÄ²¿·Ö
+    			{//å¦åˆ™åœ¨å²›ä¸­é—´ï¼Œå°±åªç»˜åˆ¶é£æœºå‰é¢çš„éƒ¨åˆ†
     				colj=col-rcCount;
     				if(colj<0)
     				{
@@ -1569,7 +1569,7 @@ public class GLGameView extends GLSurfaceView
     				}else if(colT<0){
     					colT=0;
     				}
-    				rowi=row-CELL_SIZE/2;//ËùÓĞµØ¿é¶¼µÃ»æÖÆ
+    				rowi=row-CELL_SIZE/2;//æ‰€æœ‰åœ°å—éƒ½å¾—ç»˜åˆ¶
     				rowT=row+CELL_SIZE/2;
     				if(rowi<0)
     				{
@@ -1589,46 +1589,46 @@ public class GLGameView extends GLSurfaceView
     				}
     			}
     		}
- 			drawSky();//»æÖÆÌì¿Õ    
-         	//»æÖÆ´ó°Ó
+ 			drawSky();//ç»˜åˆ¶å¤©ç©º    
+         	//ç»˜åˆ¶å¤§å
             drawdam();
-    		//»æÖÆÉ½
+    		//ç»˜åˆ¶å±±
             drawLandForm(rowi,colj,rowT,colT);
-            //»æÖÆË®
+            //ç»˜åˆ¶æ°´
             drawWater();
-            //»æÖÆÌ¹¿Ë
+            //ç»˜åˆ¶å¦å…‹
             drawTanke(rowi,colj,rowT,colT);
-            //»æÖÆ¸ßÉäÅÚ
+            //ç»˜åˆ¶é«˜å°„ç‚®
             drawarchie(rowi,colj,rowT,colT);
-            //»æÖÆ¾ü»ğ¿â
+            //ç»˜åˆ¶å†›ç«åº“
             drawHouse(rowi,colj,rowT,colT);
-            //»æÖÆ·¿×Ó
+            //ç»˜åˆ¶æˆ¿å­
     	    drawHousePlane(rowi,colj,rowT,colT);
-         	//»æÖÆÅÚµ¯
+         	//ç»˜åˆ¶ç‚®å¼¹
          	drawBombs();
-         	//»æÖÆ¸ßÉäÅÚÅÚµ¯
+         	//ç»˜åˆ¶é«˜å°„ç‚®ç‚®å¼¹
          	drawArchieBombs();
-         	//»æÖÆÌ¹¿Ë·¢ÉäµÄÅÚµ¯
+         	//ç»˜åˆ¶å¦å…‹å‘å°„çš„ç‚®å¼¹
          	drawTankBombs();
-         	//»æÖÆµĞ»ú
+         	//ç»˜åˆ¶æ•Œæœº
          	drawEnemyPlane();
-         	//»æÖÆÍæ¼Ò²Ù¿Ø·É»ú
+         	//ç»˜åˆ¶ç©å®¶æ“æ§é£æœº
          	drawPlane(curr_PlaneX,curr_PlaneY,curr_PlaneZ,curr_rot_Plane_X,curr_rot_Plane_Y,curr_rot_Plane_Z);
-         	//»æÖÆµÆËş
+         	//ç»˜åˆ¶ç¯å¡”
             drawLightTower();
-         	//»æÖÆÊ÷
+         	//ç»˜åˆ¶æ ‘
          	drawTree(rowi,colj,rowT,colT);
-            //»æÖÆ±¬Õ¨Ğ§¹û
+            //ç»˜åˆ¶çˆ†ç‚¸æ•ˆæœ
             drawBomb();
-    		//»æÖÆ×Óµ¯
+    		//ç»˜åˆ¶å­å¼¹
          	drawBullets();
-    		//¾ü»ğ¿â±¬Õ¨Ğ§¹û
+    		//å†›ç«åº“çˆ†ç‚¸æ•ˆæœ
             drawBaoZhaXiaoguo();
         }
         
         
         
-        //»æÖÆÌì¿Õ
+        //ç»˜åˆ¶å¤©ç©º
         public void drawSky()
         {
         	if(mapId==0||mapId==5)
@@ -1646,7 +1646,7 @@ public class GLGameView extends GLSurfaceView
         		skyBallsmall.drawSelf(tex_skyBallId,curr_PlaneX,0,curr_PlaneZ, rotationAngle_SkyBall);
         	}
         }
-        //»æÖÆ¸ßÉäÅÚÅÚµ¯
+        //ç»˜åˆ¶é«˜å°„ç‚®ç‚®å¼¹
         public void drawArchieBombs()
         {
         	try
@@ -1661,10 +1661,10 @@ public class GLGameView extends GLSurfaceView
         		e.printStackTrace();
         	}
         }
-        //»æÖÆ×Óµ¯µÄ·½·¨
+        //ç»˜åˆ¶å­å¼¹çš„æ–¹æ³•
         public void drawBullets()
         {
-        	//¿ªÆô»ìºÏ
+        	//å¼€å¯æ··åˆ
         	GLES20.glEnable(GLES20.GL_BLEND);
         	GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         	try
@@ -1680,7 +1680,7 @@ public class GLGameView extends GLSurfaceView
         	}
         	GLES20.glDisable(GLES20.GL_BLEND);
         }
-        //»æÖÆÅÚµ¯µÄ·½·¨
+        //ç»˜åˆ¶ç‚®å¼¹çš„æ–¹æ³•
         public void drawBombs()
         {
         	try
@@ -1695,7 +1695,7 @@ public class GLGameView extends GLSurfaceView
         		e.printStackTrace();
         	}
         }
-        //»æÖÆÌ¹¿ËÅÚµ¯
+        //ç»˜åˆ¶å¦å…‹ç‚®å¼¹
         public void drawTankBombs()
         {
         	try
@@ -1710,7 +1710,7 @@ public class GLGameView extends GLSurfaceView
         		e.printStackTrace();
         	}
         }
-        //»æÖÆË®ÃæµÄ·½·¨
+        //ç»˜åˆ¶æ°´é¢çš„æ–¹æ³•
         public void drawWater()
         {
         		MatrixState.pushMatrix(); 
@@ -1722,7 +1722,7 @@ public class GLGameView extends GLSurfaceView
 				GLES20.glDisable(GLES20.GL_BLEND);
 				MatrixState.popMatrix();
         }
-        //»æÖÆÉ½µØ
+        //ç»˜åˆ¶å±±åœ°
         public void drawLandForm(int rowi,int colj,int rowT,int colT)
         {
     		for(int i=rowi;i<rowT;i++)
@@ -1733,7 +1733,7 @@ public class GLGameView extends GLSurfaceView
                 	MatrixState.translate((0+j)*WIDTH_LALNDFORM, LAND_HIGH_ADJUST, (0+i)*HEIGHT_LANDFORM);
                 	try
                 	{
-                		draw_number_LandForm(MapArray[mapId][i][j]); //¸ù¾İ±àºÅ»æÖÆÉ½      
+                		draw_number_LandForm(MapArray[mapId][i][j]); //æ ¹æ®ç¼–å·ç»˜åˆ¶å±±      
                 	} 
                 	catch(Exception e)
                 	{
@@ -1743,7 +1743,7 @@ public class GLGameView extends GLSurfaceView
         		}
         	}	
         }
-        //¸ù¾İ±àºÅ»æÖÆ¶ÔÓ¦µÄ¿é
+        //æ ¹æ®ç¼–å·ç»˜åˆ¶å¯¹åº”çš„å—
         public void draw_number_LandForm(int number)
         {
         	switch (number) 
@@ -1800,36 +1800,36 @@ public class GLGameView extends GLSurfaceView
 				MatrixState.rotate(270, 0, 1, 0);
 				terrain[2].drawSelf(0,tex_terrain_shandingId,tex_terrain_tuceng_Id, tex_terrain_caodiId, tex_terrain_shitouId,LOTHight,height_span_LOT);
 				break;
-			case 13://¸ßÆ½Ãæ
+			case 13://é«˜å¹³é¢
 				MatrixState.translate(WIDTH_LALNDFORM/2, LAND_HIGHEST, WIDTH_LALNDFORM/2);
 				MatrixState.rotate(-90, 1, 0, 0);
 				terrain_plain.drawSelf(tex_terrain_caodiId);
 				break;
-			case 15://É½µØË®ÃæÉ½µÄ
+			case 15://å±±åœ°æ°´é¢å±±çš„
 				terrain[4].drawSelf(0,tex_terrain_shandingId,tex_terrain_tuceng_Id,tex_terrain_caodiId,tex_terrain_shitouId, waterHillHight,height_span_Water);
 				break;
-			case 16://É½ÉÏµÄ
+			case 16://å±±ä¸Šçš„
 				terrain[5].drawSelf(1,tex_terrain_shandingId,tex_terrain_tuceng_Id,tex_terrain_caodiId, tex_terrain_shitouId, HillHight,height_span_Hill);
 				break;
-			case 17://ÖĞ¼ä¿é
+			case 17://ä¸­é—´å—
 				terrain[6].drawSelf(1,tex_terrain_shandingId,tex_terrain_tuceng_Id,tex_terrain_caodiId, tex_terrain_shitouId, HillHight,height_span_Hill);
 				break;
-			case 18://µÚÒ»¿éÉ½Ğı×ª270
+			case 18://ç¬¬ä¸€å—å±±æ—‹è½¬270
 				MatrixState.translate(WIDTH_LALNDFORM, 0, 0);
 				MatrixState.rotate(270, 0, 1, 0);
 				terrain[3].drawSelf(1,tex_terrain_shandingId,tex_terrain_tuceng_Id,tex_terrain_caodiId, tex_terrain_shitouId, HillHight,height_span_Hill);
 				break;
-			case 19://ÖĞ¼ä¿éÉ½Ğı×ª270
+			case 19://ä¸­é—´å—å±±æ—‹è½¬270
 				MatrixState.translate(WIDTH_LALNDFORM, 0, 0);
 				MatrixState.rotate(270, 0, 1, 0);
 				terrain[6].drawSelf(1,tex_terrain_shandingId,tex_terrain_tuceng_Id,tex_terrain_caodiId, tex_terrain_shitouId, HillHight,height_span_Hill);
 				break;
-			case 20://ÖĞ¼ä¿éÉ½Ğı×ª270
+			case 20://ä¸­é—´å—å±±æ—‹è½¬270
 				MatrixState.translate(WIDTH_LALNDFORM, 0, 0);
 				MatrixState.rotate(270, 0, 1, 0);
 				terrain[5].drawSelf(1,tex_terrain_shandingId,tex_terrain_tuceng_Id,tex_terrain_caodiId, tex_terrain_shitouId, HillHight,height_span_Hill);
 				break;
-			case 21://»æÖÆ·É»úÅÜµÀ
+			case 21://ç»˜åˆ¶é£æœºè·‘é“
 				MatrixState.translate(WIDTH_LALNDFORM/2, LAND_HIGHEST, WIDTH_LALNDFORM/2);
 				MatrixState.rotate(-90, 1, 0, 0);
 				terrain_plain.drawSelf(tex_damId);
@@ -1837,7 +1837,7 @@ public class GLGameView extends GLSurfaceView
 			}
         }
         /*	
-         * »æÖÆ·É»úµÄ·½·¨
+         * ç»˜åˆ¶é£æœºçš„æ–¹æ³•
          */
         public void drawPlane(float curr_x,float curr_y,float curr_z,
            float rotationAngle_Plane_X,float rotationAngle_Plane_Y,float rotationAngle_Plane_Z)
@@ -1869,13 +1869,13 @@ public class GLGameView extends GLSurfaceView
         		e.printStackTrace();
         	}
         }
-        //»æÖÆµÆËş
+        //ç»˜åˆ¶ç¯å¡”
         public void drawLightTower()
         {
         	try
         	{
-        		GLES20.glDisable(GLES20.GL_CULL_FACE);//¹Ø±Õ±³Ãæ¼ô²Ã
-    			GLES20.glEnable(GLES20.GL_BLEND);//¿ªÆô»ìºÏ
+        		GLES20.glDisable(GLES20.GL_CULL_FACE);//å…³é—­èƒŒé¢å‰ªè£
+    			GLES20.glEnable(GLES20.GL_BLEND);//å¼€å¯æ··åˆ
     			GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
             	MatrixState.pushMatrix();
             	MatrixState.translate(ArchieArray[mapId][3][0]*WIDTH_LALNDFORM,200+LAND_HIGHEST, ArchieArray[mapId][3][1]*WIDTH_LALNDFORM);
@@ -1890,19 +1890,19 @@ public class GLGameView extends GLSurfaceView
             	lighttower.drawSelf(tex_lighttowerid);
             	MatrixState.popMatrix();
             	GLES20.glDisable(GLES20.GL_BLEND);
-            	GLES20.glEnable(GLES20.GL_CULL_FACE);//´ò¿ª±³Ãæ¼ô²Ã
+            	GLES20.glEnable(GLES20.GL_CULL_FACE);//æ‰“å¼€èƒŒé¢å‰ªè£
         	}
         	catch(Exception e)
         	{
         		e.printStackTrace();
         	}
         }
-        //»æÖÆÌ¹¿Ë
+        //ç»˜åˆ¶å¦å…‹
         public void drawTanke(int rowi,int colj,int rowT,int colT)
         {
         	try
         	{
-        		for(TanKe tanke:tankeList)//»æÖÆÌ¹¿Ë
+        		for(TanKe tanke:tankeList)//ç»˜åˆ¶å¦å…‹
         		{
             		tanke.drawSelf(tex_tankeid,rowi,colj,rowT,colT,
             				tex_backgroundRectId, tex_numberRectId,tex_locktexId);
@@ -1913,11 +1913,11 @@ public class GLGameView extends GLSurfaceView
         		e.printStackTrace();
         	}
         }
-        //»æÖÆ¸ßÉäÅÚ
+        //ç»˜åˆ¶é«˜å°„ç‚®
         public void drawarchie(int rowi,int colj,int rowT,int colT){
         	try
         	{
-        		for(int i=0;i<archie_List.size();i++)//»æÖÆ¸ßÉäÅÚ
+        		for(int i=0;i<archie_List.size();i++)//ç»˜åˆ¶é«˜å°„ç‚®
         		{
         			archie_List.get(i).drawSelf(texBarbetteId,texCubeId,texBarrelId,rowi,colj,rowT,colT,
         					tex_backgroundRectId, tex_numberRectId,tex_locktexId		
@@ -1929,14 +1929,14 @@ public class GLGameView extends GLSurfaceView
         		e.printStackTrace();
         	}
         }
-        //»æÖÆ¾ü»ğ¿â
+        //ç»˜åˆ¶å†›ç«åº“
         public void drawHouse(int ii,int jj,int rowR,int colR)
         {
         	if(!isno_draw_arsenal)
         	{
         		return;
         	}
-        	GLES20.glDisable(GLES20.GL_CULL_FACE);//¹Ø±Õ±³Ãæ¼ô²Ã
+        	GLES20.glDisable(GLES20.GL_CULL_FACE);//å…³é—­èƒŒé¢å‰ªè£
         	try
         	{
         		for(Arsenal_House ah:arsenal)
@@ -1950,9 +1950,9 @@ public class GLGameView extends GLSurfaceView
         	{
         		e.printStackTrace();
         	}
-        	GLES20.glEnable(GLES20.GL_CULL_FACE);//´ò¿ª±³Ãæ¼ô²Ã
+        	GLES20.glEnable(GLES20.GL_CULL_FACE);//æ‰“å¼€èƒŒé¢å‰ªè£
         }
-        //»æÖÆÆÕÍ¨·¿×Ó
+        //ç»˜åˆ¶æ™®é€šæˆ¿å­
 	    public void drawHousePlane(int ii,int jj,int rowR,int colR)
 	    {
 	    	try
@@ -1967,7 +1967,7 @@ public class GLGameView extends GLSurfaceView
 	    		e.printStackTrace();
 	    	}
 	    }
-        //»æÖÆÊ÷
+        //ç»˜åˆ¶æ ‘
 	    public void drawTree(int ii,int jj,int rowR,int colR)
 	    {
 	    	GLES20.glEnable(GLES20.GL_BLEND);
@@ -1985,10 +1985,10 @@ public class GLGameView extends GLSurfaceView
 			}
 	    	GLES20.glDisable(GLES20.GL_BLEND);
 	    }
-	    //»æÖÆ±¬Õ¨Ğ§¹û
+	    //ç»˜åˆ¶çˆ†ç‚¸æ•ˆæœ
         public void drawBomb()
         {
-        	GLES20.glDisable(GLES20.GL_CULL_FACE);//¹Ø±Õ±³Ãæ¼ô²Ã
+        	GLES20.glDisable(GLES20.GL_CULL_FACE);//å…³é—­èƒŒé¢å‰ªè£
         	GLES20.glEnable(GLES20.GL_BLEND);
 			GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 			try
@@ -2003,9 +2003,9 @@ public class GLGameView extends GLSurfaceView
 				e.printStackTrace();
 			}
         	GLES20.glDisable(GLES20.GL_BLEND);
-        	GLES20.glEnable(GLES20.GL_CULL_FACE);//´ò¿ª±³Ãæ¼ô²Ã
+        	GLES20.glEnable(GLES20.GL_CULL_FACE);//æ‰“å¼€èƒŒé¢å‰ªè£
         }
-        //»æÖÆ´ó°Ó
+        //ç»˜åˆ¶å¤§å
         public void drawdam()
         {
         	if(ArchieArray[mapId][5].length>0)
@@ -2013,21 +2013,21 @@ public class GLGameView extends GLSurfaceView
         		if(!dam.isShaderOk)
             	{
             		dam.isShaderOk=true;
-            		dam.initShader();//³õÊ¼»¯shader³ÌĞò
+            		dam.initShader();//åˆå§‹åŒ–shaderç¨‹åº
             	}
         		dam.drawSelf(tex_damId);
     		}
         }
-        //»æÖÆ×îºó·É»ú±¬Õ¨Ğ§¹û
+        //ç»˜åˆ¶æœ€åé£æœºçˆ†ç‚¸æ•ˆæœ
         public void drawBaoZhaXiaoguo()
         {
-        	GLES20.glDisable(GLES20.GL_CULL_FACE);//¹Ø±Õ±³Ãæ¼ô²Ã
-        	if(isCrash)//·É»úÕ¨»Ù
+        	GLES20.glDisable(GLES20.GL_CULL_FACE);//å…³é—­èƒŒé¢å‰ªè£
+        	if(isCrash)//é£æœºç‚¸æ¯
         	{
         		isFireOn=false;
-        		fireButton.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-	        	up_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
-	        	down_button.isButtonDown=0;//°´Å¥²»ÔÙ±ä»¯
+        		fireButton.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+	        	up_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
+	        	down_button.isButtonDown=0;//æŒ‰é’®ä¸å†å˜åŒ–
 	        	keyState=keyState&0xc;
 	        	upId=2;
 	        	shootId=2;
@@ -2041,30 +2041,30 @@ public class GLGameView extends GLSurfaceView
     			MatrixState.popMatrix();
     			GLES20.glDisable(GLES20.GL_BLEND);
         	}
-        	GLES20.glEnable(GLES20.GL_CULL_FACE);//´ò¿ª±³Ãæ¼ô²Ã
+        	GLES20.glEnable(GLES20.GL_CULL_FACE);//æ‰“å¼€èƒŒé¢å‰ªè£
         }
-        //-------------------------»æÖÆÊÓÆµ½çÃæÉÏµÄ¸÷¸ö°´Å¥-----------------------------
+        //-------------------------ç»˜åˆ¶è§†é¢‘ç•Œé¢ä¸Šçš„å„ä¸ªæŒ‰é’®-----------------------------
 		public void drawVideoDirection()
 		{
-			if(!isVideo)//Èç¹û²»ÊÇÊÓÆµ²¥·Å½çÃæ¾Í²»»æÖÆ
+			if(!isVideo)//å¦‚æœä¸æ˜¯è§†é¢‘æ’­æ”¾ç•Œé¢å°±ä¸ç»˜åˆ¶
 			{
 				return;
 			}
 			MatrixState.pushMatrix();
 			MatrixState.setProjectOrtho(-ratio, ratio, -1, 1, 1, 10);
-			MatrixState.setCamera(0, 0, 0, 0, 0, -1, 0, 1, 0);//»Ö¸´¾ØÕó
+			MatrixState.setCamera(0, 0, 0, 0, 0, -1, 0, 1, 0);//æ¢å¤çŸ©é˜µ
 			MatrixState.copyMVMatrix();
-			//¿ªÆô»ìºÏ
+			//å¼€å¯æ··åˆ
 			GLES20.glEnable(GLES20.GL_BLEND);  
-			//ÉèÖÃ»ìºÏÒò×Ó
+			//è®¾ç½®æ··åˆå› å­
 			GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 			
-            //-------------------------ÕâÀï»æÖÆËµÃ÷ÎÄ×Ö----------------
+            //-------------------------è¿™é‡Œç»˜åˆ¶è¯´æ˜æ–‡å­—----------------
             MatrixState.pushMatrix();
             MatrixState.translate(0, 0, -2.5f);
             noticeRect.drawSelf(tex_noticeId[mapId]);
             MatrixState.popMatrix();
-          //---------------------ÔİÍ£ºÍ²¥·Å---------------------
+          //---------------------æš‚åœå’Œæ’­æ”¾---------------------
 			MatrixState.pushMatrix();
             MatrixState.translate(-ratio+0.25f*ratio/2, -1+0.35f/2, -1.5f);
             if(isVideoPlaying)
@@ -2076,64 +2076,64 @@ public class GLGameView extends GLSurfaceView
             	menu_video.drawSelf(playId);
             }
             MatrixState.popMatrix();
-			//-----------------------½øÈëÓÎÏ·°´Å¥-----------------------
+			//-----------------------è¿›å…¥æ¸¸æˆæŒ‰é’®-----------------------
             MatrixState.pushMatrix();
             MatrixState.translate(ratio-0.25f*ratio/2, -1+0.35f/2, -1.5f);
         	menu_video.drawSelf(stopId);
             MatrixState.popMatrix();
             
-            //¹Ø±Õ»ìºÏ
+            //å…³é—­æ··åˆ
             GLES20.glDisable(GLES20.GL_BLEND);
             MatrixState.popMatrix();
 		}
-		 //-------------------------------»æÖÆÓÎÏ·ÖĞµÄ¶Ô»°¿ò-------------------------
+		 //-------------------------------ç»˜åˆ¶æ¸¸æˆä¸­çš„å¯¹è¯æ¡†-------------------------
 		public void drawGameDialog()
 		{
 			if(!isVideo&&!is_button_return)
 			{
 				if(!isCrashCartoonOver)
 				{
-					return;//Èç¹û²»ÊÇ·É»ú×¹»ÙºóµÄ¶¯»­²¥·ÅÍê±Ï
+					return;//å¦‚æœä¸æ˜¯é£æœºå æ¯åçš„åŠ¨ç”»æ’­æ”¾å®Œæ¯•
 				}
 			}
-			MatrixState.pushMatrix();//»æÖÆ±³¾°
+			MatrixState.pushMatrix();//ç»˜åˆ¶èƒŒæ™¯
 			MatrixState.setProjectOrtho(-1, 1, -1, 1, 1, 10);
-			MatrixState.setCamera(0, 0, 0, 0, 0, -1, 0, 1, 0);//»Ö¸´¾ØÕó
+			MatrixState.setCamera(0, 0, 0, 0, 0, -1, 0, 1, 0);//æ¢å¤çŸ©é˜µ
 			MatrixState.copyMVMatrix();
-			//¿ªÆô»ìºÏ
+			//å¼€å¯æ··åˆ
 			GLES20.glEnable(GLES20.GL_BLEND);  
-			//ÉèÖÃ»ìºÏÒò×Ó
+			//è®¾ç½®æ··åˆå› å­
 			GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 			MatrixState.pushMatrix();
             MatrixState.translate(0, 0,-1);
-            if((isGameMode==0&&isCrash&&!isVideo)||(is_button_return&&!isVideo)||(isVideo&&!isVideoPlaying&&isTrueButtonAction))//Èç¹ûÊÇ·É»ú×¹»Ù£¬»òÕß°´ÏÂÁË·µ»Ø°´Å¥
+            if((isGameMode==0&&isCrash&&!isVideo)||(is_button_return&&!isVideo)||(isVideo&&!isVideoPlaying&&isTrueButtonAction))//å¦‚æœæ˜¯é£æœºå æ¯ï¼Œæˆ–è€…æŒ‰ä¸‹äº†è¿”å›æŒ‰é’®
             {
             	menu_Rect.drawSelf(tex_menu_text);
             }
-            else if(isGameMode==0&&!isVideo)//Õ½ÒÛÄ£Ê½
+            else if(isGameMode==0&&!isVideo)//æˆ˜å½¹æ¨¡å¼
             {
             	menu_Rect.drawSelf(tex_menu_text_win);
             }
-            //-----------------ÅĞ¶ÏÌØÊâĞĞ¶¯³É¹¦
-            if(isGameMode==1&&isSpecActionState==1)//³É¹¦
+            //-----------------åˆ¤æ–­ç‰¹æ®Šè¡ŒåŠ¨æˆåŠŸ
+            if(isGameMode==1&&isSpecActionState==1)//æˆåŠŸ
             {
             	menu_Rect.drawSelf(tex_actionWinId);
             }
-            else if(isGameMode==1&&isSpecActionState==2)//Ê§°Ü
+            else if(isGameMode==1&&isSpecActionState==2)//å¤±è´¥
             {
             	menu_Rect.drawSelf(tex_actionFailId);
             }
             MatrixState.popMatrix();
-            //¹Ø±Õ»ìºÏ
+            //å…³é—­æ··åˆ
             GLES20.glDisable(GLES20.GL_BLEND);
             MatrixState.popMatrix();
 		}
-		//»æÖÆ·É»ú±»´óÅÚ»÷ÖĞÊ±µÄ±êÊ¶
+		//ç»˜åˆ¶é£æœºè¢«å¤§ç‚®å‡»ä¸­æ—¶çš„æ ‡è¯†
 		public void onDrawHit()
 		{
-			if(isno_Hit||isno_Vibrate)//Èç¹û±»»÷ÖĞÁË
+			if(isno_Hit||isno_Vibrate)//å¦‚æœè¢«å‡»ä¸­äº†
 			{
-				if(plane_hit_id%4==0)//¸ôÈı´ÎÉÁÒ»´Î
+				if(plane_hit_id%4==0)//éš”ä¸‰æ¬¡é—ªä¸€æ¬¡
 				{
 					if(isno_Hit)
 					{
@@ -2154,7 +2154,7 @@ public class GLGameView extends GLSurfaceView
 				}
 			}
 		}
-		//»æÖÆµĞ»ú
+		//ç»˜åˆ¶æ•Œæœº
 		public void drawEnemyPlane()
 		{
 			try
@@ -2181,43 +2181,43 @@ public class GLGameView extends GLSurfaceView
 				e.printStackTrace();
 			}
 		}
-		//ÓÃÕı½»Í¶Ó°»æÖÆĞéÄâÍ¼±ê
+		//ç”¨æ­£äº¤æŠ•å½±ç»˜åˆ¶è™šæ‹Ÿå›¾æ ‡
         public void drawVirtualIcon()
         {
-        	if(isVideo)//Èç¹ûÊÇÊÓÆµ²¥·ÅÖĞ£¬Ôò·µ»Ø
+        	if(isVideo)//å¦‚æœæ˜¯è§†é¢‘æ’­æ”¾ä¸­ï¼Œåˆ™è¿”å›
         	{
         		return;
         	}
         	 MatrixState.pushMatrix();
-        	//ÉèÖÃÕı½»¾ØÕó
+        	//è®¾ç½®æ­£äº¤çŸ©é˜µ
         	MatrixState.setProjectOrtho(-ratio, ratio,-1f,1f,1,10);
-        	//ÉèÖÃÉãÏñ»ú
+        	//è®¾ç½®æ‘„åƒæœº
         	MatrixState.setCamera(0, 0, 0, 0, 0,-1, 0, 1, 0);
         	MatrixState.copyMVMatrix();
-        	 //¿ªÆô»ìºÏ
+        	 //å¼€å¯æ··åˆ
             GLES20.glEnable(GLES20.GL_BLEND);  
-            //ÉèÖÃ»ìºÏÒò×Ó
+            //è®¾ç½®æ··åˆå› å­
             GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
             MatrixState.pushMatrix();
         	MatrixState.translate(0,0, -6);
-        	onDrawHit();//»æÖÆ·É»ú±­»÷ÖĞĞ§¹û
+        	onDrawHit();//ç»˜åˆ¶é£æœºæ¯å‡»ä¸­æ•ˆæœ
             MatrixState.popMatrix();
-            //·É»úÑª
+            //é£æœºè¡€
             MatrixState.pushMatrix();
         	MatrixState.translate(0,0.9f, -3);
         	MatrixState.scale(0.01f, 0.005f, 0.1f);
         	backgroundRect_blood.bloodValue=plane.blood/5-100+6;
-        	backgroundRect_blood.drawSelf(tex_backgroundRectId);//Ñª
+        	backgroundRect_blood.drawSelf(tex_backgroundRectId);//è¡€
             MatrixState.popMatrix();
             
         	MatrixState.pushMatrix();
         	MatrixState.translate(BUTTON_FIRE_XOffset,BUTTON_FIRE_YOffset, -2);
-        	fireButton.drawSelf(tex_fireButtonId);//»æÖÆ¿ª»ğ°´Å¥
+        	fireButton.drawSelf(tex_fireButtonId);//ç»˜åˆ¶å¼€ç«æŒ‰é’®
             MatrixState.popMatrix();
             
             MatrixState.pushMatrix();
         	MatrixState.translate(BUTTON_RADAR_XOffset,BUTTON_RADAR_YOffset, -2.1f);
-        	radar_bg.drawSelf(tex_radar_bg_Id);//»æÖÆÀ×´ïÍ¼±ê
+        	radar_bg.drawSelf(tex_radar_bg_Id);//ç»˜åˆ¶é›·è¾¾å›¾æ ‡
         	MatrixState.translate(0,0, 0.5f);
         	
         	drawMardPlace();
@@ -2226,19 +2226,19 @@ public class GLGameView extends GLSurfaceView
             MatrixState.pushMatrix();
         	MatrixState.translate(BUTTON_RADAR_XOffset,BUTTON_RADAR_YOffset, -2f);
         	MatrixState.rotate(RADAR_DIRECTION, 0, 0, 1);
-        	radar_plane.drawSelf(tex_radar_plane_Id);//»æÖÆÀ×´ïÖ¸ÕëÍ¼±ê        	
+        	radar_plane.drawSelf(tex_radar_plane_Id);//ç»˜åˆ¶é›·è¾¾æŒ‡é’ˆå›¾æ ‡        	
             MatrixState.popMatrix();
             
             MatrixState.pushMatrix();
         	MatrixState.translate(BUTTON_WEAPON_XOffset,BUTTON_WEAPON_YOffset, -2f);
-        	//½øĞĞ»»Í¼
-        	weapon_button.drawSelf(tex_button_weaponId[WEAPON_INDEX]);//»æÖÆÎäÆ÷Ñ¡ÔñÍ¼±ê
+        	//è¿›è¡Œæ¢å›¾
+        	weapon_button.drawSelf(tex_button_weaponId[WEAPON_INDEX]);//ç»˜åˆ¶æ­¦å™¨é€‰æ‹©å›¾æ ‡
             MatrixState.popMatrix();
           
-            //»æÖÆ×Óµ¯µÄÊıÁ¿
+            //ç»˜åˆ¶å­å¼¹çš„æ•°é‡
             MatrixState.pushMatrix();
         	MatrixState.translate(WEAPON_NUMBER_XOffset,WEAPON_NUMBER_YOffset, -2f);
-        	if(0==WEAPON_INDEX)//×Óµ¯
+        	if(0==WEAPON_INDEX)//å­å¼¹
         	{
         		if(bullet_number<0)
         		{
@@ -2246,7 +2246,7 @@ public class GLGameView extends GLSurfaceView
         		}
         		weapon_number.drawSelfLeft(bullet_number+"", tex_rankNumberId);
         	}
-        	else//ÅÚµ¯
+        	else//ç‚®å¼¹
         	{
         		if(bomb_number<0)
         		{
@@ -2255,15 +2255,15 @@ public class GLGameView extends GLSurfaceView
         		weapon_number.drawSelfLeft(bomb_number+"", tex_rankNumberId);
         	}
         	MatrixState.popMatrix();
-        	//---------------»æÖÆµ¹¼ÆÊ±---------------------------------
+        	//---------------ç»˜åˆ¶å€’è®¡æ—¶---------------------------------
         	if(isGameMode==1)
         	{
-        		//»æÖÆÊ£ÓàÊ±¼ä¾ØĞÎ
+        		//ç»˜åˆ¶å‰©ä½™æ—¶é—´çŸ©å½¢
         		MatrixState.pushMatrix();
             	MatrixState.translate(-2*ratio*0.1f,WEAPON_NUMBER_YOffset, -2f);
             	leftTimeRect.drawSelf(tex_lefttimeId);
             	MatrixState.popMatrix();
-        		//»æÖÆÊı×Ö
+        		//ç»˜åˆ¶æ•°å­—
         		MatrixState.pushMatrix();
             	MatrixState.translate(0,WEAPON_NUMBER_YOffset, -2f);
         		if(goTime<0)
@@ -2275,25 +2275,25 @@ public class GLGameView extends GLSurfaceView
         	}
         	MatrixState.pushMatrix();
         	MatrixState.translate(BUTTON_UP_XOffset,BUTTON_UP_YOffset, -2);
-        	up_button.drawSelf(tex_button_upId);//»æÖÆÏòÉÏ°´Å¥
+        	up_button.drawSelf(tex_button_upId);//ç»˜åˆ¶å‘ä¸ŠæŒ‰é’®
             MatrixState.popMatrix();
             
             MatrixState.pushMatrix();
         	MatrixState.translate(BUTTON_DOWN_XOffset,BUTTON_DOWN_YOffset, -2);
-        	down_button.drawSelf(tex_button_downId);//»æÖÆÏòÏÂ°´Å¥
+        	down_button.drawSelf(tex_button_downId);//ç»˜åˆ¶å‘ä¸‹æŒ‰é’®
             MatrixState.popMatrix();
             
-            //¹Ø±Õ»ìºÏ
+            //å…³é—­æ··åˆ
             GLES20.glDisable(GLES20.GL_BLEND);
             MatrixState.popMatrix();
         }
-        //»æÖÆ¸÷¸öÎïÌåµÄ±êÖ¾Î»ÖÃ
-        //»æÖÆ±êÖ¾Î»ÖÃÑÕÉ«¾ØĞÎ
+        //ç»˜åˆ¶å„ä¸ªç‰©ä½“çš„æ ‡å¿—ä½ç½®
+        //ç»˜åˆ¶æ ‡å¿—ä½ç½®é¢œè‰²çŸ©å½¢
         public void drawMardPlace()
         {
         	try
     		{
-	        	if(lightAngle%10!=0)//·É»úÒÇ±íÅÌÍ¼±ê
+	        	if(lightAngle%10!=0)//é£æœºä»ªè¡¨ç›˜å›¾æ ‡
 	        	{
         			plane.drawSelfMark(tex_mark_planeId);	
 	        	}
@@ -2306,7 +2306,7 @@ public class GLGameView extends GLSurfaceView
     		{
     			try
         		{
-    	    		for(EnemyPlane emp:enemy)//µĞ»úÒÇ±íÅÌÍ¼±ê
+    	    		for(EnemyPlane emp:enemy)//æ•Œæœºä»ªè¡¨ç›˜å›¾æ ‡
     	        	{
             			emp.drawSelfMark(tex_mark_ackId);
     	        	}
@@ -2320,7 +2320,7 @@ public class GLGameView extends GLSurfaceView
     		{
     			try
         		{
-    	        	for(TanKe tanke:tankeList)//Ì¹¿Ë
+    	        	for(TanKe tanke:tankeList)//å¦å…‹
     	        	{
             			tanke.drawSelfMark(tex_mark_tanke);
     	        	}
@@ -2331,7 +2331,7 @@ public class GLGameView extends GLSurfaceView
         		}
         		try
         		{
-    	        	for(int i=0;i<archie_List.size();i++)//»æÖÆ¸ßÉäÅÚÒÇ±íÅÌÍ¼±ê
+    	        	for(int i=0;i<archie_List.size();i++)//ç»˜åˆ¶é«˜å°„ç‚®ä»ªè¡¨ç›˜å›¾æ ‡
     	    		{
             			archie_List.get(i).drawSelfMark(tex_mark_tanke);
     	    		}
@@ -2345,7 +2345,7 @@ public class GLGameView extends GLSurfaceView
     		{
     			try
         		{
-    	        	for(Arsenal_House ah:arsenal)//¾ü»ğ¿âÒÇ±íÅÌÍ¼±ê»æÖÆ
+    	        	for(Arsenal_House ah:arsenal)//å†›ç«åº“ä»ªè¡¨ç›˜å›¾æ ‡ç»˜åˆ¶
     	        	{
     	    			ah.drawSelfMark(tex_mark_arsenalId);	
     	    		}
@@ -2356,30 +2356,30 @@ public class GLGameView extends GLSurfaceView
         		}
     		}
         }
-        //------------------------------- Ò»¼¶ ²Ëµ¥--------»æÖÆ²Ëµ¥½çÃæ-------------
+        //------------------------------- ä¸€çº§ èœå•--------ç»˜åˆ¶èœå•ç•Œé¢-------------
 	    public void drawGameMenu()
 	    {
-	    	if(1==isMenuLevel)//Ò»¼¶²Ëµ¥
+	    	if(1==isMenuLevel)//ä¸€çº§èœå•
 	    	{
-	    		//ÉèÖÃÍ¸ÊÓÍ¶Ó°
+	    		//è®¾ç½®é€è§†æŠ•å½±
 		    	MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 3, 200);
-		    	//ÉèÖÃÉãÏñ»ú
+		    	//è®¾ç½®æ‘„åƒæœº
 		    	MatrixState.setCamera(0, 0, 8, 0, 0,0, 0, 1, 0);
 		    	MatrixState.copyMVMatrix();
-		    	if(!(doorState==2&&curr_menu_index==2))//ÔÚÅÅĞĞ°ñ½çÃæÏÂ²»»æÖÆ´ËÏî
+		    	if(!(doorState==2&&curr_menu_index==2))//åœ¨æ’è¡Œæ¦œç•Œé¢ä¸‹ä¸ç»˜åˆ¶æ­¤é¡¹
 		    	{
-		    		//»æÖÆµ¼µ¯²Ëµ¥Â½µØ±³¾°
+		    		//ç»˜åˆ¶å¯¼å¼¹èœå•é™†åœ°èƒŒæ™¯
 			    	MatrixState.pushMatrix();
 			    	MatrixState.translate(0, 0,-100);
 			    	menu_Background.drawSelf(tex_bgId);
 			    	MatrixState.popMatrix();
-			    	//»æÖÆÔÆ²Ê
+			    	//ç»˜åˆ¶äº‘å½©
 			    	MatrixState.pushMatrix();
 			    	GLES20.glEnable(GLES20.GL_BLEND);
 			    	GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 			    	MatrixState.translate(0, 0,-90);
 			    	menu_clouds.drawSelf(tex_cloudsId);
-			    	if(isDrawBaozha)//ÕâÀï»æÖÆµ¼µ¯ÏÂÂäºóµÄ±¬Õ¨Ğ§¹ûÍ¼
+			    	if(isDrawBaozha)//è¿™é‡Œç»˜åˆ¶å¯¼å¼¹ä¸‹è½åçš„çˆ†ç‚¸æ•ˆæœå›¾
 			    	{
 			    		MatrixState.translate(0, 0,1);
 			    		MatrixState.scale(baozha_ratio, baozha_ratio,1);
@@ -2388,9 +2388,9 @@ public class GLGameView extends GLSurfaceView
 			    	GLES20.glDisable(GLES20.GL_BLEND);
 			    	MatrixState.popMatrix();
 		    	}
-		    	if(doorState!=2)//»æÖÆµ¼µ¯
+		    	if(doorState!=2)//ç»˜åˆ¶å¯¼å¼¹
 		    	{
-		        	//»æÖÆµ¼µ¯
+		        	//ç»˜åˆ¶å¯¼å¼¹
 		    		MatrixState.pushMatrix();
 		        	MatrixState.translate(0, missile_YOffset, missile_ZOffset);
 		        	MatrixState.rotate(-90, 0, 0, 1);
@@ -2399,21 +2399,21 @@ public class GLGameView extends GLSurfaceView
 		        	MatrixState.popMatrix();
 		    	}
 	    	}
-	    	//ÉèÖÃÕı½»¾ØÕó
+	    	//è®¾ç½®æ­£äº¤çŸ©é˜µ
 	    	MatrixState.setProjectOrtho(-ratio, ratio,-1f,1f,1,10);
-	    	//ÉèÖÃÉãÏñ»ú
+	    	//è®¾ç½®æ‘„åƒæœº
 	    	MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);
 	    	MatrixState.copyMVMatrix();
-	    	if(1==isMenuLevel)//Èç¹ûÃ»ÓĞ½øÈëµØÍ¼Ñ¡Ôñ½çÃæ
+	    	if(1==isMenuLevel)//å¦‚æœæ²¡æœ‰è¿›å…¥åœ°å›¾é€‰æ‹©ç•Œé¢
 	    	{
 	    		if(!(doorState==2&&(curr_menu_index==1||curr_menu_index==2||curr_menu_index==3||curr_menu_index==4)))
 		    	{
-		        		//»æÖÆÉÏ²ÕÃÅ»ú²ÕÃÅ
+		        		//ç»˜åˆ¶ä¸Šèˆ±é—¨æœºèˆ±é—¨
 			        	MatrixState.pushMatrix();
 			        	MatrixState.translate(0, door_YOffset, -2);
 			        	front_door.drawSelf(tex_menu_doorId);
 			        	MatrixState.popMatrix();
-			        	//»æÖÆÏÂ²ÕÃÅ 
+			        	//ç»˜åˆ¶ä¸‹èˆ±é—¨ 
 			        	MatrixState.pushMatrix();
 			        	MatrixState.translate(0, -Math.abs(door_YOffset), -2);
 			        	MatrixState.rotate(180, 0, 0, 1);   
@@ -2421,69 +2421,69 @@ public class GLGameView extends GLSurfaceView
 			        	MatrixState.popMatrix();
 		    	}
 	    	}
-	    	//¿ªÆô»ìºÏ
+	    	//å¼€å¯æ··åˆ
 	        GLES20.glEnable(GLES20.GL_BLEND);  
-	        //ÉèÖÃ»ìºÏÒò×Ó
+	        //è®¾ç½®æ··åˆå› å­
 	        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-	        if(1==isMenuLevel)//Èç¹ûµ±Ç°²»ÊÇÎ»ÓÚµØÍ¼Ñ¡Ôñ½çÃæ
+	        if(1==isMenuLevel)//å¦‚æœå½“å‰ä¸æ˜¯ä½äºåœ°å›¾é€‰æ‹©ç•Œé¢
 	        {
-	        	if(doorState==1)//Èç¹ûµ±Ç°Î»ÓÚ¿ª²Ö½çÃæ,»æÖÆµ¼µ¯²Ëµ¥°´Å¥
+	        	if(doorState==1)//å¦‚æœå½“å‰ä½äºå¼€ä»“ç•Œé¢,ç»˜åˆ¶å¯¼å¼¹èœå•æŒ‰é’®
 		        {
 	        		MatrixState.pushMatrix();
 		        	MatrixState.translate(menu_button_XOffset, 0, -1);
-		        	front_cover_button.drawSelf(tex_front_coverId);//»æÖÆÇ°±ßµÄÕÖ×Ó
+		        	front_cover_button.drawSelf(tex_front_coverId);//ç»˜åˆ¶å‰è¾¹çš„ç½©å­
 		        	MatrixState.popMatrix();
 		        }
-		        //»æÖÆÉèÖÃ½çÃæ½çÃæ
+		        //ç»˜åˆ¶è®¾ç½®ç•Œé¢ç•Œé¢
 		        if(doorState==2&&curr_menu_index==1)
 		        { 
-		        	//ÊÇ·ñ¿ªÆô±³¾°ÒôÀÖ
+		        	//æ˜¯å¦å¼€å¯èƒŒæ™¯éŸ³ä¹
 		        	MatrixState.pushMatrix();
 		        	MatrixState.translate(SETTING_BUTTON_XOffset1,SETTING_BUTTON_YOffset1, -1);
 		        	menu_setting.drawSelf(tex_musicId[isMusicOn]);
 		            MatrixState.popMatrix();
-		            //ÊÇ·ñ¿ªÆôÌØĞ§ÉùÒô
+		            //æ˜¯å¦å¼€å¯ç‰¹æ•ˆå£°éŸ³
 		            MatrixState.pushMatrix();
 		        	MatrixState.translate(SETTING_BUTTON_XOffset2,SETTING_BUTTON_YOffset2, -1);
 		        	menu_setting.drawSelf(tex_soundId[isSoundOn]);
 		            MatrixState.popMatrix();
-		            //ÊÇ·ñ¿ªÆôÌØĞ§Õğ¶¯
+		            //æ˜¯å¦å¼€å¯ç‰¹æ•ˆéœ‡åŠ¨
 		            MatrixState.pushMatrix();
 		        	MatrixState.translate(SETTING_BUTTON_XOffset3,SETTING_BUTTON_YOffset3, -1);
 		        	menu_setting.drawSelf(tex_vibrateId[isVibrateOn]);
 		            MatrixState.popMatrix();
 		        }
-		        //»æÖÆÅÅĞĞ°ñ½çÃæ
+		        //ç»˜åˆ¶æ’è¡Œæ¦œç•Œé¢
 		        if(doorState==2&&curr_menu_index==2)
 		        {
 		        	MatrixState.pushMatrix();
 		        	MatrixState.translate(0, 0, -1);
-		        	front_frame.drawSelf(tex_rankBgId);//»æÖÆÅÅĞĞ°ñ±³¾°
+		        	front_frame.drawSelf(tex_rankBgId);//ç»˜åˆ¶æ’è¡Œæ¦œèƒŒæ™¯
 		        	MatrixState.popMatrix();
 		        	//---------------------
-		        	for(int i=0;i<rank.size();i++)//»æÖÆÊı×Ö
+		        	for(int i=0;i<rank.size();i++)//ç»˜åˆ¶æ•°å­—
 		        	{
-		        		float curr_y=0.22f-RANK_NUMBER_HEIGHT*1.3f*i+rank_move;//µ±Ç°yÎ»ÖÃ
-		        		if(curr_y<=0.24f&&curr_y>=-0.68f)//È·¶¨·¶Î§
+		        		float curr_y=0.22f-RANK_NUMBER_HEIGHT*1.3f*i+rank_move;//å½“å‰yä½ç½®
+		        		if(curr_y<=0.24f&&curr_y>=-0.68f)//ç¡®å®šèŒƒå›´
 		        		{
 		        			MatrixState.pushMatrix();
 			        		MatrixState.translate(0, curr_y, 0); 
-			        		//»æÖÆ¹Ø¿¨
+			        		//ç»˜åˆ¶å…³å¡
 			        		MatrixState.pushMatrix();
 			        		MatrixState.translate(-ratio*0.60f, 0, 0);
 			        		map_name.drawSelf(tex_mapId[Integer.parseInt(rank.get(i)[0])]);
 			        		MatrixState.popMatrix();
-			        		//×ÜµÃ·Ö
+			        		//æ€»å¾—åˆ†
 			        		MatrixState.pushMatrix();
 			        		MatrixState.translate(-ratio*0.17f, 0, 0);
 			        		rank_number.drawSelf(rank.get(i)[1],tex_rankNumberId);
 			        		MatrixState.popMatrix();
-			        		//ºÄÊ±
+			        		//è€—æ—¶
 			        		MatrixState.pushMatrix();
 			        		MatrixState.translate(ratio*0.23f, 0, 0);
 			        		rank_number.drawSelf(rank.get(i)[2],tex_rankNumberId);
 			        		MatrixState.popMatrix();
-			        		//ÈÕÆÚ
+			        		//æ—¥æœŸ
 			        		MatrixState.pushMatrix();
 			        		MatrixState.translate(ratio*0.73f, 0, 0);
 			        		rank_number.drawSelf(rank.get(i)[3],tex_rankNumberId);
@@ -2492,7 +2492,7 @@ public class GLGameView extends GLSurfaceView
 		        		}
 		        	}
 		        }
-		        //»æÖÆ°ïÖú½çÃæ
+		        //ç»˜åˆ¶å¸®åŠ©ç•Œé¢
 		        if(doorState==2&&curr_menu_index==3)
 		        {
 		        	MatrixState.pushMatrix();
@@ -2500,7 +2500,7 @@ public class GLGameView extends GLSurfaceView
 		        	helpView.drawSelf(tex_helpId);
 		        	MatrixState.popMatrix();
 		        }
-		        //»æÖÆ¹ØÓÚ½çÃæ
+		        //ç»˜åˆ¶å…³äºç•Œé¢
 		        if(doorState==2&&curr_menu_index==4)
 		        {
 		        	MatrixState.pushMatrix();
@@ -2510,17 +2510,17 @@ public class GLGameView extends GLSurfaceView
 		        }
 		        if(!(doorState==2&&curr_menu_index==2))
 		        {
-		        	front_frame.drawSelf(tex_front_frameId);//»æÖÆ×îÇ°±ßµÄÇ°¾°Í¼
+		        	front_frame.drawSelf(tex_front_frameId);//ç»˜åˆ¶æœ€å‰è¾¹çš„å‰æ™¯å›¾
 		        }
 	        }
 	        GLES20.glDisable(GLES20.GL_BLEND);
-	        //----------------------¶ş¼¶²Ëµ¥-------------Èç¹û½øÈëÄ£Ê½Ñ¡Ôñ½çÃæ------------------------------
+	        //----------------------äºŒçº§èœå•-------------å¦‚æœè¿›å…¥æ¨¡å¼é€‰æ‹©ç•Œé¢------------------------------
 	        if(2==isMenuLevel)
 	        {
-	        	//------------Ê×ÏÈ»æÖÆ·É»úÄ£ĞÍ------
-	        	//ÉèÖÃÍ¸ÊÓÍ¶Ó°
+	        	//------------é¦–å…ˆç»˜åˆ¶é£æœºæ¨¡å‹------
+	        	//è®¾ç½®é€è§†æŠ•å½±
 		    	MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 3, 20000);  
-		    	//ÉèÖÃÉãÏñ»ú
+		    	//è®¾ç½®æ‘„åƒæœº
 		    	MatrixState.setCamera(0, 100, 220, 0, 0,0, 0, 1, 0);
 		    	MatrixState.copyMVMatrix();
 		    	
@@ -2534,44 +2534,44 @@ public class GLGameView extends GLSurfaceView
 		         
 		        MatrixState.pushMatrix();   
 		    	MatrixState.rotate(planeRotate, 0, 1, 0);
-		    	GLES20.glDisable(GLES20.GL_CULL_FACE);//¹Ø±Õ±³Ãæ¼ô²Ã
-	        	drawPlaneModel();//»æÖÆÕ¹Ì¨
+		    	GLES20.glDisable(GLES20.GL_CULL_FACE);//å…³é—­èƒŒé¢å‰ªè£
+	        	drawPlaneModel();//ç»˜åˆ¶å±•å°
 	        	GLES20.glEnable(GLES20.GL_CULL_FACE);
 	        	MatrixState.popMatrix();
-	        	//-----------------ÕâÀï»æÖÆÄ£Ê½Ñ¡ÔñµÄ²Ëµ¥½çÃæ------------------
-	        	//ÉèÖÃÕı½»¾ØÕó
+	        	//-----------------è¿™é‡Œç»˜åˆ¶æ¨¡å¼é€‰æ‹©çš„èœå•ç•Œé¢------------------
+	        	//è®¾ç½®æ­£äº¤çŸ©é˜µ
 		    	MatrixState.setProjectOrtho(-ratio, ratio,-1f,1f,1,10);
-		    	//ÉèÖÃÉãÏñ»ú
+		    	//è®¾ç½®æ‘„åƒæœº
 		    	MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);
 		    	MatrixState.copyMVMatrix();
-		    	//¿ªÆô»ìºÏ
+		    	//å¼€å¯æ··åˆ
 		        GLES20.glEnable(GLES20.GL_BLEND);  
-		        //ÉèÖÃ»ìºÏÒò×Ó
+		        //è®¾ç½®æ··åˆå› å­
 		        GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-		    	//¿ªÍ·Ñ¡·É»ú³¡¾°ÖĞµÄ±êÌâÀ¸
+		    	//å¼€å¤´é€‰é£æœºåœºæ™¯ä¸­çš„æ ‡é¢˜æ 
 	        	MatrixState.pushMatrix();
 	        	MatrixState.translate(0, 1-PLANE_SELECT_HEAD_HEIGHT/2, 0);
 	        	plane_select_head.drawSelf(tex_plane_select_head);
 	        	MatrixState.popMatrix();
-	        	//-------------ÕâÀï»æÖÆÈı¸ö·É»úÍ¼Æ¬-----------------------
-	        	//»æÖÆµÚÒ»¸ö·É»úÍ¼Æ¬
+	        	//-------------è¿™é‡Œç»˜åˆ¶ä¸‰ä¸ªé£æœºå›¾ç‰‡-----------------------
+	        	//ç»˜åˆ¶ç¬¬ä¸€ä¸ªé£æœºå›¾ç‰‡
 	        	MatrixState.pushMatrix();
 	        	MatrixState.translate(MENU_TWO_PLANE_ICON_ONE_XOffset,MENU_TWO_PLANE_ICON_ONE_YOffset, 0);
 	        	menu_two_plane_icon.drawSelf(tex_menu_two_plane_iconId[0][tex_menu_two_plane_iconIndex[0]]);
 	        	MatrixState.popMatrix();
-	        	//»æÖÆµÚ¶ş¸ö·É»úÍ¼Æ¬
+	        	//ç»˜åˆ¶ç¬¬äºŒä¸ªé£æœºå›¾ç‰‡
 	        	MatrixState.pushMatrix();
 	        	MatrixState.translate(MENU_TWO_PLANE_ICON_TWO_XOffset, MENU_TWO_PLANE_ICON_TWO_YOffset, 0);
 	        	menu_two_plane_icon.drawSelf(tex_menu_two_plane_iconId[1][tex_menu_two_plane_iconIndex[1]]);
 	        	MatrixState.popMatrix();
-	        	//»æÖÆµÚÈı¸ö·É»úÍ¼Æ¬
+	        	//ç»˜åˆ¶ç¬¬ä¸‰ä¸ªé£æœºå›¾ç‰‡
 	        	MatrixState.pushMatrix();
 	        	MatrixState.translate(MENU_TWO_PLANE_ICON_THREE_XOffset,MENU_TWO_PLANE_ICON_THREE_YOffset, 0);
 	        	menu_two_plane_icon.drawSelf(tex_menu_two_plane_iconId[2][tex_menu_two_plane_iconIndex[2]]);
 	        	MatrixState.popMatrix();
 	        	
 	        	//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-	        	if(isChangeAlpha)//Èç¹û¿ÉÒÔ¸Ä±ä²»Í¸Ã÷¶È
+	        	if(isChangeAlpha)//å¦‚æœå¯ä»¥æ”¹å˜ä¸é€æ˜åº¦
 	        	{
 	        		float temp=currAlpha+direction*0.05f;
 	        		if(temp>1.0)
@@ -2596,14 +2596,14 @@ public class GLGameView extends GLSurfaceView
 	        	{
 	        		menu_two_game_model_btn.currAlpha=1.0f;
 	        	}
-	        	if(isGameMode==0)//Õ½ÒÛÄ£Ê½
+	        	if(isGameMode==0)//æˆ˜å½¹æ¨¡å¼
 	        	{
-	        		//-------------------------Õ½ÒÛÄ£Ê½°´Å¥----------------
+	        		//-------------------------æˆ˜å½¹æ¨¡å¼æŒ‰é’®----------------
 		        	MatrixState.pushMatrix();
 		        	MatrixState.translate(MENU_TWO_WAR_BUTTON_XOffset, MENU_TWO_WAR_BUTTON_YOffset, 0);
 	        		menu_two_game_model_btn.drawSelf(tex_menu_two_war_btnId[tex_menu_two_war_btnIndex]);
 		        	MatrixState.popMatrix();
-		        	//-------------------------ÌØ±ğĞĞ¶¯°´Å¥----------------
+		        	//-------------------------ç‰¹åˆ«è¡ŒåŠ¨æŒ‰é’®----------------
 		        	menu_two_game_model_btn.currAlpha=1.0f;
 		        	MatrixState.pushMatrix();
 		        	MatrixState.translate(MENU_TWO_ACTION_BUTTON_XOffset, MENU_TWO_ACTION_BUTTON_YOffset, 0);
@@ -2611,14 +2611,14 @@ public class GLGameView extends GLSurfaceView
 		        	MatrixState.popMatrix();
 	        		
 	        	}
-	        	else//ÌØÊâĞĞ¶¯
+	        	else//ç‰¹æ®Šè¡ŒåŠ¨
 	        	{
-		        	//-------------------------ÌØ±ğĞĞ¶¯°´Å¥----------------
+		        	//-------------------------ç‰¹åˆ«è¡ŒåŠ¨æŒ‰é’®----------------
 		        	MatrixState.pushMatrix();
 		        	MatrixState.translate(MENU_TWO_ACTION_BUTTON_XOffset, MENU_TWO_ACTION_BUTTON_YOffset, 0);
 	        		menu_two_game_model_btn.drawSelf(tex_menu_two_action_btnId[tex_menu_two_action_btnIndex]);
 		        	MatrixState.popMatrix();
-		        	//-------------------------Õ½ÒÛÄ£Ê½°´Å¥----------------
+		        	//-------------------------æˆ˜å½¹æ¨¡å¼æŒ‰é’®----------------
 		        	menu_two_game_model_btn.currAlpha=1.0f;
 		        	MatrixState.pushMatrix();
 		        	MatrixState.translate(MENU_TWO_WAR_BUTTON_XOffset, MENU_TWO_WAR_BUTTON_YOffset, 0);
@@ -2627,7 +2627,7 @@ public class GLGameView extends GLSurfaceView
 	        	}
 	        	//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-	        	//----------×óÓÒÑ¡Ôñ°´Å¥=================
+	        	//----------å·¦å³é€‰æ‹©æŒ‰é’®=================
 	        	MatrixState.pushMatrix();
         		MatrixState.translate(MENU_TWO_BUTTON_LEFT_XOffset,MENU_TWO_BUTTON_LEFT_YOffset, 0);
         		menu_two_button.drawSelf(tex_menu_two_leftId[tex_menu_two_leftIndex]);
@@ -2637,65 +2637,65 @@ public class GLGameView extends GLSurfaceView
         		MatrixState.translate(MENU_TWO_BUTTON_RIGHT_XOffset,MENU_TWO_BUTTON_RIGHT_YOffset, 0);
         		menu_two_button.drawSelf(tex_menu_two_rightId[tex_menu_two_rightIndex]);
         		MatrixState.popMatrix();
-	        	//-----------------ÕâÀï»æÖÆÈ·¶¨°´Å¥--------
+	        	//-----------------è¿™é‡Œç»˜åˆ¶ç¡®å®šæŒ‰é’®--------
 	        	MatrixState.pushMatrix();
         		MatrixState.translate(MENU_TWO_BUTTON_OK_XOffset, MENU_TWO_BUTTON_OK_YOffset, 0);
         		menu_two_button.drawSelf(tex_menu_two_okId[tex_menu_two_okIndex]);
         		MatrixState.popMatrix();
 	        	GLES20.glDisable(GLES20.GL_BLEND);
 	        }
-	        //---------------»æÖÆÈı¼¶²Ëµ¥   Ö÷Òª°üÀ¨Õ½ÒÛÄ£Ê½,ÌØ±ğĞĞ¶¯
+	        //---------------ç»˜åˆ¶ä¸‰çº§èœå•   ä¸»è¦åŒ…æ‹¬æˆ˜å½¹æ¨¡å¼,ç‰¹åˆ«è¡ŒåŠ¨
 	        if(3==isMenuLevel)
 	        {
-	        	//ÉèÖÃÕı½»¾ØÕó
+	        	//è®¾ç½®æ­£äº¤çŸ©é˜µ
 		    	MatrixState.setProjectOrtho(-ratio, ratio,-1f,1f,1,10);
-		    	//ÉèÖÃÉãÏñ»ú
+		    	//è®¾ç½®æ‘„åƒæœº
 		    	MatrixState.setCamera(0, 0, 1, 0, 0,-1, 0, 1, 0);
 		    	MatrixState.copyMVMatrix();
-		        if(0==isGameMode)//Õ½ÒÛÄ£Ê½
+		        if(0==isGameMode)//æˆ˜å½¹æ¨¡å¼
 		        {
 		        	front_frame.drawSelf(tex_mapSelectedBgId);
 		        }
-		        else if(1==isGameMode)//ÌØ±ğĞĞ¶¯
+		        else if(1==isGameMode)//ç‰¹åˆ«è¡ŒåŠ¨
 		        {
 		        	front_frame.drawSelf(tex_special_action_bgId);
 		        }
 	        }
 	    }
-	    //»æÖÆÑ¡Ôñ·É»ú³¡¾°µÄ·½·¨
+	    //ç»˜åˆ¶é€‰æ‹©é£æœºåœºæ™¯çš„æ–¹æ³•
 	    public void drawPlaneModel()
 	    {
-	    	 //»æÖÆÕ¹Ì¨
+	    	 //ç»˜åˆ¶å±•å°
 	         MatrixState.pushMatrix();
 	         MatrixState.translate(0, -5f, 0);      
 	         drawCircleStation(0);
 	         MatrixState.popMatrix();
 	    }
-	    //»æÖÆÑ¡·É»ú³¡¾°ÖĞµÄÕ¹Ì¨
+	    //ç»˜åˆ¶é€‰é£æœºåœºæ™¯ä¸­çš„å±•å°
 	    public void drawCircleStation(float yOffset)
 	    {
 	    	MatrixState.pushMatrix();
             MatrixState.translate(0, yOffset, 0);
             MatrixState.rotate(-90, 1, 0, 0);
-            circle_station.drawSelf(0f,stageId);//²»Í¸Ã÷Ô²Ãæ
+            circle_station.drawSelf(0f,stageId);//ä¸é€æ˜åœ†é¢
             MatrixState.popMatrix();
             
-            GLES20.glDisable(GLES20.GL_DEPTH_TEST);//Éî¶È¼ì²â
-            //»æÖÆµ¹Ó°
+            GLES20.glDisable(GLES20.GL_DEPTH_TEST);//æ·±åº¦æ£€æµ‹
+            //ç»˜åˆ¶å€’å½±
             MatrixState.pushMatrix();
             MatrixState.rotate(180, 0, 0, 1);
             planeModel[planeModelIndex].drawSelf(planeModelTexId[planeModelIndex]);
             MatrixState.popMatrix();
-            GLES20.glEnable(GLES20.GL_DEPTH_TEST);//Éî¶È¼ì²â
-	    	GLES20.glEnable(GLES20.GL_BLEND);//¿ªÆô»ìºÏ
-            GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);//ÉèÖÃ»ìºÏÒò×Ó
+            GLES20.glEnable(GLES20.GL_DEPTH_TEST);//æ·±åº¦æ£€æµ‹
+	    	GLES20.glEnable(GLES20.GL_BLEND);//å¼€å¯æ··åˆ
+            GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);//è®¾ç½®æ··åˆå› å­
             MatrixState.pushMatrix();
             MatrixState.translate(0, yOffset+0.5f, 0);
             MatrixState.rotate(-90, 1, 0, 0);
-            circle_station.drawSelf(0.4f,stageId);//Í¸Ã÷Ô²Ãæ
+            circle_station.drawSelf(0.4f,stageId);//é€æ˜åœ†é¢
             MatrixState.popMatrix();
             
-            GLES20.glDisable(GLES20.GL_BLEND); //¹Ø±Õ»ìºÏ       
+            GLES20.glDisable(GLES20.GL_BLEND); //å…³é—­æ··åˆ       
             MatrixState.pushMatrix();
             MatrixState.translate(0, yOffset, 0);
             MatrixState.rotate(-90, 1, 0, 0);
@@ -2703,16 +2703,16 @@ public class GLGameView extends GLSurfaceView
            
             MatrixState.rotate(90, 1, 0, 0);
             MatrixState.translate(0, -30, 0);
-            circle_station.taizi.drawSelf(stageId);//Ô²Öù
+            circle_station.taizi.drawSelf(stageId);//åœ†æŸ±
             MatrixState.popMatrix();
             MatrixState.popMatrix();
-            //»æÖÆÊµ¼Ê´¬
+            //ç»˜åˆ¶å®é™…èˆ¹
 	        MatrixState.pushMatrix();
             planeModel[planeModelIndex].drawSelf(planeModelTexId[planeModelIndex]);
 	        MatrixState.popMatrix();
 	    }
 }
-	//¼ÓÔØËùÓĞµÄ×ÊÔ´
+	//åŠ è½½æ‰€æœ‰çš„èµ„æº
 	public void loadResource()
 	{
 		switch(load_step)
@@ -2879,129 +2879,129 @@ public class GLGameView extends GLSurfaceView
 			break;
 		case 40:
 			init_All_Object(load_step);
-			isLoadedOk=true;//ÇĞ»»µ½Ò»¼¶²Ëµ¥
-			isMenuLevel=1;//ÇĞ»»µ½Ò»¼¶²Ëµ¥
-			loadingView=null;//Ïú»Ù
-			processBar=null;//Ïú»Ù
+			isLoadedOk=true;//åˆ‡æ¢åˆ°ä¸€çº§èœå•
+			isMenuLevel=1;//åˆ‡æ¢åˆ°ä¸€çº§èœå•
+			loadingView=null;//é”€æ¯
+			processBar=null;//é”€æ¯
 			break;
 		}
 	}
-	//´¦Àíshader·½·¨  
+	//å¤„ç†shaderæ–¹æ³•  
 	public void init_Shader()
 	{
 		ShaderManager.loadCodeFromFile(getResources());
 		ShaderManager.compileShader();
 	}
-	//¼ÓÔØÎÆÀíµÄ·½·¨
+	//åŠ è½½çº¹ç†çš„æ–¹æ³•
 	public void init_All_Texture(int index)
 	{
 		switch(index)
 		{
 		case 1:
-			stageId=initTexture(getResources(), R.drawable.taiziwenli,false);//Õ¹Ì¨ÎÆÀí
-			//·É»úÎÆÀí
+			stageId=initTexture(getResources(), R.drawable.taiziwenli,false);//å±•å°çº¹ç†
+			//é£æœºçº¹ç†
 			planeModelTexId[0]=initTexture(getResources(), R.drawable.feijione,false);
 			planeModelTexId[1]=initTexture(getResources(), R.drawable.feijitwo,false);
 			planeModelTexId[2]=initTexture(getResources(), R.drawable.feijithree,false);
-			tex_plane_select_head=initTexture(getResources(), R.drawable.plane_select_head,false);//±êÌâÎÆÀí
+			tex_plane_select_head=initTexture(getResources(), R.drawable.plane_select_head,false);//æ ‡é¢˜çº¹ç†
 			break;
 		case 2:
 			tex_menu_two_war_btnId[0]=initTexture(getResources(), R.drawable.menu_two_war_btn_up,false);
         	tex_menu_two_war_btnId[1]=initTexture(getResources(), R.drawable.menu_two_war_btn_down,false);
         	tex_menu_two_action_btnId[0]=initTexture(getResources(), R.drawable.menu_two_action_btn_up,false);
         	tex_menu_two_action_btnId[1]=initTexture(getResources(), R.drawable.menu_two_action_btn_down,false);
-        	tex_menu_two_okId[0]=initTexture(getResources(), R.drawable.plane_select_ok,false);//²Ëµ¥¶şÈ·¶¨°´Å¥
-        	tex_menu_two_okId[1]=initTexture(getResources(), R.drawable.plane_select_ok_down,false);//²Ëµ¥¶şÈ·¶¨°´Å¥
+        	tex_menu_two_okId[0]=initTexture(getResources(), R.drawable.plane_select_ok,false);//èœå•äºŒç¡®å®šæŒ‰é’®
+        	tex_menu_two_okId[1]=initTexture(getResources(), R.drawable.plane_select_ok_down,false);//èœå•äºŒç¡®å®šæŒ‰é’®
 			break;
 		case 3:
-        	tex_menu_two_leftId[0]=initTexture(getResources(), R.drawable.menu_two_left_up,false);//×ó°´°´Å¥
-        	tex_menu_two_leftId[1]=initTexture(getResources(), R.drawable.menu_two_left_down,false);//×ó°´°´Å¥
-        	tex_menu_two_rightId[0]=initTexture(getResources(), R.drawable.menu_two_right_up,false);//ÓÒ°´°´Å¥
-        	tex_menu_two_rightId[1]=initTexture(getResources(), R.drawable.menu_two_right_down,false);//ÓÒ°´°´Å¥
-        	tex_menu_two_plane_iconId[0][0]=initTexture(getResources(), R.drawable.menu_two_planeicon_one_up,false);//µÚÒ»·ù·É»úÍ¼Æ¬
-            tex_menu_two_plane_iconId[0][1]=initTexture(getResources(), R.drawable.menu_two_planeicon_one_down,false);//µÚ¶ş·ù·É»úÍ¼Æ¬
-            tex_menu_two_plane_iconId[1][0]=initTexture(getResources(), R.drawable.menu_two_planeicon_two_up,false);//µÚÈı·ù·É»úÍ¼Æ¬
-            tex_menu_two_plane_iconId[1][1]=initTexture(getResources(), R.drawable.menu_two_planeicon_two_down,false);//µÚÒ»·ù·É»úÍ¼Æ¬
-            tex_menu_two_plane_iconId[2][0]=initTexture(getResources(), R.drawable.menu_two_planeicon_three_up,false);//µÚ¶ş·ù·É»úÍ¼Æ¬
-            tex_menu_two_plane_iconId[2][1]=initTexture(getResources(), R.drawable.menu_two_planeicon_three_down,false);//µÚÈı·ù·É»úÍ¼Æ¬
+        	tex_menu_two_leftId[0]=initTexture(getResources(), R.drawable.menu_two_left_up,false);//å·¦æŒ‰æŒ‰é’®
+        	tex_menu_two_leftId[1]=initTexture(getResources(), R.drawable.menu_two_left_down,false);//å·¦æŒ‰æŒ‰é’®
+        	tex_menu_two_rightId[0]=initTexture(getResources(), R.drawable.menu_two_right_up,false);//å³æŒ‰æŒ‰é’®
+        	tex_menu_two_rightId[1]=initTexture(getResources(), R.drawable.menu_two_right_down,false);//å³æŒ‰æŒ‰é’®
+        	tex_menu_two_plane_iconId[0][0]=initTexture(getResources(), R.drawable.menu_two_planeicon_one_up,false);//ç¬¬ä¸€å¹…é£æœºå›¾ç‰‡
+            tex_menu_two_plane_iconId[0][1]=initTexture(getResources(), R.drawable.menu_two_planeicon_one_down,false);//ç¬¬äºŒå¹…é£æœºå›¾ç‰‡
+            tex_menu_two_plane_iconId[1][0]=initTexture(getResources(), R.drawable.menu_two_planeicon_two_up,false);//ç¬¬ä¸‰å¹…é£æœºå›¾ç‰‡
+            tex_menu_two_plane_iconId[1][1]=initTexture(getResources(), R.drawable.menu_two_planeicon_two_down,false);//ç¬¬ä¸€å¹…é£æœºå›¾ç‰‡
+            tex_menu_two_plane_iconId[2][0]=initTexture(getResources(), R.drawable.menu_two_planeicon_three_up,false);//ç¬¬äºŒå¹…é£æœºå›¾ç‰‡
+            tex_menu_two_plane_iconId[2][1]=initTexture(getResources(), R.drawable.menu_two_planeicon_three_down,false);//ç¬¬ä¸‰å¹…é£æœºå›¾ç‰‡
 			break;  
 		case 4:
-			//µÆËşÎÆÀí
+			//ç¯å¡”çº¹ç†
 			tex_lighttowerid=initTexture(getResources(), R.drawable.light,false);
 			tex_lightid=initTexture(getResources(), R.drawable.nighttexid,false);   
 			tex_terrain_tuceng_Id=initTexture(getResources(), R.drawable.zhonjiantuceng,true);//.tuceng1);
 			tex_terrain_caodiId=initTexture(getResources(), R.drawable.caodi,true);
 		    tex_terrain_shitouId=initTexture(getResources(), R.drawable.xiacengtuceng,true);//.shitou);
 		    tex_terrain_shandingId=initTexture(getResources(), R.drawable.shanding,true);//.shitou);
-			//¿ª»ğ°´Å¥ÎÆÀí
+			//å¼€ç«æŒ‰é’®çº¹ç†
 		    tex_fireButtonId=initTexture(getResources(), R.drawable.firebutton,false);
 		    tex_lefttimeId=initTexture(getResources(), R.raw.lefttime,false);
-			//Ìì¿ÕÎÆÀí
+			//å¤©ç©ºçº¹ç†
 		    tex_skyBallId=initTexture(getResources(), R.drawable.sky,false);
-		    tex_nightId=initTexture(getResources(), R.drawable.skynight,false);//Ò¹¿Õ
-			//º£Ë®ÎÆÀí
+		    tex_nightId=initTexture(getResources(), R.drawable.skynight,false);//å¤œç©º
+			//æµ·æ°´çº¹ç†
 			tex_waterId=initTexture(getResources(), R.drawable.water,false);
 			break;
 		case 5:
-			//Ì¹¿ËÎÆÀí
+			//å¦å…‹çº¹ç†
 			tex_tankeid=initTexture(getResources(), R.drawable.tanke,false);
-			//¾ü»ğ¿â¸÷¸öÎÆÀí
+			//å†›ç«åº“å„ä¸ªçº¹ç†
 		    tex_roofId=initTexture(getResources(), R.drawable.roofwenli,false);
 		    tex_frontId=initTexture(getResources(), R.drawable.fangwufront,false);
 		    tex_AnnulusId=initTexture(getResources(), R.drawable.yuanhuanwenli,false);
 			break;
 		case 6:
-			tex_special_action_bgId=initTexture(getResources(), R.drawable.map_selected_bg_action,false);//ÌØ±ğĞĞ¶¯±³¾°Í¼
-			treeTexId_2=initTexture(getResources(), R.drawable.tree2,false);;//Ê÷ÎÆÀí
-			treeTexId=initTexture(getResources(), R.drawable.tree,false);;//Ê÷ÎÆÀí
-			//Ëø¶¨¾ØĞÎÎÆÀí
+			tex_special_action_bgId=initTexture(getResources(), R.drawable.map_selected_bg_action,false);//ç‰¹åˆ«è¡ŒåŠ¨èƒŒæ™¯å›¾
+			treeTexId_2=initTexture(getResources(), R.drawable.tree2,false);;//æ ‘çº¹ç†
+			treeTexId=initTexture(getResources(), R.drawable.tree,false);;//æ ‘çº¹ç†
+			//é”å®šçŸ©å½¢çº¹ç†
 			tex_locktexId=initTexture(getResources(), R.drawable.locktexid,false);
-			//Ëø¶¨Ä¿±êÎÆÀí
+			//é”å®šç›®æ ‡çº¹ç†
 			tx_lockaimtexId=initTexture(getResources(), R.raw.locktexidaim,false); 
-			//·É»ú±»»÷ÖĞµÄÎÆÀí
+			//é£æœºè¢«å‡»ä¸­çš„çº¹ç†
 			tex_plane_hitId=initTexture(getResources(), R.drawable.planehittext,false);
-			 //ÑÌ´Ñ
+			 //çƒŸå›±
 		    tex_chimneyId=initTexture(getResources(), R.drawable.chimney,false);
-		    //Æ½·¿µÄÎÆÀíId
+		    //å¹³æˆ¿çš„çº¹ç†Id
 		    tex_housePlaneId[0]=initTexture(getResources(), R.drawable.bigsmallpingfang,false);
 		    tex_housePlaneId[1]=initTexture(getResources(), R.drawable.bigsmallpingfangwuding,false);  
-		    //Ğ¡Æ½·¿ÎÆÀí
+		    //å°å¹³æˆ¿çº¹ç†
 		    tex_housePlaneSmallId[0]=initTexture(getResources(), R.drawable.smallpingfang,false);
 		    tex_housePlaneSmallId[1]=initTexture(getResources(), R.drawable.smallpingfangwuding,false);
 			break;
 		case 7: 
-			//½çÃæ²Ëµ¥¸÷ÖÖÎÆÀí£¬·É»ú×¹»ÙºóµÄ
-		    tex_menu_text=initTexture( getResources(),R.drawable.caidanfanhuianniu,false);//ÎÄ×Ö
-		    tex_menu_text_win=initTexture( getResources(),R.drawable.caidanshengli,false);//Ó®ÁËÊ±µÄ²Ëµ¥ÎÄ×Ö
-		    //ÊÓÆµ²¥·Å°´Å¥£¬ÑİÊ¾¹ı³Ì°´Å¥
-		    stopId=initTexture( getResources(),R.drawable.stop,false);//Í£Ö¹°´Å¥
-			pauseId=initTexture( getResources(),R.drawable.pause,false);//ÔİÍ£°´Å¥
-			playId=initTexture( getResources(),R.drawable.play,false);//²¥·Å°´Å¥
+			//ç•Œé¢èœå•å„ç§çº¹ç†ï¼Œé£æœºå æ¯åçš„
+		    tex_menu_text=initTexture( getResources(),R.drawable.caidanfanhuianniu,false);//æ–‡å­—
+		    tex_menu_text_win=initTexture( getResources(),R.drawable.caidanshengli,false);//èµ¢äº†æ—¶çš„èœå•æ–‡å­—
+		    //è§†é¢‘æ’­æ”¾æŒ‰é’®ï¼Œæ¼”ç¤ºè¿‡ç¨‹æŒ‰é’®
+		    stopId=initTexture( getResources(),R.drawable.stop,false);//åœæ­¢æŒ‰é’®
+			pauseId=initTexture( getResources(),R.drawable.pause,false);//æš‚åœæŒ‰é’®
+			playId=initTexture( getResources(),R.drawable.play,false);//æ’­æ”¾æŒ‰é’®
 			break;
 		case 8:
-			 //-----------------------³õÊ¼»¯²Ëµ¥²¿·ÖµÄÎÆÀí
-			//×Óµ¯ÎÆÀí
+			 //-----------------------åˆå§‹åŒ–èœå•éƒ¨åˆ†çš„çº¹ç†
+			//å­å¼¹çº¹ç†
 			tex_bulletId=initTexture(getResources(), R.drawable.bullet_purple,false);
-		    //À×´ï±³¾°
+		    //é›·è¾¾èƒŒæ™¯
 			tex_radar_bg_Id=initTexture(getResources(), R.drawable.rador_bg,false);
-		    //À×´ï·É»úÖ¸Õë 
+		    //é›·è¾¾é£æœºæŒ‡é’ˆ 
 			tex_radar_plane_Id=initTexture(getResources(), R.drawable.rador_plane,false);
-			//ÎäÆ÷Í¼±ê
-			tex_button_weaponId[0]=initTexture(getResources(), R.drawable.bullet_button,false);//×Óµ¯°´Å¥Í¼±ê
-			tex_button_weaponId[1]=initTexture(getResources(), R.drawable.missile_button,false);//µ¼µ¯°´Å¥Í¼±ê
-			//ÏòÉÏ°´Å¥ÎÆÀí
+			//æ­¦å™¨å›¾æ ‡
+			tex_button_weaponId[0]=initTexture(getResources(), R.drawable.bullet_button,false);//å­å¼¹æŒ‰é’®å›¾æ ‡
+			tex_button_weaponId[1]=initTexture(getResources(), R.drawable.missile_button,false);//å¯¼å¼¹æŒ‰é’®å›¾æ ‡
+			//å‘ä¸ŠæŒ‰é’®çº¹ç†
 		    tex_button_upId=initTexture(getResources(), R.drawable.button_up,false);
-		    //ÏòÏÂ°´Å¥ÎÆÀí
+		    //å‘ä¸‹æŒ‰é’®çº¹ç†
 		    tex_button_downId=initTexture(getResources(), R.drawable.button_down,false);
 			break;
 		case 9:
-			tex_musicId[1]=initTexture(getResources(), R.drawable.music_on,false);//ÊÇ·ñ¿ªÆôÒôÀÖÎÆÀí
-		    tex_musicId[0]=initTexture(getResources(), R.drawable.music_off,false);//ÊÇ·ñ¿ªÆôÒôÀÖÎÆÀí
-		    tex_soundId[1]=initTexture(getResources(), R.drawable.sounds_on,false);//ÊÇ·ñ¿ªÆôÌØĞ§ÉùÒôÎÆÀí
+			tex_musicId[1]=initTexture(getResources(), R.drawable.music_on,false);//æ˜¯å¦å¼€å¯éŸ³ä¹çº¹ç†
+		    tex_musicId[0]=initTexture(getResources(), R.drawable.music_off,false);//æ˜¯å¦å¼€å¯éŸ³ä¹çº¹ç†
+		    tex_soundId[1]=initTexture(getResources(), R.drawable.sounds_on,false);//æ˜¯å¦å¼€å¯ç‰¹æ•ˆå£°éŸ³çº¹ç†
 		  
 			break;
 		case 10:
-			//·É»ú×é¼şÎÆÀí
+			//é£æœºç»„ä»¶çº¹ç†
 			planeHeadId=initTexture(getResources(), R.drawable.planehead,false);
 			frontWingId=initTexture(getResources(), R.drawable.frontwing,false);
 			frontWing2Id=initTexture(getResources(), R.drawable.frontwing2,false);
@@ -3014,10 +3014,10 @@ public class GLGameView extends GLSurfaceView
 			screw1Id=planeCabinId;
 			break;
 		case 11:
-			//ÌØÊâĞĞ¶¯³É¹¦Ê§°Ü¶Ô»°¿ò
-		    tex_actionWinId=initTexture(getResources(), R.raw.action_win,false);//ÌØÊâĞĞ¶¯³É¹¦¶Ô»°¿ò
-		    tex_actionFailId=initTexture(getResources(), R.raw.action_fail,false);//Ê§°Ü¶Ô»°¿ò
-		    //-----ÓÎÏ·¿ªÊ¼Ç°µÄËµÃ÷ÎÄ×Ö
+			//ç‰¹æ®Šè¡ŒåŠ¨æˆåŠŸå¤±è´¥å¯¹è¯æ¡†
+		    tex_actionWinId=initTexture(getResources(), R.raw.action_win,false);//ç‰¹æ®Šè¡ŒåŠ¨æˆåŠŸå¯¹è¯æ¡†
+		    tex_actionFailId=initTexture(getResources(), R.raw.action_fail,false);//å¤±è´¥å¯¹è¯æ¡†
+		    //-----æ¸¸æˆå¼€å§‹å‰çš„è¯´æ˜æ–‡å­—
 		    tex_noticeId[0]=initTexture(getResources(), R.raw.war_yyxd,false);
 		    tex_noticeId[1]=initTexture(getResources(), R.raw.war_wzgl,false);
 		    tex_noticeId[2]=initTexture(getResources(), R.raw.war_zjfc,false);
@@ -3026,7 +3026,7 @@ public class GLGameView extends GLSurfaceView
 		    tex_noticeId[5]=initTexture(getResources(), R.raw.action_zsxd,false);
 			break;
 		case 12:
-			//¸ßÉäÅÚµÄÎÆÀí
+			//é«˜å°„ç‚®çš„çº¹ç†
 			texBarbetteId[0]=initTexture(getResources(), R.drawable.barrel_circle_long,false);
 			texBarbetteId[0]=initTexture(getResources(), R.drawable.barrel_circle_short,false);
 			texCubeId=initTexture(getResources(), R.drawable.barrel_cylinder_long,false);
@@ -3036,18 +3036,18 @@ public class GLGameView extends GLSurfaceView
 			texBarrelId[3]=initTexture(getResources(), R.drawable.barrel_circle_short,false);
 			break;
 		case 13:
-			baoZhaXiaoguo=initTexture( getResources(),R.drawable.baozaoxiaoguo,false);//±¬Õ¨Ğ§¹û
-		    baoZhaXiaoguo2=initTexture( getResources(),R.drawable.baozhazdan,false);//±¬Õ¨Ğ§¹û2
-		    tex_numberRectId=initTexture( getResources(),R.drawable.number,false);//Êı×ÖÎÆÀí
-		    tex_backgroundRectId=initTexture( getResources(),R.drawable.xuebeijing,false);//Ñª±³¾°Í¼Æ¬
-		    tex_damId=initTexture(getResources(),R.drawable.dam,false);//´ó°Ó
+			baoZhaXiaoguo=initTexture( getResources(),R.drawable.baozaoxiaoguo,false);//çˆ†ç‚¸æ•ˆæœ
+		    baoZhaXiaoguo2=initTexture( getResources(),R.drawable.baozhazdan,false);//çˆ†ç‚¸æ•ˆæœ2
+		    tex_numberRectId=initTexture( getResources(),R.drawable.number,false);//æ•°å­—çº¹ç†
+		    tex_backgroundRectId=initTexture( getResources(),R.drawable.xuebeijing,false);//è¡€èƒŒæ™¯å›¾ç‰‡
+		    tex_damId=initTexture(getResources(),R.drawable.dam,false);//å¤§å
 			break;
 		case 14:
-			//±êÖ¾ÆäÎ»ÖÃµÄÔÚÒÇ±íÅÌÉÏµÄ
-			tex_mark_tanke=initTexture( getResources(),R.drawable.marktanke,false);//Ì¹¿ËºÍ¸ßÉäÅÚÒÇ±íÅÌÍ¼±ê
-			tex_mark_ackId=initTexture( getResources(),R.drawable.markask,false);//µĞ»úÒÇ±íÅÌÍ¼±ê
-			tex_mark_arsenalId=initTexture( getResources(),R.drawable.markarsenal,false);//¾ü»ğ¿âÒÇ±íÅÌÍ¼±ê
-			tex_mark_planeId=initTexture( getResources(),R.drawable.markplane,false);//Íæ¼Ò·É»úÒÇ±íÅÌÍ¼±ê
+			//æ ‡å¿—å…¶ä½ç½®çš„åœ¨ä»ªè¡¨ç›˜ä¸Šçš„
+			tex_mark_tanke=initTexture( getResources(),R.drawable.marktanke,false);//å¦å…‹å’Œé«˜å°„ç‚®ä»ªè¡¨ç›˜å›¾æ ‡
+			tex_mark_ackId=initTexture( getResources(),R.drawable.markask,false);//æ•Œæœºä»ªè¡¨ç›˜å›¾æ ‡
+			tex_mark_arsenalId=initTexture( getResources(),R.drawable.markarsenal,false);//å†›ç«åº“ä»ªè¡¨ç›˜å›¾æ ‡
+			tex_mark_planeId=initTexture( getResources(),R.drawable.markplane,false);//ç©å®¶é£æœºä»ªè¡¨ç›˜å›¾æ ‡
 			break;
 		case 15:
 			tex_rectId[0]=initTexture(getResources(), R.drawable.start,false);
@@ -3063,76 +3063,76 @@ public class GLGameView extends GLSurfaceView
 		    tex_rectId[8]=initTexture(getResources(), R.drawable.missile_end,false); 
 		    tex_rectId[9]=initTexture(getResources(), R.drawable.missile_cylinder,false);
 		    tex_rectId[10]=initTexture(getResources(), R.drawable.missile_tail,false);
-		    tex_bgId=initTexture(getResources(), R.drawable.land,false);//µ¼µ¯²Ëµ¥ÏÂµÄ±³¾°Í¼
+		    tex_bgId=initTexture(getResources(), R.drawable.land,false);//å¯¼å¼¹èœå•ä¸‹çš„èƒŒæ™¯å›¾
 			break;
 		case 17:
-			tex_cloudsId=initTexture(getResources(), R.raw.clouds,false);//µ¼µ¯²Ëµ¥ÏÂµÄÔÆ²Ê
-		    tex_front_frameId=initTexture(getResources(), R.drawable.front_frame,false);//µ¼µ¯²Ëµ¥ÏÂµÄ±³¾°Í¼
-		    tex_front_coverId=initTexture(getResources(), R.drawable.front_cover,false);//µ¼µ¯²Ëµ¥ÏÂµÄ±³¾°Í¼
-		    tex_menu_doorId=initTexture(getResources(), R.drawable.menu_door,false);//µ¼µ¯²Ëµ¥ÏÂµÄ»ú²ÕÃÅ±³¾°
+			tex_cloudsId=initTexture(getResources(), R.raw.clouds,false);//å¯¼å¼¹èœå•ä¸‹çš„äº‘å½©
+		    tex_front_frameId=initTexture(getResources(), R.drawable.front_frame,false);//å¯¼å¼¹èœå•ä¸‹çš„èƒŒæ™¯å›¾
+		    tex_front_coverId=initTexture(getResources(), R.drawable.front_cover,false);//å¯¼å¼¹èœå•ä¸‹çš„èƒŒæ™¯å›¾
+		    tex_menu_doorId=initTexture(getResources(), R.drawable.menu_door,false);//å¯¼å¼¹èœå•ä¸‹çš„æœºèˆ±é—¨èƒŒæ™¯
 			break;
 		case 18:
-		  	tex_soundId[0]=initTexture(getResources(), R.drawable.sounds_off,false);//ÊÇ·ñ¿ªÆôÌØĞ§ÉùÒôÎÆÀí
-		    tex_vibrateId[1]=initTexture(getResources(), R.drawable.vibrate_on,false);//ÊÇ·ñ¿ªÆôÕğ¶¯ÎÆÀí
-		    tex_vibrateId[0]=initTexture(getResources(), R.drawable.vibrate_off,false);//ÊÇ·ñ¿ªÆôÕğ¶¯ÎÆÀí
-		    tex_helpId=initTexture(getResources(), R.drawable.helpview,false);//°ïÖú½çÃæId
+		  	tex_soundId[0]=initTexture(getResources(), R.drawable.sounds_off,false);//æ˜¯å¦å¼€å¯ç‰¹æ•ˆå£°éŸ³çº¹ç†
+		    tex_vibrateId[1]=initTexture(getResources(), R.drawable.vibrate_on,false);//æ˜¯å¦å¼€å¯éœ‡åŠ¨çº¹ç†
+		    tex_vibrateId[0]=initTexture(getResources(), R.drawable.vibrate_off,false);//æ˜¯å¦å¼€å¯éœ‡åŠ¨çº¹ç†
+		    tex_helpId=initTexture(getResources(), R.drawable.helpview,false);//å¸®åŠ©ç•Œé¢Id
 		    break;
 		case 19:
-			tex_aboutId=initTexture(getResources(), R.drawable.aboutview,false);//¹ØÓÚ½çÃæId
-		    tex_mapSelectedBgId=initTexture(getResources(), R.drawable.map_selected_bg,false);//µØÍ¼Ñ¡Ôñ½çÃæµÄ±³¾°
-		    tex_mapId[0]=initTexture(getResources(), R.drawable.yeyingxingdong,false);//µØÍ¼Ñ¡Ôñ½çÃæµÄ±³¾°
+			tex_aboutId=initTexture(getResources(), R.drawable.aboutview,false);//å…³äºç•Œé¢Id
+		    tex_mapSelectedBgId=initTexture(getResources(), R.drawable.map_selected_bg,false);//åœ°å›¾é€‰æ‹©ç•Œé¢çš„èƒŒæ™¯
+		    tex_mapId[0]=initTexture(getResources(), R.drawable.yeyingxingdong,false);//åœ°å›¾é€‰æ‹©ç•Œé¢çš„èƒŒæ™¯
 			break;
 		case 20:
-			tex_mapId[1]=initTexture(getResources(), R.drawable.zhongjifuchou,false);//µØÍ¼Ñ¡Ôñ½çÃæµÄ±³¾°
-		    tex_mapId[2]=initTexture(getResources(), R.drawable.wangzheguilai,false);//µØÍ¼Ñ¡Ôñ½çÃæµÄ±³¾°
-		    tex_rankBgId=initTexture(getResources(), R.drawable.rank_bg,false);//ÅÅĞĞ°ñ±³¾°Í¼
-		    tex_rankNumberId=initTexture(getResources(), R.drawable.rank_number,false);//ÅÅĞĞ°ñ½çÃæµÄÊı×Ö
+			tex_mapId[1]=initTexture(getResources(), R.drawable.zhongjifuchou,false);//åœ°å›¾é€‰æ‹©ç•Œé¢çš„èƒŒæ™¯
+		    tex_mapId[2]=initTexture(getResources(), R.drawable.wangzheguilai,false);//åœ°å›¾é€‰æ‹©ç•Œé¢çš„èƒŒæ™¯
+		    tex_rankBgId=initTexture(getResources(), R.drawable.rank_bg,false);//æ’è¡Œæ¦œèƒŒæ™¯å›¾
+		    tex_rankNumberId=initTexture(getResources(), R.drawable.rank_number,false);//æ’è¡Œæ¦œç•Œé¢çš„æ•°å­—
 			break;
 		} 
 	}
-	//´´½¨ËùÓĞµÄ¶ÔÏó
-	public void init_All_Object(int index)//µÚÒ»´Î½øÀ´±ØĞë´´½¨µÄ£¬Èç¹ûÊÇµÚ¶ş´Î½øÀ´¾Í²»ĞèÒªÁË
+	//åˆ›å»ºæ‰€æœ‰çš„å¯¹è±¡
+	public void init_All_Object(int index)//ç¬¬ä¸€æ¬¡è¿›æ¥å¿…é¡»åˆ›å»ºçš„ï¼Œå¦‚æœæ˜¯ç¬¬äºŒæ¬¡è¿›æ¥å°±ä¸éœ€è¦äº†
 	{
 		switch(index)
 		{
 		case 21:
-			//------------------------------´´½¨µ¼µ¯²Ëµ¥
-			missile_menu=new MissileMenuForDraw(ShaderManager.getOnlyTextureShaderProgram());//µ¼µ¯²Ëµ¥
-			menu_Background=new TextureRect(150, 100, ShaderManager.getWaterTextureShaderProgram(),true,1);//Â½µØ
-			menu_clouds=new TextureRect(200, 150, ShaderManager.getWaterTextureShaderProgram(),true,3f);//ÔÆ²Ê
+			//------------------------------åˆ›å»ºå¯¼å¼¹èœå•
+			missile_menu=new MissileMenuForDraw(ShaderManager.getOnlyTextureShaderProgram());//å¯¼å¼¹èœå•
+			menu_Background=new TextureRect(150, 100, ShaderManager.getWaterTextureShaderProgram(),true,1);//é™†åœ°
+			menu_clouds=new TextureRect(200, 150, ShaderManager.getWaterTextureShaderProgram(),true,3f);//äº‘å½©
 			break;
 		case 22:
-			menu_setting=new TextureRect(SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//´´½¨»ú²ÕÃÅ
-			helpView=new TextureRect(HELP_WIDTH, HELP_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//°ïÖú½çÃæ
-			aboutView=new TextureRect(ABOUT_WIDTH, ABOUT_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//¹ØÓÚ½çÃæ
+			menu_setting=new TextureRect(SETTING_BUTTON_WIDTH, SETTING_BUTTON_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//åˆ›å»ºæœºèˆ±é—¨
+			helpView=new TextureRect(HELP_WIDTH, HELP_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//å¸®åŠ©ç•Œé¢
+			aboutView=new TextureRect(ABOUT_WIDTH, ABOUT_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//å…³äºç•Œé¢
 			rank_number=new NumberForDraw(11,RANK_NUMBER_WIDTH,RANK_NUMBER_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());
-			map_name=new TextureRect(RANK_MAP_WIDTH, RANK_MAP_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//ÅÅĞĞ°ñ½çÃæµÄµØÍ¼µÄÃû³Æ
+			map_name=new TextureRect(RANK_MAP_WIDTH, RANK_MAP_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//æ’è¡Œæ¦œç•Œé¢çš„åœ°å›¾çš„åç§°
 			break;
 		case 23:
-			plane_select_head=new TextureRect(PLANE_SELECT_HEAD_WIDTH, PLANE_SELECT_HEAD_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//Ñ¡·É»ú³¡¾°ÖĞµÄ±êÌâÀ¸
-            plane_select_plane=new TextureRect(PLANE_SELECT_PLANE_WIDTH, PLANE_SELECT_PLANE_HEIGHT, ShaderManager.getButtonTextureShaderProgram(),1,0);//Ñ¡·É»ú³¡¾°ÖĞµÄÑ¡·É»ú°´Å¥
-            menu_two_game_model_btn=new TextureRect(MENU_TWO_GAME_MODEL_BUTTON_WIDTH, MENU_TWO_GAME_MODEL_BUTTON_HEIGHT, ShaderManager.getButtonTextureShaderProgram(),1,2);//Ñ¡·É»ú³¡¾°ÖĞµÄÑ¡Ä£Ê½°´Å¥
-            menu_two_button=new TextureRect(MENU_TWO_BUTTON_WIDTH, MENU_TWO_BUTTON_HEIGHT, ShaderManager.getButtonTextureShaderProgram(),1,0);//Ñ¡·É»ú³¡¾°ÖĞµÄÑ¡Ä£Ê½°´Å¥
+			plane_select_head=new TextureRect(PLANE_SELECT_HEAD_WIDTH, PLANE_SELECT_HEAD_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//é€‰é£æœºåœºæ™¯ä¸­çš„æ ‡é¢˜æ 
+            plane_select_plane=new TextureRect(PLANE_SELECT_PLANE_WIDTH, PLANE_SELECT_PLANE_HEIGHT, ShaderManager.getButtonTextureShaderProgram(),1,0);//é€‰é£æœºåœºæ™¯ä¸­çš„é€‰é£æœºæŒ‰é’®
+            menu_two_game_model_btn=new TextureRect(MENU_TWO_GAME_MODEL_BUTTON_WIDTH, MENU_TWO_GAME_MODEL_BUTTON_HEIGHT, ShaderManager.getButtonTextureShaderProgram(),1,2);//é€‰é£æœºåœºæ™¯ä¸­çš„é€‰æ¨¡å¼æŒ‰é’®
+            menu_two_button=new TextureRect(MENU_TWO_BUTTON_WIDTH, MENU_TWO_BUTTON_HEIGHT, ShaderManager.getButtonTextureShaderProgram(),1,0);//é€‰é£æœºåœºæ™¯ä¸­çš„é€‰æ¨¡å¼æŒ‰é’®
         	menu_two_plane_icon=new TextureRect(MENU_TWO_PLANE_ICON_WIDTH,MENU_TWO_PLANE_ICON_HEIGHT,ShaderManager.getButtonTextureShaderProgram(),1,0);
-            //----´´½¨ËµÃ÷ÎÄ×Ö----------------
+            //----åˆ›å»ºè¯´æ˜æ–‡å­—----------------
             noticeRect=new TextureRect(NOTICE_WIDTH, NOTICE_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());
 			break;
 		case 24:
-			//¼ÓÔØµØĞÎĞÅÏ¢
+			//åŠ è½½åœ°å½¢ä¿¡æ¯
 			Constant.initLandsHeightInfo(getResources()); 
-			//´´½¨Â½µØ 
+			//åˆ›å»ºé™†åœ° 
 			for(int i=0;i<LANDS_SIZE;i++)
 			{
 				terrain[i]=new LandForm(i, ShaderManager.getLandformTextureShaderProgram());
 			}
-			//´´½¨Æ½ÃæµØÍ¼
+			//åˆ›å»ºå¹³é¢åœ°å›¾
 			terrain_plain=new TextureRect(WIDTH_LALNDFORM, HEIGHT_LANDFORM, ShaderManager.getOnlyTextureShaderProgram());
-			//´´½¨¿ª»ğ°´Å¥
+			//åˆ›å»ºå¼€ç«æŒ‰é’®
 			fireButton=new TextureRect(BUTTON_FIRE_WIDTH, BUTTON_FIRE_HEIGHT,
 					                                ShaderManager.getButtonTextureShaderProgram(),1,1);
 			break;
 		case 25:
-			//´´½¨Ìì¿ÕÇò
+			//åˆ›å»ºå¤©ç©ºçƒ
 			skyBall=new SkyBall(GLGameView.this, SKY_BALL_RADIUS, ShaderManager.getOnlyTextureShaderProgram(),0,0,0);
 			skyBallsmall=new SkyBall(GLGameView.this, SKY_BALL_SMALL, ShaderManager.getOnlyTextureShaderProgram(),0,0,0);
 			skynight=new SkyNight(1.5f,100,SKY_BALL_SMALL-100);
@@ -3141,96 +3141,96 @@ public class GLGameView extends GLSurfaceView
 			skynight.initShader(ShaderManager.getStarrySkyShaderProgram());
 			break;
 		case 26:
-			//¼ÓÔØÌ¹¿ËÄ£ĞÍ
-			tanke_body=MoXingJiaZai.loadFromFileVertexOnly("tank_body.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//Ì¹¿Ë
+			//åŠ è½½å¦å…‹æ¨¡å‹
+			tanke_body=MoXingJiaZai.loadFromFileVertexOnly("tank_body.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//å¦å…‹
 			break;
 		case 27:
 			weapon_number=new NumberForDraw(11,WEAPON_NUMBER_WIDTH,WEAPON_NUMBER_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());
-			//ÏòÉÏ°´Å¥
+			//å‘ä¸ŠæŒ‰é’®
 			up_button=new TextureRect(BUTTON_UP_WIDTH,BUTTON_UP_HEIGHT,ShaderManager.getButtonTextureShaderProgram(),1,1);
-			//ÏòÏÂÑ¡Ôñ°´Å¥
+			//å‘ä¸‹é€‰æ‹©æŒ‰é’®
 			down_button=new TextureRect(BUTTON_DOWN_WIDTH,BUTTON_DOWN_HEIGHT,ShaderManager.getButtonTextureShaderProgram(),1,1);
-			//ÏÔÊ¾Ê£ÓàÊ±¼ä
+			//æ˜¾ç¤ºå‰©ä½™æ—¶é—´
 			leftTimeRect=new TextureRect(2*ratio*0.15f,2*0.13f,ShaderManager.getOnlyTextureShaderProgram());
 			break;
 		case 28: 
-			//´´½¨µ²°å
+			//åˆ›å»ºæŒ¡æ¿
 			cube=new CubeForDraw(cube_length, cube_width, cube_height, ShaderManager.getOnlyTextureShaderProgram());
-			chimney=new Light_Tower(8,15,150,1);//´´½¨ÑÌ´Ñ
+			chimney=new Light_Tower(8,15,150,1);//åˆ›å»ºçƒŸå›±
 			chimney.initShader(ShaderManager.getOnlyTextureShaderProgram());
-			lighttower=new Light_Tower(25,1,300,1);//´´½¨µÆËş
+			lighttower=new Light_Tower(25,1,300,1);//åˆ›å»ºç¯å¡”
 			lighttower.initShader(ShaderManager.getOnlyTextureShaderProgram());
 			break;
 		case 29:
-			//´´½¨Ë®Ãæ
+			//åˆ›å»ºæ°´é¢
 			water=new TextureRect(SKY_BALL_RADIUS*3.5f, SKY_BALL_RADIUS*3.5f, ShaderManager.getOnlyTextureShaderProgram(),true,20);//,true,0,0,0);//
-			//´´½¨×Óµ¯ÎÆÀíÇò
+			//åˆ›å»ºå­å¼¹çº¹ç†çƒ
 			bullet_ball=new BallTextureByVertex(BULLET_SCALE,ShaderManager.getOnlyTextureShaderProgram(),-90);
 			break;
 		case 30:
-			//´´½¨ÎäÆ÷°´Å¥
+			//åˆ›å»ºæ­¦å™¨æŒ‰é’®
 			weapon_button=new TextureRect(BUTTON_WEAPON_WIDTH,BUTTON_WEAPON_HEIGHT,ShaderManager.getOnlyTextureShaderProgram());
-			numberRect=new NumberForDraw(10,NUMBER_WIDTH,NUMBER_HEIGHT,ShaderManager.getOnlyTextureShaderProgram());//´´½¨Êı×Ö
+			numberRect=new NumberForDraw(10,NUMBER_WIDTH,NUMBER_HEIGHT,ShaderManager.getOnlyTextureShaderProgram());//åˆ›å»ºæ•°å­—
 			backgroundRect_blood=new TextureRect(NUMBER_WIDTH*10,NUMBER_HEIGHT,ShaderManager.getStarryXueShaderProgram(),2,0);
 			break;
 		case 31:
-			house=new House(ShaderManager.getOnlyTextureShaderProgram(),backgroundRect_blood,	numberRect);//´´½¨¾ü»ğ¿âÄ£ĞÍ
-			housePlane=new CubeForDraw(house_length,house_width,house_height,ShaderManager.getOnlyTextureShaderProgram());//´´½¨Æ½·¿
-		    bombRect=new TextureRect(bomb_width,bomb_height,ShaderManager.getOnlyTextureShaderProgram());//±¬Õ¨Ğ§¹ûÎÆÀí
-		    bombRectr=new TextureRect(bomb_width/2,bomb_height/2,ShaderManager.getOnlyTextureShaderProgram());//±¬Õ¨Ğ§¹ûÎÆÀí
+			house=new House(ShaderManager.getOnlyTextureShaderProgram(),backgroundRect_blood,	numberRect);//åˆ›å»ºå†›ç«åº“æ¨¡å‹
+			housePlane=new CubeForDraw(house_length,house_width,house_height,ShaderManager.getOnlyTextureShaderProgram());//åˆ›å»ºå¹³æˆ¿
+		    bombRect=new TextureRect(bomb_width,bomb_height,ShaderManager.getOnlyTextureShaderProgram());//çˆ†ç‚¸æ•ˆæœçº¹ç†
+		    bombRectr=new TextureRect(bomb_width/2,bomb_height/2,ShaderManager.getOnlyTextureShaderProgram());//çˆ†ç‚¸æ•ˆæœçº¹ç†
 			break;
 		case 32:
-			//·É»ú±­»÷ÖĞµÄÎÆÀí¾ØĞÎ
+			//é£æœºæ¯å‡»ä¸­çš„çº¹ç†çŸ©å½¢
 		    plane_Hit=new TextureRect(ratio*2,2,ShaderManager.getOnlyTextureShaderProgram());
-		    menu_Rect=new TextureRect(0.8f,1.2f,ShaderManager.getOnlyTextureShaderProgram());;//·É»ú±¬Õ¨ºóµÄ²Ëµ¥ÏÔÊ¾¾ØĞÎ
-		    menu_video=new TextureRect(0.25f*ratio,0.35f,ShaderManager.getOnlyTextureShaderProgram());//²¥·Å½çÃæµÄ¸÷¸ö°´Å¥
+		    menu_Rect=new TextureRect(0.8f,1.2f,ShaderManager.getOnlyTextureShaderProgram());;//é£æœºçˆ†ç‚¸åçš„èœå•æ˜¾ç¤ºçŸ©å½¢
+		    menu_video=new TextureRect(0.25f*ratio,0.35f,ShaderManager.getOnlyTextureShaderProgram());//æ’­æ”¾ç•Œé¢çš„å„ä¸ªæŒ‰é’®
 			break;
 		case 33:
-			  //±êÖ¾Î»ÖÃµÄ¾ØĞÎ
+			  //æ ‡å¿—ä½ç½®çš„çŸ©å½¢
 		    mark_placeRect=new TextureRect(0.025f,0.025f,ShaderManager.getOnlyTextureShaderProgram());
-		    //´´½¨·É»ú
+		    //åˆ›å»ºé£æœº
 			plane=new Plane(this,ShaderManager.getOnlyTextureShaderProgram(),mark_placeRect);
-		    //´´½¨Ëø¶¨¾ØĞÎÎÆÀí
+		    //åˆ›å»ºé”å®šçŸ©å½¢çº¹ç†
 		    mark_lock=new TextureRect(ARCHIBALD_X,ARCHIBALD_Y,ShaderManager.getOnlyTextureShaderProgram()); 
-		    //Ä¿±êÏß¿ò
+		    //ç›®æ ‡çº¿æ¡†
 		    mark_aim=new TextureRect(10	,10,ShaderManager.getOnlyTextureShaderProgram()); 
 			break;
 		case 34:
-		    //´´½¨Ê÷ÎÆÀí¾ØĞÎ
+		    //åˆ›å»ºæ ‘çº¹ç†çŸ©å½¢
 		    treeRect=new TextureRect(treeWhidth,treeHeight,ShaderManager.getOnlyTextureShaderProgram()); 
-			//¼ÓÔØ·É»úÄ£ĞÍ
-			planeModel[0]=MoXingJiaZai.loadFromFileVertexOnly("feiji11.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//·É»ú
-			planeModel[1]=MoXingJiaZai.loadFromFileVertexOnly("feiji22.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//·É»ú
-			planeModel[2]=MoXingJiaZai.loadFromFileVertexOnly("feiji33.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//·É»ú
+			//åŠ è½½é£æœºæ¨¡å‹
+			planeModel[0]=MoXingJiaZai.loadFromFileVertexOnly("feiji11.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//é£æœº
+			planeModel[1]=MoXingJiaZai.loadFromFileVertexOnly("feiji22.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//é£æœº
+			planeModel[2]=MoXingJiaZai.loadFromFileVertexOnly("feiji33.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//é£æœº
 			break;
 		case 35:
-			//¼ÓÔØÌ¹¿ËÄ£ĞÍ
-			tanke_gun=MoXingJiaZai.loadFromFileVertexOnly("tank_berral1.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//Ì¹¿Ë
+			//åŠ è½½å¦å…‹æ¨¡å‹
+			tanke_gun=MoXingJiaZai.loadFromFileVertexOnly("tank_berral1.obj", getResources(),ShaderManager.getOnlyTextureShaderProgram());//å¦å…‹
 			break;
 		case 36:
-			//-------------¶ş¼¶²Ëµ¥ÖĞµÄÎïÌå------------------------------------------------------
+			//-------------äºŒçº§èœå•ä¸­çš„ç‰©ä½“------------------------------------------------------
 			backgroundRect=new TextureRect(450, 450, ShaderManager.getOnlyTextureShaderProgram());
             circle_station=new CircleForDraw(ShaderManager.getOnlyColorShaderProgram(), 
-            		5, 70,new float[]{0.3f,0.3f,0.3f},ShaderManager.getOnlyTextureShaderProgram());//´´½¨Ñ¡´¬½çÃæµÄ¶îÄ£ĞÍ
+            		5, 70,new float[]{0.3f,0.3f,0.3f},ShaderManager.getOnlyTextureShaderProgram());//åˆ›å»ºé€‰èˆ¹ç•Œé¢çš„é¢æ¨¡å‹
 			break;
 		case 37:
-			front_frame=new TextureRect(ratio*2, 2, ShaderManager.getOnlyTextureShaderProgram());//ÔÆ²Ê
-			front_cover_button=new TextureRect(MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//µ¼µ¯²Ëµ¥ÏÂµÄ°´Å¥
-			front_door=new TextureRect(MENU_DOOR_WIDTH, MENU_DOOR_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//´´½¨»ú²ÕÃÅ
-			front_door_bg=new TextureRect(MENU_DOOR_WIDTH, MENU_DOOR_HEIGHT*1.8f, ShaderManager.getOnlyTextureShaderProgram());//´´½¨»ú²ÕÃÅ
+			front_frame=new TextureRect(ratio*2, 2, ShaderManager.getOnlyTextureShaderProgram());//äº‘å½©
+			front_cover_button=new TextureRect(MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//å¯¼å¼¹èœå•ä¸‹çš„æŒ‰é’®
+			front_door=new TextureRect(MENU_DOOR_WIDTH, MENU_DOOR_HEIGHT, ShaderManager.getOnlyTextureShaderProgram());//åˆ›å»ºæœºèˆ±é—¨
+			front_door_bg=new TextureRect(MENU_DOOR_WIDTH, MENU_DOOR_HEIGHT*1.8f, ShaderManager.getOnlyTextureShaderProgram());//åˆ›å»ºæœºèˆ±é—¨
 			break;
 		case 38:
-			//´´½¨ÅÚ¹Ü
+			//åˆ›å»ºç‚®ç®¡
 			barrel=new BarrelForDraw(barrel_length, barrel_radius, ShaderManager.getOnlyTextureShaderProgram());
-			//´´½¨ÅÚÌ¨
+			//åˆ›å»ºç‚®å°
 			barbette=new BarbetteForDraw(barbette_length, barbette_radius,ShaderManager.getOnlyTextureShaderProgram());
 			break;
 		case 39:
-			//´´½¨×Óµ¯ÎÆÀí¾ØĞÎ
+			//åˆ›å»ºå­å¼¹çº¹ç†çŸ©å½¢
 			bullet_rect=new TextureRect(BULLET_WIDTH,BULLET_HEIGHT,ShaderManager.getOnlyTextureShaderProgram());
-			//´´½¨À×´ï±³¾°
+			//åˆ›å»ºé›·è¾¾èƒŒæ™¯
 			radar_bg=new TextureRect(BUTTON_RADAR_BG_WIDTH,BUTTON_RADAR_BG_HEIGHT,ShaderManager.getOnlyTextureShaderProgram());
-			//´´½¨À×´ïÖ¸Õë
+			//åˆ›å»ºé›·è¾¾æŒ‡é’ˆ
 			radar_plane=new TextureRect(BUTTON_RADAR_PLANE_WIDTH, BUTTON_RADAR_PLANE_HEIGHT,ShaderManager.getOnlyTextureShaderProgram());
 			break;
 		case 40:
@@ -3239,18 +3239,18 @@ public class GLGameView extends GLSurfaceView
 			break;
 		}
 	}
-	public void initMap()//½øÈëµÚ¶ş¹ØµÈĞèÒª´´½¨µÄ
+	public void initMap()//è¿›å…¥ç¬¬äºŒå…³ç­‰éœ€è¦åˆ›å»ºçš„
 	{
-		tankeList.clear();//Ì¹¿ËÇåÁã
-		archie_List.clear();//¸ßÉäÅÚÇåÁã
-		bomb_List.clear();//ÅÚµ¯ÇåÁã
-		archie_bomb_List.clear();//¸ßÉäÅÚÅÚµ¯ÇåÁã
-		bullet_List.clear();//·É»ú·¢ÉäµÄ×Óµ¯ÇåÁã
-		enemy.clear();//µĞ»úÊı×éÇåÁã
-		arsenal.clear();//¾ü»ğ¿âÇåÁã
-		houseplane.clear();//Æ½·¿ÇåÁã
-		treeList.clear();//Ê÷
-		//´´½¨µĞ»ú
+		tankeList.clear();//å¦å…‹æ¸…é›¶
+		archie_List.clear();//é«˜å°„ç‚®æ¸…é›¶
+		bomb_List.clear();//ç‚®å¼¹æ¸…é›¶
+		archie_bomb_List.clear();//é«˜å°„ç‚®ç‚®å¼¹æ¸…é›¶
+		bullet_List.clear();//é£æœºå‘å°„çš„å­å¼¹æ¸…é›¶
+		enemy.clear();//æ•Œæœºæ•°ç»„æ¸…é›¶
+		arsenal.clear();//å†›ç«åº“æ¸…é›¶
+		houseplane.clear();//å¹³æˆ¿æ¸…é›¶
+		treeList.clear();//æ ‘
+		//åˆ›å»ºæ•Œæœº
 		for(int i=0;i<enemy_plane_place[mapId].length;i++)
 		{
 			enemy.add(new EnemyPlane(this,plane,enemy_plane_place[mapId][i][0],
@@ -3258,13 +3258,13 @@ public class GLGameView extends GLSurfaceView
 					backgroundRect_blood,	numberRect,mark_placeRect,mark_lock,i
 			));
 		}
-		//´´½¨Ì¹¿Ë
+		//åˆ›å»ºå¦å…‹
 		for(int i=0;i<ArchieArray[mapId][1].length/2;i++){
 			
 			tankeList.add(new TanKe(this,bullet_ball,tanke_body,tanke_gun,new float[]{ArchieArray[mapId][1][i*2]*WATER_WIDTH,LAND_HIGHEST,ArchieArray[mapId][1][i*2+1]*WATER_WIDTH},
 					(int)ArchieArray[mapId][1][i*2],(int)ArchieArray[mapId][1][i*2+1],backgroundRect_blood,	numberRect,mark_placeRect,mark_lock));
 		}
-		//½«¸ßÉäÅÚ·ÅÈëÁĞ±íÖĞ
+		//å°†é«˜å°„ç‚®æ”¾å…¥åˆ—è¡¨ä¸­
 		for(int i=0;i<ArchieArray[mapId][0].length/2;i++)
 		{
 			archie_List.add(new ArchieForControl
@@ -3278,16 +3278,16 @@ public class GLGameView extends GLSurfaceView
 					ArchieArray[mapId][0][i*2+1]*WIDTH_LALNDFORM},(int)ArchieArray[mapId][0][i*2+1],(int)ArchieArray[mapId][0][i*2],
 					backgroundRect_blood,	numberRect,mark_placeRect,mark_lock));
 		}
-		//´´½¨¾ü»ğ¿â
+		//åˆ›å»ºå†›ç«åº“
 		for(int i=0;i<ArchieArray[mapId][2].length/2;i++)
 		{
 	    	arsenal.add(new Arsenal_House(house, ArchieArray[mapId][2][2*i]*WIDTH_LALNDFORM,
 					LAND_HIGHEST, ArchieArray[mapId][2][2*i+1]*WIDTH_LALNDFORM,mark_placeRect,mark_lock,
 					(int)ArchieArray[mapId][2][2*i],(int)ArchieArray[mapId][2][2*i+1]
 										)
-	    	);//´´½¨¾ü»ğ¿â
+	    	);//åˆ›å»ºå†›ç«åº“
 	    }
-		//´´½¨Ê÷
+		//åˆ›å»ºæ ‘
 		for(int i=0;i<ArchieArray[mapId][11].length/4;i++)
 		{
 			treeList.add(new Tree(treeRect,ArchieArray[mapId][11][i*4]*WIDTH_LALNDFORM,LAND_HIGHEST+treeHeight/2-5,ArchieArray[mapId][11][i*4+1]*WIDTH_LALNDFORM,treeTexId_2,
@@ -3297,24 +3297,24 @@ public class GLGameView extends GLSurfaceView
 					(int)ArchieArray[mapId][11][i*4+2],(int)ArchieArray[mapId][11][i*4+3]
 			));
 		}
-		//´´½¨·¿Îİ
+		//åˆ›å»ºæˆ¿å±‹
 		for(int i=0;i<ArchieArray[mapId][4].length/2;i++){
 			houseplane.add(new PlaneHouse(ArchieArray[mapId][4][2*i]*WIDTH_LALNDFORM,LAND_HIGHEST+house_height/2, ArchieArray[mapId][4][2*i+1]*WIDTH_LALNDFORM,
 					housePlane,	chimney,(int)ArchieArray[mapId][4][2*i],(int)ArchieArray[mapId][4][2*i+1]
 			));
 		}
-		//´´½¨´ó°Ó
+		//åˆ›å»ºå¤§å
 		dam=null;		
 		if(ArchieArray[mapId][5].length>0)
 		{
 			dam=new DamForDraw(LAND_HIGHEST-20,30,90,150,ShaderManager.getOnlyTextureShaderProgram());
 		}
 	}
-	//¼ÆËãĞéÄâ°´Å¥µÄ·¶Î§,ÔÚonChanged·½·¨ÖĞµ÷ÓÃ
+	//è®¡ç®—è™šæ‹ŸæŒ‰é’®çš„èŒƒå›´,åœ¨onChangedæ–¹æ³•ä¸­è°ƒç”¨
 	public void ConfigVirtualButtonArea()
 	{ 
-		//---------------Ò»¼¶²Ëµ¥-----------------------------
-		//µ¼µ¯²Ëµ¥ÖĞÑ¡Ïî°´Å¥µÄÏà¹Ø²ÎÊı
+		//---------------ä¸€çº§èœå•-----------------------------
+		//å¯¼å¼¹èœå•ä¸­é€‰é¡¹æŒ‰é’®çš„ç›¸å…³å‚æ•°
 		MENU_BUTTON_WIDTH=ratio*0.5f;
 		MENU_BUTTON_HEIGHT=1*0.38f;
 		float leftEdge=(float)(ratio-MENU_BUTTON_WIDTH/2+MENU_BUTTON_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3322,12 +3322,12 @@ public class GLGameView extends GLSurfaceView
 		float topEdge=(float)(1-MENU_BUTTON_HEIGHT/2-MENU_BUTTON_YOffset)/2*SCREEN_HEIGHT;
 		float bottomEdge=(float)(1+MENU_BUTTON_HEIGHT/2-BUTTON_FIRE_YOffset)/2*SCREEN_HEIGHT;
 		MENU_BUTTON_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//µ¼µ¯²Ëµ¥ÖĞµÄ»ú²ÕÃÅÏà¹Ø²ÎÊı
+		//å¯¼å¼¹èœå•ä¸­çš„æœºèˆ±é—¨ç›¸å…³å‚æ•°
 		MENU_DOOR_WIDTH=ratio*2; 
 		MENU_DOOR_HEIGHT=1;  
-		//------------------------ÉèÖÃÒ³Ãæ°´Å¥µÄÏà¹Ø²ÎÊı----------------------------------
-		SETTING_BUTTON_WIDTH=ratio; //ÉèÖÃ½çÃæ°´Å¥µÄ¿í¶È
-		SETTING_BUTTON_HEIGHT=0.5f;  //ÉèÖÃ½çÃæ°´Å¥µÄ¸ß¶È
+		//------------------------è®¾ç½®é¡µé¢æŒ‰é’®çš„ç›¸å…³å‚æ•°----------------------------------
+		SETTING_BUTTON_WIDTH=ratio; //è®¾ç½®ç•Œé¢æŒ‰é’®çš„å®½åº¦
+		SETTING_BUTTON_HEIGHT=0.5f;  //è®¾ç½®ç•Œé¢æŒ‰é’®çš„é«˜åº¦
 		
 		SETTING_BUTTON_XOffset1=-2*ratio*0.2f;
 		SETTING_BUTTON_YOffset1=0.43f;
@@ -3338,62 +3338,62 @@ public class GLGameView extends GLSurfaceView
 		SETTING_BUTTON_XOffset3=2*ratio*0.2f;
 		SETTING_BUTTON_YOffset3=-0.55f;
 		
-		//ÉèÖÃÒ³Ãæ°´Å¥µÄ·¶Î§1
+		//è®¾ç½®é¡µé¢æŒ‰é’®çš„èŒƒå›´1
 		leftEdge=(float)(ratio-SETTING_BUTTON_WIDTH/2+SETTING_BUTTON_XOffset1)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+SETTING_BUTTON_WIDTH/2+SETTING_BUTTON_XOffset1)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-SETTING_BUTTON_HEIGHT/2-SETTING_BUTTON_YOffset1)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+SETTING_BUTTON_HEIGHT/2-SETTING_BUTTON_YOffset1)/2*SCREEN_HEIGHT;
 		SETTING_BUTTON_AREA1=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//ÉèÖÃÒ³Ãæ°´Å¥µÄ·¶Î§2
+		//è®¾ç½®é¡µé¢æŒ‰é’®çš„èŒƒå›´2
 		leftEdge=(float)(ratio-SETTING_BUTTON_WIDTH/2+SETTING_BUTTON_XOffset2)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+SETTING_BUTTON_WIDTH/2+SETTING_BUTTON_XOffset2)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-SETTING_BUTTON_HEIGHT/2-SETTING_BUTTON_YOffset2)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+SETTING_BUTTON_HEIGHT/2-SETTING_BUTTON_YOffset2)/2*SCREEN_HEIGHT;
 		SETTING_BUTTON_AREA2=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//ÉèÖÃÒ³Ãæ°´Å¥µÄ·¶Î§3
+		//è®¾ç½®é¡µé¢æŒ‰é’®çš„èŒƒå›´3
 		leftEdge=(float)(ratio-SETTING_BUTTON_WIDTH/2+SETTING_BUTTON_XOffset3)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+SETTING_BUTTON_WIDTH/2+SETTING_BUTTON_XOffset3)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-SETTING_BUTTON_HEIGHT/2-SETTING_BUTTON_YOffset3)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+SETTING_BUTTON_HEIGHT/2-SETTING_BUTTON_YOffset3)/2*SCREEN_HEIGHT;
 		SETTING_BUTTON_AREA3=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//³õÊ¼»¯ÍË³ö¶Ô»°¿òµÄ¿í¶ÈºÍ¸ß¶È
+		//åˆå§‹åŒ–é€€å‡ºå¯¹è¯æ¡†çš„å®½åº¦å’Œé«˜åº¦
 		EXIT_DIALOG_WIDTH=ratio;
 		EXIT_DIALOG_HEIGHT=1;
-		//È·¶¨°´Å¥µÄ²ÎÊı
+		//ç¡®å®šæŒ‰é’®çš„å‚æ•°
 		DIALOG_BUTTON_WIDTH=EXIT_DIALOG_WIDTH/2; 
 		DIALOG_BUTTON_HEIGHT=EXIT_DIALOG_HEIGHT/2;
 		DIALOG_YES_XOffset=-EXIT_DIALOG_WIDTH/4;
 		DIALOG_YES_YOffset=-EXIT_DIALOG_HEIGHT/4;
-		//·µ»Ø°´Å¥µÄ²ÎÊı
+		//è¿”å›æŒ‰é’®çš„å‚æ•°
 		DIALOG_NO_XOffset=EXIT_DIALOG_WIDTH/4;
 		DIALOG_NO_YOffset=-EXIT_DIALOG_HEIGHT/4;
-		//È·¶¨°´Å¥µÄ·¶Î§
+		//ç¡®å®šæŒ‰é’®çš„èŒƒå›´
 		leftEdge=(float)(ratio-DIALOG_BUTTON_WIDTH/2+DIALOG_YES_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+DIALOG_BUTTON_WIDTH/2+DIALOG_YES_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-DIALOG_BUTTON_HEIGHT/2-DIALOG_YES_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+DIALOG_BUTTON_HEIGHT/2-DIALOG_YES_YOffset)/2*SCREEN_HEIGHT;
 		DIALOG_BUTTON_YES=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//·µ»Ø°´Å¥µÄ·¶Î§
+		//è¿”å›æŒ‰é’®çš„èŒƒå›´
 		leftEdge=(float)(ratio-DIALOG_BUTTON_WIDTH/2+DIALOG_NO_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+DIALOG_BUTTON_WIDTH/2+DIALOG_NO_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-DIALOG_BUTTON_HEIGHT/2-DIALOG_NO_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+DIALOG_BUTTON_HEIGHT/2-DIALOG_NO_YOffset)/2*SCREEN_HEIGHT;
 		DIALOG_BUTTON_NO=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//°ïÖúÒ³ÃæµÄ¿í¶ÈºÍ¸ß¶È
+		//å¸®åŠ©é¡µé¢çš„å®½åº¦å’Œé«˜åº¦
 		HELP_WIDTH=ratio*2*0.85f;
 		HELP_HEIGHT=5; 
-		//¹ØÓÚÒ³ÃæµÄ¿í¶ÈºÍ¸ß¶È
+		//å…³äºé¡µé¢çš„å®½åº¦å’Œé«˜åº¦
 		ABOUT_WIDTH=ratio*2*0.85f;
 		ABOUT_HEIGHT=4.5f; 
-		//-----------------------------------------¶ş¼¶²Ëµ¥----------------------------------
-		//±êÌâ
+		//-----------------------------------------äºŒçº§èœå•----------------------------------
+		//æ ‡é¢˜
 		PLANE_SELECT_HEAD_WIDTH=2*ratio;
 		PLANE_SELECT_HEAD_HEIGHT=2*0.15f;
-		//Èı¸ö·É»úÍ¼Æ¬µÄ´óĞ¡
+		//ä¸‰ä¸ªé£æœºå›¾ç‰‡çš„å¤§å°
 		MENU_TWO_PLANE_ICON_WIDTH=2*ratio*0.15f;
 		MENU_TWO_PLANE_ICON_HEIGHT=2*0.2f;
 		
-		MENU_TWO_PLANE_ICON_ONE_XOffset=-ratio+MENU_TWO_PLANE_ICON_WIDTH/2;//°´Å¥µÄÆ«ÒÆÁ¿
+		MENU_TWO_PLANE_ICON_ONE_XOffset=-ratio+MENU_TWO_PLANE_ICON_WIDTH/2;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_PLANE_ICON_ONE_YOffset=1-PLANE_SELECT_HEAD_HEIGHT-MENU_TWO_PLANE_ICON_HEIGHT/2;
 		
 		leftEdge=(float)(ratio-MENU_TWO_PLANE_ICON_WIDTH/2+MENU_TWO_PLANE_ICON_ONE_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3402,7 +3402,7 @@ public class GLGameView extends GLSurfaceView
 		bottomEdge=(float)(1+MENU_TWO_PLANE_ICON_HEIGHT/2-MENU_TWO_PLANE_ICON_ONE_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_PLANE_ICON_ONE_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 		
-		MENU_TWO_PLANE_ICON_TWO_XOffset=MENU_TWO_PLANE_ICON_ONE_XOffset+MENU_TWO_PLANE_ICON_WIDTH;//°´Å¥µÄÆ«ÒÆÁ¿
+		MENU_TWO_PLANE_ICON_TWO_XOffset=MENU_TWO_PLANE_ICON_ONE_XOffset+MENU_TWO_PLANE_ICON_WIDTH;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_PLANE_ICON_TWO_YOffset=MENU_TWO_PLANE_ICON_ONE_YOffset;
 		
 		leftEdge=(float)(ratio-MENU_TWO_PLANE_ICON_WIDTH/2+MENU_TWO_PLANE_ICON_TWO_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3411,7 +3411,7 @@ public class GLGameView extends GLSurfaceView
 		bottomEdge=(float)(1+MENU_TWO_PLANE_ICON_HEIGHT/2-MENU_TWO_PLANE_ICON_ONE_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_PLANE_ICON_TWO_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 
-		MENU_TWO_PLANE_ICON_THREE_XOffset=MENU_TWO_PLANE_ICON_TWO_XOffset+MENU_TWO_PLANE_ICON_WIDTH;//°´Å¥µÄÆ«ÒÆÁ¿
+		MENU_TWO_PLANE_ICON_THREE_XOffset=MENU_TWO_PLANE_ICON_TWO_XOffset+MENU_TWO_PLANE_ICON_WIDTH;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_PLANE_ICON_THREE_YOffset=MENU_TWO_PLANE_ICON_ONE_YOffset;
 		
 		leftEdge=(float)(ratio-MENU_TWO_PLANE_ICON_WIDTH/2+MENU_TWO_PLANE_ICON_THREE_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3420,49 +3420,49 @@ public class GLGameView extends GLSurfaceView
 		bottomEdge=(float)(1+MENU_TWO_PLANE_ICON_HEIGHT/2-MENU_TWO_PLANE_ICON_THREE_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_PLANE_ICON_THREE_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 		
-		//²Ëµ¥¶şÖĞ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+		//èœå•äºŒä¸­æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 		MENU_TWO_BUTTON_WIDTH=2*ratio*0.15f;
 		MENU_TWO_BUTTON_HEIGHT=2*0.15f;
-		//È·¶¨°´Å¥
-		MENU_TWO_BUTTON_OK_XOffset=ratio-MENU_TWO_BUTTON_WIDTH/1.5f;//°´Å¥µÄÆ«ÒÆÁ¿
+		//ç¡®å®šæŒ‰é’®
+		MENU_TWO_BUTTON_OK_XOffset=ratio-MENU_TWO_BUTTON_WIDTH/1.5f;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_BUTTON_OK_YOffset=-1+MENU_TWO_BUTTON_HEIGHT/1.5f;
 		leftEdge=(float)(ratio-MENU_TWO_BUTTON_WIDTH/2+MENU_TWO_BUTTON_OK_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+MENU_TWO_BUTTON_WIDTH/2+MENU_TWO_BUTTON_OK_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-MENU_TWO_BUTTON_HEIGHT/2-MENU_TWO_BUTTON_OK_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+MENU_TWO_BUTTON_HEIGHT/2-MENU_TWO_BUTTON_OK_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_BUTTON_OK_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//×ó°´°´Å¥
-		MENU_TWO_BUTTON_LEFT_XOffset=-ratio+MENU_TWO_BUTTON_WIDTH/2;//°´Å¥µÄÆ«ÒÆÁ¿
+		//å·¦æŒ‰æŒ‰é’®
+		MENU_TWO_BUTTON_LEFT_XOffset=-ratio+MENU_TWO_BUTTON_WIDTH/2;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_BUTTON_LEFT_YOffset=-2*0.1f;
 		leftEdge=(float)(ratio-MENU_TWO_BUTTON_WIDTH/2+MENU_TWO_BUTTON_LEFT_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+MENU_TWO_BUTTON_WIDTH/2+MENU_TWO_BUTTON_LEFT_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-MENU_TWO_BUTTON_HEIGHT/2-MENU_TWO_BUTTON_LEFT_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+MENU_TWO_BUTTON_HEIGHT/2-MENU_TWO_BUTTON_LEFT_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_BUTTON_LEFT_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//ÓÒ°´°´Å¥
-		MENU_TWO_BUTTON_RIGHT_XOffset=ratio-MENU_TWO_BUTTON_WIDTH/2;//°´Å¥µÄÆ«ÒÆÁ¿
+		//å³æŒ‰æŒ‰é’®
+		MENU_TWO_BUTTON_RIGHT_XOffset=ratio-MENU_TWO_BUTTON_WIDTH/2;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_BUTTON_RIGHT_YOffset=-2*0.1f;
 		leftEdge=(float)(ratio-MENU_TWO_BUTTON_WIDTH/2+MENU_TWO_BUTTON_RIGHT_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+MENU_TWO_BUTTON_WIDTH/2+MENU_TWO_BUTTON_RIGHT_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-MENU_TWO_BUTTON_HEIGHT/2-MENU_TWO_BUTTON_RIGHT_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+MENU_TWO_BUTTON_HEIGHT/2-MENU_TWO_BUTTON_RIGHT_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_BUTTON_RIGHT_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//-----------------Ñ¡ÓÎÏ·Ä£Ê½°´Å¥----------------------------
+		//-----------------é€‰æ¸¸æˆæ¨¡å¼æŒ‰é’®----------------------------
 		MENU_TWO_GAME_MODEL_BUTTON_WIDTH=2*ratio*0.2f;
 		MENU_TWO_GAME_MODEL_BUTTON_HEIGHT=2*0.15f;
-		//-----------------Õ½ÒÛÄ£Ê½°´Å¥---------------------
-		MENU_TWO_WAR_BUTTON_XOffset=2*ratio*0.15f;//°´Å¥µÄÆ«ÒÆÁ¿
+		//-----------------æˆ˜å½¹æ¨¡å¼æŒ‰é’®---------------------
+		MENU_TWO_WAR_BUTTON_XOffset=2*ratio*0.15f;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_WAR_BUTTON_YOffset=1-PLANE_SELECT_HEAD_HEIGHT-MENU_TWO_GAME_MODEL_BUTTON_HEIGHT/2;
-		//Ñ¡Õ½ÒÛÄ£Ê½°´Å¥µÄ·¶Î§
+		//é€‰æˆ˜å½¹æ¨¡å¼æŒ‰é’®çš„èŒƒå›´
 		leftEdge=(float)(ratio-MENU_TWO_GAME_MODEL_BUTTON_WIDTH/2+MENU_TWO_WAR_BUTTON_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+MENU_TWO_GAME_MODEL_BUTTON_WIDTH/2+MENU_TWO_WAR_BUTTON_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-MENU_TWO_GAME_MODEL_BUTTON_HEIGHT/2-MENU_TWO_WAR_BUTTON_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+MENU_TWO_GAME_MODEL_BUTTON_HEIGHT/2-MENU_TWO_WAR_BUTTON_YOffset)/2*SCREEN_HEIGHT;
 		MENU_TWO_WAR_BUTTON_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//-------------------ÌØ±ğĞĞ¶¯°´Å¥-----------
-		MENU_TWO_ACTION_BUTTON_XOffset=MENU_TWO_WAR_BUTTON_XOffset+MENU_TWO_GAME_MODEL_BUTTON_WIDTH;//°´Å¥µÄÆ«ÒÆÁ¿
+		//-------------------ç‰¹åˆ«è¡ŒåŠ¨æŒ‰é’®-----------
+		MENU_TWO_ACTION_BUTTON_XOffset=MENU_TWO_WAR_BUTTON_XOffset+MENU_TWO_GAME_MODEL_BUTTON_WIDTH;//æŒ‰é’®çš„åç§»é‡
 		MENU_TWO_ACTION_BUTTON_YOffset=1-PLANE_SELECT_HEAD_HEIGHT-MENU_TWO_GAME_MODEL_BUTTON_HEIGHT/2;
-		//Ñ¡Õ½ÒÛÄ£Ê½°´Å¥µÄ·¶Î§
+		//é€‰æˆ˜å½¹æ¨¡å¼æŒ‰é’®çš„èŒƒå›´
 		leftEdge=(float)(ratio-MENU_TWO_GAME_MODEL_BUTTON_WIDTH/2+MENU_TWO_ACTION_BUTTON_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+MENU_TWO_GAME_MODEL_BUTTON_WIDTH/2+MENU_TWO_ACTION_BUTTON_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-MENU_TWO_GAME_MODEL_BUTTON_HEIGHT/2-MENU_TWO_ACTION_BUTTON_YOffset)/2*SCREEN_HEIGHT;
@@ -3470,10 +3470,10 @@ public class GLGameView extends GLSurfaceView
 		MENU_TWO_ACTION_BUTTON_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 		
 		
-		//------Èı¼¶²Ëµ¥-------µØÍ¼Ñ¡Ôñ½çÃæµÄ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+		//------ä¸‰çº§èœå•-------åœ°å›¾é€‰æ‹©ç•Œé¢çš„æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 		MAP_BUTTON_WIDTH=2*ratio*0.23f; 
 		MAP_BUTTON_HEIGHT=2*0.7f;  
-		//µÚÒ»¹ØµÄ·¶Î§
+		//ç¬¬ä¸€å…³çš„èŒƒå›´
 		MAP_ONE_XOffset=-MAP_BUTTON_WIDTH/0.82f;
 		MAP_ONE_YOffset=0f;
 		leftEdge=(float)(ratio-MAP_BUTTON_WIDTH/2+MAP_ONE_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3481,7 +3481,7 @@ public class GLGameView extends GLSurfaceView
 		topEdge=(float)(1-MAP_BUTTON_HEIGHT/2-MAP_ONE_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+MAP_BUTTON_HEIGHT/2-MAP_ONE_YOffset)/2*SCREEN_HEIGHT;
 		MAP_ONE_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//µÚ¶ş¹ØµÄ·¶Î§
+		//ç¬¬äºŒå…³çš„èŒƒå›´
 		MAP_TWO_XOffset=0f;
 		MAP_TWO_YOffset=0f;
 		leftEdge=(float)(ratio-MAP_BUTTON_WIDTH/2+MAP_TWO_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3489,7 +3489,7 @@ public class GLGameView extends GLSurfaceView
 		topEdge=(float)(1-MAP_BUTTON_HEIGHT/2-MAP_TWO_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+MAP_BUTTON_HEIGHT/2-MAP_TWO_YOffset)/2*SCREEN_HEIGHT;
 		MAP_TWO_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
-		//µÚÈı¹ØµÄ·¶Î§
+		//ç¬¬ä¸‰å…³çš„èŒƒå›´
 		MAP_THREE_XOffset=MAP_BUTTON_WIDTH/0.77f;
 		MAP_THREE_YOffset=0;
 		leftEdge=(float)(ratio-MAP_BUTTON_WIDTH/2+MAP_THREE_XOffset)/(2*ratio)*SCREEN_WIDTH;
@@ -3499,22 +3499,22 @@ public class GLGameView extends GLSurfaceView
 		MAP_THREE_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 	
 		
-		//ÅÅĞĞ°ñ½çÃæ¹Ø¿¨Êı×ÖµÄ¿í¶ÈºÍ¸ß¶È
+		//æ’è¡Œæ¦œç•Œé¢å…³å¡æ•°å­—çš„å®½åº¦å’Œé«˜åº¦
 		RANK_MAP_WIDTH=2*ratio*0.12f;
 		RANK_MAP_HEIGHT=2*0.06f;
 		RANK_NUMBER_WIDTH=2*ratio*0.017f; 
 		RANK_NUMBER_HEIGHT=2*0.07f;  
 		
-		//-------------------------------ÓÎÏ·ÖĞËµÃ÷ÎÄ×ÖµÄ¿í¶ÈºÍ¸ß¶È
+		//-------------------------------æ¸¸æˆä¸­è¯´æ˜æ–‡å­—çš„å®½åº¦å’Œé«˜åº¦
 		NOTICE_WIDTH=2*ratio;
 		NOTICE_HEIGHT=2;
 		
 		//----------------------------------------
-		//¿ª»ğ°´Å¥µÄÆ½ÒÆ
+		//å¼€ç«æŒ‰é’®çš„å¹³ç§»
 		BUTTON_FIRE_XOffset=ratio-BUTTON_FIRE_WIDTH/1.5f;
 		BUTTON_FIRE_YOffset=-1+BUTTON_FIRE_HEIGHT/1.5f;//-----------
 		
-		//¿ª»ğ°´Å¥
+		//å¼€ç«æŒ‰é’®
 		leftEdge=(float)(ratio-BUTTON_FIRE_WIDTH/2+BUTTON_FIRE_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+BUTTON_FIRE_WIDTH/2+BUTTON_FIRE_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-BUTTON_FIRE_HEIGHT/2-BUTTON_FIRE_YOffset)/2*SCREEN_HEIGHT;
@@ -3524,23 +3524,23 @@ public class GLGameView extends GLSurfaceView
 		BUTTON_WEAPON_XOffset=-ratio+BUTTON_WEAPON_WIDTH/1.5f;
 		BUTTON_WEAPON_YOffset=1-BUTTON_WEAPON_HEIGHT/1.5f;//-----------
 		
-		//ÎäÆ÷Ñ¡Ôñ°´Å¥
+		//æ­¦å™¨é€‰æ‹©æŒ‰é’®
 		leftEdge=(float)(ratio-BUTTON_WEAPON_WIDTH/2+BUTTON_WEAPON_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+BUTTON_WEAPON_WIDTH/2+BUTTON_WEAPON_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-BUTTON_WEAPON_HEIGHT/2-BUTTON_WEAPON_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+BUTTON_WEAPON_HEIGHT/2-BUTTON_WEAPON_YOffset)/2*SCREEN_HEIGHT;
 		BUTTON_WEAPON_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 		
-		//×Óµ¯µÄÊıÁ¿
+		//å­å¼¹çš„æ•°é‡
 		WEAPON_NUMBER_XOffset=BUTTON_WEAPON_XOffset+WEAPON_NUMBER_WIDTH*3 ;
 		WEAPON_NUMBER_YOffset=BUTTON_WEAPON_YOffset-WEAPON_NUMBER_HEIGHT/2;
 		
 		
-		//ÏòÉÏ°´Å¥µÄÆ½ÒÆ
+		//å‘ä¸ŠæŒ‰é’®çš„å¹³ç§»
 		BUTTON_UP_XOffset=-ratio+BUTTON_UP_WIDTH/2;
 		BUTTON_UP_YOffset=-1+BUTTON_UP_HEIGHT*1.8f;//------
 		
-		//ÏòÉÏ°´Å¥
+		//å‘ä¸ŠæŒ‰é’®
 		leftEdge=(float)(ratio-BUTTON_UP_WIDTH/2+BUTTON_UP_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+BUTTON_UP_WIDTH/2+BUTTON_UP_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-BUTTON_UP_HEIGHT/2-BUTTON_UP_YOffset)/2*SCREEN_HEIGHT;
@@ -3549,17 +3549,17 @@ public class GLGameView extends GLSurfaceView
 		
 		BUTTON_DOWN_XOffset=-ratio+BUTTON_DOWN_WIDTH/2;
 		BUTTON_DOWN_YOffset=-1+BUTTON_DOWN_HEIGHT/1.7f;//-----------
-		//ÏòÏÂ°´Å¥
+		//å‘ä¸‹æŒ‰é’®
 		leftEdge=(float)(ratio-BUTTON_DOWN_WIDTH/2+BUTTON_DOWN_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		rightEdge=(float)(ratio+BUTTON_DOWN_WIDTH/2+BUTTON_DOWN_XOffset)/(2*ratio)*SCREEN_WIDTH;
 		topEdge=(float)(1-BUTTON_DOWN_HEIGHT/2-BUTTON_DOWN_YOffset)/2*SCREEN_HEIGHT;
 		bottomEdge=(float)(1+BUTTON_DOWN_HEIGHT/2-BUTTON_DOWN_YOffset)/2*SCREEN_HEIGHT;
 		BUTTON_DOWN_AREA=new float[]{leftEdge,rightEdge,topEdge,bottomEdge};
 	}
-	//µ÷ÓÃÎïÀí¼üÅÌµÄ·µ»Ø¼üµÄ·½·¨·½·¨
+	//è°ƒç”¨ç‰©ç†é”®ç›˜çš„è¿”å›é”®çš„æ–¹æ³•æ–¹æ³•
 	public boolean  onKeyBackEvent()
 	{
-		//Èç¹ûµ±Ç°µÄµ±Ç°´¦ÓÚ»ú²ÕÃÅ¹Ø±ÕµÄ×´Ì¬,ÄÇÃ´°´ÏÂ·µ»Ø¼ü,»ú²ÕÃÅ´ò¿ª
+		//å¦‚æœå½“å‰çš„å½“å‰å¤„äºæœºèˆ±é—¨å…³é—­çš„çŠ¶æ€,é‚£ä¹ˆæŒ‰ä¸‹è¿”å›é”®,æœºèˆ±é—¨æ‰“å¼€
 		if(!isGameOn&&1==isMenuLevel&&doorState==2)
 		{
 			doorState=0;
@@ -3577,10 +3577,10 @@ public class GLGameView extends GLSurfaceView
 			isMenuLevel=2;
 			return true;
 		}
-		//Èç¹ûµ±Ç°´¦ÓÚ¿ª²Ö×´Ì¬,²¢ÇÒµ±Ç°µÄ²Ëµ¥Ë÷ÒıºÅ²»ÊÇ5,ÄÇÃ´ÒªĞı×ªµ½5,¼´Ğı×ªµ½ÍË³ö°´Å¥´¦
+		//å¦‚æœå½“å‰å¤„äºå¼€ä»“çŠ¶æ€,å¹¶ä¸”å½“å‰çš„èœå•ç´¢å¼•å·ä¸æ˜¯5,é‚£ä¹ˆè¦æ—‹è½¬åˆ°5,å³æ—‹è½¬åˆ°é€€å‡ºæŒ‰é’®å¤„
 		if(!isGameOn&&1==isMenuLevel&&(doorState==1)&&(curr_menu_index!=5)&&!isMissileDowning)
 		{
-			moveToExit=true;//±êÖ¾Î»ÉèÎªtrue
+			moveToExit=true;//æ ‡å¿—ä½è®¾ä¸ºtrue
 		}
 		return true;
 	}

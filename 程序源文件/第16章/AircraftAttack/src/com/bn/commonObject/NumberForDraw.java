@@ -1,11 +1,11 @@
 package com.bn.commonObject;
 import com.bn.core.MatrixState;
-//»æÖÆ0-9Ê®¸öÊı×Ö
+//ç»˜åˆ¶0-9åä¸ªæ•°å­—
 public class NumberForDraw 
 {
-	//´´½¨10¸öÊı×ÖµÄÎÆÀí¾ØĞÎ
+	//åˆ›å»º10ä¸ªæ•°å­—çš„çº¹ç†çŸ©å½¢
 	public TextureRect[] number;
-	String scoreStr;//Êı×Ö×Ö·û´®
+	String scoreStr;//æ•°å­—å­—ç¬¦ä¸²
 	float width;
 	float height;
 	public NumberForDraw(int numberSize,float width,float height,int mProgram)
@@ -13,7 +13,7 @@ public class NumberForDraw
 		number=new TextureRect[numberSize];
 		this.width=width;
 		this.height=height;
-		//Éú³ÉÊ®¸öÊı×ÖµÄÎÆÀí¾ØĞÎ
+		//ç”Ÿæˆåä¸ªæ•°å­—çš„çº¹ç†çŸ©å½¢
 		for(int i=0;i<numberSize;i++)
 		{
 			number[i]=new TextureRect
@@ -29,12 +29,12 @@ public class NumberForDraw
              ); 
 		}
 	}
-	public void drawSelf(String score,int texId)//´«ÈëÊı×ÖºÍÎÆÀí×ø±ê
+	public void drawSelf(String score,int texId)//ä¼ å…¥æ•°å­—å’Œçº¹ç†åæ ‡
 	{		
 		scoreStr=score;
 		MatrixState.pushMatrix();
 		MatrixState.translate(-scoreStr.length()*width, 0, 0);
-		for(int i=0;i<scoreStr.length();i++)//½«µÃ·ÖÖĞµÄÃ¿¸öÊı×Ö×Ö·û»æÖÆ
+		for(int i=0;i<scoreStr.length();i++)//å°†å¾—åˆ†ä¸­çš„æ¯ä¸ªæ•°å­—å­—ç¬¦ç»˜åˆ¶
 		{
 			char c=scoreStr.charAt(i);
 	        MatrixState.translate(width, 0, 0);
@@ -42,11 +42,11 @@ public class NumberForDraw
 		}
 		MatrixState.popMatrix();	
 	}
-	public void drawSelfLeft(String score,int texId)//´«ÈëÊı×ÖºÍÎÆÀí×ø±ê ×ó¶ÔÆë
+	public void drawSelfLeft(String score,int texId)//ä¼ å…¥æ•°å­—å’Œçº¹ç†åæ ‡ å·¦å¯¹é½
 	{		
 		scoreStr=score;
 		MatrixState.pushMatrix();
-		for(int i=0;i<scoreStr.length();i++)//½«µÃ·ÖÖĞµÄÃ¿¸öÊı×Ö×Ö·û»æÖÆ
+		for(int i=0;i<scoreStr.length();i++)//å°†å¾—åˆ†ä¸­çš„æ¯ä¸ªæ•°å­—å­—ç¬¦ç»˜åˆ¶
 		{
 			char c=scoreStr.charAt(i);
 	        MatrixState.translate(width, 0, 0);

@@ -2,7 +2,7 @@ package com.bn.clp;
 
 import static com.bn.clp.MyGLSurfaceView.*;
 
-//检查与可吃掉的物体是否发生碰撞
+//妫�鏌ヤ笌鍙悆鎺夌殑鐗╀綋鏄惁鍙戠敓纰版挒
 public class ThreadForEat extends Thread
 {
 	MyGLSurfaceView surface;

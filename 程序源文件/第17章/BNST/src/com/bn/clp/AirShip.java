@@ -8,34 +8,34 @@ import java.util.ArrayList;
 import com.bn.core.MatrixState;
 import android.opengl.GLES20;
    
-//¸ÃÀàÎª·ÉÍ§Àà
+//è¯¥ç±»ä¸ºé£è‰‡ç±»
 public class AirShip extends BNDrawer
 {     
-	static float feitingX;//·ÉÍ§ËùÔÚÔËĞĞ¹ì¼£ÖĞĞÄµãÎ»ÖÃ
+	static float feitingX;//é£è‰‡æ‰€åœ¨è¿è¡Œè½¨è¿¹ä¸­å¿ƒç‚¹ä½ç½®
 	static float feitingY; 
 	static float feitingZ;
 	
 	final static float NORMAL_SIZE=5.0f;
-	static float A=UNIT_SIZE-10;//·ÉÍ§ÔË¶¯ÍÖÇòµÄa°ë¾¶¡ª¡ª¡ª¡ªx·½Ïò
-	static float B=UNIT_SIZE-10;//·ÉÍ§ÔË¶¯ÍÖÇòµÄb°ë¾¶¡ª¡ª¡ª¡ªz·½Ïò
+	static float A=UNIT_SIZE-10;//é£è‰‡è¿åŠ¨æ¤­çƒçš„aåŠå¾„â€”â€”â€”â€”xæ–¹å‘
+	static float B=UNIT_SIZE-10;//é£è‰‡è¿åŠ¨æ¤­çƒçš„båŠå¾„â€”â€”â€”â€”zæ–¹å‘
 	
-	static float angle=360;//·ÉÍ§µ±Ç°½Ç¶È 
+	static float angle=360;//é£è‰‡å½“å‰è§’åº¦ 
 	
-	static float angle_Rotate=0;//·ÉÍ§ÈÅ¶¯½Ç¶È
+	static float angle_Rotate=0;//é£è‰‡æ‰°åŠ¨è§’åº¦
 	
-	static float height=1f;//·ÉÍ§ÉÏÏÂÈÅ¶¯¸ß²î
-	static float angle_Y=270;//ÕıĞşÇúÏßµ±Ç°Ö¡½Ç¶È 
+	static float height=1f;//é£è‰‡ä¸Šä¸‹æ‰°åŠ¨é«˜å·®
+	static float angle_Y=270;//æ­£ç„æ›²çº¿å½“å‰å¸§è§’åº¦ 
 	
-	public static GoThread goThread;//ÔË¶¯Ïß³Ì
+	public static GoThread goThread;//è¿åŠ¨çº¿ç¨‹
 	DrawSpheroid bodyback;
 	DrawSpheroid bodyhead;
 	DrawSpheroid cabin;   
 	DrawWeiba weiba;
-	//·ÉÍ§ÉíÌåÍÖÔ²µÄÈı¸öÖá·ÖÁ¿
+	//é£è‰‡èº«ä½“æ¤­åœ†çš„ä¸‰ä¸ªè½´åˆ†é‡
 	final static float BODYBACK_A=3f*NORMAL_SIZE;
 	final static float BODYBACK_B=1f*NORMAL_SIZE;
 	final static float BODYBACK_C=1f*NORMAL_SIZE;
-	//·ÉÍ§ÉíÌåĞ¡ÍÖÔ²µÄÈı¸öÖá·ÖÁ¿
+	//é£è‰‡èº«ä½“å°æ¤­åœ†çš„ä¸‰ä¸ªè½´åˆ†é‡
 	final static float BODYHEAD_A=2f*NORMAL_SIZE;  
 	final static float BODYHEAD_B=1f*NORMAL_SIZE;
 	final static float BODYHEAD_C=1f*NORMAL_SIZE;
@@ -57,7 +57,7 @@ public class AirShip extends BNDrawer
 		goThread.start();
 	}
 	
-	//»æÖÆ·½·¨
+	//ç»˜åˆ¶æ–¹æ³•
 	public void drawSelf(int[] texId, int dyFlag)
 	{
 		feitingX=(float) (A*Math.cos(Math.toRadians(angle)));
@@ -74,42 +74,42 @@ public class AirShip extends BNDrawer
         ); 
 		MatrixState.rotate(angle_Rotate-90, 0, 1, 0);
 		
-		//·ÉÍ§ºó·½
+		//é£è‰‡åæ–¹
 		MatrixState.pushMatrix();
 		bodyback.drawSelf(texId[0]);
 		MatrixState.popMatrix();
-		//·ÉÍ§Ç°·½
+		//é£è‰‡å‰æ–¹
 		MatrixState.pushMatrix();
 		MatrixState.rotate(180, 0, 1, 0);
 		MatrixState.rotate(180, 1, 0, 0);   
 		bodyhead.drawSelf(texId[0]);
 		MatrixState.popMatrix();
-		//ÏÂ²àµÄ·ÉÍ§
+		//ä¸‹ä¾§çš„é£è‰‡
 		MatrixState.pushMatrix();
 		
 		MatrixState.translate(BODYHEAD_C*0.2f, -BODYHEAD_B, 0);
 		cabin.drawSelf(texId[0]);
 		MatrixState.popMatrix();
 		
-		//Î²Òí²¿·Ö 
-		//ÉÏ²à
+		//å°¾ç¿¼éƒ¨åˆ† 
+		//ä¸Šä¾§
 		MatrixState.pushMatrix();
 		MatrixState.translate(BODYBACK_A*0.8f, BODYBACK_C*0.7f, 0);
 		weiba.drawSelf(texId[1]);
 		MatrixState.popMatrix();
-		//Ç°²à
+		//å‰ä¾§
 		MatrixState.pushMatrix();
 		MatrixState.translate(BODYBACK_A*0.8f, 0, BODYBACK_B*0.7f);
 		MatrixState.rotate(90, 1, 0, 0);
 		weiba.drawSelf(texId[1]);
 		MatrixState.popMatrix();
-		//ºó²à
+		//åä¾§
 		MatrixState.pushMatrix();
 		MatrixState.translate(BODYBACK_A*0.8f, 0, -BODYBACK_B*0.7f);
 		MatrixState.rotate(-90, 1, 0, 0);
 		weiba.drawSelf(texId[1]);
 		MatrixState.popMatrix();
-		//ÏÂ²à
+		//ä¸‹ä¾§
 		MatrixState.pushMatrix();
 		MatrixState.translate(BODYBACK_A*0.8f, -BODYBACK_C*0.7f, 0);
 		MatrixState.rotate(180, 1, 0, 0);
@@ -121,22 +121,22 @@ public class AirShip extends BNDrawer
 	
 	
 	
-	//»æÖÆ·ÉÍ§ÉíÌåµÄÍÖÇò
+	//ç»˜åˆ¶é£è‰‡èº«ä½“çš„æ¤­çƒ
 	private class DrawSpheroid
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏßµÄid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿çš„id
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+		//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 		int muMVPMatrixHandle;
-		//¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µãÊı¾İ»º³åºÍÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊıÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount=0;
 		
 		public DrawSpheroid
@@ -148,7 +148,7 @@ public class AirShip extends BNDrawer
 			initVertexData(a,b,c,angleSpan,hAngleBegin,hAngleOver,vAngleBegin,vAngleOver);
 			initShader(programId);
 		}
-		//³õÊ¼µÄ¶¥µãÊı¾İ
+		//åˆå§‹çš„é¡¶ç‚¹æ•°æ®
 		public void initVertexData
 		(
 			float a,float b,float c,
@@ -157,11 +157,11 @@ public class AirShip extends BNDrawer
 			float vAngleBegin,float vAngleOver
 		)
 		{
-			ArrayList<Float> alVertix=new ArrayList<Float>();//´æ·Å¶¥µã×ø±ê
-			for(float vAngle=vAngleBegin;vAngle<vAngleOver;vAngle=vAngle+angleSpan)//´¹Ö±·½ÏòangleSpan¶ÈÒ»·İ
+			ArrayList<Float> alVertix=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡
+			for(float vAngle=vAngleBegin;vAngle<vAngleOver;vAngle=vAngle+angleSpan)//å‚ç›´æ–¹å‘angleSpanåº¦ä¸€ä»½
 	        {
-	        	for(float hAngle=hAngleBegin;hAngle<hAngleOver;hAngle=hAngle+angleSpan)//Ë®Æ½·½ÏòangleSpan¶ÈÒ»·İ
-	        	{//×İÏòºáÏò¸÷µ½Ò»¸ö½Ç¶Èºó¼ÆËã¶ÔÓ¦µÄ´ËµãÔÚÇòÃæÉÏµÄ×ø±ê    		
+	        	for(float hAngle=hAngleBegin;hAngle<hAngleOver;hAngle=hAngle+angleSpan)//æ°´å¹³æ–¹å‘angleSpanåº¦ä¸€ä»½
+	        	{//çºµå‘æ¨ªå‘å„åˆ°ä¸€ä¸ªè§’åº¦åè®¡ç®—å¯¹åº”çš„æ­¤ç‚¹åœ¨çƒé¢ä¸Šçš„åæ ‡    		
 	        		float x0=(float)(a*Math.cos(Math.toRadians(vAngle))*Math.cos(Math.toRadians(hAngle)));
 	        		float y0=(float)(b*Math.cos(Math.toRadians(vAngle))*Math.sin(Math.toRadians(hAngle)));
 	        		float z0=(float)(c*Math.sin(Math.toRadians(vAngle)));
@@ -178,7 +178,7 @@ public class AirShip extends BNDrawer
 	        		float y3=(float)(b*Math.cos(Math.toRadians(vAngle+angleSpan))*Math.sin(Math.toRadians(hAngle)));
 	        		float z3=(float)(c*Math.sin(Math.toRadians(vAngle+angleSpan)));
 	        		
-	        		//½«¼ÆËã³öÀ´µÄXYZ×ø±ê¼ÓÈë´æ·Å¶¥µã×ø±êµÄArrayList        		
+	        		//å°†è®¡ç®—å‡ºæ¥çš„XYZåæ ‡åŠ å…¥å­˜æ”¾é¡¶ç‚¹åæ ‡çš„ArrayList        		
 	        		alVertix.add(x1);alVertix.add(y1);alVertix.add(z1);  
 	        		alVertix.add(x3);alVertix.add(y3);alVertix.add(z3);
 	        		alVertix.add(x0);alVertix.add(y0);alVertix.add(z0);
@@ -189,28 +189,28 @@ public class AirShip extends BNDrawer
 	        		
 	        	}
 	        } 	
-	        vCount=alVertix.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
+	        vCount=alVertix.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
 	    	
-	        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öintÊı×éÖĞ
+	        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªintæ•°ç»„ä¸­
 	        float[] vertices=new float[vCount*3];
 	    	for(int i=0;i<alVertix.size();i++)
 	    	{
 	    		vertices[i]=alVertix.get(i);
 	    	}
-	        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-	        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+	        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	        
-	    	//»ñÈ¡ÇĞ·ÖÕûÍ¼µÄÎÆÀíÊı×é
+	    	//è·å–åˆ‡åˆ†æ•´å›¾çš„çº¹ç†æ•°ç»„
 	    	float[] texCoorArray= 
 	         generateTexCoor
 	    	 (
-	    			 (int)((hAngleOver-hAngleBegin)/angleSpan), //ÎÆÀíÍ¼ÇĞ·ÖµÄÁĞÊı
-	    			 (int)((vAngleOver-vAngleBegin)/angleSpan)  //ÎÆÀíÍ¼ÇĞ·ÖµÄĞĞÊı 
+	    			 (int)((hAngleOver-hAngleBegin)/angleSpan), //çº¹ç†å›¾åˆ‡åˆ†çš„åˆ—æ•°
+	    			 (int)((vAngleOver-vAngleBegin)/angleSpan)  //çº¹ç†å›¾åˆ‡åˆ†çš„è¡Œæ•° 
 	    	);
 			
 			ByteBuffer tbb=ByteBuffer.allocateDirect(texCoorArray.length*4);
@@ -219,26 +219,26 @@ public class AirShip extends BNDrawer
 			mTexCoorBuffer.put(texCoorArray);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
-			//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+			//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 	        mProgram =programId;
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+	        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 		}
-		//Êµ¼ÊµÄ»æÖÆ·½·¨
+		//å®é™…çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+			//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram); 
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-			//Îª»­±ÊÖ¸¶¨¶¥µãÎ»ÖÃÊı¾İ
+			//ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹ä½ç½®æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -248,7 +248,7 @@ public class AirShip extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -258,30 +258,30 @@ public class AirShip extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 		
-		//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+		//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=1.0f/bw;//ÁĞÊı
-	    	float sizeh=1.0f/bh;//ĞĞÊı
+	    	float sizew=1.0f/bw;//åˆ—æ•°
+	    	float sizeh=1.0f/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			
@@ -307,22 +307,22 @@ public class AirShip extends BNDrawer
 	    	return result;
 	    }  
 	}
-	//»æÖÆ·ÉÍ§µÄÎ²²¿
+	//ç»˜åˆ¶é£è‰‡çš„å°¾éƒ¨
 	private class DrawWeiba
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏßµÄid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿çš„id
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+		//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 		int muMVPMatrixHandle;
-		//¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µãÊı¾İ»º³åºÍÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊıÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount=0;
 		
 		public DrawWeiba(int programId,float width,float height)
@@ -330,7 +330,7 @@ public class AirShip extends BNDrawer
 			initVertexData(width,height);
 			initShader(programId);
 		}
-		//³õÊ¼µÄ¶¥µãÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹çš„é¡¶ç‚¹æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData(float width,float height)
 		{
 			float[] vertices=new float[]
@@ -353,12 +353,12 @@ public class AirShip extends BNDrawer
 	        };
 			vCount=12;
 			ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	        
-	    	//»ñÈ¡ÇĞ·ÖÕûÍ¼µÄÎÆÀíÊı×é
+	    	//è·å–åˆ‡åˆ†æ•´å›¾çš„çº¹ç†æ•°ç»„
 	    	float[] texCoorArray=new float[]
             {
 	    		0.2f,0,  0,1,  1,1,
@@ -374,26 +374,26 @@ public class AirShip extends BNDrawer
 			mTexCoorBuffer.put(texCoorArray);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
-			//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+			//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 	        mProgram =programId;
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+	        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 		}
-		//Êµ¼ÊµÄ»æÖÆ·½·¨
+		//å®é™…çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+			//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram); 
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-			//´«Èë¶¥µãÎ»ÖÃÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -403,7 +403,7 @@ public class AirShip extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -413,19 +413,19 @@ public class AirShip extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}
-	//·ÉÍ§ÔË¶¯Ïß³Ì
+	//é£è‰‡è¿åŠ¨çº¿ç¨‹
 	public class GoThread extends Thread 
 	{	
 		public GoThread()

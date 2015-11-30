@@ -33,31 +33,31 @@ import com.bn.gameView.BombForControl;
 import com.bn.gameView.GLGameView;
 public class TanKe 
 {
-	Model tanke_body, tanke_barrel;//Ä£ĞÍ 
-	private BallTextureByVertex bomb_ball;//ÅÚµ¯Çò
+	Model tanke_body, tanke_barrel;//æ¨¡å‹ 
+	private BallTextureByVertex bomb_ball;//ç‚®å¼¹çƒ
 	GLGameView gv;
 	public float tx,ty,tz;
-	public float[] tank_position;//Ì¹¿ËµÄÎ»ÖÃ
-	public float barrel_bottom=16;//ÅÚ¹Üµ×²¿µÄ¸ß¶È
-	public float[] barrel_bottom_position=new float[3];//Ì¹¿ËÅÚ¹Üµ×²¿µÄÎ»ÖÃ
-	public float barrel_length=30;//ÅÚ¹ÜµÄ³¤¶È
-	int row;//ËùÔÚĞĞÁĞ
+	public float[] tank_position;//å¦å…‹çš„ä½ç½®
+	public float barrel_bottom=16;//ç‚®ç®¡åº•éƒ¨çš„é«˜åº¦
+	public float[] barrel_bottom_position=new float[3];//å¦å…‹ç‚®ç®¡åº•éƒ¨çš„ä½ç½®
+	public float barrel_length=30;//ç‚®ç®¡çš„é•¿åº¦
+	int row;//æ‰€åœ¨è¡Œåˆ—
 	int col;
-	float tank_barrel_direction=0;//Ì¹¿ËÅÚ¹ÜµÄ·½Ïò½Ç
-	float tank_barrel_elevation=0;//Ì¹¿ËÅÚ¹ÜµÄÑö½Ç
-	public float[] bomb_position_init=new float[3];//Ì¹¿Ë·¢ÉäÅÚµ¯µÄ³õÊ¼Î»ÖÃ
-	private float oldTime=0;//ÓÃÓÚ¼ÇÂ¼ÅÚµ¯ÉÏ´Î·ÅÉäµÄÊ±¼ä
+	float tank_barrel_direction=0;//å¦å…‹ç‚®ç®¡çš„æ–¹å‘è§’
+	float tank_barrel_elevation=0;//å¦å…‹ç‚®ç®¡çš„ä»°è§’
+	public float[] bomb_position_init=new float[3];//å¦å…‹å‘å°„ç‚®å¼¹çš„åˆå§‹ä½ç½®
+	private float oldTime=0;//ç”¨äºè®°å½•ç‚®å¼¹ä¸Šæ¬¡æ”¾å°„çš„æ—¶é—´
 	
-	public NumberForDraw nm;//Êı×ÖÒıÓÃ
-	public TextureRect backgroundRect;//±³¾°
-	public float xue_scale=0.6f;//ÑªËõ·Å±ÈÀı
-	public int blood=100;//Ì¹¿ËµÄÉúÃüÖµ
+	public NumberForDraw nm;//æ•°å­—å¼•ç”¨
+	public TextureRect backgroundRect;//èƒŒæ™¯
+	public float xue_scale=0.6f;//è¡€ç¼©æ”¾æ¯”ä¾‹
+	public int blood=100;//å¦å…‹çš„ç”Ÿå‘½å€¼
 	int drawblood;
 	float yAnglexue;
-	public boolean this_isno_Lock=false;//×Ô¼ºÊÇ·ñ±»Ëø¶¨£¬±»Ëø¶¨¾Í»æÖÆËø¶¨¾ØĞÎ
-	public TextureRect mark_lock;//±ê¼Ç±»Ëø¶¨µÄ¾ØĞÎ
-	public TextureRect mark_plane;//±ê¼Ç¾ØĞÎ
-	//±ê¼Ç¾ü»ğ¿âÎ»ÖÃµÄÑÕÉ«¾ØĞÎÎ»ÖÃ
+	public boolean this_isno_Lock=false;//è‡ªå·±æ˜¯å¦è¢«é”å®šï¼Œè¢«é”å®šå°±ç»˜åˆ¶é”å®šçŸ©å½¢
+	public TextureRect mark_lock;//æ ‡è®°è¢«é”å®šçš„çŸ©å½¢
+	public TextureRect mark_plane;//æ ‡è®°çŸ©å½¢
+	//æ ‡è®°å†›ç«åº“ä½ç½®çš„é¢œè‰²çŸ©å½¢ä½ç½®
 	float arsenal_x,arsenal_y,arsenal_z;
 	public TanKe(GLGameView gv,BallTextureByVertex bomb_ball,Model tanke_body,Model tanke_barrel,float[] tank_position,int col,int row,
 			TextureRect backgroundRect,NumberForDraw nm,TextureRect mark_plane,TextureRect mark_lock
@@ -68,10 +68,10 @@ public class TanKe
 		
 		this.gv=gv;
 		
-		this.bomb_ball=bomb_ball;//ÅÚµ¯
+		this.bomb_ball=bomb_ball;//ç‚®å¼¹
 		this.tanke_body=tanke_body;
 		this.tanke_barrel=tanke_barrel;
-		this.tank_position=tank_position;//³õÊ¼»¯Ì¹¿ËµÄÎ»ÖÃ
+		this.tank_position=tank_position;//åˆå§‹åŒ–å¦å…‹çš„ä½ç½®
 		this.barrel_bottom_position[0]=tank_position[0];
 		this.barrel_bottom_position[1]=tank_position[1]+barrel_bottom;
 		this.barrel_bottom_position[2]=tank_position[2];
@@ -119,7 +119,7 @@ public class TanKe
 		}
 		if(this_isno_Lock)
 		{
-			MatrixState.pushMatrix();//»æÖÆËø¶¨µÄ
+			MatrixState.pushMatrix();//ç»˜åˆ¶é”å®šçš„
 			MatrixState.translate(tank_position[0], tank_position[1]+20, tank_position[2]);	
 			
 			MatrixState.rotate(yAnglexue, 0,1, 0);
@@ -137,9 +137,9 @@ public class TanKe
     	mark_plane.drawSelf(texId);
     	MatrixState.popMatrix();
 	}
-	//ÕâÀï¼ÆËã±êÖ¾°åµÄ³¯Ïò
+	//è¿™é‡Œè®¡ç®—æ ‡å¿—æ¿çš„æœå‘
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÑæ»ğÁ£×ÓÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—ç„°ç«ç²’å­é¢æœå‘
 		float currX_span=tx-cx;
 		float currZ_span=tz-cz;
 		if(currZ_span<0)
@@ -153,22 +153,22 @@ public class TanKe
 		{
 			yAnglexue=180+(float)Math.toDegrees(Math.atan(currX_span/currZ_span));	
 		}
-		if(isno_Lock)//Èç¹ûÒÑ¾­ÓĞ±»Ëø¶¨µÄÄ¿±êÁË
+		if(isno_Lock)//å¦‚æœå·²ç»æœ‰è¢«é”å®šçš„ç›®æ ‡äº†
 		{
 			this_isno_Lock=false;
 			return;
 		}
-		//¼ÆËãÆäÊÇ·ñ±»Ëø¶¨
+		//è®¡ç®—å…¶æ˜¯å¦è¢«é”å®š
 		float x1,y1,z1,x2,y2,z2;
 		x1=tx-PLANE_X;
 		y1=ty-PLANE_Y;
 		z1=tz-PLANE_Z;
 		float distance1=(float) Math.sqrt(x1*x1+y1*y1+z1*z1);
 		
-		if(distance1>minimumdistance){//Èç¹û¾àÀë³¬³ö·¶Î§£¬»òÕßÒÑ¾­ÓĞÒ»¸ö±»Ëø¶¨ÁË£¬Ôò×Ô¼º²»ÄÜ±»Ëø¶¨
+		if(distance1>minimumdistance){//å¦‚æœè·ç¦»è¶…å‡ºèŒƒå›´ï¼Œæˆ–è€…å·²ç»æœ‰ä¸€ä¸ªè¢«é”å®šäº†ï¼Œåˆ™è‡ªå·±ä¸èƒ½è¢«é”å®š
 			this_isno_Lock=false;
 			return;
-		}//¼ÆËã·É»ú·ÉĞĞµÄ·½ÏòÏòÁ¿
+		}//è®¡ç®—é£æœºé£è¡Œçš„æ–¹å‘å‘é‡
 		x2=directionX;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.sin(Math.toRadians(rotationAngle_Plane_Y)));
 		y2=directionY;//(float) (Math.sin(Math.toRadians(rotationAngle_Plane_X)));
 		z2=directionZ;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.cos(Math.toRadians(rotationAngle_Plane_Y)));
@@ -180,45 +180,45 @@ public class TanKe
 				Lock_tanke.this_isno_Lock=false;
 			}
 			this.this_isno_Lock=true;			
-			minimumdistance=distance1;//×îĞ¡¾àÀëÉèÖÃÎª¸Ã¾àÀë
-			nx=x1;ny=y1+20;nz=z1;//·¢Éä×Óµ¯·½ÏòÏòÁ¿
-			isno_Lock=true;//ÒÑ¾­±»Ëø¶¨
-			Lock_tanke=this;//×Ô¼º±»Ëø¶¨		
+			minimumdistance=distance1;//æœ€å°è·ç¦»è®¾ç½®ä¸ºè¯¥è·ç¦»
+			nx=x1;ny=y1+20;nz=z1;//å‘å°„å­å¼¹æ–¹å‘å‘é‡
+			isno_Lock=true;//å·²ç»è¢«é”å®š
+			Lock_tanke=this;//è‡ªå·±è¢«é”å®š		
 		}
 		else
 		{
 			this_isno_Lock=false;
 		}
 	}
-	//Ê±Ê±¸Ä±äÌ¹¿ËÅÚ¹ÜµÄ½Ç¶È
+	//æ—¶æ—¶æ”¹å˜å¦å…‹ç‚®ç®¡çš„è§’åº¦
 	public void tank_go()
 	{
-		calculateBillboardDirection();//¼ÆËãÑªÎÆÀíµÄ³¯Ïò
-		//ÕâÀï»ñÈ¡·É»úµÄÎ»ÖÃ
+		calculateBillboardDirection();//è®¡ç®—è¡€çº¹ç†çš„æœå‘
+		//è¿™é‡Œè·å–é£æœºçš„ä½ç½®
 		float curr_planeX=PLANE_X;
 		float curr_planeY=PLANE_Y;
 		float curr_planeZ=PLANE_Z;
-		//¼ÆËãµ±Ç°¸ßÉäÅÚµÄÄ¿±êµãºÍ·É»úÖ®¼äµÄ¾àÀë   ÕâÀïÊÇ    Æ½·½
+		//è®¡ç®—å½“å‰é«˜å°„ç‚®çš„ç›®æ ‡ç‚¹å’Œé£æœºä¹‹é—´çš„è·ç¦»   è¿™é‡Œæ˜¯    å¹³æ–¹
 		float curr_distance=(curr_planeX-barrel_bottom_position[0])*(curr_planeX-barrel_bottom_position[0])+
 							(curr_planeY-barrel_bottom_position[1])*(curr_planeY-barrel_bottom_position[1])+
 							(curr_planeZ-barrel_bottom_position[2])*(curr_planeZ-barrel_bottom_position[2]);
-		//Èç¹û³¬³ö¸ßÉäÅÚµÄÉ¨Ãæ·¶Î§,ÄÇÃ´Ö±½Ó·µ»Ø
+		//å¦‚æœè¶…å‡ºé«˜å°„ç‚®çš„æ‰«é¢èŒƒå›´,é‚£ä¹ˆç›´æ¥è¿”å›
 		if(curr_distance>TANK_MAX_DISTANCE*TANK_MAX_DISTANCE)
 		{
 			return;
 		}
-		//ÕâÀï¼ÆËã¸ß¶È²î
+		//è¿™é‡Œè®¡ç®—é«˜åº¦å·®
 		float curr_y_span=curr_planeY-barrel_bottom_position[1];
 		if(curr_y_span<=0)
 		{
-			return;//Èç¹ûĞ¡ÓÚ0,ÄÇÃ´Ö±½Ó·µ»Ø
+			return;//å¦‚æœå°äº0,é‚£ä¹ˆç›´æ¥è¿”å›
 		}
-		//ÕâÀï¼ÆËã³ö¾àÀëµÄÆ½·½¸ù
+		//è¿™é‡Œè®¡ç®—å‡ºè·ç¦»çš„å¹³æ–¹æ ¹
 		curr_distance=(float) Math.sqrt(curr_distance);
-		//ÕâÀï¼ÆËã¸ßÉäÅÚµÄÑö½ÇºÍ·½Î»½Ç
+		//è¿™é‡Œè®¡ç®—é«˜å°„ç‚®çš„ä»°è§’å’Œæ–¹ä½è§’
 		float curr_elevation=(float) Math.toDegrees( Math.asin(curr_y_span/curr_distance));
-		tank_barrel_elevation=curr_elevation;//Ñö½Ç
-		//¸ù¾İ·´ÕıÇĞ¼ÆËã·½Î»½Ç
+		tank_barrel_elevation=curr_elevation;//ä»°è§’
+		//æ ¹æ®åæ­£åˆ‡è®¡ç®—æ–¹ä½è§’
 		float curr_x_span=curr_planeX-barrel_bottom_position[0];
 		float curr_z_span=curr_planeZ-barrel_bottom_position[2];
 		float curr_direction=(float)Math.toDegrees(Math.atan(curr_x_span/curr_z_span));
@@ -234,9 +234,9 @@ public class TanKe
 		{
 			tank_barrel_direction=curr_direction;
 		}
-		//---------------ÈçºÎ¿ÉÒÔ·¢ÅÚ
-		//ÕâÀï¼ÆËã¸ßÉäÅÚÅÚµ¯µÄ³õÊ¼Î»ÖÃ
-		if(System.nanoTime()-oldTime>2000000000)//Ã¿¸ô2Ãë·¢ÉäÒ»´ÎÅÚµ¯
+		//---------------å¦‚ä½•å¯ä»¥å‘ç‚®
+		//è¿™é‡Œè®¡ç®—é«˜å°„ç‚®ç‚®å¼¹çš„åˆå§‹ä½ç½®
+		if(System.nanoTime()-oldTime>2000000000)//æ¯éš”2ç§’å‘å°„ä¸€æ¬¡ç‚®å¼¹
 		{
 			bomb_position_init[0]=(float) (barrel_bottom_position[0]-Math.cos(Math.toRadians(tank_barrel_elevation))*
 								Math.sin(Math.toRadians(tank_barrel_direction))*barrel_length);//X
@@ -244,7 +244,7 @@ public class TanKe
 									barrel_length);//Y
 			bomb_position_init[2]=(float) (barrel_bottom_position[2]-Math.cos(Math.toRadians(tank_barrel_elevation))*
 							   Math.cos(Math.toRadians(tank_barrel_direction))*barrel_length);//Z
-			//·¢ÉäÅÚµ¯
+			//å‘å°„ç‚®å¼¹
 			tank_bomb_List.add(new BombForControl(gv,bomb_ball,bomb_position_init,tank_barrel_elevation,
 					tank_barrel_direction));
 			gv.activity.playSound(1,0);

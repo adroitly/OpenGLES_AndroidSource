@@ -9,7 +9,7 @@ import com.bn.core.MatrixState;
 public class Boat  
 {
 	List<LoadedObjectVertexNormal> lovo=new ArrayList<LoadedObjectVertexNormal>();
-	//strÎ»ÎÄ¼şµÄÃû³Æ£¬colorÎ»Ã¿Ò»¸ö²¿·Ö¶ÔÓ¦µÄÑÕÉ«£¨ÆäÎª¶şÎ¬Êı×é£©
+	//strä½æ–‡ä»¶çš„åç§°ï¼Œcolorä½æ¯ä¸€ä¸ªéƒ¨åˆ†å¯¹åº”çš„é¢œè‰²ï¼ˆå…¶ä¸ºäºŒç»´æ•°ç»„ï¼‰
 	public Boat(String [] str,MyGLSurfaceView mv,int programId)
 	{
 		for(int i=0;i<str.length;i++)
@@ -29,7 +29,7 @@ public class Boat
 	{	
 		for(int i=0;i<lovo.size();i++)
 		{
-			if(dyFlag==0)//»æÖÆÊµÌå
+			if(dyFlag==0)//ç»˜åˆ¶å®ä½“
 			{
 				MatrixState.pushMatrix();
 				MatrixState.translate(bx, by, bz);
@@ -38,14 +38,14 @@ public class Boat
 				lovo.get(i).drawSelf(texId[i]);
 				MatrixState.popMatrix();
 			}
-			else if(dyFlag==1)//»æÖÆµ¹Ó°
+			else if(dyFlag==1)//ç»˜åˆ¶å€’å½±
 			{
-				//Êµ¼Ê»æÖÆÊ±YµÄÁãµã 
+				//å®é™…ç»˜åˆ¶æ—¶Yçš„é›¶ç‚¹ 
 				float yTranslate=by;   
-				//½øĞĞ¾µÏñ»æÖÆÊ±µÄµ÷ÕûÖµ
+				//è¿›è¡Œé•œåƒç»˜åˆ¶æ—¶çš„è°ƒæ•´å€¼
 				float yjx=(WATER_HIGH_ADJUST-yTranslate)*2;
 				
-				//¹Ø±Õ±³Ãæ¼ô²Ã
+				//å…³é—­èƒŒé¢å‰ªè£
 	            GLES20.glDisable(GLES20.GL_CULL_FACE);
 				MatrixState.pushMatrix();
 				MatrixState.translate(bx, by, bz);
@@ -55,7 +55,7 @@ public class Boat
 				MatrixState.scale(1, -1, 1);
 				lovo.get(i).drawSelf(texId[i]);
 				MatrixState.popMatrix();
-				//´ò¿ª±³Ãæ¼ô²Ã
+				//æ‰“å¼€èƒŒé¢å‰ªè£
 	            GLES20.glEnable(GLES20.GL_CULL_FACE);
 			}
 		}

@@ -1,6 +1,6 @@
 package com.bn.pp6;
 
-import java.io.File; //µ¼ÈëÏà¹Ø°ü
+import java.io.File; //å¯¼å…¥ç›¸å…³åŒ…
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,52 +17,52 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class Sample2_6_Activity extends Activity {// ´´½¨Activity
-	String currPath; // µ±Ç°Â·¾¶×Ö·û´®
-	String rootPath = "/"; // ¸ùÄ¿Â¼Â·¾¶
-	TextView currDirTV;//ÏÔÊ¾µ±Ç°Â·¾¶µÄTextView
+public class Sample2_6_Activity extends Activity {// åˆ›å»ºActivity
+	String currPath; // å½“å‰è·¯å¾„å­—ç¬¦ä¸²
+	String rootPath = "/"; // æ ¹ç›®å½•è·¯å¾„
+	TextView currDirTV;//æ˜¾ç¤ºå½“å‰è·¯å¾„çš„TextView
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main); // ÉèÖÃlayout
-		final ListView lv = (ListView) this.findViewById(R.id.lv); // »ñÈ¡ListView
-		Button back = (Button) this.findViewById(R.id.back); // »ñÈ¡·µ»Ø°´Å¥
-		final File[] files = getFiles(rootPath); // µ÷ÓÃgetFiles·½·¨»ñÈ¡¸ùÄ¿Â¼ÏÂÎÄ¼şÁĞ±í
-		currDirTV = (TextView) this.findViewById(R.id.currDirTV); // »ñÈ¡ListView
+		setContentView(R.layout.main); // è®¾ç½®layout
+		final ListView lv = (ListView) this.findViewById(R.id.lv); // è·å–ListView
+		Button back = (Button) this.findViewById(R.id.back); // è·å–è¿”å›æŒ‰é’®
+		final File[] files = getFiles(rootPath); // è°ƒç”¨getFilesæ–¹æ³•è·å–æ ¹ç›®å½•ä¸‹æ–‡ä»¶åˆ—è¡¨
+		currDirTV = (TextView) this.findViewById(R.id.currDirTV); // è·å–ListView
 		currPath = rootPath;
-		currDirTV.setText("µ±Ç°Â·¾¶£º" + currPath);//ÉèÖÃµ±Ç°Â·¾¶
-		initListView(files, lv); // ³õÊ¼»¯ÏÔÊ¾ÁĞ±í
-		back.setOnClickListener // ·µ»Ø°´Å¥¼àÌıÆ÷
+		currDirTV.setText("å½“å‰è·¯å¾„ï¼š" + currPath);//è®¾ç½®å½“å‰è·¯å¾„
+		initListView(files, lv); // åˆå§‹åŒ–æ˜¾ç¤ºåˆ—è¡¨
+		back.setOnClickListener // è¿”å›æŒ‰é’®ç›‘å¬å™¨
 		(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (!currPath.equals(rootPath)) {// Èôµ±Ç°Â·¾¶²»ÊÇ¸ùÄ¿Â¼£¬·µ»Øµ½ÉÏÒ»²ãÄ¿Â¼
-					File f = new File(currPath); // »ñÈ¡µ±Ç°Â·¾¶ÏÂµÄÎÄ¼şÁĞ±í
-					f = f.getParentFile(); // »ñÈ¡µ±Ç°Â·¾¶µÄÉÏ²ãÂ·¾¶
-					currPath = f.getPath(); // ¸ü¸Äµ±Ç°Â·¾¶
-					currDirTV.setText("µ±Ç°Â·¾¶£º" + currPath);//ÉèÖÃµ±Ç°Â·¾¶
-					initListView(getFiles(currPath), lv); // ³õÊ¼»¯ÏÔÊ¾ÁĞ±í
+				if (!currPath.equals(rootPath)) {// è‹¥å½“å‰è·¯å¾„ä¸æ˜¯æ ¹ç›®å½•ï¼Œè¿”å›åˆ°ä¸Šä¸€å±‚ç›®å½•
+					File f = new File(currPath); // è·å–å½“å‰è·¯å¾„ä¸‹çš„æ–‡ä»¶åˆ—è¡¨
+					f = f.getParentFile(); // è·å–å½“å‰è·¯å¾„çš„ä¸Šå±‚è·¯å¾„
+					currPath = f.getPath(); // æ›´æ”¹å½“å‰è·¯å¾„
+					currDirTV.setText("å½“å‰è·¯å¾„ï¼š" + currPath);//è®¾ç½®å½“å‰è·¯å¾„
+					initListView(getFiles(currPath), lv); // åˆå§‹åŒ–æ˜¾ç¤ºåˆ—è¡¨
 				}
 			}
 		});
 	}
-	// »ñÈ¡µ±Ç°Ä¿Â¼ÏÂµÄÎÄ¼şÁĞ±íµÄ·½·¨
+	// è·å–å½“å‰ç›®å½•ä¸‹çš„æ–‡ä»¶åˆ—è¡¨çš„æ–¹æ³•
 	public File[] getFiles(String filePath) {
-		File[] files = new File(filePath).listFiles();// »ñÈ¡µ±Ç°Ä¿Â¼ÏÂµÄÎÄ¼şÁĞ±í
-		return files; // ·µ»ØÎÄ¼şÁĞ±í
+		File[] files = new File(filePath).listFiles();// è·å–å½“å‰ç›®å½•ä¸‹çš„æ–‡ä»¶åˆ—è¡¨
+		return files; // è¿”å›æ–‡ä»¶åˆ—è¡¨
 	}
-	// ³õÊ¼»¯ListView½øĞĞÏÔÊ¾	
+	// åˆå§‹åŒ–ListViewè¿›è¡Œæ˜¾ç¤º	
 	public void initListView(final File[] files, final ListView lv) {
-		// µ±ÎÄ¼şÁĞ±í²»Îª¿ÕÊ±
+		// å½“æ–‡ä»¶åˆ—è¡¨ä¸ä¸ºç©ºæ—¶
 		if (files != null) {
-			if (files.length == 0) {// µ±Ç°Ä¿Â¼Îª¿Õ
-				File f = new File(currPath); // »ñÈ¡µ±Ç°Â·¾¶¶ÔÓ¦ÎÄ¼şÁĞ±í
-				f = f.getParentFile(); // »ñÈ¡ÉÏ²ãÂ·¾¶
-				currPath = f.getPath(); // ¼ÇÂ¼µ±Ç°Â·¾¶
-				currDirTV.setText("µ±Ç°Â·¾¶£º" + currPath);//ÉèÖÃµ±Ç°Â·¾¶
-				Toast.makeText(this, "¸ÃÎÄ¼ş¼ĞÎª¿Õ£¡£¡", Toast.LENGTH_SHORT).show();
+			if (files.length == 0) {// å½“å‰ç›®å½•ä¸ºç©º
+				File f = new File(currPath); // è·å–å½“å‰è·¯å¾„å¯¹åº”æ–‡ä»¶åˆ—è¡¨
+				f = f.getParentFile(); // è·å–ä¸Šå±‚è·¯å¾„
+				currPath = f.getPath(); // è®°å½•å½“å‰è·¯å¾„
+				currDirTV.setText("å½“å‰è·¯å¾„ï¼š" + currPath);//è®¾ç½®å½“å‰è·¯å¾„
+				Toast.makeText(this, "è¯¥æ–‡ä»¶å¤¹ä¸ºç©ºï¼ï¼", Toast.LENGTH_SHORT).show();
 			} else {
-				BaseAdapter ba = new BaseAdapter()// ´´½¨ÊÊÅäÆ÷
+				BaseAdapter ba = new BaseAdapter()// åˆ›å»ºé€‚é…å™¨
 				{
 					@Override
 					public int getCount() {
@@ -82,37 +82,37 @@ public class Sample2_6_Activity extends Activity {// ´´½¨Activity
 					@Override
 					public View getView(int arg0, View arg1, ViewGroup arg2) {
 						LinearLayout ll = new LinearLayout(
-								Sample2_6_Activity.this); // ´´½¨LinearLayout
-						ll.setOrientation(LinearLayout.VERTICAL); // ÊúÖ±ÅÅÁĞ
-						ll.setPadding(5, 5, 5, 5); // ÉèÖÃÁô°×
-						TextView tv = new TextView(Sample2_6_Activity.this); // ´´½¨TextView
-						tv.setTextColor(Color.BLACK); // ÉèÖÃ×ÖÌåÑÕÉ«
-						tv.setText(files[arg0].getName()); // Ìí¼ÓÎÄ×ÖÎªÎÄ¼şÃû³Æ
-						tv.setGravity(Gravity.LEFT); // ×ó¶ÔÆë
-						tv.setTextSize(16); // ×ÖÌå´óĞ¡
-						ll.addView(tv); // Ìí¼ÓTextView
-						return ll; // ·µ»ØLinearLayout
+								Sample2_6_Activity.this); // åˆ›å»ºLinearLayout
+						ll.setOrientation(LinearLayout.VERTICAL); // ç«–ç›´æ’åˆ—
+						ll.setPadding(5, 5, 5, 5); // è®¾ç½®ç•™ç™½
+						TextView tv = new TextView(Sample2_6_Activity.this); // åˆ›å»ºTextView
+						tv.setTextColor(Color.BLACK); // è®¾ç½®å­—ä½“é¢œè‰²
+						tv.setText(files[arg0].getName()); // æ·»åŠ æ–‡å­—ä¸ºæ–‡ä»¶åç§°
+						tv.setGravity(Gravity.LEFT); // å·¦å¯¹é½
+						tv.setTextSize(16); // å­—ä½“å¤§å°
+						ll.addView(tv); // æ·»åŠ TextView
+						return ll; // è¿”å›LinearLayout
 					}
 				};
-				lv.setAdapter(ba); // ÎªListViewÉèÖÃÊÊÅäÆ÷
-				lv.setOnItemClickListener // ÎªListViewÌí¼Ó¼àÌıÆ÷
+				lv.setAdapter(ba); // ä¸ºListViewè®¾ç½®é€‚é…å™¨
+				lv.setOnItemClickListener // ä¸ºListViewæ·»åŠ ç›‘å¬å™¨
 				(new OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						currPath = files[arg2].getPath(); // »ñÈ¡µã»÷µÄÎÄ¼şÃû³ÆµÄµ±Ç°Â·¾¶
-						currDirTV.setText("µ±Ç°Â·¾¶£º" + currPath);//ÉèÖÃµ±Ç°Â·¾¶
-						File[] fs = getFiles(currPath); // »ñÈ¡µ±Ç°Â·¾¶µÄÎÄ¼şÁĞ±í
-						initListView(fs, lv); // ³õÊ¼»¯ListView
+						currPath = files[arg2].getPath(); // è·å–ç‚¹å‡»çš„æ–‡ä»¶åç§°çš„å½“å‰è·¯å¾„
+						currDirTV.setText("å½“å‰è·¯å¾„ï¼š" + currPath);//è®¾ç½®å½“å‰è·¯å¾„
+						File[] fs = getFiles(currPath); // è·å–å½“å‰è·¯å¾„çš„æ–‡ä»¶åˆ—è¡¨
+						initListView(fs, lv); // åˆå§‹åŒ–ListView
 					}
 				});
 			}
 		} else {
-			File f = new File(currPath); // »ñÈ¡µ±Ç°ÎÄ¼şÁĞ±íµÄÂ·¾¶¶ÔÓ¦µÄÎÄ¼ş
-			f = f.getParentFile(); // »ñÈ¡¸¸Ä¿Â¼ÎÄ¼ş
-			currPath = f.getPath(); // ¼ÇÂ¼µ±Ç°ÎÄ¼şÁĞ±íÂ·¾¶
-			currDirTV.setText("µ±Ç°Â·¾¶£º" + currPath);//ÉèÖÃµ±Ç°Â·¾¶
-			Toast.makeText(this, "¸ÃÄ¿Â¼²»ÊÇÎÄ¼ş¼Ğ»òÎŞÈ¨ÏŞ·ÃÎÊ£¡", Toast.LENGTH_SHORT).show();
+			File f = new File(currPath); // è·å–å½“å‰æ–‡ä»¶åˆ—è¡¨çš„è·¯å¾„å¯¹åº”çš„æ–‡ä»¶
+			f = f.getParentFile(); // è·å–çˆ¶ç›®å½•æ–‡ä»¶
+			currPath = f.getPath(); // è®°å½•å½“å‰æ–‡ä»¶åˆ—è¡¨è·¯å¾„
+			currDirTV.setText("å½“å‰è·¯å¾„ï¼š" + currPath);//è®¾ç½®å½“å‰è·¯å¾„
+			Toast.makeText(this, "è¯¥ç›®å½•ä¸æ˜¯æ–‡ä»¶å¤¹æˆ–æ— æƒé™è®¿é—®ï¼", Toast.LENGTH_SHORT).show();
 		}
 	}
 }

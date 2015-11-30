@@ -2,46 +2,46 @@ package com.bn.core;
 
 import android.content.res.Resources;
 /*
- * ¸Ãshader¹ÜÀíÆ÷Ö÷ÒªÊÇÓÃÓÚ¼ÓÔØshaderºÍ±àÒëshader
+ * è¯¥shaderç®¡ç†å™¨ä¸»è¦æ˜¯ç”¨äºåŠ è½½shaderå’Œç¼–è¯‘shader
  */
 public class ShaderManager
 {
 	final static String[][] shaderName=
 	{
-		{"vertex_tex_only.sh","frag_tex_only.sh"},//loading ½çÃæµÄshader
-		{"vertex_tex_water.sh","frag_tex_water.sh"},//Ë®ÃæÁ÷¶¯µÄshader
-		{"vertex_landform.sh","frag_tex_landform.sh"},//µØĞÎµÄshader
-		{"vertex_button.sh","frag_button.sh"},//°´Å¥µÄshader
-		{"vertex_xk.sh","frag_xk.sh"},//ĞÇ¿Õ×ÅÉ«Æ÷
-		{"vertex_xue.sh","frag_xue.sh"},//Ñª×ÅÉ«Æ÷
-		{"vertex_color.sh","frag_color.sh"},//½öÓĞÑÕÉ«×ÅÉ«Æ÷
+		{"vertex_tex_only.sh","frag_tex_only.sh"},//loading ç•Œé¢çš„shader
+		{"vertex_tex_water.sh","frag_tex_water.sh"},//æ°´é¢æµåŠ¨çš„shader
+		{"vertex_landform.sh","frag_tex_landform.sh"},//åœ°å½¢çš„shader
+		{"vertex_button.sh","frag_button.sh"},//æŒ‰é’®çš„shader
+		{"vertex_xk.sh","frag_xk.sh"},//æ˜Ÿç©ºç€è‰²å™¨
+		{"vertex_xue.sh","frag_xue.sh"},//è¡€ç€è‰²å™¨
+		{"vertex_color.sh","frag_color.sh"},//ä»…æœ‰é¢œè‰²ç€è‰²å™¨
 	};
-	static String[]mVertexShader=new String[shaderName.length];//¶¥µã×ÅÉ«Æ÷×Ö·û´®Êı×é
-	static String[]mFragmentShader=new String[shaderName.length];//Æ¬Ôª×ÅÉ«Æ÷×Ö·û´®Êı×é
-	static int[] program=new int[shaderName.length];//³ÌĞòÊı×é
-	//¼ÓÔØloading ½çÃæµÄshader
+	static String[]mVertexShader=new String[shaderName.length];//é¡¶ç‚¹ç€è‰²å™¨å­—ç¬¦ä¸²æ•°ç»„
+	static String[]mFragmentShader=new String[shaderName.length];//ç‰‡å…ƒç€è‰²å™¨å­—ç¬¦ä¸²æ•°ç»„
+	static int[] program=new int[shaderName.length];//ç¨‹åºæ•°ç»„
+	//åŠ è½½loading ç•Œé¢çš„shader
 	public static void loadFirstViewCodeFromFile(Resources r)
 	{
 		mVertexShader[0]=ShaderUtil.loadFromAssetsFile(shaderName[0][0],r);
 		mFragmentShader[0]=ShaderUtil.loadFromAssetsFile(shaderName[0][1], r);
 	}
-	//¼ÓÔØshader×Ö·û´®
+	//åŠ è½½shaderå­—ç¬¦ä¸²
 	public static void loadCodeFromFile(Resources r)
 	{
 		for(int i=1;i<shaderName.length;i++)
 		{
-			//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ       
+			//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹       
 	        mVertexShader[i]=ShaderUtil.loadFromAssetsFile(shaderName[i][0],r);
-	        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ 
+	        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹ 
 	        mFragmentShader[i]=ShaderUtil.loadFromAssetsFile(shaderName[i][1], r);
 		}	
 	}
-	//ÕâÀïÖ÷ÒªÊÇ±àÒëloading½çÃæÖĞµÄshader
+	//è¿™é‡Œä¸»è¦æ˜¯ç¼–è¯‘loadingç•Œé¢ä¸­çš„shader
 	public static void compileFirstViewShader()
 	{
 			program[0]=ShaderUtil.createProgram(mVertexShader[0], mFragmentShader[0]);
 	}
-	//±àÒëÆäËûµÄshader
+	//ç¼–è¯‘å…¶ä»–çš„shader
 	public static void compileShader()
 	{
 		for(int i=1;i<shaderName.length;i++)
@@ -49,42 +49,42 @@ public class ShaderManager
 			program[i]=ShaderUtil.createProgram(mVertexShader[i], mFragmentShader[i]);
 		}
 	}
-	//ÕâÀï·µ»ØµÄÊÇÊ×´Î¼ÓÔØµÄshader
+	//è¿™é‡Œè¿”å›çš„æ˜¯é¦–æ¬¡åŠ è½½çš„shader
 	public static int getFirstViewShaderProgram()
 	{
 		return program[0];
 	}
-	//·µ»ØµÄÊÇÖ»ÓĞÎÆÀíµÄshader³ÌĞò
+	//è¿”å›çš„æ˜¯åªæœ‰çº¹ç†çš„shaderç¨‹åº
 	public static int getOnlyTextureShaderProgram()
 	{
 		return program[0];
 	}
-	//ÕâÀï·µ»ØµÄÊÇË®ÃæÁ÷¶¯µÄshader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯æ°´é¢æµåŠ¨çš„shaderç¨‹åº
 	public static int getWaterTextureShaderProgram()
 	{
 		return program[1];
 	}
-	//ÕâÀï·µ»ØµÄÊÇµØĞÎµÄshader
+	//è¿™é‡Œè¿”å›çš„æ˜¯åœ°å½¢çš„shader
 	public static int getLandformTextureShaderProgram()
 	{
 		return program[2];
 	}
-	//ÕâÀï·µ»ØµÄÊÇ°´Å¥µÄshader
+	//è¿™é‡Œè¿”å›çš„æ˜¯æŒ‰é’®çš„shader
 	public static int getButtonTextureShaderProgram()
 	{
 		return program[3];
 	}
-	//ÕâÀï·µ»ØĞÇ¿ÕµÄÑÕÉ«µÄshader
+	//è¿™é‡Œè¿”å›æ˜Ÿç©ºçš„é¢œè‰²çš„shader
 	public static int getStarrySkyShaderProgram()
 	{
 		return program[4];
 	}
-	//ÕâÀï·µ»ØÑªÑÕÉ«µÄshader
+	//è¿™é‡Œè¿”å›è¡€é¢œè‰²çš„shader
 	public static int getStarryXueShaderProgram()
 	{
 		return program[5];
 	}
-	//ÕâÀï·µ»ØÑªÑÕÉ«µÄshader
+	//è¿™é‡Œè¿”å›è¡€é¢œè‰²çš„shader
 	public static int getOnlyColorShaderProgram()
 	{
 		return program[6];

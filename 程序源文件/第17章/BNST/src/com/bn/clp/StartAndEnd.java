@@ -8,15 +8,15 @@ import java.util.List;
 import android.opengl.GLES20;
 import com.bn.core.MatrixState;
  
-//ÆğÊ¼½áÊøÅÆ×Ó
+//èµ·å§‹ç»“æŸç‰Œå­
 public class StartAndEnd
 {
-	//¿ªÊ¼½áÊøÌõ·ùµÄÌõ·ù
+	//å¼€å§‹ç»“æŸæ¡å¹…çš„æ¡å¹…
 	TextureRect tr;
-	//¿ªÊ¼½áÊøÌõ·ùµÄÖ§Öù
+	//å¼€å§‹ç»“æŸæ¡å¹…çš„æ”¯æŸ±
 	Cylinder cylinder;
 	
-	//ÇĞ·ÖµÄ½Ç¶È
+	//åˆ‡åˆ†çš„è§’åº¦
 	final float ANGLE_SPAN=20;
 	final float UNIT_SIZE=1.0f;
 	final float R=0.5f;
@@ -28,87 +28,87 @@ public class StartAndEnd
 		cylinder=new Cylinder(programId,R,ANGLE_SPAN,cHeight);
 		tr=new TextureRect(programId,width-R,height);
 	}
-	//×ÜµÄ»æÖÆ·½·¨drawSelf
+	//æ€»çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 	public void drawSelf(int zzTexId,int tfTexId,float y,int dyFlag)
 	{
-		if(dyFlag==0)//»æÖÆÊµÌå
+		if(dyFlag==0)//ç»˜åˆ¶å®ä½“
 		{
-			//×ó²àÖ§Öù
+			//å·¦ä¾§æ”¯æŸ±
 			MatrixState.pushMatrix();
 			MatrixState.translate(-width, 0, 0);
 			cylinder.drawSelf(zzTexId);
 			MatrixState.popMatrix();
-			//ÓÒ²àÖ§Öù
+			//å³ä¾§æ”¯æŸ±
 			MatrixState.pushMatrix();
 			MatrixState.translate(width, 0, 0);
 			cylinder.drawSelf(zzTexId);
 			MatrixState.popMatrix();
-			//Ìõ·ù
+			//æ¡å¹…
 			MatrixState.pushMatrix();
 			MatrixState.translate(0, cHeight-height, 0); 
 			tr.drawSelf(tfTexId);
 			MatrixState.popMatrix();
 		}
-		else if(dyFlag==1)//»æÖÆµ¹Ó°
+		else if(dyFlag==1)//ç»˜åˆ¶å€’å½±
 		{
-			//Êµ¼Ê»æÖÆÊ±YµÄÁãµã
+			//å®é™…ç»˜åˆ¶æ—¶Yçš„é›¶ç‚¹
 			float yTranslate=y;
-			//½øĞĞ¾µÏñ»æÖÆÊ±µÄµ÷ÕûÖµ
+			//è¿›è¡Œé•œåƒç»˜åˆ¶æ—¶çš„è°ƒæ•´å€¼
 			float yjx=(0-yTranslate)*2;
 			
-			//¹Ø±Õ±³Ãæ¼ô²Ã
+			//å…³é—­èƒŒé¢å‰ªè£
             GLES20.glDisable(GLES20.GL_CULL_FACE);
-            //×ó²àÖ§Öù
+            //å·¦ä¾§æ”¯æŸ±
 			MatrixState.pushMatrix();
 			MatrixState.translate(-width, 0, 0);
 			MatrixState.translate(0, yjx, 0);
 			MatrixState.scale(1, -1, 1);
 			cylinder.drawSelf(zzTexId);
 			MatrixState.popMatrix();
-			//ÓÒ²àÖ§Öù
+			//å³ä¾§æ”¯æŸ±
 			MatrixState.pushMatrix();
 			MatrixState.translate(width, 0, 0);
 			MatrixState.translate(0, yjx, 0);
 			MatrixState.scale(1, -1, 1);
 			cylinder.drawSelf(zzTexId);
 			MatrixState.popMatrix();
-			//Ìõ·ù
+			//æ¡å¹…
 			MatrixState.pushMatrix();
 			MatrixState.translate(0, cHeight-height, 0); 
 			MatrixState.translate(0, (0-yTranslate-cHeight+height)*2, 0); 
 			MatrixState.scale(1, -1, 1); 
 			tr.drawSelf(tfTexId);
 			MatrixState.popMatrix();
-			//´ò¿ª±³Ãæ¼ô²Ã
+			//æ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);
 		}
 	} 
 	
-	//ÄÚ²¿Àà¡ª¡ªÔ²Öù
+	//å†…éƒ¨ç±»â€”â€”åœ†æŸ±
 	private class Cylinder
 	{
-		//×Ô¶¨ÒåShader³ÌĞòµÄÒıÓÃ
+		//è‡ªå®šä¹‰Shaderç¨‹åºçš„å¼•ç”¨
 		int mProgram;
-		//×Ü±ä»»¾ØÕóµÄÒıÓÃid
+		//æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µã×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
-		//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mTexCoorBuffer;
-		int vCount=0;//¶¥µãÊıÁ¿
+		int vCount=0;//é¡¶ç‚¹æ•°é‡
 		
-		//RÎªÔ²Öùµ×²¿µÄ°ë¾¶£¬rÎªÔ²ÖùÉÏ²¿µÄ°ë¾¶£¬angle_span±íÊ¾µÄÊÇÇĞ·ÖµÄ½Ç¶È
+		//Rä¸ºåœ†æŸ±åº•éƒ¨çš„åŠå¾„ï¼Œrä¸ºåœ†æŸ±ä¸Šéƒ¨çš„åŠå¾„ï¼Œangle_spanè¡¨ç¤ºçš„æ˜¯åˆ‡åˆ†çš„è§’åº¦
 		public Cylinder(int programId,float R,float angle_span,float height)
 		{
 			initVertexData(R,angle_span,height);
 			initShader(programId);
 		}
-		//³õÊ¼»¯×ø±êÊı¾İµÄ·½·¨
+		//åˆå§‹åŒ–åæ ‡æ•°æ®çš„æ–¹æ³•
 		public void initVertexData(float R,float angle_span,float height)
 		{
 			List<Float> tempList=new ArrayList<Float>();
@@ -138,7 +138,7 @@ public class StartAndEnd
 				tempList.add(x1); tempList.add(y1); tempList.add(z1);
 				tempList.add(x2); tempList.add(y2); tempList.add(z2);
 			}
-			vCount=tempList.size()/3;//¶¥µãÊıÁ¿
+			vCount=tempList.size()/3;//é¡¶ç‚¹æ•°é‡
 			float[] vertex=new float[tempList.size()];
 			for(int i=0;i<tempList.size();i++)
 			{
@@ -157,24 +157,24 @@ public class StartAndEnd
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊı¾İµÄÒıÓÃ
+			//è·å¾—é¡¶ç‚¹åæ ‡æ•°æ®çš„å¼•ç”¨
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+			//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+			//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//´«Èë¶¥µã×ø±êÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -184,7 +184,7 @@ public class StartAndEnd
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -194,29 +194,29 @@ public class StartAndEnd
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
-		//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+		//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh,float width,float height)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=width/bw;//ÁĞÊı
-	    	float sizeh=height/bh;//ĞĞÊı
+	    	float sizew=width/bw;//åˆ—æ•°
+	    	float sizeh=height/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			
@@ -242,31 +242,31 @@ public class StartAndEnd
 	    	return result;
 	    }
 	}
-	//ÏÂ·½µÄµ××ù
+	//ä¸‹æ–¹çš„åº•åº§
 	private class TextureRect
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòµÄÒıÓÃ
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºçš„å¼•ç”¨
 		int mProgram;
-		//×Ü±ä»»¾ØÕóµÄÒıÓÃid
+		//æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µã×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
-		//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mTexCoorBuffer;
-		int vCount=0;//¶¥µãÊıÁ¿
+		int vCount=0;//é¡¶ç‚¹æ•°é‡
 		
-		//RÎªÔ²Öùµ×²¿µÄ°ë¾¶£¬rÎªÔ²ÖùÉÏ²¿µÄ°ë¾¶
+		//Rä¸ºåœ†æŸ±åº•éƒ¨çš„åŠå¾„ï¼Œrä¸ºåœ†æŸ±ä¸Šéƒ¨çš„åŠå¾„
 		public TextureRect(int programId,float width,float height)
 		{
 			initVertexData(width,height);
 			initShader(programId);
 		}
-		//³õÊ¼»¯×ø±êÊı¾İµÄ·½·¨
+		//åˆå§‹åŒ–åæ ‡æ•°æ®çš„æ–¹æ³•
 		public void initVertexData(float width,float height)
 		{
 			float[] vertex=new float[]
@@ -308,24 +308,24 @@ public class StartAndEnd
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄ·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„æ–¹æ³•
 		public void initShader(int programId)
 		{
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊı¾İµÄÒıÓÃ
+			//è·å¾—é¡¶ç‚¹åæ ‡æ•°æ®çš„å¼•ç”¨
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+			//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+			//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//´«Èë×ø±êÊı¾İ
+			//ä¼ å…¥åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -335,7 +335,7 @@ public class StartAndEnd
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -345,15 +345,15 @@ public class StartAndEnd
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}
