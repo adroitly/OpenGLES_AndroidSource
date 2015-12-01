@@ -8,39 +8,39 @@ import com.bn.core.MatrixState;
 
 public class WeiLang
 {
-	//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
+	//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
 	int mProgram; 
-	//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+	//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 	int muMVPMatrixHandle;
-	//¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+	//é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 	int maPositionHandle;
-	//¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid
+	//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id
 	int maTexCoorHandle;
 	
-	int maSTOffset;	//Ë®ÃæÎÆÀíÍ¼µÄÆ«ÒÆÁ¿ÒıÓÃid
-	int muTMD;//ËÙ¶ÈÍ¸Ã÷¶È²ÎÊı
+	int maSTOffset;	//æ°´é¢çº¹ç†å›¾çš„åç§»é‡å¼•ç”¨id
+	int muTMD;//é€Ÿåº¦é€æ˜åº¦å‚æ•°
 	
-	float currStartST=0;	//Ë®ÃæÎÆÀí×ø±êµÄµ±Ç°ÆğÊ¼×ø±ê0~1
+	float currStartST=0;	//æ°´é¢çº¹ç†åæ ‡çš„å½“å‰èµ·å§‹åæ ‡0~1
 	
-	//¶¥µãÊı¾İ»º³åºÍÎÆÀí×ø±êÊı¾İ»º³å
+	//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 	FloatBuffer mVertexBuffer;
 	FloatBuffer mTexCoorBuffer;
-	//¶¥µãÊıÁ¿
+	//é¡¶ç‚¹æ•°é‡
 	int vCount=0;
 	
 	public WeiLang(float a,float b,float height,float[] texCoor,int programId)
 	{
 		initVertexData(a,b,height,texCoor);
 		initShader(programId);
-		//Æô¶¯Ò»¸öÏß³Ì¶¨Ê±»»Ö¡
+		//å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å®šæ—¶æ¢å¸§
     	new Thread()
     	{   
     		public void run()   
     		{
     			while(Constant.threadFlag)
     			{
-    				//ËùÎ½Ë®Ãæ¶¨Ê±»»Ö¡Ö»ÊÇĞŞ¸ÄÃ¿Ö¡ÆğÊ¼½Ç¶È¼´¿É£¬
-    				//Ë®Ãæ¶¥µãY×ø±êµÄ±ä»¯ÓÉ¶¥µã×ÅÉ«µ¥ÔªÍê³É
+    				//æ‰€è°“æ°´é¢å®šæ—¶æ¢å¸§åªæ˜¯ä¿®æ”¹æ¯å¸§èµ·å§‹è§’åº¦å³å¯ï¼Œ
+    				//æ°´é¢é¡¶ç‚¹Yåæ ‡çš„å˜åŒ–ç”±é¡¶ç‚¹ç€è‰²å•å…ƒå®Œæˆ
     				currStartST=(currStartST+0.1f)%1;
         			try 
         			{
@@ -53,7 +53,7 @@ public class WeiLang
     		}    
     	}.start();  
 	}
-	//³õÊ¼»¯¶¥µãÊı¾İµÄ·½·¨
+	//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 	public void initVertexData(float a,float b,float height,float[] texCoor)
 	{
 		float[] vertex=new float[]
@@ -73,7 +73,7 @@ public class WeiLang
 		mVertexBuffer.put(vertex);
 		mVertexBuffer.position(0);		
 		
-		//ÎÆÀí×ø±êÊı¾İ»º³å
+		//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		ByteBuffer tbb=ByteBuffer.allocateDirect(texCoor.length*4);
 		tbb.order(ByteOrder.nativeOrder());
 		mTexCoorBuffer=tbb.asFloatBuffer();
@@ -81,36 +81,36 @@ public class WeiLang
 		mTexCoorBuffer.position(0);
 	}
 	
-	//³õÊ¼»¯×ÅÉ«Æ÷µÄ·½·¨
+	//åˆå§‹åŒ–ç€è‰²å™¨çš„æ–¹æ³•
 	public void initShader(int programId) 
 	{		
-		//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+		//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
         mProgram = programId;
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
-        //»ñÈ¡Ë®ÃæÎÆÀíÍ¼Æ«ÒÆÁ¿µÄÒıÓÃid
+        //è·å–æ°´é¢çº¹ç†å›¾åç§»é‡çš„å¼•ç”¨id
         maSTOffset=GLES20.glGetUniformLocation(mProgram, "stK");  
-        //»ñÈ¡Î²ÀËËÙ¶ÈÍ¸Ã÷¶ÈµÄÒıÓÃid
+        //è·å–å°¾æµªé€Ÿåº¦é€æ˜åº¦çš„å¼•ç”¨id
         muTMD=GLES20.glGetUniformLocation(mProgram, "tmd");  
 	}
 	
-	//×Ô¶¨ÒåµÄ»æÖÆ·½·¨drawSelf
+	//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 	public void drawSelf(int texId,float startST)
 	{
-		//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+		//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram); 
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-        //½«Ë®ÃæÎÆÀíÍ¼µÄstÆ«ÒÆÁ¿´«Èëshader³ÌĞò
+        //å°†æ°´é¢çº¹ç†å›¾çš„ståç§»é‡ä¼ å…¥shaderç¨‹åº
         GLES20.glUniform1f(maSTOffset, startST);
-        //½«Î²ÀËËÙ¶ÈÍ¸Ã÷¶È´«Èëshader³ÌĞò
+        //å°†å°¾æµªé€Ÿåº¦é€æ˜åº¦ä¼ å…¥shaderç¨‹åº
         GLES20.glUniform1f(muTMD, Constant.CURR_BOAT_V_TMD);
         
-		//´«Èë¶¥µãÎ»ÖÃÊı¾İ
+		//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maPositionHandle, 
@@ -120,7 +120,7 @@ public class WeiLang
 			3*4, 
 			mVertexBuffer
 		);
-		//´«ÈëÎÆÀí×ø±êÊı¾İ
+		//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maTexCoorHandle, 
@@ -130,15 +130,15 @@ public class WeiLang
 			2*4, 
 			mTexCoorBuffer
 		);
-		//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+		//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
         
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
         
-        //»æÖÆÎÆÀí¾ØĞÎ
+        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 	}
 }

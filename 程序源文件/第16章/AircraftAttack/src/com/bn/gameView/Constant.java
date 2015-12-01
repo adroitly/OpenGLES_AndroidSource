@@ -20,158 +20,158 @@ import com.bn.tankemodel.TanKe;
 
 public class Constant 
 {	
-	public static int isMusicOn=0;//±³¾°ÒôÀÖ   0±íÊ¾¿ªÆô,1±íÊ¾¹Ø±Õ/
-	public static int isSoundOn=0;//ÌØĞ§ÒôÀÖ   0±íÊ¾¿ªÆô,1±íÊ¾¹Ø±Õ
-	public static int isVibrateOn=0;//ÌØĞ§Õğ¶¯   0±íÊ¾¿ªÆô,1±íÊ¾¹Ø±Õ
-	//ÉèÖÃµ¼µ¯²Ëµ¥µÄ¿í¶ÈºÍ¸ß¶È
+	public static int isMusicOn=0;//èƒŒæ™¯éŸ³ä¹   0è¡¨ç¤ºå¼€å¯,1è¡¨ç¤ºå…³é—­/
+	public static int isSoundOn=0;//ç‰¹æ•ˆéŸ³ä¹   0è¡¨ç¤ºå¼€å¯,1è¡¨ç¤ºå…³é—­
+	public static int isVibrateOn=0;//ç‰¹æ•ˆéœ‡åŠ¨   0è¡¨ç¤ºå¼€å¯,1è¡¨ç¤ºå…³é—­
+	//è®¾ç½®å¯¼å¼¹èœå•çš„å®½åº¦å’Œé«˜åº¦
 	public static float MENU_BUTTON_WIDTH; 
 	public static float MENU_BUTTON_HEIGHT;  
-	//ÉèÖÃµ¼µ¯²Ëµ¥µÄÆ«ÒÆÁ¿
+	//è®¾ç½®å¯¼å¼¹èœå•çš„åç§»é‡
 	public static final float MENU_BUTTON_XOffset=0;
 	public static final float MENU_BUTTON_YOffset=0;
-	//µ¼µ¯²Ëµ¥µÄ·¶Î§
+	//å¯¼å¼¹èœå•çš„èŒƒå›´
 	public static float[] MENU_BUTTON_AREA;
-	//»ú²ÕÃÇµÄ¿í¶ÈºÍ¸ß¶È
+	//æœºèˆ±ä»¬çš„å®½åº¦å’Œé«˜åº¦
 	public static float MENU_DOOR_WIDTH; 
 	public static float MENU_DOOR_HEIGHT;  
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 	public static float SETTING_BUTTON_WIDTH; 
 	public static float SETTING_BUTTON_HEIGHT;  
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄÆ«ÒÆÁ¿1
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„åç§»é‡1
 	public static float SETTING_BUTTON_XOffset1=0;
 	public static float SETTING_BUTTON_YOffset1=0.5f;
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄ·¶Î§1
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„èŒƒå›´1
 	public static float[] SETTING_BUTTON_AREA1;
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄÆ«ÒÆÁ¿2
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„åç§»é‡2
 	public static float SETTING_BUTTON_XOffset2=0;
 	public static float SETTING_BUTTON_YOffset2=0;
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄ·¶Î§2
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„èŒƒå›´2
 	public static float[] SETTING_BUTTON_AREA2;
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄÆ«ÒÆÁ¿3
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„åç§»é‡3
 	public static float SETTING_BUTTON_XOffset3=0;
 	public static float SETTING_BUTTON_YOffset3=-0.5f;
-	//ÉèÖÃÒ³Ãæ°´Å¥µÄ·¶Î§3
+	//è®¾ç½®é¡µé¢æŒ‰é’®çš„èŒƒå›´3
 	public static float[] SETTING_BUTTON_AREA3;
-	//ÍË³ö¶Ô»°¿òµÄ¿í¶ÈºÍ¸ß¶È °üÀ¨±êÍ·ºÍ°´Å¥
+	//é€€å‡ºå¯¹è¯æ¡†çš„å®½åº¦å’Œé«˜åº¦ åŒ…æ‹¬æ ‡å¤´å’ŒæŒ‰é’®
 	public static float EXIT_DIALOG_WIDTH; 
 	public static float EXIT_DIALOG_HEIGHT;  
-	//È·¶¨°´Å¥µÄ·¶Î§
+	//ç¡®å®šæŒ‰é’®çš„èŒƒå›´
 	public static float DIALOG_BUTTON_WIDTH; 
 	public static float  DIALOG_BUTTON_HEIGHT;
 	public static float DIALOG_YES_XOffset;
 	public static float DIALOG_YES_YOffset;
 	public static float[] DIALOG_BUTTON_YES;
-	//·µ»Ø°´Å¥µÄ·¶Î§
+	//è¿”å›æŒ‰é’®çš„èŒƒå›´
 	public static float DIALOG_NO_XOffset;
 	public static float DIALOG_NO_YOffset;
 	public static float[] DIALOG_BUTTON_NO;
-	//°ïÖú½çÃæµÄ¿í¶ÈºÍ¸ß¶È
+	//å¸®åŠ©ç•Œé¢çš„å®½åº¦å’Œé«˜åº¦
 	public static float HELP_WIDTH; 
 	public static float HELP_HEIGHT;  
-	//¹ØÓÚ½çÃæµÄ¿í¶ÈºÍ¸ß¶È
+	//å…³äºç•Œé¢çš„å®½åº¦å’Œé«˜åº¦
 	public static float ABOUT_WIDTH; 
 	public static float ABOUT_HEIGHT;  
 	
-	//-------------¶ş¼¶²Ëµ¥---------------------------
-	//³¡¾°ÖĞµÄ±êÍ·
+	//-------------äºŒçº§èœå•---------------------------
+	//åœºæ™¯ä¸­çš„æ ‡å¤´
 	public static float PLANE_SELECT_HEAD_WIDTH;
 	public static float PLANE_SELECT_HEAD_HEIGHT;
-	//Ñ¡·É»ú°´Å¥
+	//é€‰é£æœºæŒ‰é’®
 	public static float PLANE_SELECT_PLANE_WIDTH;
 	public static float PLANE_SELECT_PLANE_HEIGHT;
-	public static float PLANE_BTN_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float PLANE_BTN_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float PLANE_BTN_YOffset;
-	public static float[] PLANE_SELECT_PLANE;//°´Å¥µÄ·¶Î§
+	public static float[] PLANE_SELECT_PLANE;//æŒ‰é’®çš„èŒƒå›´
 	
 	
-	//-----ÓÎÏ·Ä£Ê½°´Å¥
+	//-----æ¸¸æˆæ¨¡å¼æŒ‰é’®
 	public static float MENU_TWO_GAME_MODEL_BUTTON_WIDTH;
 	public static float MENU_TWO_GAME_MODEL_BUTTON_HEIGHT;
-	//------Õ½ÒÛÄ£Ê½°´Å¥
-	public static float MENU_TWO_WAR_BUTTON_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	//------æˆ˜å½¹æ¨¡å¼æŒ‰é’®
+	public static float MENU_TWO_WAR_BUTTON_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_WAR_BUTTON_YOffset;
-	public static float[] MENU_TWO_WAR_BUTTON_AREA;//°´Å¥µÄ·¶Î§
-	//------ÌØ±ğĞĞ¶¯°´Å¥
-	public static float MENU_TWO_ACTION_BUTTON_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float[] MENU_TWO_WAR_BUTTON_AREA;//æŒ‰é’®çš„èŒƒå›´
+	//------ç‰¹åˆ«è¡ŒåŠ¨æŒ‰é’®
+	public static float MENU_TWO_ACTION_BUTTON_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_ACTION_BUTTON_YOffset;
-	public static float[] MENU_TWO_ACTION_BUTTON_AREA;//°´Å¥µÄ·¶Î§
+	public static float[] MENU_TWO_ACTION_BUTTON_AREA;//æŒ‰é’®çš„èŒƒå›´
 	
 	
-	//------²Ëµ¥¶şÖĞ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+	//------èœå•äºŒä¸­æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 	public static float MENU_TWO_BUTTON_WIDTH;
 	public static float MENU_TWO_BUTTON_HEIGHT;
-	//--------È·¶¨°´Å¥µÄ·¶Î§
-	public static float MENU_TWO_BUTTON_OK_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	//--------ç¡®å®šæŒ‰é’®çš„èŒƒå›´
+	public static float MENU_TWO_BUTTON_OK_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_BUTTON_OK_YOffset;
-	public static float[] MENU_TWO_BUTTON_OK_AREA;//°´Å¥µÄ·¶Î§
-	//--------×ó°´°´Å¥µÄ·¶Î§
-	public static float MENU_TWO_BUTTON_LEFT_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float[] MENU_TWO_BUTTON_OK_AREA;//æŒ‰é’®çš„èŒƒå›´
+	//--------å·¦æŒ‰æŒ‰é’®çš„èŒƒå›´
+	public static float MENU_TWO_BUTTON_LEFT_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_BUTTON_LEFT_YOffset;
-	public static float[] MENU_TWO_BUTTON_LEFT_AREA;//°´Å¥µÄ·¶Î§
-	//--------ÓÒ°´°´Å¥µÄ·¶Î§
-	public static float MENU_TWO_BUTTON_RIGHT_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float[] MENU_TWO_BUTTON_LEFT_AREA;//æŒ‰é’®çš„èŒƒå›´
+	//--------å³æŒ‰æŒ‰é’®çš„èŒƒå›´
+	public static float MENU_TWO_BUTTON_RIGHT_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_BUTTON_RIGHT_YOffset;
-	public static float[] MENU_TWO_BUTTON_RIGHT_AREA;//°´Å¥µÄ·¶Î§
-	//----¶ş¼¶²Ëµ¥ÖĞµÄ·É»úÍ¼Æ¬¿í¶ÈºÍ¸ß¶È
+	public static float[] MENU_TWO_BUTTON_RIGHT_AREA;//æŒ‰é’®çš„èŒƒå›´
+	//----äºŒçº§èœå•ä¸­çš„é£æœºå›¾ç‰‡å®½åº¦å’Œé«˜åº¦
 	public static float MENU_TWO_PLANE_ICON_WIDTH;
 	public static float MENU_TWO_PLANE_ICON_HEIGHT;
 	
-	public static float MENU_TWO_PLANE_ICON_ONE_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float MENU_TWO_PLANE_ICON_ONE_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_PLANE_ICON_ONE_YOffset;
-	public static float[] MENU_TWO_PLANE_ICON_ONE_AREA;//°´Å¥µÄ·¶Î§
-	public static float MENU_TWO_PLANE_ICON_TWO_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float[] MENU_TWO_PLANE_ICON_ONE_AREA;//æŒ‰é’®çš„èŒƒå›´
+	public static float MENU_TWO_PLANE_ICON_TWO_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_PLANE_ICON_TWO_YOffset;
-	public static float[] MENU_TWO_PLANE_ICON_TWO_AREA;//°´Å¥µÄ·¶Î§
-	public static float MENU_TWO_PLANE_ICON_THREE_XOffset;//°´Å¥µÄÆ«ÒÆÁ¿
+	public static float[] MENU_TWO_PLANE_ICON_TWO_AREA;//æŒ‰é’®çš„èŒƒå›´
+	public static float MENU_TWO_PLANE_ICON_THREE_XOffset;//æŒ‰é’®çš„åç§»é‡
 	public static float MENU_TWO_PLANE_ICON_THREE_YOffset;
-	public static float[] MENU_TWO_PLANE_ICON_THREE_AREA;//°´Å¥µÄ·¶Î§
+	public static float[] MENU_TWO_PLANE_ICON_THREE_AREA;//æŒ‰é’®çš„èŒƒå›´
 	
 	
-	//-------ÓÎÏ·ÖĞËµÃ÷ÎÄ×ÖµÄ¿í¶ÈºÍ¸ß¶È
+	//-------æ¸¸æˆä¸­è¯´æ˜æ–‡å­—çš„å®½åº¦å’Œé«˜åº¦
 	public static float NOTICE_WIDTH;
 	public static float NOTICE_HEIGHT;
 	//----------------------------------------------------------
 	
-	//-----Èı¼¶²Ëµ¥------µØÍ¼Ñ¡Ôñ½çÃæ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+	//-----ä¸‰çº§èœå•------åœ°å›¾é€‰æ‹©ç•Œé¢æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 	public static float MAP_BUTTON_WIDTH; 
 	public static float MAP_BUTTON_HEIGHT;  
-	//µÚÒ»¹ØµÄ·¶Î§
+	//ç¬¬ä¸€å…³çš„èŒƒå›´
 	public static float MAP_ONE_XOffset;
 	public static float MAP_ONE_YOffset;
 	public static float[] MAP_ONE_AREA;
-	//µÚ¶ş¹ØµÄ·¶Î§
+	//ç¬¬äºŒå…³çš„èŒƒå›´
 	public static float MAP_TWO_XOffset;
 	public static float MAP_TWO_YOffset;
 	public static float[] MAP_TWO_AREA;
-	//µÚÈı¹ØµÄ·¶Î§
+	//ç¬¬ä¸‰å…³çš„èŒƒå›´
 	public static float MAP_THREE_XOffset;
 	public static float MAP_THREE_YOffset;
 	public static float[] MAP_THREE_AREA;
 	
-	//µØÍ¼Ñ¡Ôñ½çÃæ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+	//åœ°å›¾é€‰æ‹©ç•Œé¢æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 	public static float MAP_WORD_WIDTH; 
 	public static float MAP_WORD_HEIGHT; 
 	public static float WORD_YOffset;
 	
 	
-	//ÅÅĞĞ°ñ½çÃæµØÍ¼µÄ¿í¶ÈºÍ¸ß¶È
+	//æ’è¡Œæ¦œç•Œé¢åœ°å›¾çš„å®½åº¦å’Œé«˜åº¦
 	public static float RANK_MAP_WIDTH; 
 	public static float RANK_MAP_HEIGHT;  
 	
-	//ÅÅĞĞ°ñ½çÃæÊı×Ö¿í¶ÈºÍ¸ß¶È
+	//æ’è¡Œæ¦œç•Œé¢æ•°å­—å®½åº¦å’Œé«˜åº¦
 	public static float RANK_NUMBER_WIDTH; 
 	public static float RANK_NUMBER_HEIGHT;  
 	
-	public static final int ARCHIBALD_TIME=1;//¸ßÉäÅÚ±»Éä»÷×î¸ß´ÎÊıºó±¬Õ¨
-	public static final float ARCHIBALD_BOX_X=8;//¸ßÉäÅÚµÄ°üÎ§ºĞ´óĞ¡
+	public static final int ARCHIBALD_TIME=1;//é«˜å°„ç‚®è¢«å°„å‡»æœ€é«˜æ¬¡æ•°åçˆ†ç‚¸
+	public static final float ARCHIBALD_BOX_X=8;//é«˜å°„ç‚®çš„åŒ…å›´ç›’å¤§å°
 	public static final float ARCHIBALD_BOX_Y=12;
 	public static final float ARCHIBALD_BOX_Z=8;
 	
-	public static final int CELL_SIZE=15;//¾Å¹¬¸ñµÄÒ»±ßµÄ¸öÊı
-	public static final int TANKE_SIZE=15;//»æÖÆÌ¹¿ËµÈ¸÷ÖÖÎïÌåµÄ¾Å¹¬¸ñÊı
+	public static final int CELL_SIZE=15;//ä¹å®«æ ¼çš„ä¸€è¾¹çš„ä¸ªæ•°
+	public static final int TANKE_SIZE=15;//ç»˜åˆ¶å¦å…‹ç­‰å„ç§ç‰©ä½“çš„ä¹å®«æ ¼æ•°
 	public static final int MapArray[][][]=new int[][][]
     {
-		//µÚÒ»¹Ø
+		//ç¬¬ä¸€å…³
 		{
 			{14,8 ,5 ,7 ,14,	14,14,14,14,14,	14,14,14,14,14,	14,14,14,14,14,},
 			{14,6 ,13,10,7 ,	14,14,14,14,14,	14,14,14,14,14,	14,14,14,14,14,},//0
@@ -198,7 +198,7 @@ public class Constant
 			{14,14,14,14,14,	14,14,14,9 ,0 ,	0 ,1 ,14,14,14,	14,14,14,14,14,},
 			
 		},
-		//µÚ¶ş¹Ø
+		//ç¬¬äºŒå…³
 		{
 			{14,14,14,14,14,	14,14,14, 8, 5,	 5, 5, 7,14,14,	14,14,14,14,14},
 			{14,14,14,14,14,	14,14, 8,11,13,	13,13,10, 7,14,	14,14,14,14,14},
@@ -225,7 +225,7 @@ public class Constant
 			{14,14,14,14,14,	14,14,14,14, 9,	 0, 1,14,14,14,	14,14,14,14,14},
 			
 		},
-		//µÚÈı¹Ø
+		//ç¬¬ä¸‰å…³
 		{
 			{14,14,14,14,14,	14,14, 8, 5, 5,	 5, 7,14,14,14,	14,14,14,14,14},
 			{14,14,14,14, 8,	 5, 5,11, 3,17,	16,10, 5, 5, 7,	14,14,14,14,14},
@@ -329,32 +329,32 @@ public class Constant
 			
 		},
 	};
-	//Ã¿ËùÓĞÎïÌåµÄĞÅÏ¢Êı×é
+	//æ¯æ‰€æœ‰ç‰©ä½“çš„ä¿¡æ¯æ•°ç»„
 	public static final float ArchieArray[][][]=
 	{
-		//---------------Õ½ÒÛÄ£Ê½--------------------------------------------------
-		//µÚÒ»¹Ø
+		//---------------æˆ˜å½¹æ¨¡å¼--------------------------------------------------
+		//ç¬¬ä¸€å…³
 		{
-			//¸ßÉäÅÚµÄÎ»ÖÃ0
+			//é«˜å°„ç‚®çš„ä½ç½®0
 			{
 				3.5f,2.5f, 
 				1.5f,17.5f, 1.5f,16.5f, 2.5f,15.5f,	
 				10.5f,17.5f, 10.5f,18, 9.5f,18.5f, 8.5f,17.5f, 8.5f,16.5f, 9.5f,16.5f, 13.5f,6.5f, 14.5f,7.5f, 15,7.5f, 12.5f,7.75f,
 				13.5f,8.5f,  3.5f,8.5f, 5.5f,8.5f,
 			},   
-			//Ì¹¿ËÎ»ÖÃÊı×é1
+			//å¦å…‹ä½ç½®æ•°ç»„1
 			{//3.5f,14.5f, 3.75f,14.5f, 9.5f,14.5f, 12.5f,14.5f, 14.5f,12.5f, 13.5f,13.5f, 6.5f,8.5f, 4.5f,7.5f,
 				},
-			//¾ü»ğ¿âËùÔÚÎ»ÖÃ2
+			//å†›ç«åº“æ‰€åœ¨ä½ç½®2
 			{ 2.5f,16.5f,// 9.5f,17.5f, 13.5f,7.5f
 					},
-			//µÆËşÎ»ÖÃÊı×é3
+			//ç¯å¡”ä½ç½®æ•°ç»„3
 			{2.5f,1.5f},
-			//Æ½Ãñ·¿ÎİËùÔÚÎ»ÖÃÊı×é4
+			//å¹³æ°‘æˆ¿å±‹æ‰€åœ¨ä½ç½®æ•°ç»„4
 			{2.5f,2.5f, 
 				12.25f,9.5f, 10.5f,12.5f, 15.15f,9.5f, 11.5f,6.5f, 
 			},
-			//´ó°ÓµÄÆğÊ¼Î»ÖÃ5
+			//å¤§åçš„èµ·å§‹ä½ç½®5
 			{
 				2,11,  2.05f,11.25f,  2.125f,11.55f,  2.20f,11.85f,  2.45f,12.25f,  2.85f,12.725f,  3.25f,12.85f,  3.45f,12.9f, 3.75f,12.95f,
 				4,13, 
@@ -362,17 +362,17 @@ public class Constant
 				4.25f,15.75f,  4.625f,16.125f,  4.75f,16.225f, 5,16.25f,  5.25f,16.225f,  5.375f,16.125f,  5.75f,15.75f
 				
 			},
-			//·É»úÊÓÆµ²¥·ÅÊ±,¾­¹ıµÄµã.6
+			//é£æœºè§†é¢‘æ’­æ”¾æ—¶,ç»è¿‡çš„ç‚¹.6
 			{6,4, 13,4,  15,6, 15,12, 13,15, 6,15, 3,13, 3,6,},
-			//·É»ú×Óµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ7
-			{5,5,8,2},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//·É»úÅÚµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ8
-			{50,100,70,100},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//µĞ·½»÷ÖĞ·É»ú¼õÉÙµÄÉúÃüÖµ9
-			{5,15,1,30,5},//Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú,Åöµ½¾ü»ğ¿â,Åöµ½ÆäËûµÄ¶«Î÷
-			//·É»ú³¡°ì¹«´óÂ¥
+			//é£æœºå­å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼7
+			{5,5,8,2},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//é£æœºç‚®å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼8
+			{50,100,70,100},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//æ•Œæ–¹å‡»ä¸­é£æœºå‡å°‘çš„ç”Ÿå‘½å€¼9
+			{5,15,1,30,5},//å¦å…‹,é«˜å°„ç‚®,æ•Œæœº,ç¢°åˆ°å†›ç«åº“,ç¢°åˆ°å…¶ä»–çš„ä¸œè¥¿
+			//é£æœºåœºåŠå…¬å¤§æ¥¼
 			{9f,9.5f},//10
-			//Ê÷ËùÔÚµÄÊı×é11
+			//æ ‘æ‰€åœ¨çš„æ•°ç»„11
 			{2.5f,2.25f, 2.25f,2,  2.25f,3,  1,2.75f, 
 				3.5f,16.25f, 4.5f,13.5f, 4.25f,13.5f, 
 				13f,9.5f,  11,6.25f, 11.5f,6.25f, 12,6.5f, 12.5f,7, 13,9.5f, 13.5f, 9.75f, 12.25f,11, 12.25f,11.75f,
@@ -380,49 +380,49 @@ public class Constant
 				10.5f,14.5f, 12.5f,14.5f, 10.5f,15.5f, 10.5f,18.5f, 9.5f,8.5f, 17.5f,8.5f, 1.5f,9.5f, 1.5f,10.5f,
 				2.5f,9.5f, 3,9.5f, 4.5f,8.5f, 5,8, 5.5f,7.5f, 
 			},
-			//»÷ÂäµĞ·½ÎïÆ·Ôö¼ÓµÄ·ÖÊı12
-			{10,15,20,50},//0Ì¹¿Ë1¸ßÉäÅÚ,2µĞ»ú,3¾ü»ğ¿â
-			//ÅÚµ¯ºÍ×Óµ¯µÄÊıÄ¿13
+			//å‡»è½æ•Œæ–¹ç‰©å“å¢åŠ çš„åˆ†æ•°12
+			{10,15,20,50},//0å¦å…‹1é«˜å°„ç‚®,2æ•Œæœº,3å†›ç«åº“
+			//ç‚®å¼¹å’Œå­å¼¹çš„æ•°ç›®13
 			{0,1000},
 		},
-		//µÚ¶ş¹Ø
+		//ç¬¬äºŒå…³
 		{
-			//¸ßÉäÅÚµÄÎ»ÖÃ0
+			//é«˜å°„ç‚®çš„ä½ç½®0
 			{
 				1.5f,15.25f, // 1.5f,16f,  2.5f,14.5f,  4,12,  8,7,  8,6,  7.5f,5.75f,  6.5f,5.25f,  8,5,  9.5f,2.5f,  
 				11.5f,1.5f,  14.5f,3.5f,  15.5f,5.5f,  16,10,  15.5f,12.5f,  10.5f,15.75f,  11.25f,15.75f,  11.5f,16.5f,
 				8.5f,11.5f,  5,14
 			},   
-			//Ì¹¿ËÎ»ÖÃÊı×é1
+			//å¦å…‹ä½ç½®æ•°ç»„1
 			{
 				2.25f,14.25f,  2.75f,14.25f,  2.25f,14.75f,  2.75f,14.75f,  
 				2.4f,16.5f,  2.8f,16.75f,  4.25f,7.5f, 
 				4.75f,7.75f,  8.5f,5.5f,  8.5f,4.5f,  12.5f,2.5f, 15.25f,3.5f,  15.75f,3.5f, 14.5f,4.25f,  14.5f,4.75f,
 				9.5f,17.5f,  10.5f, 17.5f 
 			},
-			//¾ü»ğ¿âËùÔÚÎ»ÖÃ2
+			//å†›ç«åº“æ‰€åœ¨ä½ç½®2
 			{2.5f,15.5f, 15.5f,4.5f, //7.5f,6.5f, 10.5f,16.5f
 				},
-			//µÆËşÎ»ÖÃÊı×é3
+			//ç¯å¡”ä½ç½®æ•°ç»„3
 			{9f,11f},
-			//Æ½Ãñ·¿ÎİËùÔÚÎ»ÖÃÊı×é4
+			//å¹³æ°‘æˆ¿å±‹æ‰€åœ¨ä½ç½®æ•°ç»„4
 			{
 				6.125f,6.5f,  4.75f,7,  10.5f,1.5f,  18,5,  15.5f,8.5f,  19,12,
 				12.5f,15,  14.5f,12.5f, 
 			},
-			//´ó°ÓµÄÆğÊ¼Î»ÖÃ5
+			//å¤§åçš„èµ·å§‹ä½ç½®5
 			{},
-			//·É»úÊÓÆµ²¥·ÅÊ±,¾­¹ıµÄµã.6
+			//é£æœºè§†é¢‘æ’­æ”¾æ—¶,ç»è¿‡çš„ç‚¹.6
 			{6,4, 13,4,  15,6, 15,12, 13,15, 6,15, 3,13, 3,6,},
-			//·É»ú×Óµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ7
-			{3,5,5,4},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//·É»úÅÚµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ8
-			{50,80,70,100},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//µĞ·½»÷ÖĞ·É»ú¼õÉÙµÄÉúÃüÖµ9
-			{8,10,4,10,4},//Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú,Åöµ½¾ü»ğ¿â,Åöµ½ÆäËûµÄ¶«Î÷
-			//·É»ú³¡°ì¹«´óÂ¥
+			//é£æœºå­å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼7
+			{3,5,5,4},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//é£æœºç‚®å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼8
+			{50,80,70,100},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//æ•Œæ–¹å‡»ä¸­é£æœºå‡å°‘çš„ç”Ÿå‘½å€¼9
+			{8,10,4,10,4},//å¦å…‹,é«˜å°„ç‚®,æ•Œæœº,ç¢°åˆ°å†›ç«åº“,ç¢°åˆ°å…¶ä»–çš„ä¸œè¥¿
+			//é£æœºåœºåŠå…¬å¤§æ¥¼
 			{9f,9.5f},//10
-			//Ê÷ËùÔÚµÄÊı×é11
+			//æ ‘æ‰€åœ¨çš„æ•°ç»„11
 			{
 				2,16,  2.25f,16,  2.5f,16,  2.75f,16,  3,16,  4.125f,15,    4.125f,15.5f,     4.125f,16.5f,  2,17,
 				4,13,  4.25f,13,  5,9,      5.25f,9,   3,7,   3.5f,7,  4.75f,6.5f,  7,7,      7,6,
@@ -430,94 +430,94 @@ public class Constant
 				15.5f,5,  15.5f,6.5f,  16.5f,6.5f,  19,5,  15.5f,7.5f,  16,9,  18,12,  17.5f,11.5f, 
 				13.5f,12.5f,  12.5f,15.5f,  10.5f,18.5f,  9,10,  10,10,  9,12
 			},
-			//»÷ÂäµĞ·½ÎïÆ·Ôö¼ÓµÄ·ÖÊı12
-			{12,17,22,55},//0Ì¹¿Ë1¸ßÉäÅÚ,2µĞ»ú,3¾ü»ğ¿â
-			//ÅÚµ¯ºÍ×Óµ¯µÄÊıÄ¿13
+			//å‡»è½æ•Œæ–¹ç‰©å“å¢åŠ çš„åˆ†æ•°12
+			{12,17,22,55},//0å¦å…‹1é«˜å°„ç‚®,2æ•Œæœº,3å†›ç«åº“
+			//ç‚®å¼¹å’Œå­å¼¹çš„æ•°ç›®13
 			{50,1500},
 		},
-		//µÚÈı¹Ø
+		//ç¬¬ä¸‰å…³
 		{
-			//¸ßÉäÅÚµÄÎ»ÖÃ0
+			//é«˜å°„ç‚®çš„ä½ç½®0
 			{
 				10,6,8,8,  8,7,  7,9,  /*6.5f,9.5f,*/  7,13,  13.5f,8.5f,  5.5f,2.5f,  6.5f,2.5f, //2.5f,6.5f,  
 				3.5f,15.5f,  3.5f,16.5f, /* 5.5f,16.5f,*/  18,10,  18,11,  19,10,  19,11,  17,13,  16,16
 			},   
-			//Ì¹¿ËÎ»ÖÃÊı×é1
+			//å¦å…‹ä½ç½®æ•°ç»„1
 			{
 				4,16.5f, /* 5,17, */ 6,16,  5,16,  3.5f,14.5f,  3,7,  3,6,/*  6,3,*/  7,3,  12,2,  13.5f,2.5f,  16,3.25f,  /*16.5f, 3.25f, */ 17f,3.25f,
 				17,14,  15f,17f, /* 13.25f,9.5f, */ 13.75f,9.5f,  13.5f,10.5f,  12,12,  6,10,  
 			},
-			//¾ü»ğ¿âËùÔÚÎ»ÖÃ2
+			//å†›ç«åº“æ‰€åœ¨ä½ç½®2
 			{16.5f,4.5f,  4.5f,3.5f,  4.5f,16.5f, 18.5f,10.5f
 			},
-			//µÆËşÎ»ÖÃÊı×é3
+			//ç¯å¡”ä½ç½®æ•°ç»„3
 			{6f,11f},
-			//Æ½Ãñ·¿ÎİËùÔÚÎ»ÖÃÊı×é4
+			//å¹³æ°‘æˆ¿å±‹æ‰€åœ¨ä½ç½®æ•°ç»„4
 			{
 				2.725f,6,  14,2,  7.5f,2.5f,  15,3,  12,18,  14.5f,16.5f,  
 			},
-			//´ó°ÓµÄÆğÊ¼Î»ÖÃ5
+			//å¤§åçš„èµ·å§‹ä½ç½®5
 			{},
-			//·É»úÊÓÆµ²¥·ÅÊ±,¾­¹ıµÄµã.6
+			//é£æœºè§†é¢‘æ’­æ”¾æ—¶,ç»è¿‡çš„ç‚¹.6
 			{6,4, 13,4,  15,6, 15,12, 13,15, 6,15, 3,13, 3,6,},
-			//·É»ú×Óµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ7
-			{5,10,10,5},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//·É»úÅÚµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ8
-			{30,70,70,50},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//µĞ·½»÷ÖĞ·É»ú¼õÉÙµÄÉúÃüÖµ
-			{17,20,2,15,4},//Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú,Åöµ½¾ü»ğ¿â,Åöµ½ÆäËûµÄ¶«Î÷
-			//·É»ú³¡°ì¹«´óÂ¥
+			//é£æœºå­å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼7
+			{5,10,10,5},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//é£æœºç‚®å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼8
+			{30,70,70,50},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//æ•Œæ–¹å‡»ä¸­é£æœºå‡å°‘çš„ç”Ÿå‘½å€¼
+			{17,20,2,15,4},//å¦å…‹,é«˜å°„ç‚®,æ•Œæœº,ç¢°åˆ°å†›ç«åº“,ç¢°åˆ°å…¶ä»–çš„ä¸œè¥¿
+			//é£æœºåœºåŠå…¬å¤§æ¥¼
 			{9f,9.5f},//10
-			//Ê÷ËùÔÚµÄÊı×é11
+			//æ ‘æ‰€åœ¨çš„æ•°ç»„11
 			{
 				5.5f,18.125f,  6.5f,18.125f,  8,18,  3,16,  4,16,  6,17,  2,13,  3,14,  4,14,  3,15,  2,8,  2,7,  4,6,  
 				4,4,  5,4,  6,2,  10,2.125f,  13,2.5f,  14,3,  16,4,  17,5, 18,9,  18,12,  18,12.5f, 18,13,
 				17.5f,13.5f,   12,17,  14,17,
 				14,7,  13,11,  11,13,  5,11,  6,9,  8.5f,7.5f
 			},
-			//»÷ÂäµĞ·½ÎïÆ·Ôö¼ÓµÄ·ÖÊı12
-			{15,20,25,70},//0Ì¹¿Ë1¸ßÉäÅÚ,2µĞ»ú,3¾ü»ğ¿â
-			//ÅÚµ¯ºÍ×Óµ¯µÄÊıÄ¿13
+			//å‡»è½æ•Œæ–¹ç‰©å“å¢åŠ çš„åˆ†æ•°12
+			{15,20,25,70},//0å¦å…‹1é«˜å°„ç‚®,2æ•Œæœº,3å†›ç«åº“
+			//ç‚®å¼¹å’Œå­å¼¹çš„æ•°ç›®13
 			{80,2000},
 		},
-		//--------------------------------------ÌØ±ğĞĞ¶¯---------------------------------------------------
-		//µÚÒ»¹Ø----------ÏûÃğ·É»ú¼´¿É
+		//--------------------------------------ç‰¹åˆ«è¡ŒåŠ¨---------------------------------------------------
+		//ç¬¬ä¸€å…³----------æ¶ˆç­é£æœºå³å¯
 		{
-			//¸ßÉäÅÚµÄÎ»ÖÃ0
+			//é«˜å°„ç‚®çš„ä½ç½®0
 			{
 				1.5f,15.25f,  1.5f,16f,  2.5f,14.5f, // 4,12,  8,7,  8,6,  7.5f,5.75f,  6.5f,5.25f,  8,5,  9.5f,2.5f,  
 				11.5f,1.5f,  /*14.5f,3.5f, */ 15.5f,5.5f,  16,10,  15.5f,12.5f,/*  10.5f,15.75f,  11.25f,15.75f, */ 11.5f,16.5f,
 				8.5f,11.5f,  5,14
 			},   
-			//Ì¹¿ËÎ»ÖÃÊı×é1
+			//å¦å…‹ä½ç½®æ•°ç»„1
 			{
 				2.25f,14.25f,  2.75f,14.25f,//  2.25f,14.75f,  2.75f,14.75f,  
 				2.4f,16.5f,  2.8f,16.75f,  //4.25f,7.5f, 
 				4.75f,7.75f,  8.5f,5.5f,/*  8.5f,4.5f, */ 12.5f,2.5f, 15.25f,3.5f,  15.75f,3.5f,// 14.5f,4.25f,  14.5f,4.75f,
 				9.5f,17.5f,  10.5f, 17.5f 
 			},
-			//¾ü»ğ¿âËùÔÚÎ»ÖÃ2
+			//å†›ç«åº“æ‰€åœ¨ä½ç½®2
 			{2.5f,15.5f, 15.5f,4.5f,/* 7.5f,6.5f, 10.5f,16.5f*/},
-			//µÆËşÎ»ÖÃÊı×é3
+			//ç¯å¡”ä½ç½®æ•°ç»„3
 			{9f,11f},
-			//Æ½Ãñ·¿ÎİËùÔÚÎ»ÖÃÊı×é4
+			//å¹³æ°‘æˆ¿å±‹æ‰€åœ¨ä½ç½®æ•°ç»„4
 			{
 				6.125f,6.5f,  4.75f,7,  10.5f,1.5f,  18,5,  15.5f,8.5f,  19,12,
 				12.5f,15,  14.5f,12.5f, 
 			},
-			//´ó°ÓµÄÆğÊ¼Î»ÖÃ5
+			//å¤§åçš„èµ·å§‹ä½ç½®5
 			{},
-			//·É»úÊÓÆµ²¥·ÅÊ±,¾­¹ıµÄµã.6
+			//é£æœºè§†é¢‘æ’­æ”¾æ—¶,ç»è¿‡çš„ç‚¹.6
 			{6,4, 13,4,  15,6, 15,12, 13,15, 6,15, 3,13, 3,6,},
-			//·É»ú×Óµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ7
-			{3,7,7,4},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//·É»úÅÚµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ8
-			{50,100,70,100},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//µĞ·½»÷ÖĞ·É»ú¼õÉÙµÄÉúÃüÖµ9
-			{8,11,4,6,4},//Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú,Åöµ½¾ü»ğ¿â,Åöµ½ÆäËûµÄ¶«Î÷
-			//·É»ú³¡°ì¹«´óÂ¥
+			//é£æœºå­å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼7
+			{3,7,7,4},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//é£æœºç‚®å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼8
+			{50,100,70,100},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//æ•Œæ–¹å‡»ä¸­é£æœºå‡å°‘çš„ç”Ÿå‘½å€¼9
+			{8,11,4,6,4},//å¦å…‹,é«˜å°„ç‚®,æ•Œæœº,ç¢°åˆ°å†›ç«åº“,ç¢°åˆ°å…¶ä»–çš„ä¸œè¥¿
+			//é£æœºåœºåŠå…¬å¤§æ¥¼
 			{9f,9.5f},//10
-			//Ê÷ËùÔÚµÄÊı×é11
+			//æ ‘æ‰€åœ¨çš„æ•°ç»„11
 			{
 				2,16,  2.25f,16,  2.5f,16,  2.75f,16,  3,16,  4.125f,15,    4.125f,15.5f,     4.125f,16.5f,  2,17,
 				4,13,  4.25f,13,  5,9,      5.25f,9,   3,7,   3.5f,7,  4.75f,6.5f,  7,7,      7,6,
@@ -525,75 +525,75 @@ public class Constant
 				15.5f,5,  15.5f,6.5f,  16.5f,6.5f,  19,5,  15.5f,7.5f,  16,9,  18,12,  17.5f,11.5f, 
 				13.5f,12.5f,  12.5f,15.5f,  10.5f,18.5f,  9,10,  10,10,  9,12
 			},
-			//»÷ÂäµĞ·½ÎïÆ·Ôö¼ÓµÄ·ÖÊı12
-			{12,17,22,55},//0Ì¹¿Ë1¸ßÉäÅÚ,2µĞ»ú,3¾ü»ğ¿â
-			//ÅÚµ¯ºÍ×Óµ¯µÄÊıÄ¿13
+			//å‡»è½æ•Œæ–¹ç‰©å“å¢åŠ çš„åˆ†æ•°12
+			{12,17,22,55},//0å¦å…‹1é«˜å°„ç‚®,2æ•Œæœº,3å†›ç«åº“
+			//ç‚®å¼¹å’Œå­å¼¹çš„æ•°ç›®13
 			{20,800},
 		},
-		//µÚ¶ş¹Ø----------------ÏûÃğ¸ßÉäÅÚºÍÌ¹¿Ë
+		//ç¬¬äºŒå…³----------------æ¶ˆç­é«˜å°„ç‚®å’Œå¦å…‹
 		{
-			//¸ßÉäÅÚµÄÎ»ÖÃ0
+			//é«˜å°„ç‚®çš„ä½ç½®0
 			{
 				10,6,  8,8,  8,7,  7,9,  6.5f,9.5f,  7,13, /* 13.5f,8.5f, */ 5.5f,2.5f,  6.5f,2.5f,// 2.5f,6.5f,  
 				3.5f,15.5f,  3.5f,16.5f,  5.5f,16.5f,  18,10, /* 18,11,  19,10,*/  19,11,  17,13,  16,16
 			},   
-			//Ì¹¿ËÎ»ÖÃÊı×é1
+			//å¦å…‹ä½ç½®æ•°ç»„1
 			{
 				4,16.5f, 5,17,  6,16, /* 5,16,  3.5f,14.5f, */ 3,7,  3,6,  6,3,  7,3,  12,2,/*  13.5f,2.5f,*/  16,3.25f,  16.5f, 3.25f,  17f,3.25f,
 				17,14,  /*15f,17f, */ 13.25f,9.5f,  13.75f,9.5f,  13.5f,10.5f,  12,12,//  6,10,  
 			},
-			//¾ü»ğ¿âËùÔÚÎ»ÖÃ2
+			//å†›ç«åº“æ‰€åœ¨ä½ç½®2
 			{16.5f,4.5f, /* 4.5f,3.5f,  4.5f,16.5f, 18.5f,10.5f*/},
-			//µÆËşÎ»ÖÃÊı×é3
+			//ç¯å¡”ä½ç½®æ•°ç»„3
 			{6f,11f},
-			//Æ½Ãñ·¿ÎİËùÔÚÎ»ÖÃÊı×é4
+			//å¹³æ°‘æˆ¿å±‹æ‰€åœ¨ä½ç½®æ•°ç»„4
 			{
 				2.725f,6,  14,2,  7.5f,2.5f,  15,3,  12,18,  14.5f,16.5f,  
 			},
-			//´ó°ÓµÄÆğÊ¼Î»ÖÃ5
+			//å¤§åçš„èµ·å§‹ä½ç½®5
 			{},
-			//·É»úÊÓÆµ²¥·ÅÊ±,¾­¹ıµÄµã.6
+			//é£æœºè§†é¢‘æ’­æ”¾æ—¶,ç»è¿‡çš„ç‚¹.6
 			{6,4, 13,4,  15,6, 15,12, 13,15, 6,15, 3,13, 3,6,},
-			//·É»ú×Óµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ7
-			{5,10,10,7},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//·É»úÅÚµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ8
-			{50,100,70,100},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//µĞ·½»÷ÖĞ·É»ú¼õÉÙµÄÉúÃüÖµ9
-			{17,20,13,15,4},//Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú,Åöµ½¾ü»ğ¿â,Åöµ½ÆäËûµÄ¶«Î÷
-			//·É»ú³¡°ì¹«´óÂ¥
+			//é£æœºå­å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼7
+			{5,10,10,7},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//é£æœºç‚®å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼8
+			{50,100,70,100},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//æ•Œæ–¹å‡»ä¸­é£æœºå‡å°‘çš„ç”Ÿå‘½å€¼9
+			{17,20,13,15,4},//å¦å…‹,é«˜å°„ç‚®,æ•Œæœº,ç¢°åˆ°å†›ç«åº“,ç¢°åˆ°å…¶ä»–çš„ä¸œè¥¿
+			//é£æœºåœºåŠå…¬å¤§æ¥¼
 			{9f,9.5f},//10
-			//Ê÷ËùÔÚµÄÊı×é11
+			//æ ‘æ‰€åœ¨çš„æ•°ç»„11
 			{
 				5.5f,18.125f,  6.5f,18.125f,  8,18,  3,16,  4,16,  6,17,  2,13,  3,14,  4,14,  3,15,  2,8,  2,7,  4,6,  
 				4,4,  5,4,  6,2,  10,2.125f,  13,2.5f,  14,3,  16,4,  17,5, 18,9,  18,12,  18,12.5f, 18,13,
 				17.5f,13.5f,   12,17,  14,17,
 				14,7,  13,11,  11,13,  5,11,  6,9,  8.5f,7.5f
 			},
-			//»÷ÂäµĞ·½ÎïÆ·Ôö¼ÓµÄ·ÖÊı12
-			{15,20,25,70},//0Ì¹¿Ë1¸ßÉäÅÚ,2µĞ»ú,3¾ü»ğ¿â
-			//ÅÚµ¯ºÍ×Óµ¯µÄÊıÄ¿13
+			//å‡»è½æ•Œæ–¹ç‰©å“å¢åŠ çš„åˆ†æ•°12
+			{15,20,25,70},//0å¦å…‹1é«˜å°„ç‚®,2æ•Œæœº,3å†›ç«åº“
+			//ç‚®å¼¹å’Œå­å¼¹çš„æ•°ç›®13
 			{50,1500},
 		},
-		//µÚÈı¹Ø--------------------ÏûÃğ¾ü»ğ¿â
+		//ç¬¬ä¸‰å…³--------------------æ¶ˆç­å†›ç«åº“
 		{
-			//¸ßÉäÅÚµÄÎ»ÖÃ0
+			//é«˜å°„ç‚®çš„ä½ç½®0
 			{3.5f,2.5f, 
 			1.5f,17.5f, 1.5f,16.5f, 2.5f,15.5f,	
 			10.5f,17.5f, 10.5f,18, 9.5f,18.5f, 8.5f,17.5f, 8.5f,16.5f, 9.5f,16.5f, 13.5f,6.5f, 14.5f,7.5f, 15,7.5f, 12.5f,7.75f,
 			13.5f,8.5f,  3.5f,8.5f, 5.5f,8.5f,
 			},   
-			//Ì¹¿ËÎ»ÖÃÊı×é1
+			//å¦å…‹ä½ç½®æ•°ç»„1
 			{3.5f,14.5f, 3.75f,14.5f, 9.5f,14.5f, 12.5f,14.5f, 14.5f,12.5f, 13.5f,13.5f, 6.5f,8.5f, 4.5f,7.5f,},
-			//¾ü»ğ¿âËùÔÚÎ»ÖÃ2
+			//å†›ç«åº“æ‰€åœ¨ä½ç½®2
 			{ 2.5f,16.5f, 9.5f,17.5f, 13.5f,7.5f
 				},
-			//µÆËşÎ»ÖÃÊı×é3
+			//ç¯å¡”ä½ç½®æ•°ç»„3
 			{2.5f,1.5f},
-			//Æ½Ãñ·¿ÎİËùÔÚÎ»ÖÃÊı×é4
+			//å¹³æ°‘æˆ¿å±‹æ‰€åœ¨ä½ç½®æ•°ç»„4
 			{2.5f,2.5f, 
 				12.25f,9.5f, 10.5f,12.5f, 15.15f,9.5f, 11.5f,6.5f, 
 			},
-			//´ó°ÓµÄÆğÊ¼Î»ÖÃ5
+			//å¤§åçš„èµ·å§‹ä½ç½®5
 			{
 				2,11,  2.05f,11.25f,  2.125f,11.55f,  2.20f,11.85f,  2.45f,12.25f,  2.85f,12.725f,  3.25f,12.85f,  3.45f,12.9f, 3.75f,12.95f,
 				4,13, 
@@ -601,17 +601,17 @@ public class Constant
 				4.25f,15.75f,  4.625f,16.125f,  4.75f,16.225f, 5,16.25f,  5.25f,16.225f,  5.375f,16.125f,  5.75f,15.75f
 				
 			},
-			//·É»úÊÓÆµ²¥·ÅÊ±,¾­¹ıµÄµã.6
+			//é£æœºè§†é¢‘æ’­æ”¾æ—¶,ç»è¿‡çš„ç‚¹.6
 			{6,4, 13,4,  15,6, 15,12, 13,15, 6,15, 3,13, 3,6,},
-			//·É»ú×Óµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ7
-			{1,5,5,2},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//·É»úÅÚµ¯»÷ÖĞ¶Ô·½Ä¿±ê¼õÉÙµÄÉúÃüÖµ8
-			{50,100,70,100},//¾ü»ğ¿â,Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú
-			//µĞ·½»÷ÖĞ·É»ú¼õÉÙµÄÉúÃüÖµ9
-			{10,20,20,100,10},//Ì¹¿Ë,¸ßÉäÅÚ,µĞ»ú,Åöµ½¾ü»ğ¿â,Åöµ½ÆäËûµÄ¶«Î÷
-			//·É»ú³¡°ì¹«´óÂ¥
+			//é£æœºå­å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼7
+			{1,5,5,2},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//é£æœºç‚®å¼¹å‡»ä¸­å¯¹æ–¹ç›®æ ‡å‡å°‘çš„ç”Ÿå‘½å€¼8
+			{50,100,70,100},//å†›ç«åº“,å¦å…‹,é«˜å°„ç‚®,æ•Œæœº
+			//æ•Œæ–¹å‡»ä¸­é£æœºå‡å°‘çš„ç”Ÿå‘½å€¼9
+			{10,20,20,100,10},//å¦å…‹,é«˜å°„ç‚®,æ•Œæœº,ç¢°åˆ°å†›ç«åº“,ç¢°åˆ°å…¶ä»–çš„ä¸œè¥¿
+			//é£æœºåœºåŠå…¬å¤§æ¥¼
 			{9f,9.5f},//10
-			//Ê÷ËùÔÚµÄÊı×é11
+			//æ ‘æ‰€åœ¨çš„æ•°ç»„11
 			{2.5f,2.25f, 2.25f,2,  2.25f,3,  1,2.75f, 
 				3.5f,16.25f, 4.5f,13.5f, 4.25f,13.5f, 
 				13f,9.5f,  11,6.25f, 11.5f,6.25f, 12,6.5f, 12.5f,7, 13,9.5f, 13.5f, 9.75f, 12.25f,11, 12.25f,11.75f,
@@ -619,185 +619,185 @@ public class Constant
 				10.5f,14.5f, 12.5f,14.5f, 10.5f,15.5f, 10.5f,18.5f, 9.5f,8.5f, 17.5f,8.5f, 1.5f,9.5f, 1.5f,10.5f,
 				2.5f,9.5f, 3,9.5f, 4.5f,8.5f, 5,8, 5.5f,7.5f, 
 			},
-			//»÷ÂäµĞ·½ÎïÆ·Ôö¼ÓµÄ·ÖÊı12
-			{10,15,20,50},//0Ì¹¿Ë1¸ßÉäÅÚ,2µĞ»ú,3¾ü»ğ¿â
-			//ÅÚµ¯ºÍ×Óµ¯µÄÊıÄ¿13
+			//å‡»è½æ•Œæ–¹ç‰©å“å¢åŠ çš„åˆ†æ•°12
+			{10,15,20,50},//0å¦å…‹1é«˜å°„ç‚®,2æ•Œæœº,3å†›ç«åº“
+			//ç‚®å¼¹å’Œå­å¼¹çš„æ•°ç›®13
 			{10,200},
 		}
 	};
-	//------------ÌØ±ğĞĞ¶¯µÄÊ±¼äÓò
+	//------------ç‰¹åˆ«è¡ŒåŠ¨çš„æ—¶é—´åŸŸ
 	public static int [] actionTimeSpan={70,160,60};
 	
-	//ÓÃÓÚ¼ÇÂ¼µÄÏà¹ØĞÅÏ¢
-	public static int[] gradeArray=new int[3];//0¹Ø¿¨,1×ÜµÄ·Ö,2ºÄÊ±.
-	//Ê÷µÄ¸ß¶ÈºÍ¿í¶È
+	//ç”¨äºè®°å½•çš„ç›¸å…³ä¿¡æ¯
+	public static int[] gradeArray=new int[3];//0å…³å¡,1æ€»çš„åˆ†,2è€—æ—¶.
+	//æ ‘çš„é«˜åº¦å’Œå®½åº¦
 	public static final float treeWhidth=130;
 	public static final float treeHeight=150;
-	//Æ½Ãñ·¿µÄ³¤¿í¸ß
+	//å¹³æ°‘æˆ¿çš„é•¿å®½é«˜
 	public static final float house_length=200;
 	public static final float house_width=90;
 	public static final float house_height=100;
-	//¹ØÓÚÓ¢ĞÛµ±Ç°×´Ì¬
-	public static boolean isCrash=false;//·É»úÊÇ·ñ×¹»Ù
-	public static boolean isOvercome=false;//ÊÇ·ñÕ½Ê¤£¬¼´Õ¨µô¾ü»ğ¿â
-	public static boolean isCrashCartoonOver=false;//·É»ú×¹»Ù¶¯»­²¥·ÅÍê±Ï
-	public static float Crash_DISTANCE_start=15;//×¹»ÙÊ±Åö×²µãÓëÉãÏñ»úµÄ³¤¶È
-	public static float Crash_DISTANCE_stop=60;//×¹»ÙÊ±ÉãÏñ»úÓëÄ¿±êµãµÄÀ­Éì¾àÀë
-	public static float BaoZha_scal=0f;//±¬Õ¨Ğ§¹ûµÄËõ·Å±È
-	public static boolean isno_draw_plane=false;//ÊÇ·ñ»æÖÆ·É»ú
-	public static boolean isno_draw_arsenal=true;//ÊÇ·ñ»æÖÆ¾ü»ğ¿â
-	//¸Õ¸Õ½øÈë³¡¾°£¬²¥·ÅÊÓÆµµÈ±êÖ¾
-	public static boolean isVideo=true;//ÊÇ·ñ²¥·ÅÊÓÆµÖĞ±êÖ¾
+	//å…³äºè‹±é›„å½“å‰çŠ¶æ€
+	public static boolean isCrash=false;//é£æœºæ˜¯å¦å æ¯
+	public static boolean isOvercome=false;//æ˜¯å¦æˆ˜èƒœï¼Œå³ç‚¸æ‰å†›ç«åº“
+	public static boolean isCrashCartoonOver=false;//é£æœºå æ¯åŠ¨ç”»æ’­æ”¾å®Œæ¯•
+	public static float Crash_DISTANCE_start=15;//å æ¯æ—¶ç¢°æ’ç‚¹ä¸æ‘„åƒæœºçš„é•¿åº¦
+	public static float Crash_DISTANCE_stop=60;//å æ¯æ—¶æ‘„åƒæœºä¸ç›®æ ‡ç‚¹çš„æ‹‰ä¼¸è·ç¦»
+	public static float BaoZha_scal=0f;//çˆ†ç‚¸æ•ˆæœçš„ç¼©æ”¾æ¯”
+	public static boolean isno_draw_plane=false;//æ˜¯å¦ç»˜åˆ¶é£æœº
+	public static boolean isno_draw_arsenal=true;//æ˜¯å¦ç»˜åˆ¶å†›ç«åº“
+	//åˆšåˆšè¿›å…¥åœºæ™¯ï¼Œæ’­æ”¾è§†é¢‘ç­‰æ ‡å¿—
+	public static boolean isVideo=true;//æ˜¯å¦æ’­æ”¾è§†é¢‘ä¸­æ ‡å¿—
 	public static int plane_blood=999;//999;
 	public static int arsenal_blood=100;
-	//µ±Ç°ËùÔÚµÄ¹ØÊı
+	//å½“å‰æ‰€åœ¨çš„å…³æ•°
 	public static int mapId=0;
 	
-	//ÊÇ·ñÔÚÓÎÏ·½çÃæ°´ÏÂÁË·µ»Ø°´Å¥
+	//æ˜¯å¦åœ¨æ¸¸æˆç•Œé¢æŒ‰ä¸‹äº†è¿”å›æŒ‰é’®
 	public static boolean is_button_return=false;
 	
 	
-	//ÊÇ·ñ±»Ì¹¿Ë»òÕß¸ßÉäÅÚ»÷ÖĞ
-	public static boolean isno_Hit;//Åöµ½ÕÏ°­Îï¶¶¶¯
-	public static boolean isno_Vibrate;//·¢ÉäÅÚµ¯ ¶¶¶¯
+	//æ˜¯å¦è¢«å¦å…‹æˆ–è€…é«˜å°„ç‚®å‡»ä¸­
+	public static boolean isno_Hit;//ç¢°åˆ°éšœç¢ç‰©æŠ–åŠ¨
+	public static boolean isno_Vibrate;//å‘å°„ç‚®å¼¹ æŠ–åŠ¨
 	
-	//ÊÇ·ñÓĞÄ³Ò»¸ö¶«Î÷±»Ëø¶¨
+	//æ˜¯å¦æœ‰æŸä¸€ä¸ªä¸œè¥¿è¢«é”å®š
 	public static final float Lock_Distance=2000;
-	public static boolean isno_Lock=false;//±ê¼ÇÊÇ·ñ±»Ëø¶¨
-	public static float Lock_angle=(float) Math.toRadians(8);//±»Ëø¶¨µÄ½Ç¶È·¶Î§
-	public static TanKe Lock_tanke;//±»Ëø¶¨µÄÌ¹¿Ë
-	public static Arsenal_House Lock_arsenal;//±»Ëø¶¨µÄ¾ü»ğ¿â
-	public static ArchieForControl Lock_Arch;//±»Ëø¶¨µÄ¸ßÉäÅÚ
-	public static Arsenal_House Lock_Arsenal;//±»Ëø¶¨µÄ¾ü»ğ¿â
+	public static boolean isno_Lock=false;//æ ‡è®°æ˜¯å¦è¢«é”å®š
+	public static float Lock_angle=(float) Math.toRadians(8);//è¢«é”å®šçš„è§’åº¦èŒƒå›´
+	public static TanKe Lock_tanke;//è¢«é”å®šçš„å¦å…‹
+	public static Arsenal_House Lock_arsenal;//è¢«é”å®šçš„å†›ç«åº“
+	public static ArchieForControl Lock_Arch;//è¢«é”å®šçš„é«˜å°„ç‚®
+	public static Arsenal_House Lock_Arsenal;//è¢«é”å®šçš„å†›ç«åº“
 	
-	public static float minimumdistance=Lock_Distance;//µ±Ç°±»Ëø¶¨µÄ×îĞ¡¾àÀë
-	//Ëø¶¨Ê±µÄ·½ÏòÏòÁ¿
+	public static float minimumdistance=Lock_Distance;//å½“å‰è¢«é”å®šçš„æœ€å°è·ç¦»
+	//é”å®šæ—¶çš„æ–¹å‘å‘é‡
 	public static float nx,ny,nz; 
-	public static float directionX,directionY,directionZ;//·É»ú·ÉĞĞµÄµ±Ç°·½Ïò£¬ÓÃÀ´Ëø¶¨Ä¿±ê
+	public static float directionX,directionY,directionZ;//é£æœºé£è¡Œçš„å½“å‰æ–¹å‘ï¼Œç”¨æ¥é”å®šç›®æ ‡
 
-	public static float planezAngle;//·É»úÂİĞı½¬×ª¶¯½Ç¶È
+	public static float planezAngle;//é£æœºèºæ—‹æµ†è½¬åŠ¨è§’åº¦
 
 	{
-		 //Éè¶¨ÉãÏñ»úÑö½ÇºÍ·½Î»½Ç
-		ELEVATION_CAMERA_ORI=8F;//ÉãÏñ»ú³õÊ¼Ñö½Ç
-	    ELEVATION_CAMERA=30;//ELEVATION_CAMERA_ORI;//ÉãÏñ»ú¹Û²ìµã¾àÄ¿±êµãµÄÑö½Ç
-	    DIRECTION_CAMERA=225;//ÉãÏñ»ú¹Û²ìµã¾àÄ¿±êµãµÄ·½Ïò½Ç
-	    ELEVATION_CAMERA_UP=30;//ÉãÏñ»úÏòÉÏÑöµÄ×î´óÖµ
-	    ELEVATION_CAMERA_DOWN=-5;//ÉãÏñ»úÏòÏÂ¸©µÄ×î´óÖµ
-	    ELEVATION_CAMERA_SPAN=0.4F;//ÉãÏñ»úÉÏÏÂ¸©ÑöµÄ²½Öµ
-	    DIRECTION_CAMERA_SPAN=2F;//ÉãÏñ»ú×óÓÒĞı×ªµØ²½Öµ
+		 //è®¾å®šæ‘„åƒæœºä»°è§’å’Œæ–¹ä½è§’
+		ELEVATION_CAMERA_ORI=8F;//æ‘„åƒæœºåˆå§‹ä»°è§’
+	    ELEVATION_CAMERA=30;//ELEVATION_CAMERA_ORI;//æ‘„åƒæœºè§‚å¯Ÿç‚¹è·ç›®æ ‡ç‚¹çš„ä»°è§’
+	    DIRECTION_CAMERA=225;//æ‘„åƒæœºè§‚å¯Ÿç‚¹è·ç›®æ ‡ç‚¹çš„æ–¹å‘è§’
+	    ELEVATION_CAMERA_UP=30;//æ‘„åƒæœºå‘ä¸Šä»°çš„æœ€å¤§å€¼
+	    ELEVATION_CAMERA_DOWN=-5;//æ‘„åƒæœºå‘ä¸‹ä¿¯çš„æœ€å¤§å€¼
+	    ELEVATION_CAMERA_SPAN=0.4F;//æ‘„åƒæœºä¸Šä¸‹ä¿¯ä»°çš„æ­¥å€¼
+	    DIRECTION_CAMERA_SPAN=2F;//æ‘„åƒæœºå·¦å³æ—‹è½¬åœ°æ­¥å€¼
 	    rotationAngle_Plane_Y=DIRECTION_CAMERA;
-	    PLANE_X=1675;//·É»úµÄXÎ»ÖÃ
-		PLANE_Y=500;//·É»úµÄYÎ»ÖÃ
-		PLANE_Z=2060;//·É»úµÄZÎ»ÖÃ
-		PLANE_MOVE_SPAN=15;//·É»úµÄËÙ¶È
-		isCrash=false;//·É»úÊÇ·ñ×¹»Ù
-		isOvercome=false;//ÊÇ·ñÕ½Ê¤£¬¼´Õ¨µô¾ü»ğ¿â
-		isCrashCartoonOver=false;//·É»ú×¹»Ù¶¯»­ÊÇ·ñ²¥·ÅÍê±Ï
-		Crash_DISTANCE_start=15;//×¹»ÙÊ±Åö×²µãÓëÉãÏñ»úµÄ³¤¶È
-		Crash_DISTANCE_stop=60;//×¹»ÙÊ±ÉãÏñ»úÓëÄ¿±êµãµÄÀ­Éì¾àÀë
-		BaoZha_scal=0f;//±¬Õ¨Ğ§¹ûµÄËõ·Å±È
-		isno_draw_plane=true;//ÊÇ·ñ»æÖÆ·É»ú
-		isno_draw_arsenal=true;//ÊÇ·ñ»æÖÆ¾ü»ğ¿â
-		isVideo=false;//ÊÇ·ñ²¥·ÅÊÓÆµÖĞ±êÖ¾
+	    PLANE_X=1675;//é£æœºçš„Xä½ç½®
+		PLANE_Y=500;//é£æœºçš„Yä½ç½®
+		PLANE_Z=2060;//é£æœºçš„Zä½ç½®
+		PLANE_MOVE_SPAN=15;//é£æœºçš„é€Ÿåº¦
+		isCrash=false;//é£æœºæ˜¯å¦å æ¯
+		isOvercome=false;//æ˜¯å¦æˆ˜èƒœï¼Œå³ç‚¸æ‰å†›ç«åº“
+		isCrashCartoonOver=false;//é£æœºå æ¯åŠ¨ç”»æ˜¯å¦æ’­æ”¾å®Œæ¯•
+		Crash_DISTANCE_start=15;//å æ¯æ—¶ç¢°æ’ç‚¹ä¸æ‘„åƒæœºçš„é•¿åº¦
+		Crash_DISTANCE_stop=60;//å æ¯æ—¶æ‘„åƒæœºä¸ç›®æ ‡ç‚¹çš„æ‹‰ä¼¸è·ç¦»
+		BaoZha_scal=0f;//çˆ†ç‚¸æ•ˆæœçš„ç¼©æ”¾æ¯”
+		isno_draw_plane=true;//æ˜¯å¦ç»˜åˆ¶é£æœº
+		isno_draw_arsenal=true;//æ˜¯å¦ç»˜åˆ¶å†›ç«åº“
+		isVideo=false;//æ˜¯å¦æ’­æ”¾è§†é¢‘ä¸­æ ‡å¿—
 		bullet_number=(int) ArchieArray[mapId][13][1];
 		bomb_number=(int) ArchieArray[mapId][13][0];
 		WEAPON_INDEX=0;
 		
 	}
-	public static void initMap_Value()//³õÊ¼»¯Ò»Ğ©Öµ
+	public static void initMap_Value()//åˆå§‹åŒ–ä¸€äº›å€¼
 	{
-		 //Éè¶¨ÉãÏñ»úÑö½ÇºÍ·½Î»½Ç
-		ELEVATION_CAMERA_ORI=8F;//ÉãÏñ»ú³õÊ¼Ñö½Ç
-	    ELEVATION_CAMERA=30;//ELEVATION_CAMERA_ORI;//ÉãÏñ»ú¹Û²ìµã¾àÄ¿±êµãµÄÑö½Ç
-	    DIRECTION_CAMERA=225;//ÉãÏñ»ú¹Û²ìµã¾àÄ¿±êµãµÄ·½Ïò½Ç
-	    ELEVATION_CAMERA_UP=30;//ÉãÏñ»úÏòÉÏÑöµÄ×î´óÖµ
-	    ELEVATION_CAMERA_DOWN=-5;//ÉãÏñ»úÏòÏÂ¸©µÄ×î´óÖµ
-	    ELEVATION_CAMERA_SPAN=0.4F;//ÉãÏñ»úÉÏÏÂ¸©ÑöµÄ²½Öµ
-	    DIRECTION_CAMERA_SPAN=2F;//ÉãÏñ»ú×óÓÒĞı×ªµØ²½Öµ
+		 //è®¾å®šæ‘„åƒæœºä»°è§’å’Œæ–¹ä½è§’
+		ELEVATION_CAMERA_ORI=8F;//æ‘„åƒæœºåˆå§‹ä»°è§’
+	    ELEVATION_CAMERA=30;//ELEVATION_CAMERA_ORI;//æ‘„åƒæœºè§‚å¯Ÿç‚¹è·ç›®æ ‡ç‚¹çš„ä»°è§’
+	    DIRECTION_CAMERA=225;//æ‘„åƒæœºè§‚å¯Ÿç‚¹è·ç›®æ ‡ç‚¹çš„æ–¹å‘è§’
+	    ELEVATION_CAMERA_UP=30;//æ‘„åƒæœºå‘ä¸Šä»°çš„æœ€å¤§å€¼
+	    ELEVATION_CAMERA_DOWN=-5;//æ‘„åƒæœºå‘ä¸‹ä¿¯çš„æœ€å¤§å€¼
+	    ELEVATION_CAMERA_SPAN=0.4F;//æ‘„åƒæœºä¸Šä¸‹ä¿¯ä»°çš„æ­¥å€¼
+	    DIRECTION_CAMERA_SPAN=2F;//æ‘„åƒæœºå·¦å³æ—‹è½¬åœ°æ­¥å€¼
 	    rotationAngle_Plane_Y=DIRECTION_CAMERA;
-	    PLANE_X=1675;//·É»úµÄXÎ»ÖÃ
-		PLANE_Y=500;//·É»úµÄYÎ»ÖÃ
-		PLANE_Z=2060;//·É»úµÄZÎ»ÖÃ
-		PLANE_MOVE_SPAN=15;//·É»úµÄËÙ¶È
-		isCrash=false;//·É»úÊÇ·ñ×¹»Ù
-		isOvercome=false;//ÊÇ·ñÕ½Ê¤£¬¼´Õ¨µô¾ü»ğ¿â
-		isCrashCartoonOver=false;//·É»ú×¹»Ù¶¯»­ÊÇ·ñ²¥·ÅÍê±Ï
-		Crash_DISTANCE_start=15;//×¹»ÙÊ±Åö×²µãÓëÉãÏñ»úµÄ³¤¶È
-		Crash_DISTANCE_stop=60;//×¹»ÙÊ±ÉãÏñ»úÓëÄ¿±êµãµÄÀ­Éì¾àÀë
-		BaoZha_scal=0f;//±¬Õ¨Ğ§¹ûµÄËõ·Å±È
-		isno_draw_plane=true;//ÊÇ·ñ»æÖÆ·É»ú
-		isno_draw_arsenal=true;//ÊÇ·ñ»æÖÆ¾ü»ğ¿â
-		isVideo=false;//ÊÇ·ñ²¥·ÅÊÓÆµÖĞ±êÖ¾
+	    PLANE_X=1675;//é£æœºçš„Xä½ç½®
+		PLANE_Y=500;//é£æœºçš„Yä½ç½®
+		PLANE_Z=2060;//é£æœºçš„Zä½ç½®
+		PLANE_MOVE_SPAN=15;//é£æœºçš„é€Ÿåº¦
+		isCrash=false;//é£æœºæ˜¯å¦å æ¯
+		isOvercome=false;//æ˜¯å¦æˆ˜èƒœï¼Œå³ç‚¸æ‰å†›ç«åº“
+		isCrashCartoonOver=false;//é£æœºå æ¯åŠ¨ç”»æ˜¯å¦æ’­æ”¾å®Œæ¯•
+		Crash_DISTANCE_start=15;//å æ¯æ—¶ç¢°æ’ç‚¹ä¸æ‘„åƒæœºçš„é•¿åº¦
+		Crash_DISTANCE_stop=60;//å æ¯æ—¶æ‘„åƒæœºä¸ç›®æ ‡ç‚¹çš„æ‹‰ä¼¸è·ç¦»
+		BaoZha_scal=0f;//çˆ†ç‚¸æ•ˆæœçš„ç¼©æ”¾æ¯”
+		isno_draw_plane=true;//æ˜¯å¦ç»˜åˆ¶é£æœº
+		isno_draw_arsenal=true;//æ˜¯å¦ç»˜åˆ¶å†›ç«åº“
+		isVideo=false;//æ˜¯å¦æ’­æ”¾è§†é¢‘ä¸­æ ‡å¿—
 		bullet_number=(int) ArchieArray[mapId][13][1];
 		bomb_number=(int) ArchieArray[mapId][13][0];
 		WEAPON_INDEX=0;
 		
 	}
-	public static final float PLANE_X_R=15f;//·É»ú°üÎ§ºĞ°ë¾¶
+	public static final float PLANE_X_R=15f;//é£æœºåŒ…å›´ç›’åŠå¾„
 	public static final float PLANE_Y_R=15; 
 	public static final float PLANE_Z_R=20;
-	public static final float ANGLE_X_Z=35;//·É»ú°üÎ§ºĞ¶¥µãÓë·É»úÖĞĞÄÁ¬ÏßÓëÖĞĞÄÏßµÄ¼Ğ½Ç
-	public static final float TRANSFER_Y=0;//YÖáÉÏÉãÏñ»úºÍ·É»úµÄÏÂµ÷Öµ
-	//¾ü»ğ¿âµÄ°üÎ§ºĞ
+	public static final float ANGLE_X_Z=35;//é£æœºåŒ…å›´ç›’é¡¶ç‚¹ä¸é£æœºä¸­å¿ƒè¿çº¿ä¸ä¸­å¿ƒçº¿çš„å¤¹è§’
+	public static final float TRANSFER_Y=0;//Yè½´ä¸Šæ‘„åƒæœºå’Œé£æœºçš„ä¸‹è°ƒå€¼
+	//å†›ç«åº“çš„åŒ…å›´ç›’
 	public static final float ARSENAL_X=100;
 	public static final float ARSENAL_Y=50;
 	public static final float ARSENAL_Z=90;
-	//Ì¹¿Ë°üÎ§ºĞ
+	//å¦å…‹åŒ…å›´ç›’
 	public static final float ARCHIBALD_X=40;
 	public static final float ARCHIBALD_Y=40;
 	public static final float ARCHIBALD_Z=40;
 	
-	//Êı×ÖµÄ¸ß¶È£¬ÏÔÊ¾ÑªµÄ°Ù·Ö±È
+	//æ•°å­—çš„é«˜åº¦ï¼Œæ˜¾ç¤ºè¡€çš„ç™¾åˆ†æ¯”
 	public static final float NUMBER_WIDTH=20;
-	public static final float NUMBER_HEIGHT=20;//Êı×ÖµÄ¿í¶ÈºÍ¸ß¶È£¬ÏÔÊ¾Ñª
-	public static Object lock=new Object();//´´½¨¶ÔÏóËø
-	public static float sXtart=0;//2D½çÃæµÄÆğÊ¼×ø±ê
+	public static final float NUMBER_HEIGHT=20;//æ•°å­—çš„å®½åº¦å’Œé«˜åº¦ï¼Œæ˜¾ç¤ºè¡€
+	public static Object lock=new Object();//åˆ›å»ºå¯¹è±¡é”
+	public static float sXtart=0;//2Dç•Œé¢çš„èµ·å§‹åæ ‡
 	public static float sYtart=0;
 	
-	//ÊÖ»úÆÁÄ»µÄ¿í¶ÈºÍ¸ß¶È
+	//æ‰‹æœºå±å¹•çš„å®½åº¦å’Œé«˜åº¦
 	public static  float SCREEN_WIDTH=480;
 	public static  float SCREEN_HEIGHT=800;
-	//ÆÁÄ»µÄËõ·Å±ÈÀı
+	//å±å¹•çš„ç¼©æ”¾æ¯”ä¾‹
 	public static float ratio_width;
 	public static float ratio_height;
-	//¼üÅÌ×´Ì¬
-	public static int keyState=0;//¼üÅÌ×´Ì¬  1-up 2-down 4-left 8-right
-    //Éè¶¨ÉãÏñ»úÑö½ÇºÍ·½Î»½Ç
-	public static float ELEVATION_CAMERA_ORI=8F;//ÉãÏñ»ú³õÊ¼Ñö½Ç
-    public static float ELEVATION_CAMERA=45;//ELEVATION_CAMERA_ORI;//ÉãÏñ»ú¹Û²ìµã¾àÄ¿±êµãµÄÑö½Ç
-    public static float  DIRECTION_CAMERA=180;//ÉãÏñ»ú¹Û²ìµã¾àÄ¿±êµãµÄ·½Ïò½Ç
-    public static float ELEVATION_CAMERA_UP=30;//ÉãÏñ»úÏòÉÏÑöµÄ×î´óÖµ
-    public static float ELEVATION_CAMERA_DOWN=-5;//ÉãÏñ»úÏòÏÂ¸©µÄ×î´óÖµ
-    public static float ELEVATION_CAMERA_SPAN=0.8F;//ÉãÏñ»úÉÏÏÂ¸©ÑöµÄ²½Öµ
-    public static float DIRECTION_CAMERA_SPAN=2F;//ÉãÏñ»ú×óÓÒĞı×ªµØ²½Öµ
+	//é”®ç›˜çŠ¶æ€
+	public static int keyState=0;//é”®ç›˜çŠ¶æ€  1-up 2-down 4-left 8-right
+    //è®¾å®šæ‘„åƒæœºä»°è§’å’Œæ–¹ä½è§’
+	public static float ELEVATION_CAMERA_ORI=8F;//æ‘„åƒæœºåˆå§‹ä»°è§’
+    public static float ELEVATION_CAMERA=45;//ELEVATION_CAMERA_ORI;//æ‘„åƒæœºè§‚å¯Ÿç‚¹è·ç›®æ ‡ç‚¹çš„ä»°è§’
+    public static float  DIRECTION_CAMERA=180;//æ‘„åƒæœºè§‚å¯Ÿç‚¹è·ç›®æ ‡ç‚¹çš„æ–¹å‘è§’
+    public static float ELEVATION_CAMERA_UP=30;//æ‘„åƒæœºå‘ä¸Šä»°çš„æœ€å¤§å€¼
+    public static float ELEVATION_CAMERA_DOWN=-5;//æ‘„åƒæœºå‘ä¸‹ä¿¯çš„æœ€å¤§å€¼
+    public static float ELEVATION_CAMERA_SPAN=0.8F;//æ‘„åƒæœºä¸Šä¸‹ä¿¯ä»°çš„æ­¥å€¼
+    public static float DIRECTION_CAMERA_SPAN=2F;//æ‘„åƒæœºå·¦å³æ—‹è½¬åœ°æ­¥å€¼
     
-    //ÉãÏñ»ú¹Û²ìµãºÍÄ¿±êµãµÄ¾àÀë
+    //æ‘„åƒæœºè§‚å¯Ÿç‚¹å’Œç›®æ ‡ç‚¹çš„è·ç¦»
     public static final float DISTANCE=180;
 	
-	//Ìì¿Õñ·µÄĞı×ª
+	//å¤©ç©ºç©¹çš„æ—‹è½¬
 	public static  float rotationAngle_SkyBall;
-	//Ë®ÃæµÄ¿í¶È
+	//æ°´é¢çš„å®½åº¦
 	public static float WATER_WIDTH;
-	//Ë®ÃæµÄ¸ß¶È
+	//æ°´é¢çš„é«˜åº¦
 	public static float WATER_HEIGHT; 
-	//------------------------------------É½----------------------------------------------
+	//------------------------------------å±±----------------------------------------------
 	public static final float LAND_HIGHEST=150f;   
-	public static final float LAND_HIGHT=600;//¼ÓÔØÉ½µÄ¸ß¶Èµ÷Õû
+	public static final float LAND_HIGHT=600;//åŠ è½½å±±çš„é«˜åº¦è°ƒæ•´
 	
-	public static final float waterHillHight=20;//Ë®ÃæÉÏµÄÉ½½¥±ä¸ß¶È
-	public static final float LOTHight=10;//µØ¿é½¥±ä¸ß¶È 
-	public static final float HillHight=100;//µØÃæÉ½µÄ½¥±ä¸ß¶È
+	public static final float waterHillHight=20;//æ°´é¢ä¸Šçš„å±±æ¸å˜é«˜åº¦
+	public static final float LOTHight=10;//åœ°å—æ¸å˜é«˜åº¦ 
+	public static final float HillHight=100;//åœ°é¢å±±çš„æ¸å˜é«˜åº¦
 	
-	public static final float height_span_LOT=130;//¹ÕÍäÉÏÉ½½¥±ä¸ß¶È 
-	public static final float height_span_Water=180;//Ë®ÉÏÉ½½¥±ä¸ß¶È
-	public static final float height_span_Hill=200;//É½ÉÏÉ½½¥±ä¸ß¶È
+	public static final float height_span_LOT=130;//æ‹å¼¯ä¸Šå±±æ¸å˜é«˜åº¦ 
+	public static final float height_span_Water=180;//æ°´ä¸Šå±±æ¸å˜é«˜åº¦
+	public static final float height_span_Hill=200;//å±±ä¸Šå±±æ¸å˜é«˜åº¦
 	
-	//¸Ã·½³ÌÊÇÓÃÓÚ²úÉúÉ½µØµÄ¹ı¶ÈĞ§¹û
-	//Ïà¶ÔÓÚ»Ò¶ÈÍ¼ÊÇÃ¿Ò»ĞĞÒ»ĞĞµÄ²úÉú×ø±ê        ²úÉúµÄ»Ò¶ÈÍ¼Îª8*8
-	static int span=7;// ¹ı¶ÈÇøÓòËùÕ¼µÄĞĞÊı
-	static int rows=7;//×ÜĞĞÊı                           
-	public static float zdYRowFunction(float rowIndex)//²ÎÊıÎªĞĞµÄË÷Òı                                           
+	//è¯¥æ–¹ç¨‹æ˜¯ç”¨äºäº§ç”Ÿå±±åœ°çš„è¿‡åº¦æ•ˆæœ
+	//ç›¸å¯¹äºç°åº¦å›¾æ˜¯æ¯ä¸€è¡Œä¸€è¡Œçš„äº§ç”Ÿåæ ‡        äº§ç”Ÿçš„ç°åº¦å›¾ä¸º8*8
+	static int span=7;// è¿‡åº¦åŒºåŸŸæ‰€å çš„è¡Œæ•°
+	static int rows=7;//æ€»è¡Œæ•°                           
+	public static float zdYRowFunction(float rowIndex)//å‚æ•°ä¸ºè¡Œçš„ç´¢å¼•                                           
 	{		                                                                                 
 		if(rowIndex>=0&&rowIndex<4)
 		{
@@ -808,7 +808,7 @@ public class Constant
 			return 0;
 		}
 	}                                                                                        
-	//²úÉúÖ±µÀY×ø±êÊı×éµÄ·½·¨                                              
+	//äº§ç”Ÿç›´é“Yåæ ‡æ•°ç»„çš„æ–¹æ³•                                              
 	public static float[][] generateZDY()                            
 	{                                                           
 		int colsPlusOne=rows+1;                                 
@@ -825,7 +825,7 @@ public class Constant
 		} 
 		return temp;
 	}
-	//²úÉúÉÏÍäµÀY×ø±êÊı×éµÄ·½·¨                                               
+	//äº§ç”Ÿä¸Šå¼¯é“Yåæ ‡æ•°ç»„çš„æ–¹æ³•                                               
 	public static float[][] generateUpWDY()                              
 	{                                                            
 		int colsPlusOne=rows+1;                                  
@@ -854,7 +854,7 @@ public class Constant
 		} 
 		return temp;
 	} 
-	//²úÉúÏÂÍäµÀµÄYÊı×éµÄ·½·¨
+	//äº§ç”Ÿä¸‹å¼¯é“çš„Yæ•°ç»„çš„æ–¹æ³•
 	public static float[][] generateDownWDY()                             
 	{                                                            
 		int colsPlusOne=rows+1;                                  
@@ -879,209 +879,209 @@ public class Constant
 		}
 		return temp;
 	} 
-	//------Éè¶¨É½µÄµ÷ÕûÖµ
+	//------è®¾å®šå±±çš„è°ƒæ•´å€¼
 	public static final float LAND_HIGH_ADJUST=0;
-	//------Â½µØµÄ¿éÊı
+	//------é™†åœ°çš„å—æ•°
 	public static final int LANDS_SIZE=7;
-	//-----Â½µØµÄ¸ß¶ÈÊı×é
+	//-----é™†åœ°çš„é«˜åº¦æ•°ç»„
 	public static float[][][] LANDS_HEIGHT_ARRAY=new float[LANDS_SIZE][][];
-	//-----Â½µØµÄÃ¿¸ñµ¥Î»¿í¶È
+	//-----é™†åœ°çš„æ¯æ ¼å•ä½å®½åº¦
 	public static final float LAND_UNIT_SIZE=60;
-	//Â½µØµÄ¿í¶ÈºÍ¸ß¶È
+	//é™†åœ°çš„å®½åº¦å’Œé«˜åº¦
 	public static float WIDTH_LALNDFORM;
 	public static float HEIGHT_LANDFORM;
-	//Éè¶¨Ìì¿ÕµÄ°ë¾¶
+	//è®¾å®šå¤©ç©ºçš„åŠå¾„
 	public static final float SKY_BALL_RADIUS=40*LAND_UNIT_SIZE*rows;
 	public static final float SKY_BALL_SMALL=LAND_UNIT_SIZE*rows*(CELL_SIZE/2-0.3f);
-	//------³õÊ¼»¯Â½µØ¶¥µãµÄĞÅÏ¢
+	//------åˆå§‹åŒ–é™†åœ°é¡¶ç‚¹çš„ä¿¡æ¯
 	public static void initLandsHeightInfo(Resources r)
 	{
 		LANDS_HEIGHT_ARRAY[0]= generateZDY();
 		LANDS_HEIGHT_ARRAY[1]=generateUpWDY();
 		LANDS_HEIGHT_ARRAY[2]= generateDownWDY();
-		LANDS_HEIGHT_ARRAY[3]=loadLandforms(r,R.drawable.landform,LAND_HIGHEST);//Â½µØÉÏµÄÉ½
-		LANDS_HEIGHT_ARRAY[4]=loadLandforms(r,R.drawable.landform1,0);//Ë®ÀïÃæµÄÉ½
-		LANDS_HEIGHT_ARRAY[5]=loadLandforms(r,R.drawable.landform3,LAND_HIGHEST);//Â½µØÉÏµÄÓÒ±ß
-		LANDS_HEIGHT_ARRAY[6]=loadLandforms(r,R.drawable.landform2,LAND_HIGHEST);//Á½±ß½Ó
-		//ÕâÀï³õÊ¼»¯Â½µØµÄ¿í¶ÈºÍ¸ß¶È
+		LANDS_HEIGHT_ARRAY[3]=loadLandforms(r,R.drawable.landform,LAND_HIGHEST);//é™†åœ°ä¸Šçš„å±±
+		LANDS_HEIGHT_ARRAY[4]=loadLandforms(r,R.drawable.landform1,0);//æ°´é‡Œé¢çš„å±±
+		LANDS_HEIGHT_ARRAY[5]=loadLandforms(r,R.drawable.landform3,LAND_HIGHEST);//é™†åœ°ä¸Šçš„å³è¾¹
+		LANDS_HEIGHT_ARRAY[6]=loadLandforms(r,R.drawable.landform2,LAND_HIGHEST);//ä¸¤è¾¹æ¥
+		//è¿™é‡Œåˆå§‹åŒ–é™†åœ°çš„å®½åº¦å’Œé«˜åº¦
 		WIDTH_LALNDFORM=LAND_UNIT_SIZE*(LANDS_HEIGHT_ARRAY[0].length-1);
 		HEIGHT_LANDFORM=LAND_UNIT_SIZE*(LANDS_HEIGHT_ARRAY[0][0].length-1);
 		WATER_WIDTH=WIDTH_LALNDFORM;
 		WATER_HEIGHT=HEIGHT_LANDFORM;
 	}
-	//------´Ó»Ò¶ÈÍ¼Æ¬ÖĞ¼ÓÔØÂ½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶È
+	//------ä»ç°åº¦å›¾ç‰‡ä¸­åŠ è½½é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦
 	public static float[][] loadLandforms(Resources resource,int landformDrawable,float height)
 	{
-		//¼ÓÔØµØĞÎ»Ò¶ÈÍ¼
+		//åŠ è½½åœ°å½¢ç°åº¦å›¾
 		Bitmap bt=BitmapFactory.decodeResource(resource, landformDrawable);
-		//»ñÈ¡»Ò¶ÈÍ¼µÄ¸ß¶ÈÓë¿í¶È    ÏñËØÊı×Ü±ÈÁĞÊıºÍĞĞÊı´óÒ»
+		//è·å–ç°åº¦å›¾çš„é«˜åº¦ä¸å®½åº¦    åƒç´ æ•°æ€»æ¯”åˆ—æ•°å’Œè¡Œæ•°å¤§ä¸€
 		int colsPlusOne=bt.getWidth();
 		int rowsPlusOne=bt.getHeight(); 
-		//½«»Ò¶ÈÍ¼ÖĞµÄÃ¿¸öÏñËØµÄ»Ò¶ÈÖµ»»Ëã³ÉÂ½µØ´ËµãµÄ¸ß¶ÈÖµ
+		//å°†ç°åº¦å›¾ä¸­çš„æ¯ä¸ªåƒç´ çš„ç°åº¦å€¼æ¢ç®—æˆé™†åœ°æ­¤ç‚¹çš„é«˜åº¦å€¼
 		float[][] result=new float[rowsPlusOne][colsPlusOne];
 		for(int i=0;i<rowsPlusOne;i++)
 		{
 			for(int j=0;j<colsPlusOne;j++)
 			{
-				int color=bt.getPixel(j,i);//»ñÈ¡Ö¸¶¨Î»ÖÃÑÕÉ«Öµ
-				int r=Color.red(color);//»ñÈ¡ºìÉ«·ÖÁ¿Öµ
-				int g=Color.green(color); //»ñÈ¡ÂÌÉ«·ÖÁ¿Öµ
-				int b=Color.blue(color);//»ñÈ¡À¶É«·ÖÁ¿Öµ
-				int h=(r+g+b)/3;//ÑÕÉ«¾ùÖµ  Îª60
+				int color=bt.getPixel(j,i);//è·å–æŒ‡å®šä½ç½®é¢œè‰²å€¼
+				int r=Color.red(color);//è·å–çº¢è‰²åˆ†é‡å€¼
+				int g=Color.green(color); //è·å–ç»¿è‰²åˆ†é‡å€¼
+				int b=Color.blue(color);//è·å–è“è‰²åˆ†é‡å€¼
+				int h=(r+g+b)/3;//é¢œè‰²å‡å€¼  ä¸º60
 				result[i][j]=h*LAND_HIGHT/255.0f+height;  
 			}
 		}		
 		return result;
 	}
-	//¿ª»ğ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+	//å¼€ç«æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 	public static float BUTTON_FIRE_WIDTH=0.6f;
 	public static float BUTTON_FIRE_HEIGHT=0.6f;
-	//¿ª»ğ°´Å¥µÄÆ½ÒÆ
+	//å¼€ç«æŒ‰é’®çš„å¹³ç§»
 	public static float BUTTON_FIRE_XOffset=1.4f;
 	public static float BUTTON_FIRE_YOffset=-0.7f;//-----------
-	//¿ª»ğ°´Å¥µÄ·¶Î§
+	//å¼€ç«æŒ‰é’®çš„èŒƒå›´
 	public static float[]BUTTON_FIRE_AREA;
-	//À×´ï±³¾°µÄ´óĞ¡
+	//é›·è¾¾èƒŒæ™¯çš„å¤§å°
 	public static float BUTTON_RADAR_BG_WIDTH=0.5f;
 	public static float BUTTON_RADAR_BG_HEIGHT=0.5f;
 	public static float scalMark=0.3f;
 	
-	//À×´ïÖ¸ÕëµÄ´óĞ¡
+	//é›·è¾¾æŒ‡é’ˆçš„å¤§å°
 	public static float BUTTON_RADAR_PLANE_WIDTH=0.35F;
 	public static float BUTTON_RADAR_PLANE_HEIGHT=0.35F;
-	//À×´ïµÄÎ»ÖÃ
+	//é›·è¾¾çš„ä½ç½®
 	public static float BUTTON_RADAR_XOffset=1.4f;
 	public static float BUTTON_RADAR_YOffset=0.7f;
-	//À×´ïÖ¸ÕëµÄĞı×ª½Ç¶È
+	//é›·è¾¾æŒ‡é’ˆçš„æ—‹è½¬è§’åº¦
 	public static  float RADAR_DIRECTION;
-	//ÎäÆ÷Ñ¡Ôñ°´Å¥µÄ¿í¶ÈºÍ¸ß¶È
+	//æ­¦å™¨é€‰æ‹©æŒ‰é’®çš„å®½åº¦å’Œé«˜åº¦
 	public static float BUTTON_WEAPON_WIDTH=0.3f;
 	public static float BUTTON_WEAPON_HEIGHT=0.3f;
-	//ÎäÆ÷Ñ¡Ôñ°´Å¥µÄÆ½ÒÆ
+	//æ­¦å™¨é€‰æ‹©æŒ‰é’®çš„å¹³ç§»
 	public static float BUTTON_WEAPON_XOffset=-1.45f;
 	public static float BUTTON_WEAPON_YOffset=0.8f;//-----------
-	//ÎäÆ÷µÄÀà±ğµÄË÷Òı
-	public static int WEAPON_INDEX=0;//0±íÊ¾×Óµ¯,1±íÊ¾µ¼µ¯
-	//ÎäÆ÷Ñ¡Ôñ°´Å¥µÄ·¶Î§
+	//æ­¦å™¨çš„ç±»åˆ«çš„ç´¢å¼•
+	public static int WEAPON_INDEX=0;//0è¡¨ç¤ºå­å¼¹,1è¡¨ç¤ºå¯¼å¼¹
+	//æ­¦å™¨é€‰æ‹©æŒ‰é’®çš„èŒƒå›´
 	public static float[]BUTTON_WEAPON_AREA;
 	
-	//ÎäÆ÷Ê£ÓàÁ¿µÄ¿í¶ÈºÍ¸ß¶È
+	//æ­¦å™¨å‰©ä½™é‡çš„å®½åº¦å’Œé«˜åº¦
 	public static float WEAPON_NUMBER_WIDTH=0.05f;
 	public static float WEAPON_NUMBER_HEIGHT=0.15f;
-	//ÎäÆ÷Ñ¡Ôñ°´Å¥µÄÆ½ÒÆ
+	//æ­¦å™¨é€‰æ‹©æŒ‰é’®çš„å¹³ç§»
 	public static float WEAPON_NUMBER_XOffset;
 	public static float WEAPON_NUMBER_YOffset;//-----------
 	
-	//ÏòÉÏ°´Å¥µÄ¿í¶È¸ß¶È
+	//å‘ä¸ŠæŒ‰é’®çš„å®½åº¦é«˜åº¦
 	public static float BUTTON_UP_WIDTH=0.5f;
 	public static float BUTTON_UP_HEIGHT=0.5f;
-	//ÏòÉÏ°´Å¥µÄÆ½ÒÆ
+	//å‘ä¸ŠæŒ‰é’®çš„å¹³ç§»
 	public static float BUTTON_UP_XOffset=-1.45f;
 	public static float BUTTON_UP_YOffset=-0.4f;//-----------
-	//ÏòÉÏ°´Å¥µÄ·¶Î§
+	//å‘ä¸ŠæŒ‰é’®çš„èŒƒå›´
 	public static float[]BUTTON_UP_AREA;
 	
-	//ÏòÏÂ°´Å¥µÄ¿í¶È¸ß¶È
+	//å‘ä¸‹æŒ‰é’®çš„å®½åº¦é«˜åº¦
 	public static float BUTTON_DOWN_WIDTH=0.5f;
 	public static float BUTTON_DOWN_HEIGHT=0.5f;
-	//ÏòÏÂ°´Å¥µÄÆ½ÒÆ
+	//å‘ä¸‹æŒ‰é’®çš„å¹³ç§»
 	public static float BUTTON_DOWN_XOffset=-1.45f;
 	public static float BUTTON_DOWN_YOffset=-0.8f;//-----------
-	//ÏòÏÂ°´Å¥µÄ·¶Î§
+	//å‘ä¸‹æŒ‰é’®çš„èŒƒå›´
 	public static float[]BUTTON_DOWN_AREA;
 
-	//¼ÓÔØMaxÎïÌåÊ±µÄËõ·Å±ÈÀı
+	//åŠ è½½Maxç‰©ä½“æ—¶çš„ç¼©æ”¾æ¯”ä¾‹
 	public static final float ratio_3dmax=0.7f;
 	
-	//------·É»úÄ£ĞÍµÄÏà¹Ø²ÎÊı-------------------
-	public final static float BODYBACK_B=0.08f;				//»úÉíÍÖÇòbÖá³¤¶È
-	public final static float BODYBACK_C=0.08f;				//»úÉíÍÖÇòcÖá³¤¶È
-	public final static float BODYBACK_A=0.6f;				//»úÉíÍÖÇòaÖá³¤¶È
-	public final static float BODYHEAD_A=0.2f;				//»úÍ·ÍÖÇòaÖá³¤¶È
+	//------é£æœºæ¨¡å‹çš„ç›¸å…³å‚æ•°-------------------
+	public final static float BODYBACK_B=0.08f;				//æœºèº«æ¤­çƒbè½´é•¿åº¦
+	public final static float BODYBACK_C=0.08f;				//æœºèº«æ¤­çƒcè½´é•¿åº¦
+	public final static float BODYBACK_A=0.6f;				//æœºèº«æ¤­çƒaè½´é•¿åº¦
+	public final static float BODYHEAD_A=0.2f;				//æœºå¤´æ¤­çƒaè½´é•¿åº¦
 	
-	public static final float PLANE_SIZE=1.5f*2;				//hero»úµÄ³ß´ç
-	public final static float BODYHEAD_B=0.08f;				//»úÍ·ÍÖÇòbÖá³¤¶È
-	public final static float BODYHEAD_C=0.08f;				//»úÍ·ÍÖÇòcÖá³¤¶È
-	public final static float CABIN_A=0.08f;				//»ú²ÕÍÖÇòaÖá³¤¶È
-	public final static float CABIN_B=0.032f;				//»ú²ÕÍÖÇòbÖá³¤¶È
-	public final static float CABIN_C=0.032f;				//»ú²ÕÍÖÇòcÖá³¤¶È
-	public static final float ENEMYPLANE_SIZE=3;			//µĞ»úµÄ³ß´ç
-	//--------·É»ú¿ØÖÆÏà¹Ø²ÎÊı------------------------------------
-	public final static float PLANE_RATIO=20F;//·É»úµÄËõ·Å±ÈÀı
-	public static float PLANE_X=1675;//·É»úµÄXÎ»ÖÃ
-	public static float PLANE_Y=330;//·É»úµÄYÎ»ÖÃ
-	public static float PLANE_Z=2060;//·É»úµÄZÎ»ÖÃ
-	//Éè¶¨·É»úÃ¿´ÎÏòÇ°ÒÆ¶¯µÄ¾àÀë
+	public static final float PLANE_SIZE=1.5f*2;				//heroæœºçš„å°ºå¯¸
+	public final static float BODYHEAD_B=0.08f;				//æœºå¤´æ¤­çƒbè½´é•¿åº¦
+	public final static float BODYHEAD_C=0.08f;				//æœºå¤´æ¤­çƒcè½´é•¿åº¦
+	public final static float CABIN_A=0.08f;				//æœºèˆ±æ¤­çƒaè½´é•¿åº¦
+	public final static float CABIN_B=0.032f;				//æœºèˆ±æ¤­çƒbè½´é•¿åº¦
+	public final static float CABIN_C=0.032f;				//æœºèˆ±æ¤­çƒcè½´é•¿åº¦
+	public static final float ENEMYPLANE_SIZE=3;			//æ•Œæœºçš„å°ºå¯¸
+	//--------é£æœºæ§åˆ¶ç›¸å…³å‚æ•°------------------------------------
+	public final static float PLANE_RATIO=20F;//é£æœºçš„ç¼©æ”¾æ¯”ä¾‹
+	public static float PLANE_X=1675;//é£æœºçš„Xä½ç½®
+	public static float PLANE_Y=330;//é£æœºçš„Yä½ç½®
+	public static float PLANE_Z=2060;//é£æœºçš„Zä½ç½®
+	//è®¾å®šé£æœºæ¯æ¬¡å‘å‰ç§»åŠ¨çš„è·ç¦»
     public static float PLANE_MOVE_SPAN=12;
-    //Éè¶¨µĞ»ú·ÉĞĞËÙ¶È
+    //è®¾å®šæ•Œæœºé£è¡Œé€Ÿåº¦
     public static float ENEMYPLANE_SPAN=10;
-    //·É»úµÄ·ÉĞĞµÄº£°Î×î´óÖµ
+    //é£æœºçš„é£è¡Œçš„æµ·æ‹”æœ€å¤§å€¼
     public static float PLANE_HEIGHT_MAX=LAND_HIGHT*1.2f;
-    //·É»úĞı×ªµØ½Ç¶È    ·Ö±ğÎªÈÆ XÖá,YÖá,ºÍZÖá
+    //é£æœºæ—‹è½¬åœ°è§’åº¦    åˆ†åˆ«ä¸ºç»• Xè½´,Yè½´,å’ŒZè½´
     public static float rotationAngle_Plane_X;
     public static float rotationAngle_Plane_Y=DIRECTION_CAMERA;
     public static float rotationAngle_Plane_Z; 
 	
-	public final static float PLANE_UP_ROTATION_DOMAIN_X=45;//·É»úÏòÉÏÑöµÄ×î´óÖµ
-	public final static float PLANE_ROTATION_SPEED_SPAN_X=5f;//·É»úÉÏÏÂ¸©Ñö½ÇËÙ¶È
-	public final static float PLANE_DOWN_ROTATION_DOMAIN_X=-20;//·É»úÏòÏÂ¸©µÄ×î´óÖµ
+	public final static float PLANE_UP_ROTATION_DOMAIN_X=45;//é£æœºå‘ä¸Šä»°çš„æœ€å¤§å€¼
+	public final static float PLANE_ROTATION_SPEED_SPAN_X=5f;//é£æœºä¸Šä¸‹ä¿¯ä»°è§’é€Ÿåº¦
+	public final static float PLANE_DOWN_ROTATION_DOMAIN_X=-20;//é£æœºå‘ä¸‹ä¿¯çš„æœ€å¤§å€¼
 	
-	public final static float PLANE_ROTATION_SPEED_SPAN_Z=2f;//·É»ú×óÓÒÇãĞ±½ÇËÙ¶È 
-	public final static float PLANE_LEFT_ROTATION_DOMAIN_Z=16;//·É»úÏò×óÇãĞ±µÄ×î´óÖµ
-	public final static float PLANE_RIGHT_ROTATION_DOMAIN_Z=-16;//·É»úÏòÓÒÇãĞ±µÄ×î´óÖµ
+	public final static float PLANE_ROTATION_SPEED_SPAN_Z=2f;//é£æœºå·¦å³å€¾æ–œè§’é€Ÿåº¦ 
+	public final static float PLANE_LEFT_ROTATION_DOMAIN_Z=16;//é£æœºå‘å·¦å€¾æ–œçš„æœ€å¤§å€¼
+	public final static float PLANE_RIGHT_ROTATION_DOMAIN_Z=-16;//é£æœºå‘å³å€¾æ–œçš„æœ€å¤§å€¼
 	
-	//-----------------------×Óµ¯µÄÏà¹Ø²ÎÊı
+	//-----------------------å­å¼¹çš„ç›¸å…³å‚æ•°
 	public final static float BULLET_WIDTH=7F;
 	public final static float BULLET_HEIGHT=4F;
-	public final static float BULLET_SCALE=4f;//0.6F;//×Óµ¯µÄ´óĞ¡
-	public final static float BULLET_MAX_DISTANCE=2000;//×Óµ¯µÄ×î´óÉä³Ì
-	public static ArrayList<BulletForControl> bullet_List=new ArrayList<BulletForControl>();//·¢Éä³öÈ¥µÄ×Óµ¯ÁĞ±í
-	public final static float BULLET_VELOCITY=40;//×Óµ¯µÄËÙ¶È
-	public static boolean isFireOn;//ÊÇ·ñ·¢Éä×Óµ¯
-	public static int bullet_number;//×Óµ¯ÊıÁ¿
-	//-----------------------ÅÚµ¯µÄÏà¹Ø²ÎÊı
-	public static ArrayList<BombForControl> bomb_List=new ArrayList<BombForControl>();//·¢Éä³öÈ¥µÄ×Óµ¯ÁĞ±í
-	public static int fire_index=0;//0±íÊ¾×ó»úÒí·¢Éä,1±íÊ¾ÓÒ»úÒí·¢Éä
-	public final static float BOMB_MAX_DISTANCE=1500;//×Óµ¯µÄ×î´óÉä³Ì
-	public final static float BOMB_VELOCITY=40;//ÅÚµ¯µÄËÙ¶È
-	public static int bomb_number;//×Óµ¯ÊıÁ¿
-	//------------------------¸ßÉäÅÚµÄÏà¹Ø²ÎÊı
-	public static float barrel_length=60;//ÅÚ¹ÜµÄ³¤¶È
-	public static float barrel_radius=6f;//ÅÚ¹ÜµÄ°ë¾¶
-	public static float barbette_length=6;//ÅÚÌ¨µÄ³¤¶È
-	public static float barbette_radius=35;//ÅÚÌ¨µÄ°ë¾¶
-	public static float cube_length=10;//µ²°åµÄ³¤¶È
-	public static float cube_width=15;//µ²°åµÄ¿í¶È
-	public static float cube_height=25;//µ²°åµÄ¸ß¶È
-	public static final float ARCHIE_MAX_DISTANCE=1500;//¸ßÉäÅÚÄÜ¹»É¨Ãèµ½µÄ×î´ó·¶Î§
-	public static ArrayList<ArchieForControl> archie_List=new ArrayList<ArchieForControl>();//¸ßÉäÅÚµÄÁĞ±í
+	public final static float BULLET_SCALE=4f;//0.6F;//å­å¼¹çš„å¤§å°
+	public final static float BULLET_MAX_DISTANCE=2000;//å­å¼¹çš„æœ€å¤§å°„ç¨‹
+	public static ArrayList<BulletForControl> bullet_List=new ArrayList<BulletForControl>();//å‘å°„å‡ºå»çš„å­å¼¹åˆ—è¡¨
+	public final static float BULLET_VELOCITY=40;//å­å¼¹çš„é€Ÿåº¦
+	public static boolean isFireOn;//æ˜¯å¦å‘å°„å­å¼¹
+	public static int bullet_number;//å­å¼¹æ•°é‡
+	//-----------------------ç‚®å¼¹çš„ç›¸å…³å‚æ•°
+	public static ArrayList<BombForControl> bomb_List=new ArrayList<BombForControl>();//å‘å°„å‡ºå»çš„å­å¼¹åˆ—è¡¨
+	public static int fire_index=0;//0è¡¨ç¤ºå·¦æœºç¿¼å‘å°„,1è¡¨ç¤ºå³æœºç¿¼å‘å°„
+	public final static float BOMB_MAX_DISTANCE=1500;//å­å¼¹çš„æœ€å¤§å°„ç¨‹
+	public final static float BOMB_VELOCITY=40;//ç‚®å¼¹çš„é€Ÿåº¦
+	public static int bomb_number;//å­å¼¹æ•°é‡
+	//------------------------é«˜å°„ç‚®çš„ç›¸å…³å‚æ•°
+	public static float barrel_length=60;//ç‚®ç®¡çš„é•¿åº¦
+	public static float barrel_radius=6f;//ç‚®ç®¡çš„åŠå¾„
+	public static float barbette_length=6;//ç‚®å°çš„é•¿åº¦
+	public static float barbette_radius=35;//ç‚®å°çš„åŠå¾„
+	public static float cube_length=10;//æŒ¡æ¿çš„é•¿åº¦
+	public static float cube_width=15;//æŒ¡æ¿çš„å®½åº¦
+	public static float cube_height=25;//æŒ¡æ¿çš„é«˜åº¦
+	public static final float ARCHIE_MAX_DISTANCE=1500;//é«˜å°„ç‚®èƒ½å¤Ÿæ‰«æåˆ°çš„æœ€å¤§èŒƒå›´
+	public static ArrayList<ArchieForControl> archie_List=new ArrayList<ArchieForControl>();//é«˜å°„ç‚®çš„åˆ—è¡¨
 	public static Map<Integer,ArrayList<ArchieForControl>> archie_Map=new HashMap<Integer,ArrayList<ArchieForControl>>();
-	public static ArrayList<BombForControl> archie_bomb_List=new ArrayList<BombForControl>();//¸ßÉäÅÚÅÚµ¯µÄÁĞ±í
-	public final static float ARCHIE_BOMB_VELOCITY=30;//ÅÚµ¯µÄËÙ¶È
-	//------------------------Ì¹¿ËÏà¹Ø²ÎÊı--------
-	public static final float TANK_MAX_DISTANCE=600;//Ì¹¿ËÄÜ¹»É¨Ãèµ½µÄ×î´ó·¶Î§
-	public static ArrayList<BombForControl> tank_bomb_List=new ArrayList<BombForControl>();//Ì¹¿ËÅÚµ¯µÄÁĞ±í
-	public final static float TANK_BOMB_VELOCITY=30f;//ÅÚµ¯µÄËÙ¶È
-	public final static float tank_ratio=3f;//Ì¹¿ËµÄËõ·Å±ÈÀı
-	//------Í¨¹ıÊäÈëÁ÷¼ÓÔØÎÆÀíµÄ·½·¨
+	public static ArrayList<BombForControl> archie_bomb_List=new ArrayList<BombForControl>();//é«˜å°„ç‚®ç‚®å¼¹çš„åˆ—è¡¨
+	public final static float ARCHIE_BOMB_VELOCITY=30;//ç‚®å¼¹çš„é€Ÿåº¦
+	//------------------------å¦å…‹ç›¸å…³å‚æ•°--------
+	public static final float TANK_MAX_DISTANCE=600;//å¦å…‹èƒ½å¤Ÿæ‰«æåˆ°çš„æœ€å¤§èŒƒå›´
+	public static ArrayList<BombForControl> tank_bomb_List=new ArrayList<BombForControl>();//å¦å…‹ç‚®å¼¹çš„åˆ—è¡¨
+	public final static float TANK_BOMB_VELOCITY=30f;//ç‚®å¼¹çš„é€Ÿåº¦
+	public final static float tank_ratio=3f;//å¦å…‹çš„ç¼©æ”¾æ¯”ä¾‹
+	//------é€šè¿‡è¾“å…¥æµåŠ è½½çº¹ç†çš„æ–¹æ³•
 	public static int initTexture(Resources r,int drawableId,boolean isMipmap)
 	{
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊıÁ¿
-				textures,   //ÎÆÀíidµÄÊı×é 
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„ 
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
 		if(isMipmap)
-		{//MipmapÎÆÀí²ÉÑù¹ıÂË²ÎÊı	
+		{//Mipmapçº¹ç†é‡‡æ ·è¿‡æ»¤å‚æ•°	
 			GLES20.glTexParameteri ( GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR_MIPMAP_LINEAR);   
 			GLES20.glTexParameteri ( GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR_MIPMAP_NEAREST);
 		}
 		else
-		{//·ÇMipmapÎÆÀí²ÉÑù¹ıÂË²ÎÊı	
+		{//éMipmapçº¹ç†é‡‡æ ·è¿‡æ»¤å‚æ•°	
 			GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER,GLES20.GL_NEAREST);
 			GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D,GLES20.GL_TEXTURE_MAG_FILTER,GLES20.GL_LINEAR);
 		}
@@ -1107,28 +1107,28 @@ public class Constant
         }
 //        GLUtils.texImage2D
 //        (
-//         GLES20.GL_TEXTURE_2D, //ÎÆÀíÀàĞÍ
+//         GLES20.GL_TEXTURE_2D, //çº¹ç†ç±»å‹
 //          0,   
 //          GLUtils.getInternalFormat(bitmapTmp), 
-//          bitmapTmp, //ÎÆÀíÍ¼Ïñ
+//          bitmapTmp, //çº¹ç†å›¾åƒ
 //          GLUtils.getType(bitmapTmp), 
-//          0 //ÎÆÀí±ß¿ò³ß´ç
+//          0 //çº¹ç†è¾¹æ¡†å°ºå¯¸
 //         );   
         GLUtils.texImage2D
         (
-         GLES20.GL_TEXTURE_2D, //ÎÆÀíÀàĞÍ
+         GLES20.GL_TEXTURE_2D, //çº¹ç†ç±»å‹
           0,   
-          bitmapTmp, //ÎÆÀíÍ¼Ïñ
-          0 //ÎÆÀí±ß¿ò³ß´ç
+          bitmapTmp, //çº¹ç†å›¾åƒ
+          0 //çº¹ç†è¾¹æ¡†å°ºå¯¸
          );   
 
-        //×Ô¶¯Éú³ÉMipmapÎÆÀí
+        //è‡ªåŠ¨ç”ŸæˆMipmapçº¹ç†
         GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);
         
-        bitmapTmp.recycle(); 		  //ÎÆÀí¼ÓÔØ³É¹¦ºóÊÍ·ÅÍ¼Æ¬
+        bitmapTmp.recycle(); 		  //çº¹ç†åŠ è½½æˆåŠŸåé‡Šæ”¾å›¾ç‰‡
         return textureId;
 	}
-	//µĞ»úÎ»ÖÃÊı×é
+	//æ•Œæœºä½ç½®æ•°ç»„
 	public static final float[][][] enemy_plane_place=
 	{
 		{
@@ -1177,7 +1177,7 @@ public class Constant
 //			{LAND_UNIT_SIZE*7*MapArray[mapId].length-700,200,LAND_UNIT_SIZE*7*MapArray[mapId].length-700, 0,135,0,	
 //				-1000,200,LAND_UNIT_SIZE*7*MapArray[mapId].length+1000},
 		},
-		//--------------------ÌØ±ğĞĞ¶¯------------------------------
+		//--------------------ç‰¹åˆ«è¡ŒåŠ¨------------------------------
 		{
 			{-500,LAND_HIGHT+100,-500, 0,225,0,
 				LAND_UNIT_SIZE*7*MapArray[mapId].length+1000,200,LAND_UNIT_SIZE*7*MapArray[mapId].length+1000},

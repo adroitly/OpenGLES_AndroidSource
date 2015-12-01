@@ -3,89 +3,89 @@ package com.bn.Sample13_9;
 import static com.bn.Sample13_9.Constant.*;
 import android.opengl.Matrix;
 
-//ÓÃÓÚ¿ØÖÆµÄÇò 
+//ç”¨äºæ§åˆ¶çš„çƒ 
 public class BallForControl {
 	MySurfaceView mv;
-	Ball ball;//ÓÃÓÚ»æÖÆµÄ×ÀÇò
+	Ball ball;//ç”¨äºç»˜åˆ¶çš„æ¡Œçƒ
 	
-	float rotateX;		//ÇòµÄĞı×ªÖá
+	float rotateX;		//çƒçš„æ—‹è½¬è½´
 	float rotateY;
 	float rotateZ;
 	
-	float tempX;	//ÇòÎ»ÖÃµÄÁÙÊ±±äÁ¿
+	float tempX;	//çƒä½ç½®çš„ä¸´æ—¶å˜é‡
 	float tempZ;
 	
-	float tempSPANX;	//ÇòÒÆ¶¯¾àÀëµÄÁÙÊ±±äÁ¿
+	float tempSPANX;	//çƒç§»åŠ¨è·ç¦»çš„ä¸´æ—¶å˜é‡
 	float tempSPANZ;
 	
-	float tempLength;	//ÇòÇ°½øµÄ¾àÀëÁÙÊ±±äÁ¿
+	float tempLength;	//çƒå‰è¿›çš„è·ç¦»ä¸´æ—¶å˜é‡
 	
-	float tempAngle;	//ÇòĞı×ªµÄ½Ç¶È
+	float tempAngle;	//çƒæ—‹è½¬çš„è§’åº¦
 
-	float[] selfRotateMatrix;//×Ô´øĞı×ª¾ØÕó
+	float[] selfRotateMatrix;//è‡ªå¸¦æ—‹è½¬çŸ©é˜µ
 	
 	public BallForControl(MySurfaceView mv,float scale,float aHalf,int n)
 	{
 		this.mv=mv;
 		ball=new Ball(mv,scale,aHalf,n);
-		//³õÊ¼»¯×Ô´øĞı×ª¾ØÕó
+		//åˆå§‹åŒ–è‡ªå¸¦æ—‹è½¬çŸ©é˜µ
 		selfRotateMatrix=new float[16];
-		//³õÊ¼Ê±Ğı×ªÒ»¶¨µÄ¶ÈÊı
+		//åˆå§‹æ—¶æ—‹è½¬ä¸€å®šçš„åº¦æ•°
 		Matrix.setRotateM(selfRotateMatrix, 0, 10, 0, 1, 0);
 	}
 	
 	public void drawSelf()
 	{
 		MatrixState.pushMatrix();
-		//ÒÆ¶¯µ½Ö¸¶¨Î»ÖÃ
+		//ç§»åŠ¨åˆ°æŒ‡å®šä½ç½®
 		MatrixState.translate(Constant.XOFFSET, 1.2f, Constant.ZOFFSET);		
-		//¼ÓÉÏ×Ô´øĞı×ª¾ØÕó
+		//åŠ ä¸Šè‡ªå¸¦æ—‹è½¬çŸ©é˜µ
 		MatrixState.matrix(selfRotateMatrix);
-		//»æÖÆÇò
+		//ç»˜åˆ¶çƒ
 		ball.drawSelf();		
 		MatrixState.popMatrix();
 	}
 	
-	//ÇòÇ°½øµÄ·½·¨
+	//çƒå‰è¿›çš„æ–¹æ³•
 	public void go(){
-		tempSPANX=Constant.SPANX;	//ÇòÒÆ¶¯¾àÀëµÄÁÙÊ±±äÁ¿¸³Öµ
+		tempSPANX=Constant.SPANX;	//çƒç§»åŠ¨è·ç¦»çš„ä¸´æ—¶å˜é‡èµ‹å€¼
 		tempSPANZ=Constant.SPANZ;
 		
-		tempX=Constant.XOFFSET+tempSPANX;	//¸ù¾İ´«¸ĞÆ÷£¬±ä»¯µ±Ç°ÇòµÄÎ»ÖÃ	
+		tempX=Constant.XOFFSET+tempSPANX;	//æ ¹æ®ä¼ æ„Ÿå™¨ï¼Œå˜åŒ–å½“å‰çƒçš„ä½ç½®	
 		tempZ=Constant.ZOFFSET+tempSPANZ;
 		
 		
-		//Èç¹ûÓëÉÏÏÂÁ½Ìõ±ß·¢ÉúÅö×²
+		//å¦‚æœä¸ä¸Šä¸‹ä¸¤æ¡è¾¹å‘ç”Ÿç¢°æ’
 		if( (tempZ<-ZBOUNDARY)||(tempZ>ZBOUNDARY))
 		{	
 			tempSPANZ=0;
 		}
-		//Èç¹ûÓë×óÓÒÁ½Ìõ±ß·¢ÉúÅö×²
+		//å¦‚æœä¸å·¦å³ä¸¤æ¡è¾¹å‘ç”Ÿç¢°æ’
 		if((tempX<-XBOUNDARY)|| (tempX>XBOUNDARY))
 		{
 			tempSPANX=0;
 		}
 		
 
-		//Çòµ±Ç°µÄÎ»ÖÃ·¢Éú±ä»¯
+		//çƒå½“å‰çš„ä½ç½®å‘ç”Ÿå˜åŒ–
 		Constant.XOFFSET+=tempSPANX;
 		Constant.ZOFFSET+=tempSPANZ;
 		
 		
-		//*****************Ğı×ª begin************************
+		//*****************æ—‹è½¬ begin************************
 
-		//Ç°½øµÄ·½ÏòÏòÁ¿ÎªConstant.SPANX Constant.SPANZ£¬
-		//ÄÇÃ´Ğı×ªÖáÎª
+		//å‰è¿›çš„æ–¹å‘å‘é‡ä¸ºConstant.SPANX Constant.SPANZï¼Œ
+		//é‚£ä¹ˆæ—‹è½¬è½´ä¸º
 		rotateX=tempSPANZ;
 		rotateY=0;
 		rotateZ=-tempSPANX;
-		//Ç°½øµÄ¾àÀë
+		//å‰è¿›çš„è·ç¦»
 		tempLength=(float) Math.sqrt(tempSPANX*tempSPANX+tempSPANZ*tempSPANZ);
-		//¼ÆËãÇ°½øµÄ½Ç¶ÈÖµ
+		//è®¡ç®—å‰è¿›çš„è§’åº¦å€¼
 		tempAngle=(float) Math.toDegrees(tempLength/Constant.BALLR);
 		
-		//¸Ä±äÇòµÄĞı×ª¾ØÕó
-		//Ğı×ªÊ±ÒªÇó½Ç¶È²»Îª0ÇÒÖá²»ÄÜÈ«Îª0
+		//æ”¹å˜çƒçš„æ—‹è½¬çŸ©é˜µ
+		//æ—‹è½¬æ—¶è¦æ±‚è§’åº¦ä¸ä¸º0ä¸”è½´ä¸èƒ½å…¨ä¸º0
 		if(Math.abs(tempAngle)!=0&&(Math.abs(rotateZ)!=0||Math.abs(rotateX)!=0))
 		{
 			float[] newMatrix=new float[16];
@@ -95,6 +95,6 @@ public class BallForControl {
 			selfRotateMatrix=resultMatrix;
 		}
 		
-		//************************Ğı×ª end************************
+		//************************æ—‹è½¬ end************************
 	}	
 }

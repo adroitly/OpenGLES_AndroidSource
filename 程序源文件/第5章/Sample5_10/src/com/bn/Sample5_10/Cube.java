@@ -1,54 +1,54 @@
 package com.bn.Sample5_10;
 import static com.bn.Sample5_10.Constant.*;
 
-//Á¢·½Ìå
+//ç«‹æ–¹ä½“
 public class Cube 
 {
-	//ÓÃÓÚ»æÖÆ¸÷¸öÃæµÄÑÕÉ«¾ØĞÎ
+	//ç”¨äºç»˜åˆ¶å„ä¸ªé¢çš„é¢œè‰²çŸ©å½¢
 	ColorRect cr;
 	
 	public Cube(MySurfaceView mv)
 	{
-		//´´½¨ÓÃÓÚ»æÖÆ¸÷¸öÃæµÄÑÕÉ«¾ØĞÎ
+		//åˆ›å»ºç”¨äºç»˜åˆ¶å„ä¸ªé¢çš„é¢œè‰²çŸ©å½¢
 		cr=new ColorRect(mv);
 	}
 	
 	public void drawSelf()
 	{
-		//×Ü»æÖÆË¼Ïë£ºÍ¨¹ı°ÑÒ»¸öÑÕÉ«¾ØĞÎĞı×ªÒÆÎ»µ½Á¢·½ÌåÃ¿¸öÃæµÄÎ»ÖÃ
-		//»æÖÆÁ¢·½ÌåµÄÃ¿¸öÃæ
+		//æ€»ç»˜åˆ¶æ€æƒ³ï¼šé€šè¿‡æŠŠä¸€ä¸ªé¢œè‰²çŸ©å½¢æ—‹è½¬ç§»ä½åˆ°ç«‹æ–¹ä½“æ¯ä¸ªé¢çš„ä½ç½®
+		//ç»˜åˆ¶ç«‹æ–¹ä½“çš„æ¯ä¸ªé¢
 		
-		//±£»¤ÏÖ³¡
+		//ä¿æŠ¤ç°åœº
 		MatrixState.pushMatrix();
 		
-		//»æÖÆÇ°Ğ¡Ãæ
+		//ç»˜åˆ¶å‰å°é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, 0, UNIT_SIZE);
 		cr.drawSelf();		
 		MatrixState.popMatrix();
 		
-		//»æÖÆºóĞ¡Ãæ
+		//ç»˜åˆ¶åå°é¢
 		MatrixState.pushMatrix();		
 		MatrixState.translate(0, 0, -UNIT_SIZE);
 		MatrixState.rotate(180, 0, 1, 0);
 		cr.drawSelf();		
 		MatrixState.popMatrix();
 		
-		//»æÖÆÉÏ´óÃæ
+		//ç»˜åˆ¶ä¸Šå¤§é¢
 		MatrixState.pushMatrix();	
 		MatrixState.translate(0,UNIT_SIZE,0);
 		MatrixState.rotate(-90, 1, 0, 0);
 		cr.drawSelf();
 		MatrixState.popMatrix();
 		
-		//»æÖÆÏÂ´óÃæ
+		//ç»˜åˆ¶ä¸‹å¤§é¢
 		MatrixState.pushMatrix();	
 		MatrixState.translate(0,-UNIT_SIZE,0);
 		MatrixState.rotate(90, 1, 0, 0);
 		cr.drawSelf();
 		MatrixState.popMatrix();
 		
-		//»æÖÆ×ó´óÃæ
+		//ç»˜åˆ¶å·¦å¤§é¢
 		MatrixState.pushMatrix();	
 		MatrixState.translate(UNIT_SIZE,0,0);
 		MatrixState.rotate(-90, 1, 0, 0);
@@ -56,7 +56,7 @@ public class Cube
 		cr.drawSelf();
 		MatrixState.popMatrix();
 		
-		//»æÖÆÓÒ´óÃæ
+		//ç»˜åˆ¶å³å¤§é¢
 		MatrixState.pushMatrix();				
 		MatrixState.translate(-UNIT_SIZE,0,0);
 		MatrixState.rotate(90, 1, 0, 0);
@@ -64,7 +64,7 @@ public class Cube
 		cr.drawSelf();
 		MatrixState.popMatrix();
 		
-		//»Ö¸´ÏÖ³¡
+		//æ¢å¤ç°åœº
 		MatrixState.popMatrix();
 	}
 	

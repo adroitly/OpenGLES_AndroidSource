@@ -8,34 +8,34 @@ import android.opengl.GLES20;
 
 import com.bn.core.MatrixState;
 /*
- * ´´½¨ÍÖÇòÌåÀà        ¶¥µãºÍÎÆÀí
- * ÓÃÓÚ»æÖÆ»úÉí,»úÍ·ºÍ»ú²Õ
+ * åˆ›å»ºæ¤­çƒä½“ç±»        é¡¶ç‚¹å’Œçº¹ç†
+ * ç”¨äºç»˜åˆ¶æœºèº«,æœºå¤´å’Œæœºèˆ±
  */
 public class DrawSpheroid 
 {
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷´úÂë½Å±¾    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷´úÂë½Å±¾
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨ä»£ç è„šæœ¬    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨ä»£ç è„šæœ¬
     
-	private FloatBuffer  mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	private FloatBuffer mTextureBuffer;//ÎÆÀí»º³å
-    public float mAngleX;//ÑØxÖáĞı×ª½Ç¶È
-    public float mAngleY;//ÑØyÖáĞı×ª½Ç¶È 
-    public float mAngleZ;//ÑØzÖáĞı×ª½Ç¶È 
+	private FloatBuffer  mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	private FloatBuffer mTextureBuffer;//çº¹ç†ç¼“å†²
+    public float mAngleX;//æ²¿xè½´æ—‹è½¬è§’åº¦
+    public float mAngleY;//æ²¿yè½´æ—‹è½¬è§’åº¦ 
+    public float mAngleZ;//æ²¿zè½´æ—‹è½¬è§’åº¦ 
     int vCount=0;
     float a;
-    float b;		//ÈıÖá°ë¾¶³¤
+    float b;		//ä¸‰è½´åŠå¾„é•¿
     float c;
-    float angleSpan;//½«Çò½øĞĞµ¥Î»ÇĞ·ÖµÄ½Ç¶È
-    float hAngleBegin;//¾­¶È»æÖÆÆğÊ¼½Ç¶È
-    float hAngleOver;//¾­¶È»æÖÆ½áÊø½Ç¶È
-    float vAngleBegin;//Î³¶È»æÖÆÆğÊ¼½Ç¶È
-    float vAngleOver;//Î³¶È»æÖÆ½áÊø½Ç¶È
+    float angleSpan;//å°†çƒè¿›è¡Œå•ä½åˆ‡åˆ†çš„è§’åº¦
+    float hAngleBegin;//ç»åº¦ç»˜åˆ¶èµ·å§‹è§’åº¦
+    float hAngleOver;//ç»åº¦ç»˜åˆ¶ç»“æŸè§’åº¦
+    float vAngleBegin;//çº¬åº¦ç»˜åˆ¶èµ·å§‹è§’åº¦
+    float vAngleOver;//çº¬åº¦ç»˜åˆ¶ç»“æŸè§’åº¦
     
-    //hAngle±íÊ¾¾­¶È£¬vAngle±íÊ¾Î³¶È¡£
+    //hAngleè¡¨ç¤ºç»åº¦ï¼ŒvAngleè¡¨ç¤ºçº¬åº¦ã€‚
     public DrawSpheroid(float a,float b,float c,float angleSpan,
     					float hAngleBegin,float hAngleOver,float vAngleBegin,float vAngleOver,int mProgram)
     {	
@@ -51,14 +51,14 @@ public class DrawSpheroid
     	initVertexData();
     	initShader();
     }
-    //³õÊ¼»¯¶¥µãµÄĞÅÏ¢
+    //åˆå§‹åŒ–é¡¶ç‚¹çš„ä¿¡æ¯
     public void initVertexData()
     {
-    	ArrayList<Float> alVertix=new ArrayList<Float>();//´æ·Å¶¥µã×ø±ê
-        for(float vAngle=vAngleBegin;vAngle<vAngleOver;vAngle=vAngle+angleSpan)//´¹Ö±·½ÏòangleSpan¶ÈÒ»·İ
+    	ArrayList<Float> alVertix=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡
+        for(float vAngle=vAngleBegin;vAngle<vAngleOver;vAngle=vAngle+angleSpan)//å‚ç›´æ–¹å‘angleSpanåº¦ä¸€ä»½
         {
-        	for(float hAngle=hAngleBegin;hAngle<hAngleOver;hAngle=hAngle+angleSpan)//Ë®Æ½·½ÏòangleSpan¶ÈÒ»·İ
-        	{//×İÏòºáÏò¸÷µ½Ò»¸ö½Ç¶Èºó¼ÆËã¶ÔÓ¦µÄ´ËµãÔÚÇòÃæÉÏµÄ×ø±ê    		
+        	for(float hAngle=hAngleBegin;hAngle<hAngleOver;hAngle=hAngle+angleSpan)//æ°´å¹³æ–¹å‘angleSpanåº¦ä¸€ä»½
+        	{//çºµå‘æ¨ªå‘å„åˆ°ä¸€ä¸ªè§’åº¦åè®¡ç®—å¯¹åº”çš„æ­¤ç‚¹åœ¨çƒé¢ä¸Šçš„åæ ‡    		
         		float x1=(float)(a*Math.cos(Math.toRadians(vAngle))*Math.cos(Math.toRadians(hAngle)));                          
         		float y1=(float)(b*Math.cos(Math.toRadians(vAngle))*Math.sin(Math.toRadians(hAngle)));
         		float z1=(float)(c*Math.sin(Math.toRadians(vAngle)));
@@ -75,7 +75,7 @@ public class DrawSpheroid
         		float y4=(float)(b*Math.cos(Math.toRadians(vAngle))*Math.sin(Math.toRadians(hAngle+angleSpan)));
         		float z4=(float)(c*Math.sin(Math.toRadians(vAngle)));
         		
-        		//½«¼ÆËã³öÀ´µÄXYZ×ø±ê¼ÓÈë´æ·Å¶¥µã×ø±êµÄArrayList
+        		//å°†è®¡ç®—å‡ºæ¥çš„XYZåæ ‡åŠ å…¥å­˜æ”¾é¡¶ç‚¹åæ ‡çš„ArrayList
         		alVertix.add(x1);alVertix.add(y1);alVertix.add(z1);
         		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
         		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);
@@ -85,25 +85,25 @@ public class DrawSpheroid
         		alVertix.add(x3);alVertix.add(y3);alVertix.add(z3); 
         	}
         } 	
-        vCount=alVertix.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
-        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öintÊı×éÖĞ
+        vCount=alVertix.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
+        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªintæ•°ç»„ä¸­
         float[] vertices=new float[vCount*3];
     	for(int i=0;i<alVertix.size();i++)
     	{
     		vertices[i]=alVertix.get(i);
     	}
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-		//ÎÆÀí
-    	//»ñÈ¡ÇĞ·ÖÕûÍ¼µÄÎÆÀíÊı×é
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+		//çº¹ç†
+    	//è·å–åˆ‡åˆ†æ•´å›¾çš„çº¹ç†æ•°ç»„
     	float[] texCoorArray= 
          generateTexCoor
     	 (
-    			 (int)(180/angleSpan), //ÎÆÀíÍ¼ÇĞ·ÖµÄÁĞÊı
-    			 (int)(180/angleSpan)  //ÎÆÀíÍ¼ÇĞ·ÖµÄĞĞÊı 
+    			 (int)(180/angleSpan), //çº¹ç†å›¾åˆ‡åˆ†çš„åˆ—æ•°
+    			 (int)(180/angleSpan)  //çº¹ç†å›¾åˆ‡åˆ†çš„è¡Œæ•° 
     	);
 		ByteBuffer tbb=ByteBuffer.allocateDirect(texCoorArray.length*4);
 		tbb.order(ByteOrder.nativeOrder());
@@ -111,14 +111,14 @@ public class DrawSpheroid
 		mTextureBuffer.put(texCoorArray);
 		mTextureBuffer.position(0);
     }
-    //³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+    //åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
     public void initShader()
     {
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
     }
     public void drawSelf(int texId)
@@ -127,11 +127,11 @@ public class DrawSpheroid
     	MatrixState.rotate(mAngleX, 1, 0, 0);
     	MatrixState.rotate(mAngleY, 0, 1, 0);
     	MatrixState.rotate(mAngleZ, 0, 0, 1);
-    	//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram); 
-   	 	//½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+   	 	//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
         GLES20.glVertexAttribPointer  
         (
         		maPositionHandle,   
@@ -141,7 +141,7 @@ public class DrawSpheroid
                3*4,   
                mVertexBuffer
         );       
-        //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
         GLES20.glVertexAttribPointer  
         (
        		maTexCoorHandle, 
@@ -151,28 +151,28 @@ public class DrawSpheroid
                2*4,   
                mTextureBuffer
         );   
-        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-        //»æÖÆÎÆÀí¾ØĞÎ
+        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
         MatrixState.popMatrix();
     }
-    //×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+    //è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
     public float[] generateTexCoor(int bw,int bh)
     {
     	float[] result=new float[bw*bh*6*2]; 
-    	float sizew=1.0f/bw;//ÁĞÊı
-    	float sizeh=1.0f/bh;//ĞĞÊı
+    	float sizew=1.0f/bw;//åˆ—æ•°
+    	float sizeh=1.0f/bh;//è¡Œæ•°
     	int c=0;
     	for(int i=0;i<bh;i++)
     	{
     		for(int j=0;j<bw;j++)
     		{
-    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
     			float s=j*sizew;
     			float t=i*sizeh;
     			result[c++]=s;

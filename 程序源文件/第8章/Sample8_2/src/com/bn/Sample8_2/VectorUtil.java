@@ -1,35 +1,35 @@
 package com.bn.Sample8_2;
 
-//¼ÆËãÈı½ÇĞÎ·¨ÏòÁ¿µÄ¹¤¾ßÀà
+//è®¡ç®—ä¸‰è§’å½¢æ³•å‘é‡çš„å·¥å…·ç±»
 public class VectorUtil {
 	
-	//¼ÆËãÔ²×¶¶¥µã·¨ÏòÁ¿µÄ·½·¨
+	//è®¡ç®—åœ†é”¥é¡¶ç‚¹æ³•å‘é‡çš„æ–¹æ³•
 	public static float[] calConeNormal
-	(//Èı½ÇĞÎÈı¸ö¶¥µã×ø±ê
-			float x0,float y0,float z0,//A£¬ÖĞĞÄµã(µ×ÃæÔ²µÄÔ²ĞÄ)
-			float x1,float y1,float z1,//B£¬µ×ÃæÔ²ÉÏÒ»µã
-			float x2,float y2,float z2 //C£¬¶¥µã(×î¸ßµÄµã)
+	(//ä¸‰è§’å½¢ä¸‰ä¸ªé¡¶ç‚¹åæ ‡
+			float x0,float y0,float z0,//Aï¼Œä¸­å¿ƒç‚¹(åº•é¢åœ†çš„åœ†å¿ƒ)
+			float x1,float y1,float z1,//Bï¼Œåº•é¢åœ†ä¸Šä¸€ç‚¹
+			float x2,float y2,float z2 //Cï¼Œé¡¶ç‚¹(æœ€é«˜çš„ç‚¹)
 	)
 	{
-		float[] a={x1-x0, y1-y0, z1-z0};//ÏòÁ¿AB
-		float[] b={x2-x0, y2-y0, z2-z0};//ÏòÁ¿AC
-		float[] c={x2-x1, y2-y1, z2-z1};//ÏòÁ¿BC
-		//ÏÈÇò´¹Ö±ÓÚÆ½ÃæABCµÄÏòÁ¿k
+		float[] a={x1-x0, y1-y0, z1-z0};//å‘é‡AB
+		float[] b={x2-x0, y2-y0, z2-z0};//å‘é‡AC
+		float[] c={x2-x1, y2-y1, z2-z1};//å‘é‡BC
+		//å…ˆçƒå‚ç›´äºå¹³é¢ABCçš„å‘é‡k
 		float[] k=crossTwoVectors(a,b);
-		//½«cºÍk×ö²æ³Ë£¬µÃ³öËùÇóÏòÁ¿d
+		//å°†cå’Œkåšå‰ä¹˜ï¼Œå¾—å‡ºæ‰€æ±‚å‘é‡d
 		float[] d=crossTwoVectors(c,k);
-		return normalizeVector(d);//·µ»Ø¹æ¸ñ»¯ºóµÄ·¨ÏòÁ¿
+		return normalizeVector(d);//è¿”å›è§„æ ¼åŒ–åçš„æ³•å‘é‡
 	}
-	//ÏòÁ¿¹æ¸ñ»¯µÄ·½·¨
+	//å‘é‡è§„æ ¼åŒ–çš„æ–¹æ³•
 	public static float[] normalizeVector(float [] vec){
 		float mod=module(vec);
-		return new float[]{vec[0]/mod, vec[1]/mod, vec[2]/mod};//·µ»Ø¹æ¸ñ»¯ºóµÄÏòÁ¿
+		return new float[]{vec[0]/mod, vec[1]/mod, vec[2]/mod};//è¿”å›è§„æ ¼åŒ–åçš„å‘é‡
 	}
-	//ÇóÏòÁ¿µÄÄ£µÄ·½·¨
+	//æ±‚å‘é‡çš„æ¨¡çš„æ–¹æ³•
 	public static float module(float [] vec){
 		return (float) Math.sqrt(vec[0]*vec[0]+vec[1]*vec[1]+vec[2]*vec[2]);
 	}
-	//Á½¸öÏòÁ¿²æ³ËµÄ·½·¨
+	//ä¸¤ä¸ªå‘é‡å‰ä¹˜çš„æ–¹æ³•
 	public static float[] crossTwoVectors(
 			float[] a,
 			float[] b)
@@ -37,6 +37,6 @@ public class VectorUtil {
 		float x=a[1]*b[2]-a[2]*b[1];
 		float y=a[2]*b[0]-a[0]*b[2];
 		float z=a[0]*b[1]-a[1]*b[0];
-		return new float[]{x, y, z};//·µ»Ø·¨ÏòÁ¿
+		return new float[]{x, y, z};//è¿”å›æ³•å‘é‡
 	}
 }

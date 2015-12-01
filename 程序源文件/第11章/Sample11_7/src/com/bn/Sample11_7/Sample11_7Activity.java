@@ -11,19 +11,19 @@ public class Sample11_7Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);         
-        //ÉèÖÃÎªÈ«ÆÁ
+        //è®¾ç½®ä¸ºå…¨å±
         requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
 		              WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//ÉèÖÃÎªÊúÆÁÄ£Ê½
+		//è®¾ç½®ä¸ºç«–å±æ¨¡å¼
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		//ÇĞ»»µ½Ö÷½çÃæ
+		//åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 			
-		//³õÊ¼»¯GLSurfaceView
+		//åˆå§‹åŒ–GLSurfaceView
         mGLSurfaceView = new MySurfaceView(this);
         setContentView(mGLSurfaceView);	
-        mGLSurfaceView.requestFocus();//»ñÈ¡½¹µã
-        mGLSurfaceView.setFocusableInTouchMode(true);//ÉèÖÃÎª¿É´¥¿Ø  
+        mGLSurfaceView.requestFocus();//è·å–ç„¦ç‚¹
+        mGLSurfaceView.setFocusableInTouchMode(true);//è®¾ç½®ä¸ºå¯è§¦æ§  
     }
 
     @Override

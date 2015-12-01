@@ -21,13 +21,13 @@ public class ShaderManager
 	{
 		for(int i=0;i<shaderCount;i++)
 		{
-			//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ       
+			//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹       
 	        mVertexShader[i]=ShaderUtil.loadFromAssetsFile(shaderName[i][0],r);
-	        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ 
+	        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹ 
 	        mFragmentShader[i]=ShaderUtil.loadFromAssetsFile(shaderName[i][1], r);
 		}	
 	}
-	//±àÒëshader
+	//ç¼–è¯‘shader
 	public static void compileShaderReal()
 	{
 		for(int i=0;i<shaderCount;i++)
@@ -35,12 +35,12 @@ public class ShaderManager
 			program[i]=ShaderUtil.createProgram(mVertexShader[i], mFragmentShader[i]);
 		}
 	}
-	//ÕâÀï·µ»ØµÄÊÇÎÆÀíµÄshader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯çº¹ç†çš„shaderç¨‹åº
 	public static int getCommTextureShaderProgram()
 	{
 		return program[0];
 	}
-	//ÕâÀï·µ»ØµÄÊÇÑÕÉ«µÄshader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯é¢œè‰²çš„shaderç¨‹åº
 	public static int getColorshaderProgram()
 	{
 		return program[1];

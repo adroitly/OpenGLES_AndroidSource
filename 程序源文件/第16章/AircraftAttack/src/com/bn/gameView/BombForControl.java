@@ -46,32 +46,32 @@ import com.bn.core.MatrixState;
 import com.bn.planeModel.EnemyPlane;
 import com.bn.tankemodel.TanKe;
 
-//ÅÚµ¯µÄ¿ØÖÆÀà
+//ç‚®å¼¹çš„æ§åˆ¶ç±»
 public class BombForControl
 {
 	GLGameView gv;
-	private BallTextureByVertex bomb_ball;//×Óµ¯Àà
-	//¶¨Òå·¢ÉäÅÚµ¯Ê±·É»úµÄÑö½ÇºÍ·½Î»½Ç
+	private BallTextureByVertex bomb_ball;//å­å¼¹ç±»
+	//å®šä¹‰å‘å°„ç‚®å¼¹æ—¶é£æœºçš„ä»°è§’å’Œæ–¹ä½è§’
 	private float curr_elevation;
 	private float  curr_direction;
-	//ÅÚµ¯µÄÎ»ÖÃ
+	//ç‚®å¼¹çš„ä½ç½®
 	private float curr_x;
 	private float curr_y;
 	private float curr_z;
-	private float distance;//·ÉĞĞ¾àÀë
-	//·É»ú·¢ÉäÅÚµ¯Ëø¶¨
+	private float distance;//é£è¡Œè·ç¦»
+	//é£æœºå‘å°„ç‚®å¼¹é”å®š
 	private boolean islocked;
 	private float curr_nx;
 	private float curr_ny;
 	private float curr_nz;
-	private float average;//Æ½¾ùÏòÁ¿
-	//·É»ú·¢ÉäÅÚµ¯µÄ¹¹ÔìÆ÷
+	private float average;//å¹³å‡å‘é‡
+	//é£æœºå‘å°„ç‚®å¼¹çš„æ„é€ å™¨
 	public BombForControl(GLGameView gv,BallTextureByVertex bomb_ball,float plane_x,float plane_y,float plane_z,
 			float plane_elevation,float plane_direction,float rotationAngle_Plane_X,float rotationAngle_Plane_Y,
 			float rotationAngle_Plane_Z)
 	{
 		this.gv=gv;
-		//´´½¨ÎÆÀíÇò
+		//åˆ›å»ºçº¹ç†çƒ
 		this.bomb_ball=bomb_ball;
 		this.curr_elevation=plane_elevation;
 		this.curr_direction=plane_direction;
@@ -83,10 +83,10 @@ public class BombForControl
 			curr_nz=nz;
 			average=(float) Math.sqrt(curr_nx*curr_nx+curr_ny*curr_ny+curr_nz*curr_nz);
 		}
-		//³õÊ¼»¯ÅÚµ¯µÄ·¢ÉäÎ»ÖÃ
+		//åˆå§‹åŒ–ç‚®å¼¹çš„å‘å°„ä½ç½®
 		initData(plane_x,plane_y,plane_z,rotationAngle_Plane_X,rotationAngle_Plane_Y,rotationAngle_Plane_Z);
 	}
-	//¸ßÉäÅÚºÍÌ¹¿Ë·¢ÉäÅÚµ¯µÄ¹¹ÔìÆ÷
+	//é«˜å°„ç‚®å’Œå¦å…‹å‘å°„ç‚®å¼¹çš„æ„é€ å™¨
 	public BombForControl(GLGameView gv,BallTextureByVertex bomb_ball,float[]init_position,float init_elevation,float init_direction)
 	{
 		this.gv=gv;
@@ -97,30 +97,30 @@ public class BombForControl
 		curr_elevation=init_elevation;
 		curr_direction=init_direction;
 	}
-	//È·¶¨·É»ú»úÒíÅÚµ¯µÄ·¢ÉäÎ»ÖÃ
+	//ç¡®å®šé£æœºæœºç¿¼ç‚®å¼¹çš„å‘å°„ä½ç½®
 	public void initData(float plane_x,float plane_y,float plane_z,float rotationAngle_Plane_X,
 			float rotationAngle_Plane_Y,float rotationAngle_Plane_Z)
 	{
-		//Éè¶¨×ó»úÒí·¢ÉäÅÚµ¯µÄÎ»ÖÃ
+		//è®¾å®šå·¦æœºç¿¼å‘å°„ç‚®å¼¹çš„ä½ç½®
 		curr_x=plane_x;
 		curr_y=plane_y;
 		curr_z=plane_z;
-		//ÅÚµ¯Î»ÖÃµÄÏà¹Ø²ÎÊı
+		//ç‚®å¼¹ä½ç½®çš„ç›¸å…³å‚æ•°
 		float length;
 		float ori_y;
 		float ori_z;
 		length=12;
-		if(fire_index!=1)//×ó»úÒí·¢ÉäÅÚµ¯
+		if(fire_index!=1)//å·¦æœºç¿¼å‘å°„ç‚®å¼¹
 		{
 			ori_y=90;
 			ori_z=-2;
 		}
-		else//ÓÒ»úÒí·¢ÉäÅÚµ¯
+		else//å³æœºç¿¼å‘å°„ç‚®å¼¹
 		{
 			ori_y=-90;
 			ori_z=-2;
 		}
-		//È·¶¨ÅÚµ¯µÄ×îÖÕÎ»ÖÃ
+		//ç¡®å®šç‚®å¼¹çš„æœ€ç»ˆä½ç½®
 		curr_y=curr_y-(float)Math.sin(Math.toRadians(rotationAngle_Plane_Z+ori_z))*length;
 		curr_x=curr_x-(float)Math.cos(Math.toRadians(rotationAngle_Plane_Z+ori_z))*(float)Math.sin(Math.toRadians(rotationAngle_Plane_Y+ori_y))*length;
 		curr_z=curr_z-(float)Math.cos(Math.toRadians(rotationAngle_Plane_Z+ori_z))*(float)Math.cos(Math.toRadians(rotationAngle_Plane_Y+ori_y))*length;
@@ -132,11 +132,11 @@ public class BombForControl
 		bomb_ball.drawSelf(texId);
 		MatrixState.popMatrix();		
 	}
-	//·É»ú·¢ÉäÅÚµ¯
+	//é£æœºå‘å°„ç‚®å¼¹
 	public void go()
 	{
-		distance+=BOMB_VELOCITY;//×Óµ¯µÄĞĞÊ»Â·³ÌÔö¼Ó
-		if(distance>=BOMB_MAX_DISTANCE)//Èç¹û×Óµ¯²½³¤³¬³öÁË
+		distance+=BOMB_VELOCITY;//å­å¼¹çš„è¡Œé©¶è·¯ç¨‹å¢åŠ 
+		if(distance>=BOMB_MAX_DISTANCE)//å¦‚æœå­å¼¹æ­¥é•¿è¶…å‡ºäº†
 		{	
 			
 			Iterator<BombForControl> ite=bomb_List.iterator();
@@ -153,7 +153,7 @@ public class BombForControl
 		}	
 		float tyy;
 		if((tyy=KeyThread.isYachtHeadCollectionsWithLandPaodan(curr_x,curr_y,curr_z))>0){
-			baoZhaList.add(new DrawBomb(bombRectr,curr_x,tyy,curr_z));//Èç¹ûÅÚµ¯×²»÷µØÃæ
+			baoZhaList.add(new DrawBomb(bombRectr,curr_x,tyy,curr_z));//å¦‚æœç‚®å¼¹æ’å‡»åœ°é¢
 			Iterator<BombForControl> ite=bomb_List.iterator();
 			while(ite.hasNext())
 			{
@@ -164,16 +164,16 @@ public class BombForControl
 				}
 			}
 		}
-		//ÅĞ¶ÏÊÇ·ñºÍ¾ü»ğ¿â·¢ÉúÅö×²
+		//åˆ¤æ–­æ˜¯å¦å’Œå†›ç«åº“å‘ç”Ÿç¢°æ’
 		for(Arsenal_House as:arsenal){
-			if(//¾ü»ğ¿â»¹´æÔÚ
+			if(//å†›ç«åº“è¿˜å­˜åœ¨
 					curr_y>as.ty&&curr_y<as.ty+ARSENAL_Y
 					&&curr_x>as.tx-ARSENAL_X&&curr_x<as.tx+ARSENAL_X
 					&&curr_z>as.tz-ARSENAL_Z&&curr_z<as.tz+ARSENAL_Z){
 				
-				as.blood-=ArchieArray[mapId][8][0];//¾ü»ğ¿âµÄÑª¼õ1			
+				as.blood-=ArchieArray[mapId][8][0];//å†›ç«åº“çš„è¡€å‡1			
 				
-				if(as.blood<1){//Èç¹û¾ü»ğ¿â±»Õ¨»Ù
+				if(as.blood<1){//å¦‚æœå†›ç«åº“è¢«ç‚¸æ¯
 					gv.activity.playSound(0,0);
 					try
 					{
@@ -191,7 +191,7 @@ public class BombForControl
 						e.printStackTrace();
 					}
 					baoZhaList.add(new DrawBomb(bombRect,as.tx,as.ty+bomb_height/2,as.tz));
-					gradeArray[1]+=ArchieArray[mapId][12][3];//µÃ·ÖÔö¼Ó,
+					gradeArray[1]+=ArchieArray[mapId][12][3];//å¾—åˆ†å¢åŠ ,
 				}
 				Iterator<BombForControl> ite=bomb_List.iterator();
 				while(ite.hasNext())
@@ -208,12 +208,12 @@ public class BombForControl
 		}
 		
 
-		for(ArchieForControl afc:archie_List){//²é¿´ÓĞÃ»ÓĞ»÷ÖĞ¸ßÉäÅÚ
+		for(ArchieForControl afc:archie_List){//æŸ¥çœ‹æœ‰æ²¡æœ‰å‡»ä¸­é«˜å°„ç‚®
 			if(curr_y>afc.position[1]&&curr_y<afc.position[1]+ARCHIBALD_Y*2
 					&&curr_x>afc.position[0]-ARCHIBALD_X*2&&curr_x<afc.position[0]+ARCHIBALD_X*2
 					&&curr_z>afc.position[2]-ARCHIBALD_Z*2&&curr_z<afc.position[2]+ARCHIBALD_Z*2){
 				
-				afc.blood-=ArchieArray[mapId][8][2];//¸ßÉäÅÚµÄÑª¼õ10
+				afc.blood-=ArchieArray[mapId][8][2];//é«˜å°„ç‚®çš„è¡€å‡10
 				if(afc.blood<0){
 					gv.activity.playSound(0,1);
 					try
@@ -232,7 +232,7 @@ public class BombForControl
 						e.printStackTrace();
 					}
 					baoZhaList.add(new DrawBomb(bombRect,curr_x,afc.position[1]+ARCHIBALD_Y,curr_z));
-					gradeArray[1]+=ArchieArray[mapId][12][1];//µÃ·ÖÔö¼Ó,
+					gradeArray[1]+=ArchieArray[mapId][12][1];//å¾—åˆ†å¢åŠ ,
 				}
 				Iterator<BombForControl> ite=bomb_List.iterator();
 				while(ite.hasNext())
@@ -247,13 +247,13 @@ public class BombForControl
 				
 			}
 		}
-		for(TanKe afc:tankeList)//²é¿´ÓĞÃ»ÓĞ»÷ÖĞÌ¹¿Ë
+		for(TanKe afc:tankeList)//æŸ¥çœ‹æœ‰æ²¡æœ‰å‡»ä¸­å¦å…‹
 		{
 			if(curr_y>afc.ty&&curr_y<afc.ty+ARCHIBALD_Y
 					&&curr_x>afc.tx-ARCHIBALD_X&&curr_x<afc.tx+ARCHIBALD_X
 					&&curr_z>afc.tz-ARCHIBALD_Z&&curr_z<afc.tz+ARCHIBALD_Z)
 			{
-				afc.blood-=ArchieArray[mapId][8][1];//Ì¹¿ËµÄÑª¼õ1
+				afc.blood-=ArchieArray[mapId][8][1];//å¦å…‹çš„è¡€å‡1
 				if(afc.blood<=0)
 				{
 					gv.activity.playSound(0,1);
@@ -272,7 +272,7 @@ public class BombForControl
 					{
 						e.printStackTrace();
 					}
-					gradeArray[1]+=ArchieArray[mapId][12][0];//µÃ·ÖÔö¼Ó,
+					gradeArray[1]+=ArchieArray[mapId][12][0];//å¾—åˆ†å¢åŠ ,
 				}
 				baoZhaList.add(new DrawBomb(bombRect,curr_x,curr_y+bomb_height/5,curr_z));
 				Iterator<BombForControl> ite=bomb_List.iterator();
@@ -288,13 +288,13 @@ public class BombForControl
 				
 			}
 		}
-		//ÓĞÃ»ÓĞ»÷ÖĞµĞ»ú
-		for(EnemyPlane afc:enemy){//²é¿´ÓĞÃ»ÓĞ»÷ÖĞ
+		//æœ‰æ²¡æœ‰å‡»ä¸­æ•Œæœº
+		for(EnemyPlane afc:enemy){//æŸ¥çœ‹æœ‰æ²¡æœ‰å‡»ä¸­
 			if(curr_y>afc.ty-PLANE_Y_R&&curr_y<afc.ty+PLANE_Y_R
 					&&curr_x>afc.tx-PLANE_X_R&&curr_x<afc.tx+PLANE_X_R
 					&&curr_z>afc.tz-ANGLE_X_Z&&curr_z<afc.tz+ANGLE_X_Z){
 				
-				afc.blood-=ArchieArray[mapId][8][3];//µĞ»úµÄÑª¼õ1
+				afc.blood-=ArchieArray[mapId][8][3];//æ•Œæœºçš„è¡€å‡1
 					gv.activity.playSound(8,0);
 				if(afc.blood<=0){
 					gv.activity.playSound(0,1);
@@ -313,7 +313,7 @@ public class BombForControl
 					{
 						e.printStackTrace();
 					}
-					gradeArray[1]+=ArchieArray[mapId][12][2];//µÃ·ÖÔö¼Ó,
+					gradeArray[1]+=ArchieArray[mapId][12][2];//å¾—åˆ†å¢åŠ ,
 				}
 				baoZhaList.add(new DrawBomb(bombRect,curr_x,curr_y+bomb_height/5,curr_z));
 				Iterator<BombForControl> ite=bomb_List.iterator();
@@ -329,8 +329,8 @@ public class BombForControl
 				
 			}
 		}
-		//ÕâÀïÅĞ¶ÏÊÇ·ñËø¶¨Ä¿±ê
-		if(islocked)//Èç¹ûËø¶¨Ä¿±ê
+		//è¿™é‡Œåˆ¤æ–­æ˜¯å¦é”å®šç›®æ ‡
+		if(islocked)//å¦‚æœé”å®šç›®æ ‡
 		{
 			 curr_x+=curr_nx/average*BOMB_VELOCITY;
 			 curr_z+=curr_nz/average*BOMB_VELOCITY;
@@ -338,21 +338,21 @@ public class BombForControl
 		}
 		else
 		{
-		//¼ÆËãÅÚµ¯ÏÂÒ»²½µÄÎ»ÖÃ
-		//¼ÆËãµ±Ç°Ñö½ÇºÍ·½Ïò½Ç
+		//è®¡ç®—ç‚®å¼¹ä¸‹ä¸€æ­¥çš„ä½ç½®
+		//è®¡ç®—å½“å‰ä»°è§’å’Œæ–¹å‘è§’
 			curr_x=curr_x-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.sin(Math.toRadians(curr_direction))*BOMB_VELOCITY);
 			curr_z=curr_z-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.cos(Math.toRadians(curr_direction))*BOMB_VELOCITY);
-			curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*BOMB_VELOCITY);//·É»úµÄÎ»ÖÃ
+			curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*BOMB_VELOCITY);//é£æœºçš„ä½ç½®
 		}
 	}
-	//¸ßÉäÅÚ·¢ÉäÅÚµ¯
+	//é«˜å°„ç‚®å‘å°„ç‚®å¼¹
 	public void go_archie()
 	{
 		float curr_planeX=PLANE_X;
 		float curr_planeY=PLANE_Y;
 		float curr_planeZ=PLANE_Z;
-		distance+=ARCHIE_BOMB_VELOCITY;//×Óµ¯µÄĞĞÊ»Â·³ÌÔö¼Ó
-		if(distance>=BOMB_MAX_DISTANCE)//Èç¹û×Óµ¯²½³¤³¬³öÁË
+		distance+=ARCHIE_BOMB_VELOCITY;//å­å¼¹çš„è¡Œé©¶è·¯ç¨‹å¢åŠ 
+		if(distance>=BOMB_MAX_DISTANCE)//å¦‚æœå­å¼¹æ­¥é•¿è¶…å‡ºäº†
 		{	
 			try
 			{
@@ -371,16 +371,16 @@ public class BombForControl
 				e.printStackTrace();
 			}
 		}
-		//ÕâÀï¶ÔÅÚµ¯ÊÇ·ñ»÷ÖĞ·É»ú½øĞĞÅĞ¶Ï
+		//è¿™é‡Œå¯¹ç‚®å¼¹æ˜¯å¦å‡»ä¸­é£æœºè¿›è¡Œåˆ¤æ–­
 		float curr_distance=(curr_planeX-curr_x)*(curr_planeX-curr_x)+
 		(curr_planeY-curr_y)*(curr_planeY-curr_y)+
 		(curr_planeZ-curr_z)*(curr_planeZ-curr_z);
-		if(curr_distance<500)//ÅÚµ¯Óë·É»úÏà×²
+		if(curr_distance<500)//ç‚®å¼¹ä¸é£æœºç›¸æ’
 		{
 			gv.activity.playSound(1,0);
-			isno_Hit=true;//·É»ú±»»÷ÖĞÁËÒ»ÏÂ
-			gv.plane.blood-=ArchieArray[mapId][9][1];//·É»úÑª¼õÉÙÒ»µÎ
-			gv.activity.shake();//ÊÖ»úÕğ¶¯Ò»´Î
+			isno_Hit=true;//é£æœºè¢«å‡»ä¸­äº†ä¸€ä¸‹
+			gv.plane.blood-=ArchieArray[mapId][9][1];//é£æœºè¡€å‡å°‘ä¸€æ»´
+			gv.activity.shake();//æ‰‹æœºéœ‡åŠ¨ä¸€æ¬¡
 			try
 			{
 				Iterator<BombForControl> ite=archie_bomb_List.iterator();
@@ -399,22 +399,22 @@ public class BombForControl
 			} 
 			return ;
 		}
-		//¼ÆËãÅÚµ¯ÏÂÒ»²½µÄÎ»ÖÃ
-		//¼ÆËãµ±Ç°Ñö½ÇºÍ·½Ïò½Ç
+		//è®¡ç®—ç‚®å¼¹ä¸‹ä¸€æ­¥çš„ä½ç½®
+		//è®¡ç®—å½“å‰ä»°è§’å’Œæ–¹å‘è§’
 		curr_x=curr_x-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.sin(Math.toRadians(curr_direction))*ARCHIE_BOMB_VELOCITY);
 		curr_z=curr_z-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.cos(Math.toRadians(curr_direction))*ARCHIE_BOMB_VELOCITY);
-		curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*ARCHIE_BOMB_VELOCITY);//·É»úµÄÎ»ÖÃ
+		curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*ARCHIE_BOMB_VELOCITY);//é£æœºçš„ä½ç½®
 	}
 	
-	//Ì¹¿Ë·¢ÉäÅÚµ¯
+	//å¦å…‹å‘å°„ç‚®å¼¹
 	public void go_tank()
 	{
 		
 		float curr_planeX=PLANE_X;
 		float curr_planeY=PLANE_Y;
 		float curr_planeZ=PLANE_Z;
-		distance+=TANK_BOMB_VELOCITY;//×Óµ¯µÄĞĞÊ»Â·³ÌÔö¼Ó
-		if(distance>=BOMB_MAX_DISTANCE)//Èç¹û×Óµ¯²½³¤³¬³öÁË
+		distance+=TANK_BOMB_VELOCITY;//å­å¼¹çš„è¡Œé©¶è·¯ç¨‹å¢åŠ 
+		if(distance>=BOMB_MAX_DISTANCE)//å¦‚æœå­å¼¹æ­¥é•¿è¶…å‡ºäº†
 		{	
 			try
 			{
@@ -433,16 +433,16 @@ public class BombForControl
 				e.printStackTrace();
 			}
 		}
-		//ÕâÀï¶ÔÅÚµ¯ÊÇ·ñ»÷ÖĞ·É»ú½øĞĞÅĞ¶Ï
+		//è¿™é‡Œå¯¹ç‚®å¼¹æ˜¯å¦å‡»ä¸­é£æœºè¿›è¡Œåˆ¤æ–­
 		float curr_distance=(curr_planeX-curr_x)*(curr_planeX-curr_x)+
 		(curr_planeY-curr_y)*(curr_planeY-curr_y)+
 		(curr_planeZ-curr_z)*(curr_planeZ-curr_z);
-		if(curr_distance<500)//ÅÚµ¯Óë·É»úÏà×²
+		if(curr_distance<500)//ç‚®å¼¹ä¸é£æœºç›¸æ’
 		{
 			gv.activity.playSound(1,0);
-			isno_Hit=true;//·É»ú±­»÷ÖĞÒ»ÏÂÁË
-			gv.plane.blood-=ArchieArray[mapId][9][0];//·É»úÑª¼õÉÙÒ»µÎ
-			gv.activity.shake();//ÊÖ»úÕğ¶¯Ò»´Î
+			isno_Hit=true;//é£æœºæ¯å‡»ä¸­ä¸€ä¸‹äº†
+			gv.plane.blood-=ArchieArray[mapId][9][0];//é£æœºè¡€å‡å°‘ä¸€æ»´
+			gv.activity.shake();//æ‰‹æœºéœ‡åŠ¨ä¸€æ¬¡
 			try
 			{
 				Iterator<BombForControl> ite=tank_bomb_List.iterator();
@@ -461,8 +461,8 @@ public class BombForControl
 			}
 			return ;
 		}
-		//¼ÆËãÅÚµ¯ÏÂÒ»²½µÄÎ»ÖÃ
-		//¼ÆËãµ±Ç°Ñö½ÇºÍ·½Ïò½Ç
+		//è®¡ç®—ç‚®å¼¹ä¸‹ä¸€æ­¥çš„ä½ç½®
+		//è®¡ç®—å½“å‰ä»°è§’å’Œæ–¹å‘è§’
 		curr_x=curr_x-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.sin(Math.toRadians(curr_direction))*TANK_BOMB_VELOCITY);
 		curr_z=curr_z-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.cos(Math.toRadians(curr_direction))*TANK_BOMB_VELOCITY);
 		curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*TANK_BOMB_VELOCITY);

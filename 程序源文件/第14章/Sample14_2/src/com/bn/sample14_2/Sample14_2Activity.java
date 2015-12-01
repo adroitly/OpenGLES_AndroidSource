@@ -13,17 +13,17 @@ import java.io.File;
 public class Sample14_2Activity extends Activity {
 
     GL2JNIView mView;
-	//ÆÁÄ»¶ÔÓ¦µÄ¿í¶ÈºÍ¸ß¶È
+	//å±å¹•å¯¹åº”çš„å®½åº¦å’Œé«˜åº¦
 	static float WIDTH;
 	static float HEIGHT;
 	
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        //ÉèÖÃÎªÈ«ÆÁ
+        //è®¾ç½®ä¸ºå…¨å±
         requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
 		              WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//»ñµÃÏµÍ³µÄ¿í¶ÈÒÔ¼°¸ß¶È
+		//è·å¾—ç³»ç»Ÿçš„å®½åº¦ä»¥åŠé«˜åº¦
         DisplayMetrics dm=new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         if(dm.widthPixels>dm.heightPixels)
@@ -38,8 +38,8 @@ public class Sample14_2Activity extends Activity {
         }
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mView = new GL2JNIView(getApplication());
-        mView.requestFocus();//»ñÈ¡½¹µã
-        mView.setFocusableInTouchMode(true);//ÉèÖÃÎª¿É´¥¿Ø  
+        mView.requestFocus();//è·å–ç„¦ç‚¹
+        mView.setFocusableInTouchMode(true);//è®¾ç½®ä¸ºå¯è§¦æ§  
         setContentView(mView);
     }
 

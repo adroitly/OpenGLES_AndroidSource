@@ -1,6 +1,6 @@
 package com.bn.clp;
 
-//可碰撞物件的父类，所有的可碰撞物体均是继承自该类
+//鍙鎾炵墿浠剁殑鐖剁被锛屾墍鏈夌殑鍙鎾炵墿浣撳潎鏄户鎵胯嚜璇ョ被
 public abstract class KZBJDrawer
 {
 	public abstract void drawSelf(int texId);

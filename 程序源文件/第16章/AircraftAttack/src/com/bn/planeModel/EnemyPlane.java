@@ -40,25 +40,25 @@ import com.bn.gameView.GLGameView;
 
 public class EnemyPlane 
 {
-	public Plane plane;//Ä£ĞÍÒıÓÃ
-	public float tx,ty,tz;//³õÊ¼Î»ÖÃ
-	public float xAngle,yAngle,zAngle;//·½ÏòÏòÁ¿
-	public float arsenal_x,arsenal_y;//ÔÚÒÇ±í°åÖĞµÄÎ»ÖÃ
+	public Plane plane;//æ¨¡å‹å¼•ç”¨
+	public float tx,ty,tz;//åˆå§‹ä½ç½®
+	public float xAngle,yAngle,zAngle;//æ–¹å‘å‘é‡
+	public float arsenal_x,arsenal_y;//åœ¨ä»ªè¡¨æ¿ä¸­çš„ä½ç½®
 	public float thisnx,thisny,thisnz;
 	
 	
-	public NumberForDraw nm;//Êı×ÖÒıÓÃ
-	public TextureRect backgroundRect;//±³¾°
-	public float xue_scale=0.4f;//ÑªËõ·Å±ÈÀı
-	public TextureRect mark_lock;//±ê¼Ç±»Ëø¶¨µÄ¾ØĞÎ
-	public TextureRect mark_plane;//±ê¼Ç¾ØĞÎ
+	public NumberForDraw nm;//æ•°å­—å¼•ç”¨
+	public TextureRect backgroundRect;//èƒŒæ™¯
+	public float xue_scale=0.4f;//è¡€ç¼©æ”¾æ¯”ä¾‹
+	public TextureRect mark_lock;//æ ‡è®°è¢«é”å®šçš„çŸ©å½¢
+	public TextureRect mark_plane;//æ ‡è®°çŸ©å½¢
 	
-	public boolean this_isno_Lock=false;//×Ô¼ºÊÇ·ñ±»Ëø¶¨£¬±»Ëø¶¨¾Í»æÖÆËø¶¨¾ØĞÎ
-	public int blood=100;//Ì¹¿ËµÄÉúÃüÖµ
+	public boolean this_isno_Lock=false;//è‡ªå·±æ˜¯å¦è¢«é”å®šï¼Œè¢«é”å®šå°±ç»˜åˆ¶é”å®šçŸ©å½¢
+	public int blood=100;//å¦å…‹çš„ç”Ÿå‘½å€¼
 	int drawblood;
 	float yAnglexue;
-	public int id;//´ú±íÊÇµÚ¼¸¸ö·É»ú
-	float distance1;//µĞ»úºÍ·É»úµÄ¾àÀë
+	public int id;//ä»£è¡¨æ˜¯ç¬¬å‡ ä¸ªé£æœº
+	float distance1;//æ•Œæœºå’Œé£æœºçš„è·ç¦»
 	GLGameView gv;
 	long oldTime;
 	public EnemyPlane(GLGameView gv,Plane plane,float tx,float ty,float tz,float xAngle,float yAngle,float zAngle,
@@ -85,7 +85,7 @@ public class EnemyPlane
 		arsenal_y=-scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-PLANE_Z)/(MapArray[mapId].length*WIDTH_LALNDFORM/2);
 	
 	}
-	public void drawSelf(int texBodyHeadId,int texScrewId,int texBodyBackId,int texCabinId,//»æÖÆ·É»ú
+	public void drawSelf(int texBodyHeadId,int texScrewId,int texBodyBackId,int texCabinId,//ç»˜åˆ¶é£æœº
 			 int texFrontWingId,int texFrontWing2Id,int texCylinder3Id,int texCylinderId,
 			 int texCylinder2Id,int texBackWingId,int texTopWingId,
 			 int backgroundRectId,int numberID,int locktexId
@@ -119,7 +119,7 @@ public class EnemyPlane
 		}
 		if(this_isno_Lock)
 		{
-			MatrixState.pushMatrix();//»æÖÆËø¶¨µÄ
+			MatrixState.pushMatrix();//ç»˜åˆ¶é”å®šçš„
 			MatrixState.translate(tx, ty, tz);	
 			MatrixState.rotate(yAnglexue, 0,1, 0);
 			MatrixState.scale(0.8f, 0.8f,0.8f);
@@ -128,7 +128,7 @@ public class EnemyPlane
 		}
 		GLES20.glDisable(GLES20.GL_BLEND);
 	}
-	public void drawSelfMark(int texId)//ÒÇ±íÅÌÉÏµÄ±ê¼ÇÎ»ÖÃµÄÑÕÉ«¿ò
+	public void drawSelfMark(int texId)//ä»ªè¡¨ç›˜ä¸Šçš„æ ‡è®°ä½ç½®çš„é¢œè‰²æ¡†
 	{
 		MatrixState.pushMatrix();
     	MatrixState.translate(arsenal_x,arsenal_y,0);
@@ -137,7 +137,7 @@ public class EnemyPlane
 	}
 	public void go()
 	{
-		if(this_isno_Lock)//Èç¹û±»Ëø¶¨£¬µĞ»ú³¯×Å·É»ú·É
+		if(this_isno_Lock)//å¦‚æœè¢«é”å®šï¼Œæ•Œæœºæœç€é£æœºé£
 		{
 			thisnx=-nx;
 			thisny=-ny;
@@ -148,12 +148,12 @@ public class EnemyPlane
 		else
 		{			
 			thisny=0;
-			if(ty<enemy_plane_place[mapId][id][1]){//·É»ú¸ß¶È
+			if(ty<enemy_plane_place[mapId][id][1]){//é£æœºé«˜åº¦
 				thisny+=4;
 			}else if(ty>enemy_plane_place[mapId][id][1]){
 				thisny-=4;
 			}
-			if(distance1>Lock_Distance*2f){//Èç¹û·É»úÔÚÆäÒ»¶¨·¶Î§ÄÚ£¬ÔòµĞ»ú·ÉÏò·É»ú
+			if(distance1>Lock_Distance*2f){//å¦‚æœé£æœºåœ¨å…¶ä¸€å®šèŒƒå›´å†…ï¼Œåˆ™æ•Œæœºé£å‘é£æœº
 				thisnx=-tx+PLANE_X;
 				thisny=-ty+PLANE_Y;
 				thisnz=-tz+PLANE_Z;
@@ -176,7 +176,7 @@ public class EnemyPlane
 		tz+=ENEMYPLANE_SPAN*thisnz/n;
 		ty+=ENEMYPLANE_SPAN*thisny/n;
 		calculateBillboardDirection();
-		//¼ÆËã±ê¼Ç·É»úÎ»ÖÃµÄ×ø±ê
+		//è®¡ç®—æ ‡è®°é£æœºä½ç½®çš„åæ ‡
 		arsenal_x=-scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-tx)/(MapArray[mapId].length*WIDTH_LALNDFORM/2);
 		arsenal_y=scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-tz)/(MapArray[mapId].length*WIDTH_LALNDFORM/2);
 		if(arsenal_x*arsenal_x+arsenal_y*arsenal_y>BUTTON_RADAR_BG_WIDTH*BUTTON_RADAR_BG_WIDTH*0.4f*0.4f){
@@ -191,11 +191,11 @@ public class EnemyPlane
 		}
 		boolean isLock=isno_Lock;
 		
-		 //ÕâÀï½øĞĞ·¢Éä×Óµ¯
-	    if(this_isno_Lock&&System.nanoTime()-oldTime>300000000)//ÕâÀïÉèÖÃÁ¬Ğø·¢Éä×Óµ¯
+		 //è¿™é‡Œè¿›è¡Œå‘å°„å­å¼¹
+	    if(this_isno_Lock&&System.nanoTime()-oldTime>300000000)//è¿™é‡Œè®¾ç½®è¿ç»­å‘å°„å­å¼¹
 	    {
 	    	isno_Lock=false;
-    		//ÏòÁĞ±íÖĞÌí¼Ó×Óµ¯¶ÔÏó
+    		//å‘åˆ—è¡¨ä¸­æ·»åŠ å­å¼¹å¯¹è±¡
     		try
     		{
     			
@@ -215,9 +215,9 @@ public class EnemyPlane
 	    }
 	    isno_Lock=isLock;
 	}
-	//ÕâÀï¼ÆËã±êÖ¾°åµÄ³¯Ïò
+	//è¿™é‡Œè®¡ç®—æ ‡å¿—æ¿çš„æœå‘
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÑæ»ğÁ£×ÓÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—ç„°ç«ç²’å­é¢æœå‘
 		float currX_span=tx-cx;
 		float currZ_span=tz-cz;
 		if(currZ_span<0)
@@ -234,23 +234,23 @@ public class EnemyPlane
 			this_isno_Lock=false;
 			return;
 		}
-		//¼ÆËãÆäÊÇ·ñ±»Ëø¶¨
+		//è®¡ç®—å…¶æ˜¯å¦è¢«é”å®š
 		float x1,y1,z1,x2,y2,z2;
 		x1=tx-PLANE_X;
 		y1=ty-PLANE_Y;
 		z1=tz-PLANE_Z;
 		distance1=(float) Math.sqrt(x1*x1+y1*y1+z1*z1);
 		
-		if(distance1>Lock_Distance){//Èç¹û¾àÀë³¬³ö·¶Î§£¬»òÕßÒÑ¾­ÓĞÒ»¸ö±»Ëø¶¨ÁË£¬Ôò×Ô¼º²»ÄÜ±»Ëø¶¨
+		if(distance1>Lock_Distance){//å¦‚æœè·ç¦»è¶…å‡ºèŒƒå›´ï¼Œæˆ–è€…å·²ç»æœ‰ä¸€ä¸ªè¢«é”å®šäº†ï¼Œåˆ™è‡ªå·±ä¸èƒ½è¢«é”å®š
 			this_isno_Lock=false;
 			return;
-		}//¼ÆËã·É»ú·ÉĞĞµÄ·½ÏòÏòÁ¿
+		}//è®¡ç®—é£æœºé£è¡Œçš„æ–¹å‘å‘é‡
 		if(distance1<20)
 		{
 			gv.activity.playSound(3,0);
-			isno_Hit=true;//·É»ú±»»÷ÖĞÁËÒ»ÏÂ
-			gv.plane.blood-=10;//·É»úÑª¼õÉÙÒ»µÎ
-			gv.activity.shake();//ÊÖ»úÕğ¶¯Ò»´Î
+			isno_Hit=true;//é£æœºè¢«å‡»ä¸­äº†ä¸€ä¸‹
+			gv.plane.blood-=10;//é£æœºè¡€å‡å°‘ä¸€æ»´
+			gv.activity.shake();//æ‰‹æœºéœ‡åŠ¨ä¸€æ¬¡
 		}
 		x2=directionX;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.sin(Math.toRadians(rotationAngle_Plane_Y)));
 		y2=directionY;//(float) (Math.sin(Math.toRadians(rotationAngle_Plane_X)));
@@ -260,9 +260,9 @@ public class EnemyPlane
 		if(cosa<Lock_angle){
 			this.zAngle+=40;
 			this.this_isno_Lock=true;			
-			minimumdistance=distance1;//×îĞ¡¾àÀëÉèÖÃÎª¸Ã¾àÀë
-			nx=x1;ny=y1;nz=z1;//·¢Éä×Óµ¯·½ÏòÏòÁ¿
-			isno_Lock=true;//ÒÑ¾­±»Ëø¶¨
+			minimumdistance=distance1;//æœ€å°è·ç¦»è®¾ç½®ä¸ºè¯¥è·ç¦»
+			nx=x1;ny=y1;nz=z1;//å‘å°„å­å¼¹æ–¹å‘å‘é‡
+			isno_Lock=true;//å·²ç»è¢«é”å®š
 		}else{
 			this_isno_Lock=false;
 			this.zAngle=0;

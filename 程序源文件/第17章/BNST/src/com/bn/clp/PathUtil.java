@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class PathUtil 
 {
-    //产生标准路径
+    //浜х敓鏍囧噯璺緞
     public static ArrayList<float[]> generatePath()
     {
     	ArrayList<float[]> path=new ArrayList<float[]>();
     	
     	for(int[] grid:PATH)
-    	{//加入一个格子的路径
-    		//获取此格子的类型编号
+    	{//鍔犲叆涓�涓牸瀛愮殑璺緞
+    		//鑾峰彇姝ゆ牸瀛愮殑绫诲瀷缂栧彿
     		int type=MAP_ARRAY[grid[0]][grid[1]];
     		float[][] pathTemp=getSubPath(grid[0],grid[1],type);
     		for(float[] fa:pathTemp)
@@ -24,7 +24,7 @@ public class PathUtil
     }
     
     
-    //获取指定行列指定类型的赛道的路线
+    //鑾峰彇鎸囧畾琛屽垪鎸囧畾绫诲瀷鐨勮禌閬撶殑璺嚎
     public static float[][] getSubPath(int row,int col,int type)
     {
     	float[][] result=null;

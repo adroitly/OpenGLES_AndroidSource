@@ -12,53 +12,53 @@ import android.content.Context;
 
 class MySurfaceView extends GLSurfaceView {
 
-	private final float TOUCH_SCALE_FACTOR = 180.0f / 320;// ½Ç¶ÈËõ·Å±ÈÀı
-	private float mPreviousY;// ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃY×ø±ê
-	private float mPreviousX;// ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃX×ø±ê
+	private final float TOUCH_SCALE_FACTOR = 180.0f / 320;// è§’åº¦ç¼©æ”¾æ¯”ä¾‹
+	private float mPreviousY;// ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Yåæ ‡
+	private float mPreviousX;// ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Xåæ ‡
 
-	private SceneRenderer mRenderer;// ³¡¾°äÖÈ¾Æ÷
-	boolean lightFlag = true; // ¹âÕÕĞı×ªµÄ±êÖ¾Î»
+	private SceneRenderer mRenderer;// åœºæ™¯æ¸²æŸ“å™¨
+	boolean lightFlag = true; // å…‰ç…§æ—‹è½¬çš„æ ‡å¿—ä½
 
-	float yAngle = 0;// ÈÆyÖáĞı×ªµÄ½Ç¶È
-	float xAngle = 0;// ÈÆxÖáĞı×ªµÄ½Ç¶È
-	float zAngle = 0;// ÈÆzÖáĞı×ªµÄ½Ç¶È
-	// ¹¤¾ßÀàUtilTools¶ÔÏóµÄÒıÓÃ
+	float yAngle = 0;// ç»•yè½´æ—‹è½¬çš„è§’åº¦
+	float xAngle = 0;// ç»•xè½´æ—‹è½¬çš„è§’åº¦
+	float zAngle = 0;// ç»•zè½´æ—‹è½¬çš„è§’åº¦
+	// å·¥å…·ç±»UtilToolså¯¹è±¡çš„å¼•ç”¨
 	UtilTools utilTools;
-	// Çò¶ÔÏóÒıÓÃ
+	// çƒå¯¹è±¡å¼•ç”¨
 	Ball ball;
-	// ¹÷¶ÔÏóÒıÓÃ
+	// æ£å¯¹è±¡å¼•ç”¨
 	Stick stick;
-	// ÇòºÍ¹÷Î»ÖÃĞÅÏ¢¶ÔÏó
+	// çƒå’Œæ£ä½ç½®ä¿¡æ¯å¯¹è±¡
 	ResultData rusultData;
 
 	public MySurfaceView(Context context) {
 		super(context);
-		this.setEGLContextClientVersion(2); // ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-		mRenderer = new SceneRenderer(); // ´´½¨³¡¾°äÖÈ¾Æ÷
-		setRenderer(mRenderer); // ÉèÖÃäÖÈ¾Æ÷
-		setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);// ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾
+		this.setEGLContextClientVersion(2); // è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+		mRenderer = new SceneRenderer(); // åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+		setRenderer(mRenderer); // è®¾ç½®æ¸²æŸ“å™¨
+		setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);// è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“
 	}
 
-	// ´¥ÃşÊÂ¼ş»Øµ÷·½·¨
+	// è§¦æ‘¸äº‹ä»¶å›è°ƒæ–¹æ³•
 	@Override
 	public boolean onTouchEvent(MotionEvent e) {
 		float y = e.getY();
 		float x = e.getX();
 		switch (e.getAction()) {
 		case MotionEvent.ACTION_MOVE:
-			float dy = y - mPreviousY;// ¼ÆËã´¥¿Ø±ÊYÎ»ÒÆ
-			float dx = x - mPreviousX;// ¼ÆËã´¥¿Ø±ÊXÎ»ÒÆ
-			yAngle += dx * TOUCH_SCALE_FACTOR;// ÉèÖÃÈÆyÖáĞı×ª½Ç¶È
-			zAngle += dy * TOUCH_SCALE_FACTOR;// ÉèÖÃÈÆzÖáĞı×ª½Ç¶È
+			float dy = y - mPreviousY;// è®¡ç®—è§¦æ§ç¬”Yä½ç§»
+			float dx = x - mPreviousX;// è®¡ç®—è§¦æ§ç¬”Xä½ç§»
+			yAngle += dx * TOUCH_SCALE_FACTOR;// è®¾ç½®ç»•yè½´æ—‹è½¬è§’åº¦
+			zAngle += dy * TOUCH_SCALE_FACTOR;// è®¾ç½®ç»•zè½´æ—‹è½¬è§’åº¦
 		}
-		mPreviousY = y;// ¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
-		mPreviousX = x;// ¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
+		mPreviousY = y;// è®°å½•è§¦æ§ç¬”ä½ç½®
+		mPreviousX = x;// è®°å½•è§¦æ§ç¬”ä½ç½®
 		return true;
 	}
 
 	private class SceneRenderer implements GLSurfaceView.Renderer {
 		public void onDrawFrame(GL10 gl) {
-			// Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+			// æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
 			GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT
 					| GLES20.GL_COLOR_BUFFER_BIT);
 
@@ -66,7 +66,7 @@ class MySurfaceView extends GLSurfaceView {
 			MatrixState.translate(0, 0, -10f);
 			MatrixState.rotate(yAngle, 0, 1, 0);
 			MatrixState.rotate(zAngle, 0, 0, 1);
-			// ¸ù¾İ¶¥µãµÄ¸öÊı»æÖÆÇòÌå 
+			// æ ¹æ®é¡¶ç‚¹çš„ä¸ªæ•°ç»˜åˆ¶çƒä½“ 
 			for (int i = 0; i < rusultData.CAtomicPosition.length; i++) {
 				MatrixState.pushMatrix();
 				MatrixState.translate(rusultData.CAtomicPosition[i][0],
@@ -89,22 +89,22 @@ class MySurfaceView extends GLSurfaceView {
 
 		}
 		public void onSurfaceChanged(GL10 gl, int width, int height) {
-			// ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ
+			// è®¾ç½®è§†çª—å¤§å°åŠä½ç½®
 			GLES20.glViewport(0, 0, width, height);
-			// ¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+			// è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
 			float ratio = (float) width / height;
-			// µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+			// è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
 			MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 4f, 100);
-			// µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+			// è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
 			MatrixState.setCamera(0, 0, 8.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-			// ³õÊ¼»¯¹âÔ´
+			// åˆå§‹åŒ–å…‰æº
 			MatrixState.setLightLocation(10, 0, -10);
-			// Æô¶¯Ò»¸öÏß³Ì¶¨Ê±ĞŞ¸ÄµÆ¹âµÄÎ»ÖÃ
+			// å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å®šæ—¶ä¿®æ”¹ç¯å…‰çš„ä½ç½®
 			new Thread() {
 				public void run() {
 					float redAngle = 0;
 					while (lightFlag) {
-						// ¸ù¾İ½Ç¶È¼ÆËãµÆ¹âµÄÎ»ÖÃ
+						// æ ¹æ®è§’åº¦è®¡ç®—ç¯å…‰çš„ä½ç½®
 						redAngle = (redAngle + 5) % 360;
 						float rx = (float) (15 * Math.sin(Math
 								.toRadians(redAngle)));
@@ -123,24 +123,24 @@ class MySurfaceView extends GLSurfaceView {
 
 		@Override
 		public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-			// ÉèÖÃÆÁÄ»±³¾°É«RGBA
+			// è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
 			GLES20.glClearColor(1f, 1f, 1f, 1f);
-			// ÆôÓÃÉî¶È²âÊÔ
+			// å¯ç”¨æ·±åº¦æµ‹è¯•
 			GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-			// ÉèÖÃÎª´ò¿ª±³Ãæ¼ô²Ã
+			// è®¾ç½®ä¸ºæ‰“å¼€èƒŒé¢å‰ªè£
 			GLES20.glEnable(GLES20.GL_CULL_FACE);
 			utilTools = new UtilTools();
-			// ³õÊ¼»¯×ÊÔ´¶ÔÏó£¡
+			// åˆå§‹åŒ–èµ„æºå¯¹è±¡ï¼
 			rusultData = utilTools.initVertexData(Constant.TRIANGLE_SCALE,
 					Constant.TRIANGLE_AHALF, Constant.SPLIT_COUNT);
-			// ³õÊ¼»¯±ä»»¾ØÕó
+			// åˆå§‹åŒ–å˜æ¢çŸ©é˜µ
 			MatrixState.setInitStack();
-            float[] colorValue = {1,0,0,1};	//´´½¨ÑÕÉ«Êı×é
-			ball = new Ball(MySurfaceView.this, Constant.BALL_R, colorValue);// ´´½¨Çò¶ÔÏó
+            float[] colorValue = {1,0,0,1};	//åˆ›å»ºé¢œè‰²æ•°ç»„
+			ball = new Ball(MySurfaceView.this, Constant.BALL_R, colorValue);// åˆ›å»ºçƒå¯¹è±¡
 			colorValue = new float[]{1,1,0,1};
-			// ¹÷¶ÔÏóµÄÒıÓÃ
+			// æ£å¯¹è±¡çš„å¼•ç”¨
 			stick = new Stick(MySurfaceView.this, Constant.LENGTH, Constant.R,
-					Constant.ANGLE_SPAN, colorValue);// ´´½¨Ô²¹Ü¶ÔÏó
+					Constant.ANGLE_SPAN, colorValue);// åˆ›å»ºåœ†ç®¡å¯¹è±¡
 		}
 	}
 }

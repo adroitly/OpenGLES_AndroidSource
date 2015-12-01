@@ -9,18 +9,18 @@ import android.opengl.GLES20;
 public class Sky
 {
 	final float UNIT_SIZE=100.0f;
-	//×Ô¶¨ÒåäÖÈ¾³ÌĞòµÄÒıÓÃ
+	//è‡ªå®šä¹‰æ¸²æŸ“ç¨‹åºçš„å¼•ç”¨
 	int mProgram;
-	//×Ü±ä»»¾ØÕóµÄÒıÓÃ
+	//æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨
 	int muMVPMatrixHandle;
-	//¶¥µãÊôĞÔµÄÒıÓÃ
+	//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨
 	int maPositionHandle;
-	//¶¥µãÎÆÀí×ø±êÊôĞÔµÄÒıÓÃ
+	//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§çš„å¼•ç”¨
 	int maTexCoorHandle;
-	//¶¥µãÊı¾İ»º³åÒÔ¼°¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+	//é¡¶ç‚¹æ•°æ®ç¼“å†²ä»¥åŠé¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 	FloatBuffer mVertexBuffer;
 	FloatBuffer mTexCoorBuffer;
-	//¶¥µãÊıÁ¿
+	//é¡¶ç‚¹æ•°é‡
 	int vCount=0;  
 	
 	public Sky(MySurfaceView mv)
@@ -28,19 +28,19 @@ public class Sky
 		initVertexData(UNIT_SIZE);
 		initShader(mv);
 	}
-	//³õÊ¼»¯¶¥µãÊı¾İµÄ·½·¨
+	//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 	public void initVertexData(float radius)
 	{
 		float ANGLE_SPAN=18f;
     	float angleV=90;
-    	ArrayList<Float> alVertix=new ArrayList<Float>();//´æ·Å¶¥µã×ø±êµÄArrayList
+    	ArrayList<Float> alVertix=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡çš„ArrayList
     	 
-        for(float vAngle=angleV;vAngle>0;vAngle=vAngle-ANGLE_SPAN)//´¹Ö±·½ÏòangleSpan¶ÈÒ»·İ
+        for(float vAngle=angleV;vAngle>0;vAngle=vAngle-ANGLE_SPAN)//å‚ç›´æ–¹å‘angleSpanåº¦ä¸€ä»½
         {
-        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//Ë®Æ½·½ÏòangleSpan¶ÈÒ»·İ
+        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//æ°´å¹³æ–¹å‘angleSpanåº¦ä¸€ä»½
         	{
-        		//×İÏòºáÏò¸÷µ½Ò»¸ö½Ç¶Èºó¼ÆËã¶ÔÓ¦µÄ´ËµãÔÚÇòÃæÉÏµÄËÄ±ßĞÎ¶¥µã×ø±ê
-        		//²¢¹¹½¨Á½¸ö×é³ÉËÄ±ßĞÎµÄÈı½ÇĞÎ
+        		//çºµå‘æ¨ªå‘å„åˆ°ä¸€ä¸ªè§’åº¦åè®¡ç®—å¯¹åº”çš„æ­¤ç‚¹åœ¨çƒé¢ä¸Šçš„å››è¾¹å½¢é¡¶ç‚¹åæ ‡
+        		//å¹¶æ„å»ºä¸¤ä¸ªç»„æˆå››è¾¹å½¢çš„ä¸‰è§’å½¢
         		double xozLength=radius*Math.cos(Math.toRadians(vAngle));
         		float x1=(float)(xozLength*Math.cos(Math.toRadians(hAngle)));
         		float z1=(float)(xozLength*Math.sin(Math.toRadians(hAngle)));
@@ -61,63 +61,63 @@ public class Sky
         		float z4=(float)(xozLength*Math.sin(Math.toRadians(hAngle-ANGLE_SPAN)));
         		float y4=(float)(radius*Math.sin(Math.toRadians(vAngle)));
         		
-        		//¹¹½¨µÚÒ»Èı½ÇĞÎ
+        		//æ„å»ºç¬¬ä¸€ä¸‰è§’å½¢
         		alVertix.add(x1);alVertix.add(y1);alVertix.add(z1);
         		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);
         		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
         		
-        		//¹¹½¨µÚ¶şÈı½ÇĞÎ
+        		//æ„å»ºç¬¬äºŒä¸‰è§’å½¢
         		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
         		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);
         		alVertix.add(x3);alVertix.add(y3);alVertix.add(z3); 
         	}
         }
-        vCount=alVertix.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
-        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öfloatÊı×éÖĞ
+        vCount=alVertix.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
+        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªfloatæ•°ç»„ä¸­
         float vertices[]=new float[vCount*3];
     	for(int i=0;i<alVertix.size();i++)
     	{
     		vertices[i]=alVertix.get(i);
     	}
-        //´´½¨»æÖÆ¶¥µãÊı¾İ»º³å
+        //åˆ›å»ºç»˜åˆ¶é¡¶ç‚¹æ•°æ®ç¼“å†²
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
         
-        //´´½¨ÎÆÀí×ø±ê»º³å
+        //åˆ›å»ºçº¹ç†åæ ‡ç¼“å†²
         float[] textureCoors=generateTexCoor
         (
-       		(int)(360/ANGLE_SPAN), //ÎÆÀíÍ¼ÇĞ·ÖµÄÁĞÊı
-       		(int)(angleV/ANGLE_SPAN)  //ÎÆÀíÍ¼ÇĞ·ÖµÄĞĞÊı
+       		(int)(360/ANGLE_SPAN), //çº¹ç†å›¾åˆ‡åˆ†çš„åˆ—æ•°
+       		(int)(angleV/ANGLE_SPAN)  //çº¹ç†å›¾åˆ‡åˆ†çš„è¡Œæ•°
        	);
         ByteBuffer tbb = ByteBuffer.allocateDirect(textureCoors.length*4);
-        tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mTexCoorBuffer = tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-        mTexCoorBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-        mTexCoorBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+        tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mTexCoorBuffer = tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+        mTexCoorBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+        mTexCoorBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	}
-	//³õÊ¼»¯Shader³ÌĞòµÄ·½·¨
+	//åˆå§‹åŒ–Shaderç¨‹åºçš„æ–¹æ³•
 	public void initShader(MySurfaceView mv)
 	{
 		String mVertexHandle=ShaderUtil.loadFromAssetsFile("vertex.sh", mv.getResources());
 		String mTexCoorHandle=ShaderUtil.loadFromAssetsFile("frag.sh", mv.getResources());
 		mProgram=ShaderUtil.createProgram(mVertexHandle, mTexCoorHandle);
-		//»ñµÃ¶¥µã×ø±êÊı¾İµÄÒıÓÃ
+		//è·å¾—é¡¶ç‚¹åæ ‡æ•°æ®çš„å¼•ç”¨
 		maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-		//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 		maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 		muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 	}
-	//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+	//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 	public void drawSelf(int texId)
 	{
-		//Ö¸¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+		//æŒ‡å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 		GLES20.glUseProgram(mProgram);
-		//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+		//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 		GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-		//´«ËÍ¶¥µãÎ»ÖÃÊı¾İ
+		//ä¼ é€é¡¶ç‚¹ä½ç½®æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maPositionHandle, 
@@ -127,7 +127,7 @@ public class Sky
 			3*4, 
 			mVertexBuffer
 		);
-		//´«ËÍ¶¥µãÎÆÀí×ø±êÊı¾İ
+		//ä¼ é€é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maTexCoorHandle, 
@@ -137,29 +137,29 @@ public class Sky
 			2*4, 
 			mTexCoorBuffer
 		);
-		//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+		//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
         
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
         
-        //»æÖÆÎÆÀí¾ØĞÎ
+        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount);   
 	}
-	//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+	//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
     public float[] generateTexCoor(int bw,int bh)
     {
     	float[] result=new float[bw*bh*6*2]; 
-    	float sizew=1.0f/bw;//ÁĞÊı
-    	float sizeh=1.0f/bh;//ĞĞÊı
+    	float sizew=1.0f/bw;//åˆ—æ•°
+    	float sizeh=1.0f/bh;//è¡Œæ•°
     	int c=0;
     	for(int i=0;i<bh;i++)
     	{
     		for(int j=0;j<bw;j++)
     		{
-    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
     			float s=j*sizew;
     			float t=i*sizeh;
     			

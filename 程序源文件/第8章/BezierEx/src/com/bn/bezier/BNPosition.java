@@ -1,6 +1,6 @@
 package com.bn.bezier;
 
-//±´Èû¶ûÇúÏßÉÏµãµÄÀà
+//è´å¡å°”æ›²çº¿ä¸Šç‚¹çš„ç±»
 
 public class BNPosition 
 {

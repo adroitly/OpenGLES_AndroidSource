@@ -7,7 +7,7 @@ public class MyComparable implements Comparator<float[]>
 {
 	public int compare(float another[], float another2[]) 
 	{
-		//重写的比较两个灌木离摄像机距离的方法
+		//閲嶅啓鐨勬瘮杈冧袱涓亴鏈ㄧ鎽勫儚鏈鸿窛绂荤殑鏂规硶
 		float xs=another[0]-cxForSpecFrame;
 		float zs=another[1]-czForSpecFrame;
 		

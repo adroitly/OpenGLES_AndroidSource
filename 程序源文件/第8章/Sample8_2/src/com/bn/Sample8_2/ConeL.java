@@ -1,12 +1,12 @@
 package com.bn.Sample8_2;
-//¹Ç¼ÜÔ²×¶Àà
+//éª¨æ¶åœ†é”¥ç±»
 public class ConeL
 {
-	CircleL bottomCircle;//µ×Ô²µÄ¹Ç¼ÜÀàµÄÒıÓÃ
-	ConeSideL coneSide;//²àÃæµÄ¹Ç¼ÜÀàµÄÒıÓÃ
-	float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+	CircleL bottomCircle;//åº•åœ†çš„éª¨æ¶ç±»çš„å¼•ç”¨
+	ConeSideL coneSide;//ä¾§é¢çš„éª¨æ¶ç±»çš„å¼•ç”¨
+	float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
     float h;
     float scale;
     
@@ -14,8 +14,8 @@ public class ConeL
 	{
 		this.scale=scale;
 		this.h=h;
-		bottomCircle=new CircleL(mySurfaceView,scale,r,n);  //´´½¨µ×Ãæ¹Ç¼ÜÔ²µÄ¶ÔÏó
-		coneSide=new ConeSideL(mySurfaceView,scale,r,h,n); //´´½¨²àÃæÎŞ¶¥Ô²×¶¹Ç¼ÜµÄ¶ÔÏó
+		bottomCircle=new CircleL(mySurfaceView,scale,r,n);  //åˆ›å»ºåº•é¢éª¨æ¶åœ†çš„å¯¹è±¡
+		coneSide=new ConeSideL(mySurfaceView,scale,r,h,n); //åˆ›å»ºä¾§é¢æ— é¡¶åœ†é”¥éª¨æ¶çš„å¯¹è±¡
 	}
 	public void drawSelf()
 	{
@@ -23,7 +23,7 @@ public class ConeL
 		MatrixState.rotate(yAngle, 0, 1, 0);
 		MatrixState.rotate(zAngle, 0, 0, 1);		
 		
-		//µ×Ãæ
+		//åº•é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -h/2, 0);
 		MatrixState.rotate(90, 1, 0, 0);
@@ -31,7 +31,7 @@ public class ConeL
 		bottomCircle.drawSelf();
 		MatrixState.popMatrix();
 		
-		//²àÃæ
+		//ä¾§é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -h/2, 0);
 		coneSide.drawSelf();

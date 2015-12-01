@@ -5,18 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import com.bn.R;
-//³£Á¿Àà  
+//å¸¸é‡ç±»  
 public class Constant
 {
-	//ĞÂÌí¼ÓµÄ£¬ÊÇ·ñÍ»ÆÆ¼ÇÂ¼
+	//æ–°æ·»åŠ çš„ï¼Œæ˜¯å¦çªç ´è®°å½•
 	public static boolean isBreakRecord;
-	//²İµØ¸ñ×Óµ¥Î»³¤¶È 
+	//è‰åœ°æ ¼å­å•ä½é•¿åº¦ 
 	public static final float GRASS_UNIT_SIZE=2.5f;
 	
-	//ÓÃÓÚ»æÖÆĞ¡À×´ïÊ±½øĞĞËõ·ÅµÄÖµ
+	//ç”¨äºç»˜åˆ¶å°é›·è¾¾æ—¶è¿›è¡Œç¼©æ”¾çš„å€¼
 	public static final float Radar_Ratio=1100;
 
-	//»ñÈ¡µ±Ç°Ê±¼ä×Ö·û´®µÄ·½·¨
+	//è·å–å½“å‰æ—¶é—´å­—ç¬¦ä¸²çš„æ–¹æ³•
 	public static String getCurrTime()
 	{
 		String result=null;
@@ -32,9 +32,9 @@ public class Constant
 		
 		return result;
 	}
-	//»ñÈ¡ÓÎÏ·ºÄÊ±
+	//è·å–æ¸¸æˆè€—æ—¶
 	public static long gameTimeUse;
-	//»ñÈ¡ÓÎÏ·ºÄÊ±×Ö·û´®µÄ·½·¨
+	//è·å–æ¸¸æˆè€—æ—¶å­—ç¬¦ä¸²çš„æ–¹æ³•
 	public static String getUseTime()
 	{
 		String result=null;
@@ -53,27 +53,27 @@ public class Constant
 		return result;
 	}
 	
-	//ÒôÀÖÉèÖÃµÄÏà¹Ø±êÖ¾Î»
-	public static boolean BgSoundFlag;//±³¾°ÒôÀÖ²¥·Å±êÖ¾Î»
-	public static boolean SoundEffectFlag;//ÓÎÏ·ÖĞÒôĞ§²¥·Å±êÖ¾Î» 
+	//éŸ³ä¹è®¾ç½®çš„ç›¸å…³æ ‡å¿—ä½
+	public static boolean BgSoundFlag;//èƒŒæ™¯éŸ³ä¹æ’­æ”¾æ ‡å¿—ä½
+	public static boolean SoundEffectFlag;//æ¸¸æˆä¸­éŸ³æ•ˆæ’­æ”¾æ ‡å¿—ä½ 
 	
-	//ÓÎÏ·Ä£Ê½Ñ¡ÔñµÄÏà¹Ø±êÖ¾Î»
-	public static boolean isSpeedMode;	//ÎªtrueÔòÎª¾ºËÙÄ£Ê½  falseÔòÎª¼ÆÊ±Ä£Ê½
+	//æ¸¸æˆæ¨¡å¼é€‰æ‹©çš„ç›¸å…³æ ‡å¿—ä½
+	public static boolean isSpeedMode;	//ä¸ºtrueåˆ™ä¸ºç«é€Ÿæ¨¡å¼  falseåˆ™ä¸ºè®¡æ—¶æ¨¡å¼
 	
-	//Ğ¡À×´ïÖĞÆäËû´¬µÄÎ»ÖÃ
+	//å°é›·è¾¾ä¸­å…¶ä»–èˆ¹çš„ä½ç½®
 	public static float[][] other_Boat_XZ;
 	
-	//ÎªÒÇ±í°å½øĞĞ×ÔÊÊÓ¦µÄ³£Á¿Êı¾İ 0ºÅÎª480x800 1ºÅÎª480x854 2ºÅÎª540x960 3ºÅÎª320x480
+	//ä¸ºä»ªè¡¨æ¿è¿›è¡Œè‡ªé€‚åº”çš„å¸¸é‡æ•°æ® 0å·ä¸º480x800 1å·ä¸º480x854 2å·ä¸º540x960 3å·ä¸º320x480
 	public static int screenId=0;
 	public static float screenRatio;
 	
-	public static final float screenRatio480x320=1.5f;//ÆÁÄ»¿í¸ß±È
+	public static final float screenRatio480x320=1.5f;//å±å¹•å®½é«˜æ¯”
 	public static final float screenRatio800x480=1.667f;
 	public static final float screenRatio854x480=1.779f;
 	public static final float screenRatio960x540=1.778f;
 	
 	public static final float[][] Self_Adapter_Data_ON_TOUCH=
-	{//»»ÊÓ½Ç   	ÔİÍ£		GO[Ã¿¸ö²¿¼şËÄ¸ö²ÎÊı£¬Ë³ĞòÎªÉÏÏÂ·¶Î§£¬×óÓÒ·¶Î§]--ĞÂ¼Ó É²³µ°´Å¥--ĞÂ¼ÓÊ±¼ä(ºóÊÓ¾µ)°´Å¥
+	{//æ¢è§†è§’   	æš‚åœ		GO[æ¯ä¸ªéƒ¨ä»¶å››ä¸ªå‚æ•°ï¼Œé¡ºåºä¸ºä¸Šä¸‹èŒƒå›´ï¼Œå·¦å³èŒƒå›´]--æ–°åŠ  åˆ¹è½¦æŒ‰é’®--æ–°åŠ æ—¶é—´(åè§†é•œ)æŒ‰é’®
 		{
 			0,0.104f,0,0.063f,
 			0,0.104f,0.938f,1,
@@ -105,15 +105,15 @@ public class Constant
 	};
 	 
 	public static final float[][] Self_Adapter_Data_TRASLATE= 
-	{//»»ÊÓ½Ç    ÔİÍ£   ¼ÓËÙÆ÷   ¼ÆËÙÆ÷   À×´ï[x,y,width]	---ĞÂ¼ÓÒ»¸öÉ²³µ°´Å¥          //320x480µÄÊı¾İÔİÊ±Ã»ÓĞ¸ø³ö£¬ĞèÒª½øĞĞ²âÊÔ
+	{//æ¢è§†è§’    æš‚åœ   åŠ é€Ÿå™¨   è®¡é€Ÿå™¨   é›·è¾¾[x,y,width]	---æ–°åŠ ä¸€ä¸ªåˆ¹è½¦æŒ‰é’®          //320x480çš„æ•°æ®æš‚æ—¶æ²¡æœ‰ç»™å‡ºï¼Œéœ€è¦è¿›è¡Œæµ‹è¯•
 		{-1.15f, 0.09f, 0.264f ,1.9f, 0.09f, 0.264f, 1.65f, -1.5f, 0.64f, -1.4f, 0.40f, 0.295f, 1.3f, 0.40f, 0.31f, -1.0f, -1.53f, 0.5f},
 		{-1.27f, 0.09f, 0.264f ,2.0f, 0.09f, 0.264f, 1.75f, -1.5f, 0.63f, -1.5f, 0.40f, 0.295f, 1.4f, 0.40f, 0.3f, -1.07f, -1.52f, 0.55f}, 
 		{-1.27f, 0.09f, 0.264f ,2.0f, 0.09f, 0.264f, 1.75f, -1.5f, 0.63f, -1.5f, 0.40f, 0.295f, 1.4f, 0.40f, 0.3f, -1.09f, -1.52f, 0.55f}, 
 		{-1f, 0.09f, 0.264f ,1.76f, 0.09f, 0.264f, 1.47f, -1.56f, 0.62f, -1.2f, 0.40f, 0.297f, 1.18f, 0.40f, 0.3f, -0.79f, -1.53f, 0.5f}
 	};
 	
-	//ÎªºóÊÓ¾µµÄ´óĞ¡ºÍºóÊÓ¾µ¿ò½øĞĞ×ÔÊÊÓ¦µÄ³£Á¿Êı¾İ 0ºÅÎª480x800 1ºÅÎª480x854 2ºÅÎª540x960 3ºÅÎª320x480
-	//ÒÀ´ÎÎª²Ã¼ô´°¿ÚµÄx£¬y£¬ºóÊÓ¾µ¿òµÄyÆ«ÒÆÁ¿£¬ºóÊÓ¾µ¿òµÄ¿í¡¢¸ß
+	//ä¸ºåè§†é•œçš„å¤§å°å’Œåè§†é•œæ¡†è¿›è¡Œè‡ªé€‚åº”çš„å¸¸é‡æ•°æ® 0å·ä¸º480x800 1å·ä¸º480x854 2å·ä¸º540x960 3å·ä¸º320x480
+	//ä¾æ¬¡ä¸ºè£å‰ªçª—å£çš„xï¼Œyï¼Œåè§†é•œæ¡†çš„yåç§»é‡ï¼Œåè§†é•œæ¡†çš„å®½ã€é«˜
 	public static final float[][] Self_Adapter_Data_HSJ_XY=
 	{
 		{253,390,0.82f,0.66f,0.22f}, //0.82f,0.66f,0.22f
@@ -122,16 +122,16 @@ public class Constant
 		{280,390,0.82f,0.66f,0.22f}  //0.82f,0.66f,0.22f
 	};
 	
-	//Îª¾ºËÙÄ£Ê½·şÎñµÄ²ÎÊı  
-	//ÓÃÀ´°ïÖú¼ÇÂ¼Ó¢ĞÛ´¬Ãû´ÎµÄ³£Á¿ 
+	//ä¸ºç«é€Ÿæ¨¡å¼æœåŠ¡çš„å‚æ•°  
+	//ç”¨æ¥å¸®åŠ©è®°å½•è‹±é›„èˆ¹åæ¬¡çš„å¸¸é‡ 
 	public static int RANK_FOR_HELP=1;
-	//ÓÃÀ´¼ÇÂ¼Ó¢ĞÛ´¬µÄÃû´Î
+	//ç”¨æ¥è®°å½•è‹±é›„èˆ¹çš„åæ¬¡
 	public static int RANK_FOR_HERO_BOAT=0;
-	//ÓÃÀ´¼ÇÂ¼ÆäËû´¬µÄÈ¦Êı
+	//ç”¨æ¥è®°å½•å…¶ä»–èˆ¹çš„åœˆæ•°
 	public static int[] BOAT_LAP_NUMBER_OTHER;
-	//ÆäËû´¬µÄËÙ¶È
+	//å…¶ä»–èˆ¹çš„é€Ÿåº¦
 	public static final float[] Max_BOAT_V_OTHER={1.26f,1.19f};
-	//32*32µÄµØÍ¼¾ØÕóµÄÂ·Ïß
+	//32*32çš„åœ°å›¾çŸ©é˜µçš„è·¯çº¿
 	public static final int[][] PATH=
 	{
 		{1,0},{0,0},{0,1},{0,2},{0,3},{0,4},{1,4},{2,4},{2,5},{2,6},
@@ -156,82 +156,82 @@ public class Constant
 		{13,1},{13,2},{12,2},{11,2},{10,2},{9,2},{8,2},{8,3},{7,3},{7,2},
 		{6,2},{5,2},{4,2},{3,2},{3,1},{3,0},{2,0}
 	};	
-	//ÊÇ·ñÔİÍ£ÓÎÏ·±êÖ¾Î»
+	//æ˜¯å¦æš‚åœæ¸¸æˆæ ‡å¿—ä½
 	public static boolean isPaused=false;
-	//ÊÇ·ñ´ò¿ªºóÊÓ¾µ±êÖ¾Î»
+	//æ˜¯å¦æ‰“å¼€åè§†é•œæ ‡å¿—ä½
 	public static boolean isOpenHSJ=true;
-	//ÔİÍ£ÓÎÏ·Ê±£¬´¬µÄËÙ¶È£¬ÒÔÓÃÀ´»Øµ½ÓÎÏ·
+	//æš‚åœæ¸¸æˆæ—¶ï¼Œèˆ¹çš„é€Ÿåº¦ï¼Œä»¥ç”¨æ¥å›åˆ°æ¸¸æˆ
 	public static float CURR_BOAT_V_PAUSE=0;
-	//ÔİÍ£ÓÎÏ·Ê±£¬´¬µÄ¼ÓËÙ¶È£¬ÒÔÓÃÀ´»Øµ½ÓÎÏ·
+	//æš‚åœæ¸¸æˆæ—¶ï¼Œèˆ¹çš„åŠ é€Ÿåº¦ï¼Œä»¥ç”¨æ¥å›åˆ°æ¸¸æˆ
 	public static float BOAT_A_PAUSE=0;
-	public static int numberOfN2=0;//µ±Ç°µªÆøÊı£¬³õÊ¼Îª0
-	static int maxNumberOfN2=5;//×î´óµªÆøÊı£¬×î¶àÖ»ÄÜÍ¬Ê±ÓµÓĞ5¸öµªÆø
-	public static boolean halfFlag=false;//ÊÇ·ñĞĞÊ»°ëÈ¦µÄ±êÖ¾Î»
-	public static int numberOfTurns=1;//È¦Êı  
-	final static int maxOfTurns=2; //×î´óÈ¦Êı 
-	//´¬µÄ°ë¾¶´óĞ¡
+	public static int numberOfN2=0;//å½“å‰æ°®æ°”æ•°ï¼Œåˆå§‹ä¸º0
+	static int maxNumberOfN2=5;//æœ€å¤§æ°®æ°”æ•°ï¼Œæœ€å¤šåªèƒ½åŒæ—¶æ‹¥æœ‰5ä¸ªæ°®æ°”
+	public static boolean halfFlag=false;//æ˜¯å¦è¡Œé©¶åŠåœˆçš„æ ‡å¿—ä½
+	public static int numberOfTurns=1;//åœˆæ•°  
+	final static int maxOfTurns=2; //æœ€å¤§åœˆæ•° 
+	//èˆ¹çš„åŠå¾„å¤§å°
 	public static final float BOAT_UNIT_SIZE=2.0f;
-	//ÓÃÀ´Ëø¶¨Ä³Ğ©²ÎÊı£¬±£Ö¤²»ÉÁÆÁ
+	//ç”¨æ¥é”å®šæŸäº›å‚æ•°ï¼Œä¿è¯ä¸é—ªå±
 	static Object lockA=new Object();
-	//µØÍ¼¡¢3DÎïÌå¹¬¸ñÊı¿ØÖÆ²ÎÊı
+	//åœ°å›¾ã€3Dç‰©ä½“å®«æ ¼æ•°æ§åˆ¶å‚æ•°
 	public static final float NUMBER_MAP=3;     
-	//Ğ¡´¬ÏòÉÏÇÌµÄ½Ç¶ÈÖµ,ĞĞÊ»×´Ì¬ÖĞ
+	//å°èˆ¹å‘ä¸Šç¿˜çš„è§’åº¦å€¼,è¡Œé©¶çŠ¶æ€ä¸­
 	public static float head_Angle=4;
-	//Ğ¡´¬ËÙ¶ÈÎª0Ê±£¬Ğ¡´¬Ç°ºó»Î¶¯µÄ×î´ó½Ç¶ÈÖµ
+	//å°èˆ¹é€Ÿåº¦ä¸º0æ—¶ï¼Œå°èˆ¹å‰åæ™ƒåŠ¨çš„æœ€å¤§è§’åº¦å€¼
 	public static final float head_Angle_Max=4.25f;
-	//Ğ¡´¬ËÙ¶ÈÎª0Ê±£¬Ğ¡´¬Ç°ºó»Î¶¯ÖµµÄ¼ÓËÙ¶È
+	//å°èˆ¹é€Ÿåº¦ä¸º0æ—¶ï¼Œå°èˆ¹å‰åæ™ƒåŠ¨å€¼çš„åŠ é€Ÿåº¦
 	public static final float head_Angle_A=0.25f;
-	//¼ì²âÔÚ´¬ĞĞÊ»Ê±£¬ËÙ¶ÈÊÇ·ñ´óÓÚ¸ÃÖµ£¬µ±´óÓÚ¸ÃÖµÊ±£¬½«Åö×²±êÖ¾Î»ÖÃÎªfalse±íÊ¾¿ÉÒÔ½øĞĞÏÂÒ»´ÎµÄÅö×²ÉùÒôµÄ²¥·Å
+	//æ£€æµ‹åœ¨èˆ¹è¡Œé©¶æ—¶ï¼Œé€Ÿåº¦æ˜¯å¦å¤§äºè¯¥å€¼ï¼Œå½“å¤§äºè¯¥å€¼æ—¶ï¼Œå°†ç¢°æ’æ ‡å¿—ä½ç½®ä¸ºfalseè¡¨ç¤ºå¯ä»¥è¿›è¡Œä¸‹ä¸€æ¬¡çš„ç¢°æ’å£°éŸ³çš„æ’­æ”¾
 	public final static float CURR_BOAT_V_PZ=0.3f;	
-	//Ë®Ãæ»»Ö¡Ïß³Ì¹¤×÷±êÖ¾Î»   
+	//æ°´é¢æ¢å¸§çº¿ç¨‹å·¥ä½œæ ‡å¿—ä½   
 	public static boolean threadFlag=true;  
-	//Ë®ÃæµÄ¸ß¶ÈÖµ
+	//æ°´é¢çš„é«˜åº¦å€¼
 	public static float WATER_HIGH_ADJUST=0.0f;
-	//Ã¿Ò»¸ö¸ñ×Ó¶ÔÓ¦µÄ¿í¶ÈÒÔ¼°¸ß¶È    
+	//æ¯ä¸€ä¸ªæ ¼å­å¯¹åº”çš„å®½åº¦ä»¥åŠé«˜åº¦    
 	static final float UNIT_SIZE=60.0f;	
 
-	//ÉãÏñ»úÃ¿´Î×ª¶¯µÄ½Ç¶È
+	//æ‘„åƒæœºæ¯æ¬¡è½¬åŠ¨çš„è§’åº¦
 	public static float DEGREE_SPAN=0;
-	//ÉãÏñ»úÃ¿´ÎÒÆ¶¯µÄ¾àÀë (´¬µÄµ±Ç°ËÙ¶È)
+	//æ‘„åƒæœºæ¯æ¬¡ç§»åŠ¨çš„è·ç¦» (èˆ¹çš„å½“å‰é€Ÿåº¦)
 	public static float CURR_BOAT_V=0f;
 	public static float CURR_BOAT_V_TMD=0;
-	//´¬µÄ×îÖÕ×î¸ßËÙ¶È
+	//èˆ¹çš„æœ€ç»ˆæœ€é«˜é€Ÿåº¦
 	public static final float Max_BOAT_V_FINAL=1.3f*1.3f; 
-	//´¬µÄ×î¸ßËÙ¶È
+	//èˆ¹çš„æœ€é«˜é€Ÿåº¦
 	public static float Max_BOAT_V=1.3f; 
-	//´¬µÄ×î¸ßËÙ¶È
+	//èˆ¹çš„æœ€é«˜é€Ÿåº¦
 	public static final float Max_BOAT_V_VALUE=1.3f;  
-	//´¬µÄ¼ÓËÙ¶È
+	//èˆ¹çš„åŠ é€Ÿåº¦
 	public static float BOAT_A=0.0f;	
-	//ÉãÏñ»ú³õÊ¼µÄÊÓÏß·½Ïò£¬0±íÊ¾ÎªzÖá¸º·½Ïò
+	//æ‘„åƒæœºåˆå§‹çš„è§†çº¿æ–¹å‘ï¼Œ0è¡¨ç¤ºä¸ºzè½´è´Ÿæ–¹å‘
 	public static final float DIRECTION_INI=0;     
-	//ÉãÏñ»ú¾àÀëËù¹Û²ìÄ¿±êµãµÄ¾àÀë
+	//æ‘„åƒæœºè·ç¦»æ‰€è§‚å¯Ÿç›®æ ‡ç‚¹çš„è·ç¦»
 	static final float DISTANCE=4.0f; 
-	//ÉãÏñ»ú³õÊ¼Ê±ÏàÓ¦¹Û²ìµãµÄY×ø±ê 
+	//æ‘„åƒæœºåˆå§‹æ—¶ç›¸åº”è§‚å¯Ÿç‚¹çš„Yåæ ‡ 
 	static final float CAMERA_INI_Y=2;
-	//Ğ¡´¬³õÊ¼XZ×ø±ê
+	//å°èˆ¹åˆå§‹XZåæ ‡
 	public static float YACHT_INI_X=0;	
 	public static float YACHT_INI_Z=UNIT_SIZE/2+1*UNIT_SIZE;	
-	//ÎÆÀíÍ¼Æ¬µÄ¿í¶È
+	//çº¹ç†å›¾ç‰‡çš„å®½åº¦
 	static final float TEXTURE_WIDTH=2.0f;
-	//ÎÆÀíÍ¼Æ¬µÄ¸ß¶È
+	//çº¹ç†å›¾ç‰‡çš„é«˜åº¦
 	static final float TEXTURE_HEIGHT=2.0f;
-	//Â½µØ×î´ó¸ß²î
+	//é™†åœ°æœ€å¤§é«˜å·®
 	public static final float LAND_MAX_HIGHEST=10f;
-	//Â½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶ÈÊı×é(Ö±µÀ)  
+	//é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦æ•°ç»„(ç›´é“)  
 	public static float[][] yArray_ZD;
-	//Â½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶ÈÊı×é(Ö±µÀ´øĞ¡µº)  
+	//é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦æ•°ç»„(ç›´é“å¸¦å°å²›)  
 	public static float[][] yArray_ZD_DXD;
-	//Â½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶ÈÊı×é(ÍäµÀ)
+	//é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦æ•°ç»„(å¼¯é“)
 	public static float[][] yArray_WD;
-	//Â½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶ÈÊı×é(Æ½Ô­)
+	//é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦æ•°ç»„(å¹³åŸ)
 	public static float[][] yArray_PD;
-	//Â½µØĞĞÊı
+	//é™†åœ°è¡Œæ•°
 	public static int ROWS;
-	//Â½µØÁĞÊı
+	//é™†åœ°åˆ—æ•°
 	public static int COLS;
 	
-	//32*32µÄµØÍ¼¾ØÕó
+	//32*32çš„åœ°å›¾çŸ©é˜µ
 	public static final int[][] MAP_ARRAY=
 	{
 		{4,0,0,0,5,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8},
@@ -268,41 +268,41 @@ public class Constant
 		{8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8}
 	};
 	
-	//ÓÉ³ÌĞò×Ô¶¯²úÉúÖ±µÀ¸÷ĞĞ¶¥µãY×ø±êµÄ·½·¨
-	//ÈüµÀ¿í¶È
-	static int KD=13;  //ÈüµÀ¿í¶È
-	static int PDKD=9;	//Æ½µ×¿í¶È±ØĞëÎªÆæÊı
+	//ç”±ç¨‹åºè‡ªåŠ¨äº§ç”Ÿç›´é“å„è¡Œé¡¶ç‚¹Yåæ ‡çš„æ–¹æ³•
+	//èµ›é“å®½åº¦
+	static int KD=13;  //èµ›é“å®½åº¦
+	static int PDKD=9;	//å¹³åº•å®½åº¦å¿…é¡»ä¸ºå¥‡æ•°
 	static int rows=15;
 	public static float zdYRowFunction(float k)
 	{		
-		//µÚÒ»Æ½Ö±·¶Î§0~£¨ĞĞÊı¼õÈ¥Æ½µ×µÄĞĞÊı/2£©¼´0~((rows-KD)/2)
+		//ç¬¬ä¸€å¹³ç›´èŒƒå›´0~ï¼ˆè¡Œæ•°å‡å»å¹³åº•çš„è¡Œæ•°/2ï¼‰å³0~((rows-KD)/2)
 		if(k<((rows-KD)/2))
 		{
 			return LAND_MAX_HIGHEST;
 		}
-		//µÚÒ»ÏÂ½µ·¶Î§((rows-KD)/2)¡«((rows-PDKD)/2)
+		//ç¬¬ä¸€ä¸‹é™èŒƒå›´((rows-KD)/2)ï½((rows-PDKD)/2)
 		float span=((rows-PDKD)/2)-((rows-KD)/2);
 		if(k<((rows-PDKD)/2))
 		{
 			return LAND_MAX_HIGHEST*(-((k-((rows-PDKD)/2))/span));
 		}
-		//ÖĞ¼äÆ½Ö±·¶Î§
+		//ä¸­é—´å¹³ç›´èŒƒå›´
 		if(k<((rows-PDKD)/2)+PDKD)
 		{
 			return 0;
 		}
-		//µÚÒ»ÉÏÉı·¶Î§
+		//ç¬¬ä¸€ä¸Šå‡èŒƒå›´
 		if(k<rows-(rows-KD)/2)
 		{
 			float ratio=(k-((rows-PDKD)/2+PDKD))/span;
 			return LAND_MAX_HIGHEST*ratio;			
 		}
 		
-		//×îºóÆ½Ö±·¶Î§
+		//æœ€åå¹³ç›´èŒƒå›´
 		return LAND_MAX_HIGHEST;
 	}
 	
-	//²úÉúÖ±µÀY×ø±êÊı×éµÄ·½·¨
+	//äº§ç”Ÿç›´é“Yåæ ‡æ•°ç»„çš„æ–¹æ³•
 	public static void generateZDY()
 	{
 		int colsPlusOne=rows+1;
@@ -319,7 +319,7 @@ public class Constant
 		}
 	}
 	
-	//²úÉúÖ±µÀ´øĞ¡µºY×ø±êÊı×éµÄ·½·¨
+	//äº§ç”Ÿç›´é“å¸¦å°å²›Yåæ ‡æ•°ç»„çš„æ–¹æ³•
 	public static void generateZDY_XD(Resources resources)
 	{
 		float[][] xddata=loadLandforms(resources,R.drawable.xd,LAND_MAX_HIGHEST);
@@ -338,7 +338,7 @@ public class Constant
 		}
 	}  
 	
-	//²úÉúÍäµÀY×ø±êÊı×éµÄ·½·¨
+	//äº§ç”Ÿå¼¯é“Yåæ ‡æ•°ç»„çš„æ–¹æ³•
 	public static void generateWDY()
 	{
 		int colsPlusOne=rows+1;
@@ -363,7 +363,7 @@ public class Constant
 		}
 	}
 	
-	//²úÉúÆ½µØY×ø±êÊı×éµÄ·½·¨
+	//äº§ç”Ÿå¹³åœ°Yåæ ‡æ•°ç»„çš„æ–¹æ³•
 	public static void generatePDY()
 	{
 		int colsPlusOne=rows+1;
@@ -378,7 +378,7 @@ public class Constant
 		}
 	}
 	
-	//´Ó»Ò¶ÈÍ¼Æ¬ÖĞ¼ÓÔØÂ½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶È
+	//ä»ç°åº¦å›¾ç‰‡ä¸­åŠ è½½é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦
 	public static float[][] loadLandforms(Resources resources,int index,float heightOffset)
 	{
 		Bitmap bt=BitmapFactory.decodeResource(resources, index);
@@ -402,7 +402,7 @@ public class Constant
 	}
 	
 	static int directNo=3;
-	//¸ù¾İ½Ç¶ÈµÄ±ä»¯µÃµ½Ğ¡´¬´¬Í·ËùÖ¸·½Ïò
+	//æ ¹æ®è§’åº¦çš„å˜åŒ–å¾—åˆ°å°èˆ¹èˆ¹å¤´æ‰€æŒ‡æ–¹å‘
 	public static int getDirectionNumber(float angleForSpecFrame)
 	{
 		float tempAngle=angleForSpecFrame%360;
@@ -446,15 +446,15 @@ public class Constant
 		}		
 	}
 	
-	//ĞÂÌí¼ÓµÄĞ¡É½µÄ×ø±êµÄÊı×é
+	//æ–°æ·»åŠ çš„å°å±±çš„åæ ‡çš„æ•°ç»„
 	public static float[][] yArray_Mountion;
-	//É½µÄ×î´ó¸ß²î
+	//å±±çš„æœ€å¤§é«˜å·®
 	public static final float SD_HEIGHT=40;   
 	public static void generateMountion(Resources resources)
 	{  
 		yArray_Mountion=loadLandforms(resources,R.drawable.mountion_land_0,SD_HEIGHT);
 	}
-	//ĞÂÌí¼ÓµÄËíµÀµÄy×ø±êÊı×é 
+	//æ–°æ·»åŠ çš„éš§é“çš„yåæ ‡æ•°ç»„ 
 	public static float[][] yArray_Tunnel; 
 	
 	public static void generateTunnel(Resources resources)

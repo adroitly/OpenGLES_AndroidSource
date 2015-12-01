@@ -1,17 +1,17 @@
 package com.bn.Sample8_2;
-//Ô²×¶Àà
+//åœ†é”¥ç±»
 public class Cone
 {
-	Circle bottomCircle;//µ×Ô²
-	ConeSide coneSide;//²àÃæ
-	float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+	Circle bottomCircle;//åº•åœ†
+	ConeSide coneSide;//ä¾§é¢
+	float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
     float h;
     float scale;
 
-    int BottomTexId;  //µ×ÃæÎÆÀí
-    int sideTexId;  //²àÃæÎÆÀí
+    int BottomTexId;  //åº•é¢çº¹ç†
+    int sideTexId;  //ä¾§é¢çº¹ç†
     
 	public Cone(MySurfaceView mySurfaceView,float scale,float r, float h,int n,
 			int BottomTexId, int sideTexId)
@@ -21,22 +21,22 @@ public class Cone
 		this.BottomTexId=BottomTexId;
 		this.sideTexId=sideTexId;
 		
-		bottomCircle=new Circle(mySurfaceView,scale,r,n);  //´´½¨µ×ÃæÔ²¶ÔÏó
-		coneSide=new ConeSide(mySurfaceView,scale,r,h,n); //´´½¨Ô²×¶²àÃæ¶ÔÏó
+		bottomCircle=new Circle(mySurfaceView,scale,r,n);  //åˆ›å»ºåº•é¢åœ†å¯¹è±¡
+		coneSide=new ConeSide(mySurfaceView,scale,r,h,n); //åˆ›å»ºåœ†é”¥ä¾§é¢å¯¹è±¡
 	}
 	public void drawSelf()
 	{
 		MatrixState.rotate(xAngle, 1, 0, 0);
 		MatrixState.rotate(yAngle, 0, 1, 0);
 		MatrixState.rotate(zAngle, 0, 0, 1);				
-		//µ×Ãæ
+		//åº•é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -h/2*scale, 0);
 		MatrixState.rotate(90, 1, 0, 0);
 		MatrixState.rotate(180, 0, 0, 1);
 		bottomCircle.drawSelf(BottomTexId);
 		MatrixState.popMatrix();
-		//²àÃæ
+		//ä¾§é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -h/2*scale, 0);
 		coneSide.drawSelf(sideTexId);

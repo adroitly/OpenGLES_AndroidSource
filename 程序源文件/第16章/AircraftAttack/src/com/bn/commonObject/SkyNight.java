@@ -8,21 +8,21 @@ import com.bn.core.MatrixState;
 
 import android.opengl.GLES20;
 
-//±íÊ¾ĞÇ¿ÕÌìÇòµÄÀà
+//è¡¨ç¤ºæ˜Ÿç©ºå¤©çƒçš„ç±»
 public class SkyNight 
 {
-	float skyR=30.0f;//ÌìÇò°ë¾¶
-	private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    int vCount=0;//ĞÇĞÇÊıÁ¿
-    float scale;//ĞÇĞÇ³ß´ç
+	float skyR=30.0f;//å¤©çƒåŠå¾„
+	private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    int vCount=0;//æ˜Ÿæ˜Ÿæ•°é‡
+    float scale;//æ˜Ÿæ˜Ÿå°ºå¯¸
     
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷´úÂë½Å±¾    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷´úÂë½Å±¾
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨ä»£ç è„šæœ¬    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨ä»£ç è„šæœ¬
     
-    int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid 
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid   
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int uPointSizeHandle;//¶¥µã³ß´ç²ÎÊıÒıÓÃ
+    int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid 
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id   
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int uPointSizeHandle;//é¡¶ç‚¹å°ºå¯¸å‚æ•°å¼•ç”¨
     
     public SkyNight(float scale,int vCount,float skyR)
     {
@@ -32,14 +32,14 @@ public class SkyNight
     	initVertexData();
     }
     
-    //³õÊ¼»¯¶¥µã×ø±êµÄ·½·¨
+    //åˆå§‹åŒ–é¡¶ç‚¹åæ ‡çš„æ–¹æ³•
     public void initVertexData()
     {    	  	
-    	//¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================begin=======================================       
+    	//é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin=======================================       
         float vertices[]=new float[vCount*6];
         for(int i=0;i<vCount;i++)
         {
-        	//Ëæ»ú²úÉúÃ¿¸öĞÇĞÇµÄxyz×ø±ê
+        	//éšæœºäº§ç”Ÿæ¯ä¸ªæ˜Ÿæ˜Ÿçš„xyzåæ ‡
         	double angleTempJD=Math.PI*2*Math.random();
         	double angleTempWD=Math.PI/3*(Math.random());
         	vertices[i*6]=(float)(skyR*Math.cos(angleTempWD)*Math.sin(angleTempJD));
@@ -53,37 +53,37 @@ public class SkyNight
         	System.out.println();
         }
 		
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-        //vertices.length*4ÊÇÒòÎªÒ»¸öFloatËÄ¸ö×Ö½Ú
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªFloatå››ä¸ªå­—èŠ‚
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 
     }
 
-    //³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+    //åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
     public void initShader(int mProgram)
     {
         this.mProgram = mProgram;
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");        
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
-        //»ñÈ¡¶¥µã³ß´ç²ÎÊıÒıÓÃ
+        //è·å–é¡¶ç‚¹å°ºå¯¸å‚æ•°å¼•ç”¨
         uPointSizeHandle = GLES20.glGetUniformLocation(mProgram, "uPointSize"); 
     }
     
     public void drawSelf()
     {  
-    	//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	    GLES20.glUseProgram(mProgram);
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);  
-        //½«¶¥µã³ß´ç´«ÈëShader³ÌĞò
+        //å°†é¡¶ç‚¹å°ºå¯¸ä¼ å…¥Shaderç¨‹åº
         GLES20.glUniform1f(uPointSizeHandle, scale);  
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ    
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®    
         GLES20.glVertexAttribPointer        
         (
         		maPositionHandle,   
@@ -93,9 +93,9 @@ public class SkyNight
                 3*4, 
                 mVertexBuffer   
         );   
-        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);         
-        //»æÖÆĞÇĞÇµã    
+        //ç»˜åˆ¶æ˜Ÿæ˜Ÿç‚¹    
         GLES20.glDrawArrays(GLES20.GL_POINTS, 0, vCount*2); 
     }
 }

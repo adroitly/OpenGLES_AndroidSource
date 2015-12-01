@@ -7,18 +7,18 @@ public class ZQTEdgeUtil
 	
 	public static float[] calTranslateRotateScale(float[] ab)
 	{		
-		//²ð·Ö³öABµã×ø±ê
+		//æ‹†åˆ†å‡ºABç‚¹åæ ‡
 		float xa=ab[0];
 		float ya=ab[1];
 		float za=ab[2];
 		float xb=ab[3];
 		float yb=ab[4];
 		float zb=ab[5];
-		//¼ÆËãaµãµ½bµãµÄÏòÁ¿  
+		//è®¡ç®—aç‚¹åˆ°bç‚¹çš„å‘é‡  
 		float[] abVector={xb-xa,yb-ya,zb-za};
-		//¹æ¸ñ»¯ABÏòÁ¿
+		//è§„æ ¼åŒ–ABå‘é‡
 		float[] normalAB=VectorUtil.vectorNormal(abVector);
-		//ABÏòÁ¿crossÖùÏòÁ¿  
+		//ABå‘é‡crossæŸ±å‘é‡  
 		float[] normalABCrossZhu=VectorUtil.vectorNormal
 		(
 			VectorUtil.getCrossProduct
@@ -27,16 +27,16 @@ public class ZQTEdgeUtil
 		    	ZHU_VECTOR_NORMAL[0], ZHU_VECTOR_NORMAL[1], ZHU_VECTOR_NORMAL[2]
 		    )
 		);
-		//ÇóABÏòÁ¿ÓëÖùÏòÁ¿¼Ð½Ç
+		//æ±‚ABå‘é‡ä¸ŽæŸ±å‘é‡å¤¹è§’
 		float angle=(float)Math.toDegrees(VectorUtil.angle(normalAB, ZHU_VECTOR_NORMAL));
-		//ÇóABµãÖÐµã
+		//æ±‚ABç‚¹ä¸­ç‚¹
 		float xABZ=(xa+xb)/2;
 		float yABZ=(ya+yb)/2;
 		float zABZ=(za+zb)/2;
-		//Çó³¤¶ÈËõ·ÅÖµ
+		//æ±‚é•¿åº¦ç¼©æ”¾å€¼
 		float scale=VectorUtil.mould(abVector)/STANDARD_EDGE_LENGTH;		
 		final float angleThold=0.8f;		
-		//Ðý×ª½Ç²»Ó¦¸ÃÎª0»ò180
+		//æ—‹è½¬è§’ä¸åº”è¯¥ä¸º0æˆ–180
 		if(Math.abs(angle)>angleThold&&Math.abs(angle)<180-angleThold){			
 			return new float[]{
 				xABZ,yABZ,zABZ,

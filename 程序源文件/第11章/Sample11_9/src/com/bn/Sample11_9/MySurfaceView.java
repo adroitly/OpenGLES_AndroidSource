@@ -14,17 +14,17 @@ public class MySurfaceView extends GLSurfaceView
 	public MySurfaceView(Context context)
 	{
 		super(context);
-		this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRender = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRender);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾ 
+		this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRender = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRender);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“ 
 	}
 	
 	private class SceneRenderer implements GLSurfaceView.Renderer 
     {
 		TextRect tRect;
-		int wlWidth=512;//ÎÄ×ÖÎÆÀí¿í¶È
-		int wlHeight=512;//ÎÄ×ÖÎÆÀí¸ß¶È
+		int wlWidth=512;//æ–‡å­—çº¹ç†å®½åº¦
+		int wlHeight=512;//æ–‡å­—çº¹ç†é«˜åº¦
 		long timeStamp=System.currentTimeMillis();
 		int texId=-1;
 		@Override
@@ -42,11 +42,11 @@ public class MySurfaceView extends GLSurfaceView
         	{
         		GLES20.glDeleteTextures(1, new int[]{texId}, 0);
         	}
-        	//Éú³ÉÎÄ×ÖÎÆÀí
+        	//ç”Ÿæˆæ–‡å­—çº¹ç†
         	Bitmap bm=FontUtil.generateWLT(FontUtil.getContent(FontUtil.cIndex, FontUtil.content), wlWidth, wlHeight);
         	texId=initTexture(bm);
         	
-			//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+			//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
             
             MatrixState.pushMatrix();
@@ -57,39 +57,39 @@ public class MySurfaceView extends GLSurfaceView
 		@Override
 		public void onSurfaceChanged(GL10 gl, int width, int height)
 		{
-			//ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+			//è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             float ratio = (float) width / height;
-            //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
             MatrixState.setProjectOrtho(-ratio, ratio, -1, 1, 1, 100);
-            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
             MatrixState.setCamera(0,0,1,0,0,0,0f,1.0f,0.0f);
 		}
 		@Override
 		public void onSurfaceCreated(GL10 gl, EGLConfig config)
 		{
-			//ÉèÖÃÆÁÄ»±³¾°É«RGBA
+			//è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0,0,0,1.0f);
-            //´ò¿ªÉî¶È¼ì²â
+            //æ‰“å¼€æ·±åº¦æ£€æµ‹
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-            //´ò¿ª±³Ãæ¼ô²Ã
+            //æ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);
             
             MatrixState.setInitStack();
             tRect=new TextRect(MySurfaceView.this);
 		}
     }
-	//Éú³ÉÎÆÀíµÄid
+	//ç”Ÿæˆçº¹ç†çš„id
 	public int initTexture(Bitmap bitmap)
 	{
-		//Éú³ÉÎÆÀíID
+		//ç”Ÿæˆçº¹ç†ID
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊıÁ¿
-				textures,   //ÎÆÀíidµÄÊı×é
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
@@ -98,15 +98,15 @@ public class MySurfaceView extends GLSurfaceView
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_REPEAT);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_REPEAT);
         
-        //Êµ¼Ê¼ÓÔØÎÆÀí
+        //å®é™…åŠ è½½çº¹ç†
         GLUtils.texImage2D
         (
-        		GLES20.GL_TEXTURE_2D,   //ÎÆÀíÀàĞÍ£¬ÔÚOpenGL ESÖĞ±ØĞëÎªGL10.GL_TEXTURE_2D
-        		0, 					  //ÎÆÀíµÄ²ã´Î£¬0±íÊ¾»ù±¾Í¼Ïñ²ã£¬¿ÉÒÔÀí½âÎªÖ±½ÓÌùÍ¼
-        		bitmap, 			  //ÎÆÀíÍ¼Ïñ
-        		0					  //ÎÆÀí±ß¿ò³ß´ç
+        		GLES20.GL_TEXTURE_2D,   //çº¹ç†ç±»å‹ï¼Œåœ¨OpenGL ESä¸­å¿…é¡»ä¸ºGL10.GL_TEXTURE_2D
+        		0, 					  //çº¹ç†çš„å±‚æ¬¡ï¼Œ0è¡¨ç¤ºåŸºæœ¬å›¾åƒå±‚ï¼Œå¯ä»¥ç†è§£ä¸ºç›´æ¥è´´å›¾
+        		bitmap, 			  //çº¹ç†å›¾åƒ
+        		0					  //çº¹ç†è¾¹æ¡†å°ºå¯¸
         );
-        bitmap.recycle(); 		  //ÎÆÀí¼ÓÔØ³É¹¦ºóÊÍ·ÅÍ¼Æ¬
+        bitmap.recycle(); 		  //çº¹ç†åŠ è½½æˆåŠŸåé‡Šæ”¾å›¾ç‰‡
         return textureId;
 	}
 }

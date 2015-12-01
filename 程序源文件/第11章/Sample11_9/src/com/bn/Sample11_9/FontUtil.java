@@ -28,20 +28,20 @@ public class FontUtil
 	}
 	static String[] content=
 	{
-		"�Կ��Ϻ�ӧ���⹳˪ѩ����",
-		"�����հ�������������ǡ�",
-		"ʮ��ɱһ�ˣ�ǧ�ﲻ���С�",
-		"���˷���ȥ�������������",
-		"�й����������ѽ�ϥǰ�ᡣ",
-		"������캥������Ȱ������",
-		"������Ȼŵ��������Ϊ�ᡣ",
-		"�ۻ����Ⱥ�������������",
-		"���Իӽ�鳣��������𾪡�",
-		"ǧ���׳ʿ���Ӻմ����ǡ�",
-		"���������㣬��������Ӣ��",
-		"˭�����x�£�����̫������",
+		"赵客缦胡缨，吴钩霜雪明。",
+		"银鞍照白马，飒沓如流星。",
+		"十步杀一人，千里不留行。",
+		"事了拂衣去，深藏身与名。",
+		"闲过信陵饮，脱剑膝前横。",
+		"将炙啖朱亥，持觞劝侯嬴。",
+		"三杯吐然诺，五岳倒为轻。",
+		"眼花耳热后，意气素霓生。",
+		"救赵挥金槌，邯郸先震惊。",
+		"千秋二壮士，煊赫大梁城。",
+		"纵死侠骨香，不惭世上英。",
+		"谁能书閤下，白首太玄经。",
 	};
-	//�������ķ���
+	//获得数组的方法
 	public static String[] getContent(int length,String[] content)
 	{
 		String[] result=new String[length+1];
@@ -51,7 +51,7 @@ public class FontUtil
 		}
 		return result;
 	}
-	//������ɫ�ķ���
+	//更新颜色的方法
 	public static void updateRGB()
 	{
 		R=(int)(255*Math.random());

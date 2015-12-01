@@ -8,9 +8,9 @@ import android.graphics.Color;
 public class Constant
 {
 	public static float[][] yArray;
-	public static final float LAND_HIGH_ADJUST=2f;//Â½µØµÄ¸ß¶Èµ÷ÕûÖµ
-	public static final float LAND_HIGHEST=60f;//Â½µØ×î´ó¸ß²î  
-	//´Ó»Ò¶ÈÍ¼Æ¬ÖĞ¼ÓÔØÂ½µØÉÏÃ¿¸ö¶¥µãµÄ¸ß¶È
+	public static final float LAND_HIGH_ADJUST=2f;//é™†åœ°çš„é«˜åº¦è°ƒæ•´å€¼
+	public static final float LAND_HIGHEST=60f;//é™†åœ°æœ€å¤§é«˜å·®  
+	//ä»ç°åº¦å›¾ç‰‡ä¸­åŠ è½½é™†åœ°ä¸Šæ¯ä¸ªé¡¶ç‚¹çš„é«˜åº¦
 	public static float[][] loadLandforms(Resources resources,int index)
 	{
 		Bitmap bt=BitmapFactory.decodeResource(resources, index);

@@ -5,20 +5,20 @@ import static com.bn.clp.MyGLSurfaceView.sight_angle;
 import com.bn.core.MatrixState;
 import com.bn.st.d2.MyActivity;
  
-//¿É³ÔÎïÌåµÄ¿ØÖÆÀà
+//å¯åƒç‰©ä½“çš„æ§åˆ¶ç±»
 public class SpeedForControl
 {
-	long pzTime;//Åö×²Ê±µÄÊ±¼ä
+	long pzTime;//ç¢°æ’æ—¶çš„æ—¶é—´
 	
-	SpeedForEat speed;//Îï¼şµÄÒıÓÃ
-	int id;//Îï¼şid
+	SpeedForEat speed;//ç‰©ä»¶çš„å¼•ç”¨
+	int id;//ç‰©ä»¶id
 	float x;
 	float y;
 	float z;
 	static float angleY;
 	float rows;
 	float cols;
-	boolean isDrawFlag=true;//ÊÇ·ñ»æÖÆµÄ±êÖ¾Î»
+	boolean isDrawFlag=true;//æ˜¯å¦ç»˜åˆ¶çš„æ ‡å¿—ä½
 	MyActivity ma;
 	public SpeedForControl(SpeedForEat speedForEat,int id,float x,float y,float z,float angleY,float rows,float cols,MyActivity ma)
 	{
@@ -32,12 +32,12 @@ public class SpeedForControl
 		this.ma=ma;
 	}
 	
-	//»æÖÆ·½·¨
+	//ç»˜åˆ¶æ–¹æ³•
 	public void drawSelf(int texId,int dyFlag)
 	{
 		if(isDrawFlag)
 		{			
-			if(dyFlag==0)//»æÖÆÊµÌå
+			if(dyFlag==0)//ç»˜åˆ¶å®ä½“
 			{
 				MatrixState.pushMatrix();
 				MatrixState.translate(x, y, z);
@@ -45,11 +45,11 @@ public class SpeedForControl
 				speed.drawSelf(texId);
 				MatrixState.popMatrix();
 			}
-			else if(dyFlag==1)//»æÖÆµ¹Ó°
+			else if(dyFlag==1)//ç»˜åˆ¶å€’å½±
 			{
-				//Êµ¼Ê»æÖÆÊ±YµÄÁãµã
+				//å®é™…ç»˜åˆ¶æ—¶Yçš„é›¶ç‚¹
 				float yTranslate=y;
-				//½øĞĞ¾µÏñ»æÖÆÊ±µÄµ÷ÕûÖµ
+				//è¿›è¡Œé•œåƒç»˜åˆ¶æ—¶çš„è°ƒæ•´å€¼
 				float yjx=(0-yTranslate)*2;				
 				MatrixState.pushMatrix();
 				MatrixState.translate(x, y, z);
@@ -62,29 +62,29 @@ public class SpeedForControl
 		}
 	}
 	
-	//¼ÆËãÊÇ·ñ·¢ÉúÅö×²
-	//¸ù¾İ´¬µÄÎ»ÖÃ¼ÆËã³ö´¬Í·Î»ÖÃ£¬²¢ÅĞ¶ÏÊÇ·ñÓëÄ³¸ö¿É×²ÎïÌåÅö×²
+	//è®¡ç®—æ˜¯å¦å‘ç”Ÿç¢°æ’
+	//æ ¹æ®èˆ¹çš„ä½ç½®è®¡ç®—å‡ºèˆ¹å¤´ä½ç½®ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦ä¸æŸä¸ªå¯æ’ç‰©ä½“ç¢°æ’
 	public void checkColl(float bX,float bZ,float carAlphaTemp)
 	{
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		float bPointX=(float) (bX-BOAT_UNIT_SIZE*Math.sin(Math.toRadians(sight_angle)));
 		float bPointZ=(float) (bZ-BOAT_UNIT_SIZE*Math.cos(Math.toRadians(sight_angle)));		
 		
-		//¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float carCol=(float) Math.floor((bPointX+UNIT_SIZE/2)/UNIT_SIZE);
 		float carRow=(float) Math.floor((bPointZ+UNIT_SIZE/2)/UNIT_SIZE);
 		
 		if(carRow==rows&&carCol==cols&&isDrawFlag)
-		{//Èç¹û´ó¼ÒÔÚÍ¬Ò»¸ö¸ñ×ÓÀï£¬½øĞĞÑÏ¸ñµÄÅö×²¼ì²âKZBJBJ
+		{//å¦‚æœå¤§å®¶åœ¨åŒä¸€ä¸ªæ ¼å­é‡Œï¼Œè¿›è¡Œä¸¥æ ¼çš„ç¢°æ’æ£€æµ‹KZBJBJ
 			double disP2=(bPointX-x)*(bPointX-x)+(bPointZ-z)*(bPointZ-z);
-			//ÕâÀïµÄ4ÎªÒ»¸ö²âÊÔÖµ£¬ÒÔºóĞèÒª¸ù¾İÊµ¼ÊÇé¿ö¸ü¸Ä
+			//è¿™é‡Œçš„4ä¸ºä¸€ä¸ªæµ‹è¯•å€¼ï¼Œä»¥åéœ€è¦æ ¹æ®å®é™…æƒ…å†µæ›´æ”¹
 			if(disP2<=4)
-			{//Åö×²ÁË
-				if(id==0)//³ÔÁËÔö¼ÓµªÆøµÄÎï¼ş
+			{//ç¢°æ’äº†
+				if(id==0)//åƒäº†å¢åŠ æ°®æ°”çš„ç‰©ä»¶
 				{
 					if(numberOfN2<maxNumberOfN2)
 					{
-						numberOfN2=numberOfN2+1;//µªÆøµÄÊıÁ¿ÖµÔö¼Ó1
+						numberOfN2=numberOfN2+1;//æ°®æ°”çš„æ•°é‡å€¼å¢åŠ 1
 					} 
 					if(SoundEffectFlag)
 					{
@@ -93,23 +93,23 @@ public class SpeedForControl
 					isDrawFlag=false;
 					pzTime=System.currentTimeMillis();
 				}
-				else if(id==1)//³Ôµô¼õËÙ  
+				else if(id==1)//åƒæ‰å‡é€Ÿ  
 				{
 					if(SoundEffectFlag)
 					{
 						ma.shengyinBoFang(3, 0);
 					}					 
-					CURR_BOAT_V=CURR_BOAT_V/2;//³Ôµô¼õËÙÎïÌåÖ®ºó£¬ËÙ¶È±äÎªÔ­ÏÈµÄÒ»°ë
+					CURR_BOAT_V=CURR_BOAT_V/2;//åƒæ‰å‡é€Ÿç‰©ä½“ä¹‹åï¼Œé€Ÿåº¦å˜ä¸ºåŸå…ˆçš„ä¸€åŠ
 					isDrawFlag=false;
 					pzTime=System.currentTimeMillis();
 				}
 			} 
 		}
 	}
-	//¸Ã·½·¨ÊÇÅĞ¶ÏÒÑ¾­³ÔµôµÄÎïÌåÊÇ·ñÒÑ¾­¾­¹ı50Ãë£¬Èç¹û¾­¹ı50Ãë£¬ÔòÖØĞÂÏÔÊ¾
+	//è¯¥æ–¹æ³•æ˜¯åˆ¤æ–­å·²ç»åƒæ‰çš„ç‰©ä½“æ˜¯å¦å·²ç»ç»è¿‡50ç§’ï¼Œå¦‚æœç»è¿‡50ç§’ï¼Œåˆ™é‡æ–°æ˜¾ç¤º
 	public void checkEatYet()
 	{
-		//Èç¹ûÎï¼şµÄ»æÖÆ±êÖ¾Î»Îªtrue£¬²¢ÇÒÊ±¼ä²î²»´óÓÚ60Ãë
+		//å¦‚æœç‰©ä»¶çš„ç»˜åˆ¶æ ‡å¿—ä½ä¸ºtrueï¼Œå¹¶ä¸”æ—¶é—´å·®ä¸å¤§äº60ç§’
 		if(!isDrawFlag&&((System.currentTimeMillis()-pzTime)%60000/1000>=50))
 		{
 			isDrawFlag=true;

@@ -1,6 +1,6 @@
 package com.bn.clp;
 
-//所有可以吃掉物体的父类
+//鎵�鏈夊彲浠ュ悆鎺夌墿浣撶殑鐖剁被
 public abstract class SpeedForEat
 {
 	public abstract void drawSelf(int texId);

@@ -1,54 +1,54 @@
 package com.bn.pp4;
-import android.content.ContentProvider; //µ¼ÈëÏà¹Ø°ü
+import android.content.ContentProvider; //å¯¼å…¥ç›¸å…³åŒ…
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-public class MyContentProvider extends ContentProvider { // ¼Ì³ĞContentProvider
-	private static final UriMatcher um; // ÉùÃ÷UriÆ¥ÅäÒıÓÃ
+public class MyContentProvider extends ContentProvider { // ç»§æ‰¿ContentProvider
+	private static final UriMatcher um; // å£°æ˜UriåŒ¹é…å¼•ç”¨
 	static {
-		um = new UriMatcher(UriMatcher.NO_MATCH); // ´´½¨UriMatcher
-		um.addURI("com.bn.pp4.provider.student", "stu", 1); // ÉèÖÃÆ¥Åä×Ö·û´®
+		um = new UriMatcher(UriMatcher.NO_MATCH); // åˆ›å»ºUriMatcher
+		um.addURI("com.bn.pp4.provider.student", "stu", 1); // è®¾ç½®åŒ¹é…å­—ç¬¦ä¸²
 	}
-	SQLiteDatabase sld; // ÉùÃ÷SQLiteDatabaseÒıÓÃ
+	SQLiteDatabase sld; // å£°æ˜SQLiteDatabaseå¼•ç”¨
 	@Override
 	public String getType(Uri uri) {
 		return null;
 	}
-	@Override	// µ÷ÓÃÊı¾İ¿âµÄquery·½·¨Ê±»á×Ô¶¯µ÷ÓÃ¸Ã·½·¨
+	@Override	// è°ƒç”¨æ•°æ®åº“çš„queryæ–¹æ³•æ—¶ä¼šè‡ªåŠ¨è°ƒç”¨è¯¥æ–¹æ³•
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
-		switch (um.match(uri)) {// ÈôÆ¥Åä³É¹¦
-		case 1: // Ö´ĞĞ²Ù×÷£¬»ñÈ¡Cursor¶ÔÏóÒıÓÃ
+		switch (um.match(uri)) {// è‹¥åŒ¹é…æˆåŠŸ
+		case 1: // æ‰§è¡Œæ“ä½œï¼Œè·å–Cursorå¯¹è±¡å¼•ç”¨
 			Cursor cur = sld.query("student", projection, selection,
 					selectionArgs, null, null, sortOrder);
-			return cur; // ·µ»ØCursor¶ÔÏóÒıÓÃ
+			return cur; // è¿”å›Cursorå¯¹è±¡å¼•ç”¨
 		}
 		return null;
 	}
 	@Override
-	public int delete(Uri arg0, String arg1, String[] arg2) {// ¿ÕÊµÏÖ
+	public int delete(Uri arg0, String arg1, String[] arg2) {// ç©ºå®ç°
 		return 0;
 	}
 
 	@Override
-	public Uri insert(Uri uri, ContentValues values) {// ¿ÕÊµÏÖ
+	public Uri insert(Uri uri, ContentValues values) {// ç©ºå®ç°
 		return null;
 	}
 	@Override
-	public boolean onCreate() { // ´´½¨Êı¾İ¿âÊ±×Ô¶¯µ÷ÓÃ¸Ã·½·¨
+	public boolean onCreate() { // åˆ›å»ºæ•°æ®åº“æ—¶è‡ªåŠ¨è°ƒç”¨è¯¥æ–¹æ³•
 		sld = SQLiteDatabase.openDatabase(
-				"/data/data/com.bn.pp4/mydb", // Êı¾İ¿âËùÔÚÂ·¾¶
-				null, // ÓÎ±ê¹¤³§£¬Ä¬ÈÏÎªnull
+				"/data/data/com.bn.pp4/mydb", // æ•°æ®åº“æ‰€åœ¨è·¯å¾„
+				null, // æ¸¸æ ‡å·¥å‚ï¼Œé»˜è®¤ä¸ºnull
 				SQLiteDatabase.OPEN_READWRITE| 
-				SQLiteDatabase.CREATE_IF_NECESSARY // ¶ÁĞ´¡¢Èô²»´æÔÚÔò´´½¨
+				SQLiteDatabase.CREATE_IF_NECESSARY // è¯»å†™ã€è‹¥ä¸å­˜åœ¨åˆ™åˆ›å»º
 		);
 		return false;
 	}
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
-			String[] selectionArgs) {// ¿ÕÊµÏÖ
+			String[] selectionArgs) {// ç©ºå®ç°
 		return 0;
 	}
 }

@@ -47,7 +47,7 @@ import static com.bn.clp.Constant.generateZDY_XD;
 import static com.bn.clp.Constant.yArray_ZD;
 import static com.bn.st.xc.Constant.*;
 /*
- * ´ËÎªÑ¡´¬³¡¾°
+ * æ­¤ä¸ºé€‰èˆ¹åœºæ™¯
  */
 enum WhichView
 {
@@ -58,37 +58,37 @@ public class MyActivity extends Activity
 	static WhichView curr;
 	public static Object boatInitLock=new Object();
 	public MyGLSurfaceView gameV;
-	XCSurfaceView xcV;//Ñ¡´¬³¡¾°µÄÒıÓÃ
-	public Handler hd;//ÏûÏ¢¿ØÖÆÆ÷
+	XCSurfaceView xcV;//é€‰èˆ¹åœºæ™¯çš„å¼•ç”¨
+	public Handler hd;//æ¶ˆæ¯æ§åˆ¶å™¨
 	
 	ViewForDraw vfd;
 	
-	WelcomeView welV;//»¶Ó­¹ı³¡¶¯»­½çÃæ
-	MenuView menuV;//²Ëµ¥½çÃæµÄÒıÓÃ	
-	SoundSurfaceView ssv;//ÉùÒô½çÃæµÄÒıÓÃ
-	HelpSurfaceView hsv;//ÓÎÏ·°ïÖú½çÃæµÄÒıÓÃ
-	GameModeView gmv;//ÓÎÏ·Ä£Ê½Ñ¡Ôñ½çÃæµÄÒıÓÃ
-	GuanYuView gyv;//¹ØÓÚ½çÃæµÄÒıÓÃ
-	DSurfaceView dsv;//¼ÇÂ¼²éÑ¯½çÃæµÄÒıÓÃ
+	WelcomeView welV;//æ¬¢è¿è¿‡åœºåŠ¨ç”»ç•Œé¢
+	MenuView menuV;//èœå•ç•Œé¢çš„å¼•ç”¨	
+	SoundSurfaceView ssv;//å£°éŸ³ç•Œé¢çš„å¼•ç”¨
+	HelpSurfaceView hsv;//æ¸¸æˆå¸®åŠ©ç•Œé¢çš„å¼•ç”¨
+	GameModeView gmv;//æ¸¸æˆæ¨¡å¼é€‰æ‹©ç•Œé¢çš„å¼•ç”¨
+	GuanYuView gyv;//å…³äºç•Œé¢çš„å¼•ç”¨
+	DSurfaceView dsv;//è®°å½•æŸ¥è¯¢ç•Œé¢çš„å¼•ç”¨
 	
 	//============================
 	CheckVersionDialog cvDialog;
 	AndroidVersionDialog avDialog;
-	BreakRecordOrNotDialog bronDialog;//ÊÇ·ñÆÆ¼ÍÂ¼µÄ¶Ô»°¿ò
-	RankingDialog rDialog;//Ãû´Î¶Ô»°¿ò
+	BreakRecordOrNotDialog bronDialog;//æ˜¯å¦ç ´çºªå½•çš„å¯¹è¯æ¡†
+	RankingDialog rDialog;//åæ¬¡å¯¹è¯æ¡†
 	int flag;
 	//==============================
 	
-	public MediaPlayer beijingyinyue;//ÓÎÏ·±³¾°ÒôÀÖ²¥·ÅÆ÷
-	SoundPool shengyinChi;//ÉùÒô³Ø
-	HashMap<Integer,Integer> soundIdMap;//ÉùÒô³ØÖĞÉùÒôIDÓë×Ô¶¨ÒåÉùÒôIDµÄMap
+	public MediaPlayer beijingyinyue;//æ¸¸æˆèƒŒæ™¯éŸ³ä¹æ’­æ”¾å™¨
+	SoundPool shengyinChi;//å£°éŸ³æ± 
+	HashMap<Integer,Integer> soundIdMap;//å£°éŸ³æ± ä¸­å£°éŸ³IDä¸è‡ªå®šä¹‰å£°éŸ³IDçš„Map
 	
-	//SensorManager¶ÔÏóÒıÓÃ 
+	//SensorManagerå¯¹è±¡å¼•ç”¨ 
 	SensorManager mySensorManager;	
 	
 	SharedPreferences sp;
 	  
-	//¿ª·¢ÊµÏÖÁËSensorEventListener½Ó¿ÚµÄ´«¸ĞÆ÷¼àÌıÆ÷
+	//å¼€å‘å®ç°äº†SensorEventListeneræ¥å£çš„ä¼ æ„Ÿå™¨ç›‘å¬å™¨
 	private SensorEventListener mySensorListener = new SensorEventListener()
 	{
 		@Override    
@@ -98,9 +98,9 @@ public class MyActivity extends Activity
 		@Override
 		public void onSensorChanged(SensorEvent event) 
 		{
-			//ÈôÊ¹ÓÃ´«¸ĞÆ÷±êÖ¾Î»Îªtrue,²¢ÇÒ³¡¾°¿É´¥¿Ø±êÖ¾Î»Îªtrue,¿ÉÊ¹ÓÃ´«¸ĞÆ÷¡£ 			
+			//è‹¥ä½¿ç”¨ä¼ æ„Ÿå™¨æ ‡å¿—ä½ä¸ºtrue,å¹¶ä¸”åœºæ™¯å¯è§¦æ§æ ‡å¿—ä½ä¸ºtrue,å¯ä½¿ç”¨ä¼ æ„Ÿå™¨ã€‚ 			
 			if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
-			{//ÅĞ¶ÏÊÇ·ñÎª¼ÓËÙ¶È´«¸ĞÆ÷±ä»¯²úÉúµÄÊı¾İ
+			{//åˆ¤æ–­æ˜¯å¦ä¸ºåŠ é€Ÿåº¦ä¼ æ„Ÿå™¨å˜åŒ–äº§ç”Ÿçš„æ•°æ®
 				float[] values=event.values;
 				if(values[1]<-2)
 				{//right
@@ -123,25 +123,25 @@ public class MyActivity extends Activity
     {  
         super.onCreate(savedInstanceState);
         
-        //»ñÈ¡SharedPreferences
+        //è·å–SharedPreferences
         sp=this.getSharedPreferences("actm", Context.MODE_PRIVATE);
-        //»ñµÃÖµ£¬Ä¬ÈÏÖµÎªtrue
+        //è·å¾—å€¼ï¼Œé»˜è®¤å€¼ä¸ºtrue
         com.bn.clp.Constant.BgSoundFlag = sp.getBoolean("bgSoundFlag", true);
         com.bn.clp.Constant.SoundEffectFlag = sp.getBoolean("soundEffectFlag", true);     
                         
-        //³õÊ¼»¯ÉùÒô×ÊÔ´
+        //åˆå§‹åŒ–å£°éŸ³èµ„æº
         chushihuaSounds(); 
-        //ÉèÖÃÎªÈ«ÆÁ
+        //è®¾ç½®ä¸ºå…¨å±
         requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
 		              WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//ÉèÖÃÎªºáÆÁÄ£Ê½
+		//è®¾ç½®ä¸ºæ¨ªå±æ¨¡å¼
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
-		//ÓÎÏ·¹ı³ÌÖĞÖ»ÔÊĞíµ÷Õû¶àÃ½ÌåÒôÁ¿£¬¶ø²»ÔÊĞíµ÷ÕûÍ¨»°ÒôÁ¿¡£
+		//æ¸¸æˆè¿‡ç¨‹ä¸­åªå…è®¸è°ƒæ•´å¤šåª’ä½“éŸ³é‡ï¼Œè€Œä¸å…è®¸è°ƒæ•´é€šè¯éŸ³é‡ã€‚
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		
-		//´´½¨Êı¾İ¿â±í
+		//åˆ›å»ºæ•°æ®åº“è¡¨
 		DBUtil.createTable();
 		
 		flag=Settings.System.getInt(this.getContentResolver(),
@@ -152,15 +152,15 @@ public class MyActivity extends Activity
 		SCREEN_WIDTH=getWindowManager().getDefaultDisplay().getWidth();
 		SCREEN_HEIGHT=getWindowManager().getDefaultDisplay().getHeight();
 		
-		float screenHeightTemp=SCREEN_HEIGHT;//¼ÇÂ¼ÏµÍ³·µ»ØµÄÆÁÄ»·Ö±æÂÊ¡£
+		float screenHeightTemp=SCREEN_HEIGHT;//è®°å½•ç³»ç»Ÿè¿”å›çš„å±å¹•åˆ†è¾¨ç‡ã€‚
         float screenWidthTemp=SCREEN_WIDTH;
         
-        if(screenHeightTemp>screenWidthTemp) //Ö¸¶¨ÆÁÄ»µÄ¿íºÍ¸ß¡£
+        if(screenHeightTemp>screenWidthTemp) //æŒ‡å®šå±å¹•çš„å®½å’Œé«˜ã€‚
         {
         	SCREEN_WIDTH=screenHeightTemp;
         	SCREEN_HEIGHT=screenWidthTemp;
         }
-        com.bn.clp.Constant.screenRatio=SCREEN_WIDTH/SCREEN_HEIGHT;//»ñÈ¡ÆÁÄ»µÄ¿í¸ß±È
+        com.bn.clp.Constant.screenRatio=SCREEN_WIDTH/SCREEN_HEIGHT;//è·å–å±å¹•çš„å®½é«˜æ¯”
         if(Math.abs(com.bn.clp.Constant.screenRatio-com.bn.clp.Constant.screenRatio854x480)<0.001f)
         {
         	com.bn.clp.Constant.screenId=1;
@@ -180,7 +180,7 @@ public class MyActivity extends Activity
         
 		ratio_height=SCREEN_HEIGHT/480;
 		ratio_width=SCREEN_WIDTH/854;
-		//»ñµÃSensorManager¶ÔÏó
+		//è·å¾—SensorManagerå¯¹è±¡
         mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
 		new Thread()
 		{
@@ -188,21 +188,21 @@ public class MyActivity extends Activity
 		   {
 			   synchronized(boatInitLock)
 			   {
-				   //Ñ¡´¬µÄ
+				   //é€‰èˆ¹çš„
 				   CylinderTextureByVertex.initVertexData(14, 6, 8, 1);
 				   CircleForDraw.initVertexData(8, 14);
 				   XCSurfaceView.loadWelcomeBitmap(MyActivity.this.getResources());
 				   XCSurfaceView.loadVertexFromObj(MyActivity.this.getResources());
 				   com.bn.st.xc.ShaderManager.loadCodeFromFile(MyActivity.this.getResources());
 				   
-				    //Ö÷³¡¾°µÄ
-				    //²úÉúÖ±µÀµÄY×ø±êÊı×é
+				    //ä¸»åœºæ™¯çš„
+				    //äº§ç”Ÿç›´é“çš„Yåæ ‡æ•°ç»„
 			        generateZDY();
-			        //²úÉúÖ±µÀ´øĞ¡µºµÄY×ø±êÊı×é
+			        //äº§ç”Ÿç›´é“å¸¦å°å²›çš„Yåæ ‡æ•°ç»„
 			        generateZDY_XD(getResources());
-			        //´´½¨¹ÕÍäÈüµÀµÄY×ø±êÊı×é
+			        //åˆ›å»ºæ‹å¼¯èµ›é“çš„Yåæ ‡æ•°ç»„
 			        generateWDY();
-			        //´´½¨Æ½µØÈüµÀµÄY×ø±êÊı×é
+			        //åˆ›å»ºå¹³åœ°èµ›é“çš„Yåæ ‡æ•°ç»„
 			        generatePDY();			        
 			        generateMountion(getResources());
 			        generateTunnel(getResources());			        
@@ -214,7 +214,7 @@ public class MyActivity extends Activity
 		   }
 		}.start();
 		
-		//³õÊ¼»¯GLSurfaceView
+		//åˆå§‹åŒ–GLSurfaceView
         hd=new Handler()
         {
 			@Override
@@ -222,44 +222,44 @@ public class MyActivity extends Activity
 			{
         		switch(msg.what)
         		{
-	        		case 0://È¥»¶Ó­½çÃæ
+	        		case 0://å»æ¬¢è¿ç•Œé¢
 	        			gotoWelcomeView();
 	        		break;
-	        		case 1://È¥Ö÷²Ëµ¥½çÃæ
+	        		case 1://å»ä¸»èœå•ç•Œé¢
 	        			gotoMenuView();
 	        		break;
-	        		case 2://È¥Ä£Ê½Ñ¡Ôñ½çÃæ
+	        		case 2://å»æ¨¡å¼é€‰æ‹©ç•Œé¢
 	        			gotoGameModeView();
 	                break;
-	        		case 3://È¥Ñ¡Í§½çÃæ
+	        		case 3://å»é€‰è‰‡ç•Œé¢
 	        			gotoXCView();
 	        		break;
-	        		case 4://È¥ÒôĞ§ÉèÖÃ½çÃæ
+	        		case 4://å»éŸ³æ•ˆè®¾ç½®ç•Œé¢
 	        			gotoMusicSetView();
 	        		break;
-	        		case 5://È¥ÓÎÏ·°ïÖú½çÃæ
+	        		case 5://å»æ¸¸æˆå¸®åŠ©ç•Œé¢
 	        			gotoHelpView();
 	        		break;
-	        		case 6://È¥¹ØÓÚ½çÃæ
+	        		case 6://å»å…³äºç•Œé¢
 	        			gotoGuanYuView();
 	        		break;
-	        		case 7://Ö÷½çÃæÍË³öÓÎÏ·°´Å¥
+	        		case 7://ä¸»ç•Œé¢é€€å‡ºæ¸¸æˆæŒ‰é’®
 	        			Settings.System.putInt(MyActivity.this.getContentResolver(),Settings.System.ACCELEROMETER_ROTATION,flag);
 	        			System.exit(0);
 	        		break;
-	        		case 8://È¥ÓÎÏ·½çÃæ-¼ÆÊ±Ä£Ê½
+	        		case 8://å»æ¸¸æˆç•Œé¢-è®¡æ—¶æ¨¡å¼
 	        			gotoTimerGameView();
 	        		break;
-	        		case 9://È¥ÓÎÏ·½çÃæ-¾ºËÙÄ£Ê½
+	        		case 9://å»æ¸¸æˆç•Œé¢-ç«é€Ÿæ¨¡å¼
 	        			gotoSpeedGameView();
 	        		break;
-	        		case 10://È¥ÓÎÏ·¼ÇÂ¼²éÑ¯½çÃæ
+	        		case 10://å»æ¸¸æˆè®°å½•æŸ¥è¯¢ç•Œé¢
 	        			gotoRecordView();
 	        		break;
-	        		case 11://ÏÔÊ¾ÊÇ·ñÆÆ¼ÍÂ¼¶Ô»°¿ò
+	        		case 11://æ˜¾ç¤ºæ˜¯å¦ç ´çºªå½•å¯¹è¯æ¡†
 	        			showDialog(3);
 	        		break;
-	        		case 12://ÏÔÊ¾µ±Ç°Ãû´Î¶Ô»°¿ò
+	        		case 12://æ˜¾ç¤ºå½“å‰åæ¬¡å¯¹è¯æ¡†
 	        			showDialog(4);
 	        		break;
         		}
@@ -267,7 +267,7 @@ public class MyActivity extends Activity
         };
         hd.sendEmptyMessage(0);    
     }
-    //Ìø×ªµ½ÓÎÏ·°ïÖú½çÃæ
+    //è·³è½¬åˆ°æ¸¸æˆå¸®åŠ©ç•Œé¢
     public void gotoHelpView()
     {
     	if(hsv==null)
@@ -278,7 +278,7 @@ public class MyActivity extends Activity
     	vfd.curr=hsv;
 		curr=WhichView.HELP_VIEW;
     }
-    //Ìø×ªµ½ÒôĞ§ÉèÖÃ½çÃæ
+    //è·³è½¬åˆ°éŸ³æ•ˆè®¾ç½®ç•Œé¢
     public void gotoMusicSetView()
     {
     	if(ssv==null)
@@ -289,7 +289,7 @@ public class MyActivity extends Activity
     	vfd.curr=ssv;
 		curr=WhichView.SOUND_VIEW;
     }    
-    //Ìø×ªµ½ÓÎÏ·Ä£Ê½Ñ¡Ôñ½çÃæ
+    //è·³è½¬åˆ°æ¸¸æˆæ¨¡å¼é€‰æ‹©ç•Œé¢
     public void gotoGameModeView()
     {
     	if(gmv==null)
@@ -306,7 +306,7 @@ public class MyActivity extends Activity
     	vfd.curr=gmv;
 		curr=WhichView.GAME_MODE_VIEW;
     }    
-    //Ìø×ªµ½¹ØÓÚ½çÃæµÄ·½·¨
+    //è·³è½¬åˆ°å…³äºç•Œé¢çš„æ–¹æ³•
     public void gotoGuanYuView()
     {
     	if(gyv==null)
@@ -316,14 +316,14 @@ public class MyActivity extends Activity
     	vfd.curr=gyv;
     	curr=WhichView.GUANYU_VIEW;
     }
-    //Ìø×ªµ½»¶Ó­½çÃæµÄ·½·¨
+    //è·³è½¬åˆ°æ¬¢è¿ç•Œé¢çš„æ–¹æ³•
     public void gotoWelcomeView()
     {
     	welV=new WelcomeView(MyActivity.this);
 		setContentView(welV);
 		curr=WhichView.WELCOME_VIEW;
     }
-    //Ìø×ªµ½²Ëµ¥½çÃæ
+    //è·³è½¬åˆ°èœå•ç•Œé¢
     public void gotoMenuView()
     {
     	if(vfd==null)
@@ -343,7 +343,7 @@ public class MyActivity extends Activity
     	vfd.curr=menuV;
 		curr=WhichView.MENU_VIEW;
     }
-    //Ìø×ªµ½Ñ¡Í§½çÃæ
+    //è·³è½¬åˆ°é€‰è‰‡ç•Œé¢
     public void gotoXCView()
     {
     	vfd.flag=false;
@@ -351,55 +351,55 @@ public class MyActivity extends Activity
     	xcV.index_boat=BoatInfo.cuttBoatIndex;
     	
         setContentView(xcV);	
-        xcV.requestFocus();//»ñÈ¡½¹µã
-        xcV.setFocusableInTouchMode(true);//ÉèÖÃÎª¿É´¥¿Ø
+        xcV.requestFocus();//è·å–ç„¦ç‚¹
+        xcV.setFocusableInTouchMode(true);//è®¾ç½®ä¸ºå¯è§¦æ§
         curr=WhichView.XC_VIEW;
     }
-    //Ìø×ªµ½¼ÆÊ±Ä£Ê½ÓÎÏ·½çÃæ
+    //è·³è½¬åˆ°è®¡æ—¶æ¨¡å¼æ¸¸æˆç•Œé¢
     public void gotoTimerGameView()
     {
     	vfd.flag=false;
-    	//ÖØÖÃÓÎÏ·ÖĞ²ÎÊıµÄ·½·¨
+    	//é‡ç½®æ¸¸æˆä¸­å‚æ•°çš„æ–¹æ³•
     	restartGame();
     	com.bn.clp.Constant.isSpeedMode=false;
     	KeyThread.otherBoatFlag=false;
     	if(BgSoundFlag&&beijingyinyue==null)
 		{
     		beijingyinyue=MediaPlayer.create(this,com.bn.R.raw.backsound);
-        	beijingyinyue.setLooping(true);//ÊÇ·ñÑ­»·
+        	beijingyinyue.setLooping(true);//æ˜¯å¦å¾ªç¯
 			beijingyinyue.start();
 		} 
     	gameV = new MyGLSurfaceView(MyActivity.this);
-        //»ñÈ¡½¹µã
+        //è·å–ç„¦ç‚¹
         gameV.requestFocus();
-        //ÉèÖÃÎª¿É´¥¿Ø
+        //è®¾ç½®ä¸ºå¯è§¦æ§
         gameV.setFocusableInTouchMode(true);
         setContentView(gameV);      
         curr=WhichView.GAME_VIEW;
     }
-    //Ìø×ªµ½¾ºËÙÄ£Ê½ÓÎÏ·½çÃæ
+    //è·³è½¬åˆ°ç«é€Ÿæ¨¡å¼æ¸¸æˆç•Œé¢
     public void gotoSpeedGameView()
     {
     	vfd.flag=false;
-    	//ÖØÖÃÓÎÏ·ÖĞ²ÎÊıµÄ·½·¨
+    	//é‡ç½®æ¸¸æˆä¸­å‚æ•°çš„æ–¹æ³•
     	restartGame();
     	com.bn.clp.Constant.isSpeedMode=true;
     	KeyThread.otherBoatFlag=true;
     	if(BgSoundFlag&&beijingyinyue==null)
 		{
     		beijingyinyue=MediaPlayer.create(this,com.bn.R.raw.backsound);
-        	beijingyinyue.setLooping(true);//ÊÇ·ñÑ­»·
+        	beijingyinyue.setLooping(true);//æ˜¯å¦å¾ªç¯
 			beijingyinyue.start();
 		}
     	gameV = new MyGLSurfaceView(MyActivity.this);
-        //»ñÈ¡½¹µã
+        //è·å–ç„¦ç‚¹
         gameV.requestFocus();
-        //ÉèÖÃÎª¿É´¥¿Ø
+        //è®¾ç½®ä¸ºå¯è§¦æ§
         gameV.setFocusableInTouchMode(true);
         setContentView(gameV);      
         curr=WhichView.GAME_VIEW;
     }
-    //Ìø×ªµ½¼ÇÂ¼²éÑ¯½çÃæ
+    //è·³è½¬åˆ°è®°å½•æŸ¥è¯¢ç•Œé¢
     public void gotoRecordView()
     {
     	if(dsv==null)
@@ -413,7 +413,7 @@ public class MyActivity extends Activity
 		vfd.curr=dsv;
 		curr=WhichView.RECORD_VIEW;
     } 
-    //³õÊ¼»¯ÓÎÏ·ÖĞµÄ¾²Ì¬²ÎÊıµÄ·½·¨-ÖØĞÂ½øÈëÓÎÏ· 
+    //åˆå§‹åŒ–æ¸¸æˆä¸­çš„é™æ€å‚æ•°çš„æ–¹æ³•-é‡æ–°è¿›å…¥æ¸¸æˆ 
     public void restartGame()  
     { 
     	KeyThread.upFlag=true;
@@ -436,7 +436,7 @@ public class MyActivity extends Activity
     	MyGLSurfaceView.isJiShi=false;
     	MyGLSurfaceView.sight_angle=com.bn.clp.Constant.DIRECTION_INI;    	
     	MyGLSurfaceView.yachtLeftOrRightAngle=0;
-    	//ĞÂÌí¼ÓµÄ
+    	//æ–°æ·»åŠ çš„
 		MyGLSurfaceView.betweenStartAndPauseTime=0;
 		Constant.gameTimeUse=0;
 		Constant.numberOfTurns=1;
@@ -469,12 +469,12 @@ public class MyActivity extends Activity
     public void onResume()
     {
     	super.onResume();
-    	//×¢²á¼àÌıÆ÷
+    	//æ³¨å†Œç›‘å¬å™¨
         mySensorManager.registerListener
         (			
-				mySensorListener, 					//¼àÌıÆ÷¶ÔÏó
-				mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),	//´«¸ĞÆ÷ÀàĞÍ
-				//SensorManager.SENSOR_DELAY_UI		//´«¸ĞÆ÷ÊÂ¼ş´«µİµÄÆµ¶È
+				mySensorListener, 					//ç›‘å¬å™¨å¯¹è±¡
+				mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),	//ä¼ æ„Ÿå™¨ç±»å‹
+				//SensorManager.SENSOR_DELAY_UI		//ä¼ æ„Ÿå™¨äº‹ä»¶ä¼ é€’çš„é¢‘åº¦
 				SensorManager.SENSOR_DELAY_GAME
 		);   
         Constant.threadFlag=true;  
@@ -487,7 +487,7 @@ public class MyActivity extends Activity
     public void onPause()
     {
     	super.onPause();
-    	mySensorManager.unregisterListener(mySensorListener);	//È¡Ïû×¢²á¼àÌıÆ÷
+    	mySensorManager.unregisterListener(mySensorListener);	//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
         Constant.threadFlag=false;
         if(gameV!=null)
         {
@@ -497,7 +497,7 @@ public class MyActivity extends Activity
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent e)
     { 
-    	//ÒôÁ¿¼ü£¬ÉÏ¼üÊÇ24£¬ÏÂ¼üÊÇ25£¬ÒÔÇ°ÓÉÓÚ°´¼üÊ±Ö±½Ó×ß¸ÃÏî£¬ËùÒÔµ¼ÖÂÉèÖÃºóÒ²²»¹ÜÓÃ
+    	//éŸ³é‡é”®ï¼Œä¸Šé”®æ˜¯24ï¼Œä¸‹é”®æ˜¯25ï¼Œä»¥å‰ç”±äºæŒ‰é”®æ—¶ç›´æ¥èµ°è¯¥é¡¹ï¼Œæ‰€ä»¥å¯¼è‡´è®¾ç½®åä¹Ÿä¸ç®¡ç”¨
     	if((keyCode==24)||(keyCode==25))
     	{
         	return false;
@@ -566,7 +566,7 @@ public class MyActivity extends Activity
     	return true;
     }
     
-    //´´½¨ÉùÒôµÄ·½·¨
+    //åˆ›å»ºå£°éŸ³çš„æ–¹æ³•
     public void chushihuaSounds()
     {
     	shengyinChi=new SoundPool
@@ -577,15 +577,15 @@ public class MyActivity extends Activity
     	);
     	soundIdMap=new HashMap<Integer,Integer>();
     	soundIdMap=new HashMap<Integer,Integer>();
-    	soundIdMap.put(1, shengyinChi.load(this,com.bn.R.raw.pengzhuang,1));//Åö×²ÉùÒô
-    	soundIdMap.put(2, shengyinChi.load(this,com.bn.R.raw.boatgo,1));//´¬¼ÓËÙµÄÉùÒô
-    	soundIdMap.put(3, shengyinChi.load(this,com.bn.R.raw.eatthings1,1));//³Ô¶«Î÷µÄÉùÒô
-    	soundIdMap.put(4, shengyinChi.load(this,com.bn.R.raw.zhuangfei,1));//×²·É¶«Î÷µÄÉùÒô
-    	soundIdMap.put(5, shengyinChi.load(this,com.bn.R.raw.daojishi,1));//321µ¹¼ÆÊ±µÄÉùÒô
-    	soundIdMap.put(6, shengyinChi.load(this,com.bn.R.raw.start,1));//¿ªÊ¼¿ÉÒÔ×ßµÄÉùÒô
+    	soundIdMap.put(1, shengyinChi.load(this,com.bn.R.raw.pengzhuang,1));//ç¢°æ’å£°éŸ³
+    	soundIdMap.put(2, shengyinChi.load(this,com.bn.R.raw.boatgo,1));//èˆ¹åŠ é€Ÿçš„å£°éŸ³
+    	soundIdMap.put(3, shengyinChi.load(this,com.bn.R.raw.eatthings1,1));//åƒä¸œè¥¿çš„å£°éŸ³
+    	soundIdMap.put(4, shengyinChi.load(this,com.bn.R.raw.zhuangfei,1));//æ’é£ä¸œè¥¿çš„å£°éŸ³
+    	soundIdMap.put(5, shengyinChi.load(this,com.bn.R.raw.daojishi,1));//321å€’è®¡æ—¶çš„å£°éŸ³
+    	soundIdMap.put(6, shengyinChi.load(this,com.bn.R.raw.start,1));//å¼€å§‹å¯ä»¥èµ°çš„å£°éŸ³
     }
     
-  //²¥·ÅÉùÒôµÄ·½·¨
+  //æ’­æ”¾å£°éŸ³çš„æ–¹æ³•
     public void shengyinBoFang(int sound,int loop)
     {
     	AudioManager mgr=(AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
@@ -594,7 +594,7 @@ public class MyActivity extends Activity
     	float volume=streamVolumeCurrent/streamVolumeMax;
     	shengyinChi.play(soundIdMap.get(sound), volume, volume, 1, loop, 1f);
     }
-    public int getGLVersion() //»ñÈ¡OPENGLESËùÖ§³ÖµÄ×î¸ß°æ±¾
+    public int getGLVersion() //è·å–OPENGLESæ‰€æ”¯æŒçš„æœ€é«˜ç‰ˆæœ¬
     {
         ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ConfigurationInfo info = am.getDeviceConfigurationInfo();
@@ -634,7 +634,7 @@ public class MyActivity extends Activity
     }
     public void onPrepareDialog(int id, Dialog dialog)
     {
-    	//Èô²»ÊÇµÈ´ı¶Ô»°¿òÔò·µ»Ø
+    	//è‹¥ä¸æ˜¯ç­‰å¾…å¯¹è¯æ¡†åˆ™è¿”å›
     	switch(id)
     	{
     	  case 1:
@@ -670,12 +670,12 @@ public class MyActivity extends Activity
     		  if(!com.bn.clp.Constant.isBreakRecord)
     		  {
     				TextView tv=(TextView) bronDialog.findViewById(R.id.tview);
-    				tv.setText("·Ç³£¿ÉÏ§£¬Ã»ÓĞ´òÆÆ¼ÍÂ¼£¬ÇëÔÙ½ÓÔÙÀ÷£¡");
+    				tv.setText("éå¸¸å¯æƒœï¼Œæ²¡æœ‰æ‰“ç ´çºªå½•ï¼Œè¯·å†æ¥å†å‰ï¼");
     		  }
     		  else
     		  {
     				TextView tv=(TextView) bronDialog.findViewById(R.id.tview);
-    				tv.setText("¹§Ï²Äú£¬³É¹¦µÄÍ»ÆÆ¼ÇÂ¼£¡");    				
+    				tv.setText("æ­å–œæ‚¨ï¼ŒæˆåŠŸçš„çªç ´è®°å½•ï¼");    				
     		  }
     		  ok.setOnClickListener(
       				new OnClickListener()
@@ -695,7 +695,7 @@ public class MyActivity extends Activity
     	  case 4:
     		 ok=(Button)rDialog.findViewById(R.id.ok_button);
     		 TextView tv=(TextView) rDialog.findViewById(R.id.tview);
-    		 tv.setText("¹§Ï²Äú£¬Äú»ñµÃÁËµÚ"+com.bn.clp.Constant.RANK_FOR_HERO_BOAT+"Ãû¡£");
+    		 tv.setText("æ­å–œæ‚¨ï¼Œæ‚¨è·å¾—äº†ç¬¬"+com.bn.clp.Constant.RANK_FOR_HERO_BOAT+"åã€‚");
 	   		 ok.setOnClickListener(
  				new OnClickListener()
  				{  

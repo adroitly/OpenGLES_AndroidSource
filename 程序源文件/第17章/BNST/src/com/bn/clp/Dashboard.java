@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 import com.bn.core.MatrixState;
 import android.opengl.GLES20;
 import static com.bn.clp.Constant.*;
-//»æÖÆ¼ÆËÙÆ÷µÄÀà
+//ç»˜åˆ¶è®¡é€Ÿå™¨çš„ç±»
 public class Dashboard
 {
 	TextureRect tr;
@@ -19,14 +19,14 @@ public class Dashboard
 		tr=new TextureRect(programId,Self_Adapter_Data_TRASLATE[screenId][11],0.25f); 
 		dl=new DrawLine(programId,0.005f,0.16f);
 	}
-	//»æÖÆ·½·¨
+	//ç»˜åˆ¶æ–¹æ³•
 	public void drawSelf(int texId)
 	{
-		//»æÖÆÒÇ±íÅÌ
+		//ç»˜åˆ¶ä»ªè¡¨ç›˜
 		MatrixState.pushMatrix();
 		tr.drawSelf(texId);
 		MatrixState.popMatrix();
-		//»æÖÆÏß
+		//ç»˜åˆ¶çº¿
 		MatrixState.pushMatrix();
 		MatrixState.translate(0.005f, -0.01f, 0.5f);
 		MatrixState.rotate(angle, 0, 0, 1);
@@ -34,30 +34,30 @@ public class Dashboard
 		MatrixState.popMatrix();
 	}
 	
-	public void changeangle(float v)//Ö¸Õë½Ç¶È×ªµÄ·½·¨
+	public void changeangle(float v)//æŒ‡é’ˆè§’åº¦è½¬çš„æ–¹æ³•
 	{
-		float vSpan=Max_BOAT_V_FINAL/250;//Ã¿Ò»ÒÇ±íÅÌÖ¸Õë½Ç¶ÈËù±íÊ¾µÄËÙ¶È
+		float vSpan=Max_BOAT_V_FINAL/250;//æ¯ä¸€ä»ªè¡¨ç›˜æŒ‡é’ˆè§’åº¦æ‰€è¡¨ç¤ºçš„é€Ÿåº¦
 		{
 			float v_Angle=v/vSpan;
 			angle=startAngle-v_Angle;
 		}		
 	}
 	
-	//»æÖÆÒÇ±íÅÌµÄÀà
+	//ç»˜åˆ¶ä»ªè¡¨ç›˜çš„ç±»
 	private class TextureRect
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóµÄÒıÓÃid
+		//æ€»å˜åŒ–çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀíÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†å±æ€§çš„å¼•ç”¨id
 		int maTexCoorHandle;
-		//¶¥µã×ø±êÊı¾İ»º³å¡¢¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²ã€é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊıÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount;
 		
 		public TextureRect(int mProgramId,float width,float height)
@@ -65,7 +65,7 @@ public class Dashboard
 			initVertexData(width,height);
 			initShader(mProgramId);
 		}
-		//³õÊ¼»¯ÏàÓ¦¶¥µãÊı¾İµÄ·½·¨
+		//åˆå§‹åŒ–ç›¸åº”é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 		public void initVertexData(float width,float height)
 		{
 			float[] vertices=new float[]
@@ -79,7 +79,7 @@ public class Dashboard
 				width,height,0,
 	        };
 			vCount=6;
-			//ÉèÖÃ¶¥µã×ø±ê»º³åÇø
+			//è®¾ç½®é¡¶ç‚¹åæ ‡ç¼“å†²åŒº
 			ByteBuffer vbb=ByteBuffer.allocateDirect(vertices.length*4);
 			vbb.order(ByteOrder.nativeOrder());
 			mVertexBuffer=vbb.asFloatBuffer();
@@ -97,26 +97,26 @@ public class Dashboard
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
-			//´´½¨×Ô¶¨ÒåµÄShader³ÌĞò
+			//åˆ›å»ºè‡ªå®šä¹‰çš„Shaderç¨‹åº
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊôĞÔµÄÒıÓÃid
+			//è·å¾—é¡¶ç‚¹åæ ‡å±æ€§çš„å¼•ç”¨id
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//»ñµÃ¶¥µãÎÆÀí×ø±êÊôĞÔµÄÒıÓÃid
+			//è·å¾—é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-			//»ñµÃ×Ü±ä»»¾ØÕóµÄÒıÓÃid
+			//è·å¾—æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×Ü±ä»»¾ØÕó´«ÈëShader³ÌĞò
+			//å°†æ€»å˜æ¢çŸ©é˜µä¼ å…¥Shaderç¨‹åº
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//´«Èë¶¥µãÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle,
@@ -126,7 +126,7 @@ public class Dashboard
 				3*4, 
 				mVertexBuffer
 			);
-			//´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -136,31 +136,31 @@ public class Dashboard
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 			GLES20.glEnableVertexAttribArray(maPositionHandle);
 			GLES20.glEnableVertexAttribArray(maTexCoorHandle);
-			 //°ó¶¨ÎÆÀí
+			 //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-			//»æÖÆ
+			//ç»˜åˆ¶
 			GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount);
 		}
 	}
-	//ºìÏßÀà
+	//çº¢çº¿ç±»
 	private class DrawLine
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóµÄÒıÓÃid
+		//æ€»å˜åŒ–çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀíÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†å±æ€§çš„å¼•ç”¨id
 		int maTexCoorHandle;
-		//¶¥µã×ø±êÊı¾İ»º³å¡¢¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²ã€é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊıÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount;
 		
 		public DrawLine(int mProgramId,float width,float height)
@@ -168,7 +168,7 @@ public class Dashboard
 			initVertexData(width,height);
 			initShader(mProgramId);
 		}
-		//³õÊ¼»¯ÏàÓ¦¶¥µãÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–ç›¸åº”é¡¶ç‚¹æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData(float width,float height)
 		{
 			float[] vertices=new float[]
@@ -182,7 +182,7 @@ public class Dashboard
 				width,height,0,
 	        };
 			vCount=6;
-			//ÉèÖÃ¶¥µã×ø±ê»º³åÇø
+			//è®¾ç½®é¡¶ç‚¹åæ ‡ç¼“å†²åŒº
 			ByteBuffer vbb=ByteBuffer.allocateDirect(vertices.length*4);
 			vbb.order(ByteOrder.nativeOrder());
 			mVertexBuffer=vbb.asFloatBuffer();
@@ -200,26 +200,26 @@ public class Dashboard
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
-			//´´½¨×Ô¶¨ÒåµÄShader³ÌĞò
+			//åˆ›å»ºè‡ªå®šä¹‰çš„Shaderç¨‹åº
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊôĞÔµÄÒıÓÃid
+			//è·å¾—é¡¶ç‚¹åæ ‡å±æ€§çš„å¼•ç”¨id
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//»ñµÃ¶¥µãÎÆÀí×ø±êÊôĞÔµÄÒıÓÃid
+			//è·å¾—é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-			//»ñµÃ×Ü±ä»»¾ØÕóµÄÒıÓÃid
+			//è·å¾—æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×Ü±ä»»¾ØÕó´«ÈëShader³ÌĞò
+			//å°†æ€»å˜æ¢çŸ©é˜µä¼ å…¥Shaderç¨‹åº
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//´«Èë¶¥µãÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle,
@@ -229,7 +229,7 @@ public class Dashboard
 				3*4, 
 				mVertexBuffer
 			);
-			//´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -239,13 +239,13 @@ public class Dashboard
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 			GLES20.glEnableVertexAttribArray(maPositionHandle);
 			GLES20.glEnableVertexAttribArray(maTexCoorHandle);
-			 //°ó¶¨ÎÆÀí
+			 //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-			//»æÖÆ
+			//ç»˜åˆ¶
 			GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount);
 		}
 	}

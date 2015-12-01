@@ -11,69 +11,69 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-//ÓÃÓÚ¹ÜÀíÁ¬½ÓµÄService
+//ç”¨äºç®¡ç†è¿æ¥çš„Service
 public class MyService {
-    // ±¾Ó¦ÓÃµÄÎ¨Ò» UUID
+    // æœ¬åº”ç”¨çš„å”¯ä¸€ UUID
 	private static final UUID MY_UUID = UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
-    // ³ÉÔ±±äÁ¿
+    // æˆå‘˜å˜é‡
     private final BluetoothAdapter btAdapter;
     private final Handler myHandler;
     private AcceptThread myAcceptThread;
     private ConnectThread myConnectThread;
     private ConnectedThread myConnectedThread;
     private int myState;
-    // ±íÊ¾µ±Ç°Á¬½Ó×´Ì¬µÄ³£Á¿
-    public static final int STATE_NONE = 0;       // Ê²Ã´Ò²Ã»×ö
-    public static final int STATE_LISTEN = 1;     // ÕıÔÚ¼àÌıÁ¬½Ó
-    public static final int STATE_CONNECTING = 2; // ÕıÔÚÁ¬½Ó
-    public static final int STATE_CONNECTED = 3;  // ÒÑÁ¬½Óµ½Éè±¸
-    // ¹¹ÔìÆ÷
+    // è¡¨ç¤ºå½“å‰è¿æ¥çŠ¶æ€çš„å¸¸é‡
+    public static final int STATE_NONE = 0;       // ä»€ä¹ˆä¹Ÿæ²¡åš
+    public static final int STATE_LISTEN = 1;     // æ­£åœ¨ç›‘å¬è¿æ¥
+    public static final int STATE_CONNECTING = 2; // æ­£åœ¨è¿æ¥
+    public static final int STATE_CONNECTED = 3;  // å·²è¿æ¥åˆ°è®¾å¤‡
+    // æ„é€ å™¨
     public MyService(Context context, Handler handler) {
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         myState = STATE_NONE;
         myHandler = handler;
     }
-    //ÉèÖÃµ±Ç°Á¬½Ó×´Ì¬µÄ·½·¨
+    //è®¾ç½®å½“å‰è¿æ¥çŠ¶æ€çš„æ–¹æ³•
     private synchronized void setState(int state) {
         myState = state;
     }
-    //»ñÈ¡µ±Ç°Á¬½Ó×´Ì¬µÄ·½·¨
+    //è·å–å½“å‰è¿æ¥çŠ¶æ€çš„æ–¹æ³•
     public synchronized int getState() {
         return myState;
     }
-    //¿ªÆôserviceµÄ·½·¨
+    //å¼€å¯serviceçš„æ–¹æ³•
     public synchronized void start() {
-        // ¹Ø±Õ²»±ØÒªµÄÏß³Ì
+        // å…³é—­ä¸å¿…è¦çš„çº¿ç¨‹
         if (myConnectThread != null) {myConnectThread.cancel(); myConnectThread = null;}
         if (myConnectedThread != null) {myConnectedThread.cancel(); myConnectedThread = null;}
-        if (myAcceptThread == null) {// ¿ªÆôÏß³Ì¼àÌıÁ¬½Ó
+        if (myAcceptThread == null) {// å¼€å¯çº¿ç¨‹ç›‘å¬è¿æ¥
             myAcceptThread = new AcceptThread();
             myAcceptThread.start();
         }
         setState(STATE_LISTEN);
     }
-    //Á¬½ÓÉè±¸µÄ·½·¨
+    //è¿æ¥è®¾å¤‡çš„æ–¹æ³•
     public synchronized void connect(BluetoothDevice device) {
-    	// ¹Ø±Õ²»±ØÒªµÄÏß³Ì
+    	// å…³é—­ä¸å¿…è¦çš„çº¿ç¨‹
         if (myState == STATE_CONNECTING) {
             if (myConnectThread != null) {myConnectThread.cancel(); myConnectThread = null;}
         }
         if (myConnectedThread != null) {myConnectedThread.cancel(); myConnectedThread = null;}
-        // ¿ªÆôÏß³ÌÁ¬½ÓÉè±¸
+        // å¼€å¯çº¿ç¨‹è¿æ¥è®¾å¤‡
         myConnectThread = new ConnectThread(device);
         myConnectThread.start();
         setState(STATE_CONNECTING);
     }
-    //¿ªÆô¹ÜÀíºÍÒÑÁ¬½ÓµÄÉè±¸¼äÍ¨»°µÄÏß³ÌµÄ·½·¨
+    //å¼€å¯ç®¡ç†å’Œå·²è¿æ¥çš„è®¾å¤‡é—´é€šè¯çš„çº¿ç¨‹çš„æ–¹æ³•
     public synchronized void connected(BluetoothSocket socket, BluetoothDevice device) {
-        // ¹Ø±Õ²»±ØÒªµÄÏß³Ì
+        // å…³é—­ä¸å¿…è¦çš„çº¿ç¨‹
         if (myConnectThread != null) {myConnectThread.cancel(); myConnectThread = null;}
         if (myConnectedThread != null) {myConnectedThread.cancel(); myConnectedThread = null;}
         if (myAcceptThread != null) {myAcceptThread.cancel(); myAcceptThread = null;}
-        // ´´½¨²¢Æô¶¯ConnectedThread
+        // åˆ›å»ºå¹¶å¯åŠ¨ConnectedThread
         myConnectedThread = new ConnectedThread(socket);
         myConnectedThread.start();
-        // ·¢ËÍÒÑÁ¬½ÓµÄÉè±¸Ãû³Æµ½Ö÷½çÃæActivity
+        // å‘é€å·²è¿æ¥çš„è®¾å¤‡åç§°åˆ°ä¸»ç•Œé¢Activity
         Message msg = myHandler.obtainMessage(Constant.MSG_DEVICE_NAME);
         Bundle bundle = new Bundle();
         bundle.putString(Constant.DEVICE_NAME, device.getName());
@@ -81,26 +81,26 @@ public class MyService {
         myHandler.sendMessage(msg);
         setState(STATE_CONNECTED);
     }
-    public synchronized void stop() {//Í£Ö¹ËùÓĞÏß³ÌµÄ·½·¨
+    public synchronized void stop() {//åœæ­¢æ‰€æœ‰çº¿ç¨‹çš„æ–¹æ³•
         if (myConnectThread != null) {myConnectThread.cancel(); myConnectThread = null;}
         if (myConnectedThread != null) {myConnectedThread.cancel(); myConnectedThread = null;}
         if (myAcceptThread != null) {myAcceptThread.cancel(); myAcceptThread = null;}
         setState(STATE_NONE);
     }
-    public void write(byte[] out) {//ÏòConnectedThreadĞ´ÈëÊı¾İµÄ·½·¨
-        ConnectedThread tmpCt;// ´´½¨ÁÙÊ±¶ÔÏóÒıÓÃ
-        synchronized (this) {// Ëø¶¨ConnectedThread
+    public void write(byte[] out) {//å‘ConnectedThreadå†™å…¥æ•°æ®çš„æ–¹æ³•
+        ConnectedThread tmpCt;// åˆ›å»ºä¸´æ—¶å¯¹è±¡å¼•ç”¨
+        synchronized (this) {// é”å®šConnectedThread
             if (myState != STATE_CONNECTED) return;
             tmpCt = myConnectedThread;
         }
-        tmpCt.write(out);// Ğ´ÈëÊı¾İ
+        tmpCt.write(out);// å†™å…¥æ•°æ®
     }
-    private class AcceptThread extends Thread {//ÓÃÓÚ¼àÌıÁ¬½ÓµÄÏß³Ì
-        // ±¾µØ·şÎñÆ÷¶ËServerSocket
+    private class AcceptThread extends Thread {//ç”¨äºç›‘å¬è¿æ¥çš„çº¿ç¨‹
+        // æœ¬åœ°æœåŠ¡å™¨ç«¯ServerSocket
         private final BluetoothServerSocket mmServerSocket;
         public AcceptThread() {
             BluetoothServerSocket tmpSS = null;
-            try {// ´´½¨ÓÃÓÚ¼àÌıµÄ·şÎñÆ÷¶ËServerSocket
+            try {// åˆ›å»ºç”¨äºç›‘å¬çš„æœåŠ¡å™¨ç«¯ServerSocket
                 tmpSS = btAdapter.listenUsingRfcommWithServiceRecord("BluetoothChat", MY_UUID);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -110,24 +110,24 @@ public class MyService {
         public void run() {
             setName("AcceptThread");
             BluetoothSocket socket = null;
-            while (myState != STATE_CONNECTED) {//Èç¹ûÃ»ÓĞÁ¬½Óµ½Éè±¸
+            while (myState != STATE_CONNECTED) {//å¦‚æœæ²¡æœ‰è¿æ¥åˆ°è®¾å¤‡
                 try {
-                    socket = mmServerSocket.accept();//»ñÈ¡Á¬½ÓµÄSock
+                    socket = mmServerSocket.accept();//è·å–è¿æ¥çš„Sock
                 } catch (IOException e) {
                 	e.printStackTrace();
                     break;
                 }
-                if (socket != null) {// Èç¹ûÁ¬½Ó³É¹¦
+                if (socket != null) {// å¦‚æœè¿æ¥æˆåŠŸ
                     synchronized (MyService.this) {
                         switch (myState) {
                         case STATE_LISTEN:
                         case STATE_CONNECTING:
-                            // ¿ªÆô¹ÜÀíÁ¬½ÓºóÊı¾İ½»Á÷µÄÏß³Ì
+                            // å¼€å¯ç®¡ç†è¿æ¥åæ•°æ®äº¤æµçš„çº¿ç¨‹
                             connected(socket, socket.getRemoteDevice());
                             break;
                         case STATE_NONE:
                         case STATE_CONNECTED:
-                            try {// ¹Ø±ÕĞÂSocket
+                            try {// å…³é—­æ–°Socket
                                 socket.close();
                             } catch (IOException e) {
                             	e.printStackTrace();
@@ -146,14 +146,14 @@ public class MyService {
             }
         }
     }
-    //ÓÃÓÚ³¢ÊÔÁ¬½ÓÆäËûÉè±¸µÄÏß³Ì
+    //ç”¨äºå°è¯•è¿æ¥å…¶ä»–è®¾å¤‡çš„çº¿ç¨‹
     private class ConnectThread extends Thread {
         private final BluetoothSocket myBtSocket;
         private final BluetoothDevice mmDevice;
         public ConnectThread(BluetoothDevice device) {
             mmDevice = device;
             BluetoothSocket tmp = null;
-            // Í¨¹ıÕıÔÚÁ¬½ÓµÄÉè±¸»ñÈ¡BluetoothSocket
+            // é€šè¿‡æ­£åœ¨è¿æ¥çš„è®¾å¤‡è·å–BluetoothSocket
             try {
                 tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
@@ -163,23 +163,23 @@ public class MyService {
         }
         public void run() {
             setName("ConnectThread");
-            btAdapter.cancelDiscovery();// È¡ÏûËÑË÷Éè±¸
-            try {// Á¬½Óµ½BluetoothSocket
-                myBtSocket.connect();//³¢ÊÔÁ¬½Ó
+            btAdapter.cancelDiscovery();// å–æ¶ˆæœç´¢è®¾å¤‡
+            try {// è¿æ¥åˆ°BluetoothSocket
+                myBtSocket.connect();//å°è¯•è¿æ¥
             } catch (IOException e) {
-            	setState(STATE_LISTEN);//Á¬½Ó¶Ï¿ªºóÉèÖÃ×´Ì¬ÎªÕıÔÚ¼àÌı
-                try {// ¹Ø±Õsocket
+            	setState(STATE_LISTEN);//è¿æ¥æ–­å¼€åè®¾ç½®çŠ¶æ€ä¸ºæ­£åœ¨ç›‘å¬
+                try {// å…³é—­socket
                     myBtSocket.close();
                 } catch (IOException e2) {
                     e.printStackTrace();
                 }
-                MyService.this.start();//Èç¹ûÁ¬½Ó²»³É¹¦£¬ÖØĞÂ¿ªÆôservice
+                MyService.this.start();//å¦‚æœè¿æ¥ä¸æˆåŠŸï¼Œé‡æ–°å¼€å¯service
                 return;
             }
-            synchronized (MyService.this) {// ½«ConnectThreadÏß³ÌÖÃ¿Õ
+            synchronized (MyService.this) {// å°†ConnectThreadçº¿ç¨‹ç½®ç©º
                 myConnectThread = null;
             }
-            connected(myBtSocket, mmDevice);// ¿ªÆô¹ÜÀíÁ¬½ÓºóÊı¾İ½»Á÷µÄÏß³Ì
+            connected(myBtSocket, mmDevice);// å¼€å¯ç®¡ç†è¿æ¥åæ•°æ®äº¤æµçš„çº¿ç¨‹
         }
         public void cancel() {
             try {
@@ -189,7 +189,7 @@ public class MyService {
             }
         }
     }
-    //ÓÃÓÚ¹ÜÀíÁ¬½ÓºóÊı¾İ½»Á÷µÄÏß³Ì
+    //ç”¨äºç®¡ç†è¿æ¥åæ•°æ®äº¤æµçš„çº¿ç¨‹
     private class ConnectedThread extends Thread {
         private final BluetoothSocket myBtSocket;
         private final InputStream mmInStream;
@@ -198,7 +198,7 @@ public class MyService {
             myBtSocket = socket;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
-            // »ñÈ¡BluetoothSocketµÄÊäÈëÊä³öÁ÷
+            // è·å–BluetoothSocketçš„è¾“å…¥è¾“å‡ºæµ
             try {
                 tmpIn = socket.getInputStream();
                 tmpOut = socket.getOutputStream();
@@ -211,20 +211,20 @@ public class MyService {
         public void run() {
             byte[] buffer = new byte[1024];
             int bytes;
-            while (true) {// Ò»Ö±¼àÌıÊäÈëÁ÷
+            while (true) {// ä¸€ç›´ç›‘å¬è¾“å…¥æµ
                 try {
-                    bytes = mmInStream.read(buffer);// ´ÓÊäÈëÁ÷ÖĞ¶ÁÈëÊı¾İ
-                    //½«¶ÁÈëµÄÊı¾İ·¢ËÍµ½Ö÷Activity
+                    bytes = mmInStream.read(buffer);// ä»è¾“å…¥æµä¸­è¯»å…¥æ•°æ®
+                    //å°†è¯»å…¥çš„æ•°æ®å‘é€åˆ°ä¸»Activity
                     myHandler.obtainMessage(Constant.MSG_READ, bytes, -1, buffer)
                             .sendToTarget();
                 } catch (IOException e) {
                 	e.printStackTrace();
-                	setState(STATE_LISTEN);//Á¬½Ó¶Ï¿ªºóÉèÖÃ×´Ì¬ÎªÕıÔÚ¼àÌı
+                	setState(STATE_LISTEN);//è¿æ¥æ–­å¼€åè®¾ç½®çŠ¶æ€ä¸ºæ­£åœ¨ç›‘å¬
                     break;
                 }
             }
         }
-        //ÏòÊä³öÁ÷ÖĞĞ´ÈëÊı¾İµÄ·½·¨
+        //å‘è¾“å‡ºæµä¸­å†™å…¥æ•°æ®çš„æ–¹æ³•
         public void write(byte[] buffer) {
             try {
                 myOs.write(buffer);

@@ -25,7 +25,7 @@ public class TreeGroup
 	}
 	public void calculateBillboardDirection()
     {
-    	//计算列表中每个树木的朝向
+    	//璁＄畻鍒楄〃涓瘡涓爲鏈ㄧ殑鏈濆悜
     	for(int i=0;i<alist.size();i++)
     	{
     		alist.get(i).calculateBillboardDirection();
@@ -33,7 +33,7 @@ public class TreeGroup
     }
     
     public void drawSelf(int texId)
-    {//绘制列表中的每个树木
+    {//缁樺埗鍒楄〃涓殑姣忎釜鏍戞湪
     	for(int i=0;i<alist.size();i++)
     	{
     		alist.get(i).drawSelf(texId);

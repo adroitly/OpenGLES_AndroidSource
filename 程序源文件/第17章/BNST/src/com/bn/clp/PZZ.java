@@ -2,14 +2,14 @@ package com.bn.clp;
 
 public class PZZ 
 {
-	final float UNIT_SIZE=2.1f;//ÕâÀïµÄ2.1fÓëÇÅÀàÖĞµÄÏàÍ¬£¬ĞèÒª¹ØÁªÆğÀ´
+	final float UNIT_SIZE=2.1f;//è¿™é‡Œçš„2.1fä¸æ¡¥ç±»ä¸­çš„ç›¸åŒï¼Œéœ€è¦å…³è”èµ·æ¥
 	float x;
 	float z;
 	float xL=UNIT_SIZE;
 	float zL=2*UNIT_SIZE;
 	float row;
 	float col;
-	float whichBridge;//ÊÇÄÄÖÖÇÅ£¬0¶ÈºÍ-90¶ÈµÄÇÅxºÍz·Ö±ğÔö¼ÓµÄÖµÊÇÏà·´µÄ¡£
+	float whichBridge;//æ˜¯å“ªç§æ¡¥ï¼Œ0åº¦å’Œ-90åº¦çš„æ¡¥xå’Œzåˆ†åˆ«å¢åŠ çš„å€¼æ˜¯ç›¸åçš„ã€‚
 	
 	public PZZ(float x,float z,float row,float col,float whichBridge)
 	{

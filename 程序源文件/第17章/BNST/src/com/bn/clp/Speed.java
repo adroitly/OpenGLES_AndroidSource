@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 import android.opengl.GLES20;
 import com.bn.core.MatrixState;
  
-//¿É³ÔÎïÌå
+//å¯åƒç‰©ä½“
 public class Speed extends SpeedForEat
 {
 	Diamond dd;
@@ -17,36 +17,36 @@ public class Speed extends SpeedForEat
 	{
 		dd=new Diamond(programId,width,height);
 	} 
-	//×ÜµÄ»æÖÆ·½·¨drawSelf
+	//æ€»çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 	public void drawSelf(int texId)
 	{
 		dd.drawSelf(texId);
 	}
-	//ÄÚ²¿Àà¡ª¡ªÁâĞÎ
+	//å†…éƒ¨ç±»â€”â€”è±å½¢
 	private class Diamond
 	{
-		//×Ô¶¨ÒåShader³ÌĞòµÄÒıÓÃ
+		//è‡ªå®šä¹‰Shaderç¨‹åºçš„å¼•ç”¨
 		int mProgram;
-		//×Ü±ä»»¾ØÕóµÄÒıÓÃid
+		//æ€»å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 		int muMVPMatrixHandle;
-		//¶¥µãÊôĞÔµÄÒıÓÃid
+		//é¡¶ç‚¹å±æ€§çš„å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µã×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
-		//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mTexCoorBuffer;
-		int vCount=0;//¶¥µãÊıÁ¿
+		int vCount=0;//é¡¶ç‚¹æ•°é‡
 		
-		//RÎªÔ²Öùµ×²¿µÄ°ë¾¶£¬rÎªÔ²ÖùÉÏ²¿µÄ°ë¾¶£¬angle_span±íÊ¾µÄÊÇÇĞ·ÖµÄ½Ç¶È
+		//Rä¸ºåœ†æŸ±åº•éƒ¨çš„åŠå¾„ï¼Œrä¸ºåœ†æŸ±ä¸Šéƒ¨çš„åŠå¾„ï¼Œangle_spanè¡¨ç¤ºçš„æ˜¯åˆ‡åˆ†çš„è§’åº¦
 		public Diamond(int programId,float width,float height)
 		{
 			initVertexData(width,height);
 			initShader(programId);
 		}
-		//³õÊ¼»¯×ø±êÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–åæ ‡æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData(float width,float height)
 		{
 			float[] vertex=new float[]
@@ -61,7 +61,7 @@ public class Speed extends SpeedForEat
 				0,-height,0,   width,0,-width,   width,0,width,
 				0,-height,0,   -width,0, -width,  width,0,-width, 
             };
-			vCount=24;//¶¥µãÊıÁ¿
+			vCount=24;//é¡¶ç‚¹æ•°é‡
 			ByteBuffer vbb=ByteBuffer.allocateDirect(vertex.length*4);
 			vbb.order(ByteOrder.nativeOrder());
 			mVertexBuffer=vbb.asFloatBuffer();
@@ -86,24 +86,24 @@ public class Speed extends SpeedForEat
 			mTexCoorBuffer.put(texcoor);
 			mTexCoorBuffer.position(0);
 		}
-		//³õÊ¼»¯×ÅÉ«Æ÷³ÌĞòµÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨ç¨‹åºçš„initShaderæ–¹æ³•
 		public void initShader(int programId)
 		{
 			mProgram=programId;
-			//»ñµÃ¶¥µã×ø±êÊı¾İµÄÒıÓÃ
+			//è·å¾—é¡¶ç‚¹åæ ‡æ•°æ®çš„å¼•ç”¨
 			maPositionHandle=GLES20.glGetAttribLocation(mProgram, "aPosition");
-			//¶¥µãÎÆÀí×ø±êµÄÒıÓÃid
+			//é¡¶ç‚¹çº¹ç†åæ ‡çš„å¼•ç”¨id
 			maTexCoorHandle=GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 			muMVPMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
 		}
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+			//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 			GLES20.glUseProgram(mProgram);
-			//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+			//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 			GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-			//´«Èë¶¥µã×ø±êÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -113,7 +113,7 @@ public class Speed extends SpeedForEat
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -123,15 +123,15 @@ public class Speed extends SpeedForEat
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}

@@ -14,48 +14,48 @@ import static com.bn.Sample10_2.Constant.*;
 
 class MySurfaceView extends GLSurfaceView 
 {
-	private final float TOUCH_SCALE_FACTOR = 180.0f/320;//½Ç¶ÈËõ·Å±ÈÀı
-    private SceneRenderer mRenderer;//³¡¾°äÖÈ¾Æ÷
+	private final float TOUCH_SCALE_FACTOR = 180.0f/320;//è§’åº¦ç¼©æ”¾æ¯”ä¾‹
+    private SceneRenderer mRenderer;//åœºæ™¯æ¸²æŸ“å™¨
     
-    private float mPreviousX;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃX×ø±ê
-    private float mPreviousY;//ÉÏ´ÎµÄ´¥¿ØÎ»ÖÃY×ø±ê
+    private float mPreviousX;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Xåæ ‡
+    private float mPreviousY;//ä¸Šæ¬¡çš„è§¦æ§ä½ç½®Yåæ ‡
     
-    int textureIdEarth;//ÏµÍ³·ÖÅäµÄµØÇòÎÆÀíid
-    int textureIdEarthNight;//ÏµÍ³·ÖÅäµÄµØÇòÒ¹ÍíÎÆÀíid
-    int textureIdMoon;//ÏµÍ³·ÖÅäµÄÔÂÇòÎÆÀíid    
-    int textureIdCloud;//ÏµÍ³·ÖÅäµÄÔÆ²ãÎÆÀíid    
+    int textureIdEarth;//ç³»ç»Ÿåˆ†é…çš„åœ°çƒçº¹ç†id
+    int textureIdEarthNight;//ç³»ç»Ÿåˆ†é…çš„åœ°çƒå¤œæ™šçº¹ç†id
+    int textureIdMoon;//ç³»ç»Ÿåˆ†é…çš„æœˆçƒçº¹ç†id    
+    int textureIdCloud;//ç³»ç»Ÿåˆ†é…çš„äº‘å±‚çº¹ç†id    
 
-    float yAngle=0;//Ì«ÑôµÆ¹âÈÆyÖáĞı×ªµÄ½Ç¶È
-    float xAngle=0;//ÉãÏñ»úÈÆXÖáĞı×ªµÄ½Ç¶È
+    float yAngle=0;//å¤ªé˜³ç¯å…‰ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float xAngle=0;//æ‘„åƒæœºç»•Xè½´æ—‹è½¬çš„è§’åº¦
     
-    float eAngle=0;//µØÇò×Ô×ª½Ç¶È    
-    float cAngle=0;//ÌìÇò×Ô×ªµÄ½Ç¶È
+    float eAngle=0;//åœ°çƒè‡ªè½¬è§’åº¦    
+    float cAngle=0;//å¤©çƒè‡ªè½¬çš„è§’åº¦
 	
 	public MySurfaceView(Context context) {
         super(context);
-        this.setEGLContextClientVersion(2); //ÉèÖÃÊ¹ÓÃOPENGL ES2.0
-        mRenderer = new SceneRenderer();	//´´½¨³¡¾°äÖÈ¾Æ÷
-        setRenderer(mRenderer);				//ÉèÖÃäÖÈ¾Æ÷		        
-        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//ÉèÖÃäÖÈ¾Ä£Ê½ÎªÖ÷¶¯äÖÈ¾   
+        this.setEGLContextClientVersion(2); //è®¾ç½®ä½¿ç”¨OPENGL ES2.0
+        mRenderer = new SceneRenderer();	//åˆ›å»ºåœºæ™¯æ¸²æŸ“å™¨
+        setRenderer(mRenderer);				//è®¾ç½®æ¸²æŸ“å™¨		        
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);//è®¾ç½®æ¸²æŸ“æ¨¡å¼ä¸ºä¸»åŠ¨æ¸²æŸ“   
     }
 	
-	//´¥ÃşÊÂ¼ş»Øµ÷·½·¨
+	//è§¦æ‘¸äº‹ä»¶å›è°ƒæ–¹æ³•
     @Override 
     public boolean onTouchEvent(MotionEvent e) {
         float x = e.getX();
         float y = e.getY();
         switch (e.getAction()) {
         case MotionEvent.ACTION_MOVE:
-        	//´¥¿ØºáÏòÎ»ÒÆÌ«ÑôÈÆyÖáĞı×ª
-            float dx = x - mPreviousX;//¼ÆËã´¥¿Ø±ÊXÎ»ÒÆ 
-            yAngle += dx * TOUCH_SCALE_FACTOR;//ÉèÖÃÌ«ÑôÈÆyÖáĞı×ªµÄ½Ç¶È
+        	//è§¦æ§æ¨ªå‘ä½ç§»å¤ªé˜³ç»•yè½´æ—‹è½¬
+            float dx = x - mPreviousX;//è®¡ç®—è§¦æ§ç¬”Xä½ç§» 
+            yAngle += dx * TOUCH_SCALE_FACTOR;//è®¾ç½®å¤ªé˜³ç»•yè½´æ—‹è½¬çš„è§’åº¦
             float sunx=(float)(Math.cos(Math.toRadians(yAngle))*100);
             float sunz=-(float)(Math.sin(Math.toRadians(yAngle))*100);
             MatrixState.setLightLocationSun(sunx,5,sunz);  
             
-            //´¥¿Ø×İÏòÎ»ÒÆÉãÏñ»úÈÆxÖáĞı×ª -90¡«+90
-            float dy = y - mPreviousY;//¼ÆËã´¥¿Ø±ÊYÎ»ÒÆ 
-            xAngle += dy * TOUCH_SCALE_FACTOR;//ÉèÖÃÌ«ÑôÈÆyÖáĞı×ªµÄ½Ç¶È
+            //è§¦æ§çºµå‘ä½ç§»æ‘„åƒæœºç»•xè½´æ—‹è½¬ -90ï½+90
+            float dy = y - mPreviousY;//è®¡ç®—è§¦æ§ç¬”Yä½ç§» 
+            xAngle += dy * TOUCH_SCALE_FACTOR;//è®¾ç½®å¤ªé˜³ç»•yè½´æ—‹è½¬çš„è§’åº¦
             if(xAngle>90)
             {
             	xAngle=90;
@@ -70,87 +70,87 @@ class MySurfaceView extends GLSurfaceView
             float upz=-(float) Math.sin(Math.toRadians(xAngle));
             MatrixState.setCamera(0, cy, cz, 0, 0, 0, 0, upy, upz);           
         }
-        mPreviousX = x;//¼ÇÂ¼´¥¿Ø±ÊÎ»ÖÃ
+        mPreviousX = x;//è®°å½•è§¦æ§ç¬”ä½ç½®
         mPreviousY = y;
         return true; 
     } 
 
 	private class SceneRenderer implements GLSurfaceView.Renderer 
     {   
-    	Earth earth;//µØÇò
-    	Moon moon;//ÔÂÇò
-    	Celestial cSmall;//Ğ¡ĞÇĞÇÌìÇò
-    	Celestial cBig;//´óĞÇĞÇÌìÇò
-    	Cloud cloud;//ÔÂÇò
+    	Earth earth;//åœ°çƒ
+    	Moon moon;//æœˆçƒ
+    	Celestial cSmall;//å°æ˜Ÿæ˜Ÿå¤©çƒ
+    	Celestial cBig;//å¤§æ˜Ÿæ˜Ÿå¤©çƒ
+    	Cloud cloud;//æœˆçƒ
     	
         public void onDrawFrame(GL10 gl) 
         { 
-        	//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+        	//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);   
             
-            //±£»¤ÏÖ³¡
+            //ä¿æŠ¤ç°åœº
             MatrixState.pushMatrix();
-            //µØÇò×Ô×ª
+            //åœ°çƒè‡ªè½¬
             MatrixState.rotate(eAngle, 0, 1, 0);
-        	//»æÖÆÎÆÀíÔ²Çò
+        	//ç»˜åˆ¶çº¹ç†åœ†çƒ
             earth.drawSelf(textureIdEarth,textureIdEarthNight);
             
-            //¿ªÆô»ìºÏ
+            //å¼€å¯æ··åˆ
             GLES20.glEnable(GLES20.GL_BLEND);  
-            //ÉèÖÃ»ìºÏÒò×Ó
+            //è®¾ç½®æ··åˆå› å­
             GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-            cloud.drawSelf(textureIdCloud);//»æÖÆÔÆ²ã
-            //¹Ø±Õ»ìºÏ
+            cloud.drawSelf(textureIdCloud);//ç»˜åˆ¶äº‘å±‚
+            //å…³é—­æ··åˆ
             GLES20.glDisable(GLES20.GL_BLEND);
             
             
-            //ÍÆ×ø±êÏµµ½ÔÂÇòÎ»ÖÃ            
+            //æ¨åæ ‡ç³»åˆ°æœˆçƒä½ç½®            
             MatrixState.transtate(2f, 0, 0);  
-            //ÔÂÇò×Ô×ª     
+            //æœˆçƒè‡ªè½¬     
             MatrixState.rotate(eAngle, 0, 1, 0);
-            //»æÖÆÔÂÇò
+            //ç»˜åˆ¶æœˆçƒ
             moon.drawSelf(textureIdMoon);
-            //»Ö¸´ÏÖ³¡
+            //æ¢å¤ç°åœº
             MatrixState.popMatrix();
             
-            //±£»¤ÏÖ³¡
+            //ä¿æŠ¤ç°åœº
             MatrixState.pushMatrix();  
             MatrixState.rotate(cAngle, 0, 1, 0);
             cSmall.drawSelf();
             cBig.drawSelf();
-            //»Ö¸´ÏÖ³¡
+            //æ¢å¤ç°åœº
             MatrixState.popMatrix();
         }   
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-            //ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+            //è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             ratio= (float) width / height;
-            //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
             MatrixState.setProjectFrustum(-ratio, ratio, -1, 1, 4f, 100);
-            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
             MatrixState.setCamera(0,0,7.2f,0f,0f,0f,0f,1.0f,0.0f);       
-            //´ò¿ª±³Ãæ¼ô²Ã
+            //æ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);  
-            //³õÊ¼»¯ÎÆÀí
+            //åˆå§‹åŒ–çº¹ç†
             textureIdEarth=initTexture(R.drawable.earth);
             textureIdEarthNight=initTexture(R.drawable.earthn);
             textureIdMoon=initTexture(R.drawable.moon);        
             textureIdCloud=initTexture(R.drawable.cloud); 
-            //ÉèÖÃÌ«ÑôµÆ¹âµÄ³õÊ¼Î»ÖÃ
+            //è®¾ç½®å¤ªé˜³ç¯å…‰çš„åˆå§‹ä½ç½®
             MatrixState.setLightLocationSun(100,5,0);       
             
-            //Æô¶¯Ò»¸öÏß³Ì¶¨Ê±Ğı×ªµØÇò¡¢ÔÂÇò
+            //å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å®šæ—¶æ—‹è½¬åœ°çƒã€æœˆçƒ
             new Thread()
             {
             	public void run()
             	{
             		while(threadFlag)
             		{
-            			//µØÇò×Ô×ª½Ç¶È
+            			//åœ°çƒè‡ªè½¬è§’åº¦
             			eAngle=(eAngle+2)%360;
-            			//ÌìÇò×Ô×ª½Ç¶È
+            			//å¤©çƒè‡ªè½¬è§’åº¦
             			cAngle=(cAngle+0.2f)%360;
             			try {
 							Thread.sleep(100);
@@ -163,33 +163,33 @@ class MySurfaceView extends GLSurfaceView
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            //ÉèÖÃÆÁÄ»±³¾°É«RGBA
+            //è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0.0f,0.0f,0.0f, 1.0f);  
-            //´´½¨µØÇò¶ÔÏó 
+            //åˆ›å»ºåœ°çƒå¯¹è±¡ 
             earth=new Earth(MySurfaceView.this,2.0f);
             cloud=new Cloud(MySurfaceView.this,2.02f);
-            //´´½¨ÔÂÇò¶ÔÏó 
+            //åˆ›å»ºæœˆçƒå¯¹è±¡ 
             moon=new Moon(MySurfaceView.this,1.0f);
-            //´´½¨Ğ¡ĞÇĞÇÌìÇò¶ÔÏó
+            //åˆ›å»ºå°æ˜Ÿæ˜Ÿå¤©çƒå¯¹è±¡
             cSmall=new Celestial(1,0,1000,MySurfaceView.this);
-            //´´½¨´óĞÇĞÇÌìÇò¶ÔÏó
+            //åˆ›å»ºå¤§æ˜Ÿæ˜Ÿå¤©çƒå¯¹è±¡
             cBig=new Celestial(2,0,500,MySurfaceView.this);
-            //´ò¿ªÉî¶È¼ì²â
+            //æ‰“å¼€æ·±åº¦æ£€æµ‹
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
-            //³õÊ¼»¯±ä»»¾ØÕó
+            //åˆå§‹åŒ–å˜æ¢çŸ©é˜µ
             MatrixState.setInitStack();  
         }
     }
 	
 	public int initTexture(int drawableId)//textureId
 	{
-		//Éú³ÉÎÆÀíID
+		//ç”Ÿæˆçº¹ç†ID
 		int[] textures = new int[1];
 		GLES20.glGenTextures
 		(
-				1,          //²úÉúµÄÎÆÀíidµÄÊıÁ¿
-				textures,   //ÎÆÀíidµÄÊı×é
-				0           //Æ«ÒÆÁ¿
+				1,          //äº§ç”Ÿçš„çº¹ç†idçš„æ•°é‡
+				textures,   //çº¹ç†idçš„æ•°ç»„
+				0           //åç§»é‡
 		);    
 		int textureId=textures[0];    
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId);
@@ -198,7 +198,7 @@ class MySurfaceView extends GLSurfaceView
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S,GLES20.GL_CLAMP_TO_EDGE);
 		GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T,GLES20.GL_CLAMP_TO_EDGE);
         
-        //Í¨¹ıÊäÈëÁ÷¼ÓÔØÍ¼Æ¬===============begin===================
+        //é€šè¿‡è¾“å…¥æµåŠ è½½å›¾ç‰‡===============begin===================
         InputStream is = this.getResources().openRawResource(drawableId);
         Bitmap bitmapTmp;
         try 
@@ -216,17 +216,17 @@ class MySurfaceView extends GLSurfaceView
                 e.printStackTrace();
             }
         }
-        //Í¨¹ıÊäÈëÁ÷¼ÓÔØÍ¼Æ¬===============end=====================  
+        //é€šè¿‡è¾“å…¥æµåŠ è½½å›¾ç‰‡===============end=====================  
         
-        //Êµ¼Ê¼ÓÔØÎÆÀí
+        //å®é™…åŠ è½½çº¹ç†
         GLUtils.texImage2D
         (
-        		GLES20.GL_TEXTURE_2D,   //ÎÆÀíÀàĞÍ£¬ÔÚOpenGL ESÖĞ±ØĞëÎªGL10.GL_TEXTURE_2D
-        		0, 					  //ÎÆÀíµÄ²ã´Î£¬0±íÊ¾»ù±¾Í¼Ïñ²ã£¬¿ÉÒÔÀí½âÎªÖ±½ÓÌùÍ¼
-        		bitmapTmp, 			  //ÎÆÀíÍ¼Ïñ
-        		0					  //ÎÆÀí±ß¿ò³ß´ç
+        		GLES20.GL_TEXTURE_2D,   //çº¹ç†ç±»å‹ï¼Œåœ¨OpenGL ESä¸­å¿…é¡»ä¸ºGL10.GL_TEXTURE_2D
+        		0, 					  //çº¹ç†çš„å±‚æ¬¡ï¼Œ0è¡¨ç¤ºåŸºæœ¬å›¾åƒå±‚ï¼Œå¯ä»¥ç†è§£ä¸ºç›´æ¥è´´å›¾
+        		bitmapTmp, 			  //çº¹ç†å›¾åƒ
+        		0					  //çº¹ç†è¾¹æ¡†å°ºå¯¸
         );
-        bitmapTmp.recycle(); 		  //ÎÆÀí¼ÓÔØ³É¹¦ºóÊÍ·ÅÍ¼Æ¬
+        bitmapTmp.recycle(); 		  //çº¹ç†åŠ è½½æˆåŠŸåé‡Šæ”¾å›¾ç‰‡
         
         return textureId;
 	}

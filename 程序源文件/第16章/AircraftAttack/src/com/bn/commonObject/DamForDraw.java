@@ -10,16 +10,16 @@ import android.opengl.GLES20;
 
 import static com.bn.gameView.Constant.*;
 /*
- * »æÖÆ´ó°Ó
+ * ç»˜åˆ¶å¤§å
  */
 public class DamForDraw 
 {
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
-    FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    FloatBuffer   mTexCoorBuffer;//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
+    FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    FloatBuffer   mTexCoorBuffer;//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
     int vCount;
     public boolean isShaderOk;
 	public DamForDraw(float height,float length1,float length2,float length3,int mProgram)
@@ -27,7 +27,7 @@ public class DamForDraw
 		this.mProgram=mProgram;
 		initData(height,length1,length2,length3);
 	}
-	//³õÊ¼»¯¶¥µãµÄĞÅÏ¢
+	//åˆå§‹åŒ–é¡¶ç‚¹çš„ä¿¡æ¯
 	public void initData(float height,float length1,float length2,float length3)
 	{
 		float vertex[]=new float[(ArchieArray[mapId][5].length/2-1)*6*9*2];
@@ -54,7 +54,7 @@ public class DamForDraw
 			
 			z1=ArchieArray[mapId][5][2*i+1]*WIDTH_LALNDFORM;
 			z2=ArchieArray[mapId][5][2*(1+i)+1]*WIDTH_LALNDFORM;
-			vertex[d++]=x1;//µÚÒ»¸öÈı½ÇĞÎ
+			vertex[d++]=x1;//ç¬¬ä¸€ä¸ªä¸‰è§’å½¢
 			vertex[d++]=0;
 			vertex[d++]=z1-length1;
 			
@@ -75,7 +75,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY2;
 			
-			vertex[d++]=x1;//µÚÒ»¸öÈı½ÇĞÎ·´Ãæ
+			vertex[d++]=x1;//ç¬¬ä¸€ä¸ªä¸‰è§’å½¢åé¢
 			vertex[d++]=0;
 			vertex[d++]=z1-length1;
 					
@@ -96,7 +96,7 @@ public class DamForDraw
 			texture[t++]=texX;
 			texture[t++]=texY2;
 			
-			vertex[d++]=x1;//µÚ¶ş¸öÈı½ÇĞÎ
+			vertex[d++]=x1;//ç¬¬äºŒä¸ªä¸‰è§’å½¢
 			vertex[d++]=0;
 			vertex[d++]=z1-length1;
 			
@@ -117,7 +117,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY1;
 			
-			vertex[d++]=x1;//µÚ¶ş¸öÈı½ÇĞÎ·´Ãæ
+			vertex[d++]=x1;//ç¬¬äºŒä¸ªä¸‰è§’å½¢åé¢
 			vertex[d++]=0;
 			vertex[d++]=z1-length1;
 			
@@ -138,7 +138,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY2;
 			
-			vertex[d++]=x1;//µÚÈı¸öÈı½ÇĞÎ
+			vertex[d++]=x1;//ç¬¬ä¸‰ä¸ªä¸‰è§’å½¢
 			vertex[d++]=height;
 			vertex[d++]=z1;
 			
@@ -159,7 +159,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY3;
 			
-			vertex[d++]=x1;//µÚÈı¸öÈı½ÇĞÎfanm·´Ãæ
+			vertex[d++]=x1;//ç¬¬ä¸‰ä¸ªä¸‰è§’å½¢fanmåé¢
 			vertex[d++]=-height;
 			vertex[d++]=z1;
 			
@@ -180,7 +180,7 @@ public class DamForDraw
 			texture[t++]=texX;
 			texture[t++]=texY3;
 			
-			vertex[d++]=x1;//µÚËÄ¸öÈı½ÇĞÎ
+			vertex[d++]=x1;//ç¬¬å››ä¸ªä¸‰è§’å½¢
 			vertex[d++]=height;
 			vertex[d++]=z1;
 			
@@ -201,7 +201,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY2;
 			
-			vertex[d++]=x1;//µÚËÄ¸öÈı½ÇĞÎ·´Ãæ
+			vertex[d++]=x1;//ç¬¬å››ä¸ªä¸‰è§’å½¢åé¢
 			vertex[d++]=-height;
 			vertex[d++]=z1;
 			
@@ -222,7 +222,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY3;
 			
-			vertex[d++]=x1;//µÚÎå¸öÈı½ÇĞÎ
+			vertex[d++]=x1;//ç¬¬äº”ä¸ªä¸‰è§’å½¢
 			vertex[d++]=height;
 			vertex[d++]=z1+length2;
 			
@@ -243,7 +243,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY4;
 			
-			vertex[d++]=x1;//µÚÎå¸öÈı½ÇĞÎ·´Ãæ
+			vertex[d++]=x1;//ç¬¬äº”ä¸ªä¸‰è§’å½¢åé¢
 			vertex[d++]=-height;
 			vertex[d++]=z1+length2;
 			
@@ -264,7 +264,7 @@ public class DamForDraw
 			texture[t++]=texX;
 			texture[t++]=texY4;
 			
-			vertex[d++]=x1;//µÚÁù¸öÈı½ÇĞÎ
+			vertex[d++]=x1;//ç¬¬å…­ä¸ªä¸‰è§’å½¢
 			vertex[d++]=height;
 			vertex[d++]=z1+length2;
 			
@@ -286,7 +286,7 @@ public class DamForDraw
 			texture[t++]=texX+spanx;
 			texture[t++]=texY3;
 			
-			vertex[d++]=x1;//µÚÁù¸öÈı½ÇĞÎ·´Ãæ
+			vertex[d++]=x1;//ç¬¬å…­ä¸ªä¸‰è§’å½¢åé¢
 			vertex[d++]=-height;
 			vertex[d++]=z1+length2;
 			
@@ -308,9 +308,9 @@ public class DamForDraw
 			texture[t++]=texY4;
 		}
 		ByteBuffer vbb = ByteBuffer.allocateDirect(vertex.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mVertexBuffer.put(vertex);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mVertexBuffer.put(vertex);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
         mVertexBuffer.position(0);
        
         ByteBuffer vbt=ByteBuffer.allocateDirect(texture.length*4);
@@ -321,22 +321,22 @@ public class DamForDraw
 	}
 	 public void initShader()
 	  {   
-		//»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+		//è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
 	   }
-	//»æÖÆ·½·¨
+	//ç»˜åˆ¶æ–¹æ³•
 	public void drawSelf(int texId)
 	{
 		
-		//Ê¹ÓÃÄ³Ì×Ö¸¶¨µÄShader³ÌĞò
+		//ä½¿ç”¨æŸå¥—æŒ‡å®šçš„Shaderç¨‹åº
 		GLES20.glUseProgram(mProgram);
-		//½«×îÖÕ±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+		//å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 		GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-		//´«Èë×ø±êÊı¾İ
+		//ä¼ å…¥åæ ‡æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maPositionHandle, 
@@ -346,7 +346,7 @@ public class DamForDraw
 			3*4, 
 			mVertexBuffer
 		);
-		//´«ÈëÎÆÀí×ø±êÊı¾İ
+		//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 		GLES20.glVertexAttribPointer
 		(
 			maTexCoorHandle, 
@@ -356,13 +356,13 @@ public class DamForDraw
 			2*4, 
 			mTexCoorBuffer
 		);
-		//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+		//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-        //»æÖÆ¼ÓÔØµÄÎïÌå
+        //ç»˜åˆ¶åŠ è½½çš„ç‰©ä½“
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount);  
 	}
 }

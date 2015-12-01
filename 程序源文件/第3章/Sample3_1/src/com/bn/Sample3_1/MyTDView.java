@@ -26,29 +26,29 @@ public class MyTDView extends GLSurfaceView
 		Triangle tle;
 		public void onDrawFrame(GL10 gl)
 		{
-			//Çå³ıÉî¶È»º³åÓëÑÕÉ«»º³å
+			//æ¸…é™¤æ·±åº¦ç¼“å†²ä¸é¢œè‰²ç¼“å†²
             GLES20.glClear( GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
-            //»æÖÆÈı½ÇĞÎ¶Ô
+            //ç»˜åˆ¶ä¸‰è§’å½¢å¯¹
             tle.drawSelf();    
 		}
 		public void onSurfaceChanged(GL10 gl, int width, int height)
 		{
-			//ÉèÖÃÊÓ´°´óĞ¡¼°Î»ÖÃ 
+			//è®¾ç½®è§†çª—å¤§å°åŠä½ç½® 
         	GLES20.glViewport(0, 0, width, height); 
-        	//¼ÆËãGLSurfaceViewµÄ¿í¸ß±È
+        	//è®¡ç®—GLSurfaceViewçš„å®½é«˜æ¯”
             float ratio = (float) width / height;
-            //µ÷ÓÃ´Ë·½·¨¼ÆËã²úÉúÍ¸ÊÓÍ¶Ó°¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•è®¡ç®—äº§ç”Ÿé€è§†æŠ•å½±çŸ©é˜µ
             Matrix.frustumM(Triangle.mProjMatrix, 0, -ratio, ratio, -1, 1, 1, 10);
-            //µ÷ÓÃ´Ë·½·¨²úÉúÉãÏñ»ú9²ÎÊıÎ»ÖÃ¾ØÕó
+            //è°ƒç”¨æ­¤æ–¹æ³•äº§ç”Ÿæ‘„åƒæœº9å‚æ•°ä½ç½®çŸ©é˜µ
             Matrix.setLookAtM(Triangle.mVMatrix, 0, 0,0,3,0f,0f,0f,0f,1.0f,0.0f); 
 		}
 		public void onSurfaceCreated(GL10 gl, EGLConfig config)
 		{
-			//ÉèÖÃÆÁÄ»±³¾°É«RGBA
+			//è®¾ç½®å±å¹•èƒŒæ™¯è‰²RGBA
             GLES20.glClearColor(0,0,0,1.0f);  
-            //´´½¨Èı½ÇĞÎ¶Ô¶ÔÏó 
+            //åˆ›å»ºä¸‰è§’å½¢å¯¹å¯¹è±¡ 
             tle=new Triangle(MyTDView.this);        
-            //´ò¿ªÉî¶È¼ì²â
+            //æ‰“å¼€æ·±åº¦æ£€æµ‹
             GLES20.glEnable(GLES20.GL_DEPTH_TEST);
     		rthread=new RotateThread();
     		rthread.start();

@@ -6,87 +6,87 @@ import java.nio.FloatBuffer;
 import android.opengl.GLES20;
 
 import com.bn.core.MatrixState;
-//ÎÆÀí¾ØĞÎ     ÆäÖĞ¸Ã¾ØĞÎÊÇÆ½ĞĞÓÚXYÆ½ÃæµÄ,¹ØÓÚÔ­µãÖĞĞÄ¶Ô³Æ
-//Õâ¸öÒ²ÊÇÓÃÓÚ»æÖÆË®Ãæ
-//Õâ¸öÓÃÓÚ»æÖÆ°´Å¥
-//¾ØĞÎµÄ¿í¶ÈºÍ¸ß¶È·Ö±ğÎª width,height
+//çº¹ç†çŸ©å½¢     å…¶ä¸­è¯¥çŸ©å½¢æ˜¯å¹³è¡ŒäºXYå¹³é¢çš„,å…³äºåŸç‚¹ä¸­å¿ƒå¯¹ç§°
+//è¿™ä¸ªä¹Ÿæ˜¯ç”¨äºç»˜åˆ¶æ°´é¢
+//è¿™ä¸ªç”¨äºç»˜åˆ¶æŒ‰é’®
+//çŸ©å½¢çš„å®½åº¦å’Œé«˜åº¦åˆ†åˆ«ä¸º width,height
 public class TextureRect 
 {	
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
-    int uIsButtonDownHandle;//°´Å¥ÊÇ·ñ°´ÏÂÒıÓÃId
-    int uTypeHandle;//°´Å¥µÄÊôĞÔ
-    int uCurrAlphaHandle;//µ±Ç°°´Å¥µÄ²»Í¸Ã÷¶È
-	int uWidthHandle;//µ±Ç°°´Å¥µÄ¿í¶È
-	int uCurrXHandle;//´«ÈëµÄX×ø±ê
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
+    int uIsButtonDownHandle;//æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹å¼•ç”¨Id
+    int uTypeHandle;//æŒ‰é’®çš„å±æ€§
+    int uCurrAlphaHandle;//å½“å‰æŒ‰é’®çš„ä¸é€æ˜åº¦
+	int uWidthHandle;//å½“å‰æŒ‰é’®çš„å®½åº¦
+	int uCurrXHandle;//ä¼ å…¥çš„Xåæ ‡
     
     
-    int maSTOffset;	//Ë®ÃæÎÆÀíÍ¼µÄÆ«ÒÆÁ¿ÒıÓÃid
-    int uBloodValueHandle;//ÉúÃüÖµµÄÒıÓÃ
-	FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	FloatBuffer   mTexCoorBuffer;//¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+    int maSTOffset;	//æ°´é¢çº¹ç†å›¾çš„åç§»é‡å¼•ç”¨id
+    int uBloodValueHandle;//ç”Ÿå‘½å€¼çš„å¼•ç”¨
+	FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	FloatBuffer   mTexCoorBuffer;//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
     int vCount=0;  
-    private boolean isFlow;//µ±Ç°ÊÇ·ñÊÇË®Ãæ
-    private boolean flag_flow_go=true;//Ë®ÃæÊÇ·ñÔË¶¯
-    private float currStartST=0;	//Ë®ÃæÎÆÀí×ø±êµÄµ±Ç°ÆğÊ¼×ø±ê0~1
-    //°´Å¥±êÖ¾Î»,ÓÃÀ´¸Ä±ä°´Å¥µÄ²»Í¸Ã÷¶È
-    private int index=0;//¶ÔÏóid,Èç¹ûÊÇ1,±íÊ¾µ±Ç°Îª°´Å¥,Èç¹ûÎª2,±íÊ¾»æÖÆÎïÌåµÄÉúÃüÖµ
-    public  int button_type=0;//°´Å¥µÄÀàĞÍ  0±íÊ¾Õı³£ÏÔÊ¾,1±íÊ¾°´ÏÂ²ÅÍ¸Ã÷µÄ°´Å¥,2±íÊ¾Ñ­»·±ä»»µÄ°´Å¥,3±íÊ¾¾í¶¯µÄÃæ°å
-    public  float bloodValue;//ÎïÌåµÄÉúÃüÖµ
-    public  int isButtonDown;//°´Å¥ÊÇ·ñ°´ÏÂ0±íÊ¾Ã»ÓĞ°´ÏÂ,1±íÊ¾°´ÏÂ
-    public float currAlpha;//µ±Ç°µÄ²»Í¸Ã÷¶È
-    public float buttonWidth;//°´Å¥µÄ¿í¶È
-    public float currX;//´«ÈëµÄXÖµ
+    private boolean isFlow;//å½“å‰æ˜¯å¦æ˜¯æ°´é¢
+    private boolean flag_flow_go=true;//æ°´é¢æ˜¯å¦è¿åŠ¨
+    private float currStartST=0;	//æ°´é¢çº¹ç†åæ ‡çš„å½“å‰èµ·å§‹åæ ‡0~1
+    //æŒ‰é’®æ ‡å¿—ä½,ç”¨æ¥æ”¹å˜æŒ‰é’®çš„ä¸é€æ˜åº¦
+    private int index=0;//å¯¹è±¡id,å¦‚æœæ˜¯1,è¡¨ç¤ºå½“å‰ä¸ºæŒ‰é’®,å¦‚æœä¸º2,è¡¨ç¤ºç»˜åˆ¶ç‰©ä½“çš„ç”Ÿå‘½å€¼
+    public  int button_type=0;//æŒ‰é’®çš„ç±»å‹  0è¡¨ç¤ºæ­£å¸¸æ˜¾ç¤º,1è¡¨ç¤ºæŒ‰ä¸‹æ‰é€æ˜çš„æŒ‰é’®,2è¡¨ç¤ºå¾ªç¯å˜æ¢çš„æŒ‰é’®,3è¡¨ç¤ºå·åŠ¨çš„é¢æ¿
+    public  float bloodValue;//ç‰©ä½“çš„ç”Ÿå‘½å€¼
+    public  int isButtonDown;//æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹0è¡¨ç¤ºæ²¡æœ‰æŒ‰ä¸‹,1è¡¨ç¤ºæŒ‰ä¸‹
+    public float currAlpha;//å½“å‰çš„ä¸é€æ˜åº¦
+    public float buttonWidth;//æŒ‰é’®çš„å®½åº¦
+    public float currX;//ä¼ å…¥çš„Xå€¼
     
     
-    public float flowSpeed;//Á÷¶¯µÄËÙ¶È
-    public float[] textures;//¶¨ÒåÎÆÀí×ø±ê
-    //ÆÕÍ¨¹¹ÔìÆ÷
+    public float flowSpeed;//æµåŠ¨çš„é€Ÿåº¦
+    public float[] textures;//å®šä¹‰çº¹ç†åæ ‡
+    //æ™®é€šæ„é€ å™¨
     public TextureRect(float width,float height,int mProgram)
     {    	
-    	//³õÊ¼»¯¶¥Êı¾İµÄinitVertexDate·½·¨
+    	//åˆå§‹åŒ–é¡¶æ•°æ®çš„initVertexDateæ–¹æ³•
     	initVertexData(width,height,false,1);
-    	//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨        
+    	//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•        
     	initShader(mProgram);
     }
-    //°´Å¥/ÉúÃüÖµ¹¹ÔìÆ÷
-    public TextureRect(float width,float height,int mProgram,int index,int button_type)//1Îª°´Å¥,2ÎªÉúÃüÖµ
+    //æŒ‰é’®/ç”Ÿå‘½å€¼æ„é€ å™¨
+    public TextureRect(float width,float height,int mProgram,int index,int button_type)//1ä¸ºæŒ‰é’®,2ä¸ºç”Ÿå‘½å€¼
     {   
     	this.index=index;
     	this.button_type=button_type;
-    	//³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İ
+    	//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®
     	initVertexData(width,height,false,1);
-    	//³õÊ¼»¯shader        
+    	//åˆå§‹åŒ–shader        
     	initShader(mProgram);
     }
-    //Ë®Ãæ¹¹ÔìÆ÷
+    //æ°´é¢æ„é€ å™¨
     public TextureRect(float width,float height,int mProgram,boolean isWater,int n) 
     {
-    	//³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İ
+    	//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®
     	initVertexData(width,height,false,n);
-    	//³õÊ¼»¯shader        
+    	//åˆå§‹åŒ–shader        
     	initShader(mProgram);
     }
-    //ÎÆÀíÁ÷¶¯µÄ¹¹ÔìÆ÷
+    //çº¹ç†æµåŠ¨çš„æ„é€ å™¨
     public TextureRect(float width,float height,int mProgram,boolean isFlow,float speed)
     {
     	this.isFlow=isFlow;
     	this.flowSpeed=speed;
-    	//³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İ
+    	//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®
     	initVertexData(width,height,false,1);
-    	//³õÊ¼»¯shader        
+    	//åˆå§‹åŒ–shader        
     	initShader(mProgram);
-    	//Æô¶¯Ò»¸öÏß³Ì¶¨Ê±»»Ö¡
+    	//å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å®šæ—¶æ¢å¸§
     	new Thread()
     	{
     		public void run()
     		{
     			while(flag_flow_go)
     			{
-    				//ËùÎ½Ë®Ãæ¶¨Ê±»»Ö¡Ö»ÊÇĞŞ¸ÄÃ¿Ö¡ÆğÊ¼½Ç¶È¼´¿É£¬
-    				//Ë®Ãæ¶¥µãY×ø±êµÄ±ä»¯ÓÉ¶¥µã×ÅÉ«µ¥ÔªÍê³É
+    				//æ‰€è°“æ°´é¢å®šæ—¶æ¢å¸§åªæ˜¯ä¿®æ”¹æ¯å¸§èµ·å§‹è§’åº¦å³å¯ï¼Œ
+    				//æ°´é¢é¡¶ç‚¹Yåæ ‡çš„å˜åŒ–ç”±é¡¶ç‚¹ç€è‰²å•å…ƒå®Œæˆ
     				currStartST=(currStartST+0.00008f*flowSpeed)%1;
         			try 
         			{
@@ -100,14 +100,14 @@ public class TextureRect
     		}    
     	}.start();  
     }
-    //»æÖÆÊı×ÖµÄ¹¹ÔìÆ÷,Ö÷ÒªÊÇ½«ÎÆÀí×ø±ê´«Èë½øÀ´
-    public TextureRect(float width,float height,float[] textures,int mProgram)//´«Èë¿í¸ßºÍÎÆÀí×ø±êÊı×é
+    //ç»˜åˆ¶æ•°å­—çš„æ„é€ å™¨,ä¸»è¦æ˜¯å°†çº¹ç†åæ ‡ä¼ å…¥è¿›æ¥
+    public TextureRect(float width,float height,float[] textures,int mProgram)//ä¼ å…¥å®½é«˜å’Œçº¹ç†åæ ‡æ•°ç»„
     {
     	this.textures=textures;
     	initVertexData(width,height,true,1);
     	initShader(mProgram);
     }
-    //³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İµÄ·½·¨
+    //åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®çš„æ–¹æ³•
     public void initVertexData(float width,float height,boolean hasTexture,int n)
     {
         vCount=4;
@@ -118,79 +118,79 @@ public class TextureRect
         	width/2,height/2,0,
         	width/2,-height/2,0 
         };
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        if(!hasTexture)//Èç¹ûÃ»ÓĞ´«ÈëÎÆÀí
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        if(!hasTexture)//å¦‚æœæ²¡æœ‰ä¼ å…¥çº¹ç†
         {
-        	textures=new float[]//¶¥µãÑÕÉ«ÖµÊı×é£¬Ã¿¸ö¶¥µã4¸öÉ«²ÊÖµRGBA
+        	textures=new float[]//é¡¶ç‚¹é¢œè‰²å€¼æ•°ç»„ï¼Œæ¯ä¸ªé¡¶ç‚¹4ä¸ªè‰²å½©å€¼RGBA
 	        {
 	        	0,0, 0,n, 
 	        	n,0, n,n        		
 	        };        
         }
-        //´´½¨¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+        //åˆ›å»ºé¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
         ByteBuffer cbb = ByteBuffer.allocateDirect(textures.length*4);
-        cbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mTexCoorBuffer = cbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mTexCoorBuffer.put(textures);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-        mTexCoorBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+        cbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mTexCoorBuffer = cbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mTexCoorBuffer.put(textures);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+        mTexCoorBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
     }
-    //³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+    //åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
     public void initShader(int mProgram)
     {
     	this.mProgram=mProgram;
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
         if(isFlow)
         {
-        	//»ñÈ¡Ë®ÃæÎÆÀíÍ¼Æ«ÒÆÁ¿µÄÒıÓÃid
+        	//è·å–æ°´é¢çº¹ç†å›¾åç§»é‡çš„å¼•ç”¨id
             maSTOffset=GLES20.glGetUniformLocation(mProgram, "stK");  
         }
-        if(index==1)//µ±Ç°Îª°´Å¥
+        if(index==1)//å½“å‰ä¸ºæŒ‰é’®
         {
-        	uIsButtonDownHandle=GLES20.glGetUniformLocation(mProgram, "isButtonDown");//°´Å¥ÊÇ·ñ°´ÏÂ
-        	uTypeHandle=GLES20.glGetUniformLocation(mProgram, "type");//°´Å¥µÄÀàĞÍ
-        	uCurrAlphaHandle=GLES20.glGetUniformLocation(mProgram, "currAlpha");//µ±Ç°°´Å¥µÄ²»Í¸Ã÷¶È
-        	uWidthHandle=GLES20.glGetUniformLocation(mProgram, "width");//µ±Ç°°´Å¥µÄ¿í¶È
-        	uCurrXHandle=GLES20.glGetUniformLocation(mProgram, "currX");//´«ÈëµÄX×ø±ê
+        	uIsButtonDownHandle=GLES20.glGetUniformLocation(mProgram, "isButtonDown");//æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹
+        	uTypeHandle=GLES20.glGetUniformLocation(mProgram, "type");//æŒ‰é’®çš„ç±»å‹
+        	uCurrAlphaHandle=GLES20.glGetUniformLocation(mProgram, "currAlpha");//å½“å‰æŒ‰é’®çš„ä¸é€æ˜åº¦
+        	uWidthHandle=GLES20.glGetUniformLocation(mProgram, "width");//å½“å‰æŒ‰é’®çš„å®½åº¦
+        	uCurrXHandle=GLES20.glGetUniformLocation(mProgram, "currX");//ä¼ å…¥çš„Xåæ ‡
         }
-        else if(index==2)//µ±Ç°ÎªÎïÌåµÄÉúÃüÖµ
+        else if(index==2)//å½“å‰ä¸ºç‰©ä½“çš„ç”Ÿå‘½å€¼
         {
         	uBloodValueHandle=GLES20.glGetUniformLocation(mProgram, "ublood");
         }
     }
     public void drawSelf(int texId)
     {        
-    	 //ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	 //åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
     	 GLES20.glUseProgram(mProgram);        
-         //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+         //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
          GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
          if(isFlow)
          {
-        	//½«Ë®ÃæÎÆÀíÍ¼µÄstÆ«ÒÆÁ¿´«Èëshader³ÌĞò
+        	//å°†æ°´é¢çº¹ç†å›¾çš„ståç§»é‡ä¼ å…¥shaderç¨‹åº
              GLES20.glUniform1f(maSTOffset, currStartST);
          }
-         if(index==1)//Èç¹ûµ±Ç°Îª°´Å¥
+         if(index==1)//å¦‚æœå½“å‰ä¸ºæŒ‰é’®
          {
-        	 GLES20.glUniform1i(uIsButtonDownHandle, isButtonDown);//°´Å¥ÊÇ·ñ°´ÏÂ
-        	 GLES20.glUniform1i(uTypeHandle, button_type);//°´Å¥µÄÀàĞÍ
-        	 GLES20.glUniform1f(uCurrAlphaHandle, currAlpha);//°´Å¥µÄ²»Í¸Ã÷¶È
-        	 GLES20.glUniform1f(uWidthHandle, buttonWidth);//°´Å¥µÄ¿í¶È
-        	 GLES20.glUniform1f(uCurrXHandle, currX);//´«ÈëµÄXÖµ
+        	 GLES20.glUniform1i(uIsButtonDownHandle, isButtonDown);//æŒ‰é’®æ˜¯å¦æŒ‰ä¸‹
+        	 GLES20.glUniform1i(uTypeHandle, button_type);//æŒ‰é’®çš„ç±»å‹
+        	 GLES20.glUniform1f(uCurrAlphaHandle, currAlpha);//æŒ‰é’®çš„ä¸é€æ˜åº¦
+        	 GLES20.glUniform1f(uWidthHandle, buttonWidth);//æŒ‰é’®çš„å®½åº¦
+        	 GLES20.glUniform1f(uCurrXHandle, currX);//ä¼ å…¥çš„Xå€¼
          }
-         else if(index==2)//Èç¹ûµ±Ç°ÎªÎïÌåÉúÃüÖµ¾ØĞÎ¿ò
+         else if(index==2)//å¦‚æœå½“å‰ä¸ºç‰©ä½“ç”Ÿå‘½å€¼çŸ©å½¢æ¡†
          {
         	 GLES20.glUniform1f(uBloodValueHandle, bloodValue);
          }
-         //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+         //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
          GLES20.glVertexAttribPointer  
          (
          		maPositionHandle,   
@@ -200,7 +200,7 @@ public class TextureRect
                 3*4,   
                 mVertexBuffer
          );       
-         //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+         //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
          GLES20.glVertexAttribPointer  
          (
         		maTexCoorHandle, 
@@ -210,13 +210,13 @@ public class TextureRect
                 2*4,   
                 mTexCoorBuffer
          );   
-         //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+         //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
          GLES20.glEnableVertexAttribArray(maPositionHandle);  
          GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-         //°ó¶¨ÎÆÀí
+         //ç»‘å®šçº¹ç†
          GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
          GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-         //»æÖÆÎÆÀí¾ØĞÎ
+         //ç»˜åˆ¶çº¹ç†çŸ©å½¢
          GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vCount); 
     }
 }

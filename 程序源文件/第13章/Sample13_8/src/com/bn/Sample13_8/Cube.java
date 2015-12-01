@@ -4,13 +4,13 @@ public class Cube
 {
 	MySurfaceView mv;
 	TextureRect[] rect=new TextureRect[6];
-	float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
-    float a;	//Á¢·½ÌåµÄ³¤
-    float b;	//Á¢·½ÌåµÄ¸ß
-    float c;	//Á¢·½ÌåµÄ¿í£¨ºñ¶È£©
-    float size;//³ß´ç
+	float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
+    float a;	//ç«‹æ–¹ä½“çš„é•¿
+    float b;	//ç«‹æ–¹ä½“çš„é«˜
+    float c;	//ç«‹æ–¹ä½“çš„å®½ï¼ˆåšåº¦ï¼‰
+    float size;//å°ºå¯¸
 	public Cube(MySurfaceView mv,float scale,float[] abc)
 	{
 		a=abc[0];
@@ -22,7 +22,7 @@ public class Cube
 		rect[3]=new TextureRect(mv,scale,c,b);
 		rect[4]=new TextureRect(mv,scale,a,c);
 		rect[5]=new TextureRect(mv,scale,a,c);
-		// ³õÊ¼»¯Íê³ÉºóÔÙ¸Ä±ä¸÷Á¿µÄÖµ
+		// åˆå§‹åŒ–å®Œæˆåå†æ”¹å˜å„é‡çš„å€¼
 		size=scale;
 		a*=size;
 		b*=size;
@@ -33,36 +33,36 @@ public class Cube
 		MatrixState.rotate(xAngle, 1, 0, 0);
 		MatrixState.rotate(yAngle, 0, 1, 0);
         MatrixState.rotate(zAngle, 0, 0, 1);
-        //Ç°Ãæ
+        //å‰é¢
         MatrixState.pushMatrix();
         MatrixState.translate(0, 0, c/2);
 		rect[0].drawSelf(ballTexId);
         MatrixState.popMatrix();
-		//ºóÃæ
+		//åé¢
         MatrixState.pushMatrix();
         MatrixState.translate(0, 0, -c/2);
 		MatrixState.rotate(180.0f, 0, 1, 0);
 		rect[1].drawSelf(ballTexId);
         MatrixState.popMatrix();
-		//ÓÒÃæ
+		//å³é¢
         MatrixState.pushMatrix();
         MatrixState.translate(a/2, 0, 0);
 		MatrixState.rotate(90.0f, 0, 1, 0);
 		rect[2].drawSelf(ballTexId);
         MatrixState.popMatrix();
-		//×óÃæ
+		//å·¦é¢
         MatrixState.pushMatrix();
         MatrixState.translate(-a/2, 0, 0);
 		MatrixState.rotate(-90.0f, 0, 1, 0);
 		rect[3].drawSelf(ballTexId);
         MatrixState.popMatrix();
-		//ÏÂÃæ
+		//ä¸‹é¢
         MatrixState.pushMatrix();
         MatrixState.translate(0, -b/2, 0);
 		MatrixState.rotate(90.0f, 1, 0, 0);
 		rect[4].drawSelf(ballTexId);
         MatrixState.popMatrix();
-		//ÉÏÃæ
+		//ä¸Šé¢
         MatrixState.pushMatrix();
         MatrixState.translate(0, b/2, 0);
 		MatrixState.rotate(-90.0f, 1, 0, 0);

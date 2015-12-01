@@ -8,67 +8,67 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
 public class MyActivity extends Activity {
-	SensorManager mySensorManager;	//SensorManager¶ÔÏóÒıÓÃ	
-	Sensor myAccelerometer; 	//´«¸ĞÆ÷ÀàĞÍ
-	TextView tvX;	//TextView¶ÔÏóÒıÓÃ	
-	TextView tvY;	//TextView¶ÔÏóÒıÓÃ	
-	TextView tvZ;	//TextView¶ÔÏóÒıÓÃ
+	SensorManager mySensorManager;	//SensorManagerå¯¹è±¡å¼•ç”¨	
+	Sensor myAccelerometer; 	//ä¼ æ„Ÿå™¨ç±»å‹
+	TextView tvX;	//TextViewå¯¹è±¡å¼•ç”¨	
+	TextView tvY;	//TextViewå¯¹è±¡å¼•ç”¨	
+	TextView tvZ;	//TextViewå¯¹è±¡å¼•ç”¨
 	TextView info;	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        tvX = (TextView)findViewById(R.id.tvX);	//ÓÃÓÚÏÔÊ¾xÖá·½Ïò¼ÓËÙ¶È
-        tvY = (TextView)findViewById(R.id.tvY);	//ÓÃÓÚÏÔÊ¾yÖá·½Ïò¼ÓËÙ¶È	
-        tvZ = (TextView)findViewById(R.id.tvZ); //ÓÃÓÚÏÔÊ¾zÖá·½Ïò¼ÓËÙ¶È
-        info= (TextView)findViewById(R.id.info);//ÓÃÓÚÏÔÊ¾ÊÖ»úÖĞ¼ÓËÙ¶È´«¸ĞÆ÷µÄÏà¹ØĞÅÏ¢
-        //»ñµÃSensorManager¶ÔÏó
+        tvX = (TextView)findViewById(R.id.tvX);	//ç”¨äºæ˜¾ç¤ºxè½´æ–¹å‘åŠ é€Ÿåº¦
+        tvY = (TextView)findViewById(R.id.tvY);	//ç”¨äºæ˜¾ç¤ºyè½´æ–¹å‘åŠ é€Ÿåº¦	
+        tvZ = (TextView)findViewById(R.id.tvZ); //ç”¨äºæ˜¾ç¤ºzè½´æ–¹å‘åŠ é€Ÿåº¦
+        info= (TextView)findViewById(R.id.info);//ç”¨äºæ˜¾ç¤ºæ‰‹æœºä¸­åŠ é€Ÿåº¦ä¼ æ„Ÿå™¨çš„ç›¸å…³ä¿¡æ¯
+        //è·å¾—SensorManagerå¯¹è±¡
         mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);	
-        //´«¸ĞÆ÷µÄÀàĞÍ
+        //ä¼ æ„Ÿå™¨çš„ç±»å‹
         myAccelerometer=mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         
-        //´´½¨Ò»¸öStringBuffer
+        //åˆ›å»ºä¸€ä¸ªStringBuffer
         StringBuffer strb=new StringBuffer();
-        strb.append("\nÃû³Æ: ");
+        strb.append("\nåç§°: ");
         strb.append(myAccelerometer.getName());
-        strb.append("\nºÄµçÁ¿(mA): ");
+        strb.append("\nè€—ç”µé‡(mA): ");
         strb.append(myAccelerometer.getPower());
-        strb.append("\nÀàĞÍ±àºÅ : ");
+        strb.append("\nç±»å‹ç¼–å· : ");
         strb.append(myAccelerometer.getType());
-        strb.append("\nÖÆÔìÉÌ: ");
+        strb.append("\nåˆ¶é€ å•†: ");
         strb.append(myAccelerometer.getVendor());
-        strb.append("\n°æ±¾: ");
+        strb.append("\nç‰ˆæœ¬: ");
         strb.append(myAccelerometer.getVersion());
-        strb.append("\n×î´ó²âÁ¿·¶Î§: ");
+        strb.append("\næœ€å¤§æµ‹é‡èŒƒå›´: ");
         strb.append(myAccelerometer.getMaximumRange());
         
-        info.setText(strb.toString());	//½«ĞÅÏ¢×Ö·û´®¸³ÓèÃûÎªinfoµÄTextView
+        info.setText(strb.toString());	//å°†ä¿¡æ¯å­—ç¬¦ä¸²èµ‹äºˆåä¸ºinfoçš„TextView
     }
     @Override
-	protected void onResume(){ //ÖØĞ´onResume·½·¨
+	protected void onResume(){ //é‡å†™onResumeæ–¹æ³•
 		super.onResume();
 		mySensorManager.registerListener(
-				mySensorListener, 		//Ìí¼Ó¼àÌı
-				myAccelerometer, 		//´«¸ĞÆ÷ÀàĞÍ
-				SensorManager.SENSOR_DELAY_NORMAL	//´«¸ĞÆ÷ÊÂ¼ş´«µİµÄÆµ¶È
+				mySensorListener, 		//æ·»åŠ ç›‘å¬
+				myAccelerometer, 		//ä¼ æ„Ÿå™¨ç±»å‹
+				SensorManager.SENSOR_DELAY_NORMAL	//ä¼ æ„Ÿå™¨äº‹ä»¶ä¼ é€’çš„é¢‘åº¦
 		);
 	}	
 	@Override
-	protected void onPause(){//ÖØĞ´onPause·½·¨	
+	protected void onPause(){//é‡å†™onPauseæ–¹æ³•	
 		super.onPause();
-		mySensorManager.unregisterListener(mySensorListener);//È¡Ïû×¢²á¼àÌıÆ÷
+		mySensorManager.unregisterListener(mySensorListener);//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
 	}
 	private SensorEventListener mySensorListener = 
-		new SensorEventListener(){//¿ª·¢ÊµÏÖÁËSensorEventListener½Ó¿ÚµÄ´«¸ĞÆ÷¼àÌıÆ÷
+		new SensorEventListener(){//å¼€å‘å®ç°äº†SensorEventListeneræ¥å£çš„ä¼ æ„Ÿå™¨ç›‘å¬å™¨
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy){}
 		@Override
 		public void onSensorChanged(SensorEvent event){
-			float []values=event.values;//»ñÈ¡Èı¸öÖá·½ÏòÉÏµÄ¼ÓËÙ¶ÈÖµ
-			tvX.setText("xÖá·½ÏòÉÏµÄ¼ÓËÙ¶ÈÎª£º"+values[0]);		
-			tvY.setText("yÖá·½ÏòÉÏµÄ¼ÓËÙ¶ÈÎª£º"+values[1]);		
-			tvZ.setText("zÖá·½ÏòÉÏµÄ¼ÓËÙ¶ÈÎª£º"+values[2]);		
+			float []values=event.values;//è·å–ä¸‰ä¸ªè½´æ–¹å‘ä¸Šçš„åŠ é€Ÿåº¦å€¼
+			tvX.setText("xè½´æ–¹å‘ä¸Šçš„åŠ é€Ÿåº¦ä¸ºï¼š"+values[0]);		
+			tvY.setText("yè½´æ–¹å‘ä¸Šçš„åŠ é€Ÿåº¦ä¸ºï¼š"+values[1]);		
+			tvZ.setText("zè½´æ–¹å‘ä¸Šçš„åŠ é€Ÿåº¦ä¸ºï¼š"+values[2]);		
 		}
 	};
 	

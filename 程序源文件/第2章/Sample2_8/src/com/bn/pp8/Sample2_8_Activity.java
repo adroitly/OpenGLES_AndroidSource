@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 public class Sample2_8_Activity extends Activity {
-	MySurfaceView gameView;//ÓÎÏ·½çÃæ
+	MySurfaceView gameView;//æ¸¸æˆç•Œé¢
     @Override
-    public void onCreate(Bundle savedInstanceState) {//ÖØĞ´onCreate·½·¨
+    public void onCreate(Bundle savedInstanceState) {//é‡å†™onCreateæ–¹æ³•
         super.onCreate(savedInstanceState);
-        //È«ÆÁ
+        //å…¨å±
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
 		              WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//ÉèÖÃÎªºáÆÁ
-        gameView = new MySurfaceView(this);//´´½¨ÓÎÏ·½çÃæ¶ÔÏó
-        this.setContentView(gameView);//½«¸Ã½çÃæÉèÖÃÎª´°ÌåÄÚÈİ
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//è®¾ç½®ä¸ºæ¨ªå±
+        gameView = new MySurfaceView(this);//åˆ›å»ºæ¸¸æˆç•Œé¢å¯¹è±¡
+        this.setContentView(gameView);//å°†è¯¥ç•Œé¢è®¾ç½®ä¸ºçª—ä½“å†…å®¹
     }
 }

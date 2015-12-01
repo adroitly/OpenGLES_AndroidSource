@@ -1,14 +1,14 @@
-//¾ßÓĞÎÆÀí¹¦ÄÜµÄÆ¬Ôª×ÅÉ«Æ÷
+//å…·æœ‰çº¹ç†åŠŸèƒ½çš„ç‰‡å…ƒç€è‰²å™¨
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
+varying vec2 vTextureCoord; //æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
 uniform float stK;
 void main()                         
 {   
-    //ÎÆÀí×ø±êSTµÄÆ«ÒÆÁ¿    
+    //çº¹ç†åæ ‡STçš„åç§»é‡    
 	vec2 st_Result=vec2(0,0);
 	st_Result.x=vTextureCoord.x+stK;
 	st_Result.y=vTextureCoord.y;
-   //¸ø´ËÆ¬Ôª´ÓÎÆÀíÖĞ²ÉÑù³öÑÕÉ«Öµ            
+   //ç»™æ­¤ç‰‡å…ƒä»çº¹ç†ä¸­é‡‡æ ·å‡ºé¢œè‰²å€¼            
    gl_FragColor = texture2D(sTexture, st_Result); 
 }

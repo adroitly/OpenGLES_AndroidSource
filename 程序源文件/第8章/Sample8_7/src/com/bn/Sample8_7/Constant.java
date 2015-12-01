@@ -1,5 +1,5 @@
 package com.bn.Sample8_7;
 
 public class Constant {
-	public static float DATA_RATIO=0.025f;//Êı¾İµãµÄËõ·Å±È
+	public static float DATA_RATIO=0.025f;//æ•°æ®ç‚¹çš„ç¼©æ”¾æ¯”
 }

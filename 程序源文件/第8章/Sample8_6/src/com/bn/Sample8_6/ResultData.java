@@ -1,8 +1,8 @@
 package com.bn.Sample8_6;
 
 public class ResultData {
-	   float [][] ChemicalBondPoints;//化学键的边的端点坐标数组
-	   float [][]CAtomicPosition;//碳原子的坐标数组
+	   float [][] ChemicalBondPoints;//鍖栧閿殑杈圭殑绔偣鍧愭爣鏁扮粍
+	   float [][]CAtomicPosition;//纰冲師瀛愮殑鍧愭爣鏁扮粍
 	public ResultData()
 	{
 		

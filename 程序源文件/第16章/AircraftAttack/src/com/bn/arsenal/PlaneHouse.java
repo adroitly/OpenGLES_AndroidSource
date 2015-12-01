@@ -5,9 +5,9 @@ import static com.bn.gameView.Constant.house_height;
 import com.bn.commonObject.*;
 import com.bn.core.MatrixState;
 public class PlaneHouse {
-	public int col, row;//所在的行列
-	public CubeForDraw cub;//房子
-	Light_Tower lt;//烟囱
+	public int col, row;//鎵�鍦ㄧ殑琛屽垪
+	public CubeForDraw cub;//鎴垮瓙
+	Light_Tower lt;//鐑熷洷
 	float tx,ty,tz;
 	public PlaneHouse(float tx,float ty,float tz,CubeForDraw cub,Light_Tower lt,int col,int row){
 		this.cub=cub;

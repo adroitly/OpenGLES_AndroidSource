@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import android.content.res.Resources;
 import android.util.Log;
 
-//ÓÃÓÚ´ÓobjÎÄ¼şÖĞ¼ÓÔØ3DÄ£ĞÍµÄ¹¤¾ßÀà
+//ç”¨äºä»objæ–‡ä»¶ä¸­åŠ è½½3Dæ¨¡å‹çš„å·¥å…·ç±»
 public class LoadUtil 
 {
-	//ÇóÁ½¸öÏòÁ¿µÄ²æ»ı
+	//æ±‚ä¸¤ä¸ªå‘é‡çš„å‰ç§¯
 	public static float[] getCrossProduct(float x1,float y1,float z1,float x2,float y2,float z2)
 	{		
-		//Çó³öÁ½¸öÊ¸Á¿²æ»ıÊ¸Á¿ÔÚXYZÖáµÄ·ÖÁ¿ABC
+		//æ±‚å‡ºä¸¤ä¸ªçŸ¢é‡å‰ç§¯çŸ¢é‡åœ¨XYZè½´çš„åˆ†é‡ABC
         float A=y1*z2-y2*z1;
         float B=z1*x2-z2*x1;
         float C=x1*y2-x2*y1;
@@ -21,26 +21,26 @@ public class LoadUtil
 		return new float[]{A,B,C};
 	}
 	
-	//ÏòÁ¿¹æ¸ñ»¯
+	//å‘é‡è§„æ ¼åŒ–
 	public static float[] vectorNormal(float[] vector)
 	{
-		//ÇóÏòÁ¿µÄÄ£
+		//æ±‚å‘é‡çš„æ¨¡
 		float module=(float)Math.sqrt(vector[0]*vector[0]+vector[1]*vector[1]+vector[2]*vector[2]);
 		return new float[]{vector[0]/module,vector[1]/module,vector[2]/module};
 	}
 	
-	//´ÓobjÎÄ¼şÖĞ¼ÓÔØ½öĞ¯´ø¶¥µãĞÅÏ¢µÄÎïÌå
-	//Ê×ÏÈ¼ÓÔØ¶¥µãĞÅÏ¢£¬ÔÙ¸ù¾İ¶¥µã×é³ÉÈı½ÇĞÎÃæµÄÇé¿ö×Ô¶¯¼ÆËã³öÃ¿¸öÃæµÄ·¨ÏòÁ¿
-	//È»ºó½«Õâ¸öÃæµÄ·¨ÏòÁ¿·ÖÅä¸øÕâ¸öÃæÉÏµÄ¶¥µã
+	//ä»objæ–‡ä»¶ä¸­åŠ è½½ä»…æºå¸¦é¡¶ç‚¹ä¿¡æ¯çš„ç‰©ä½“
+	//é¦–å…ˆåŠ è½½é¡¶ç‚¹ä¿¡æ¯ï¼Œå†æ ¹æ®é¡¶ç‚¹ç»„æˆä¸‰è§’å½¢é¢çš„æƒ…å†µè‡ªåŠ¨è®¡ç®—å‡ºæ¯ä¸ªé¢çš„æ³•å‘é‡
+	//ç„¶åå°†è¿™ä¸ªé¢çš„æ³•å‘é‡åˆ†é…ç»™è¿™ä¸ªé¢ä¸Šçš„é¡¶ç‚¹
     public static LoadedObjectVertexNormal loadFromFile(String fname, Resources r,MySurfaceView mv)
     {
-    	//¼ÓÔØºó3D¶ÔÏóµÄÒıÓÃ
+    	//åŠ è½½å3Då¯¹è±¡çš„å¼•ç”¨
     	LoadedObjectVertexNormal lo=null;    	
-    	//Ô­Ê¼¶¥µã×ø±êÁĞ±í--°´Ë³Ğò´ÓobjÎÄ¼şÖĞ¼ÓÔØµÄ
+    	//åŸå§‹é¡¶ç‚¹åæ ‡åˆ—è¡¨--æŒ‰é¡ºåºä»objæ–‡ä»¶ä¸­åŠ è½½çš„
     	ArrayList<Float> alv=new ArrayList<Float>();
-    	//½á¹û¶¥µã×ø±êÁĞ±í --¸ù¾İ×é³ÉÃæµÄÇé¿ö×éÖ¯ºÃµÄ
+    	//ç»“æœé¡¶ç‚¹åæ ‡åˆ—è¡¨ --æ ¹æ®ç»„æˆé¢çš„æƒ…å†µç»„ç»‡å¥½çš„
     	ArrayList<Float> alvResult=new ArrayList<Float>();	
-    	//½á¹û·¨ÏòÁ¿ÁĞ±í--¸ù¾İ×é³ÉÃæµÄÇé¿ö×éÖ¯ºÃµÄ
+    	//ç»“æœæ³•å‘é‡åˆ—è¡¨--æ ¹æ®ç»„æˆé¢çš„æƒ…å†µç»„ç»‡å¥½çš„
     	ArrayList<Float> alnResult=new ArrayList<Float>();
     	
     	try
@@ -50,27 +50,27 @@ public class LoadUtil
     		BufferedReader br=new BufferedReader(isr);
     		String temps=null;
     		
-    		//Ñ­»·²»¶Ï´ÓÎÄ¼şÖĞ¶ÁÈ¡ĞĞ£¬¸ù¾İĞĞÀàĞÍµÄ²»Í¬Ö´ĞĞ
-    		//²»Í¬µÄ´¦ÀíÂß¼­
+    		//å¾ªç¯ä¸æ–­ä»æ–‡ä»¶ä¸­è¯»å–è¡Œï¼Œæ ¹æ®è¡Œç±»å‹çš„ä¸åŒæ‰§è¡Œ
+    		//ä¸åŒçš„å¤„ç†é€»è¾‘
 		    while((temps=br.readLine())!=null) 
 		    {
 		    	String[] tempsa=temps.split("[ ]+");
 		      	if(tempsa[0].trim().equals("v"))
-		      	{//´ËĞĞÎª¶¥µã×ø±ê
-		      		//ÈôÎª¶¥µã×ø±êĞĞÔòÌáÈ¡³ö´Ë¶¥µãµÄXYZ×ø±êÌí¼Óµ½Ô­Ê¼¶¥µã×ø±êÁĞ±íÖĞ
+		      	{//æ­¤è¡Œä¸ºé¡¶ç‚¹åæ ‡
+		      		//è‹¥ä¸ºé¡¶ç‚¹åæ ‡è¡Œåˆ™æå–å‡ºæ­¤é¡¶ç‚¹çš„XYZåæ ‡æ·»åŠ åˆ°åŸå§‹é¡¶ç‚¹åæ ‡åˆ—è¡¨ä¸­
 		      		alv.add(Float.parseFloat(tempsa[1]));
 		      		alv.add(Float.parseFloat(tempsa[2]));
 		      		alv.add(Float.parseFloat(tempsa[3]));
 		      	}
 		      	else if(tempsa[0].trim().equals("f"))
-		      	{//´ËĞĞÎªÈı½ÇĞÎÃæ
+		      	{//æ­¤è¡Œä¸ºä¸‰è§’å½¢é¢
 		      		/*
-		      		 *ÈôÎªÈı½ÇĞÎÃæĞĞÔò¸ù¾İ ×é³ÉÃæµÄ¶¥µãµÄË÷Òı´ÓÔ­Ê¼¶¥µã×ø±êÁĞ±íÖĞ
-		      		 *ÌáÈ¡ÏàÓ¦µÄ¶¥µã×ø±êÖµÌí¼Óµ½½á¹û¶¥µã×ø±êÁĞ±íÖĞ£¬Í¬Ê±¸ù¾İÈı¸ö
-		      		 *¶¥µãµÄ×ø±ê¼ÆËã³ö·¨ÏòÁ¿²¢Ìí¼Óµ½½á¹û·¨ÏòÁ¿ÁĞ±íÖĞ
+		      		 *è‹¥ä¸ºä¸‰è§’å½¢é¢è¡Œåˆ™æ ¹æ® ç»„æˆé¢çš„é¡¶ç‚¹çš„ç´¢å¼•ä»åŸå§‹é¡¶ç‚¹åæ ‡åˆ—è¡¨ä¸­
+		      		 *æå–ç›¸åº”çš„é¡¶ç‚¹åæ ‡å€¼æ·»åŠ åˆ°ç»“æœé¡¶ç‚¹åæ ‡åˆ—è¡¨ä¸­ï¼ŒåŒæ—¶æ ¹æ®ä¸‰ä¸ª
+		      		 *é¡¶ç‚¹çš„åæ ‡è®¡ç®—å‡ºæ³•å‘é‡å¹¶æ·»åŠ åˆ°ç»“æœæ³•å‘é‡åˆ—è¡¨ä¸­
 		      		*/
 		      		
-		      		//ÌáÈ¡Èı½ÇĞÎµÚÒ»¸ö¶¥µãµÄ×ø±ê
+		      		//æå–ä¸‰è§’å½¢ç¬¬ä¸€ä¸ªé¡¶ç‚¹çš„åæ ‡
 		      		int index=Integer.parseInt(tempsa[1].split("/")[0])-1;
 		      		float x0=alv.get(3*index);
 		      		float y0=alv.get(3*index+1);
@@ -79,7 +79,7 @@ public class LoadUtil
 		      		alvResult.add(y0);
 		      		alvResult.add(z0);  
 		      		
-		      	    //ÌáÈ¡Èı½ÇĞÎµÚ¶ş¸ö¶¥µãµÄ×ø±ê
+		      	    //æå–ä¸‰è§’å½¢ç¬¬äºŒä¸ªé¡¶ç‚¹çš„åæ ‡
 		      		index=Integer.parseInt(tempsa[2].split("/")[0])-1;
 		      		float x1=alv.get(3*index);
 		      		float y1=alv.get(3*index+1);
@@ -88,7 +88,7 @@ public class LoadUtil
 		      		alvResult.add(y1);
 		      		alvResult.add(z1);
 		      		
-		      		//ÌáÈ¡Èı½ÇĞÎµÚÈı¸ö¶¥µãµÄ×ø±ê
+		      		//æå–ä¸‰è§’å½¢ç¬¬ä¸‰ä¸ªé¡¶ç‚¹çš„åæ ‡
 		      		index=Integer.parseInt(tempsa[3].split("/")[0])-1;
 		      		float x2=alv.get(3*index);
 		      		float y2=alv.get(3*index+1);
@@ -97,17 +97,17 @@ public class LoadUtil
 		      		alvResult.add(y2);
 		      		alvResult.add(z2);	 
 		      		
-		      		//Í¨¹ıÈı½ÇĞÎÃæÁ½¸ö±ßÏòÁ¿0-1£¬0-2Çó²æ»ıµÃµ½´ËÃæµÄ·¨ÏòÁ¿
-		      		//Çó0ºÅµãµ½1ºÅµãµÄÏòÁ¿
+		      		//é€šè¿‡ä¸‰è§’å½¢é¢ä¸¤ä¸ªè¾¹å‘é‡0-1ï¼Œ0-2æ±‚å‰ç§¯å¾—åˆ°æ­¤é¢çš„æ³•å‘é‡
+		      		//æ±‚0å·ç‚¹åˆ°1å·ç‚¹çš„å‘é‡
 		      		float vxa=x1-x0;
 		      		float vya=y1-y0;
 		      		float vza=z1-z0;
-		      	    //Çó0ºÅµãµ½2ºÅµãµÄÏòÁ¿
+		      	    //æ±‚0å·ç‚¹åˆ°2å·ç‚¹çš„å‘é‡
 		      		float vxb=x2-x0;
 		      		float vyb=y2-y0;
 		      		float vzb=z2-z0;
 		      		
-		      		//Í¨¹ıÇòÁ½¸öÏòÁ¿µÄ²æ»ı¼ÆËã·¨ÏòÁ¿
+		      		//é€šè¿‡çƒä¸¤ä¸ªå‘é‡çš„å‰ç§¯è®¡ç®—æ³•å‘é‡
 		      		float[] vNormal=vectorNormal
 		      		                ( 
 	                                    getCrossProduct
@@ -115,7 +115,7 @@ public class LoadUtil
 						      					vxa,vya,vza,vxb,vyb,vzb
 						      			)
 		      		                );
-		      	    //½«¼ÆËã³öµÄ·¨ÏòÁ¿Ìí¼Óµ½½á¹û·¨ÏòÁ¿ÁĞ±íÖĞ
+		      	    //å°†è®¡ç®—å‡ºçš„æ³•å‘é‡æ·»åŠ åˆ°ç»“æœæ³•å‘é‡åˆ—è¡¨ä¸­
 		      		for(int i=0;i<3;i++)
 		      	    {
 		      	    	alnResult.add(vNormal[0]);
@@ -125,8 +125,8 @@ public class LoadUtil
 		      	}		      		
 		    } 
 		    
-		    //objÎÄ¼ş¶ÁÈ¡½áÊøºóÉú³É¶¥µãÊı×é¼°Éú³É·¨ÏòÁ¿Êı×é
-		    //Éú³É¶¥µãÊı×é
+		    //objæ–‡ä»¶è¯»å–ç»“æŸåç”Ÿæˆé¡¶ç‚¹æ•°ç»„åŠç”Ÿæˆæ³•å‘é‡æ•°ç»„
+		    //ç”Ÿæˆé¡¶ç‚¹æ•°ç»„
 		    int size=alvResult.size();
 		    float[] vXYZ=new float[size];
 		    for(int i=0;i<size;i++)
@@ -134,7 +134,7 @@ public class LoadUtil
 		    	vXYZ[i]=alvResult.get(i);
 		    }
 		    
-		    //Éú³É·¨ÏòÁ¿Êı×é
+		    //ç”Ÿæˆæ³•å‘é‡æ•°ç»„
 		    size=alnResult.size();
 		    float[] nXYZ=new float[size];
 		    for(int i=0;i<size;i++)
@@ -142,7 +142,7 @@ public class LoadUtil
 		    	nXYZ[i]=alnResult.get(i);
 		    }
 		    
-		    //´´½¨3D¶ÔÏó
+		    //åˆ›å»º3Då¯¹è±¡
 		    lo=new LoadedObjectVertexNormal(mv,vXYZ,nXYZ);
     	}
     	catch(Exception e)

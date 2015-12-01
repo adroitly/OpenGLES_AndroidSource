@@ -6,18 +6,18 @@ import java.nio.FloatBuffer;
 import android.opengl.GLES20;
 
 import com.bn.core.MatrixState;
-//ÎÆÀí¾ØĞÎ,ÓÃÓÚ»æÖÆºó»úÒí,Ö»ÓĞ¶¥µãºÍÎÆÀí
+//çº¹ç†çŸ©å½¢,ç”¨äºç»˜åˆ¶åæœºç¿¼,åªæœ‰é¡¶ç‚¹å’Œçº¹ç†
 public class Plane_BackWing 
 {
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷´úÂë½Å±¾    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷´úÂë½Å±¾
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨ä»£ç è„šæœ¬    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨ä»£ç è„šæœ¬
     
-	private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    private FloatBuffer   mTextureBuffer;//¶¥µã×ÅÉ«Êı¾İ»º³å
+	private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    private FloatBuffer   mTextureBuffer;//é¡¶ç‚¹ç€è‰²æ•°æ®ç¼“å†²
     int vCount ;
     float mAngleX ;
     
@@ -31,7 +31,7 @@ public class Plane_BackWing
     {
         float vertices[]=new float[]
         {
-    		//ÉÏ±íÃæ
+    		//ä¸Šè¡¨é¢
     		0,height,length,-width,height,length,-13.0f/10.0f*width,2.0f/5.0f*height,length,//OAB        		
     		
     		0,height,length,-13.0f/10.0f*width,2.0f/5.0f*height,length,-width,-height,length,//OBC
@@ -42,7 +42,7 @@ public class Plane_BackWing
 
     		0,height,length,13.0f/10.0f*width,2.0f/5.0f*height,length,width,height,length,//OEF
     		
-    		//ÏÂ±íÃæ
+    		//ä¸‹è¡¨é¢
     		0,height,-length,-width,height,-length,-13.0f/10.0f*width,2.0f/5.0f*height,-length,//OAB        		
     		
     		0,height,-length,-13.0f/10.0f*width,2.0f/5.0f*height,-length,-width,-height,-length,//OBC
@@ -72,22 +72,22 @@ public class Plane_BackWing
         
         vCount=vertices.length/3;
 		
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        //ÌØ±ğÌáÊ¾£ºÓÉÓÚ²»Í¬Æ½Ì¨×Ö½ÚË³Ğò²»Í¬Êı¾İµ¥Ôª²»ÊÇ×Ö½ÚµÄÒ»¶¨Òª¾­¹ıByteBuffer
-        //×ª»»£¬¹Ø¼üÊÇÒªÍ¨¹ıByteOrderÉèÖÃnativeOrder()£¬·ñÔòÓĞ¿ÉÄÜ»á³öÎÊÌâ
-        //¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================end============================
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        //ç‰¹åˆ«æç¤ºï¼šç”±äºä¸åŒå¹³å°å­—èŠ‚é¡ºåºä¸åŒæ•°æ®å•å…ƒä¸æ˜¯å­—èŠ‚çš„ä¸€å®šè¦ç»è¿‡ByteBuffer
+        //è½¬æ¢ï¼Œå…³é”®æ˜¯è¦é€šè¿‡ByteOrderè®¾ç½®nativeOrder()ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¼šå‡ºé—®é¢˜
+        //é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================end============================
         
-        //¶¥µãÎÆÀíÊı¾İµÄ³õÊ¼»¯================begin============================
+        //é¡¶ç‚¹çº¹ç†æ•°æ®çš„åˆå§‹åŒ–================begin============================
         float textures[]=new float[]
         {
         	
-        	//ÉÏ±íÃæ
+        	//ä¸Šè¡¨é¢
         		0.18f,0.0f,0.027f,0.0080f,0.0f,0.027f,
         		0.18f,0.0f,0.0f,0.027f,0.0f,0.09f,
         		0.18f,0.0f,0.0f,0.09f,0.035f,0.109f,
@@ -95,14 +95,14 @@ public class Plane_BackWing
         		0.18f,0.0f,0.145f,0.109f,0.168f,0.074f,
         		0.18f,0.0f,0.168f,0.074f,0.211f,0.07f,
         		
-        	//ÏÂ±íÃæ
+        	//ä¸‹è¡¨é¢
         		0.18f,0.0f,0.027f,0.0080f,0.0f,0.027f,
         		0.18f,0.0f,0.0f,0.027f,0.0f,0.09f,
         		0.18f,0.0f,0.0f,0.09f,0.035f,0.109f,
         		0.18f,0.0f,0.035f,0.109f,0.145f,0.109f,
         		0.18f,0.0f,0.145f,0.109f,0.168f,0.074f,
         		0.18f,0.0f,0.168f,0.074f,0.211f,0.07f,
-        	//²àÃæ
+        	//ä¾§é¢
         		0.168f,0.043f,0.152f,0.09f,0.223f,0.074f,0.168f,0.043f,0.152f,0.09f,0.223f,0.074f,
         		0.168f,0.043f,0.152f,0.09f,0.223f,0.074f,0.168f,0.043f,0.152f,0.09f,0.223f,0.074f,
         		0.168f,0.043f,0.152f,0.09f,0.223f,0.074f,0.168f,0.043f,0.152f,0.09f,0.223f,0.074f,
@@ -113,24 +113,24 @@ public class Plane_BackWing
         };
 
         
-        //´´½¨¶¥µãÎÆÀíÊı¾İ»º³å
+        //åˆ›å»ºé¡¶ç‚¹çº¹ç†æ•°æ®ç¼“å†²
         ByteBuffer tbb = ByteBuffer.allocateDirect(textures.length*4);
-        tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mTextureBuffer= tbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-        mTextureBuffer.put(textures);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-        mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-        //ÌØ±ğÌáÊ¾£ºÓÉÓÚ²»Í¬Æ½Ì¨×Ö½ÚË³Ğò²»Í¬Êı¾İµ¥Ôª²»ÊÇ×Ö½ÚµÄÒ»¶¨Òª¾­¹ıByteBuffer
-        //×ª»»£¬¹Ø¼üÊÇÒªÍ¨¹ıByteOrderÉèÖÃnativeOrder()£¬·ñÔòÓĞ¿ÉÄÜ»á³öÎÊÌâ
-        //¶¥µãÎÆÀíÊı¾İµÄ³õÊ¼»¯================end============================
+        tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mTextureBuffer= tbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+        mTextureBuffer.put(textures);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+        mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+        //ç‰¹åˆ«æç¤ºï¼šç”±äºä¸åŒå¹³å°å­—èŠ‚é¡ºåºä¸åŒæ•°æ®å•å…ƒä¸æ˜¯å­—èŠ‚çš„ä¸€å®šè¦ç»è¿‡ByteBuffer
+        //è½¬æ¢ï¼Œå…³é”®æ˜¯è¦é€šè¿‡ByteOrderè®¾ç½®nativeOrder()ï¼Œå¦åˆ™æœ‰å¯èƒ½ä¼šå‡ºé—®é¢˜
+        //é¡¶ç‚¹çº¹ç†æ•°æ®çš„åˆå§‹åŒ–================end============================
     }
-    //³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+    //åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
     public void initShader()
     {
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
         maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
     }
     
@@ -138,11 +138,11 @@ public class Plane_BackWing
     {     
     	MatrixState.pushMatrix();
     	MatrixState.rotate(mAngleX, 1, 0, 0);
-    	//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram);        
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
         GLES20.glVertexAttribPointer  
         (
         		maPositionHandle,   
@@ -152,7 +152,7 @@ public class Plane_BackWing
                3*4,   
                mVertexBuffer
         );       
-        //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+        //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
         GLES20.glVertexAttribPointer  
         (
        		maTexCoorHandle, 
@@ -162,13 +162,13 @@ public class Plane_BackWing
                2*4,   
                mTextureBuffer
         );   
-        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-        //°ó¶¨ÎÆÀí
+        //ç»‘å®šçº¹ç†
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-        //»æÖÆÎÆÀí¾ØĞÎ
+        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
         MatrixState.popMatrix();
     }

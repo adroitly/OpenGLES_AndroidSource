@@ -1,4 +1,4 @@
-package com.bn.st.d2;			//ÉùÃ÷°üÓï¾ä
+package com.bn.st.d2;			//å£°æ˜åŒ…è¯­å¥
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,37 +14,37 @@ import com.bn.R;
 
 public class MenuView extends MySFView
 {
-	MyActivity activity;		//ActivityÒıÓÃ
-	Canvas c;					//»­²¼µÄÒıÓÃ	
-	SurfaceHolder holder;		//SurfaceViewËøµÄÒıÓÃ
-    Bitmap background;			//±³¾°Í¼
+	MyActivity activity;		//Activityå¼•ç”¨
+	Canvas c;					//ç”»å¸ƒçš„å¼•ç”¨	
+	SurfaceHolder holder;		//SurfaceViewé”çš„å¼•ç”¨
+    Bitmap background;			//èƒŒæ™¯å›¾
     
-    Bitmap button_play;			//½øÈëÓÎÏ·°´Å¥Í¼Æ¬
-    Bitmap button_chooseboat;	//Ñ¡´¬ÓÎÏ·°´Å¥Í¼Æ¬
-    Bitmap button_soundset;		//ÒôĞ§ÉèÖÃ°´Å¥Í¼Æ¬
-    Bitmap button_help;			//ÓÎÏ·°ïÖú°´Å¥Í¼Æ¬
-    Bitmap button_about;		//¹ØÓÚ°´Å¥Í¼Æ¬
-    Bitmap button_exit;			//ÍË³öÓÎÏ·°´Å¥Í¼Æ¬
+    Bitmap button_play;			//è¿›å…¥æ¸¸æˆæŒ‰é’®å›¾ç‰‡
+    Bitmap button_chooseboat;	//é€‰èˆ¹æ¸¸æˆæŒ‰é’®å›¾ç‰‡
+    Bitmap button_soundset;		//éŸ³æ•ˆè®¾ç½®æŒ‰é’®å›¾ç‰‡
+    Bitmap button_help;			//æ¸¸æˆå¸®åŠ©æŒ‰é’®å›¾ç‰‡
+    Bitmap button_about;		//å…³äºæŒ‰é’®å›¾ç‰‡
+    Bitmap button_exit;			//é€€å‡ºæ¸¸æˆæŒ‰é’®å›¾ç‰‡
     
-    Bitmap button_play_press;			//½øÈëÓÎÏ·°´Å¥Í¼Æ¬
-    Bitmap button_chooseboat_press;	//Ñ¡´¬ÓÎÏ·°´Å¥Í¼Æ¬
-    Bitmap button_soundset_press;		//ÒôĞ§ÉèÖÃ°´Å¥Í¼Æ¬
-    Bitmap button_help_press;			//ÓÎÏ·°ïÖú°´Å¥Í¼Æ¬
-    Bitmap button_about_press;		//¹ØÓÚ°´Å¥Í¼Æ¬
-    Bitmap button_exit_press;			//ÍË³öÓÎÏ·°´Å¥Í¼Æ¬
+    Bitmap button_play_press;			//è¿›å…¥æ¸¸æˆæŒ‰é’®å›¾ç‰‡
+    Bitmap button_chooseboat_press;	//é€‰èˆ¹æ¸¸æˆæŒ‰é’®å›¾ç‰‡
+    Bitmap button_soundset_press;		//éŸ³æ•ˆè®¾ç½®æŒ‰é’®å›¾ç‰‡
+    Bitmap button_help_press;			//æ¸¸æˆå¸®åŠ©æŒ‰é’®å›¾ç‰‡
+    Bitmap button_about_press;		//å…³äºæŒ‰é’®å›¾ç‰‡
+    Bitmap button_exit_press;			//é€€å‡ºæ¸¸æˆæŒ‰é’®å›¾ç‰‡
     
-    private float button_play_x;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float button_play_y;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇX×ø±ê
-    private float button_chooseboat_x;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_chooseboat_y;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_soundset_x;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_soundset_y;//°´Å¥Í¼Æ¬µÄ×óÉÏ½ÇY×ø±ê
-    private float button_help_x;//°´Å¥Í¼Æ¬µÄÓÒÉÏ½ÇX×ø±ê
-    private float button_help_y;//°´Å¥Í¼Æ¬µÄÓÒÉÏ½ÇX×ø±ê
-    private float button_about_x;//°´Å¥Í¼Æ¬µÄÓÒÉÏ½ÇY×ø±ê
-    private float button_about_y;//°´Å¥Í¼Æ¬µÄÓÒÉÏ½ÇY×ø±ê
-    private float button_exit_x;//°´Å¥Í¼Æ¬µÄÓÒÉÏ½ÇY×ø±ê
-    private float button_exit_y;//°´Å¥Í¼Æ¬µÄÓÒÉÏ½ÇY×ø±ê
+    private float button_play_x;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float button_play_y;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Xåæ ‡
+    private float button_chooseboat_x;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_chooseboat_y;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_soundset_x;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_soundset_y;//æŒ‰é’®å›¾ç‰‡çš„å·¦ä¸Šè§’Yåæ ‡
+    private float button_help_x;//æŒ‰é’®å›¾ç‰‡çš„å³ä¸Šè§’Xåæ ‡
+    private float button_help_y;//æŒ‰é’®å›¾ç‰‡çš„å³ä¸Šè§’Xåæ ‡
+    private float button_about_x;//æŒ‰é’®å›¾ç‰‡çš„å³ä¸Šè§’Yåæ ‡
+    private float button_about_y;//æŒ‰é’®å›¾ç‰‡çš„å³ä¸Šè§’Yåæ ‡
+    private float button_exit_x;//æŒ‰é’®å›¾ç‰‡çš„å³ä¸Šè§’Yåæ ‡
+    private float button_exit_y;//æŒ‰é’®å›¾ç‰‡çš„å³ä¸Šè§’Yåæ ‡
     
     boolean play_flag=false;
     boolean chooseboat_flag=false;
@@ -54,13 +54,13 @@ public class MenuView extends MySFView
     boolean exit_flag=false;
     
     private boolean flag_go=true;
-    int move_flag=1;		//0---²»ÒÆ¶¯   -1---ÏòÁ½²àÒÆ¶¯    1---ÍùÖĞ¼äÒÆ¶¯
-    float move_span=MOVE_V;//°´Å¥ÒÆ¶¯ËÙ¶È
-    int curr_menuId=0;//×Ô¶¨ÒåµÄ²Ëµ¥°´Å¥±àºÅ
+    int move_flag=1;		//0---ä¸ç§»åŠ¨   -1---å‘ä¸¤ä¾§ç§»åŠ¨    1---å¾€ä¸­é—´ç§»åŠ¨
+    float move_span=MOVE_V;//æŒ‰é’®ç§»åŠ¨é€Ÿåº¦
+    int curr_menuId=0;//è‡ªå®šä¹‰çš„èœå•æŒ‰é’®ç¼–å·
 	public MenuView(MyActivity activity)  
 	{		
-		this.activity = activity;//³õÊ¼»¯activityµÄÒıÓÃ
-		initBitmap();			//³õÊ¼»¯Í¼Æ¬
+		this.activity = activity;//åˆå§‹åŒ–activityçš„å¼•ç”¨
+		initBitmap();			//åˆå§‹åŒ–å›¾ç‰‡
 		if(Build.VERSION.SDK_INT<Build.VERSION_CODES.FROYO)
 		{
 			activity.showDialog(2);
@@ -99,7 +99,7 @@ public class MenuView extends MySFView
 			{  
 				while(flag_go)
 				{
-					if(move_flag==1)//ÒÆ¶¯±êÖ¾Î»ÎªÕæ
+					if(move_flag==1)//ç§»åŠ¨æ ‡å¿—ä½ä¸ºçœŸ
 					{
 						button_play_x=button_play_x+move_span*ratio_width;
 						button_chooseboat_x=button_chooseboat_x-move_span*ratio_width;
@@ -142,7 +142,7 @@ public class MenuView extends MySFView
 					
 					try
 					{
-						Thread.sleep(MOVE_TIME);//ĞİÃß200ºÁÃë
+						Thread.sleep(MOVE_TIME);//ä¼‘çœ 200æ¯«ç§’
 					}
 					catch(InterruptedException e)
 					{
@@ -153,31 +153,31 @@ public class MenuView extends MySFView
 		}.start();
 	}
 	
-	//½«Í¼Æ¬¼ÓÔØ
+	//å°†å›¾ç‰‡åŠ è½½
 	public void initBitmap()
 	{
-		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.background),ratio_width,ratio_height);//²Ëµ¥½çÃæ±³¾°Í¼Æ¬
+		background = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.background),ratio_width,ratio_height);//èœå•ç•Œé¢èƒŒæ™¯å›¾ç‰‡
 		
-		button_play = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.play),ratio_width,ratio_height);//½øÈëÓÎÏ·°´Å¥
-		button_chooseboat = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.chooseboat),ratio_width,ratio_height);//Ñ¡´¬°´Å¥
-		button_soundset = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.soundset),ratio_width,ratio_height);//ÒôĞ§ÉèÖÃ°´Å¥
-		button_help = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.gamehelp),ratio_width,ratio_height);//ÓÎÏ·°ïÖú°´Å¥
-		button_about = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.about),ratio_width,ratio_height);//ÓÎÏ·°ïÖú°´Å¥
-		button_exit = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.exit),ratio_width,ratio_height);//ÉèÖÃ°´Å¥
+		button_play = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.play),ratio_width,ratio_height);//è¿›å…¥æ¸¸æˆæŒ‰é’®
+		button_chooseboat = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.chooseboat),ratio_width,ratio_height);//é€‰èˆ¹æŒ‰é’®
+		button_soundset = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.soundset),ratio_width,ratio_height);//éŸ³æ•ˆè®¾ç½®æŒ‰é’®
+		button_help = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.gamehelp),ratio_width,ratio_height);//æ¸¸æˆå¸®åŠ©æŒ‰é’®
+		button_about = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.about),ratio_width,ratio_height);//æ¸¸æˆå¸®åŠ©æŒ‰é’®
+		button_exit = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.exit),ratio_width,ratio_height);//è®¾ç½®æŒ‰é’®
 		
-		button_play_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.play_press ),ratio_width,ratio_height);//½øÈëÓÎÏ·°´Å¥
-		button_chooseboat_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.chooseboat_press ),ratio_width,ratio_height);//Ñ¡´¬°´Å¥
-		button_soundset_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.soundset_press ),ratio_width,ratio_height);//ÒôĞ§ÉèÖÃ°´Å¥
-		button_help_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.gamehelp_press ),ratio_width,ratio_height);//ÓÎÏ·°ïÖú°´Å¥
-		button_about_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.about_press ),ratio_width,ratio_height);//ÓÎÏ·°ïÖú°´Å¥
-		button_exit_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.exit_press ),ratio_width,ratio_height);//ÉèÖÃ°´Å¥
+		button_play_press = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.play_press ),ratio_width,ratio_height);//è¿›å…¥æ¸¸æˆæŒ‰é’®
+		button_chooseboat_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.chooseboat_press ),ratio_width,ratio_height);//é€‰èˆ¹æŒ‰é’®
+		button_soundset_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.soundset_press ),ratio_width,ratio_height);//éŸ³æ•ˆè®¾ç½®æŒ‰é’®
+		button_help_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.gamehelp_press ),ratio_width,ratio_height);//æ¸¸æˆå¸®åŠ©æŒ‰é’®
+		button_about_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.about_press ),ratio_width,ratio_height);//æ¸¸æˆå¸®åŠ©æŒ‰é’®
+		button_exit_press  = scaleToFit(BitmapFactory.decodeResource(activity.getResources(), R.drawable.exit_press ),ratio_width,ratio_height);//è®¾ç½®æŒ‰é’®
 	}
 	@Override
 	public void onDraw(Canvas canvas) 
 	{
 		super.onDraw(canvas);
-		canvas.drawColor(Color.argb(255, 0, 0, 0));//ÇåÆÁÎªºÚÉ«
-		canvas.drawBitmap(background,0,0, null);//»­±³¾°
+		canvas.drawColor(Color.argb(255, 0, 0, 0));//æ¸…å±ä¸ºé»‘è‰²
+		canvas.drawBitmap(background,0,0, null);//ç”»èƒŒæ™¯
 		
 		if(!play_flag)
 		{
@@ -227,33 +227,33 @@ public class MenuView extends MySFView
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		int x = (int) event.getX();//»ñÈ¡´¥¿ØµãµÄX×ø±ê
-		int y = (int) event.getY();//»ñÈ¡´¥¿ØµãµÄY×ø±ê
+		int x = (int) event.getX();//è·å–è§¦æ§ç‚¹çš„Xåæ ‡
+		int y = (int) event.getY();//è·å–è§¦æ§ç‚¹çš„Yåæ ‡
 		switch(event.getAction())
 		{
-		case MotionEvent.ACTION_DOWN://°´ÏÂÊÂ¼ş£¬°´ÏÂ»»Í¼
+		case MotionEvent.ACTION_DOWN://æŒ‰ä¸‹äº‹ä»¶ï¼ŒæŒ‰ä¸‹æ¢å›¾
 			if(move_flag==0&&x>button_play_x&&x<button_play_x+button_play.getWidth()&&y>button_play_y&&y<button_play_y+button_play.getHeight())
-			{//½øÈëÓÎÏ·
+			{//è¿›å…¥æ¸¸æˆ
 				play_flag=true;
 				
 			}else if(move_flag==0&&x>button_chooseboat_x&&x<button_chooseboat_x+button_chooseboat.getWidth()&&y>button_chooseboat_y&&y<button_chooseboat_y+button_chooseboat.getHeight())
-			{//Ñ¡´¬
+			{//é€‰èˆ¹
 				chooseboat_flag=true;
 			}else if(move_flag==0&&x>button_soundset_x&&x<button_soundset_x+button_soundset.getWidth()&&y>button_soundset_y&&y<button_soundset_y+button_soundset.getHeight())
-			{//ÒôĞ§ÉèÖÃ
+			{//éŸ³æ•ˆè®¾ç½®
 				soundset_flag=true;
 			}else if(move_flag==0&&x>button_help_x&&x<button_help_x+button_help.getWidth()&&y>button_help_y&&y<button_help_y+button_help.getHeight())
-			{//ÓÎÏ·°ïÖú
+			{//æ¸¸æˆå¸®åŠ©
 				help_flag=true;
 			}else if(move_flag==0&&x>button_about_x&&x<button_about_x+button_about.getWidth()&&y>button_about_y&&y<button_about_y+button_about.getHeight())
-			{//¹ØÓÚ
+			{//å…³äº
 				 about_flag=true;
 			}else if(move_flag==0&&x>button_exit_x&&x<button_exit_x+button_exit.getWidth()&&y>button_exit_y&&y<button_exit_y+button_exit.getHeight())
-			{//ÍË³ö
+			{//é€€å‡º
 				exit_flag=true;
 			}
 			break;
-		case MotionEvent.ACTION_UP://Ì§ÆğÊÂ¼ş
+		case MotionEvent.ACTION_UP://æŠ¬èµ·äº‹ä»¶
 			play_flag=false;
 			chooseboat_flag=false;
 			soundset_flag=false;
@@ -261,32 +261,32 @@ public class MenuView extends MySFView
 			about_flag=false;
 			exit_flag=false;
 			if(move_flag==0&&x>button_play_x&&x<button_play_x+button_play.getWidth()&&y>button_play_y&&y<button_play_y+button_play.getHeight())
-			{//½øÈëÓÎÏ·
+			{//è¿›å…¥æ¸¸æˆ
 				
 				curr_menuId=2;
 				move_flag=-1;  
 			}else if(move_flag==0&&x>button_chooseboat_x&&x<button_chooseboat_x+button_chooseboat.getWidth()&&y>button_chooseboat_y&&y<button_chooseboat_y+button_chooseboat.getHeight())
-			{//Ñ¡´¬
+			{//é€‰èˆ¹
 				
 				curr_menuId=3;
 				move_flag=-1; 
 			}else if(move_flag==0&&x>button_soundset_x&&x<button_soundset_x+button_soundset.getWidth()&&y>button_soundset_y&&y<button_soundset_y+button_soundset.getHeight())
-			{//ÒôĞ§ÉèÖÃ
+			{//éŸ³æ•ˆè®¾ç½®
 				
 				curr_menuId=4;
 				move_flag=-1; 
 			}else if(move_flag==0&&x>button_help_x&&x<button_help_x+button_help.getWidth()&&y>button_help_y&&y<button_help_y+button_help.getHeight())
-			{//ÓÎÏ·°ïÖú
+			{//æ¸¸æˆå¸®åŠ©
 				
 				curr_menuId=5;
 				move_flag=-1; 
 			}else if(move_flag==0&&x>button_about_x&&x<button_about_x+button_about.getWidth()&&y>button_about_y&&y<button_about_y+button_about.getHeight())
-			{//¹ØÓÚ
+			{//å…³äº
 				   
 				curr_menuId=6;
 				move_flag=-1; 
 			}else if(move_flag==0&&x>button_exit_x&&x<button_exit_x+button_exit.getWidth()&&y>button_exit_y&&y<button_exit_y+button_exit.getHeight())
-			{//ÍË³ö
+			{//é€€å‡º
 				Settings.System.putInt(activity.getContentResolver(),Settings.System.ACCELEROMETER_ROTATION,activity.flag);
 				System.exit(0);
 			}

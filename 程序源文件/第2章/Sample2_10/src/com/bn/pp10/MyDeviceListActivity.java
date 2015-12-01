@@ -18,55 +18,55 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 /**
- * Éè±¸ÁĞ±íµÄActivity
+ * è®¾å¤‡åˆ—è¡¨çš„Activity
  */
 public class MyDeviceListActivity extends Activity {
-	// extraĞÅÏ¢Ãû³Æ
+	// extraä¿¡æ¯åç§°
 	public static String EXTRA_DEVICE_ADDR = "device_address";
-	// ³ÉÔ±±äÁ¿
+	// æˆå‘˜å˜é‡
 	private BluetoothAdapter myBtAdapter;
 	private ArrayAdapter<String> myAdapterPaired;
 	private ArrayAdapter<String> myAdapterNew;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃ´°¿Ú
+		// è®¾ç½®çª—å£
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.device_list);
-		// ÉèÖÃÎªµ±½á¹ûÊÇActivity.RESULT_CANCELEDÊ±£¬·µ»Øµ½¸ÃActivityµÄµ÷ÓÃÕß
+		// è®¾ç½®ä¸ºå½“ç»“æœæ˜¯Activity.RESULT_CANCELEDæ—¶ï¼Œè¿”å›åˆ°è¯¥Activityçš„è°ƒç”¨è€…
 		setResult(Activity.RESULT_CANCELED);
-		// ³õÊ¼»¯ËÑË÷°´Å¥
+		// åˆå§‹åŒ–æœç´¢æŒ‰é’®
 		Button scanBtn = (Button) findViewById(R.id.button_scan);
 		scanBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				doDiscovery();
-				v.setVisibility(View.GONE);// Ê¹°´Å¥²»¿É¼û
+				v.setVisibility(View.GONE);// ä½¿æŒ‰é’®ä¸å¯è§
 			}
 		});
-		// ³õÊ¼»¯ÊÊÅäÆ÷
+		// åˆå§‹åŒ–é€‚é…å™¨
 		myAdapterPaired = new ArrayAdapter<String>(this,
-				R.layout.device_name);// ÒÑÅä¶ÔµÄ
+				R.layout.device_name);// å·²é…å¯¹çš„
 		myAdapterNew = new ArrayAdapter<String>(this,
-				R.layout.device_name);// ĞÂ·¢ÏÖµÄ
-		// ½«ÒÑÅä¶ÔµÄÉè±¸·ÅÈëÁĞ±íÖĞ
+				R.layout.device_name);// æ–°å‘ç°çš„
+		// å°†å·²é…å¯¹çš„è®¾å¤‡æ”¾å…¥åˆ—è¡¨ä¸­
 		ListView lvPaired = (ListView) findViewById(R.id.paired_devices);
 		lvPaired.setAdapter(myAdapterPaired);
 		lvPaired.setOnItemClickListener(mDeviceClickListener);
-		// ½«ĞÂ·¢ÏÖµÄÉè±¸·ÅÈëÁĞ±íÖĞ
+		// å°†æ–°å‘ç°çš„è®¾å¤‡æ”¾å…¥åˆ—è¡¨ä¸­
 		ListView lvNewDevices = (ListView) findViewById(R.id.new_devices);
 		lvNewDevices.setAdapter(myAdapterNew);
 		lvNewDevices.setOnItemClickListener(mDeviceClickListener);
-		// ×¢²á·¢ÏÖÉè±¸Ê±µÄ¹ã²¥
+		// æ³¨å†Œå‘ç°è®¾å¤‡æ—¶çš„å¹¿æ’­
 		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
 		this.registerReceiver(mReceiver, filter);
-		// ×¢²áËÑË÷Íê³ÉÊ±µÄ¹ã²¥
+		// æ³¨å†Œæœç´¢å®Œæˆæ—¶çš„å¹¿æ’­
 		filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 		this.registerReceiver(mReceiver, filter);
-		// »ñÈ¡±¾µØÀ¶ÑÀÊÊÅäÆ÷
+		// è·å–æœ¬åœ°è“ç‰™é€‚é…å™¨
 		myBtAdapter = BluetoothAdapter.getDefaultAdapter();
-		// »ñÈ¡ÒÑÅä¶ÔµÄÉè±¸
+		// è·å–å·²é…å¯¹çš„è®¾å¤‡
 		Set<BluetoothDevice> pairedDevices = myBtAdapter.getBondedDevices();
-		// ½«ËùÓĞÒÑÅä¶ÔÉè±¸ĞÅÏ¢·ÅÈëÁĞ±íÖĞ
+		// å°†æ‰€æœ‰å·²é…å¯¹è®¾å¤‡ä¿¡æ¯æ”¾å…¥åˆ—è¡¨ä¸­
 		if (pairedDevices.size() > 0) {
 			findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
 			for (BluetoothDevice device : pairedDevices) {
@@ -82,56 +82,56 @@ public class MyDeviceListActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		if (myBtAdapter != null) {// È·±£²»ÔÙËÑË÷Éè±¸
+		if (myBtAdapter != null) {// ç¡®ä¿ä¸å†æœç´¢è®¾å¤‡
 			myBtAdapter.cancelDiscovery();
 		}
-		// È¡Ïû¹ã²¥¼àÌıÆ÷
+		// å–æ¶ˆå¹¿æ’­ç›‘å¬å™¨
 		this.unregisterReceiver(mReceiver);
 	}
-	// Ê¹ÓÃÀ¶ÑÀÊÊÅäÆ÷ËÑË÷Éè±¸µÄ·½·¨
+	// ä½¿ç”¨è“ç‰™é€‚é…å™¨æœç´¢è®¾å¤‡çš„æ–¹æ³•
 	private void doDiscovery() {
-		// ÔÚ±êÌâÉÏÏÔÊ¾ÕıÔÚËÑË÷µÄ±êÖ¾
+		// åœ¨æ ‡é¢˜ä¸Šæ˜¾ç¤ºæ­£åœ¨æœç´¢çš„æ ‡å¿—
 		setProgressBarIndeterminateVisibility(true);
 		setTitle(R.string.scanning);
-		// ÏÔÊ¾ËÑË÷µ½µÄĞÂÉè±¸µÄ¸±±êÌâ
+		// æ˜¾ç¤ºæœç´¢åˆ°çš„æ–°è®¾å¤‡çš„å‰¯æ ‡é¢˜
 		findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
-		if (myBtAdapter.isDiscovering()) {// Èç¹ûÕıÔÚËÑË÷£¬È¡Ïû±¾´ÎËÑË÷
+		if (myBtAdapter.isDiscovering()) {// å¦‚æœæ­£åœ¨æœç´¢ï¼Œå–æ¶ˆæœ¬æ¬¡æœç´¢
 			myBtAdapter.cancelDiscovery();
 		}
-		myBtAdapter.startDiscovery();// ¿ªÊ¼ËÑË÷
+		myBtAdapter.startDiscovery();// å¼€å§‹æœç´¢
 	}
 
-	// ÁĞ±íÖĞÉè±¸°´ÏÂÊ±µÄ¼àÌıÆ÷
+	// åˆ—è¡¨ä¸­è®¾å¤‡æŒ‰ä¸‹æ—¶çš„ç›‘å¬å™¨
 	private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
 		public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-			myBtAdapter.cancelDiscovery();// È¡ÏûËÑË÷
-			// »ñÈ¡Éè±¸µÄMACµØÖ·
+			myBtAdapter.cancelDiscovery();// å–æ¶ˆæœç´¢
+			// è·å–è®¾å¤‡çš„MACåœ°å€
 			String msg = ((TextView) v).getText().toString();
 			String address = msg.substring(msg.length() - 17);
-			// ´´½¨´øÓĞMACµØÖ·µÄIntent
+			// åˆ›å»ºå¸¦æœ‰MACåœ°å€çš„Intent
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_DEVICE_ADDR, address);
-			// Éè±¸½á¹û²¢ÍË³öActivity
+			// è®¾å¤‡ç»“æœå¹¶é€€å‡ºActivity
 			setResult(Activity.RESULT_OK, intent);
 			finish();
 		}
 	};
-	// ¼àÌıËÑË÷µ½µÄÉè±¸µÄBroadcastReceiver
+	// ç›‘å¬æœç´¢åˆ°çš„è®¾å¤‡çš„BroadcastReceiver
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			// Èç¹ûÕÒµ½Éè±¸
+			// å¦‚æœæ‰¾åˆ°è®¾å¤‡
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-				// ´ÓIntentÖĞ»ñÈ¡BluetoothDevice¶ÔÏó
+				// ä»Intentä¸­è·å–BluetoothDeviceå¯¹è±¡
 				BluetoothDevice device = intent
 						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-				// Èç¹ûÃ»ÓĞÅä¶Ô£¬½«Éè±¸¼ÓÈëĞÂÉè±¸ÁĞ±í
+				// å¦‚æœæ²¡æœ‰é…å¯¹ï¼Œå°†è®¾å¤‡åŠ å…¥æ–°è®¾å¤‡åˆ—è¡¨
 				if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
 					myAdapterNew.add(device.getName() + "\n"
 							+ device.getAddress());
 				}
-				// µ±ËÑË÷Íê³Éºó£¬¸Ä±äActivityµÄ±êÌâ
+				// å½“æœç´¢å®Œæˆåï¼Œæ”¹å˜Activityçš„æ ‡é¢˜
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
 					.equals(action)) {
 				setProgressBarIndeterminateVisibility(false);

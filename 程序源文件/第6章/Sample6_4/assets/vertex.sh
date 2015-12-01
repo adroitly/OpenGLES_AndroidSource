@@ -1,35 +1,35 @@
-uniform mat4 uMVPMatrix; 	//×Ü±ä»»¾ØÕó
-uniform mat4 uMMatrix; 		//±ä»»¾ØÕó
-uniform vec3 uLightLocation;	//¹âÔ´Î»ÖÃ
-uniform vec3 uCamera;		//ÉãÏñ»úÎ»ÖÃ
-attribute vec3 aPosition;  	//¶¥µãÎ»ÖÃ
-attribute vec3 aNormal;   	//·¨ÏòÁ¿
-varying vec3 vPosition;		//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ¶¥µãÎ»ÖÃ
-varying vec4 vSpecular;		//ÓÃÓÚ´«µİ¸øÆ¬Ôª×ÅÉ«Æ÷µÄ¾µÃæ¹â×îÖÕÇ¿¶È
-void pointLight(				//¶¨Î»¹â¹âÕÕ¼ÆËãµÄ·½·¨
-  in vec3 normal,			//·¨ÏòÁ¿
-  inout vec4 specular,		//¾µÃæ·´Éä¹â·ÖÁ¿  
-  in vec3 lightLocation,		//¹âÔ´Î»ÖÃ
-  in vec4 lightSpecular		//¾µÃæ¹âÇ¿¶È
+uniform mat4 uMVPMatrix; 	//æ€»å˜æ¢çŸ©é˜µ
+uniform mat4 uMMatrix; 		//å˜æ¢çŸ©é˜µ
+uniform vec3 uLightLocation;	//å…‰æºä½ç½®
+uniform vec3 uCamera;		//æ‘„åƒæœºä½ç½®
+attribute vec3 aPosition;  	//é¡¶ç‚¹ä½ç½®
+attribute vec3 aNormal;   	//æ³•å‘é‡
+varying vec3 vPosition;		//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„é¡¶ç‚¹ä½ç½®
+varying vec4 vSpecular;		//ç”¨äºä¼ é€’ç»™ç‰‡å…ƒç€è‰²å™¨çš„é•œé¢å…‰æœ€ç»ˆå¼ºåº¦
+void pointLight(				//å®šä½å…‰å…‰ç…§è®¡ç®—çš„æ–¹æ³•
+  in vec3 normal,			//æ³•å‘é‡
+  inout vec4 specular,		//é•œé¢åå°„å…‰åˆ†é‡  
+  in vec3 lightLocation,		//å…‰æºä½ç½®
+  in vec4 lightSpecular		//é•œé¢å…‰å¼ºåº¦
 ){ 
-  vec3 normalTarget=aPosition+normal; 	//¼ÆËã±ä»»ºóµÄ·¨ÏòÁ¿
+  vec3 normalTarget=aPosition+normal; 	//è®¡ç®—å˜æ¢åçš„æ³•å‘é‡
   vec3 newNormal=(uMMatrix*vec4(normalTarget,1)).xyz-(uMMatrix*vec4(aPosition,1)).xyz;
-  newNormal=normalize(newNormal);  	//¶Ô·¨ÏòÁ¿¹æ¸ñ»¯
-  //¼ÆËã´Ó±íÃæµãµ½ÉãÏñ»úµÄÏòÁ¿
+  newNormal=normalize(newNormal);  	//å¯¹æ³•å‘é‡è§„æ ¼åŒ–
+  //è®¡ç®—ä»è¡¨é¢ç‚¹åˆ°æ‘„åƒæœºçš„å‘é‡
   vec3 eye= normalize(uCamera-(uMMatrix*vec4(aPosition,1)).xyz);  
-  //¼ÆËã´Ó±íÃæµãµ½¹âÔ´Î»ÖÃµÄÏòÁ¿vp
+  //è®¡ç®—ä»è¡¨é¢ç‚¹åˆ°å…‰æºä½ç½®çš„å‘é‡vp
   vec3 vp= normalize(lightLocation-(uMMatrix*vec4(aPosition,1)).xyz);  
-  vp=normalize(vp);//¸ñÊ½»¯vp
-  vec3 halfVector=normalize(vp+eye);	//ÇóÊÓÏßÓë¹âÏßµÄ°ëÏòÁ¿  
-  float shininess=50.0;				//´Ö²Ú¶È£¬Ô½Ğ¡Ô½¹â»¬    
-  float nDotViewHalfVector=dot(newNormal,halfVector);			//·¨ÏßÓë°ëÏòÁ¿µÄµã»ı 
-  float powerFactor=max(0.0,pow(nDotViewHalfVector,shininess)); 	//¾µÃæ·´Éä¹âÇ¿¶ÈÒò×Ó
-  specular=lightSpecular*powerFactor;    //×îÖÕµÄ¾µÃæ¹âÇ¿¶È
+  vp=normalize(vp);//æ ¼å¼åŒ–vp
+  vec3 halfVector=normalize(vp+eye);	//æ±‚è§†çº¿ä¸å…‰çº¿çš„åŠå‘é‡  
+  float shininess=50.0;				//ç²—ç³™åº¦ï¼Œè¶Šå°è¶Šå…‰æ»‘    
+  float nDotViewHalfVector=dot(newNormal,halfVector);			//æ³•çº¿ä¸åŠå‘é‡çš„ç‚¹ç§¯ 
+  float powerFactor=max(0.0,pow(nDotViewHalfVector,shininess)); 	//é•œé¢åå°„å…‰å¼ºåº¦å› å­
+  specular=lightSpecular*powerFactor;    //æœ€ç»ˆçš„é•œé¢å…‰å¼ºåº¦
 }
 void main()  {                        		
-   gl_Position = uMVPMatrix * vec4(aPosition,1); //¸ù¾İ×Ü±ä»»¾ØÕó¼ÆËã´Ë´Î»æÖÆ´Ë¶¥µãµÄÎ»ÖÃ      
+   gl_Position = uMVPMatrix * vec4(aPosition,1); //æ ¹æ®æ€»å˜æ¢çŸ©é˜µè®¡ç®—æ­¤æ¬¡ç»˜åˆ¶æ­¤é¡¶ç‚¹çš„ä½ç½®      
    vec4 specularTemp=vec4(0.0,0.0,0.0,0.0);   
-   pointLight(normalize(aNormal), specularTemp, uLightLocation, vec4(0.7,0.7,0.7,1.0));//¼ÆËã¾µÃæ¹â  
-   vSpecular=specularTemp;	//½«×îÖÕ¾µÃæ¹âÇ¿¶È´«¸øÆ¬Ôª×ÅÉ«Æ÷   
-   vPosition = aPosition; 		//½«¶¥µãµÄÎ»ÖÃ´«¸øÆ¬Ôª×ÅÉ«Æ÷
+   pointLight(normalize(aNormal), specularTemp, uLightLocation, vec4(0.7,0.7,0.7,1.0));//è®¡ç®—é•œé¢å…‰  
+   vSpecular=specularTemp;	//å°†æœ€ç»ˆé•œé¢å…‰å¼ºåº¦ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨   
+   vPosition = aPosition; 		//å°†é¡¶ç‚¹çš„ä½ç½®ä¼ ç»™ç‰‡å…ƒç€è‰²å™¨
 } 

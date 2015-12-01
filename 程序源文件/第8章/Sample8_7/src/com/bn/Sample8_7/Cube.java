@@ -3,15 +3,15 @@ package com.bn.Sample8_7;
 public class Cube 
 {
 	Texture[] rect=new Texture[6];
-	float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
-    float yAngle=0;//ÈÆyÖáĞı×ªµÄ½Ç¶È
-    float zAngle=0;//ÈÆzÖáĞı×ªµÄ½Ç¶È
+	float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
+    float yAngle=0;//ç»•yè½´æ—‹è½¬çš„è§’åº¦
+    float zAngle=0;//ç»•zè½´æ—‹è½¬çš„è§’åº¦
     float a;
     float b;
     float c;
-    float scale;//³ß´ç
+    float scale;//å°ºå¯¸
 
-	boolean texFlag;//ÊÇ·ñ»æÖÆÎÆÀíµÄ±êÖ¾Î»
+	boolean texFlag;//æ˜¯å¦ç»˜åˆ¶çº¹ç†çš„æ ‡å¿—ä½
 	public Cube(MySurfaceView mv,float scale,float[] abc)
 	{
 		a=abc[0];
@@ -23,7 +23,7 @@ public class Cube
 		rect[3]=new Texture(mv,scale,c,b,1,1);
 		rect[4]=new Texture(mv,scale,a,c,1,1);
 		rect[5]=new Texture(mv,scale,a,c,1,1);
-		// ³õÊ¼»¯Íê³ÉºóÔÙ¸Ä±ä¸÷Á¿µÄÖµ
+		// åˆå§‹åŒ–å®Œæˆåå†æ”¹å˜å„é‡çš„å€¼
 
 		a*=scale;
 		b*=scale;
@@ -34,36 +34,36 @@ public class Cube
 		MatrixState.rotate(xAngle, 1, 0, 0);
 		MatrixState.rotate(yAngle, 0, 1, 0);
 		MatrixState.rotate(zAngle, 0, 0, 1);
-        //Ç°Ãæ
+        //å‰é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, 0, c/2);
 		rect[0].drawSelf(texId);
         MatrixState.popMatrix();
-		//ºóÃæ
+		//åé¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, 0, -c/2);
 		MatrixState.rotate(180.0f, 0, 1, 0);
 		rect[1].drawSelf(texId);
         MatrixState.popMatrix();
-		//ÓÒÃæ
+		//å³é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(a/2, 0, 0);
 		MatrixState.rotate(90.0f, 0, 1, 0);
 		rect[2].drawSelf(texId);
         MatrixState.popMatrix();
-		//×óÃæ
+		//å·¦é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(-a/2, 0, 0);
 		MatrixState.rotate(-90.0f, 0, 1, 0);
 		rect[3].drawSelf(texId);
         MatrixState.popMatrix();
-		//ÏÂÃæ
+		//ä¸‹é¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -b/2, 0);
 		MatrixState.rotate(90.0f, 1, 0, 0);
 		rect[4].drawSelf(texId);
         MatrixState.popMatrix();
-		//ÉÏÃæ
+		//ä¸Šé¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, b/2, 0);
 		MatrixState.rotate(-90.0f, 1, 0, 0);

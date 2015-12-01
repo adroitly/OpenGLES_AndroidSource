@@ -1,6 +1,6 @@
 precision mediump float;
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
-//½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ²ÎÊı
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
+//æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„å‚æ•°
 varying vec4 ambient;
 varying vec4 diffuse;
 varying vec4 specular;
@@ -8,9 +8,9 @@ varying vec2 vTextureCoord;
 
 void main()                         
 {    
-   //½«¼ÆËã³öµÄÑÕÉ«¸ø´ËÆ¬Ôª
+   //å°†è®¡ç®—å‡ºçš„é¢œè‰²ç»™æ­¤ç‰‡å…ƒ
    vec4 finalColor=texture2D(sTexture, vTextureCoord);    
-   //¸ø´ËÆ¬ÔªÑÕÉ«Öµ
+   //ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼
    gl_FragColor = finalColor*ambient+finalColor*specular+finalColor*diffuse;
 
 }   

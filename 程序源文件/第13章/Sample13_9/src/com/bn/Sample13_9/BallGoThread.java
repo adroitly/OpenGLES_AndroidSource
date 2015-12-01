@@ -1,29 +1,29 @@
 package com.bn.Sample13_9;
 /*
- * ¿ØÖÆÇòÔË¶¯µÄÏß³Ì
+ * æ§åˆ¶çƒè¿åŠ¨çš„çº¿ç¨‹
  */
 public class BallGoThread extends Thread {
-	BallForControl ballForControl;//ÉùÃ÷AllBallsµÄÒıÓÃ
+	BallForControl ballForControl;//å£°æ˜AllBallsçš„å¼•ç”¨
 	int timeSpan=12;
-	private boolean flag=false;//Ñ­»·±êÖ¾Î»
+	private boolean flag=false;//å¾ªç¯æ ‡å¿—ä½
 	
-	public BallGoThread(BallForControl ballForControl)//¹¹ÔìÆ÷
+	public BallGoThread(BallForControl ballForControl)//æ„é€ å™¨
 	{
-		this.ballForControl=ballForControl;//³ÉÔ±±äÁ¿¸³Öµ
+		this.ballForControl=ballForControl;//æˆå‘˜å˜é‡èµ‹å€¼
 	}
 	
 	@Override
-	public void run()//ÖØĞ´run·½·¨
+	public void run()//é‡å†™runæ–¹æ³•
 	{
-		while(flag)//whileÑ­»·
+		while(flag)//whileå¾ªç¯
 		{	
-			ballForControl.go();//µ÷ÓÃÊ¹ËùÓĞÇòÔË¶¯µÄ·½·¨
+			ballForControl.go();//è°ƒç”¨ä½¿æ‰€æœ‰çƒè¿åŠ¨çš„æ–¹æ³•
 			
 			try{
-				Thread.sleep(timeSpan);//Ò»¶ÎÊ±¼äºóÔÙÔË¶¯
+				Thread.sleep(timeSpan);//ä¸€æ®µæ—¶é—´åå†è¿åŠ¨
 			}
 			catch(Exception e){
-				e.printStackTrace();//´òÓ¡Òì³£
+				e.printStackTrace();//æ‰“å°å¼‚å¸¸
 			}
 		}		
 	}

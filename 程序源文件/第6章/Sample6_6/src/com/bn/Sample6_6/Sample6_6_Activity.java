@@ -12,18 +12,18 @@ public class Sample6_6_Activity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃÎªÈ«ÆÁ
+		// è®¾ç½®ä¸ºå…¨å±
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//ÉèÖÃÎªºáÆÁ
-		// ³õÊ¼»¯GLSurfaceView
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//è®¾ç½®ä¸ºæ¨ªå±
+		// åˆå§‹åŒ–GLSurfaceView
 		mGLSurfaceView = new MySurfaceView(this);
-		// ÇĞ»»µ½Ö÷½çÃæ
+		// åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 		setContentView(R.layout.main);	
 		LinearLayout ll = (LinearLayout) findViewById(R.id.main_liner);
 		ll.addView(mGLSurfaceView);
-        //ÆÕÍ¨ÍÏÀ­Ìõ±»À­¶¯µÄ´¦Àí´úÂë
+        //æ™®é€šæ‹–æ‹‰æ¡è¢«æ‹‰åŠ¨çš„å¤„ç†ä»£ç 
         SeekBar sb=(SeekBar)this.findViewById(R.id.SeekBar01);
         sb.setOnSeekBarChangeListener(
             new SeekBar.OnSeekBarChangeListener()

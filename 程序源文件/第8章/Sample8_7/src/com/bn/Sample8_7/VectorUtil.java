@@ -2,17 +2,17 @@ package com.bn.Sample8_7;
 
 import java.util.ArrayList;
 
-//ÈıÎ¬×ø±êÏµÖĞ·¨ÏòÁ¿µÄ¹¤¾ßÀà
+//ä¸‰ç»´åæ ‡ç³»ä¸­æ³•å‘é‡çš„å·¥å…·ç±»
 public class VectorUtil {
 
-	//¸ù¾İÔ­ÎÆÀí×ø±êºÍË÷Òı£¬¼ÆËã¾íÈÆºóµÄÎÆÀíµÄ·½·¨
+	//æ ¹æ®åŸçº¹ç†åæ ‡å’Œç´¢å¼•ï¼Œè®¡ç®—å·ç»•åçš„çº¹ç†çš„æ–¹æ³•
 	public static float[] calTextures(
-			ArrayList<Float> alST,//Ô­ÎÆÀí×ø±êÁĞ±í£¨Î´¾íÈÆ£©
-			ArrayList<Integer> alTexIndex//×éÖ¯³ÉÃæµÄÎÆÀí×ø±êµÄË÷ÒıÖµÁĞ±í£¨°´ÄæÊ±Õë¾íÈÆ£©
+			ArrayList<Float> alST,//åŸçº¹ç†åæ ‡åˆ—è¡¨ï¼ˆæœªå·ç»•ï¼‰
+			ArrayList<Integer> alTexIndex//ç»„ç»‡æˆé¢çš„çº¹ç†åæ ‡çš„ç´¢å¼•å€¼åˆ—è¡¨ï¼ˆæŒ‰é€†æ—¶é’ˆå·ç»•ï¼‰
 			)
 	{
 		float[] textures=new float[alTexIndex.size()*2];
-		//Éú³É¶¥µãµÄÊı×é
+		//ç”Ÿæˆé¡¶ç‚¹çš„æ•°ç»„
 		int stCount=0;
 		for(int i:alTexIndex){
 			textures[stCount++]=alST.get(2*i);
@@ -22,12 +22,12 @@ public class VectorUtil {
 	}
 	
 	public static float[] calVertices(
-			ArrayList<Float> alv,//Ô­¶¥µãÁĞ±í£¨Î´¾íÈÆ£©
-			ArrayList<Integer> alFaceIndex//×éÖ¯³ÉÃæµÄ¶¥µãµÄË÷ÒıÖµÁĞ±í£¨°´ÄæÊ±Õë¾íÈÆ£©
+			ArrayList<Float> alv,//åŸé¡¶ç‚¹åˆ—è¡¨ï¼ˆæœªå·ç»•ï¼‰
+			ArrayList<Integer> alFaceIndex//ç»„ç»‡æˆé¢çš„é¡¶ç‚¹çš„ç´¢å¼•å€¼åˆ—è¡¨ï¼ˆæŒ‰é€†æ—¶é’ˆå·ç»•ï¼‰
 			)
 	{
 		float[] vertices=new float[alFaceIndex.size()*3];
-		//Éú³É¶¥µãµÄÊı×é
+		//ç”Ÿæˆé¡¶ç‚¹çš„æ•°ç»„
 		int vCount=0;
 		for(int i:alFaceIndex){
 			vertices[vCount++]=alv.get(3*i);

@@ -1,6 +1,6 @@
 package com.bn.Sample11_5;
-//³£Á¿Àà 
+//å¸¸é‡ç±» 
 public class Constant 
 {
-   public static final float UNIT_SIZE=28f;//Ìì¿ÕºĞµÄ°ë±ß³¤  
+   public static final float UNIT_SIZE=28f;//å¤©ç©ºç›’çš„åŠè¾¹é•¿  
 }

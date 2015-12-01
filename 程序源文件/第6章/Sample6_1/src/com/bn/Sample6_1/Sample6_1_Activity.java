@@ -9,13 +9,13 @@ public class Sample6_1_Activity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃÎªÈ«ÆÁ
+		// è®¾ç½®ä¸ºå…¨å±
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// ³õÊ¼»¯GLSurfaceView
+		// åˆå§‹åŒ–GLSurfaceView
 		mGLSurfaceView = new MySurfaceView(this);
-		// ÇĞ»»µ½Ö÷½çÃæ
+		// åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 		setContentView(mGLSurfaceView);	
 	}
 

@@ -1,6 +1,6 @@
 /**
  * 
- * 	ÓÃÓÚ»æÖÆÔ²
+ * 	ç”¨äºç»˜åˆ¶åœ†
  */
 package com.bn.gameView;
 import java.nio.ByteBuffer;
@@ -12,31 +12,31 @@ import com.bn.commonObject.Light_Tower;
 import com.bn.core.MatrixState;
 
 import android.opengl.GLES20;
-//ÓÃtriangle_fan·½Ê½»æÖÆÔ²Ãæ ´ËÔ²ÃæÊÇÆ½ĞĞÓÚXYÆ½ÃæµÄ
+//ç”¨triangle_fanæ–¹å¼ç»˜åˆ¶åœ†é¢ æ­¤åœ†é¢æ˜¯å¹³è¡ŒäºXYå¹³é¢çš„
 public class CircleForDraw
 {
 	float taizihight=30;
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         
-    int maColorR;	//ÑÕÉ«ÖµµÄR·ÖÁ¿ÒıÓÃid
-    int maColorG;	//ÑÕÉ«ÖµµÄG·ÖÁ¿ÒıÓÃid
-    int maColorB;	//ÑÕÉ«ÖµµÄB·ÖÁ¿ÒıÓÃid
+    int maColorR;	//é¢œè‰²å€¼çš„Råˆ†é‡å¼•ç”¨id
+    int maColorG;	//é¢œè‰²å€¼çš„Gåˆ†é‡å¼•ç”¨id
+    int maColorB;	//é¢œè‰²å€¼çš„Båˆ†é‡å¼•ç”¨id
     int maColorA;
-	private static FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
+	private static FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
     private static int vCount;
  
-    float r;	//ÑÕÉ«ÖµµÄR·ÖÁ¿
-    float g;	//ÑÕÉ«ÖµµÄG·ÖÁ¿
-    float b;	//ÑÕÉ«ÖµµÄB·ÖÁ¿
+    float r;	//é¢œè‰²å€¼çš„Råˆ†é‡
+    float g;	//é¢œè‰²å€¼çš„Gåˆ†é‡
+    float b;	//é¢œè‰²å€¼çš„Båˆ†é‡
     
     Light_Tower taizi;
     public CircleForDraw
     (
             int mProgram,
-    		float angleSpan,//ÇĞ·Ö½Ç¶È
-    		float radius,//Ô²°ë¾¶
+    		float angleSpan,//åˆ‡åˆ†è§’åº¦
+    		float radius,//åœ†åŠå¾„
     		float[]color,
     		int mProgramlitht
     )
@@ -52,38 +52,38 @@ public class CircleForDraw
     }
     public static void initVertexData
     (
-    		float angleSpan,//ÇĞ·Ö½Ç¶È
-    		float radius//Ô²°ë¾¶
+    		float angleSpan,//åˆ‡åˆ†è§’åº¦
+    		float radius//åœ†åŠå¾„
     )
     {
-    	//¶¥µãÎÆÀí×ø±êÊı¾İµÄ³õÊ¼»¯================begin============================
-    	vCount=1+(int)(360/angleSpan)+1;//¶¥µãµÄ¸öÊı
-    	float[] vertices=new float[vCount*3];//³õÊ¼»¯¶¥µãÊı×é
-    	//´æ·ÅÖĞĞÄµã×ø±ê
+    	//é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin============================
+    	vCount=1+(int)(360/angleSpan)+1;//é¡¶ç‚¹çš„ä¸ªæ•°
+    	float[] vertices=new float[vCount*3];//åˆå§‹åŒ–é¡¶ç‚¹æ•°ç»„
+    	//å­˜æ”¾ä¸­å¿ƒç‚¹åæ ‡
     	vertices[0]=0;
     	vertices[1]=0;
     	vertices[2]=0;
-    	int vcount=3;//µ±Ç°¶¥µã×ø±êË÷Òı
+    	int vcount=3;//å½“å‰é¡¶ç‚¹åæ ‡ç´¢å¼•
     	for(float angle=0;angle<=360;angle=angle+angleSpan)
     	{
     		double angleRadian=Math.toRadians(angle);
-    		//¶¥µã×ø±ê
+    		//é¡¶ç‚¹åæ ‡
     		vertices[vcount++]=radius*(float)Math.cos(angleRadian);
     		vertices[vcount++]=radius*(float)Math.sin(angleRadian);
     		vertices[vcount++]=0;
     	}  
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³ĞòÎª±¾µØ²Ù×÷ÏµÍ³Ë³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåºä¸ºæœ¬åœ°æ“ä½œç³»ç»Ÿé¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
     }
     public void initShader(int mProgramIn)
     {
         mProgram = mProgramIn;
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
         maColorR=GLES20.glGetUniformLocation(mProgram, "colorR");
@@ -93,12 +93,12 @@ public class CircleForDraw
     }
     public void drawSelf(float alpha,int texId)
     {        
-    	//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
    	 	GLES20.glUseProgram(mProgram); 
-        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-        //½«Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕó´«Èëshader³ÌĞò
-        //´«Èë¶¥µãÎ»ÖÃÊı¾İ	
+        //å°†ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
+        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®	
         GLES20.glVertexAttribPointer  
         (
         		maPositionHandle,   
@@ -108,16 +108,16 @@ public class CircleForDraw
                3*4,   
                mVertexBuffer
         );  
-        //ÔÊĞí¶¥µãÎ»ÖÃ¡¢·¨ÏòÁ¿Êı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®ã€æ³•å‘é‡æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);  
         GLES20.glUniform1f(maColorR , r); 
         GLES20.glUniform1f(maColorG , g); 
         GLES20.glUniform1f(maColorB , b);
         GLES20.glUniform1f(maColorA , alpha);
-        //»æÖÆÍ¼ĞÎ
+        //ç»˜åˆ¶å›¾å½¢
         GLES20.glDrawArrays
         (
-        		GL10.GL_TRIANGLE_FAN, 		//ÒÔTRIANGLE_FAN·½Ê½Ìî³ä
+        		GL10.GL_TRIANGLE_FAN, 		//ä»¥TRIANGLE_FANæ–¹å¼å¡«å……
         		0,
         		vCount
         );

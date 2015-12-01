@@ -4,44 +4,44 @@ public class CubeGroup {
 	
 	MySurfaceView mv;
 	
-	TextureRect textureRect;//µ×²¿Á¢·½Ìå
-	Cube sideCube1;//×óÓÒ²àÁ¢·½Ìå
-	Cube sideCube2;//Ç°ºó²àÁ¢·½Ìå
-	float size;//³ß´ç
+	TextureRect textureRect;//åº•éƒ¨ç«‹æ–¹ä½“
+	Cube sideCube1;//å·¦å³ä¾§ç«‹æ–¹ä½“
+	Cube sideCube2;//å‰åä¾§ç«‹æ–¹ä½“
+	float size;//å°ºå¯¸
 	float a;
 	float b;
 	float c;
 	float width;
 	public CubeGroup(MySurfaceView mv,
-			float scale, 		//±ÈÀı
-			float a, 			//¾ØĞÎÆ½Ãæ³¤¶È
-			float b, 			//Ç½µÄ¸ß¶È
-			float c ,			//¾ØĞÎÆ½Ãæ¿í¶È
-			float width			//Ç½µÄºñ¶È
+			float scale, 		//æ¯”ä¾‹
+			float a, 			//çŸ©å½¢å¹³é¢é•¿åº¦
+			float b, 			//å¢™çš„é«˜åº¦
+			float c ,			//çŸ©å½¢å¹³é¢å®½åº¦
+			float width			//å¢™çš„åšåº¦
 		){
-		//´´½¨¸÷¸ö×é³É²¿·ÖµÄ¶ÔÏó
-		textureRect = new TextureRect(mv,scale,a,c);//Á¢·½Ìå
-		sideCube1 = new Cube(mv, scale, new float[]{c, b, width});//Á¢·½Ìå
-		sideCube2 = new Cube(mv, scale, new float[]{a-2*width, b, width});//Á¢·½Ìå
-		// ³õÊ¼»¯Íê³ÉºóÔÙ¸Ä±ä¸÷Á¿µÄÖµ
+		//åˆ›å»ºå„ä¸ªç»„æˆéƒ¨åˆ†çš„å¯¹è±¡
+		textureRect = new TextureRect(mv,scale,a,c);//ç«‹æ–¹ä½“
+		sideCube1 = new Cube(mv, scale, new float[]{c, b, width});//ç«‹æ–¹ä½“
+		sideCube2 = new Cube(mv, scale, new float[]{a-2*width, b, width});//ç«‹æ–¹ä½“
+		// åˆå§‹åŒ–å®Œæˆåå†æ”¹å˜å„é‡çš„å€¼
 		size = scale;
 		a *= size; 
 		b *= size;
 		c *= size;
 		width *= size;
-		//³õÊ¼»¯³ÉÔ±±äÁ¿µÄÖµ
+		//åˆå§‹åŒ–æˆå‘˜å˜é‡çš„å€¼
 		this.a = a;
 		this.b = b;
 		this.c = c;
 		this.width = width;
 	}
 	public void drawSelf(int floorTexId,int wallTexId){
-		//µ×²¿
+		//åº•éƒ¨
         MatrixState.pushMatrix();
         MatrixState.rotate(-90, 1, 0, 0);
         textureRect.drawSelf(floorTexId);
         MatrixState.popMatrix();
-		//×óÓÒ²à
+		//å·¦å³ä¾§
         MatrixState.pushMatrix();
         MatrixState.translate(-(a - width)/2,b/2, 0);
         MatrixState.rotate(90, 0, 1, 0);
@@ -53,7 +53,7 @@ public class CubeGroup {
         MatrixState.rotate(90, 0, 1, 0);
         sideCube1.drawSelf(wallTexId);
         MatrixState.popMatrix();
-		//Ç°ºó²à
+		//å‰åä¾§
         MatrixState.pushMatrix();
         MatrixState.translate(0,b/2, (c - width)/2);
         sideCube2.drawSelf(wallTexId);

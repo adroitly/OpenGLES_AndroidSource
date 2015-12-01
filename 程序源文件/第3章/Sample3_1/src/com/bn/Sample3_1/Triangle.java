@@ -6,36 +6,36 @@ import java.nio.FloatBuffer;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-//Èı½ÇĞÎ
+//ä¸‰è§’å½¢
 public class Triangle
 {
-	public static float[] mProjMatrix = new float[16];//4x4¾ØÕó Í¶Ó°ÓÃ
-    public static float[] mVMatrix = new float[16];//ÉãÏñ»úÎ»ÖÃ³¯Ïò9²ÎÊı¾ØÕó
-    public static float[] mMVPMatrix;//×îºóÆğ×÷ÓÃµÄ×Ü±ä»»¾ØÕó
+	public static float[] mProjMatrix = new float[16];//4x4çŸ©é˜µ æŠ•å½±ç”¨
+    public static float[] mVMatrix = new float[16];//æ‘„åƒæœºä½ç½®æœå‘9å‚æ•°çŸ©é˜µ
+    public static float[] mMVPMatrix;//æœ€åèµ·ä½œç”¨çš„æ€»å˜æ¢çŸ©é˜µ
 	
-	int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß³ÌĞòid
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int maColorHandle; //¶¥µãÑÕÉ«ÊôĞÔÒıÓÃid  
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷
-    static float[] mMMatrix = new float[16];//¾ßÌåÎïÌåµÄÒÆ¶¯Ğı×ª¾ØÕó£¬Ğı×ª¡¢Æ½ÒÆ
+	int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç¨‹åºid
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int maColorHandle; //é¡¶ç‚¹é¢œè‰²å±æ€§å¼•ç”¨id  
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨
+    static float[] mMMatrix = new float[16];//å…·ä½“ç‰©ä½“çš„ç§»åŠ¨æ—‹è½¬çŸ©é˜µï¼Œæ—‹è½¬ã€å¹³ç§»
 	
-	FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	FloatBuffer   mColorBuffer;//¶¥µã×ÅÉ«Êı¾İ»º³å
+	FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	FloatBuffer   mColorBuffer;//é¡¶ç‚¹ç€è‰²æ•°æ®ç¼“å†²
     int vCount=0;	
-    float xAngle=0;//ÈÆxÖáĞı×ªµÄ½Ç¶È
+    float xAngle=0;//ç»•xè½´æ—‹è½¬çš„è§’åº¦
     public Triangle(MyTDView mv)
     {    	
-    	//³õÊ¼»¯¶¥µã×ø±êÓë×ÅÉ«Êı¾İ
+    	//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡ä¸ç€è‰²æ•°æ®
     	initVertexData();
-    	//³õÊ¼»¯shader
+    	//åˆå§‹åŒ–shader
     	initShader(mv);
     }
    
     public void initVertexData()
     {
-    	//¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯
+    	//é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–
         vCount=3;  
         final float UNIT_SIZE=0.2f;
         float vertices[]=new float[]
@@ -65,36 +65,36 @@ public class Triangle
         mColorBuffer.position(0);
     }
 
-    //³õÊ¼»¯shader
+    //åˆå§‹åŒ–shader
     public void initShader(MyTDView mv)
     {
-    	//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+    	//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mVertexShader=ShaderUtil.loadFromAssetsFile("vertex.sh", mv.getResources());
-        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mFragmentShader=ShaderUtil.loadFromAssetsFile("frag.sh", mv.getResources());  
-        //»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+        //åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
         mProgram = ShaderUtil.createProgram(mVertexShader, mFragmentShader);
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÑÕÉ«ÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹é¢œè‰²å±æ€§å¼•ç”¨id  
         maColorHandle= GLES20.glGetAttribLocation(mProgram, "aColor");
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
     }
     
     public void drawSelf()
     {        
-    	 //ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+    	 //åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
     	 GLES20.glUseProgram(mProgram);        
-    	 //³õÊ¼»¯±ä»»¾ØÕó
+    	 //åˆå§‹åŒ–å˜æ¢çŸ©é˜µ
          Matrix.setRotateM(mMMatrix,0,0,0,1,0);
-         //ÉèÖÃÑØZÖáÕıÏòÎ»ÒÆ1
+         //è®¾ç½®æ²¿Zè½´æ­£å‘ä½ç§»1
          Matrix.translateM(mMMatrix,0,0,0,1);
-         //ÉèÖÃÈÆxÖáĞı×ª
+         //è®¾ç½®ç»•xè½´æ—‹è½¬
          Matrix.rotateM(mMMatrix,0,xAngle,1,0,0);
          //
          GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, Triangle.getFianlMatrix(mMMatrix), 0); 
-         //Îª»­±ÊÖ¸¶¨¶¥µãÎ»ÖÃÊı¾İ
+         //ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹ä½ç½®æ•°æ®
          GLES20.glVertexAttribPointer(
          		maPositionHandle,   
          		3, 
@@ -112,10 +112,10 @@ public class Triangle
                 4*4,
                 mColorBuffer
          );
-         //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+         //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
          GLES20.glEnableVertexAttribArray(maPositionHandle);  
          GLES20.glEnableVertexAttribArray(maColorHandle);  
-         //»æÖÆÈı½ÇĞÎ
+         //ç»˜åˆ¶ä¸‰è§’å½¢
          GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
     }
     public static float[] getFianlMatrix(float[] spec)

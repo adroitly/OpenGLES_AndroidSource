@@ -1,43 +1,43 @@
-package com.bn.Sample5_2;// ÉùÃ÷°ü
-import android.opengl.Matrix; //ÒıÈëÏà¹ØÀà
-public class MatrixState {//´æ´¢ÏµÍ³¾ØÕó×´Ì¬µÄÀà
-	private static float[] mProjMatrix = new float[16];// 4x4¾ØÕó Í¶Ó°ÓÃ
-	private static float[] mVMatrix = new float[16];// ÉãÏñ»úÎ»ÖÃ³¯Ïò9²ÎÊı¾ØÕó
-	private static float[] mMVPMatrix;// ×îºóÆğ×÷ÓÃµÄ×Ü±ä»»¾ØÕó	
-	public static void setCamera(// ÉèÖÃÉãÏñ»ú
-			float cx, // ÉãÏñ»úÎ»ÖÃx
-			float cy, // ÉãÏñ»úÎ»ÖÃy
-			float cz, // ÉãÏñ»úÎ»ÖÃz
-			float tx, // ÉãÏñ»úÄ¿±êµãx
-			float ty, // ÉãÏñ»úÄ¿±êµãy
-			float tz, // ÉãÏñ»úÄ¿±êµãz
-			float upx, // ÉãÏñ»úUPÏòÁ¿X·ÖÁ¿
-			float upy, // ÉãÏñ»úUPÏòÁ¿Y·ÖÁ¿
-			float upz // ÉãÏñ»úUPÏòÁ¿Z·ÖÁ¿
+package com.bn.Sample5_2;// å£°æ˜åŒ…
+import android.opengl.Matrix; //å¼•å…¥ç›¸å…³ç±»
+public class MatrixState {//å­˜å‚¨ç³»ç»ŸçŸ©é˜µçŠ¶æ€çš„ç±»
+	private static float[] mProjMatrix = new float[16];// 4x4çŸ©é˜µ æŠ•å½±ç”¨
+	private static float[] mVMatrix = new float[16];// æ‘„åƒæœºä½ç½®æœå‘9å‚æ•°çŸ©é˜µ
+	private static float[] mMVPMatrix;// æœ€åèµ·ä½œç”¨çš„æ€»å˜æ¢çŸ©é˜µ	
+	public static void setCamera(// è®¾ç½®æ‘„åƒæœº
+			float cx, // æ‘„åƒæœºä½ç½®x
+			float cy, // æ‘„åƒæœºä½ç½®y
+			float cz, // æ‘„åƒæœºä½ç½®z
+			float tx, // æ‘„åƒæœºç›®æ ‡ç‚¹x
+			float ty, // æ‘„åƒæœºç›®æ ‡ç‚¹y
+			float tz, // æ‘„åƒæœºç›®æ ‡ç‚¹z
+			float upx, // æ‘„åƒæœºUPå‘é‡Xåˆ†é‡
+			float upy, // æ‘„åƒæœºUPå‘é‡Yåˆ†é‡
+			float upz // æ‘„åƒæœºUPå‘é‡Zåˆ†é‡
 	) {
 		Matrix.setLookAtM(mVMatrix, 0, cx, cy, cz, tx, ty, tz, upx, upy, upz);
 	}	
-	public static void setProjectFrustum(// ÉèÖÃÍ¸ÊÓÍ¶Ó°²ÎÊı
-			float left, // nearÃæµÄleft
-			float right, // nearÃæµÄright
-			float bottom, // nearÃæµÄbottom
-			float top, // nearÃæµÄtop
-			float near, // nearÃæ¾àÀë
-			float far // farÃæ¾àÀë
+	public static void setProjectFrustum(// è®¾ç½®é€è§†æŠ•å½±å‚æ•°
+			float left, // nearé¢çš„left
+			float right, // nearé¢çš„right
+			float bottom, // nearé¢çš„bottom
+			float top, // nearé¢çš„top
+			float near, // nearé¢è·ç¦»
+			float far // faré¢è·ç¦»
 	) {
 		Matrix.frustumM(mProjMatrix, 0, left, right, bottom, top, near, far);
 	}	
-	public static void setProjectOrtho(// ÉèÖÃÕı½»Í¶Ó°²ÎÊı
-			float left, // nearÃæµÄleft
-			float right, // nearÃæµÄright
-			float bottom, // nearÃæµÄbottom
-			float top, // nearÃæµÄtop
-			float near, // nearÃæ¾àÀë
-			float far // farÃæ¾àÀë
+	public static void setProjectOrtho(// è®¾ç½®æ­£äº¤æŠ•å½±å‚æ•°
+			float left, // nearé¢çš„left
+			float right, // nearé¢çš„right
+			float bottom, // nearé¢çš„bottom
+			float top, // nearé¢çš„top
+			float near, // nearé¢è·ç¦»
+			float far // faré¢è·ç¦»
 	) {
 		Matrix.orthoM(mProjMatrix, 0, left, right, bottom, top, near, far);
 	}	
-	public static float[] getFinalMatrix(float[] spec) {// »ñÈ¡¾ßÌåÎïÌåµÄ×Ü±ä»»¾ØÕó
+	public static float[] getFinalMatrix(float[] spec) {// è·å–å…·ä½“ç‰©ä½“çš„æ€»å˜æ¢çŸ©é˜µ
 		mMVPMatrix = new float[16];
 		Matrix.multiplyMM(mMVPMatrix, 0, mVMatrix, 0, spec, 0);
 		Matrix.multiplyMM(mMVPMatrix, 0, mProjMatrix, 0, mMVPMatrix, 0);

@@ -1,8 +1,8 @@
 precision mediump float;
-varying vec2 vTextureCoord; //½ÓÊÕÎÆÀí×ø±ê²ÎÊı
-varying float vertexHeight;//½ÓÊÜ¶¥µãµÄ¸ß¶ÈÖµ
-varying float vertexwhidth;//½ÓÊÜÑªµÄ×î×ó±ßÎ»ÖÃ
-uniform sampler2D sTexture;//ÎÆÀíÄÚÈİÊı¾İ
+varying vec2 vTextureCoord; //æ¥æ”¶çº¹ç†åæ ‡å‚æ•°
+varying float vertexHeight;//æ¥å—é¡¶ç‚¹çš„é«˜åº¦å€¼
+varying float vertexwhidth;//æ¥å—è¡€çš„æœ€å·¦è¾¹ä½ç½®
+uniform sampler2D sTexture;//çº¹ç†å†…å®¹æ•°æ®
 uniform float ublood;
 void main()                         
 {

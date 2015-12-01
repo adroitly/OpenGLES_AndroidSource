@@ -46,16 +46,16 @@ import com.bn.gameView.GLGameView;
 
 public class Aircraft_Activity extends Activity
 {
-	GLGameView gameView;//Ö÷ÓÎÏ·³¡¾°
-	static Handler handler;//ÏûÏ¢½ÓÊÕÆ÷
-	SoundPool soundPool;//ÉùÒô³Ø
-	Vibrator mVibrator;//Õğ¶¯Æ÷
-	public MediaPlayer bgMusic[]=new MediaPlayer[2];//ÓÎÏ·±³¾°ÒôÀÖ²¥·ÅÆ÷
-	HashMap<Integer,Integer> soundMap;//´æ·ÅÉùÒô³ØÖĞµÄÉùÒôIDµÄMap
-	SensorManager mySensorManager;//´«¸ĞÆ÷µÄÒıÓÃ	
-	private boolean isNoBack;//·µ»Ø¼üÆÁ±ÎÖ÷ÒªÊÇÔÚ»¶Ó­½çÃæ²¥·Å¹ı³ÌÖĞ,ÆÁ±Î·µ»Ø¼ü
-	private int flag;//ÅĞ¶Ïµ±Ç°ÆÁÄ»ÊÇ·ñÄÜ¹»Ğı×ªµÄ±êÖ¾Î»
-	public float lr_domain=1;//´«¸ĞÆ÷×óÓÒĞı×ªµØãĞÖµ
+	GLGameView gameView;//ä¸»æ¸¸æˆåœºæ™¯
+	static Handler handler;//æ¶ˆæ¯æ¥æ”¶å™¨
+	SoundPool soundPool;//å£°éŸ³æ± 
+	Vibrator mVibrator;//éœ‡åŠ¨å™¨
+	public MediaPlayer bgMusic[]=new MediaPlayer[2];//æ¸¸æˆèƒŒæ™¯éŸ³ä¹æ’­æ”¾å™¨
+	HashMap<Integer,Integer> soundMap;//å­˜æ”¾å£°éŸ³æ± ä¸­çš„å£°éŸ³IDçš„Map
+	SensorManager mySensorManager;//ä¼ æ„Ÿå™¨çš„å¼•ç”¨	
+	private boolean isNoBack;//è¿”å›é”®å±è”½ä¸»è¦æ˜¯åœ¨æ¬¢è¿ç•Œé¢æ’­æ”¾è¿‡ç¨‹ä¸­,å±è”½è¿”å›é”®
+	private int flag;//åˆ¤æ–­å½“å‰å±å¹•æ˜¯å¦èƒ½å¤Ÿæ—‹è½¬çš„æ ‡å¿—ä½
+	public float lr_domain=1;//ä¼ æ„Ÿå™¨å·¦å³æ—‹è½¬åœ°é˜ˆå€¼
 	public float[] directionDotXY=new float[2];
 	private SensorEventListener mySensorListener = new SensorEventListener(){
 		@Override
@@ -69,21 +69,21 @@ public class Aircraft_Activity extends Activity
 				float[] value=event.values;
 				if(-value[1]>lr_domain)
 				{
-					//×ó×ª
+					//å·¦è½¬
 					keyState=keyState|0x4;
 					keyState=keyState&0x7;
 					directionDotXY[0]=value[1];
 				}
 				else if(-value[1]<-lr_domain)
 				{
-					//ÓÒ×ª
+					//å³è½¬
 					keyState=keyState|0x8; 
 					keyState=keyState&0xB;
 					directionDotXY[0]=value[1];
 				}
 				else
 				{
-					//Ïà¹ØÊı¾İ¸´Î»
+					//ç›¸å…³æ•°æ®å¤ä½
 					keyState=keyState&0xB;
 					keyState=keyState&0x7;
 					directionDotXY[0]=0;
@@ -95,43 +95,43 @@ public class Aircraft_Activity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);       
-        flag =Settings.System.getInt(this.getContentResolver(), //ÅĞ¶Ïµ±Ç°ÊÇ·ñÄÜ¹»Ğı×ªÆÁ
+        flag =Settings.System.getInt(this.getContentResolver(), //åˆ¤æ–­å½“å‰æ˜¯å¦èƒ½å¤Ÿæ—‹è½¬å±
         		Settings.System.ACCELEROMETER_ROTATION, 0);
-        if(flag==0)//´ò¿ªĞı×ªÆÁ
+        if(flag==0)//æ‰“å¼€æ—‹è½¬å±
         {
         	Settings.System.putInt(this.getContentResolver(),Settings.System.ACCELEROMETER_ROTATION,1);
         }        
-        mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);//´«¸ĞÆ÷¹ÜÀíÕß    
-        initScreen();//³õÊ¼»¯ÆÁÄ»
-        initHandler();//ÏûÏ¢½ÓÊÕÆ÷
-        initSound();//³õÊ¼»¯
+        mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);//ä¼ æ„Ÿå™¨ç®¡ç†è€…    
+        initScreen();//åˆå§‹åŒ–å±å¹•
+        initHandler();//æ¶ˆæ¯æ¥æ”¶å™¨
+        initSound();//åˆå§‹åŒ–
         initDatebase();
-        collisionShake();//³õÊ¼»¯Õñ¶¯Æ÷
+        collisionShake();//åˆå§‹åŒ–æŒ¯åŠ¨å™¨
         goTo_StartVideo();
         
     }
-    //ÏûÏ¢½ÓÊÕÆ÷·½·¨
+    //æ¶ˆæ¯æ¥æ”¶å™¨æ–¹æ³•
     public void initHandler()
     {
     	handler=new Handler()
     	{
     		@Override
-			public void handleMessage(Message msg)//ÖØĞ´·½·¨ 
+			public void handleMessage(Message msg)//é‡å†™æ–¹æ³• 
     		{       	
     			switch(msg.what)
     			{
 	        		case 1:
-	    					isNoBack=false;//·µ»Ø¼ü¿ÉÓÃ
+	    					isNoBack=false;//è¿”å›é”®å¯ç”¨
 		        			gameView=new GLGameView(Aircraft_Activity.this);
 		        			setContentView(gameView);
-		        			bgMusic[0].start();//¿ªÆô±³¾°ÒôÀÖ
+		        			bgMusic[0].start();//å¼€å¯èƒŒæ™¯éŸ³ä¹
 	        		break;
         		}}};}
-    //³õÊ¼»¯ÆÁÄ»·Ö±æÂÊ
+    //åˆå§‹åŒ–å±å¹•åˆ†è¾¨ç‡
     public void initScreen()
     {
-    	requestWindowFeature(Window.FEATURE_NO_TITLE);//È¥µôÍ¨ÖªÀ¸
-    	getWindow().setFlags//È«ÆÁÏÔÊ¾    
+    	requestWindowFeature(Window.FEATURE_NO_TITLE);//å»æ‰é€šçŸ¥æ 
+    	getWindow().setFlags//å…¨å±æ˜¾ç¤º    
     	(	
     		WindowManager.LayoutParams.FLAG_FULLSCREEN,
     		WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -157,10 +157,10 @@ public class Aircraft_Activity extends Activity
     public void initDatebase()
     {    	
         String sql="create table if not exists plane(map char(2),grade char(4),time char(4),date char(10));";
-        SQLiteUtil.createTable(sql);//½¨±íSQLÓï¾ä
+        SQLiteUtil.createTable(sql);//å»ºè¡¨SQLè¯­å¥
     } 
-    public void goTo_StartVideo(){ //ÓÎÏ·¿ªÊ¼Ê×ÏÈ²¥·ÅÊÓÆµ
-    	isNoBack=true;//·µ»Ø¼ü²»¿ÉÓÃ
+    public void goTo_StartVideo(){ //æ¸¸æˆå¼€å§‹é¦–å…ˆæ’­æ”¾è§†é¢‘
+    	isNoBack=true;//è¿”å›é”®ä¸å¯ç”¨
     	setContentView(R.layout.start_video);
     	final MyVideoView myVideoView=(MyVideoView)findViewById(R.id.start_video_videoview);
     	myVideoView.setVideoURI(Uri.parse("android.resource://com.bn.menu/" + R.raw.logo));
@@ -168,17 +168,17 @@ public class Aircraft_Activity extends Activity
     	myVideoView.setOnCompletionListener(new OnCompletionListener(){
 			@Override
 			public void onCompletion(MediaPlayer mp){				
-				if(getGLVersion()<2){//ÕâÀï½øĞĞopengles²âÊÔ
-					//µ¯³ö¶Ô»°¿ò,ËµÃ÷²»Ö§³Ö¸ÃÓÎÏ·
+				if(getGLVersion()<2){//è¿™é‡Œè¿›è¡Œopenglesæµ‹è¯•
+					//å¼¹å‡ºå¯¹è¯æ¡†,è¯´æ˜ä¸æ”¯æŒè¯¥æ¸¸æˆ
 					showDialog(0);		
 				}else if(Build.VERSION.SDK_INT<Build.VERSION_CODES.FROYO){
 					showDialog(1);
 				 }else
-				handler.sendEmptyMessage(1);//½øÈëÖ÷²Ëµ¥½çÃæ
+				handler.sendEmptyMessage(1);//è¿›å…¥ä¸»èœå•ç•Œé¢
 			}});
     	}
    
-    public int getGLVersion()//»ñÈ¡OPENGLESËùÖ§³ÖµÄ×î¸ß°æ±¾    
+    public int getGLVersion()//è·å–OPENGLESæ‰€æ”¯æŒçš„æœ€é«˜ç‰ˆæœ¬    
     { 
         ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         ConfigurationInfo info = am.getDeviceConfigurationInfo();
@@ -186,40 +186,40 @@ public class Aircraft_Activity extends Activity
         majorVersion=majorVersion>>>16;
         return majorVersion;
     }  
-    public void collisionShake()//ÊÖ»úÕğ¶¯
+    public void collisionShake()//æ‰‹æœºéœ‡åŠ¨
     {  
     		mVibrator=(Vibrator)getApplication().getSystemService
             (Service.VIBRATOR_SERVICE);	
     }   
-    public void shake()//Õğ¶¯
+    public void shake()//éœ‡åŠ¨
     { 
-    	if(0==isVibrateOn)//¿ªÆôÕğ¶¯    
+    	if(0==isVibrateOn)//å¼€å¯éœ‡åŠ¨    
     	{	
     		mVibrator.vibrate( new long[]{0,30},-1);
     	}
     }    
-    public void initSound()//¼ÓÔØÉùÒô×ÊÔ´
+    public void initSound()//åŠ è½½å£°éŸ³èµ„æº
     {
     	bgMusic[0]=MediaPlayer.create(this,R.raw.menubg_music); 
-    	bgMusic[0].setLooping(true);//ÊÇ·ñÑ­»·
-    	bgMusic[0].setVolume(0.3f, 0.3f);//ÉùÒô´óĞ¡
+    	bgMusic[0].setLooping(true);//æ˜¯å¦å¾ªç¯
+    	bgMusic[0].setVolume(0.3f, 0.3f);//å£°éŸ³å¤§å°
     	bgMusic[1]=MediaPlayer.create(this,R.raw.gamebg_music);
-    	bgMusic[1].setLooping(true);//ÊÇ·ñÑ­»·
-    	bgMusic[1].setVolume(0.5f, 0.5f);//ÉùÒô´óĞ¡    	
-		soundPool=new SoundPool(4,AudioManager.STREAM_MUSIC,100);//´´½¨ÉùÒô³Ø
-		soundMap=new HashMap<Integer,Integer>();//´´½¨map
-		soundMap.put(0, soundPool.load(this, R.raw.explode,1));//·É»ú×²É½»òÕßËÀÍöµÄÉùÒô
-		soundMap.put(1, soundPool.load(this, R.raw.awp_fire,1));//Ì¹¿ËºÍ¸ßÉäÅÚ±»»÷±Ğ±¬Õ¨
-		soundMap.put(2, soundPool.load(this, R.raw.r700_fire,1));//±¬Õ¨
-		soundMap.put(3, soundPool.load(this, R.raw.bullet,1));//·É»ú·¢Éä×Óµ¯ÉùÒô
-		soundMap.put(4, soundPool.load(this, R.raw.missile,1));//·¢Éä×Óµ¯ÉùÒô
-		soundMap.put(5, soundPool.load(this, R.raw.m16_fire,1));//·¢Éä×Óµ¯ÉùÒô		
-		soundMap.put(6, soundPool.load(this, R.raw.rpg7_fire,1));//·¢Éä×Óµ¯ÉùÒô
-		soundMap.put(7, soundPool.load(this, R.raw.w1200_fire,1));//Ì¹¿Ë·¢Éä×Óµ¯ÉùÒô
-		soundMap.put(8, soundPool.load(this, R.raw.ground,1));//Ì¹¿Ë·¢Éä×Óµ¯ÉùÒô
+    	bgMusic[1].setLooping(true);//æ˜¯å¦å¾ªç¯
+    	bgMusic[1].setVolume(0.5f, 0.5f);//å£°éŸ³å¤§å°    	
+		soundPool=new SoundPool(4,AudioManager.STREAM_MUSIC,100);//åˆ›å»ºå£°éŸ³æ± 
+		soundMap=new HashMap<Integer,Integer>();//åˆ›å»ºmap
+		soundMap.put(0, soundPool.load(this, R.raw.explode,1));//é£æœºæ’å±±æˆ–è€…æ­»äº¡çš„å£°éŸ³
+		soundMap.put(1, soundPool.load(this, R.raw.awp_fire,1));//å¦å…‹å’Œé«˜å°„ç‚®è¢«å‡»æ¯™çˆ†ç‚¸
+		soundMap.put(2, soundPool.load(this, R.raw.r700_fire,1));//çˆ†ç‚¸
+		soundMap.put(3, soundPool.load(this, R.raw.bullet,1));//é£æœºå‘å°„å­å¼¹å£°éŸ³
+		soundMap.put(4, soundPool.load(this, R.raw.missile,1));//å‘å°„å­å¼¹å£°éŸ³
+		soundMap.put(5, soundPool.load(this, R.raw.m16_fire,1));//å‘å°„å­å¼¹å£°éŸ³		
+		soundMap.put(6, soundPool.load(this, R.raw.rpg7_fire,1));//å‘å°„å­å¼¹å£°éŸ³
+		soundMap.put(7, soundPool.load(this, R.raw.w1200_fire,1));//å¦å…‹å‘å°„å­å¼¹å£°éŸ³
+		soundMap.put(8, soundPool.load(this, R.raw.ground,1));//å¦å…‹å‘å°„å­å¼¹å£°éŸ³
 		soundMap.put(9, soundPool.load(this, R.raw.rotation,1));//
 	}
-    //²¥·ÅÉùÒôµÄ·½·¨
+    //æ’­æ”¾å£°éŸ³çš„æ–¹æ³•
 	public void playSound(int sound,int loop)
 	{
 		if(0!=isSoundOn)
@@ -232,12 +232,12 @@ public class Aircraft_Activity extends Activity
 	    float volume = streamVolumeCurrent / streamVolumeMax;   
 	    soundPool.play
 	    (
-	    	soundMap.get(sound), //ÉùÒô×ÊÔ´id
-    		volume, 				 //×óÉùµÀÒôÁ¿
-    		volume, 				 //ÓÒÉùµÀÒôÁ¿
-    		1, 						 //ÓÅÏÈ¼¶				 
-    		loop, 					 //Ñ­»·´ÎÊı -1´ø±íÓÀÔ¶Ñ­»·
-    		0.5f					 //»Ø·ÅËÙ¶È0.5f¡«2.0fÖ®¼ä
+	    	soundMap.get(sound), //å£°éŸ³èµ„æºid
+    		volume, 				 //å·¦å£°é“éŸ³é‡
+    		volume, 				 //å³å£°é“éŸ³é‡
+    		1, 						 //ä¼˜å…ˆçº§				 
+    		loop, 					 //å¾ªç¯æ¬¡æ•° -1å¸¦è¡¨æ°¸è¿œå¾ªç¯
+    		0.5f					 //å›æ”¾é€Ÿåº¦0.5fï½2.0fä¹‹é—´
 	    );
 	}
 	@Override
@@ -246,14 +246,14 @@ public class Aircraft_Activity extends Activity
     	Dialog dialog=null;
     	switch(id)
     	{
-    	  case 0://Éú³ÉÆÕÍ¨¶Ô»°¿òµÄ´úÂë
-    		  String msg="¸ÃÉè±¸ËùÖ§³ÖµÄopengles°æ±¾¹ıµÍ,²»Ö§³Ö´ËÓÎÏ·!!!";
+    	  case 0://ç”Ÿæˆæ™®é€šå¯¹è¯æ¡†çš„ä»£ç 
+    		  String msg="è¯¥è®¾å¤‡æ‰€æ”¯æŒçš„openglesç‰ˆæœ¬è¿‡ä½,ä¸æ”¯æŒæ­¤æ¸¸æˆ!!!";
     		  Builder b=new AlertDialog.Builder(this);  
-    		  b.setIcon(R.drawable.icon);//ÉèÖÃÍ¼±ê
-    		  b.setTitle("²»ºÃÒâË¼...");//ÉèÖÃ±êÌâ
-    		  b.setMessage(msg);//ÉèÖÃĞÅÏ¢
-    		  b.setPositiveButton(//Îª¶Ô»°¿òÉèÖÃ°´Å¥    		  
-    				"ÍË³ö" ,
+    		  b.setIcon(R.drawable.icon);//è®¾ç½®å›¾æ ‡
+    		  b.setTitle("ä¸å¥½æ„æ€...");//è®¾ç½®æ ‡é¢˜
+    		  b.setMessage(msg);//è®¾ç½®ä¿¡æ¯
+    		  b.setPositiveButton(//ä¸ºå¯¹è¯æ¡†è®¾ç½®æŒ‰é’®    		  
+    				"é€€å‡º" ,
     				new DialogInterface.OnClickListener()
     				{
 						@Override
@@ -263,14 +263,14 @@ public class Aircraft_Activity extends Activity
 						}});
     		  dialog=b.create();
     	  break;
-    	  case 1://Éú³ÉÆÕÍ¨¶Ô»°¿òµÄ´úÂë
-    		  String msgt="¸ÃÉè±¸µ±Ç°Android°æ±¾ÊÇµÍÓÚ2.2,²»Ö§³Ö´ËÓÎÏ·!!!";
+    	  case 1://ç”Ÿæˆæ™®é€šå¯¹è¯æ¡†çš„ä»£ç 
+    		  String msgt="è¯¥è®¾å¤‡å½“å‰Androidç‰ˆæœ¬æ˜¯ä½äº2.2,ä¸æ”¯æŒæ­¤æ¸¸æˆ!!!";
     		  Builder bb=new AlertDialog.Builder(this);  
-    		  bb.setIcon(R.drawable.icon);//ÉèÖÃÍ¼±ê
-    		  bb.setTitle("²»ºÃÒâË¼...");//ÉèÖÃ±êÌâ
-    		  bb.setMessage(msgt);//ÉèÖÃĞÅÏ¢
-    		  bb.setPositiveButton(//Îª¶Ô»°¿òÉèÖÃ°´Å¥    		  
-    				"ÍË³ö" ,
+    		  bb.setIcon(R.drawable.icon);//è®¾ç½®å›¾æ ‡
+    		  bb.setTitle("ä¸å¥½æ„æ€...");//è®¾ç½®æ ‡é¢˜
+    		  bb.setMessage(msgt);//è®¾ç½®ä¿¡æ¯
+    		  bb.setPositiveButton(//ä¸ºå¯¹è¯æ¡†è®¾ç½®æŒ‰é’®    		  
+    				"é€€å‡º" ,
     				new DialogInterface.OnClickListener()
     				{
 						@Override
@@ -298,27 +298,27 @@ public class Aircraft_Activity extends Activity
 	protected void onPause()
 	{								
 		super.onPause();
-		mySensorManager.unregisterListener(mySensorListener);	//È¡Ïû×¢²á¼àÌıÆ÷
+		mySensorManager.unregisterListener(mySensorListener);	//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
 	}	
-	public void exitRelease()//ÍË³öÊ±ĞèÒªÖ´ĞĞµÄ·½·¨
+	public void exitRelease()//é€€å‡ºæ—¶éœ€è¦æ‰§è¡Œçš„æ–¹æ³•
 	{
-		if(flag==0)//¹ØµôĞı×ªÆÁ
+		if(flag==0)//å…³æ‰æ—‹è½¬å±
 		{		
 			Settings.System.putInt(this.getContentResolver(),Settings.System.ACCELEROMETER_ROTATION,0);
 		}
 		System.exit(0);
 	}   
     @Override
-	public boolean onKeyDown(int keyCode, KeyEvent e)//ÉèÖÃÆÁÄ»¼àÌı     
+	public boolean onKeyDown(int keyCode, KeyEvent e)//è®¾ç½®å±å¹•ç›‘å¬     
     { 	
-    	if(keyCode==KeyEvent.KEYCODE_VOLUME_DOWN||keyCode==KeyEvent.KEYCODE_VOLUME_UP)//¿ØÖÆÒôÁ¿¼üÖ»ÄÜ¿ØÖÆÃ½ÌåÒôÁ¿µÄ´óĞ¡
+    	if(keyCode==KeyEvent.KEYCODE_VOLUME_DOWN||keyCode==KeyEvent.KEYCODE_VOLUME_UP)//æ§åˆ¶éŸ³é‡é”®åªèƒ½æ§åˆ¶åª’ä½“éŸ³é‡çš„å¤§å°
     	{
 	      setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	      return super.onKeyDown(keyCode, e);
     	}
     	if(keyCode==4)
     	{
-    		if(isNoBack)//·µ»Ø¼üÆÁ±Î    	
+    		if(isNoBack)//è¿”å›é”®å±è”½    	
     		{	
     			return true;
     		}
@@ -326,13 +326,13 @@ public class Aircraft_Activity extends Activity
     		{
         		return gameView.onKeyBackEvent();
         	}
-    		else //ÓÎÏ·¿ªÊ¼ÁË
+    		else //æ¸¸æˆå¼€å§‹äº†
     		{
     			if(!isCrash&&!isOvercome)
     			{
     				if(!isVideo)
     				{
-    					is_button_return=!is_button_return;//°´ÏÂ·µ»Ø°´Å¥    	
+    					is_button_return=!is_button_return;//æŒ‰ä¸‹è¿”å›æŒ‰é’®    	
     					if(bgMusic[1].isPlaying())
         				{
         					bgMusic[1].pause();

@@ -5,18 +5,18 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import android.opengl.GLES20;
-public class Celestial {	//±íÊ¾ĞÇ¿ÕÌìÇòµÄÀà
-	final float UNIT_SIZE=10.0f;//ÌìÇò°ë¾¶
-	private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-    int vCount=0;//ĞÇĞÇÊıÁ¿
-    float yAngle;//ÌìÇòÈÆYÖáĞı×ªµÄ½Ç¶È
-    float scale;//ĞÇĞÇ³ß´ç  
-    String mVertexShader;//¶¥µã×ÅÉ«Æ÷    	 
-    String mFragmentShader;//Æ¬Ôª×ÅÉ«Æ÷
-    int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß³ÌĞòid 
-    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid   
-    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-    int uPointSizeHandle;//¶¥µã³ß´ç²ÎÊıÒıÓÃ
+public class Celestial {	//è¡¨ç¤ºæ˜Ÿç©ºå¤©çƒçš„ç±»
+	final float UNIT_SIZE=10.0f;//å¤©çƒåŠå¾„
+	private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+    int vCount=0;//æ˜Ÿæ˜Ÿæ•°é‡
+    float yAngle;//å¤©çƒç»•Yè½´æ—‹è½¬çš„è§’åº¦
+    float scale;//æ˜Ÿæ˜Ÿå°ºå¯¸  
+    String mVertexShader;//é¡¶ç‚¹ç€è‰²å™¨    	 
+    String mFragmentShader;//ç‰‡å…ƒç€è‰²å™¨
+    int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç¨‹åºid 
+    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id   
+    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+    int uPointSizeHandle;//é¡¶ç‚¹å°ºå¯¸å‚æ•°å¼•ç”¨
     public Celestial(float scale,float yAngle,int vCount,MySurfaceView mv){
     	this.yAngle=yAngle;
     	this.scale=scale;
@@ -24,46 +24,46 @@ public class Celestial {	//±íÊ¾ĞÇ¿ÕÌìÇòµÄÀà
     	initVertexData();
     	intShader(mv);
     }
-    public void initVertexData(){ //³õÊ¼»¯¶¥µã×ø±êµÄ·½·¨    	  	
-    	//¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯       
+    public void initVertexData(){ //åˆå§‹åŒ–é¡¶ç‚¹åæ ‡çš„æ–¹æ³•    	  	
+    	//é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–       
         float vertices[]=new float[vCount*3];
         for(int i=0;i<vCount;i++){
-        	//Ëæ»ú²úÉúÃ¿¸öĞÇĞÇµÄxyz×ø±ê
+        	//éšæœºäº§ç”Ÿæ¯ä¸ªæ˜Ÿæ˜Ÿçš„xyzåæ ‡
         	double angleTempJD=Math.PI*2*Math.random();
         	double angleTempWD=Math.PI*(Math.random()-0.5f);
         	vertices[i*3]=(float)(UNIT_SIZE*Math.cos(angleTempWD)*Math.sin(angleTempJD));
         	vertices[i*3+1]=(float)(UNIT_SIZE*Math.sin(angleTempWD));
         	vertices[i*3+2]=(float)(UNIT_SIZE*Math.cos(angleTempWD)*Math.cos(angleTempJD));
         }
-        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
+        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
     }
-    public void intShader(MySurfaceView mv){    //³õÊ¼»¯×ÅÉ«Æ÷
-    	//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ       
+    public void intShader(MySurfaceView mv){    //åˆå§‹åŒ–ç€è‰²å™¨
+    	//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹       
         mVertexShader=ShaderUtil.loadFromAssetsFile("vertex_xk.sh", mv.getResources());
         ShaderUtil.checkGlError("==ss==");   
-        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹
         mFragmentShader=ShaderUtil.loadFromAssetsFile("frag_xk.sh", mv.getResources());  
-        //»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+        //åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
         ShaderUtil.checkGlError("==ss==");      
         mProgram = createProgram(mVertexShader, mFragmentShader);
-        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");        
-        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix"); 
-        //»ñÈ¡¶¥µã³ß´ç²ÎÊıÒıÓÃ
+        //è·å–é¡¶ç‚¹å°ºå¯¸å‚æ•°å¼•ç”¨
         uPointSizeHandle = GLES20.glGetUniformLocation(mProgram, "uPointSize"); 
     }
     public void drawSelf(){  
-   	    GLES20.glUseProgram(mProgram); //ÖÆ¶¨Ê¹ÓÃÄ³Ì××ÅÉ«Æ÷³ÌĞò
-        //½«×îÖÕ±ä»»¾ØÕó´«Èë×ÅÉ«Æ÷³ÌĞò
+   	    GLES20.glUseProgram(mProgram); //åˆ¶å®šä½¿ç”¨æŸå¥—ç€è‰²å™¨ç¨‹åº
+        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥ç€è‰²å™¨ç¨‹åº
         GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0);  
-        GLES20.glUniform1f(uPointSizeHandle, scale);  //½«¶¥µã³ß´ç´«Èë×ÅÉ«Æ÷³ÌĞò
-        GLES20.glVertexAttribPointer( //Îª»­±ÊÖ¸¶¨¶¥µãÎ»ÖÃÊı¾İ    
+        GLES20.glUniform1f(uPointSizeHandle, scale);  //å°†é¡¶ç‚¹å°ºå¯¸ä¼ å…¥ç€è‰²å™¨ç¨‹åº
+        GLES20.glVertexAttribPointer( //ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹ä½ç½®æ•°æ®    
         		maPositionHandle,   
         		3, 
         		GLES20.GL_FLOAT, 
@@ -71,7 +71,7 @@ public class Celestial {	//±íÊ¾ĞÇ¿ÕÌìÇòµÄÀà
                 3*4, 
                 mVertexBuffer   
         );   
-        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
         GLES20.glEnableVertexAttribArray(maPositionHandle);         
-        GLES20.glDrawArrays(GLES20.GL_POINTS, 0, vCount); //»æÖÆĞÇĞÇµã    
+        GLES20.glDrawArrays(GLES20.GL_POINTS, 0, vCount); //ç»˜åˆ¶æ˜Ÿæ˜Ÿç‚¹    
 }}

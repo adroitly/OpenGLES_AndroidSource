@@ -15,7 +15,7 @@ public class ContentConsumerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         cr=this.getContentResolver();
-        //³õÊ¼»¯²éÑ¯°´Å¥
+        //åˆå§‹åŒ–æŸ¥è¯¢æŒ‰é’®
         Button b=(Button)this.findViewById(R.id.Button01);
         b.setOnClickListener(
           new OnClickListener(){
@@ -38,7 +38,7 @@ public class ContentConsumerActivity extends Activity {
 	        	}
 	        	cur.close();
 	}});}
-    public void appendMessage(String msg){    //ÏòÎÄ±¾ÇøÖĞÌí¼ÓÎÄ±¾
+    public void appendMessage(String msg){    //å‘æ–‡æœ¬åŒºä¸­æ·»åŠ æ–‡æœ¬
     	EditText et=(EditText)this.findViewById(R.id.EditText02);
     	et.append(msg+"\n");
 }}

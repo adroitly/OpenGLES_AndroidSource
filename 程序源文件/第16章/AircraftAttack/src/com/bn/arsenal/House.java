@@ -11,18 +11,18 @@ import com.bn.core.MatrixState;
 public class House 
 {
 	public float house_width=ARSENAL_X;
-	public float house_height=ARSENAL_Y;//·¿ÎİµÄ´óĞ¡
+	public float house_height=ARSENAL_Y;//æˆ¿å±‹çš„å¤§å°
 	public float house_length=ARSENAL_Z;
 	public float house_roof_width=ARSENAL_X+15;
-	public float house_roof_height=45;//Îİ¶¥¾ØĞÎµÄ´óĞ¡
-	public float roof_front_Angle=10;//Îİ¶¥ÓëÆ½ÃæµÄ¼Ğ½Ç
-	public TextureRect house_front;//Ç°ºó
-	public TextureRect house_side;//²àÃæ
-	public TextureRect house_roof;//Îİ¶¥
-	public Triangle triangle;//²àÃæÈı½ÇĞÎ
-	public Annulus annulus;//ÑÕÉ«Ô²»·
-	public NumberForDraw nm;//Êı×ÖÒıÓÃ
-	public TextureRect backgroundRect;//±³¾°
+	public float house_roof_height=45;//å±‹é¡¶çŸ©å½¢çš„å¤§å°
+	public float roof_front_Angle=10;//å±‹é¡¶ä¸å¹³é¢çš„å¤¹è§’
+	public TextureRect house_front;//å‰å
+	public TextureRect house_side;//ä¾§é¢
+	public TextureRect house_roof;//å±‹é¡¶
+	public Triangle triangle;//ä¾§é¢ä¸‰è§’å½¢
+	public Annulus annulus;//é¢œè‰²åœ†ç¯
+	public NumberForDraw nm;//æ•°å­—å¼•ç”¨
+	public TextureRect backgroundRect;//èƒŒæ™¯
 	public float annulusR=250;
 	public float annulusr=200;
 	float roofx=0;
@@ -86,7 +86,7 @@ public class House
 		MatrixState.pushMatrix();
 		MatrixState.translate(0,4,0);
 		MatrixState.rotate(yuanAngle, 0, 1, 0);
-		annulus.drawSelf(texAnnulus);//µØÏÂÔ²»·
+		annulus.drawSelf(texAnnulus);//åœ°ä¸‹åœ†ç¯
 		MatrixState.popMatrix();
 		
 		

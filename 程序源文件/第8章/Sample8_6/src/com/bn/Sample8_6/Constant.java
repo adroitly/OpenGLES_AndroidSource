@@ -3,18 +3,18 @@ package com.bn.Sample8_6;
 
 public class Constant 
 {
-	//¹÷µÄ±ß³¤
+	//æ£çš„è¾¹é•¿
 	public static final float LENGTH = 2f;
-	//¶¥µãÇòÇò°ë¾¶
+	//é¡¶ç‚¹çƒçƒåŠå¾„
 	public static final float BALL_R=0.6f;
-	//Ô²Öù°ë¾¶
+	//åœ†æŸ±åŠå¾„
 	public static final float R=0.05f;
-	//ÇĞ·Ö½Ç¶È
+	//åˆ‡åˆ†è§’åº¦
 	public static final float ANGLE_SPAN=18;
-	//»Æ½ğ³¤·½ĞÎ´óĞ¡µÄËõ·Å±È
+	//é»„é‡‘é•¿æ–¹å½¢å¤§å°çš„ç¼©æ”¾æ¯”
 	public static final float TRIANGLE_SCALE=1;
-	//»Æ½ğ³¤·½ĞÎµÄ³¤µÄÒ»°ë
+	//é»„é‡‘é•¿æ–¹å½¢çš„é•¿çš„ä¸€åŠ
 	public static final float TRIANGLE_AHALF=2f;
-	//Ã¿¸ö¶şÊ®ÃæÌåÇĞ·ÖµÄ·ÖÊı
+	//æ¯ä¸ªäºŒåé¢ä½“åˆ‡åˆ†çš„åˆ†æ•°
 	public static  final int  SPLIT_COUNT=3;
 }

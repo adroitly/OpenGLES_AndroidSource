@@ -7,17 +7,17 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class SQLiteUtil 
 {
-	static SQLiteDatabase sld;//ÉùÃ÷Êı¾İ¿â
-	//´´½¨»ò´ò¿ªÊı¾İ¿âµÄ·½·¨
+	static SQLiteDatabase sld;//å£°æ˜æ•°æ®åº“
+	//åˆ›å»ºæˆ–æ‰“å¼€æ•°æ®åº“çš„æ–¹æ³•
     public static void createOrOpenDatabase()
     {
     	try
     	{
 	    	sld=SQLiteDatabase.openDatabase
 	    	(
-	    			"/data/data/com.bn.menu/mydb", //µ±Ç°Ó¦ÓÃ³ÌĞòÖ»ÄÜÔÚ×Ô¼ºµÄ°üÏÂ´´½¨Êı¾İ¿â
+	    			"/data/data/com.bn.menu/mydb", //å½“å‰åº”ç”¨ç¨‹åºåªèƒ½åœ¨è‡ªå·±çš„åŒ…ä¸‹åˆ›å»ºæ•°æ®åº“
 	    			null, 								//CursorFactory
-	    			SQLiteDatabase.OPEN_READWRITE|SQLiteDatabase.CREATE_IF_NECESSARY //¶ÁĞ´¡¢Èô²»´æÔÚÔò´´½¨
+	    			SQLiteDatabase.OPEN_READWRITE|SQLiteDatabase.CREATE_IF_NECESSARY //è¯»å†™ã€è‹¥ä¸å­˜åœ¨åˆ™åˆ›å»º
 	    	);
     	}
     	catch(Exception e)
@@ -25,7 +25,7 @@ public class SQLiteUtil
     		e.printStackTrace();
     	}
     }
-  //¹Ø±ÕÊı¾İ¿âµÄ·½·¨
+  //å…³é—­æ•°æ®åº“çš„æ–¹æ³•
     public static void closeDatabase()
     {
     	try
@@ -37,24 +37,24 @@ public class SQLiteUtil
             e.printStackTrace();
 		}
     }
-    //½¨±í
+    //å»ºè¡¨
     public static void createTable(String sql)
     {
-    	createOrOpenDatabase();//´ò¿ªÊı¾İ¿â
+    	createOrOpenDatabase();//æ‰“å¼€æ•°æ®åº“
     	try
     	{
-        	sld.execSQL(sql);//½¨±í
+        	sld.execSQL(sql);//å»ºè¡¨
     	}
 		catch(Exception e)
 		{
             e.printStackTrace();
 		}
-    	closeDatabase();//¹Ø±ÕÊı¾İ¿â
+    	closeDatabase();//å…³é—­æ•°æ®åº“
     }
-  //²åÈë¼ÇÂ¼µÄ·½·¨
+  //æ’å…¥è®°å½•çš„æ–¹æ³•
     public static void insert(String sql)
     {
-    	createOrOpenDatabase();//´ò¿ªÊı¾İ¿â
+    	createOrOpenDatabase();//æ‰“å¼€æ•°æ®åº“
     	try
     	{
         	sld.execSQL(sql);
@@ -63,12 +63,12 @@ public class SQLiteUtil
 		{
             e.printStackTrace();
 		}
-		closeDatabase();//¹Ø±ÕÊı¾İ¿â
+		closeDatabase();//å…³é—­æ•°æ®åº“
     }
-    //É¾³ı¼ÇÂ¼µÄ·½·¨
+    //åˆ é™¤è®°å½•çš„æ–¹æ³•
     public static  void delete(String sql)
     {
-    	createOrOpenDatabase();//´ò¿ªÊı¾İ¿â
+    	createOrOpenDatabase();//æ‰“å¼€æ•°æ®åº“
     	try
     	{
         	sld.execSQL(sql);
@@ -77,12 +77,12 @@ public class SQLiteUtil
 		{
 			e.printStackTrace();
 		}
-		closeDatabase();//¹Ø±ÕÊı¾İ¿â
+		closeDatabase();//å…³é—­æ•°æ®åº“
     }
-    //ĞŞ¸Ä¼ÇÂ¼µÄ·½·¨
+    //ä¿®æ”¹è®°å½•çš„æ–¹æ³•
     public static void update(String sql)
     {   
-    	createOrOpenDatabase();//´ò¿ªÊı¾İ¿â
+    	createOrOpenDatabase();//æ‰“å¼€æ•°æ®åº“
     	try
     	{
         	sld.execSQL(sql);    	
@@ -91,19 +91,19 @@ public class SQLiteUtil
 		{
 			e.printStackTrace();
 		}
-		closeDatabase();//¹Ø±ÕÊı¾İ¿â
+		closeDatabase();//å…³é—­æ•°æ®åº“
     }
-    //²éÑ¯µÄ·½·¨
+    //æŸ¥è¯¢çš„æ–¹æ³•
     public static ArrayList<String[]> query(String sql)
     {
-    	createOrOpenDatabase();//´ò¿ªÊı¾İ¿â
-    	ArrayList<String[]> al=new ArrayList<String[]>();//ĞÂ½¨´æ·Å²éÑ¯½á¹ûµÄÏòÁ¿
+    	createOrOpenDatabase();//æ‰“å¼€æ•°æ®åº“
+    	ArrayList<String[]> al=new ArrayList<String[]>();//æ–°å»ºå­˜æ”¾æŸ¥è¯¢ç»“æœçš„å‘é‡
     	try
     	{
            Cursor cur=sld.rawQuery(sql, new String[]{});
         	while(cur.moveToNext())
         	{
-        		int col=cur.getColumnCount();		//·µ»ØÃ¿Ò»ĞĞ¶¼¶àÉÙ×Ö¶Î
+        		int col=cur.getColumnCount();		//è¿”å›æ¯ä¸€è¡Œéƒ½å¤šå°‘å­—æ®µ
         		String[]temp=new String[col];
         		for( int i=0;i<col;i++)
 				{
@@ -117,7 +117,7 @@ public class SQLiteUtil
 		{
 			e.printStackTrace();
 		}
-		closeDatabase();//¹Ø±ÕÊı¾İ¿â
+		closeDatabase();//å…³é—­æ•°æ®åº“
 		return al;
     }  
 }

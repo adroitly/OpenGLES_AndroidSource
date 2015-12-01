@@ -13,8 +13,8 @@ public class Sample11_9Activity extends Activity
         super.onCreate(savedInstanceState);
         
         mview = new MySurfaceView(this);
-        mview.requestFocus();//获取焦点
-        mview.setFocusableInTouchMode(true);//设置为可触控  
+        mview.requestFocus();//鑾峰彇鐒︾偣
+        mview.setFocusableInTouchMode(true);//璁剧疆涓哄彲瑙︽帶  
         setContentView(mview);
         
     }

@@ -6,89 +6,89 @@ import com.bn.commonObject.CylinderForDraw;
 import com.bn.commonObject.TextureRect;
 import com.bn.core.MatrixState;
 /*
- * Ö÷ÒªÓÃÓÚ»æÖÆµ¼µ¯²Ëµ¥
+ * ä¸»è¦ç”¨äºç»˜åˆ¶å¯¼å¼¹èœå•
  */
 public class MissileMenuForDraw
 {
-	private TextureRect rect;//ÎÆÀí¾ØĞÎ
-	private BallTextureByVertex halfBall;//µ¯Í·ÓÃµÄ°ëÇò
-	private CylinderForDraw cylinder;//Ô²Öù
-	private TextureRect rect_tail;//ÎÆÀí¾ØĞÎ
-	private float rect_width=0.8f;//ÎÆÀí¾ØĞÎµÄ¿í¶È
-	private float rect_height=2.5f;//ÎÆÀí¾ØĞÎµÄ¸ß¶È
-	private float tail_width=2.3f;//Î²ÒíµÄ¿í¶È
-	private float tail_height=1.2f;//Î²ÒíµÄ¸ß¶È
-	private float rect_offset=(float) (rect_width/2/Math.tan(Math.toRadians(22.5f)));//ÎÆÀí¾ØĞÎÑØZÖá¸º·½ÏòµÄÆ«ÒÆÁ¿
-	private float radius=(float) (rect_width/2/Math.sin(Math.toRadians(22.5f)));//°ëÇòºÍÔ²ÖùµÄ°ë¾¶
-	private float halfBall_span=rect_height/2;//°ëÇòµÄÆ«ÒÆÁ¿
-	private float cylinder_length=0.2f;//Ô²ÖùµÄ³¤¶È
+	private TextureRect rect;//çº¹ç†çŸ©å½¢
+	private BallTextureByVertex halfBall;//å¼¹å¤´ç”¨çš„åŠçƒ
+	private CylinderForDraw cylinder;//åœ†æŸ±
+	private TextureRect rect_tail;//çº¹ç†çŸ©å½¢
+	private float rect_width=0.8f;//çº¹ç†çŸ©å½¢çš„å®½åº¦
+	private float rect_height=2.5f;//çº¹ç†çŸ©å½¢çš„é«˜åº¦
+	private float tail_width=2.3f;//å°¾ç¿¼çš„å®½åº¦
+	private float tail_height=1.2f;//å°¾ç¿¼çš„é«˜åº¦
+	private float rect_offset=(float) (rect_width/2/Math.tan(Math.toRadians(22.5f)));//çº¹ç†çŸ©å½¢æ²¿Zè½´è´Ÿæ–¹å‘çš„åç§»é‡
+	private float radius=(float) (rect_width/2/Math.sin(Math.toRadians(22.5f)));//åŠçƒå’Œåœ†æŸ±çš„åŠå¾„
+	private float halfBall_span=rect_height/2;//åŠçƒçš„åç§»é‡
+	private float cylinder_length=0.2f;//åœ†æŸ±çš„é•¿åº¦
 	public MissileMenuForDraw(int mProgram) 
 	{
-		rect=new TextureRect(rect_width, rect_height, mProgram);//´´½¨ÎÆÀí¾ØĞÎ¶ÔÏó
-		halfBall=new BallTextureByVertex(radius, mProgram, 0);//´´½¨°ëÇò
-		cylinder=new CylinderForDraw(radius, cylinder_length, mProgram); //´´½¨Ô²Öù
-		rect_tail=new TextureRect( tail_width, tail_height,mProgram);//´´½¨ÎÆÀí¾ØĞÎÅÚµ¯Î²Òí
+		rect=new TextureRect(rect_width, rect_height, mProgram);//åˆ›å»ºçº¹ç†çŸ©å½¢å¯¹è±¡
+		halfBall=new BallTextureByVertex(radius, mProgram, 0);//åˆ›å»ºåŠçƒ
+		cylinder=new CylinderForDraw(radius, cylinder_length, mProgram); //åˆ›å»ºåœ†æŸ±
+		rect_tail=new TextureRect( tail_width, tail_height,mProgram);//åˆ›å»ºçº¹ç†çŸ©å½¢ç‚®å¼¹å°¾ç¿¼
 	}
 	public void drawSelft(int[]tex_RectId)
 	{
-		//------------------------»æÖÆµ¼µ¯ÖĞ¼ä²¿·Ö
+		//------------------------ç»˜åˆ¶å¯¼å¼¹ä¸­é—´éƒ¨åˆ†
 		MatrixState.pushMatrix();
-		//»æÖÆµÚÒ»¸öÃæ
+		//ç»˜åˆ¶ç¬¬ä¸€ä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[0]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚ¶ş¸öÃæ
+		//ç»˜åˆ¶ç¬¬äºŒä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(45, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[1]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚÈı¸öÃæ
+		//ç»˜åˆ¶ç¬¬ä¸‰ä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(90, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[2]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚËÄ¸öÃæ
+		//ç»˜åˆ¶ç¬¬å››ä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(135, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[3]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚÎå¸öÃæ
+		//ç»˜åˆ¶ç¬¬äº”ä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(180, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[4]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚÁù¸öÃæ
+		//ç»˜åˆ¶ç¬¬å…­ä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(225, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[5]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚÆß¸öÃæ
+		//ç»˜åˆ¶ç¬¬ä¸ƒä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(270, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[6]);
 		MatrixState.popMatrix();
-		//»æÖÆµÚ°Ë¸öÃæ
+		//ç»˜åˆ¶ç¬¬å…«ä¸ªé¢
 		MatrixState.pushMatrix();
 		MatrixState.rotate(315, 0, 1, 0);
 		MatrixState.translate(0, 0, rect_offset);
 		rect.drawSelf(tex_RectId[7]);
 		MatrixState.popMatrix();
 		MatrixState.popMatrix();
-		//------------------------»æÖÆµ¼µ¯Í·²¿·Ö
+		//------------------------ç»˜åˆ¶å¯¼å¼¹å¤´éƒ¨åˆ†
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, halfBall_span, 0);
 		halfBall.drawSelf(tex_RectId[8]);
 		MatrixState.translate(0, -cylinder_length/2, 0);
 		cylinder.drawSelf(tex_RectId[9]);
 		MatrixState.popMatrix();
-		//------------------------»æÖÆµ¼µ¯Î²²¿·Ö
+		//------------------------ç»˜åˆ¶å¯¼å¼¹å°¾éƒ¨åˆ†
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -halfBall_span, 0);
 		MatrixState.rotate(180, 0, 0, 1);
@@ -96,7 +96,7 @@ public class MissileMenuForDraw
 		MatrixState.translate(0, -cylinder_length/2, 0);
 		cylinder.drawSelf(tex_RectId[9]);
 		MatrixState.popMatrix();
-		//»æÖÆÉÈÒ¶
+		//ç»˜åˆ¶æ‰‡å¶
 		GLES20.glDisable(GLES20.GL_CULL_FACE);
 		MatrixState.pushMatrix();
 		MatrixState.translate(0, -halfBall_span-tail_height/2, 0);

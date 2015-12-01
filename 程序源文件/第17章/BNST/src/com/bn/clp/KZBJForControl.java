@@ -8,33 +8,33 @@ import com.bn.st.d2.MyActivity;
 import android.opengl.GLES20;
 import static com.bn.clp.MyGLSurfaceView.*;
 
-//¿ÉÅö×²²¿¼ş¿ØÖÆÀà,½»Í¨ÖùµÄidÎª0£¬½»Í¨×¶µÄidÎª1   
+//å¯ç¢°æ’éƒ¨ä»¶æ§åˆ¶ç±»,äº¤é€šæŸ±çš„idä¸º0ï¼Œäº¤é€šé”¥çš„idä¸º1   
 public class KZBJForControl
 {
 	KZBJDrawer kzbjdrawer;
-	int id;//¶ÔÓ¦µÄÅö×²Îïid£¬0±íÊ¾½»Í¨Í²£»1±íÊ¾ÕÏ°­Îï
-	boolean state=false;//false±íÊ¾¿É±»Åö×²£¬true±íÊ¾±»×²ºó·ÉĞĞÖĞ£¬·ñÔò²»¿ÉÅö×²¡£
-	float x;//°Ú·ÅµÄ³õÊ¼Î»ÖÃ
+	int id;//å¯¹åº”çš„ç¢°æ’ç‰©idï¼Œ0è¡¨ç¤ºäº¤é€šç­’ï¼›1è¡¨ç¤ºéšœç¢ç‰©
+	boolean state=false;//falseè¡¨ç¤ºå¯è¢«ç¢°æ’ï¼Œtrueè¡¨ç¤ºè¢«æ’åé£è¡Œä¸­ï¼Œå¦åˆ™ä¸å¯ç¢°æ’ã€‚
+	float x;//æ‘†æ”¾çš„åˆå§‹ä½ç½®
 	float y;
 	float z;
 	
-	float alpha;//×ª¶¯½Ç¶È
-	float alphaX;//×ª¶¯ÖáÏòÁ¿
+	float alpha;//è½¬åŠ¨è§’åº¦
+	float alphaX;//è½¬åŠ¨è½´å‘é‡
 	float alphaY;
 	float alphaZ;
 	
-	float currentX;//·ÉĞĞÖĞµÄµ±Ç°Î»ÖÃ
+	float currentX;//é£è¡Œä¸­çš„å½“å‰ä½ç½®
 	float currentY;
 	float currentZ;
 	
-	int row;//Î»ÖÃËùÔÚµØÍ¼ĞĞºÍÁĞ
+	int row;//ä½ç½®æ‰€åœ¨åœ°å›¾è¡Œå’Œåˆ—
 	int col;
 	
-	float vx;//·ÉĞĞÖĞµÄËÙ¶È·ÖÁ¿
+	float vx;//é£è¡Œä¸­çš„é€Ÿåº¦åˆ†é‡
 	float vy;
 	float vz;
 	
-	float time_Fly;//·ÉĞĞÀÛ¼ÆÊ±¼ä
+	float time_Fly;//é£è¡Œç´¯è®¡æ—¶é—´
 	
 	MyActivity ma;
 	
@@ -52,19 +52,19 @@ public class KZBJForControl
 	
 	public void drawSelf(int texId,int dyFlag)
 	{
-		if(dyFlag==0)//»æÖÆÊµÌå
+		if(dyFlag==0)//ç»˜åˆ¶å®ä½“
 		{
 			MatrixState.pushMatrix();
 			if(!state)
-			{//Ô­Ê¼×´Ì¬»æÖÆ
+			{//åŸå§‹çŠ¶æ€ç»˜åˆ¶
 				MatrixState.translate(x, y, z);
-				//MyGLSurfaceViewÀàÖĞµÄ¸Ã¿ØÖÆÀàµÄÁĞ±í
+				//MyGLSurfaceViewç±»ä¸­çš„è¯¥æ§åˆ¶ç±»çš„åˆ—è¡¨
 				ma.gameV.kzbj_array[id].drawSelf(texId);
 			}
 			else
-			{//·ÉĞĞÖĞ»æÖÆ
+			{//é£è¡Œä¸­ç»˜åˆ¶
 				if(currentY>-40) 
-				{//Èç¹ûÒÑ¾­·ÉĞĞµ½µØÃæÒÔÏÂ£¬¾Í²»ÔÙ»æÖÆ
+				{//å¦‚æœå·²ç»é£è¡Œåˆ°åœ°é¢ä»¥ä¸‹ï¼Œå°±ä¸å†ç»˜åˆ¶
 					MatrixState.translate(currentX, currentY, currentZ);
 					MatrixState.rotate(alpha,alphaX, alphaY, alphaZ);
 					ma.gameV.kzbj_array[id].drawSelf(texId);
@@ -72,28 +72,28 @@ public class KZBJForControl
 			}
 			MatrixState.popMatrix();
 		}
-		else if(dyFlag==1)//»æÖÆµ¹Ó°
+		else if(dyFlag==1)//ç»˜åˆ¶å€’å½±
 		{
-			//Êµ¼Ê»æÖÆÊ±YµÄÁãµã
+			//å®é™…ç»˜åˆ¶æ—¶Yçš„é›¶ç‚¹
 			float yTranslate=y;
-			//½øĞĞ¾µÏñ»æÖÆÊ±µÄµ÷ÕûÖµ
+			//è¿›è¡Œé•œåƒç»˜åˆ¶æ—¶çš„è°ƒæ•´å€¼
 			float yjx=(0-yTranslate)*2;
 			
 			MatrixState.pushMatrix();
-			//¹Ø±Õ±³Ãæ¼ô²Ã
+			//å…³é—­èƒŒé¢å‰ªè£
             GLES20.glDisable(GLES20.GL_CULL_FACE);
 			if(!state)
-			{//Ô­Ê¼×´Ì¬»æÖÆ
+			{//åŸå§‹çŠ¶æ€ç»˜åˆ¶
 				MatrixState.translate(x, y, z);
 				MatrixState.translate(0, yjx, 0);
 				MatrixState.scale(1, -1, 1);
-				//MyGLSurfaceViewÀàÖĞµÄ¸Ã¿ØÖÆÀàµÄÁĞ±í
+				//MyGLSurfaceViewç±»ä¸­çš„è¯¥æ§åˆ¶ç±»çš„åˆ—è¡¨
 				ma.gameV.kzbj_array[id].drawSelf(texId);
 			}
 			else
-			{//·ÉĞĞÖĞ»æÖÆ
+			{//é£è¡Œä¸­ç»˜åˆ¶
 				if(currentY>-40) 
-				{//Èç¹ûÒÑ¾­·ÉĞĞµ½µØÃæÒÔÏÂ£¬¾Í²»ÔÙ»æÖÆ
+				{//å¦‚æœå·²ç»é£è¡Œåˆ°åœ°é¢ä»¥ä¸‹ï¼Œå°±ä¸å†ç»˜åˆ¶
 					MatrixState.translate(currentX, currentY, currentZ);
 					MatrixState.rotate(alpha,alphaX, alphaY, alphaZ);
 					MatrixState.translate(0, yjx, 0);
@@ -101,43 +101,43 @@ public class KZBJForControl
 					ma.gameV.kzbj_array[id].drawSelf(texId);
 				}
 			}
-			//´ò¿ª±³Ãæ¼ô²Ã
+			//æ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);
 			MatrixState.popMatrix();			
 		}
 	}
 	
-	//¸ù¾İ´¬µÄÎ»ÖÃ¼ÆËã³ö´¬Í·Î»ÖÃ£¬²¢ÅĞ¶ÏÊÇ·ñÓëÄ³¸ö¿É×²ÎïÌåÅö×²
+	//æ ¹æ®èˆ¹çš„ä½ç½®è®¡ç®—å‡ºèˆ¹å¤´ä½ç½®ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦ä¸æŸä¸ªå¯æ’ç‰©ä½“ç¢°æ’
 	public void checkColl(float bX,float bZ,float carAlphaTemp)
 	{
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		float bPointX=(float) (bX-BOAT_UNIT_SIZE*Math.sin(Math.toRadians(sight_angle)));
 		float bPointZ=(float) (bZ-BOAT_UNIT_SIZE*Math.cos(Math.toRadians(sight_angle)));		
 		
-		//¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float carCol=(float) Math.floor((bPointX+UNIT_SIZE/2)/UNIT_SIZE);
 		float carRow=(float) Math.floor((bPointZ+UNIT_SIZE/2)/UNIT_SIZE);
 		
 		if(carRow==row&&carCol==col)
-		{//Èç¹û´ó¼ÒÔÚÍ¬Ò»¸ö¸ñ×ÓÀï£¬½øĞĞÑÏ¸ñµÄÅö×²¼ì²âKZBJBJ
+		{//å¦‚æœå¤§å®¶åœ¨åŒä¸€ä¸ªæ ¼å­é‡Œï¼Œè¿›è¡Œä¸¥æ ¼çš„ç¢°æ’æ£€æµ‹KZBJBJ
 			double disP2=(bPointX-x)*(bPointX-x)+(bPointZ-z)*(bPointZ-z);
-			//Èô´¬Í·¾àÀëÄ¿±êĞ¡ÓÚ4ÔòÎªÅö×²
+			//è‹¥èˆ¹å¤´è·ç¦»ç›®æ ‡å°äº4åˆ™ä¸ºç¢°æ’
 			if(disP2<=4)
 			{
 				if(SoundEffectFlag)
 				{
 					ma.shengyinBoFang(4, 0); 
 				}				
-				state=true;//ÉèÖÃ×´Ì¬Îª·ÉĞĞÖĞ×´Ì¬
-				time_Fly=0;//·ÉĞĞ³ÖĞøÊ±¼äÇåÁã
+				state=true;//è®¾ç½®çŠ¶æ€ä¸ºé£è¡Œä¸­çŠ¶æ€
+				time_Fly=0;//é£è¡ŒæŒç»­æ—¶é—´æ¸…é›¶
 				alpha=0;
 				alphaX=(float) (-20*Math.cos(Math.toRadians(carAlphaTemp)));
 				alphaY=0;
 				alphaZ=(float) (20*Math.sin(Math.toRadians(carAlphaTemp)));
-				currentX=x;//ÉèÖÃ·ÉĞĞÆğÊ¼µãÎªÔ­Ê¼°Ú·Åµã
+				currentX=x;//è®¾ç½®é£è¡Œèµ·å§‹ç‚¹ä¸ºåŸå§‹æ‘†æ”¾ç‚¹
 				currentY=y;
 				currentZ=z;
-				//¸ù¾İ´¬µÄĞĞ½ø·½ÏòÈ·¶¨·ÉĞĞËÙ¶ÈµÄÈı¸ö·ÖÁ¿
+				//æ ¹æ®èˆ¹çš„è¡Œè¿›æ–¹å‘ç¡®å®šé£è¡Œé€Ÿåº¦çš„ä¸‰ä¸ªåˆ†é‡
 				vx=(float) (-20*Math.sin(Math.toRadians(carAlphaTemp)));
 				vy=15;
 				vz=(float) (-10*Math.cos(Math.toRadians(carAlphaTemp)));
@@ -145,21 +145,21 @@ public class KZBJForControl
 		}
 	}
 	
-	//·ÉĞĞÒÆ¶¯·½·¨£¬Ïß³Ì¶¨Ê±µ÷ÓÃ´Ë·½·¨£¬ÊµÏÖ¿É×²ÎïÌå·ÉĞĞ
+	//é£è¡Œç§»åŠ¨æ–¹æ³•ï¼Œçº¿ç¨‹å®šæ—¶è°ƒç”¨æ­¤æ–¹æ³•ï¼Œå®ç°å¯æ’ç‰©ä½“é£è¡Œ
 	public void go()
 	{
 		if(!state)
-		{//Èç¹û²»ÔÚ·ÉĞĞ×´Ì¬ÖĞ²»ĞèÒªgo
+		{//å¦‚æœä¸åœ¨é£è¡ŒçŠ¶æ€ä¸­ä¸éœ€è¦go
 			return;
 		}
 		
-		time_Fly=time_Fly+0.3f;//·ÉĞĞ³ÖĞøÊ±¼äÔö¼Ó
+		time_Fly=time_Fly+0.3f;//é£è¡ŒæŒç»­æ—¶é—´å¢åŠ 
 		alpha=alpha+10;
-		//¸ù¾İ·ÉĞĞËÙ¶ÈµÄÈı¸ö·ÖÁ¿¼°·ÉĞĞ³ÖĞøÊ±¼äÓë·ÉĞĞÆğµã¼ÆËãµ±Ç°Î»ÖÃ
+		//æ ¹æ®é£è¡Œé€Ÿåº¦çš„ä¸‰ä¸ªåˆ†é‡åŠé£è¡ŒæŒç»­æ—¶é—´ä¸é£è¡Œèµ·ç‚¹è®¡ç®—å½“å‰ä½ç½®
 		currentX=x+vx*time_Fly;
 		currentZ=z+vz*time_Fly;
-		currentY=y+vy*time_Fly-0.5f*5*time_Fly*time_Fly;//5ÎªÖØÁ¦¼ÓËÙ¶È
-		//µ±Åö×²ÎïÌå·ÉĞĞÂäµ½µØÃæÒÔÏÂ2000Ê±»Ö¸´Ô­Î»
+		currentY=y+vy*time_Fly-0.5f*5*time_Fly*time_Fly;//5ä¸ºé‡åŠ›åŠ é€Ÿåº¦
+		//å½“ç¢°æ’ç‰©ä½“é£è¡Œè½åˆ°åœ°é¢ä»¥ä¸‹2000æ—¶æ¢å¤åŸä½
 		if(currentY<-2000)
 		{
 			state=false;			

@@ -3,7 +3,7 @@ varying vec4 ambient;
 varying vec4 diffuse;
 varying vec4 specular;
 void main()                         
-{//»æÖÆÇò±¾Éí£¬ÎÆÀí´ÓÇòÎÆÀí²ÉÑù
-	vec4 finalColor=vec4(1.0,1.0,1.0,0.0);//ÎïÌåÑÕÉ«
-	gl_FragColor = finalColor*ambient+finalColor*specular+finalColor*diffuse;//¸ø´ËÆ¬ÔªÑÕÉ«Öµ   
+{//ç»˜åˆ¶çƒæœ¬èº«ï¼Œçº¹ç†ä»çƒçº¹ç†é‡‡æ ·
+	vec4 finalColor=vec4(1.0,1.0,1.0,0.0);//ç‰©ä½“é¢œè‰²
+	gl_FragColor = finalColor*ambient+finalColor*specular+finalColor*diffuse;//ç»™æ­¤ç‰‡å…ƒé¢œè‰²å€¼   
 }              

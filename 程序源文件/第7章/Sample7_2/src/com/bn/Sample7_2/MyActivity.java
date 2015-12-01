@@ -16,23 +16,23 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState)  
     {
     	super.onCreate(savedInstanceState);         
-        //ÉèÖÃÎªÈ«ÆÁ
+        //è®¾ç½®ä¸ºå…¨å±
         requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN ,  
 		              WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		//ÉèÖÃÎªºáÆÁÄ£Ê½
+		//è®¾ç½®ä¸ºæ¨ªå±æ¨¡å¼
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		//ÇĞ»»µ½Ö÷½çÃæ
+		//åˆ‡æ¢åˆ°ä¸»ç•Œé¢
 		setContentView(R.layout.main);		
-		//³õÊ¼»¯GLSurfaceView
+		//åˆå§‹åŒ–GLSurfaceView
         mGLSurfaceView = new MySurfaceView(this);
-        mGLSurfaceView.requestFocus();//»ñÈ¡½¹µã
-        mGLSurfaceView.setFocusableInTouchMode(true);//ÉèÖÃÎª¿É´¥¿Ø  
-        //½«×Ô¶¨ÒåµÄGLSurfaceViewÌí¼Óµ½Íâ²ãLinearLayoutÖĞ
+        mGLSurfaceView.requestFocus();//è·å–ç„¦ç‚¹
+        mGLSurfaceView.setFocusableInTouchMode(true);//è®¾ç½®ä¸ºå¯è§¦æ§  
+        //å°†è‡ªå®šä¹‰çš„GLSurfaceViewæ·»åŠ åˆ°å¤–å±‚LinearLayoutä¸­
         LinearLayout ll=(LinearLayout)findViewById(R.id.main_liner); 
         ll.addView(mGLSurfaceView); 
         
-        //ÎªRadioButtonÌí¼Ó¼àÌıÆ÷¼°SxTÑ¡Ôñ´úÂë
+        //ä¸ºRadioButtonæ·»åŠ ç›‘å¬å™¨åŠSxTé€‰æ‹©ä»£ç 
         RadioButton rab=(RadioButton)findViewById(R.id.edge);
         rab.setOnCheckedChangeListener(
             new OnCheckedChangeListener()
@@ -40,7 +40,7 @@ public class MyActivity extends Activity {
      			@Override
      			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) 
      			{
-     				//GL_CLAMP_TO_EDGEÄ£Ê½ÏÂ
+     				//GL_CLAMP_TO_EDGEæ¨¡å¼ä¸‹
      				if(isChecked)
      				{
      					mGLSurfaceView.currTextureId=mGLSurfaceView.textureCTId;
@@ -55,7 +55,7 @@ public class MyActivity extends Activity {
      			@Override
      			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) 
      			{
-     				//GL_REPEATÄ£Ê½ÏÂ
+     				//GL_REPEATæ¨¡å¼ä¸‹
      				if(isChecked)
      				{
      					mGLSurfaceView.currTextureId=mGLSurfaceView.textureREId;
@@ -65,7 +65,7 @@ public class MyActivity extends Activity {
         );        
     
         
-        //ÎªRadioButtonÌí¼Ó¼àÌıÆ÷¼°SxTÑ¡Ôñ´úÂë
+        //ä¸ºRadioButtonæ·»åŠ ç›‘å¬å™¨åŠSxTé€‰æ‹©ä»£ç 
         RadioButton rb=(RadioButton)findViewById(R.id.x11);
         rb.setOnCheckedChangeListener(
             new OnCheckedChangeListener()
@@ -74,7 +74,7 @@ public class MyActivity extends Activity {
      			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) 
      			{
      				if(isChecked)
-     				{//ÉèÖÃÎªÎÆÀí×ø±êSxT=1x1
+     				{//è®¾ç½®ä¸ºçº¹ç†åæ ‡SxT=1x1
      					mGLSurfaceView.trIndex=0;
      				}
      			}        	   
@@ -88,7 +88,7 @@ public class MyActivity extends Activity {
      			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) 
      			{
      				if(isChecked)
-     				{//ÉèÖÃÎªÎÆÀí×ø±êSxT=4x2
+     				{//è®¾ç½®ä¸ºçº¹ç†åæ ‡SxT=4x2
      					mGLSurfaceView.trIndex=1;
      				}
      			}        	   
@@ -102,7 +102,7 @@ public class MyActivity extends Activity {
      			public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) 
      			{
      				if(isChecked)
-     				{//ÉèÖÃÎªÎÆÀí×ø±êSxT=4x4
+     				{//è®¾ç½®ä¸ºçº¹ç†åæ ‡SxT=4x4
      					mGLSurfaceView.trIndex=2;
      				}
      			}        	   

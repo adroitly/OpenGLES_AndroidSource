@@ -2,7 +2,7 @@ package com.bn.Sample12_2;
 
 import static com.bn.Sample12_2.MySurfaceView.*;
 
-//µ¥¸öµÄÊ÷Àà
+//å•ä¸ªçš„æ ‘ç±»
 public class SingleTree implements Comparable<SingleTree>
 {
 	float x;
@@ -25,7 +25,7 @@ public class SingleTree implements Comparable<SingleTree>
 		MatrixState.popMatrix();
 	}
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÊ÷Ä¾Ãæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—æ ‘æœ¨é¢æœå‘
 		float xspan=x-cx;
 		float zspan=z-cz;
 		
@@ -41,7 +41,7 @@ public class SingleTree implements Comparable<SingleTree>
 	@Override
 	public int compareTo(SingleTree another)
 	{
-		//ÖØĞ´µÄ±È½ÏÁ½¸öÊ÷Ä¾ÀëÉãÏñ»ú¾àÀëµÄ·½·¨
+		//é‡å†™çš„æ¯”è¾ƒä¸¤ä¸ªæ ‘æœ¨ç¦»æ‘„åƒæœºè·ç¦»çš„æ–¹æ³•
 		float xs=x-cx;
 		float zs=z-cz;
 		

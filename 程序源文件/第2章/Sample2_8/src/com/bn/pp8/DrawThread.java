@@ -4,40 +4,40 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class DrawThread extends Thread {
-	private boolean flag = true;//Ïß³Ì¹¤×÷±êÖ¾Î»
-	private int sleepSpan = 100;//Ïß³ÌĞİÃßÊ±¼ä
-	MySurfaceView gameView;//¸¸½çÃæÒıÓÃ
-	SurfaceHolder surfaceHolder;//surfaceHolderÒıÓÃ
+	private boolean flag = true;//çº¿ç¨‹å·¥ä½œæ ‡å¿—ä½
+	private int sleepSpan = 100;//çº¿ç¨‹ä¼‘çœ æ—¶é—´
+	MySurfaceView gameView;//çˆ¶ç•Œé¢å¼•ç”¨
+	SurfaceHolder surfaceHolder;//surfaceHolderå¼•ç”¨
 
-	public DrawThread(MySurfaceView gameView) {//¹¹ÔìÆ÷
+	public DrawThread(MySurfaceView gameView) {//æ„é€ å™¨
 		this.gameView = gameView;
 		this.surfaceHolder = gameView.getHolder();
 	}
 
 	public void run() {
-		Canvas c;//ÉùÃ÷»­²¼
+		Canvas c;//å£°æ˜ç”»å¸ƒ
 		while (this.flag) {
 			c = null;
 			try {
-				// Ëø¶¨Õû¸ö»­²¼£¬ÔÚÄÚ´æÒªÇó±È½Ï¸ßµÄÇé¿öÏÂ£¬½¨Òé²ÎÊı²»ÒªÎªnull
+				// é”å®šæ•´ä¸ªç”»å¸ƒï¼Œåœ¨å†…å­˜è¦æ±‚æ¯”è¾ƒé«˜çš„æƒ…å†µä¸‹ï¼Œå»ºè®®å‚æ•°ä¸è¦ä¸ºnull
 				c = this.surfaceHolder.lockCanvas(null);
 				synchronized (this.surfaceHolder) {
-					gameView.onDraw(c);// »æÖÆ
+					gameView.onDraw(c);// ç»˜åˆ¶
 				}
 			} finally {
-				if (c != null) {// ²¢ÊÍ·ÅËø
+				if (c != null) {// å¹¶é‡Šæ”¾é”
 					this.surfaceHolder.unlockCanvasAndPost(c);
 				}
 			}
 			try {
-				Thread.sleep(sleepSpan);// Ë¯ÃßÖ¸¶¨ºÁÃëÊı
+				Thread.sleep(sleepSpan);// ç¡çœ æŒ‡å®šæ¯«ç§’æ•°
 			} catch (Exception e) {
-				e.printStackTrace();// ´òÓ¡¶ÑÕ»ĞÅÏ¢
+				e.printStackTrace();// æ‰“å°å †æ ˆä¿¡æ¯
 			}
 		}
 	}
 
-	public void setFlag(boolean flag) {//ÉèÖÃ±êÖ¾Î»µÄ·½·¨
+	public void setFlag(boolean flag) {//è®¾ç½®æ ‡å¿—ä½çš„æ–¹æ³•
 		this.flag = flag;
 	}
 }

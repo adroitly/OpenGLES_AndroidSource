@@ -14,30 +14,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 /**
- * ÓÃÓÚÏÔÊ¾¶Ô»°µÄÖ÷Activity
+ * ç”¨äºæ˜¾ç¤ºå¯¹è¯çš„ä¸»Activity
  */
 public class Sample2_10_Activity extends Activity {
-	private EditText outEt;// ²¼¾ÖÖĞµÄ¿Ø¼şÒıÓÃ
+	private EditText outEt;// å¸ƒå±€ä¸­çš„æ§ä»¶å¼•ç”¨
 	private Button sendBtn;
-	private String connectedNameStr = null;// ÒÑÁ¬½ÓµÄÉè±¸Ãû³Æ
-	private StringBuffer outSb;// ·¢ËÍµÄ×Ö·ûĞÅÏ¢
-	private BluetoothAdapter btAdapter = null;// ±¾µØÀ¶ÑÀÊÊÅäÆ÷
-	private MyService myService = null;// ServiceÒıÓÃ
+	private String connectedNameStr = null;// å·²è¿æ¥çš„è®¾å¤‡åç§°
+	private StringBuffer outSb;// å‘é€çš„å­—ç¬¦ä¿¡æ¯
+	private BluetoothAdapter btAdapter = null;// æœ¬åœ°è“ç‰™é€‚é…å™¨
+	private MyService myService = null;// Serviceå¼•ç”¨
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		// »ñÈ¡±¾µØÀ¶ÑÀÊÊÅäÆ÷
+		// è·å–æœ¬åœ°è“ç‰™é€‚é…å™¨
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 	}
 	@Override
 	public void onStart() {
 		super.onStart();
-		// Èç¹ûÀ¶ÑÀÃ»ÓĞ¿ªÆô£¬ÌáÊ¾¿ªÆôÀ¶ÑÀ£¬²¢ÍË³öActivity
+		// å¦‚æœè“ç‰™æ²¡æœ‰å¼€å¯ï¼Œæç¤ºå¼€å¯è“ç‰™ï¼Œå¹¶é€€å‡ºActivity
 		if (!btAdapter.isEnabled()) {
-			Toast.makeText(this, "ÇëÏÈ¿ªÆôÀ¶ÑÀ£¡", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "è¯·å…ˆå¼€å¯è“ç‰™ï¼", Toast.LENGTH_LONG).show();
 			finish();
-		} else {// ·ñÔò³õÊ¼»¯ÁÄÌìµÄ¿Ø¼ş
+		} else {// å¦åˆ™åˆå§‹åŒ–èŠå¤©çš„æ§ä»¶
 			if (myService == null)
 				initChat();
 		}
@@ -45,71 +45,71 @@ public class Sample2_10_Activity extends Activity {
 	@Override
 	public synchronized void onResume() {
 		super.onResume();		
-		if (myService != null) {// ´´½¨²¢¿ªÆôService
-			// Èç¹ûServiceÎª¿Õ×´Ì¬
+		if (myService != null) {// åˆ›å»ºå¹¶å¼€å¯Service
+			// å¦‚æœServiceä¸ºç©ºçŠ¶æ€
 			if (myService.getState() == MyService.STATE_NONE) {
-				myService.start();// ¿ªÆôService
+				myService.start();// å¼€å¯Service
 			}
 		}
 	}
 	private void initChat() {
-		outEt = (EditText) findViewById(R.id.edit_text_out);// »ñÈ¡±à¼­ÎÄ±¾¿òµÄÒıÓÃ
-		// »ñÈ¡·¢ËÍ°´Å¥ÒıÓÃ£¬²¢ÎªÆäÌí¼Ó¼àÌı
+		outEt = (EditText) findViewById(R.id.edit_text_out);// è·å–ç¼–è¾‘æ–‡æœ¬æ¡†çš„å¼•ç”¨
+		// è·å–å‘é€æŒ‰é’®å¼•ç”¨ï¼Œå¹¶ä¸ºå…¶æ·»åŠ ç›‘å¬
 		sendBtn = (Button) findViewById(R.id.button_send);
 		sendBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// »ñÈ¡±à¼­ÎÄ±¾¿òÖĞµÄÎÄ±¾ÄÚÈİ£¬²¢·¢ËÍÏûÏ¢
+				// è·å–ç¼–è¾‘æ–‡æœ¬æ¡†ä¸­çš„æ–‡æœ¬å†…å®¹ï¼Œå¹¶å‘é€æ¶ˆæ¯
 				TextView view = (TextView) findViewById(R.id.edit_text_out);
 				String message = view.getText().toString();
 				sendMessage(message);
 			}
 		});
-		myService = new MyService(this, mHandler);// ´´½¨Service¶ÔÏó
-		// ³õÊ¼»¯´æ´¢·¢ËÍÏûÏ¢µÄStringBuffer
+		myService = new MyService(this, mHandler);// åˆ›å»ºServiceå¯¹è±¡
+		// åˆå§‹åŒ–å­˜å‚¨å‘é€æ¶ˆæ¯çš„StringBuffer
 		outSb = new StringBuffer("");
 	}
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		if (myService != null) {// Í£Ö¹Service
+		if (myService != null) {// åœæ­¢Service
 			myService.stop();
 		}
 	}
-	// ·¢ËÍÏûÏ¢µÄ·½·¨
+	// å‘é€æ¶ˆæ¯çš„æ–¹æ³•
 	private void sendMessage(String message) {
-		// ÏÈ¼ì²éÊÇ·ñÒÑ¾­Á¬½Óµ½Éè±¸
+		// å…ˆæ£€æŸ¥æ˜¯å¦å·²ç»è¿æ¥åˆ°è®¾å¤‡
 		if (myService.getState() != MyService.STATE_CONNECTED) {
 			Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT)
 					.show();
 			return;
 		}
-		if (message.length() > 0) {// Èç¹ûÏûÏ¢²»Îª¿ÕÔÙ·¢ËÍÏûÏ¢
-			byte[] send = message.getBytes();// »ñÈ¡·¢ËÍÏûÏ¢µÄ×Ö½ÚÊı×é£¬²¢·¢ËÍ
+		if (message.length() > 0) {// å¦‚æœæ¶ˆæ¯ä¸ä¸ºç©ºå†å‘é€æ¶ˆæ¯
+			byte[] send = message.getBytes();// è·å–å‘é€æ¶ˆæ¯çš„å­—èŠ‚æ•°ç»„ï¼Œå¹¶å‘é€
 			myService.write(send);
-			// Ïû³ıStringBufferºÍ±à¼­ÎÄ±¾¿òµÄÄÚÈİ
+			// æ¶ˆé™¤StringBufferå’Œç¼–è¾‘æ–‡æœ¬æ¡†çš„å†…å®¹
 			outSb.setLength(0);
 			outEt.setText(outSb);
 		}
 	}
-	// ´¦Àí´ÓService·¢À´µÄÏûÏ¢µÄHandler
+	// å¤„ç†ä»Serviceå‘æ¥çš„æ¶ˆæ¯çš„Handler
 	private final Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case Constant.MSG_READ:
 				byte[] readBuf = (byte[]) msg.obj;
-				// ´´½¨Òª·¢ËÍµÄĞÅÏ¢µÄ×Ö·û´®
+				// åˆ›å»ºè¦å‘é€çš„ä¿¡æ¯çš„å­—ç¬¦ä¸²
 				String readMessage = new String(readBuf, 0, msg.arg1);
 				Toast.makeText(Sample2_10_Activity.this,
 						connectedNameStr + ":  " + readMessage,
 						Toast.LENGTH_LONG).show();
 				break;
 			case Constant.MSG_DEVICE_NAME:
-				// »ñÈ¡ÒÑÁ¬½ÓµÄÉè±¸Ãû³Æ£¬²¢µ¯³öÌáÊ¾ĞÅÏ¢
+				// è·å–å·²è¿æ¥çš„è®¾å¤‡åç§°ï¼Œå¹¶å¼¹å‡ºæç¤ºä¿¡æ¯
 				connectedNameStr = msg.getData().getString(
 						Constant.DEVICE_NAME);
 				Toast.makeText(getApplicationContext(),
-						"ÒÑÁ¬½Óµ½ " + connectedNameStr, Toast.LENGTH_SHORT)
+						"å·²è¿æ¥åˆ° " + connectedNameStr, Toast.LENGTH_SHORT)
 						.show();
 				break;
 			}
@@ -118,22 +118,22 @@ public class Sample2_10_Activity extends Activity {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
 		case 1:
-			// Èç¹ûÉè±¸ÁĞ±íActivity·µ»ØÒ»¸öÁ¬½ÓµÄÉè±¸
+			// å¦‚æœè®¾å¤‡åˆ—è¡¨Activityè¿”å›ä¸€ä¸ªè¿æ¥çš„è®¾å¤‡
 			if (resultCode == Activity.RESULT_OK) {
-				// »ñÈ¡Éè±¸µÄMACµØÖ·
+				// è·å–è®¾å¤‡çš„MACåœ°å€
 				String address = data.getExtras().getString(
 						MyDeviceListActivity.EXTRA_DEVICE_ADDR);
-				// »ñÈ¡BLuetoothDevice¶ÔÏó
+				// è·å–BLuetoothDeviceå¯¹è±¡
 				BluetoothDevice device = btAdapter
 						.getRemoteDevice(address);
-				myService.connect(device);// Á¬½Ó¸ÃÉè±¸
+				myService.connect(device);// è¿æ¥è¯¥è®¾å¤‡
 			}
 			break;
 		}
 	}
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		// Æô¶¯Éè±¸ÁĞ±íActivityËÑË÷Éè±¸
+		// å¯åŠ¨è®¾å¤‡åˆ—è¡¨Activityæœç´¢è®¾å¤‡
 		Intent serverIntent = new Intent(this, MyDeviceListActivity.class);
 		startActivityForResult(serverIntent, 1);
 		return true;

@@ -2,7 +2,7 @@ package com.bn.clp;
 
 import static com.bn.clp.MyGLSurfaceView.*;
 
-//±íÊ¾¹àÄ¾×éµÄ¿ØÖÆÀà
+//è¡¨ç¤ºçŒæœ¨ç»„çš„æ§åˆ¶ç±»
 public class ShrubForControl implements Comparable<ShrubForControl>
 {
     int rows;
@@ -27,7 +27,7 @@ public class ShrubForControl implements Comparable<ShrubForControl>
 	@Override
 	public int compareTo(ShrubForControl another) 
 	{
-		//ÖØĞ´µÄ±È½ÏÁ½¸ö¹àÄ¾ÀëÉãÏñ»ú¾àÀëµÄ·½·¨
+		//é‡å†™çš„æ¯”è¾ƒä¸¤ä¸ªçŒæœ¨ç¦»æ‘„åƒæœºè·ç¦»çš„æ–¹æ³•
 		float xs=xoffset-cxForSpecFrame;
 		float zs=zoffset-czForSpecFrame;
 		

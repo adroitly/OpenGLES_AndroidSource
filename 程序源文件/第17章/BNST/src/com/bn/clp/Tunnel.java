@@ -10,9 +10,9 @@ import com.bn.core.MatrixState;
 
 public class Tunnel extends BNDrawer
 {
-	//µ¥Î»³¤¶È
+	//å•ä½é•¿åº¦
 	float UNIT_SIZE=15f;
-	PipeLine ppl;//ËíµÀÏÂ·½µÄÍ¨µÀ
+	PipeLine ppl;//éš§é“ä¸‹æ–¹çš„é€šé“
 	Mountion mountion;
 	public Tunnel(int mProgramId0,int mProgramId1,float[][] yArray,int rows,int cols)
 	{
@@ -21,38 +21,38 @@ public class Tunnel extends BNDrawer
 	}
 	public void drawSelf(int[] texId,int udyflag)
 	{
-		//texId[0]ÎªËíµÀµÄÎÆÀíId£¬texId[1]±íÊ¾Ğ¡É½µÄÎÆÀíid£¬texId[2]±íÊ¾Ğ¡É½ÉÏ·½ÑÒÊ¯µÄÎÆÀíid
-		ppl.drawSelf(texId[0]);//»æÖÆÏÂ·½Í¨µÀ
+		//texId[0]ä¸ºéš§é“çš„çº¹ç†Idï¼ŒtexId[1]è¡¨ç¤ºå°å±±çš„çº¹ç†idï¼ŒtexId[2]è¡¨ç¤ºå°å±±ä¸Šæ–¹å²©çŸ³çš„çº¹ç†id
+		ppl.drawSelf(texId[0]);//ç»˜åˆ¶ä¸‹æ–¹é€šé“
 		mountion.drawSelf(texId[1],texId[2]);
 	}
 	
-	//ËíµÀÏÂ·½µÄÍ¨µÀ
+	//éš§é“ä¸‹æ–¹çš„é€šé“
 	private class PipeLine
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷µÄid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨çš„id
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+		//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 		int muMVPMatrixHandle;
-		//¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µãÊı¾İ»º³åºÍÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊıÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount=0;
 		
 		final float R=18f;
 		float height=UNIT_SIZE*3f;
-		final float ANGLE_SPAN=18;//·Ö¸îµÄ¶ÈÊı
+		final float ANGLE_SPAN=18;//åˆ†å‰²çš„åº¦æ•°
 		public PipeLine(int programId) 
 		{
 			initVertexData();
 			initShader(programId);
 		}
-		//³õÊ¼»¯¶¥µãÊı¾İµÄ·½·¨
+		//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„æ–¹æ³•
 		public void initVertexData()
 		{
 			List<Float> tempList=new ArrayList<Float>();
@@ -102,27 +102,27 @@ public class Tunnel extends BNDrawer
 			mTexCoorBuffer.position(0);
 		}
 		
-		//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
 		public void initShader(int programId) 
 		{
-			//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+			//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 	        mProgram = programId;
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+	        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 		}
 		
-		//Êµ¼ÊµÄ»æÖÆ·½·¨
+		//å®é™…çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId)
 		{
-			//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+			//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram); 
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-			//´«Èë¶¥µãÎ»ÖÃÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -132,7 +132,7 @@ public class Tunnel extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -142,51 +142,51 @@ public class Tunnel extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}
 	
-	//ËíµÀÉÏµÄĞ¡É½
+	//éš§é“ä¸Šçš„å°å±±
 	private class Mountion
 	{
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏßµÄid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿çš„id
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóÒıÓÃµÄid
+		//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 		int muMVPMatrixHandle;
-		//¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//²İµØµÄid
+		//è‰åœ°çš„id
 		int sTextureGrassHandle;
-		//Ê¯Í·µÄid
+		//çŸ³å¤´çš„id
 		int sTextureRockHandle;
-		//ÆğÊ¼xÖµ
+		//èµ·å§‹xå€¼
 		int b_YZ_StartYHandle;
-		//³¤¶È
+		//é•¿åº¦
 		int b_YZ_YSpanHandle;
-		//Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕó
+		//ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µ
 		int muMMatrixHandle;
-		//ÊÇ·ñÎªËíµÀÉ½µÄ±êÖ¾Î»µÄÒıÓÃid
+		//æ˜¯å¦ä¸ºéš§é“å±±çš„æ ‡å¿—ä½çš„å¼•ç”¨id
 		int sdflagHandle;
-		//´Ë´¦flagÖµÎª0±íÊ¾ËíµÀÉ½£¬ÖµÎª1±íÊ¾ÎªÆÕÍ¨É½
+		//æ­¤å¤„flagå€¼ä¸º0è¡¨ç¤ºéš§é“å±±ï¼Œå€¼ä¸º1è¡¨ç¤ºä¸ºæ™®é€šå±±
 		private int flag=0;
 		
 		
-		//¶¥µãÊı¾İ»º³åºÍÎÆÀí×ø±êÊı¾İ»º³å
+		//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer; 
-		//¶¥µãÊıÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount=0;
 		final float TEMP_UNIT_SIZE_X=6*UNIT_SIZE/15;
 		final float TEMP_UNIT_SIZE_Z=6*UNIT_SIZE/15;
@@ -197,18 +197,18 @@ public class Tunnel extends BNDrawer
 			initShader(programId);
 		}
 		
-		//³õÊ¼»¯¶¥µã×ø±êÊı¾İµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–é¡¶ç‚¹åæ ‡æ•°æ®çš„initVertexDataæ–¹æ³•
 	    public void initVertexData(float[][] yArray,int rows,int cols)
 	    {
-	    	//¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================begin============================
-	    	vCount=cols*rows*2*3;//Ã¿¸ö¸ñ×ÓÁ½¸öÈı½ÇĞÎ£¬Ã¿¸öÈı½ÇĞÎ3¸ö¶¥µã   
-	        float vertices[]=new float[vCount*3];//Ã¿¸ö¶¥µãxyzÈı¸ö×ø±ê
-	        int count=0;//¶¥µã¼ÆÊıÆ÷
+	    	//é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin============================
+	    	vCount=cols*rows*2*3;//æ¯ä¸ªæ ¼å­ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œæ¯ä¸ªä¸‰è§’å½¢3ä¸ªé¡¶ç‚¹   
+	        float vertices[]=new float[vCount*3];//æ¯ä¸ªé¡¶ç‚¹xyzä¸‰ä¸ªåæ ‡
+	        int count=0;//é¡¶ç‚¹è®¡æ•°å™¨
 	        for(int j=0;j<rows;j++)
 	        {
 	        	for(int i=0;i<cols;i++) 
 	        	{        		
-	        		//¼ÆËãµ±Ç°¸ñ×Ó×óÉÏ²àµã×ø±ê 
+	        		//è®¡ç®—å½“å‰æ ¼å­å·¦ä¸Šä¾§ç‚¹åæ ‡ 
 	        		float zsx=-TEMP_UNIT_SIZE_X*cols/2+i*TEMP_UNIT_SIZE_X;
 	        		float zsz=-TEMP_UNIT_SIZE_Z*rows/2+j*TEMP_UNIT_SIZE_Z;
 	        		
@@ -238,62 +238,62 @@ public class Tunnel extends BNDrawer
 	        	}
 	        }
 			
-	        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-	        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+	        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 
 	        
-	        //¶¥µãÎÆÀí×ø±êÊı¾İµÄ³õÊ¼»¯================begin============================
+	        //é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin============================
 	        float[] texCoor=generateTexCoor(cols,rows,8,8);
-	        //´´½¨¶¥µãÎÆÀí×ø±êÊı¾İ»º³å
+	        //åˆ›å»ºé¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 	        ByteBuffer cbb = ByteBuffer.allocateDirect(texCoor.length*4);
-	        cbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mTexCoorBuffer = cbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-	        mTexCoorBuffer.put(texCoor);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-	        mTexCoorBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        cbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mTexCoorBuffer = cbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+	        mTexCoorBuffer.put(texCoor);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+	        mTexCoorBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	    }
 		
-		//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
 		public void initShader(int programId) 
 		{
-			//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌĞò
+			//åŸºäºé¡¶ç‚¹ç€è‰²å™¨ä¸ç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 	        mProgram = programId;
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+	        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 	        
-	        //ÎÆÀí
-			//²İµØ
+	        //çº¹ç†
+			//è‰åœ°
 			sTextureGrassHandle=GLES20.glGetUniformLocation(mProgram, "sTextureGrass");
-			//Ê¯Í·
+			//çŸ³å¤´
 			sTextureRockHandle=GLES20.glGetUniformLocation(mProgram, "sTextureRock");
-			//xÎ»ÖÃ
+			//xä½ç½®
 			b_YZ_StartYHandle=GLES20.glGetUniformLocation(mProgram, "b_YZ_StartY");
-			//x×î´ó
+			//xæœ€å¤§
 			b_YZ_YSpanHandle=GLES20.glGetUniformLocation(mProgram, "b_YZ_YSpan");
-	    	//Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕóµÄÒıÓÃid
+	    	//ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µçš„å¼•ç”¨id
 	    	muMMatrixHandle=GLES20.glGetUniformLocation(mProgram, "uMMatrix");
 	    	sdflagHandle=GLES20.glGetUniformLocation(mProgram, "sdflag");
 		}        
 		
-		//Êµ¼ÊµÄ»æÖÆ·½·¨
+		//å®é™…çš„ç»˜åˆ¶æ–¹æ³•
 		public void drawSelf(int texId,int rock_textId)
 		{
-			//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+			//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram); 
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-	        //½«Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕó´«Èëµ½Shader³ÌĞòÖĞ
+	        //å°†ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µä¼ å…¥åˆ°Shaderç¨‹åºä¸­
 	        GLES20.glUniformMatrix4fv(muMMatrixHandle, 1, false, MatrixState.getMMatrix(), 0);
 	        GLES20.glUniform1i(sdflagHandle, flag);
-			//´«Èë¶¥µãÎ»ÖÃÊı¾İ
+			//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -303,7 +303,7 @@ public class Tunnel extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊı¾İ
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -313,45 +313,45 @@ public class Tunnel extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
 			GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, rock_textId);
-			GLES20.glUniform1i(sTextureGrassHandle, 0);//Ê¹ÓÃ0ºÅÎÆÀí
-	        GLES20.glUniform1i(sTextureRockHandle, 1); //Ê¹ÓÃ1ºÅÎÆÀí
+			GLES20.glUniform1i(sTextureGrassHandle, 0);//ä½¿ç”¨0å·çº¹ç†
+	        GLES20.glUniform1i(sTextureRockHandle, 1); //ä½¿ç”¨1å·çº¹ç†
 	        
-	        //´«ËÍÏàÓ¦µÄx²ÎÊı
+	        //ä¼ é€ç›¸åº”çš„xå‚æ•°
 	        GLES20.glUniform1f(b_YZ_StartYHandle, 0);
 	        GLES20.glUniform1f(b_YZ_YSpanHandle, SD_HEIGHT);
 	        
-	        //¿ªÆô»ìºÏ
+	        //å¼€å¯æ··åˆ
             GLES20.glEnable(GLES20.GL_BLEND);  
-            //ÉèÖÃ»ìºÏÒò×Ó
+            //è®¾ç½®æ··åˆå› å­
             GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
-	        //¹Ø±Õ»ìºÏ
+	        //å…³é—­æ··åˆ
             GLES20.glDisable(GLES20.GL_BLEND); 
 		} 
 	}
 	
-	//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+	//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
     public float[] generateTexCoor(int bw,int bh,float width,float height)
     {
     	float[] result=new float[bw*bh*6*2]; 
-    	float sizew=width/bw;//ÁĞÊı
-    	float sizeh=height/bh;//ĞĞÊı
+    	float sizew=width/bw;//åˆ—æ•°
+    	float sizeh=height/bh;//è¡Œæ•°
     	int c=0;
     	for(int i=0;i<bh;i++)
     	{
     		for(int j=0;j<bw;j++)
     		{
-    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
     			float s=j*sizew;
     			float t=i*sizeh;
     			

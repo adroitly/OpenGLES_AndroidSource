@@ -9,72 +9,72 @@ import android.graphics.Matrix;
 
 public class Constant 
 {
-	//ÓÃÀ´¿ØÖÆÑ¡´¬½çÃæÖĞÉÏÒ»¸öÏÂÒ»¸ö¼üµÄ×ÔÊÊÓ¦µÄ³£Á¿  0ºÅÎª480x800 1ºÅÎª480x854 2ºÅÎª540x960 3ºÅÎª320x480
+	//ç”¨æ¥æ§åˆ¶é€‰èˆ¹ç•Œé¢ä¸­ä¸Šä¸€ä¸ªä¸‹ä¸€ä¸ªé”®çš„è‡ªé€‚åº”çš„å¸¸é‡  0å·ä¸º480x800 1å·ä¸º480x854 2å·ä¸º540x960 3å·ä¸º320x480
 	public static final float[][] XC_Self_Adapter_Data_TRASLATE=
-	{//ÉÏÒ»¸ö  ÏÂÒ»¸ö  °´Å¥¸ß¶ÈµÄÒ»°ë
+	{//ä¸Šä¸€ä¸ª  ä¸‹ä¸€ä¸ª  æŒ‰é’®é«˜åº¦çš„ä¸€åŠ
 		{0.21f},
 		{0.22f},
 		{0.22f},
 		{0.20f}
 	};
 	
-	//ÓÃÀ´¿ØÖÆ²Ëµ¥ÒÆ¶¯¶¯»­µÄ³£Á¿
+	//ç”¨æ¥æ§åˆ¶èœå•ç§»åŠ¨åŠ¨ç”»çš„å¸¸é‡
 	public static final float MOVE_V=20f;
 	public static final long MOVE_TIME=15;
 	
-	//ÆÁÄ»µÄ´óĞ¡
+	//å±å¹•çš„å¤§å°
 	public static  float SCREEN_WIDTH;
 	public static  float SCREEN_HEIGHT;
-	//Ëõ·Å±ÈÀı
+	//ç¼©æ”¾æ¯”ä¾‹
     public static float ratio_width;
     public static float ratio_height;
-	//--------Éè¶¨·¿¼äµÄ³¤¿í¸ß
+	//--------è®¾å®šæˆ¿é—´çš„é•¿å®½é«˜
 	public static final float HOUSE_CHANG=50;
 	public static final float HOUSE_KUAN=50;
 	public static final float HOUSE_GAO=30;
-	//-------=Éè¶¨ÉãÏñ»ú¹Û²ìµãºÍÄ¿±êµãµÄ¾àÀë
+	//-------=è®¾å®šæ‘„åƒæœºè§‚å¯Ÿç‚¹å’Œç›®æ ‡ç‚¹çš„è·ç¦»
 	public static final float XC_DISTANCE=35;
-	//ÈıËÒ´¬¸ñ×ÓµÄËõ·Å±ÈÀı
+	//ä¸‰è‰˜èˆ¹æ ¼å­çš„ç¼©æ”¾æ¯”ä¾‹
 	public static final float RATIO_BOAT=8.0f;
-	//Õ¹Ì¨µÄ°ë¾¶ºÍ¸ß¶È
+	//å±•å°çš„åŠå¾„å’Œé«˜åº¦
 	public static final float RADIUS_DISPLAY=14;
 	public static final float LENGTH_DISPLAY=6;
-	//Éè¶¨·¿¼äµÄÑÕÉ«
+	//è®¾å®šæˆ¿é—´çš„é¢œè‰²
 	public static final float[][] HOUSE_COLOR=new float[][]
 	{
-		{1f,1f,1f},//²»Í¸Ã÷µØÃæ
-		{1f,1f,1f},//Í¸Ã÷Ç½
+		{1f,1f,1f},//ä¸é€æ˜åœ°é¢
+		{1f,1f,1f},//é€æ˜å¢™
 	};
-	//Éè¶¨Õ¹Ì¨Ô²ÖùÑÕÉ«
+	//è®¾å®šå±•å°åœ†æŸ±é¢œè‰²
 	public static final float[] COLOR_CYLINDER=new float[]{0.9f,0.9f,0.9f,1.0f};
-	//Éè¶¨Õ¹Ì¨Ô²ÃæÑÕÉ«
+	//è®¾å®šå±•å°åœ†é¢é¢œè‰²
 	public static final float[] COLOR_CIRCLE=new float[]{0.9f,0.9f,0.9f,0.5f};
-	//Î§Ç½µÄ¿í¸ß   ÕâÀïµÄ¿í¸ß¾ùÎª  Êµ¼ÊµÄÒ»°ë
+	//å›´å¢™çš„å®½é«˜   è¿™é‡Œçš„å®½é«˜å‡ä¸º  å®é™…çš„ä¸€åŠ
 	public static final float WALL_WIDHT=20f;
 	public static final float WALL_HEIGHT=18f;
-	//Ëõ·ÅÎÆÀí
+	//ç¼©æ”¾çº¹ç†
 	public static Bitmap scaleToFit(Bitmap bm,float width_Ratio,float height_Ratio)
 	{		
-    	int width = bm.getWidth(); 							//Í¼Æ¬¿í¶È
-    	int height = bm.getHeight();							//Í¼Æ¬¸ß¶È
+    	int width = bm.getWidth(); 							//å›¾ç‰‡å®½åº¦
+    	int height = bm.getHeight();							//å›¾ç‰‡é«˜åº¦
     	Matrix matrix = new Matrix(); 
-    	matrix.postScale((float)width_Ratio, (float)height_Ratio);				//Í¼Æ¬µÈ±ÈÀıËõĞ¡ÎªÔ­À´µÄfblRatio±¶
-    	Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);//ÉùÃ÷Î»Í¼        	
-    	return bmResult;									//·µ»Ø±»Ëõ·ÅµÄÍ¼Æ¬
+    	matrix.postScale((float)width_Ratio, (float)height_Ratio);				//å›¾ç‰‡ç­‰æ¯”ä¾‹ç¼©å°ä¸ºåŸæ¥çš„fblRatioå€
+    	Bitmap bmResult = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);//å£°æ˜ä½å›¾        	
+    	return bmResult;									//è¿”å›è¢«ç¼©æ”¾çš„å›¾ç‰‡
     }
 	
-	//ĞÂÌí¼ÓµÄ=================================================================================
+	//æ–°æ·»åŠ çš„=================================================================================
 		
-	//ĞèÒªµÄÍ¼Æ¬µÄid
+	//éœ€è¦çš„å›¾ç‰‡çš„id
 	public static int[] picId=new int[]
     {
-		R.drawable.background,		//´ó±³¾°
-		R.drawable.tmode,	//¼ÆÊ±Ä£Ê½±³¾°
-		R.drawable.rmode,	//¾ºËÙÄ£Ê½±³¾°
-		R.drawable.hengxian,	//ºáÏß
-		R.drawable.maohao,	//Ã°ºÅ
+		R.drawable.background,		//å¤§èƒŒæ™¯
+		R.drawable.tmode,	//è®¡æ—¶æ¨¡å¼èƒŒæ™¯
+		R.drawable.rmode,	//ç«é€Ÿæ¨¡å¼èƒŒæ™¯
+		R.drawable.hengxian,	//æ¨ªçº¿
+		R.drawable.maohao,	//å†’å·
     };
-	//Êı×ÖÍ¼Æ¬
+	//æ•°å­—å›¾ç‰‡
 	public static int[] picNum=new int[]
     {
 		R.drawable.d0,R.drawable.d1,
@@ -85,7 +85,7 @@ public class Constant
     };
 	public static Bitmap[] recordBitmap;
 	public static Bitmap[] recordNum;
-	//³õÊ¼»¯Í¼Æ¬µÄ·½·¨
+	//åˆå§‹åŒ–å›¾ç‰‡çš„æ–¹æ³•
 	public static void initBitmap(Resources res)
 	{
 		recordBitmap=new Bitmap[picId.length];
@@ -101,21 +101,21 @@ public class Constant
 	}
 	public static float[][] picLocation;
 	public static float[][] touchLocation;
-	//³õÊ¼»¯Í¼Æ¬µÄÎ»ÖÃĞÅÏ¢
+	//åˆå§‹åŒ–å›¾ç‰‡çš„ä½ç½®ä¿¡æ¯
 	public static void initLoaction()
 	{
-		//Í¼Æ¬µÄÎ»ÖÃĞÅÏ¢
+		//å›¾ç‰‡çš„ä½ç½®ä¿¡æ¯
 		float[][] tempPicLocation=new float[][]
 	    {
-			{0,0},//´ó±³¾°Í¼Æ¬Î»ÖÃ
-			{(SCREEN_WIDTH-recordBitmap[1].getWidth())/2,150},//¼ÆÊ±Ä£Ê½Í¼Æ¬Î»ÖÃ
+			{0,0},//å¤§èƒŒæ™¯å›¾ç‰‡ä½ç½®
+			{(SCREEN_WIDTH-recordBitmap[1].getWidth())/2,150},//è®¡æ—¶æ¨¡å¼å›¾ç‰‡ä½ç½®
 	    };
-		//¿É´¥¿ØÇø¼ä
+		//å¯è§¦æ§åŒºé—´
 		float[][] tempTouchLocation=new float[][]
 	    {
-			{(SCREEN_WIDTH-recordBitmap[1].getWidth())/2,150,(SCREEN_WIDTH)/2,200},//Timing ModeµÄÎ»ÖÃ
-			{(SCREEN_WIDTH)/2,150,(SCREEN_WIDTH+recordBitmap[1].getWidth())/2,200},//Racing ModeµÄÎ»ÖÃ
-			{(SCREEN_WIDTH-recordBitmap[1].getWidth())/2,230,(SCREEN_WIDTH+recordBitmap[1].getWidth())/2,410},//»æÖÆÊ±¼äĞÅÏ¢µÄÎ»ÖÃ
+			{(SCREEN_WIDTH-recordBitmap[1].getWidth())/2,150,(SCREEN_WIDTH)/2,200},//Timing Modeçš„ä½ç½®
+			{(SCREEN_WIDTH)/2,150,(SCREEN_WIDTH+recordBitmap[1].getWidth())/2,200},//Racing Modeçš„ä½ç½®
+			{(SCREEN_WIDTH-recordBitmap[1].getWidth())/2,230,(SCREEN_WIDTH+recordBitmap[1].getWidth())/2,410},//ç»˜åˆ¶æ—¶é—´ä¿¡æ¯çš„ä½ç½®
 	    };
 		
 		picLocation=new float[tempPicLocation.length][tempPicLocation[0].length];
@@ -125,11 +125,11 @@ public class Constant
 			for(int j=0;j<tempPicLocation[0].length;j++)
 			{
 				if(j%2==1)
-				{//¸ß¶È
+				{//é«˜åº¦
 					picLocation[i][j]=tempPicLocation[i][j]*ratio_height;
 				} 
 				else if(j%2==0)
-				{//¿í¶È
+				{//å®½åº¦
 					picLocation[i][j]=tempPicLocation[i][j];
 				}
 			} 
@@ -139,11 +139,11 @@ public class Constant
 			for(int j=0;j<tempTouchLocation[0].length;j++)
 			{
 				if(j%2==1)
-				{//¸ß¶È
+				{//é«˜åº¦
 					touchLocation[i][j]=tempTouchLocation[i][j]*ratio_height;
 				}
 				else if(j%2==0)
-				{//¿í¶È
+				{//å®½åº¦
 					touchLocation[i][j]=tempTouchLocation[i][j];
 				}
 			}

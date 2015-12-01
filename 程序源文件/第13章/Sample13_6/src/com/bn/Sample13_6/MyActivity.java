@@ -10,62 +10,62 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
-	SensorManager mySensorManager;	//SensorManager¶ÔÏóÒıÓÃ	
-	Sensor myIsNear; 	//´«¸ĞÆ÷ÀàĞÍ
-	TextView isNear;	//TextView¶ÔÏóÒıÓÃ	
+	SensorManager mySensorManager;	//SensorManagerå¯¹è±¡å¼•ç”¨	
+	Sensor myIsNear; 	//ä¼ æ„Ÿå™¨ç±»å‹
+	TextView isNear;	//TextViewå¯¹è±¡å¼•ç”¨	
 	TextView info;	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        isNear = (TextView)findViewById(R.id.distance);	//ÓÃÓÚÏÔÊ¾¾àÀëÖµ
-        info= (TextView)findViewById(R.id.info);//ÓÃÓÚÏÔÊ¾ÊÖ»úÖĞ¾àÀë´«¸ĞÆ÷µÄÏà¹ØĞÅÏ¢
+        isNear = (TextView)findViewById(R.id.distance);	//ç”¨äºæ˜¾ç¤ºè·ç¦»å€¼
+        info= (TextView)findViewById(R.id.info);//ç”¨äºæ˜¾ç¤ºæ‰‹æœºä¸­è·ç¦»ä¼ æ„Ÿå™¨çš„ç›¸å…³ä¿¡æ¯
         
-        //»ñµÃSensorManager¶ÔÏó
+        //è·å¾—SensorManagerå¯¹è±¡
         mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);	
-        //´«¸ĞÆ÷µÄÀàĞÍÎª¾àÀë´«¸ĞÆ÷
+        //ä¼ æ„Ÿå™¨çš„ç±»å‹ä¸ºè·ç¦»ä¼ æ„Ÿå™¨
         myIsNear=mySensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         
-        //´´½¨Ò»¸öStringBuffer
+        //åˆ›å»ºä¸€ä¸ªStringBuffer
         StringBuffer strb=new StringBuffer();
-        strb.append("\nÃû³Æ: ");
+        strb.append("\nåç§°: ");
         strb.append(myIsNear.getName());
-        strb.append("\nºÄµçÁ¿(mA): ");
+        strb.append("\nè€—ç”µé‡(mA): ");
         strb.append(myIsNear.getPower());
-        strb.append("\nÀàĞÍ±àºÅ  : ");
+        strb.append("\nç±»å‹ç¼–å·  : ");
         strb.append(myIsNear.getType());
-        strb.append("\nÖÆÔìÉÌ: ");  
+        strb.append("\nåˆ¶é€ å•†: ");  
         strb.append(myIsNear.getVendor());
-        strb.append("\n°æ±¾: ");
+        strb.append("\nç‰ˆæœ¬: ");
         strb.append(myIsNear.getVersion());
-        strb.append("\n×î´ó²âÁ¿·¶Î§: ");
+        strb.append("\næœ€å¤§æµ‹é‡èŒƒå›´: ");
         strb.append(myIsNear.getMaximumRange());
         
-        info.setText(strb.toString());	//½«ĞÅÏ¢×Ö·û´®¸³ÓèÃûÎªinfoµÄTextView
+        info.setText(strb.toString());	//å°†ä¿¡æ¯å­—ç¬¦ä¸²èµ‹äºˆåä¸ºinfoçš„TextView
     }
     @Override
-	protected void onResume(){ //ÖØĞ´onResume·½·¨
+	protected void onResume(){ //é‡å†™onResumeæ–¹æ³•
 		super.onResume();
 		mySensorManager.registerListener(
-				mySensorListener, 		//Ìí¼Ó¼àÌı
-				myIsNear, 		//´«¸ĞÆ÷ÀàĞÍ
-				SensorManager.SENSOR_DELAY_NORMAL	//´«¸ĞÆ÷ÊÂ¼ş´«µİµÄÆµ¶È
+				mySensorListener, 		//æ·»åŠ ç›‘å¬
+				myIsNear, 		//ä¼ æ„Ÿå™¨ç±»å‹
+				SensorManager.SENSOR_DELAY_NORMAL	//ä¼ æ„Ÿå™¨äº‹ä»¶ä¼ é€’çš„é¢‘åº¦
 		);
 	}	
 	@Override
-	protected void onPause(){//ÖØĞ´onPause·½·¨	
+	protected void onPause(){//é‡å†™onPauseæ–¹æ³•	
 		super.onPause();
-		mySensorManager.unregisterListener(mySensorListener);//È¡Ïû×¢²á¼àÌıÆ÷
+		mySensorManager.unregisterListener(mySensorListener);//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
 	}
 	private SensorEventListener mySensorListener = 
-		new SensorEventListener(){//¿ª·¢ÊµÏÖÁËSensorEventListener½Ó¿ÚµÄ´«¸ĞÆ÷¼àÌıÆ÷
+		new SensorEventListener(){//å¼€å‘å®ç°äº†SensorEventListeneræ¥å£çš„ä¼ æ„Ÿå™¨ç›‘å¬å™¨
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy){}
 		@Override
 		public void onSensorChanged(SensorEvent event){
 			float []values=event.values;
-			isNear.setText("¾àÀëÎª£º"+values[0]);			
+			isNear.setText("è·ç¦»ä¸ºï¼š"+values[0]);			
 		}
 	};
 	

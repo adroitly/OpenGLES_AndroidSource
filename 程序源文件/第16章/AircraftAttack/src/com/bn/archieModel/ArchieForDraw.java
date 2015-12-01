@@ -4,60 +4,60 @@ import static com.bn.gameView.Constant.*;
 import com.bn.commonObject.*;
 import com.bn.core.MatrixState;
 /*
- * »æÖÆ¸ßÉäÅÚ
- * ÆäÖĞÔ­µãÎ»ÓÚÅÚÌ¨µÄ¼¸ºÎÖĞĞÄ´¦
- * ÄÇÃ´ µ²°åÉÏÉıµÄ¾àÀëÎª  µ²°åµÄ¸ß¶ÈµÄÒ»°ëºÍÅÚÌ¨¸ß¶ÈµÄÒ»°ë,×óÓÒµÄÆ«ÒÆÁ¿ÎªÅÚ¹ÜµÄ°ë¾¶
- * ÅÚ¹Ü×îµÍ¶ËµÄÎ»ÖÃÎªÏòÉÏÒÆ¶¯µÄ¾àÀëÎª  : ÅÚÌ¨¸ß¶ÈÒ»°ë+ÅÚ¹Ü³¤¶ÈÒ»°ë
+ * ç»˜åˆ¶é«˜å°„ç‚®
+ * å…¶ä¸­åŸç‚¹ä½äºç‚®å°çš„å‡ ä½•ä¸­å¿ƒå¤„
+ * é‚£ä¹ˆ æŒ¡æ¿ä¸Šå‡çš„è·ç¦»ä¸º  æŒ¡æ¿çš„é«˜åº¦çš„ä¸€åŠå’Œç‚®å°é«˜åº¦çš„ä¸€åŠ,å·¦å³çš„åç§»é‡ä¸ºç‚®ç®¡çš„åŠå¾„
+ * ç‚®ç®¡æœ€ä½ç«¯çš„ä½ç½®ä¸ºå‘ä¸Šç§»åŠ¨çš„è·ç¦»ä¸º  : ç‚®å°é«˜åº¦ä¸€åŠ+ç‚®ç®¡é•¿åº¦ä¸€åŠ
  */
 public class ArchieForDraw    
 {
-	BarrelForDraw barrel;//ÅÚ¹Ü
-	BarbetteForDraw barbette;//ÅÚÌ¨
-	CubeForDraw cube;//´´½¨µ²°å
-	public float barrel_elevation=30;//ÅÚ¹ÜµÄÑö½Ç
-	public float barrel_direction=0;//ÅÚ¹ÜµÄ·½Ïò½Ç
+	BarrelForDraw barrel;//ç‚®ç®¡
+	BarbetteForDraw barbette;//ç‚®å°
+	CubeForDraw cube;//åˆ›å»ºæŒ¡æ¿
+	public float barrel_elevation=30;//ç‚®ç®¡çš„ä»°è§’
+	public float barrel_direction=0;//ç‚®ç®¡çš„æ–¹å‘è§’
 	
-	float barrel_down_X=0;//ÅÚ¹Üµ×¶ËµÄ×ø±ê
+	float barrel_down_X=0;//ç‚®ç®¡åº•ç«¯çš„åæ ‡
 	public float barrel_down_Y=barbette_length/2+cube_height/2;
 	float barrel_down_Z=0;
 	
-	public float barrel_curr_X;//ÅÚ¹Ü¼¸ºÎÖĞĞÄµÄX×ø±ê
-	public float barrel_curr_Y;//ÅÚ¹Ü¼¸ºÎÖĞĞÄµÄY×ø±ê
-	public float barrel_curr_Z;//ÅÚ¹Ü¼¸ºÎÖĞĞÄµÄZ×ø±ê
+	public float barrel_curr_X;//ç‚®ç®¡å‡ ä½•ä¸­å¿ƒçš„Xåæ ‡
+	public float barrel_curr_Y;//ç‚®ç®¡å‡ ä½•ä¸­å¿ƒçš„Yåæ ‡
+	public float barrel_curr_Z;//ç‚®ç®¡å‡ ä½•ä¸­å¿ƒçš„Zåæ ‡
 	
 	public ArchieForDraw(BarrelForDraw barrel,BarbetteForDraw barbette,CubeForDraw cube)
 	{
-		//´´½¨ÅÚ¹Ü
+		//åˆ›å»ºç‚®ç®¡
 		this.barrel=barrel;
 		this.barbette=barbette;
 		this.cube=cube;
 	}
 	public void drawSelf(int texBarbetteId[],int texCubeId,int texBarrelId[])
 	{
-		//ÕâÀï¼ÆËãÅÚ¹ÜµÄ×ËÌ¬
-		barrel_curr_Y=(float) (barrel_down_Y+Math.sin(Math.toRadians(barrel_elevation))*barrel_length/2);//ÅÚ¹ÜµÄY×ø±ê
-		barrel_curr_Z=(float) (barrel_down_Z-Math.cos(Math.toRadians(barrel_elevation))*barrel_length/2);//ÅÚ¹ÜµÄZ×ø±ê
+		//è¿™é‡Œè®¡ç®—ç‚®ç®¡çš„å§¿æ€
+		barrel_curr_Y=(float) (barrel_down_Y+Math.sin(Math.toRadians(barrel_elevation))*barrel_length/2);//ç‚®ç®¡çš„Yåæ ‡
+		barrel_curr_Z=(float) (barrel_down_Z-Math.cos(Math.toRadians(barrel_elevation))*barrel_length/2);//ç‚®ç®¡çš„Zåæ ‡
 		MatrixState.pushMatrix();
 		MatrixState.rotate(barrel_direction,0, 1, 0);
-		//»æÖÆÅÚÌ¨
+		//ç»˜åˆ¶ç‚®å°
 		MatrixState.pushMatrix();
 		barbette.drawSelf(texBarbetteId);
 		MatrixState.popMatrix();
-		//´´½¨×óµ²°å
+		//åˆ›å»ºå·¦æŒ¡æ¿
 		MatrixState.pushMatrix();
 		MatrixState.translate(-barrel_radius-cube_length/2, cube_height/2+barbette_length/2, 0);
 		cube.drawSelf(texCubeId);
 		MatrixState.popMatrix();
-		//´´½¨ÓÒµ²°å
+		//åˆ›å»ºå³æŒ¡æ¿
 		MatrixState.pushMatrix();
 		MatrixState.translate(barrel_radius+cube_length/2, cube_height/2+barbette_length/2, 0);
 		cube.drawSelf(texCubeId);
 		MatrixState.popMatrix();
-		//»æÖÆÅÚ¹Ü
+		//ç»˜åˆ¶ç‚®ç®¡
 		MatrixState.pushMatrix();
-		//ÏÈÒÆ¶¯
+		//å…ˆç§»åŠ¨
 		MatrixState.translate(0, barrel_curr_Y, barrel_curr_Z);
-		//ºóĞı×ª
+		//åæ—‹è½¬
 		MatrixState.rotate(barrel_elevation-90, 1, 0, 0);
 		barrel.drawSelf(texBarrelId);
 		MatrixState.popMatrix();

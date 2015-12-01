@@ -1,5 +1,5 @@
 package com.bn.clp;
-//用来进行绘制切割的类
+//鐢ㄦ潵杩涜缁樺埗鍒囧壊鐨勭被
 public class ClipGrid 
 {
    public static final boolean[][][] CLIP_MASK=

@@ -8,19 +8,19 @@ public class UtilTools {
 
 	}
 
-	float bHalf = 0;// »Æ½ğ³¤·½ĞÎµÄ¿í
-	float r = 0;// ×ãÇòÌ¼µÄ°ë¾¶
+	float bHalf = 0;// é»„é‡‘é•¿æ–¹å½¢çš„å®½
+	float r = 0;// è¶³çƒç¢³çš„åŠå¾„
 	int count = 0;
-	   public ResultData initVertexData(float scale, float aHalf, int n) {//´óĞ¡£¬»Æ½ğ³¤·½ĞÎµÄ³¤µÄÒ»°ë£¬·Ö¶ÎÊı
+	   public ResultData initVertexData(float scale, float aHalf, int n) {//å¤§å°ï¼Œé»„é‡‘é•¿æ–¹å½¢çš„é•¿çš„ä¸€åŠï¼Œåˆ†æ®µæ•°
 		ResultData Rda = new ResultData();
-		aHalf *= scale;//»Æ½ğ³¤·½ĞÎµÄ³¤
-		// ³õÊ¼»¯³ÉÔ±±äÁ¿
-		bHalf = aHalf * 0.618034f;// »Æ½ğ³¤·½ĞÎµÄ¿í
-		r = (float) Math.sqrt(aHalf * aHalf + bHalf * bHalf);//×ãÇòÌ¼·Ö×ÓµÄ°ë¾¶
-		// Õı20ÃæÌå×ø±êÊı¾İ³õÊ¼»¯
-		ArrayList<Float> alVertix20 = new ArrayList<Float>();// Õı20ÃæÌåµÄ¶¥µãÁĞ±í£¨Î´¾íÈÆ£©
-		ArrayList<Integer> alFaceIndex20 = new ArrayList<Integer>();// Õı20ÃæÌå×éÖ¯³ÉÃæµÄ¶¥µãµÄË÷ÒıÖµÁĞ±í
-		// Õı20ÃæÌå¶¥µã
+		aHalf *= scale;//é»„é‡‘é•¿æ–¹å½¢çš„é•¿
+		// åˆå§‹åŒ–æˆå‘˜å˜é‡
+		bHalf = aHalf * 0.618034f;// é»„é‡‘é•¿æ–¹å½¢çš„å®½
+		r = (float) Math.sqrt(aHalf * aHalf + bHalf * bHalf);//è¶³çƒç¢³åˆ†å­çš„åŠå¾„
+		// æ­£20é¢ä½“åæ ‡æ•°æ®åˆå§‹åŒ–
+		ArrayList<Float> alVertix20 = new ArrayList<Float>();// æ­£20é¢ä½“çš„é¡¶ç‚¹åˆ—è¡¨ï¼ˆæœªå·ç»•ï¼‰
+		ArrayList<Integer> alFaceIndex20 = new ArrayList<Integer>();// æ­£20é¢ä½“ç»„ç»‡æˆé¢çš„é¡¶ç‚¹çš„ç´¢å¼•å€¼åˆ—è¡¨
+		// æ­£20é¢ä½“é¡¶ç‚¹
 		alVertix20.add(0f);alVertix20.add(aHalf);	alVertix20.add(-bHalf);
 		alVertix20.add(0f);alVertix20.add(aHalf);	alVertix20.add(bHalf);
 		alVertix20.add(aHalf);	alVertix20.add(bHalf);	alVertix20.add(0f);
@@ -34,92 +34,92 @@ public class UtilTools {
 		alVertix20.add(0f);alVertix20.add(-aHalf);alVertix20.add(-bHalf);
 		alVertix20.add(-aHalf);alVertix20.add(-bHalf);alVertix20.add(0f);
 		alVertix20.add(0f);alVertix20.add(-aHalf);alVertix20.add(bHalf);
-		// Õı20ÃæÌåË÷Òı£¡
-		alFaceIndex20.add(0);alFaceIndex20.add(1);alFaceIndex20.add(2);// 1ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(0); alFaceIndex20.add(2); alFaceIndex20.add(3);//2ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(0);alFaceIndex20.add(3);alFaceIndex20.add(4);// 3ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(0); alFaceIndex20.add(4); alFaceIndex20.add(5);//4ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(0);alFaceIndex20.add(5);alFaceIndex20.add(1);// 5ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
+		// æ­£20é¢ä½“ç´¢å¼•ï¼
+		alFaceIndex20.add(0);alFaceIndex20.add(1);alFaceIndex20.add(2);// 1å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(0); alFaceIndex20.add(2); alFaceIndex20.add(3);//2å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(0);alFaceIndex20.add(3);alFaceIndex20.add(4);// 3å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(0); alFaceIndex20.add(4); alFaceIndex20.add(5);//4å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(0);alFaceIndex20.add(5);alFaceIndex20.add(1);// 5å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
 
-		alFaceIndex20.add(1);	alFaceIndex20.add(6);	alFaceIndex20.add(7);// 6ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(1); alFaceIndex20.add(7); alFaceIndex20.add(2);//7ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(2);	alFaceIndex20.add(7);	alFaceIndex20.add(8);// 8ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(2);	alFaceIndex20.add(8);	alFaceIndex20.add(3);// 9ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		 alFaceIndex20.add(3); alFaceIndex20.add(8); alFaceIndex20.add(9);//10ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
+		alFaceIndex20.add(1);	alFaceIndex20.add(6);	alFaceIndex20.add(7);// 6å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(1); alFaceIndex20.add(7); alFaceIndex20.add(2);//7å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(2);	alFaceIndex20.add(7);	alFaceIndex20.add(8);// 8å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(2);	alFaceIndex20.add(8);	alFaceIndex20.add(3);// 9å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		 alFaceIndex20.add(3); alFaceIndex20.add(8); alFaceIndex20.add(9);//10å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
 		 
-		alFaceIndex20.add(3);	alFaceIndex20.add(9);	alFaceIndex20.add(4);// 11ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(4); alFaceIndex20.add(9); alFaceIndex20.add(10);//12ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(4);	alFaceIndex20.add(10);	alFaceIndex20.add(5);// 13ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(5);	alFaceIndex20.add(10);	alFaceIndex20.add(6);// 14ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(5); alFaceIndex20.add(6); alFaceIndex20.add(1);//15ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
+		alFaceIndex20.add(3);	alFaceIndex20.add(9);	alFaceIndex20.add(4);// 11å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(4); alFaceIndex20.add(9); alFaceIndex20.add(10);//12å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(4);	alFaceIndex20.add(10);	alFaceIndex20.add(5);// 13å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(5);	alFaceIndex20.add(10);	alFaceIndex20.add(6);// 14å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(5); alFaceIndex20.add(6); alFaceIndex20.add(1);//15å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
 		
-		alFaceIndex20.add(6);	alFaceIndex20.add(11);alFaceIndex20.add(7);// 16ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(7); alFaceIndex20.add(11); alFaceIndex20.add(8);//17ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(8);	alFaceIndex20.add(11);alFaceIndex20.add(9);// 18ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(9);	alFaceIndex20.add(11);alFaceIndex20.add(10);// 19ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		alFaceIndex20.add(10); alFaceIndex20.add(11); alFaceIndex20.add(6);//20ºÅÈı½ÇĞÎÃæ×ø±êË÷Òı
-		// ¼ÆËã¾íÈÆ¶¥µã
-		float[] vertices20 = VectorUtil.cullVertex(alVertix20, alFaceIndex20);// Ö»¼ÆËã¶¥µã,¹¹³É¶şÊ®ÃæÌåµÄÈı½ÇĞÎ¶¥µã×ø±ê
-		ArrayList<float[]> AlCAtomicPosition = new ArrayList<float[]>();// ´æ·ÅÌ¼Ô­×ÓµÄ×ø±êÁĞ±í
-		ArrayList<float[]> AlChemicalBondPoints = new ArrayList<float[]>();// ´æ·Å´ú±í»¯Ñ§¼üµÄ±ßµÄ¶Ëµã×ø±êÁĞ±í
+		alFaceIndex20.add(6);	alFaceIndex20.add(11);alFaceIndex20.add(7);// 16å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(7); alFaceIndex20.add(11); alFaceIndex20.add(8);//17å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(8);	alFaceIndex20.add(11);alFaceIndex20.add(9);// 18å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(9);	alFaceIndex20.add(11);alFaceIndex20.add(10);// 19å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		alFaceIndex20.add(10); alFaceIndex20.add(11); alFaceIndex20.add(6);//20å·ä¸‰è§’å½¢é¢åæ ‡ç´¢å¼•
+		// è®¡ç®—å·ç»•é¡¶ç‚¹
+		float[] vertices20 = VectorUtil.cullVertex(alVertix20, alFaceIndex20);// åªè®¡ç®—é¡¶ç‚¹,æ„æˆäºŒåé¢ä½“çš„ä¸‰è§’å½¢é¡¶ç‚¹åæ ‡
+		ArrayList<float[]> AlCAtomicPosition = new ArrayList<float[]>();// å­˜æ”¾ç¢³åŸå­çš„åæ ‡åˆ—è¡¨
+		ArrayList<float[]> AlChemicalBondPoints = new ArrayList<float[]>();// å­˜æ”¾ä»£è¡¨åŒ–å­¦é”®çš„è¾¹çš„ç«¯ç‚¹åæ ‡åˆ—è¡¨
 
-		for (int k = 0; k < vertices20.length; k += 9){// ¶ÔÕı20ÃæÌåÃ¿¸ö´óÈı½ÇĞÎÑ­»·
+		for (int k = 0; k < vertices20.length; k += 9){// å¯¹æ­£20é¢ä½“æ¯ä¸ªå¤§ä¸‰è§’å½¢å¾ªç¯
 			float[] v1 = new float[] { vertices20[k + 0], vertices20[k + 1],
 					vertices20[k + 2] };
 			float[] v2 = new float[] { vertices20[k + 3], vertices20[k + 4],
 					vertices20[k + 5] };
 			float[] v3 = new float[] { vertices20[k + 6], vertices20[k + 7],
 					vertices20[k + 8] };
-			// Ëã³öÃ¿¸öÈı½ÇĞÎÃ¿Ìõ±ßÉÏµÄÁ½¸ö¶¥µãËùÔÚ´óÔ²Ô²»¡ÉÏµÄÈıµÈ·Öµã×ø±ê
+			// ç®—å‡ºæ¯ä¸ªä¸‰è§’å½¢æ¯æ¡è¾¹ä¸Šçš„ä¸¤ä¸ªé¡¶ç‚¹æ‰€åœ¨å¤§åœ†åœ†å¼§ä¸Šçš„ä¸‰ç­‰åˆ†ç‚¹åæ ‡
 			for (int i = 1; i < n; i++) {
-				float[] vi1 = VectorUtil.devideBall(r, v1, v2, n, i);//´óÔ²Ô²»¡ÉÏµÄÈıµÈ·Öµã×ø±ê
-				vi1 = VectorUtil.normalizeVector(vi1);// ¹æ¸ñ»¯vi1
-				float[] vi2 = VectorUtil.devideBall(r, v1, v3, n, i);//´óÔ²Ô²»¡ÉÏµÄÈıµÈ·Öµã×ø±ê
-				vi2 = VectorUtil.normalizeVector(vi2);// ¹æ¸ñ»¯vi2
-				float[] vi3 = VectorUtil.devideBall(r, v2, v3, n, i);//´óÔ²Ô²»¡ÉÏµÄÈıµÈ·Öµã×ø±ê
-				vi3 = VectorUtil.normalizeVector(vi3);// ¹æ¸ñ»¯vi3
+				float[] vi1 = VectorUtil.devideBall(r, v1, v2, n, i);//å¤§åœ†åœ†å¼§ä¸Šçš„ä¸‰ç­‰åˆ†ç‚¹åæ ‡
+				vi1 = VectorUtil.normalizeVector(vi1);// è§„æ ¼åŒ–vi1
+				float[] vi2 = VectorUtil.devideBall(r, v1, v3, n, i);//å¤§åœ†åœ†å¼§ä¸Šçš„ä¸‰ç­‰åˆ†ç‚¹åæ ‡
+				vi2 = VectorUtil.normalizeVector(vi2);// è§„æ ¼åŒ–vi2
+				float[] vi3 = VectorUtil.devideBall(r, v2, v3, n, i);//å¤§åœ†åœ†å¼§ä¸Šçš„ä¸‰ç­‰åˆ†ç‚¹åæ ‡
+				vi3 = VectorUtil.normalizeVector(vi3);// è§„æ ¼åŒ–vi3
 				AlCAtomicPosition.add(vi1);
 				AlCAtomicPosition.add(vi2);
 				AlCAtomicPosition.add(vi3);
 			}
-			// ½«ÇóµÃµÄ6¸öÈıµÈ·ÖµãµÄ×ø±êÒÀ´ÎÁ½Á½×éºÏÆğÀ´
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6));	 // 1ºÅ¶¥µãµÄx,y,z×ø±ê
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 1)); // 2ºÅ¶¥µãµÄx,y,z×ø±ê
+			// å°†æ±‚å¾—çš„6ä¸ªä¸‰ç­‰åˆ†ç‚¹çš„åæ ‡ä¾æ¬¡ä¸¤ä¸¤ç»„åˆèµ·æ¥
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6));	 // 1å·é¡¶ç‚¹çš„x,y,zåæ ‡
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 1)); // 2å·é¡¶ç‚¹çš„x,y,zåæ ‡
 			
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 1)); // 2ºÅ¶¥µãµÄx,y,z×ø±ê
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 4)); // 5ºÅ¶¥µãµÄx,y,z×ø±ê
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 1)); // 2å·é¡¶ç‚¹çš„x,y,zåæ ‡
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 4)); // 5å·é¡¶ç‚¹çš„x,y,zåæ ‡
 			
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 4)); // 5ºÅ¶¥µãµÄx,y,z×ø±ê
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 5)); // 6ºÅ¶¥µãµÄx,y,z×ø±ê
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 4)); // 5å·é¡¶ç‚¹çš„x,y,zåæ ‡
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 5)); // 6å·é¡¶ç‚¹çš„x,y,zåæ ‡
 			
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 5)); // 6ºÅ¶¥µãµÄx,y,z×ø±ê
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 2)); // 3ºÅ¶¥µãµÄx,y,z×ø±ê
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 5)); // 6å·é¡¶ç‚¹çš„x,y,zåæ ‡
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 2)); // 3å·é¡¶ç‚¹çš„x,y,zåæ ‡
 			
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 2)); // 3ºÅ¶¥µãµÄx,y,z×ø±ê
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 3)); // 4ºÅ¶¥µãµÄx,y,z×ø±ê
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 2)); // 3å·é¡¶ç‚¹çš„x,y,zåæ ‡
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 3)); // 4å·é¡¶ç‚¹çš„x,y,zåæ ‡
 			
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 3)); // 4ºÅ¶¥µãµÄx,y,z×ø±ê
-			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6)); // 1ºÅ¶¥µãµÄx,y,z×ø±ê
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6 + 3)); // 4å·é¡¶ç‚¹çš„x,y,zåæ ‡
+			AlChemicalBondPoints.add(AlCAtomicPosition.get(count * 6)); // 1å·é¡¶ç‚¹çš„x,y,zåæ ‡
 			count+=1;
 		}
-		// ´´½¨»¯Ñ§¼üµÄ±ßµÄ¶Ëµã×ø±êÊı×é£¬ChemicalBondPointsÖĞÃ¿¸öÒ»Î¬Êı×é´æ·ÅƒÉ¸ö¶¥µãĞÅÏ¢
+		// åˆ›å»ºåŒ–å­¦é”®çš„è¾¹çš„ç«¯ç‚¹åæ ‡æ•°ç»„ï¼ŒChemicalBondPointsä¸­æ¯ä¸ªä¸€ç»´æ•°ç»„å­˜æ”¾å…©ä¸ªé¡¶ç‚¹ä¿¡æ¯
 		Rda.ChemicalBondPoints = new float[AlChemicalBondPoints.size() / 2][6];
-		// °ÑAlChemicalBondPointsÖĞµÄÊı¾İ×ª´æµ½Rda.ChemicalBondPointsÖĞ
+		// æŠŠAlChemicalBondPointsä¸­çš„æ•°æ®è½¬å­˜åˆ°Rda.ChemicalBondPointsä¸­
 		for (int i = 0; i < Rda.ChemicalBondPoints.length; i++) {
-			// °ÑAlChemicalBondPointsÖĞµÄµÚ2*i¸öµãµÄ×ø±ê×ª´æµ½Rda.ChemicalBondPoints
+			// æŠŠAlChemicalBondPointsä¸­çš„ç¬¬2*iä¸ªç‚¹çš„åæ ‡è½¬å­˜åˆ°Rda.ChemicalBondPoints
 			for (int j = 0; j < 3; j++) {
 				Rda.ChemicalBondPoints[i][j] =r * AlChemicalBondPoints.get(2 * i)[j];
 			}
-			// °ÑAlChemicalBondPointsÖĞµÄµÚ2*i+1¸öµãµÄ×ø±ê×ª´æµ½Rda.ChemicalBondPoints
+			// æŠŠAlChemicalBondPointsä¸­çš„ç¬¬2*i+1ä¸ªç‚¹çš„åæ ‡è½¬å­˜åˆ°Rda.ChemicalBondPoints
 			for (int k= 3; k <6; k++) {
 				Rda.ChemicalBondPoints[i][k] = r *AlChemicalBondPoints.get(2 * i + 1)[k - 3];
 			}
 		}
-		// ´´½¨Ì¼Ô­×ÓµÄ×ø±êÊı×éRda.CAtomicPosition
+		// åˆ›å»ºç¢³åŸå­çš„åæ ‡æ•°ç»„Rda.CAtomicPosition
 		Rda.CAtomicPosition = new float[AlCAtomicPosition.size()][3];
 		for (int i = 0; i < AlCAtomicPosition.size(); i++) {
 			for (int j = 0; j < 3; j++) {
-				//°ÑAlCAtomicPositionÖĞµÄ×ø±ê×ª´æµ½Rda.CAtomicPositionÖĞ
+				//æŠŠAlCAtomicPositionä¸­çš„åæ ‡è½¬å­˜åˆ°Rda.CAtomicPositionä¸­
 				Rda.CAtomicPosition[i][j] = r * AlCAtomicPosition.get(i)[j];
 			}
 		}

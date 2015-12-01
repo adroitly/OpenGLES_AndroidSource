@@ -12,55 +12,55 @@ import static com.bn.gameView.Constant.*;
 import static com.bn.gameView.GLGameView.cx;
 import static com.bn.gameView.GLGameView.cz;
 /*
- * ¸ßÉäÅÚµÄ¿ØÖÆÀà
+ * é«˜å°„ç‚®çš„æ§åˆ¶ç±»
  */
 /*
- * »æÖÆ¸ßÉäÅÚ
- * ÆäÖĞÔ­µãÎ»ÓÚÅÚÌ¨µÄ¼¸ºÎÖĞĞÄ´¦
- * ÄÇÃ´ µ²°åÉÏÉıµÄ¾àÀëÎª  µ²°åµÄ¸ß¶ÈµÄÒ»°ëºÍÅÚÌ¨¸ß¶ÈµÄÒ»°ë,×óÓÒµÄÆ«ÒÆÁ¿ÎªÅÚ¹ÜµÄ°ë¾¶
- * ÅÚ¹Ü×îµÍ¶ËµÄÎ»ÖÃÎªÏòÉÏÒÆ¶¯µÄ¾àÀëÎª  : ÅÚÌ¨¸ß¶ÈÒ»°ë+ÅÚ¹Ü³¤¶ÈÒ»°ë
+ * ç»˜åˆ¶é«˜å°„ç‚®
+ * å…¶ä¸­åŸç‚¹ä½äºç‚®å°çš„å‡ ä½•ä¸­å¿ƒå¤„
+ * é‚£ä¹ˆ æŒ¡æ¿ä¸Šå‡çš„è·ç¦»ä¸º  æŒ¡æ¿çš„é«˜åº¦çš„ä¸€åŠå’Œç‚®å°é«˜åº¦çš„ä¸€åŠ,å·¦å³çš„åç§»é‡ä¸ºç‚®ç®¡çš„åŠå¾„
+ * ç‚®ç®¡æœ€ä½ç«¯çš„ä½ç½®ä¸ºå‘ä¸Šç§»åŠ¨çš„è·ç¦»ä¸º  : ç‚®å°é«˜åº¦ä¸€åŠ+ç‚®ç®¡é•¿åº¦ä¸€åŠ
  */
 public class ArchieForControl
 {
-	GLGameView gv;//Ö÷»æÖÆÀà
-	public float[] position=new float[3];//¸ßÉäÅÚµÄ°Ú·ÅÎ»ÖÃ
-	public float[] targetPosition=new float[3];//¸ßÉäÅÚµÄĞı×ªÖá´¦µÄÎ»ÖÃ
-	public float[] barrel_center_position=new float[3];//ÅÚ¹ÜÖĞĞÄ´¦µÄ×ø±ê
-	public float[] bomb_position_init=new float[3];//¸ßÉäÅÚ·¢ÉäÅÚµ¯µÄ³õÊ¼Î»ÖÃ
+	GLGameView gv;//ä¸»ç»˜åˆ¶ç±»
+	public float[] position=new float[3];//é«˜å°„ç‚®çš„æ‘†æ”¾ä½ç½®
+	public float[] targetPosition=new float[3];//é«˜å°„ç‚®çš„æ—‹è½¬è½´å¤„çš„ä½ç½®
+	public float[] barrel_center_position=new float[3];//ç‚®ç®¡ä¸­å¿ƒå¤„çš„åæ ‡
+	public float[] bomb_position_init=new float[3];//é«˜å°„ç‚®å‘å°„ç‚®å¼¹çš„åˆå§‹ä½ç½®
 	
 	int row;
 	int col;
-	private float oldTime=0;//¼ÇÂ¼ÉÏ´Î·¢ÉäµÄÊ±¼ä
+	private float oldTime=0;//è®°å½•ä¸Šæ¬¡å‘å°„çš„æ—¶é—´
 	//--------------------
-	BarrelForDraw barrel;//ÅÚ¹Ü
-	BarbetteForDraw barbette;//ÅÚÌ¨
-	CubeForDraw cube;//´´½¨µ²°å
-	private BallTextureByVertex bomb_ball;//ÅÚµ¯
-	public float barrel_elevation=30;//ÅÚ¹ÜµÄÑö½Ç
-	public float barrel_direction=0;//ÅÚ¹ÜµÄ·½Ïò½Ç
+	BarrelForDraw barrel;//ç‚®ç®¡
+	BarbetteForDraw barbette;//ç‚®å°
+	CubeForDraw cube;//åˆ›å»ºæŒ¡æ¿
+	private BallTextureByVertex bomb_ball;//ç‚®å¼¹
+	public float barrel_elevation=30;//ç‚®ç®¡çš„ä»°è§’
+	public float barrel_direction=0;//ç‚®ç®¡çš„æ–¹å‘è§’
 	
-	float barrel_down_X=0;//ÅÚ¹Üµ×¶ËµÄ×ø±ê
+	float barrel_down_X=0;//ç‚®ç®¡åº•ç«¯çš„åæ ‡
 	public float barrel_down_Y=barbette_length/2+cube_height/2;
 	float barrel_down_Z=0;
 	
-	public float barrel_curr_X;//ÅÚ¹Ü¼¸ºÎÖĞĞÄµÄX×ø±ê
-	public float barrel_curr_Y;//ÅÚ¹Ü¼¸ºÎÖĞĞÄµÄY×ø±ê
-	public float barrel_curr_Z;//ÅÚ¹Ü¼¸ºÎÖĞĞÄµÄZ×ø±ê
+	public float barrel_curr_X;//ç‚®ç®¡å‡ ä½•ä¸­å¿ƒçš„Xåæ ‡
+	public float barrel_curr_Y;//ç‚®ç®¡å‡ ä½•ä¸­å¿ƒçš„Yåæ ‡
+	public float barrel_curr_Z;//ç‚®ç®¡å‡ ä½•ä¸­å¿ƒçš„Zåæ ‡
 	
-	public NumberForDraw nm;//Êı×ÖÒıÓÃ
-	public TextureRect backgroundRect;//±³¾°
-	public float yAnglexue;//Ñª×ª¶¯
-	public float xue_scale=0.4f;//ÑªËõ·Å±ÈÀı
+	public NumberForDraw nm;//æ•°å­—å¼•ç”¨
+	public TextureRect backgroundRect;//èƒŒæ™¯
+	public float yAnglexue;//è¡€è½¬åŠ¨
+	public float xue_scale=0.4f;//è¡€ç¼©æ”¾æ¯”ä¾‹
 	
-	public int blood=100;//Ñª
+	public int blood=100;//è¡€
 	public int drawblood;
 	
-	public TextureRect mark_plane;//±ê¼Ç¾ØĞÎ
-	//±ê¼Ç¾ü»ğ¿âÎ»ÖÃµÄÑÕÉ«¾ØĞÎÎ»ÖÃ
+	public TextureRect mark_plane;//æ ‡è®°çŸ©å½¢
+	//æ ‡è®°å†›ç«åº“ä½ç½®çš„é¢œè‰²çŸ©å½¢ä½ç½®
 	float arsenal_x,arsenal_y,arsenal_z;
 	
-	public boolean this_isno_Lock;//ÊÇ·ñ±»Ëø¶¨
-	public TextureRect mark_lock;//±ê¼Ç±»Ëø¶¨µÄ¾ØĞÎ
+	public boolean this_isno_Lock;//æ˜¯å¦è¢«é”å®š
+	public TextureRect mark_lock;//æ ‡è®°è¢«é”å®šçš„çŸ©å½¢
 	//-----------------------------
 	public ArchieForControl(GLGameView gv,BarrelForDraw barrel,BarbetteForDraw barbette,CubeForDraw cube,
 							BallTextureByVertex bomb_ball,float []position,int row,int col,
@@ -73,10 +73,10 @@ public class ArchieForControl
 		this.backgroundRect=backgroundRect;
 		
 		this.gv=gv;
-		this.barrel=barrel;//³õÊ¼»¯ÅÚ¹Ü
-		this.barbette=barbette;//³õÊ¼»¯ÅÚÌ¨
-		this.cube=cube;//³õÊ¼»¯µ²°å
-		this.bomb_ball=bomb_ball;//ÅÚµ¯
+		this.barrel=barrel;//åˆå§‹åŒ–ç‚®ç®¡
+		this.barbette=barbette;//åˆå§‹åŒ–ç‚®å°
+		this.cube=cube;//åˆå§‹åŒ–æŒ¡æ¿
+		this.bomb_ball=bomb_ball;//ç‚®å¼¹
 		this.position[0]=position[0];
 		this.position[1]=position[1];
 		this.position[2]=position[2];
@@ -90,7 +90,7 @@ public class ArchieForControl
 		arsenal_x=-scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-targetPosition[0])/(MapArray[mapId].length*WIDTH_LALNDFORM);
 		arsenal_y=scalMark*BUTTON_RADAR_BG_WIDTH*(MapArray[mapId].length*WIDTH_LALNDFORM/2-targetPosition[2])/(MapArray[mapId].length*WIDTH_LALNDFORM);
 	}
-	//»æÖÆ·½·¨
+	//ç»˜åˆ¶æ–¹æ³•
 	public void drawSelf(int[] texBarbetteId,int texCubeId,int[] texBarrelId,int i,int j,int rowR,int colR,
 			int backgroundRectId,int numberID,int locktexId
 	)
@@ -103,34 +103,34 @@ public class ArchieForControl
 		
 		MatrixState.pushMatrix();
 		MatrixState.translate(position[0], position[1], position[2]);
-		//ÕâÀï¼ÆËãÅÚ¹ÜµÄ×ËÌ¬
-		barrel_curr_Y=(float) (barrel_down_Y+Math.sin(Math.toRadians(barrel_elevation))*barrel_length/2);//ÅÚ¹ÜµÄY×ø±ê
-		barrel_curr_Z=(float) (barrel_down_Z-Math.cos(Math.toRadians(barrel_elevation))*barrel_length/2);//ÅÚ¹ÜµÄZ×ø±ê
+		//è¿™é‡Œè®¡ç®—ç‚®ç®¡çš„å§¿æ€
+		barrel_curr_Y=(float) (barrel_down_Y+Math.sin(Math.toRadians(barrel_elevation))*barrel_length/2);//ç‚®ç®¡çš„Yåæ ‡
+		barrel_curr_Z=(float) (barrel_down_Z-Math.cos(Math.toRadians(barrel_elevation))*barrel_length/2);//ç‚®ç®¡çš„Zåæ ‡
 		
 		
 		
 		
 		MatrixState.pushMatrix();
 		MatrixState.rotate(barrel_direction,0, 1, 0);
-		//»æÖÆÅÚÌ¨
+		//ç»˜åˆ¶ç‚®å°
 		MatrixState.pushMatrix();
 		barbette.drawSelf(texBarbetteId);
 		MatrixState.popMatrix();
-		//´´½¨×óµ²°å
+		//åˆ›å»ºå·¦æŒ¡æ¿
 		MatrixState.pushMatrix();
 		MatrixState.translate(-barrel_radius-cube_length/2, cube_height/2+barbette_length/2, 0);
 		cube.drawSelf(texCubeId);
 		MatrixState.popMatrix();
-		//´´½¨ÓÒµ²°å
+		//åˆ›å»ºå³æŒ¡æ¿
 		MatrixState.pushMatrix();
 		MatrixState.translate(barrel_radius+cube_length/2, cube_height/2+barbette_length/2, 0);
 		cube.drawSelf(texCubeId);
 		MatrixState.popMatrix();
-		//»æÖÆÅÚ¹Ü
+		//ç»˜åˆ¶ç‚®ç®¡
 		MatrixState.pushMatrix();
-		//ÏÈÒÆ¶¯
+		//å…ˆç§»åŠ¨
 		MatrixState.translate(0, barrel_curr_Y, barrel_curr_Z);
-		//ºóĞı×ª
+		//åæ—‹è½¬
 		MatrixState.rotate(barrel_elevation-90, 1, 0, 0);
 		barrel.drawSelf(texBarrelId);
 		MatrixState.popMatrix();
@@ -155,7 +155,7 @@ public class ArchieForControl
 		}
     	if(this_isno_Lock)
     	{
-			MatrixState.pushMatrix();//»æÖÆËø¶¨µÄ
+			MatrixState.pushMatrix();//ç»˜åˆ¶é”å®šçš„
 			MatrixState.translate(position[0], position[1]+20, position[2]);	
 			MatrixState.rotate(yAnglexue, 0,1, 0);
 			MatrixState.rotate(rotationAngle_Plane_Z, 0,0, 1);
@@ -171,16 +171,16 @@ public class ArchieForControl
 		
 		
 	}
-	public void drawSelfMark(int texId){//±ê¼Ç¾ØĞÎ,ÒÇ±í°å
+	public void drawSelfMark(int texId){//æ ‡è®°çŸ©å½¢,ä»ªè¡¨æ¿
 		MatrixState.pushMatrix();
     	MatrixState.translate(arsenal_x,arsenal_y,0);
     	mark_plane.drawSelf(texId);
     	MatrixState.popMatrix();
 	}
 	
-	//ÕâÀï¼ÆËã±êÖ¾°åµÄ³¯Ïò
+	//è¿™é‡Œè®¡ç®—æ ‡å¿—æ¿çš„æœå‘
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÑæ»ğÁ£×ÓÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—ç„°ç«ç²’å­é¢æœå‘
 		float currX_span=position[0]-cx;
 		float currZ_span=position[2]-cz;
 		if(currZ_span<0)
@@ -198,17 +198,17 @@ public class ArchieForControl
 			this_isno_Lock=false;
 			return;
 		}
-		//¼ÆËãÆäÊÇ·ñ±»Ëø¶¨
+		//è®¡ç®—å…¶æ˜¯å¦è¢«é”å®š
 		float x1,y1,z1,x2,y2,z2;
 		x1=position[0]-PLANE_X;
 		y1=position[1]-PLANE_Y;
 		z1=position[2]-PLANE_Z;
 		float distance1=(float) Math.sqrt(x1*x1+y1*y1+z1*z1);
 		
-		if(distance1>minimumdistance){//Èç¹û¾àÀë³¬³ö·¶Î§£¬»òÕßÒÑ¾­ÓĞÒ»¸ö±»Ëø¶¨ÁË£¬Ôò×Ô¼º²»ÄÜ±»Ëø¶¨
+		if(distance1>minimumdistance){//å¦‚æœè·ç¦»è¶…å‡ºèŒƒå›´ï¼Œæˆ–è€…å·²ç»æœ‰ä¸€ä¸ªè¢«é”å®šäº†ï¼Œåˆ™è‡ªå·±ä¸èƒ½è¢«é”å®š
 			this_isno_Lock=false;
 			return;
-		}//¼ÆËã·É»ú·ÉĞĞµÄ·½ÏòÏòÁ¿
+		}//è®¡ç®—é£æœºé£è¡Œçš„æ–¹å‘å‘é‡
 		x2=directionX;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.sin(Math.toRadians(rotationAngle_Plane_Y)));
 		y2=directionY;//(float) (Math.sin(Math.toRadians(rotationAngle_Plane_X)));
 		z2=directionZ;//-(float) (Math.cos(Math.toRadians(rotationAngle_Plane_X))*Math.cos(Math.toRadians(rotationAngle_Plane_Y)));
@@ -219,43 +219,43 @@ public class ArchieForControl
 			Lock_Arch.this_isno_Lock=false;
 			}
 			this.this_isno_Lock=true;			
-			minimumdistance=distance1;//×îĞ¡¾àÀëÉèÖÃÎª¸Ã¾àÀë
-			nx=x1;ny=y1+10;nz=z1;//·¢Éä×Óµ¯·½ÏòÏòÁ¿
-			isno_Lock=true;//ÒÑ¾­±»Ëø¶¨
-			Lock_Arch=this;//×Ô¼º±»Ëø¶¨		
+			minimumdistance=distance1;//æœ€å°è·ç¦»è®¾ç½®ä¸ºè¯¥è·ç¦»
+			nx=x1;ny=y1+10;nz=z1;//å‘å°„å­å¼¹æ–¹å‘å‘é‡
+			isno_Lock=true;//å·²ç»è¢«é”å®š
+			Lock_Arch=this;//è‡ªå·±è¢«é”å®š		
 		}else{
 			this_isno_Lock=false;
 		}
 		
 	}
-	//Ê±Ê±¸Ä±ä¸ßÉäÅÚµÄ½Ç¶È
+	//æ—¶æ—¶æ”¹å˜é«˜å°„ç‚®çš„è§’åº¦
 	public void go()
 	{
 		calculateBillboardDirection();
-		//ÕâÀï»ñÈ¡·É»úµÄÎ»ÖÃ
+		//è¿™é‡Œè·å–é£æœºçš„ä½ç½®
 		float curr_planeX=PLANE_X;
 		float curr_planeY=PLANE_Y;
 		float curr_planeZ=PLANE_Z;
 		
-		//¼ÆËãµ±Ç°¸ßÉäÅÚµÄÄ¿±êµãºÍ·É»úÖ®¼äµÄ¾àÀë   ÕâÀïÊÇ    Æ½·½
+		//è®¡ç®—å½“å‰é«˜å°„ç‚®çš„ç›®æ ‡ç‚¹å’Œé£æœºä¹‹é—´çš„è·ç¦»   è¿™é‡Œæ˜¯    å¹³æ–¹
 		float curr_distance=(curr_planeX-targetPosition[0])*(curr_planeX-targetPosition[0])+
 							(curr_planeY-targetPosition[1])*(curr_planeY-targetPosition[1])+
 							(curr_planeZ-targetPosition[2])*(curr_planeZ-targetPosition[2]);
 		curr_distance=(float) Math.sqrt(curr_distance);
 		if(curr_distance>ARCHIE_MAX_DISTANCE)
 		{
-			return;//Èç¹û³¬³ö¸ßÉäÅÚµÄÉ¨Ãæ·¶Î§,ÄÇÃ´Ö±½Ó·µ»Ø
+			return;//å¦‚æœè¶…å‡ºé«˜å°„ç‚®çš„æ‰«é¢èŒƒå›´,é‚£ä¹ˆç›´æ¥è¿”å›
 		}
-		//ÕâÀï¼ÆËã¸ß¶È²î
+		//è¿™é‡Œè®¡ç®—é«˜åº¦å·®
 		float curr_y_span=curr_planeY-targetPosition[1];
 		if(curr_y_span<=0)
 		{
-			return;//Èç¹ûĞ¡ÓÚ0,ÄÇÃ´Ö±½Ó·µ»Ø
+			return;//å¦‚æœå°äº0,é‚£ä¹ˆç›´æ¥è¿”å›
 		}
-		//ÕâÀï¼ÆËã¸ßÉäÅÚµÄÑö½ÇºÍ·½Î»½Ç
+		//è¿™é‡Œè®¡ç®—é«˜å°„ç‚®çš„ä»°è§’å’Œæ–¹ä½è§’
 		float curr_elevation=(float) Math.toDegrees( Math.asin(curr_y_span/curr_distance));
-		barrel_elevation=curr_elevation;//Ñö½Ç
-		//¸ù¾İ·´ÕıÇĞ¼ÆËã·½Î»½Ç
+		barrel_elevation=curr_elevation;//ä»°è§’
+		//æ ¹æ®åæ­£åˆ‡è®¡ç®—æ–¹ä½è§’
 		float curr_x_span=curr_planeX-targetPosition[0];
 		float curr_z_span=curr_planeZ-targetPosition[2];
 		float curr_direction=(float)Math.toDegrees(Math.atan(curr_x_span/curr_z_span));
@@ -271,9 +271,9 @@ public class ArchieForControl
 		{
 			barrel_direction=curr_direction;
 		}
-		//---------------ÈçºÎ¿ÉÒÔ·¢ÅÚ
-		//ÕâÀï¼ÆËã¸ßÉäÅÚÅÚµ¯µÄ³õÊ¼Î»ÖÃ
-		if(System.nanoTime()-oldTime>1000000000)//Ã¿¸ôÒ»Ãë·¢ÉäÒ»´ÎÅÚµ¯
+		//---------------å¦‚ä½•å¯ä»¥å‘ç‚®
+		//è¿™é‡Œè®¡ç®—é«˜å°„ç‚®ç‚®å¼¹çš„åˆå§‹ä½ç½®
+		if(System.nanoTime()-oldTime>1000000000)//æ¯éš”ä¸€ç§’å‘å°„ä¸€æ¬¡ç‚®å¼¹
 		{
 			bomb_position_init[0]=(float) (targetPosition[0]-Math.cos(Math.toRadians(barrel_elevation))*
 								Math.sin(Math.toRadians(barrel_direction))*barrel_length);//X
@@ -281,7 +281,7 @@ public class ArchieForControl
 									barrel_length);//Y
 			bomb_position_init[2]=(float) (targetPosition[2]-Math.cos(Math.toRadians(barrel_elevation))*
 							   Math.cos(Math.toRadians(barrel_direction))*barrel_length);//Z
-//			·¢ÉäÅÚµ¯
+//			å‘å°„ç‚®å¼¹
 			archie_bomb_List.add(new BombForControl(gv,bomb_ball,bomb_position_init,barrel_elevation,
 								barrel_direction));
 			gv.activity.playSound(7,0);

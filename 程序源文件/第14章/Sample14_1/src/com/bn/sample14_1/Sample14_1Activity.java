@@ -10,8 +10,8 @@ public class Sample14_1Activity extends Activity {
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         mView = new GL2JNIView(getApplication());
-		mView.requestFocus();					//获取焦点
-		mView.setFocusableInTouchMode(true); 	//设置为可触控
+		mView.requestFocus();					//鑾峰彇鐒︾偣
+		mView.setFocusableInTouchMode(true); 	//璁剧疆涓哄彲瑙︽帶
         setContentView(mView);
     }
 

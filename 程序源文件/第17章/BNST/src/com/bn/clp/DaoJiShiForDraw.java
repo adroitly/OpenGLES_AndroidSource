@@ -12,7 +12,7 @@ import static com.bn.clp.MyGLSurfaceView.*;
 
 public class DaoJiShiForDraw 
 {
-	//Êı×Ö¾ØĞÎ¿éµÄ¿í¶ÈºÍ¸ß¶È
+	//æ•°å­—çŸ©å½¢å—çš„å®½åº¦å’Œé«˜åº¦
 	float SHUZI_KUANDU=0.5f;
 	 
 	int DaoJiShiFlag=3;
@@ -82,26 +82,26 @@ public class DaoJiShiForDraw
 		}		 
 	}	
 	
-	//ÎÆÀí¾ØĞÎÄÚ²¿Àà
+	//çº¹ç†çŸ©å½¢å†…éƒ¨ç±»
 	class WenLiJuXing
 	{
-		int mProgram;//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷³ÌĞòid 
-	    int muMVPMatrixHandle;//×Ü±ä»»¾ØÕóÒıÓÃid   
-	    int muMMatrixHandle;//Î»ÖÃ¡¢Ğı×ª±ä»»¾ØÕó
-	    int maCameraHandle; //ÉãÏñ»úÎ»ÖÃÊôĞÔÒıÓÃid  
-	    int maPositionHandle; //¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
-	    int maNormalHandle; //¶¥µã·¨ÏòÁ¿ÊôĞÔÒıÓÃid  
-	    int maTexCoorHandle; //¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
-	    int maSunLightLocationHandle;//¹âÔ´Î»ÖÃÊôĞÔÒıÓÃid  
+		int mProgram;//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨ç¨‹åºid 
+	    int muMVPMatrixHandle;//æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id   
+	    int muMMatrixHandle;//ä½ç½®ã€æ—‹è½¬å˜æ¢çŸ©é˜µ
+	    int maCameraHandle; //æ‘„åƒæœºä½ç½®å±æ€§å¼•ç”¨id  
+	    int maPositionHandle; //é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
+	    int maNormalHandle; //é¡¶ç‚¹æ³•å‘é‡å±æ€§å¼•ç”¨id  
+	    int maTexCoorHandle; //é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
+	    int maSunLightLocationHandle;//å…‰æºä½ç½®å±æ€§å¼•ç”¨id  
 		
-	    private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	    private FloatBuffer   mTextureBuffer[];//¶¥µã×ÅÉ«Êı¾İ»º³å
-	    int vCount;//¶¥µãÊıÁ¿
-	    int texId;//ÎÆÀíId
+	    private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	    private FloatBuffer   mTextureBuffer[];//é¡¶ç‚¹ç€è‰²æ•°æ®ç¼“å†²
+	    int vCount;//é¡¶ç‚¹æ•°é‡
+	    int texId;//çº¹ç†Id
 			
-	    public WenLiJuXing(float width,float height){//´«Èë¿í¸ßºÍÎÆÀí×ø±êÊı×é
-	    	//¶¥µã×ø±êÊı¾İµÄ³õÊ¼»¯================begin============================
-	        vCount=6;//Ã¿¸ö¸ñ×ÓÁ½¸öÈı½ÇĞÎ£¬Ã¿¸öÈı½ÇĞÎ3¸ö¶¥µã        
+	    public WenLiJuXing(float width,float height){//ä¼ å…¥å®½é«˜å’Œçº¹ç†åæ ‡æ•°ç»„
+	    	//é¡¶ç‚¹åæ ‡æ•°æ®çš„åˆå§‹åŒ–================begin============================
+	        vCount=6;//æ¯ä¸ªæ ¼å­ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œæ¯ä¸ªä¸‰è§’å½¢3ä¸ªé¡¶ç‚¹        
 	        float vertices[]=
 	        {
         		-width/2,0,-height/2,
@@ -112,13 +112,13 @@ public class DaoJiShiForDraw
         		width/2,0,height/2,
         		width/2,0,-height/2
 	        };
-	        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-	        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+	        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	        
 	        float[][] texTures=new float[][]
            	{
@@ -143,33 +143,33 @@ public class DaoJiShiForDraw
 	        mTextureBuffer=new FloatBuffer[4];
 	        for(int i=0;i<texTures.length;i++)
 	        {
-	        	//´´½¨¶¥µãÎÆÀíÊı¾İ»º³å
+	        	//åˆ›å»ºé¡¶ç‚¹çº¹ç†æ•°æ®ç¼“å†²
 		        ByteBuffer tbb = ByteBuffer.allocateDirect(texTures[i].length*4);
-		        tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-		        mTextureBuffer[i]= tbb.asFloatBuffer();//×ª»»ÎªFloatĞÍ»º³å
-		        mTextureBuffer[i].put(texTures[i]);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-		        mTextureBuffer[i].position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
-		        //¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ
+		        tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+		        mTextureBuffer[i]= tbb.asFloatBuffer();//è½¬æ¢ä¸ºFloatå‹ç¼“å†²
+		        mTextureBuffer[i].put(texTures[i]);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+		        mTextureBuffer[i].position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
+		        //åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹
 	        }
 	    }
-		//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
 	    public void initShader(int mProgram)
 	    {
 	        this.mProgram=mProgram; 
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎ»ÖÃÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±æ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌĞòÖĞ¶¥µãÎÆÀí×ø±êÊôĞÔÒıÓÃid  
+	        //è·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±æ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌĞòÖĞ×Ü±ä»»¾ØÕóÒıÓÃid
+	        //è·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 	    }
 		public void drawSelf(int texId,int number)
 		{
-			 //ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌĞò
+			 //åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram);
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌĞò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-	        //´«Èë¶¥µãÎ»ÖÃÊı¾İ
+	        //ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 	        GLES20.glVertexAttribPointer  
 	        (
 	        		maPositionHandle,   
@@ -179,7 +179,7 @@ public class DaoJiShiForDraw
 	               3*4,   
 	               mVertexBuffer
 	        );       
-	        //´«Èë¶¥µãÎÆÀí×ø±êÊı¾İ
+	        //ä¼ å…¥é¡¶ç‚¹çº¹ç†åæ ‡æ•°æ®
 	        GLES20.glVertexAttribPointer  
 	        (
 	       		maTexCoorHandle, 
@@ -189,13 +189,13 @@ public class DaoJiShiForDraw
 	               2*4,   
 	               mTextureBuffer[number]
 	        );   
-	        //ÔÊĞí¶¥µãÎ»ÖÃÊı¾İÊı×é
+	        //å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
-	        //»æÖÆÎÆÀí¾ØĞÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}
@@ -212,7 +212,7 @@ public class DaoJiShiForDraw
 		{
 			while(DAOJISHI_FLAG)
 			{
-				//µ±ÓÎÏ·¿ªÊ¼Ê±£¬µ¹¼ÆÊ±3Ê±²¥·ÅÒ»Éù
+				//å½“æ¸¸æˆå¼€å§‹æ—¶ï¼Œå€’è®¡æ—¶3æ—¶æ’­æ”¾ä¸€å£°
 				if(DaoJiShiFlag==3&&z_Order_Offset==-10&&SoundEffectFlag)
 				{
 					ma.shengyinBoFang(5, 0);
@@ -223,11 +223,11 @@ public class DaoJiShiForDraw
 					z_Order_Offset=-10;
 					DaoJiShiFlag=DaoJiShiFlag-1; 
 					
-					//µ±»»Í¼Ê±£¬µ¹¼ÆÊ±2¡¢1¸÷²¥·ÅÒ»Éù
+					//å½“æ¢å›¾æ—¶ï¼Œå€’è®¡æ—¶2ã€1å„æ’­æ”¾ä¸€å£°
 					if(DaoJiShiFlag>0&&SoundEffectFlag)
 					{
 						ma.shengyinBoFang(5, 0);
-					}//µ¹¼ÆÊ±Îª0Ê±£¬²¥·Å¿ÉÒÔ¿ª´¬µÄÉùÒô
+					}//å€’è®¡æ—¶ä¸º0æ—¶ï¼Œæ’­æ”¾å¯ä»¥å¼€èˆ¹çš„å£°éŸ³
 					else if(DaoJiShiFlag==0&&SoundEffectFlag)
 					{
 						ma.shengyinBoFang(6, 0);

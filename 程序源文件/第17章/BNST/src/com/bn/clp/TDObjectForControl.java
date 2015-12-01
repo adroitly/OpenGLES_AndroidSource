@@ -4,13 +4,13 @@ import android.opengl.GLES20;
 
 import com.bn.core.MatrixState;
 /*
- * ¸ÃÀàµÄÖ÷Òª×÷ÓÃÊÇ¿ØÖÆÏàÓ¦3DÎïÌåµÄ»æÖÆ£¬
- * ĞèÒª»ñµÃÏàÓ¦3DÎïÌåµÄ¶ÔÏó£¬objectIdÎï¼şµÄid£¬ÎïÌåÏàÓ¦µÄx¡¢y¡¢zÎ»ÖÃ¡¢Ğı×ªµÄ½Ç¶ÈyAngle 
+ * è¯¥ç±»çš„ä¸»è¦ä½œç”¨æ˜¯æ§åˆ¶ç›¸åº”3Dç‰©ä½“çš„ç»˜åˆ¶ï¼Œ
+ * éœ€è¦è·å¾—ç›¸åº”3Dç‰©ä½“çš„å¯¹è±¡ï¼ŒobjectIdç‰©ä»¶çš„idï¼Œç‰©ä½“ç›¸åº”çš„xã€yã€zä½ç½®ã€æ—‹è½¬çš„è§’åº¦yAngle 
  */
 public class TDObjectForControl
 {
-	BNDrawer bndrawer;//3DÎïÌåµÄ¶ÔÏó
-	int objectId;//objectIdÎï¼şµÄid
+	BNDrawer bndrawer;//3Dç‰©ä½“çš„å¯¹è±¡
+	int objectId;//objectIdç‰©ä»¶çš„id
 	float x;
 	float y;
 	float z;
@@ -28,10 +28,10 @@ public class TDObjectForControl
 		this.rows=rows;
 		this.cols=cols;
 	}
-	//×Ô¶¨ÒåµÄ»æÖÆ·½·¨drawSelf£¬ÓÉÓÚÔÚ¸Ã·½·¨ÖĞĞèÒª¶Ô¾ØÕó½øĞĞÆ½ÒÆÒÔ¼°Ğı×ª±ä»»£¬ËùÒÔÊ×ÏÈĞèÒªpushMatrix£¬×îºóĞèÒªpopMatrix
+	//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•drawSelfï¼Œç”±äºåœ¨è¯¥æ–¹æ³•ä¸­éœ€è¦å¯¹çŸ©é˜µè¿›è¡Œå¹³ç§»ä»¥åŠæ—‹è½¬å˜æ¢ï¼Œæ‰€ä»¥é¦–å…ˆéœ€è¦pushMatrixï¼Œæœ€åéœ€è¦popMatrix
 	public void drawSelf(int[] texId,int dyFlag)
 	{
-		if(dyFlag==0)//»æÖÆÊµÌå
+		if(dyFlag==0)//ç»˜åˆ¶å®ä½“
 		{
 			MatrixState.pushMatrix();
 			MatrixState.translate(x, y, z);
@@ -39,14 +39,14 @@ public class TDObjectForControl
 			bndrawer.drawSelf(texId,dyFlag);
 			MatrixState.popMatrix();
 		}
-		else if(dyFlag==1)//»æÖÆµ¹Ó°
+		else if(dyFlag==1)//ç»˜åˆ¶å€’å½±
 		{
-			//Êµ¼Ê»æÖÆÊ±YµÄÁãµã
+			//å®é™…ç»˜åˆ¶æ—¶Yçš„é›¶ç‚¹
 			float yTranslate=y;
-			//½øĞĞ¾µÏñ»æÖÆÊ±µÄµ÷ÕûÖµ
+			//è¿›è¡Œé•œåƒç»˜åˆ¶æ—¶çš„è°ƒæ•´å€¼
 			float yjx=(0-yTranslate)*2;
 			
-			//¹Ø±Õ±³Ãæ¼ô²Ã
+			//å…³é—­èƒŒé¢å‰ªè£
             GLES20.glDisable(GLES20.GL_CULL_FACE);
 			MatrixState.pushMatrix();
 			MatrixState.translate(x, y, z);
@@ -55,7 +55,7 @@ public class TDObjectForControl
 			MatrixState.scale(1, -1, 1);
 			bndrawer.drawSelf(texId,dyFlag);
 			MatrixState.popMatrix();
-			//´ò¿ª±³Ãæ¼ô²Ã
+			//æ‰“å¼€èƒŒé¢å‰ªè£
             GLES20.glEnable(GLES20.GL_CULL_FACE);
 		}
 	}

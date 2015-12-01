@@ -8,58 +8,58 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
 public class MyActivity extends Activity {
-	SensorManager mySensorManager;	//SensorManager¶ÔÏóÒıÓÃ	
-	Sensor myAccelerometer; 	//´«¸ĞÆ÷ÀàĞÍ
-	Sensor myMagnetic; 	//´«¸ĞÆ÷ÀàĞÍ
-	TextView tYaw;	 //TextView¶ÔÏóÒıÓÃ	
-	TextView tPicth; //TextView¶ÔÏóÒıÓÃ	
-	TextView tRoll;	 //TextView¶ÔÏóÒıÓÃ
+	SensorManager mySensorManager;	//SensorManagerå¯¹è±¡å¼•ç”¨	
+	Sensor myAccelerometer; 	//ä¼ æ„Ÿå™¨ç±»å‹
+	Sensor myMagnetic; 	//ä¼ æ„Ÿå™¨ç±»å‹
+	TextView tYaw;	 //TextViewå¯¹è±¡å¼•ç”¨	
+	TextView tPicth; //TextViewå¯¹è±¡å¼•ç”¨	
+	TextView tRoll;	 //TextViewå¯¹è±¡å¼•ç”¨
 	float []vlAccelerometer=new float[3];
 	float []vlManager=new float[3];
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        tYaw = (TextView)findViewById(R.id.tYaw);	//ÓÃÓÚÏÔÊ¾YawĞı×ª½Ç¶È
-        tPicth = (TextView)findViewById(R.id.tPicth);	//ÓÃÓÚÏÔÊ¾PicthĞı×ª½Ç¶È
-        tRoll = (TextView)findViewById(R.id.tRoll); //ÓÃÓÚÏÔÊ¾RollĞı×ª½Ç¶È
-        //»ñµÃSensorManager¶ÔÏó
+        tYaw = (TextView)findViewById(R.id.tYaw);	//ç”¨äºæ˜¾ç¤ºYawæ—‹è½¬è§’åº¦
+        tPicth = (TextView)findViewById(R.id.tPicth);	//ç”¨äºæ˜¾ç¤ºPicthæ—‹è½¬è§’åº¦
+        tRoll = (TextView)findViewById(R.id.tRoll); //ç”¨äºæ˜¾ç¤ºRollæ—‹è½¬è§’åº¦
+        //è·å¾—SensorManagerå¯¹è±¡
         mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);	
-        //´«¸ĞÆ÷µÄÀàĞÍ
+        //ä¼ æ„Ÿå™¨çš„ç±»å‹
         myAccelerometer=mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         myMagnetic=mySensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         }
     @Override
-	protected void onResume(){ //ÖØĞ´onResume·½·¨
+	protected void onResume(){ //é‡å†™onResumeæ–¹æ³•
 		super.onResume();
 		mySensorManager.registerListener(
-				myAccelerometerListener, 		//ÎªÖØÁ¦´«¸ĞÆ÷Ìí¼Ó¼àÌı
-				myAccelerometer, 		//´«¸ĞÆ÷ÀàĞÍ
-				SensorManager.SENSOR_DELAY_NORMAL	//´«¸ĞÆ÷ÊÂ¼ş´«µİµÄÆµ¶È
+				myAccelerometerListener, 		//ä¸ºé‡åŠ›ä¼ æ„Ÿå™¨æ·»åŠ ç›‘å¬
+				myAccelerometer, 		//ä¼ æ„Ÿå™¨ç±»å‹
+				SensorManager.SENSOR_DELAY_NORMAL	//ä¼ æ„Ÿå™¨äº‹ä»¶ä¼ é€’çš„é¢‘åº¦
 		);
 		mySensorManager.registerListener(
-				myMagneticListener, 		//Îª´Å³¡´«¸ĞÆ÷Ìí¼Ó¼àÌı
-				myMagnetic, 		//´«¸ĞÆ÷ÀàĞÍ
-				SensorManager.SENSOR_DELAY_NORMAL	//´«¸ĞÆ÷ÊÂ¼ş´«µİµÄÆµ¶È
+				myMagneticListener, 		//ä¸ºç£åœºä¼ æ„Ÿå™¨æ·»åŠ ç›‘å¬
+				myMagnetic, 		//ä¼ æ„Ÿå™¨ç±»å‹
+				SensorManager.SENSOR_DELAY_NORMAL	//ä¼ æ„Ÿå™¨äº‹ä»¶ä¼ é€’çš„é¢‘åº¦
 		);
 	}	
 	@Override
-	protected void onPause(){//ÖØĞ´onPause·½·¨	
+	protected void onPause(){//é‡å†™onPauseæ–¹æ³•	
 		super.onPause();
-		mySensorManager.unregisterListener(myAccelerometerListener);//È¡Ïû×¢²á¼àÌıÆ÷
-		mySensorManager.unregisterListener(myMagneticListener);//È¡Ïû×¢²á¼àÌıÆ÷
+		mySensorManager.unregisterListener(myAccelerometerListener);//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
+		mySensorManager.unregisterListener(myMagneticListener);//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
 		
 	}
 	private SensorEventListener myAccelerometerListener = 
-		new SensorEventListener(){//¿ª·¢ÊµÏÖÁËSensorEventListener½Ó¿ÚµÄ´«¸ĞÆ÷¼àÌıÆ÷
+		new SensorEventListener(){//å¼€å‘å®ç°äº†SensorEventListeneræ¥å£çš„ä¼ æ„Ÿå™¨ç›‘å¬å™¨
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy){}
 		@Override
 		public void onSensorChanged(SensorEvent event){
-			vlAccelerometer=event.values;//»ñÈ¡Èı¸öÖá·½ÏòÉÏµÄ¼ÓËÙ¶ÈÖµ
-            //ÉùÃ÷Ğı×ª¾ØÕó
+			vlAccelerometer=event.values;//è·å–ä¸‰ä¸ªè½´æ–¹å‘ä¸Šçš„åŠ é€Ÿåº¦å€¼
+            //å£°æ˜æ—‹è½¬çŸ©é˜µ
 		  float[] R=new float[9];
-		  //»ñÈ¡Ğı×ª¾ØÕóµÄ¸÷ÏîÖµ
+		  //è·å–æ—‹è½¬çŸ©é˜µçš„å„é¡¹å€¼
 		  SensorManager.getRotationMatrix
 		  (
 			R, 
@@ -67,23 +67,23 @@ public class MyActivity extends Activity {
 			vlAccelerometer, 
 			vlManager
 	      );
-		//×ËÌ¬ÖµÊı×é
+		//å§¿æ€å€¼æ•°ç»„
 		float[] Values=new float[3];
-		//»ñÈ¡×ËÌ¬Öµ
+		//è·å–å§¿æ€å€¼
 		SensorManager.getOrientation(R, Values);
-		  tYaw.setText(  "YawÖáµÄĞı×ª½Ç¶È£º"+Values[0]);		
-		  tPicth.setText("PicthÖáµÄĞı×ª½Ç¶È£º"+Values[1]);		
-		  tRoll.setText( "RollÖáµÄĞı×ª½Ç¶È£º"+Values[2]);		
+		  tYaw.setText(  "Yawè½´çš„æ—‹è½¬è§’åº¦ï¼š"+Values[0]);		
+		  tPicth.setText("Picthè½´çš„æ—‹è½¬è§’åº¦ï¼š"+Values[1]);		
+		  tRoll.setText( "Rollè½´çš„æ—‹è½¬è§’åº¦ï¼š"+Values[2]);		
 		}
 	};
 	private SensorEventListener myMagneticListener=new SensorEventListener() {
 		
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			vlManager=event.values;//»ñÈ¡Èı¸öÖá·½ÏòÉÏµÄ´Å³¡Öµ
-            //ÉùÃ÷Ğı×ª¾ØÕó
+			vlManager=event.values;//è·å–ä¸‰ä¸ªè½´æ–¹å‘ä¸Šçš„ç£åœºå€¼
+            //å£°æ˜æ—‹è½¬çŸ©é˜µ
 		  float[] R=new float[9];
-		//»ñÈ¡Ğı×ª¾ØÕóµÄ¸÷ÏîÖµ
+		//è·å–æ—‹è½¬çŸ©é˜µçš„å„é¡¹å€¼
 		  SensorManager.getRotationMatrix
 		  (
 			R, 
@@ -91,13 +91,13 @@ public class MyActivity extends Activity {
 			vlAccelerometer, 
 			vlManager
 	      );
-		//×ËÌ¬ÖµÊı×é
+		//å§¿æ€å€¼æ•°ç»„
 		float[] Values=new float[3];
-		//»ñÈ¡×ËÌ¬Öµ
+		//è·å–å§¿æ€å€¼
 		SensorManager.getOrientation(R, Values);
-		  tYaw.setText(  "YawÖáµÄĞı×ª½Ç¶È£º"+Values[0]);		
-		  tPicth.setText("PicthÖáµÄĞı×ª½Ç¶È£º"+Values[1]);		
-		  tRoll.setText( "RollÖáµÄĞı×ª½Ç¶È£º"+Values[2]);	
+		  tYaw.setText(  "Yawè½´çš„æ—‹è½¬è§’åº¦ï¼š"+Values[0]);		
+		  tPicth.setText("Picthè½´çš„æ—‹è½¬è§’åº¦ï¼š"+Values[1]);		
+		  tRoll.setText( "Rollè½´çš„æ—‹è½¬è§’åº¦ï¼š"+Values[2]);	
 		}
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {

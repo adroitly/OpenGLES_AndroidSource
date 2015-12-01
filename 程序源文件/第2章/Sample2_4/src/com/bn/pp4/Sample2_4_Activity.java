@@ -8,117 +8,117 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 public class Sample2_4_Activity extends Activity {
-	SQLiteDatabase sld; // ÉùÃ÷SQLiteDatabaseÒıÓÃ
+	SQLiteDatabase sld; // å£°æ˜SQLiteDatabaseå¼•ç”¨
 	@Override
-	public void onCreate(Bundle savedInstanceState) { // ÖØĞÂonCreate·½·¨
+	public void onCreate(Bundle savedInstanceState) { // é‡æ–°onCreateæ–¹æ³•
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main); // ÉèÖÃlayout
-		Button b = (Button) this.findViewById(R.id.Button01); // »ñÈ¡´ò¿ª/´´½¨Êı¾İ¿â°´Å¥
-		b.setOnClickListener( // Îª´ò¿ª/´´½¨°´Å¥Ìí¼Ó¼àÌıÆ÷
+		setContentView(R.layout.main); // è®¾ç½®layout
+		Button b = (Button) this.findViewById(R.id.Button01); // è·å–æ‰“å¼€/åˆ›å»ºæ•°æ®åº“æŒ‰é’®
+		b.setOnClickListener( // ä¸ºæ‰“å¼€/åˆ›å»ºæŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				createOrOpenDatabase(); // µ÷ÓÃ·½·¨´ò¿ª»ò´´½¨Êı¾İ¿â
+				createOrOpenDatabase(); // è°ƒç”¨æ–¹æ³•æ‰“å¼€æˆ–åˆ›å»ºæ•°æ®åº“
 			}
 		});
-		b = (Button) this.findViewById(R.id.Button02);// »ñÈ¡¹Ø±ÕÊı¾İ¿â°´Å¥
-		b.setOnClickListener( // Îª¹Ø±Õ°´Å¥Ìí¼Ó¼àÌıÆ÷
+		b = (Button) this.findViewById(R.id.Button02);// è·å–å…³é—­æ•°æ®åº“æŒ‰é’®
+		b.setOnClickListener( // ä¸ºå…³é—­æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				closeDatabase(); // µ÷ÓÃ·½·¨¹Ø±ÕÊı¾İ¿â
+				closeDatabase(); // è°ƒç”¨æ–¹æ³•å…³é—­æ•°æ®åº“
 			}
 		});
-		b = (Button) this.findViewById(R.id.Button03); // »ñÈ¡Ìí¼Ó¼ÇÂ¼°´Å¥
-		b.setOnClickListener( // ÎªÌí¼Ó°´Å¥Ìí¼Ó¼àÌıÆ÷
+		b = (Button) this.findViewById(R.id.Button03); // è·å–æ·»åŠ è®°å½•æŒ‰é’®
+		b.setOnClickListener( // ä¸ºæ·»åŠ æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				insert(); // µ÷ÓÃ·½·¨²åÈë¼ÇÂ¼
+				insert(); // è°ƒç”¨æ–¹æ³•æ’å…¥è®°å½•
 			}
 		});
-		b = (Button) this.findViewById(R.id.Button04);// »ñÈ¡É¾³ı¼ÇÂ¼°´Å¥
-		b.setOnClickListener( // ÎªÉ¾³ı°´Å¥Ìí¼Ó¼àÌıÆ÷
+		b = (Button) this.findViewById(R.id.Button04);// è·å–åˆ é™¤è®°å½•æŒ‰é’®
+		b.setOnClickListener( // ä¸ºåˆ é™¤æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				delete(); // µ÷ÓÃ·½·¨É¾³ı¼ÇÂ¼
+				delete(); // è°ƒç”¨æ–¹æ³•åˆ é™¤è®°å½•
 			}
 		});
-		b = (Button) this.findViewById(R.id.Button05); // »ñÈ¡²éÑ¯¼ÇÂ¼°´Å¥
-		b.setOnClickListener( // Îª²éÑ¯°´Å¥Ìí¼Ó¼àÌıÆ÷
+		b = (Button) this.findViewById(R.id.Button05); // è·å–æŸ¥è¯¢è®°å½•æŒ‰é’®
+		b.setOnClickListener( // ä¸ºæŸ¥è¯¢æŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				query(); // µ÷ÓÃ·½·¨²éÑ¯¼ÇÂ¼
+				query(); // è°ƒç”¨æ–¹æ³•æŸ¥è¯¢è®°å½•
 			}
 		});
 	}
-	public void createOrOpenDatabase() {// ´´½¨»ò´ò¿ªÊı¾İ¿âµÄ·½·¨
+	public void createOrOpenDatabase() {// åˆ›å»ºæˆ–æ‰“å¼€æ•°æ®åº“çš„æ–¹æ³•
 		try {
 			sld = SQLiteDatabase.openDatabase(
-					"/data/data/com.bn.pp4/mydb", // Êı¾İ¿âËùÔÚÂ·¾¶
-					null, // ÓÎ±ê¹¤³§£¬Ä¬ÈÏÎªnull
+					"/data/data/com.bn.pp4/mydb", // æ•°æ®åº“æ‰€åœ¨è·¯å¾„
+					null, // æ¸¸æ ‡å·¥å‚ï¼Œé»˜è®¤ä¸ºnull
 					SQLiteDatabase.OPEN_READWRITE |
-					SQLiteDatabase.CREATE_IF_NECESSARY // Ä£Ê½Îª¶ÁĞ´£¬Èô²»´æÔÚÔò´´½¨
+					SQLiteDatabase.CREATE_IF_NECESSARY // æ¨¡å¼ä¸ºè¯»å†™ï¼Œè‹¥ä¸å­˜åœ¨åˆ™åˆ›å»º
 			);
-			// Éú³É´´½¨Êı¾İ¿âµÄsqlÓï¾ä
+			// ç”Ÿæˆåˆ›å»ºæ•°æ®åº“çš„sqlè¯­å¥
 			String sql = "create table if not exists student" +
 					"(sno char(5),stuname varchar(20)," +
 					"sage integer,sclass char(5))";
-			sld.execSQL(sql); // Ö´ĞĞsqlÓï¾ä
-			Toast.makeText(getBaseContext(), "³É¹¦´´½¨Êı¾İ¿â¡£", 
+			sld.execSQL(sql); // æ‰§è¡Œsqlè¯­å¥
+			Toast.makeText(getBaseContext(), "æˆåŠŸåˆ›å»ºæ•°æ®åº“ã€‚", 
 					Toast.LENGTH_LONG).show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void closeDatabase() {// ¹Ø±ÕÊı¾İ¿âµÄ·½·¨
+	public void closeDatabase() {// å…³é—­æ•°æ®åº“çš„æ–¹æ³•
 		try {
-			sld.close(); // ¹Ø±ÕÊı¾İ¿â
-			Toast.makeText(getBaseContext(), "³É¹¦¹Ø±ÕÊı¾İ¿â¡£", 
+			sld.close(); // å…³é—­æ•°æ®åº“
+			Toast.makeText(getBaseContext(), "æˆåŠŸå…³é—­æ•°æ®åº“ã€‚", 
 					Toast.LENGTH_LONG).show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void insert() {// ²åÈë¼ÇÂ¼µÄ·½·¨
-		try  {// Éú³É²åÈë¼ÇÂ¼µÄsqlÓï¾ä
+	public void insert() {// æ’å…¥è®°å½•çš„æ–¹æ³•
+		try  {// ç”Ÿæˆæ’å…¥è®°å½•çš„sqlè¯­å¥
 			String sql = "insert into student values" +
 					"('001','Android',22,'283')";
-			sld.execSQL(sql); // Ö´ĞĞsqlÓï¾ä
-			Toast.makeText(getBaseContext(), "³É¹¦²åÈëÒ»Ìõ¼ÇÂ¼¡£",
+			sld.execSQL(sql); // æ‰§è¡Œsqlè¯­å¥
+			Toast.makeText(getBaseContext(), "æˆåŠŸæ’å…¥ä¸€æ¡è®°å½•ã€‚",
 					 Toast.LENGTH_LONG).show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void delete() {// É¾³ı¼ÇÂ¼µÄ·½·¨
-		try  {// Éú³ÉÉ¾³ıËùÓĞ¼ÇÂ¼µÄsqlÓï¾ä
+	public void delete() {// åˆ é™¤è®°å½•çš„æ–¹æ³•
+		try  {// ç”Ÿæˆåˆ é™¤æ‰€æœ‰è®°å½•çš„sqlè¯­å¥
 			String sql = "delete from student;";
-			sld.execSQL(sql); // Ö´ĞĞsqlÓï¾ä
-			Toast.makeText(getBaseContext(), "³É¹¦É¾³ıËùÓĞ¼ÇÂ¼¡£", 
+			sld.execSQL(sql); // æ‰§è¡Œsqlè¯­å¥
+			Toast.makeText(getBaseContext(), "æˆåŠŸåˆ é™¤æ‰€æœ‰è®°å½•ã€‚", 
 					Toast.LENGTH_LONG).show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void query(){// ²éÑ¯µÄ·½·¨
-		try {// Éú³É²éÑ¯¼ÇÂ¼µÄsqlÓï¾ä
+	public void query(){// æŸ¥è¯¢çš„æ–¹æ³•
+		try {// ç”ŸæˆæŸ¥è¯¢è®°å½•çš„sqlè¯­å¥
 			String sql = "select * from student where sage>?";
-			Cursor cur = sld.rawQuery(sql, new String[] { "20" }); // »ñÈ¡Cursor¶ÔÏóÒıÓÃ
-			while (cur.moveToNext()) {// Èô´æÔÚ¼ÇÂ¼
-				String sno = cur.getString(0); // »ñÈ¡µÚÒ»ÁĞĞÅÏ¢
-				String sname = cur.getString(1); // »ñÈ¡µÚ¶şÁĞĞÅÏ¢
-				int sage = cur.getInt(2); // »ñÈ¡µÚÈıÁĞĞÅÏ¢
-				String sclass = cur.getString(3); // »ñÈ¡µÚËÄÁĞĞÅÏ¢
+			Cursor cur = sld.rawQuery(sql, new String[] { "20" }); // è·å–Cursorå¯¹è±¡å¼•ç”¨
+			while (cur.moveToNext()) {// è‹¥å­˜åœ¨è®°å½•
+				String sno = cur.getString(0); // è·å–ç¬¬ä¸€åˆ—ä¿¡æ¯
+				String sname = cur.getString(1); // è·å–ç¬¬äºŒåˆ—ä¿¡æ¯
+				int sage = cur.getInt(2); // è·å–ç¬¬ä¸‰åˆ—ä¿¡æ¯
+				String sclass = cur.getString(3); // è·å–ç¬¬å››åˆ—ä¿¡æ¯
 				Toast.makeText(
 						getBaseContext(),
-						"²éÑ¯µ½µÄ¼ÇÂ¼Îª£º'" + sno + "'\t'" + sname 
+						"æŸ¥è¯¢åˆ°çš„è®°å½•ä¸ºï¼š'" + sno + "'\t'" + sname 
 						+ "'\t\t'" + sage+ "'\t'" + sclass + "'", 
 						Toast.LENGTH_LONG).show();
 			}
-			cur.close(); // ¹Ø±ÕCursor
+			cur.close(); // å…³é—­Cursor
 		} catch (Exception e) {
 			e.printStackTrace();
 }}}

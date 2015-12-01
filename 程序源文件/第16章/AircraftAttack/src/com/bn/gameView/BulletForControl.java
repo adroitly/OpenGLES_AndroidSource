@@ -44,33 +44,33 @@ import com.bn.tankemodel.TanKe;
 
 public class BulletForControl implements Comparable<BulletForControl>
 {
-	private TextureRect bullet_rect;//×Óµ¯Àà
-	//¶¨Òå·¢Éä×Óµ¯Ê±µÄÎ»ÖÃ
+	private TextureRect bullet_rect;//å­å¼¹ç±»
+	//å®šä¹‰å‘å°„å­å¼¹æ—¶çš„ä½ç½®
 	private float curr_x;
 	private float curr_y;
 	private float curr_z;
-	//¶¨Òå·¢Éä×Óµ¯Ê±µÄÑö½ÇºÍ·½Î»½Ç
+	//å®šä¹‰å‘å°„å­å¼¹æ—¶çš„ä»°è§’å’Œæ–¹ä½è§’
 	private float curr_elevation;
 	private float curr_direction;
-	private float distance;//·ÉĞĞ¾àÀë
+	private float distance;//é£è¡Œè·ç¦»
 	
-	//Ëø¶¨×´Ì¬ÏÂµÄ·½Ïò
+	//é”å®šçŠ¶æ€ä¸‹çš„æ–¹å‘
 	private boolean islocked;
 	private float curr_nx;
 	private float curr_ny;
 	private float curr_nz;
-	private float average;//Æ½¾ùÏòÁ¿
-	//×Óµ¯µÄĞı×ª½Ç¶È
+	private float average;//å¹³å‡å‘é‡
+	//å­å¼¹çš„æ—‹è½¬è§’åº¦
 	private float curr_rotation;
 	GLGameView gv;
-	public int bulletId;//×Óµ¯µÄid£¬¿´ÊÇµĞ»ú·¢³öµÄ»¹ÊÇ×Ô¼º·¢³öµÄ×Óµ¯£¬1ÎªµĞ»ú·¢³öµÄ×Óµ¯
+	public int bulletId;//å­å¼¹çš„idï¼Œçœ‹æ˜¯æ•Œæœºå‘å‡ºçš„è¿˜æ˜¯è‡ªå·±å‘å‡ºçš„å­å¼¹ï¼Œ1ä¸ºæ•Œæœºå‘å‡ºçš„å­å¼¹
 	public BulletForControl(GLGameView gv,TextureRect bullet_rect,float plane_x,float plane_y,float plane_z,float plane_elevation,float plane_direction
 			,float rotationAngle_Plane_X,float rotationAngle_Plane_Y,
-			float rotationAngle_Plane_Z,int bulletIndex,int bulletId)//bulletIndex±íÊ¾ÊÇ×ó»úÒí·¢Éä×Óµ¯»¹ÊÇÓÒ»úÒí
+			float rotationAngle_Plane_Z,int bulletIndex,int bulletId)//bulletIndexè¡¨ç¤ºæ˜¯å·¦æœºç¿¼å‘å°„å­å¼¹è¿˜æ˜¯å³æœºç¿¼
 	{
 		this.bulletId=bulletId;
 		this.gv=gv;
-		//´´½¨ÎÆÀíÇò
+		//åˆ›å»ºçº¹ç†çƒ
 		this.bullet_rect=bullet_rect;
 		this.curr_x=plane_x;
 		this.curr_y=plane_y;
@@ -87,30 +87,30 @@ public class BulletForControl implements Comparable<BulletForControl>
 		}
 		initData(plane_x,plane_y,plane_z,rotationAngle_Plane_X,rotationAngle_Plane_Y,rotationAngle_Plane_Z,bulletIndex);
 	}
-	//È·¶¨·É»ú»úÒí×Óµ¯µÄ·¢ÉäÎ»ÖÃ
+	//ç¡®å®šé£æœºæœºç¿¼å­å¼¹çš„å‘å°„ä½ç½®
 	public void initData(float plane_x,float plane_y,float plane_z,float rotationAngle_Plane_X,
 			float rotationAngle_Plane_Y,float rotationAngle_Plane_Z,int bulletIndex)
 	{
-		//Éè¶¨×ó»úÒí·¢ÉäÅÚµ¯µÄÎ»ÖÃ
+		//è®¾å®šå·¦æœºç¿¼å‘å°„ç‚®å¼¹çš„ä½ç½®
 		curr_x=plane_x;
 		curr_y=plane_y;
 		curr_z=plane_z;
-		//ÅÚµ¯Î»ÖÃµÄÏà¹Ø²ÎÊı
+		//ç‚®å¼¹ä½ç½®çš„ç›¸å…³å‚æ•°
 		float length;
 		float ori_y;
 		float ori_z;
 		length=6;
-		if(bulletIndex!=1)//×ó»úÒí·¢Éä×Óµ¯
+		if(bulletIndex!=1)//å·¦æœºç¿¼å‘å°„å­å¼¹
 		{
 			ori_y=90;
 			ori_z=-2;
 		}
-		else//ÓÒ»úÒí·¢Éä×Óµ¯
+		else//å³æœºç¿¼å‘å°„å­å¼¹
 		{
 			ori_y=-90;
 			ori_z=-2;
 		}
-		//È·¶¨×Óµ¯µÄ×îÖÕÎ»ÖÃ
+		//ç¡®å®šå­å¼¹çš„æœ€ç»ˆä½ç½®
 		curr_y=curr_y-(float)Math.sin(Math.toRadians(rotationAngle_Plane_Z+ori_z))*length;
 		curr_x=curr_x-(float)Math.cos(Math.toRadians(rotationAngle_Plane_Z+ori_z))*(float)Math.sin(Math.toRadians(rotationAngle_Plane_Y+ori_y))*length;
 		curr_z=curr_z-(float)Math.cos(Math.toRadians(rotationAngle_Plane_Z+ori_z))*(float)Math.cos(Math.toRadians(rotationAngle_Plane_Y+ori_y))*length;
@@ -118,15 +118,15 @@ public class BulletForControl implements Comparable<BulletForControl>
 	public void drawSelf(int texId)
 	{
 		MatrixState.pushMatrix();
-		MatrixState.translate(curr_x, curr_y, curr_z);//×Óµ¯ÒÆ¶¯µ½Ö¸¶¨µÄÎ»ÖÃ
-		MatrixState.rotate(curr_rotation, 0, 1, 0);//¸ù¾İÉãÏñ»úµÄÏà¶ÔÎ»ÖÃ½øĞĞĞı×ª
-		bullet_rect.drawSelf(texId);//½øĞĞ»æÖÆ
+		MatrixState.translate(curr_x, curr_y, curr_z);//å­å¼¹ç§»åŠ¨åˆ°æŒ‡å®šçš„ä½ç½®
+		MatrixState.rotate(curr_rotation, 0, 1, 0);//æ ¹æ®æ‘„åƒæœºçš„ç›¸å¯¹ä½ç½®è¿›è¡Œæ—‹è½¬
+		bullet_rect.drawSelf(texId);//è¿›è¡Œç»˜åˆ¶
 		MatrixState.popMatrix();		
 	}
 	public void go()
 	{
-		distance+=BULLET_VELOCITY;//×Óµ¯µÄĞĞÊ»Â·³ÌÔö¼Ó
-		if(distance>=BULLET_MAX_DISTANCE)//Èç¹û×Óµ¯²½³¤³¬³öÁË
+		distance+=BULLET_VELOCITY;//å­å¼¹çš„è¡Œé©¶è·¯ç¨‹å¢åŠ 
+		if(distance>=BULLET_MAX_DISTANCE)//å¦‚æœå­å¼¹æ­¥é•¿è¶…å‡ºäº†
 		{		
 			Iterator<BulletForControl> ite=bullet_List.iterator();
 			while(ite.hasNext())
@@ -140,18 +140,18 @@ public class BulletForControl implements Comparable<BulletForControl>
 		}
 		if(bulletId==0)
 		{
-			//ÅĞ¶ÏÊÇ·ñºÍ¾ü»ğ¿â·¢ÉúÅö×²
+			//åˆ¤æ–­æ˜¯å¦å’Œå†›ç«åº“å‘ç”Ÿç¢°æ’
 			for(Arsenal_House as:arsenal)
 			{
-				if(//¾ü»ğ¿â»¹´æÔÚ
+				if(//å†›ç«åº“è¿˜å­˜åœ¨
 						curr_y>as.ty&&curr_y<as.ty+ARSENAL_Y
 						&&curr_x>as.tx-ARSENAL_X&&curr_x<as.tx+ARSENAL_X
 						&&curr_z>as.tz-ARSENAL_Z&&curr_z<as.tz+ARSENAL_Z)
 				{
 					
-					as.blood-=ArchieArray[mapId][7][0];//¾ü»ğ¿â			
+					as.blood-=ArchieArray[mapId][7][0];//å†›ç«åº“			
 					
-					if(as.blood<1){//Èç¹û¾ü»ğ¿â±»Õ¨»Ù
+					if(as.blood<1){//å¦‚æœå†›ç«åº“è¢«ç‚¸æ¯
 						gv.activity.playSound(0,0);
 						try
 						{
@@ -168,7 +168,7 @@ public class BulletForControl implements Comparable<BulletForControl>
 						{
 							e.printStackTrace();
 						}
-						gradeArray[1]+=ArchieArray[mapId][12][3];//µÃ·ÖÔö¼Ó,
+						gradeArray[1]+=ArchieArray[mapId][12][3];//å¾—åˆ†å¢åŠ ,
 						baoZhaList.add(new DrawBomb(bombRect,as.tx,as.ty+bomb_height/2,as.tz));
 					}
 					Iterator<BulletForControl> ite=bullet_List.iterator();
@@ -184,13 +184,13 @@ public class BulletForControl implements Comparable<BulletForControl>
 					
 				}
 			}
-			for(ArchieForControl afc:archie_List)//²é¿´ÓĞÃ»ÓĞ»÷ÖĞ¸ßÉäÅÚ
+			for(ArchieForControl afc:archie_List)//æŸ¥çœ‹æœ‰æ²¡æœ‰å‡»ä¸­é«˜å°„ç‚®
 			{
 				if(curr_y>afc.position[1]&&curr_y<afc.position[1]+ARCHIBALD_Y
 						&&curr_x>afc.position[0]-ARCHIBALD_X&&curr_x<afc.position[0]+ARCHIBALD_X
 						&&curr_z>afc.position[2]-ARCHIBALD_Z&&curr_z<afc.position[2]+ARCHIBALD_Z)
 				{
-					afc.blood-=ArchieArray[mapId][7][2];//¸ßÉäÅÚµÄÑª¼õ1
+					afc.blood-=ArchieArray[mapId][7][2];//é«˜å°„ç‚®çš„è¡€å‡1
 					try
 					{
 						if(afc.blood<1)
@@ -212,7 +212,7 @@ public class BulletForControl implements Comparable<BulletForControl>
 							{
 								e.printStackTrace();
 							}
-							gradeArray[1]+=ArchieArray[mapId][12][1];//µÃ·ÖÔö¼Ó,
+							gradeArray[1]+=ArchieArray[mapId][12][1];//å¾—åˆ†å¢åŠ ,
 							baoZhaList.add(new DrawBomb(bombRect,curr_x,curr_y+bomb_height/2,curr_z));
 						}
 					}
@@ -231,12 +231,12 @@ public class BulletForControl implements Comparable<BulletForControl>
 					}
 				}
 			}
-			for(TanKe afc:tankeList){//²é¿´ÓĞÃ»ÓĞ»÷ÖĞÌ¹¿Ë
+			for(TanKe afc:tankeList){//æŸ¥çœ‹æœ‰æ²¡æœ‰å‡»ä¸­å¦å…‹
 				if(curr_y>afc.ty&&curr_y<afc.ty+ARCHIBALD_Y
 						&&curr_x>afc.tx-ARCHIBALD_X&&curr_x<afc.tx+ARCHIBALD_X
 						&&curr_z>afc.tz-ARCHIBALD_Z&&curr_z<afc.tz+ARCHIBALD_Z){
 					
-					afc.blood-=ArchieArray[mapId][7][1];//Ì¹¿ËµÄÑª¼õ1
+					afc.blood-=ArchieArray[mapId][7][1];//å¦å…‹çš„è¡€å‡1
 					if(afc.blood<=0)
 					{
 						gv.activity.playSound(0,1);
@@ -256,7 +256,7 @@ public class BulletForControl implements Comparable<BulletForControl>
 							e.printStackTrace();
 						}
 						baoZhaList.add(new DrawBomb(bombRect,curr_x,curr_y+bomb_height/2,curr_z));
-						gradeArray[1]+=ArchieArray[mapId][12][0];//µÃ·ÖÔö¼Ó,
+						gradeArray[1]+=ArchieArray[mapId][12][0];//å¾—åˆ†å¢åŠ ,
 					}
 					Iterator<BulletForControl> ite=bullet_List.iterator();
 					while(ite.hasNext())
@@ -272,13 +272,13 @@ public class BulletForControl implements Comparable<BulletForControl>
 				}
 			}
 			
-			//ÓĞÃ»ÓĞ»÷ÖĞµĞ»ú
+			//æœ‰æ²¡æœ‰å‡»ä¸­æ•Œæœº
 			for(EnemyPlane afc:enemy){//
 				if(curr_y>afc.ty-PLANE_Y_R&&curr_y<afc.ty+PLANE_Y_R
 						&&curr_x>afc.tx-PLANE_X_R&&curr_x<afc.tx+PLANE_X_R
 						&&curr_z>afc.tz-ANGLE_X_Z&&curr_z<afc.tz+ANGLE_X_Z){
 					
-					afc.blood-=ArchieArray[mapId][7][3];//µĞ»úµÄÑª¼õ1
+					afc.blood-=ArchieArray[mapId][7][3];//æ•Œæœºçš„è¡€å‡1
 					if(afc.blood<=0){
 						gv.activity.playSound(0,1);
 						try
@@ -297,7 +297,7 @@ public class BulletForControl implements Comparable<BulletForControl>
 							e.printStackTrace();
 						}
 						baoZhaList.add(new DrawBomb(bombRect,curr_x,curr_y+bomb_height/5,curr_z));
-						gradeArray[1]+=ArchieArray[mapId][12][2];//µÃ·ÖÔö¼Ó,
+						gradeArray[1]+=ArchieArray[mapId][12][2];//å¾—åˆ†å¢åŠ ,
 					}
 					Iterator<BulletForControl> ite=bullet_List.iterator();
 					while(ite.hasNext())
@@ -313,18 +313,18 @@ public class BulletForControl implements Comparable<BulletForControl>
 				}
 			}
 		}
-		else//µĞ·½µÄ·É»ú·¢ÉäµÄ×Óµ¯»÷ÖĞÎÒ·½µÄ·É»ú
+		else//æ•Œæ–¹çš„é£æœºå‘å°„çš„å­å¼¹å‡»ä¸­æˆ‘æ–¹çš„é£æœº
 		{
 			float curr_planeX=PLANE_X;
 			float curr_planeY=PLANE_Y;
 			float curr_planeZ=PLANE_Z;
-			//ÕâÀï¶ÔÅÚµ¯ÊÇ·ñ»÷ÖĞ·É»ú½øĞĞÅĞ¶Ï
+			//è¿™é‡Œå¯¹ç‚®å¼¹æ˜¯å¦å‡»ä¸­é£æœºè¿›è¡Œåˆ¤æ–­
 			float curr_distance=(curr_planeX-curr_x)*(curr_planeX-curr_x)+
 			(curr_planeY-curr_y)*(curr_planeY-curr_y)+
 			(curr_planeZ-curr_z)*(curr_planeZ-curr_z);
-			if(curr_distance<500)//ÅÚµ¯Óë·É»úÏà×²
+			if(curr_distance<500)//ç‚®å¼¹ä¸é£æœºç›¸æ’
 			{
-				gv.plane.blood-=ArchieArray[mapId][9][2];//·É»úÑª¼õÉÙÒ»µÎ
+				gv.plane.blood-=ArchieArray[mapId][9][2];//é£æœºè¡€å‡å°‘ä¸€æ»´
 				try
 				{
 					Iterator<BulletForControl> ite=bullet_List.iterator();
@@ -345,10 +345,10 @@ public class BulletForControl implements Comparable<BulletForControl>
 			}
 		}
 		
-		//¼ÆËã×Óµ¯ÏÂÒ»²½µÄÎ»ÖÃ
-		//¼ÆËãµ±Ç°Ñö½ÇºÍ·½Ïò½Ç
-		//ÕâÀïÅĞ¶ÏÊÇ·ñËø¶¨Ä¿±ê
-		if(islocked)//Èç¹ûËø¶¨Ä¿±ê£¬Ôò°´ÕÕËø¶¨·½Ïò·¢Éä×Óµ¯
+		//è®¡ç®—å­å¼¹ä¸‹ä¸€æ­¥çš„ä½ç½®
+		//è®¡ç®—å½“å‰ä»°è§’å’Œæ–¹å‘è§’
+		//è¿™é‡Œåˆ¤æ–­æ˜¯å¦é”å®šç›®æ ‡
+		if(islocked)//å¦‚æœé”å®šç›®æ ‡ï¼Œåˆ™æŒ‰ç…§é”å®šæ–¹å‘å‘å°„å­å¼¹
 		{
 			
 			 curr_x+=curr_nx/average*BULLET_VELOCITY;
@@ -359,15 +359,15 @@ public class BulletForControl implements Comparable<BulletForControl>
 		{
 			curr_x=curr_x-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.sin(Math.toRadians(curr_direction))*BULLET_VELOCITY);
 			curr_z=curr_z-(float)(Math.cos(Math.toRadians(curr_elevation))*Math.cos(Math.toRadians(curr_direction))*BULLET_VELOCITY);
-			curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*BULLET_VELOCITY);//·É»úµÄÎ»ÖÃ
+			curr_y=curr_y+(float)(Math.sin(Math.toRadians(curr_elevation))*BULLET_VELOCITY);//é£æœºçš„ä½ç½®
 		}
 		
-		//¼ÆËã³¯Ïò
+		//è®¡ç®—æœå‘
 		calculateBillboardDirection();
 	}
-	//ÕâÀï¼ÆËã±êÖ¾°åµÄ³¯Ïò
+	//è¿™é‡Œè®¡ç®—æ ‡å¿—æ¿çš„æœå‘
 	public void calculateBillboardDirection()
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÑæ»ğÁ£×ÓÃæ³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—ç„°ç«ç²’å­é¢æœå‘
 		float currX_span=curr_x-cx;
 		float currZ_span=curr_z-cz;
 		if(currZ_span<=0)
@@ -381,7 +381,7 @@ public class BulletForControl implements Comparable<BulletForControl>
 	}
 	@Override
 	public int compareTo(BulletForControl another) 
-	{//ÖØĞ´µÄ±È½ÏÁ½¸öÁ£×ÓÀëÉãÏñ»ú¾àÀëµÄ·½·¨
+	{//é‡å†™çš„æ¯”è¾ƒä¸¤ä¸ªç²’å­ç¦»æ‘„åƒæœºè·ç¦»çš„æ–¹æ³•
 		float x=curr_x-cx;
 		float z=curr_y-cz;
 		float y=curr_z-cy;

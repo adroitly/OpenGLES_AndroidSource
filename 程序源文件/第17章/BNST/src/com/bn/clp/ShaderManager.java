@@ -24,13 +24,13 @@ public class ShaderManager
 	{
 		for(int i=0;i<shaderCount;i++)
 		{  
-			//¼ÓÔØ¶¥µã×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ       
+			//åŠ è½½é¡¶ç‚¹ç€è‰²å™¨çš„è„šæœ¬å†…å®¹       
 	        mVertexShader[i]=ShaderUtil.loadFromAssetsFile(shaderName[i][0],r);
-	        //¼ÓÔØÆ¬Ôª×ÅÉ«Æ÷µÄ½Å±¾ÄÚÈİ 
+	        //åŠ è½½ç‰‡å…ƒç€è‰²å™¨çš„è„šæœ¬å†…å®¹ 
 	        mFragmentShader[i]=ShaderUtil.loadFromAssetsFile(shaderName[i][1], r);
 		}	
 	}
-	//ÕâÀïÖ÷ÒªÊÇ±àÒëshader
+	//è¿™é‡Œä¸»è¦æ˜¯ç¼–è¯‘shader
 	public static void compileShader()
 	{		
 		program[0]=ShaderUtil.createProgram(mVertexShader[0], mFragmentShader[0]);
@@ -47,37 +47,37 @@ public class ShaderManager
 	}
 	
 	
-	//ÕâÀï·µ»ØµÄÊÇÉèÖÃ¹âÕÕµÄShader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯è®¾ç½®å…‰ç…§çš„Shaderç¨‹åº
 	public static int getLightShaderProgram()
 	{
 		return program[0];
 	}
-	//ÕâÀï·µ»ØµÄÊÇ°ëÑÂ×ÓµÄShader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯åŠå´–å­çš„Shaderç¨‹åº
 	public static int getBYZTextureShaderProgram()
 	{
 		return program[1];
 	}
-	//ÕâÀï·µ»ØµÄÊÇÖ»ÓĞÎÆÀíµÄShader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯åªæœ‰çº¹ç†çš„Shaderç¨‹åº
 	public static int getTextureShaderProgram()
 	{
 		return program[2];
 	}
-	//ÕâÀï·µ»ØµÄÊÇ»æÖÆË®ÃæÊ±ÓÃµ½µÄShader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯ç»˜åˆ¶æ°´é¢æ—¶ç”¨åˆ°çš„Shaderç¨‹åº
 	public static int getWaterShaderProgram()
 	{
 		return program[3];
 	}
-	//ÕâÀï·µ»Ø»æÖÆÉ½Ê±ÓÃµ½µÄShader³ÌĞò
+	//è¿™é‡Œè¿”å›ç»˜åˆ¶å±±æ—¶ç”¨åˆ°çš„Shaderç¨‹åº
 	public static int getMountionShaderProgram()
 	{
 		return program[4];
 	}
-	//ÕâÀï·µ»ØµÄÊÇ½ø¶ÈÌõµÄShader³ÌĞò
+	//è¿™é‡Œè¿”å›çš„æ˜¯è¿›åº¦æ¡çš„Shaderç¨‹åº
 	public static int getPrograssShaderProgram()
 	{
 		return program[5];
 	}  
-	//·µ»ØÎ²ÀËµÄshader³ÌĞò
+	//è¿”å›å°¾æµªçš„shaderç¨‹åº
 	public static int getWeiLangShaderProgram()
 	{
 		return program[6];

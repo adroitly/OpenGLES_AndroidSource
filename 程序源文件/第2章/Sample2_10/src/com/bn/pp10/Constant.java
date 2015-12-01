@@ -1,10 +1,10 @@
 package com.bn.pp10;
-//用于管理公共常量的常量类
+//鐢ㄤ簬绠＄悊鍏叡甯搁噺鐨勫父閲忕被
 public class Constant {
-    // 由Service中的Handler发送的消息类型
+    // 鐢盨ervice涓殑Handler鍙戦�佺殑娑堟伅绫诲瀷
     public static final int MSG_READ = 2;
     public static final int MSG_DEVICE_NAME = 4;
     
-	// 从Service中的Handler发来的主键名
+	// 浠嶴ervice涓殑Handler鍙戞潵鐨勪富閿悕
     public static final String DEVICE_NAME = "device_name";    
 }

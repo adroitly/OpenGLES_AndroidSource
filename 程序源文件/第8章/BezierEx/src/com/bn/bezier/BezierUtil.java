@@ -4,30 +4,30 @@ import java.util.ArrayList;
 
 public class BezierUtil 
 {
-   static ArrayList<BNPosition> al=new ArrayList<BNPosition>();	//±´Èû¶ûÇúÏß»ùÓÚµÄµãµÄÁĞ±í
+   static ArrayList<BNPosition> al=new ArrayList<BNPosition>();	//è´å¡å°”æ›²çº¿åŸºäºçš„ç‚¹çš„åˆ—è¡¨
    
-   public static ArrayList<BNPosition> getBezierData(float span)//Çó±´Èû¶ûÇúÏßÉÏµãµÄÀà
+   public static ArrayList<BNPosition> getBezierData(float span)//æ±‚è´å¡å°”æ›²çº¿ä¸Šç‚¹çš„ç±»
    {
-	   ArrayList<BNPosition> result=new ArrayList<BNPosition>(); //´æ·Å±´Èû¶ûÇúÏßÉÏµãµÄ½á¹ûÁĞ±í
+	   ArrayList<BNPosition> result=new ArrayList<BNPosition>(); //å­˜æ”¾è´å¡å°”æ›²çº¿ä¸Šç‚¹çš„ç»“æœåˆ—è¡¨
 	   
 	   int n=al.size()-1;	
 	   
-	   if(n<1)	//»ùÓÚµÄµãµÄÊıÉÙÓÚ1£¬ÎŞ±´Èû¶ûÇúÏß
+	   if(n<1)	//åŸºäºçš„ç‚¹çš„æ•°å°‘äº1ï¼Œæ— è´å¡å°”æ›²çº¿
 	   {
 		   return result;
 	   }
 	   
-	   int steps=(int) (1.0f/span);	//×ÜµÃ²½½øÊı
-	   long[] jiechengNA=new long[n+1];	//ÉùÃ÷Ò»¸ö³¤¶ÈÎªn+1µÄ½×³ËÊı×é
+	   int steps=(int) (1.0f/span);	//æ€»å¾—æ­¥è¿›æ•°
+	   long[] jiechengNA=new long[n+1];	//å£°æ˜ä¸€ä¸ªé•¿åº¦ä¸ºn+1çš„é˜¶ä¹˜æ•°ç»„
 	   
-	   for(int i=0;i<=n;i++){	//Çó0µ½nµÄ½×³Ë
+	   for(int i=0;i<=n;i++){	//æ±‚0åˆ°nçš„é˜¶ä¹˜
 		   jiechengNA[i]=jiecheng(i);
 	   }
 	   
 	   for(int i=0;i<=steps;i++)
 	   {
 		   float t=i*span;
-		   if(t>1)		//tµÄÖµÔÚ0-1Ö®¼ä
+		   if(t>1)		//tçš„å€¼åœ¨0-1ä¹‹é—´
 		   {
 			   t=1;
 		   }
@@ -38,8 +38,8 @@ public class BezierUtil
 		   float[] otka=new float[n+1];
 		   for(int j=0;j<=n;j++)
 		   {
-			   tka[j]=(float) Math.pow(t, j); //¼ÆËãtµÄj´ÎÃİ
-			   otka[j]=(float) Math.pow(1-t, j); //¼ÆËã1-tµÄj´ÎÃİ
+			   tka[j]=(float) Math.pow(t, j); //è®¡ç®—tçš„jæ¬¡å¹‚
+			   otka[j]=(float) Math.pow(1-t, j); //è®¡ç®—1-tçš„jæ¬¡å¹‚
 		   }
 		   
 		   for(int k=0;k<=n;k++)
@@ -54,18 +54,18 @@ public class BezierUtil
 	   return result;
    }
    
-   //Çó½×³ËµÄ·½·¨
+   //æ±‚é˜¶ä¹˜çš„æ–¹æ³•
    public  static long jiecheng(int n){
-	   long result=1;	//ÉùÃ÷Ò»¸ölongĞÍµÄ±äÁ¿
-	   if(n==0)			//0µÄ½×³ËÎª1
+	   long result=1;	//å£°æ˜ä¸€ä¸ªlongå‹çš„å˜é‡
+	   if(n==0)			//0çš„é˜¶ä¹˜ä¸º1
 	   {
 		   return 1;
 	   }
 	   
-	   for(int i=2;i<=n;i++){	//Çó´óÓÚµÈÓÚ2µÄÊıµÄ½×³Ë
+	   for(int i=2;i<=n;i++){	//æ±‚å¤§äºç­‰äº2çš„æ•°çš„é˜¶ä¹˜
 		   result=result*i;
 	   }
 	   
-	   return result;	//·µ»Ø½á¹û
+	   return result;	//è¿”å›ç»“æœ
    }
 }

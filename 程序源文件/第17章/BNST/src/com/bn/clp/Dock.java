@@ -6,7 +6,7 @@ import java.nio.FloatBuffer;
 import android.opengl.GLES20; 
 import com.bn.core.MatrixState;
 
-//¸ÃÀàÊÇ´¬²ºÍ·
+//è¯¥ç±»æ˜¯èˆ¹åŸ å¤´
 public class Dock extends BNDrawer
 {
 	DockIn dockIn;
@@ -24,22 +24,22 @@ public class Dock extends BNDrawer
 	
 	private class DockIn
 	{
-		//µ¥Î»³¤¶È
+		//å•ä½é•¿åº¦
 		float UNIT_SIZE=0.3f;
 		
-		//×Ô¶¨ÒåäÖÈ¾¹ÜÏß×ÅÉ«Æ÷µÄid
+		//è‡ªå®šä¹‰æ¸²æŸ“ç®¡çº¿ç€è‰²å™¨çš„id
 		int mProgram;
-		//×Ü±ä»¯¾ØÕóÒýÓÃµÄid
+		//æ€»å˜åŒ–çŸ©é˜µå¼•ç”¨çš„id
 		int muMVPMatrixHandle;
-		//¶¥µãÎ»ÖÃÊôÐÔÒýÓÃid
+		//é¡¶ç‚¹ä½ç½®å±žæ€§å¼•ç”¨id
 		int maPositionHandle;
-		//¶¥µãÎÆÀí×ø±êÊôÐÔÒýÓÃid
+		//é¡¶ç‚¹çº¹ç†åæ ‡å±žæ€§å¼•ç”¨id
 		int maTexCoorHandle;
 		
-		//¶¥µãÊý¾Ý»º³åºÍÎÆÀí×ø±êÊý¾Ý»º³å
+		//é¡¶ç‚¹æ•°æ®ç¼“å†²å’Œçº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		FloatBuffer mVertexBuffer;
 		FloatBuffer mTexCoorBuffer;
-		//¶¥µãÊýÁ¿
+		//é¡¶ç‚¹æ•°é‡
 		int vCount=0;
 		
 		public DockIn(int programId)
@@ -47,12 +47,12 @@ public class Dock extends BNDrawer
 			initVertexData();
 			initShader(programId);
 		}
-		//³õÊ¼»¯¶¥µãÊý¾ÝµÄinitVertexData·½·¨
+		//åˆå§‹åŒ–é¡¶ç‚¹æ•°æ®çš„initVertexDataæ–¹æ³•
 		public void initVertexData()
 		{
 			float[] vertex=new float[]
 		    {
-					//°åÉÏÃæ
+					//æ¿ä¸Šé¢
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
@@ -60,7 +60,7 @@ public class Dock extends BNDrawer
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
-					//°åÏÂÃæ
+					//æ¿ä¸‹é¢
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
@@ -68,7 +68,7 @@ public class Dock extends BNDrawer
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
-					//°åÇ°Ãæ
+					//æ¿å‰é¢
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
@@ -76,7 +76,7 @@ public class Dock extends BNDrawer
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
-					//°åºóÃæ
+					//æ¿åŽé¢
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
@@ -84,7 +84,7 @@ public class Dock extends BNDrawer
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
-					//°å×óÃæ
+					//æ¿å·¦é¢
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
@@ -92,7 +92,7 @@ public class Dock extends BNDrawer
 					-15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					-15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
-					//°åÓÒÃæ
+					//æ¿å³é¢
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,8.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
@@ -101,8 +101,8 @@ public class Dock extends BNDrawer
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,5*UNIT_SIZE,
 					15*UNIT_SIZE,9.5f*UNIT_SIZE,-5*UNIT_SIZE,
 					
-					//---------------------×óÉÏ½ÇÖ§Öù---------------------------
-					//ÉÏÃæ
+					//---------------------å·¦ä¸Šè§’æ”¯æŸ±---------------------------
+					//ä¸Šé¢
 					-13*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
@@ -110,7 +110,7 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
-					//ÏÂÃæ
+					//ä¸‹é¢
 					-12*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
@@ -118,7 +118,7 @@ public class Dock extends BNDrawer
 					-13*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
-					//Ç°Ãæ
+					//å‰é¢
 					-13*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
@@ -126,7 +126,7 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
-					//ºóÃæ
+					//åŽé¢
 					-12*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
@@ -134,7 +134,7 @@ public class Dock extends BNDrawer
 					-13*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
-					//×óÃæ
+					//å·¦é¢
 					-13*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
@@ -142,7 +142,7 @@ public class Dock extends BNDrawer
 					-13*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
-					//ÓÒÃæ
+					//å³é¢
 					-12*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
@@ -150,8 +150,8 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
-					//----------------------×óÏÂ½ÇÖ§Öù------------------
-					//ÉÏÃæ
+					//----------------------å·¦ä¸‹è§’æ”¯æŸ±------------------
+					//ä¸Šé¢
 					-13*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
@@ -159,7 +159,7 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
-					//ÏÂÃæ
+					//ä¸‹é¢
 					-12*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
@@ -168,7 +168,7 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					
-					//Ç°Ãæ
+					//å‰é¢
 					-13*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
@@ -176,7 +176,7 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
-					//ºóÃæ
+					//åŽé¢
 					-12*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
@@ -184,7 +184,7 @@ public class Dock extends BNDrawer
 					-13*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
-					//×óÃæ
+					//å·¦é¢
 					-13*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
@@ -192,7 +192,7 @@ public class Dock extends BNDrawer
 					-13*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-13*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
-					//ÓÒÃæ
+					//å³é¢
 					-12*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
@@ -200,8 +200,8 @@ public class Dock extends BNDrawer
 					-12*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-12*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
-					//----------ÓÒÉÏ½ÇÖ§Öù------------
-					//ÉÏÃæ
+					//----------å³ä¸Šè§’æ”¯æŸ±------------
+					//ä¸Šé¢
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
@@ -210,7 +210,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					
-					//ÏÂÃæ
+					//ä¸‹é¢
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
@@ -218,7 +218,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
-					//Ç°Ãæ
+					//å‰é¢
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
@@ -226,7 +226,7 @@ public class Dock extends BNDrawer
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
-					//ºóÃæ
+					//åŽé¢
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
@@ -234,7 +234,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
-					//×óÃæ
+					//å·¦é¢
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
@@ -242,7 +242,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
-					//ÓÒÃæ
+					//å³é¢
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
@@ -250,8 +250,8 @@ public class Dock extends BNDrawer
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,-5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,-5*UNIT_SIZE,
-					//----------ÓÒÏÂ½ÇÖ§Öù------------
-					//ÉÏÃæ
+					//----------å³ä¸‹è§’æ”¯æŸ±------------
+					//ä¸Šé¢
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
@@ -259,7 +259,7 @@ public class Dock extends BNDrawer
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
-					//ÏÂÃæ
+					//ä¸‹é¢
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
@@ -267,7 +267,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
-					//Ç°Ãæ
+					//å‰é¢
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
@@ -275,7 +275,7 @@ public class Dock extends BNDrawer
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
-					//ºóÃæ
+					//åŽé¢
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
@@ -283,7 +283,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
-					//×óÃæ
+					//å·¦é¢
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
@@ -291,7 +291,7 @@ public class Dock extends BNDrawer
 					-0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,4*UNIT_SIZE,
 					-0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
-					//ÓÒÃæ
+					//å³é¢
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,0*UNIT_SIZE,5*UNIT_SIZE,
 					0.5f*UNIT_SIZE,12*UNIT_SIZE,4*UNIT_SIZE,
@@ -309,7 +309,7 @@ public class Dock extends BNDrawer
 			
 			float[] texcoor=new float[]
 	        {
-				//--------Ò»¸ö³¤·½ÌåµÄÎÆÀí×ø±ê--------------
+				//--------ä¸€ä¸ªé•¿æ–¹ä½“çš„çº¹ç†åæ ‡--------------
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
 				
@@ -327,7 +327,7 @@ public class Dock extends BNDrawer
 				
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
-				//--------Ò»¸ö³¤·½ÌåµÄÎÆÀí×ø±ê--------------
+				//--------ä¸€ä¸ªé•¿æ–¹ä½“çš„çº¹ç†åæ ‡--------------
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
 				
@@ -345,7 +345,7 @@ public class Dock extends BNDrawer
 				
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
-				//--------Ò»¸ö³¤·½ÌåµÄÎÆÀí×ø±ê--------------
+				//--------ä¸€ä¸ªé•¿æ–¹ä½“çš„çº¹ç†åæ ‡--------------
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
 				
@@ -363,7 +363,7 @@ public class Dock extends BNDrawer
 				
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
-				//--------Ò»¸ö³¤·½ÌåµÄÎÆÀí×ø±ê--------------
+				//--------ä¸€ä¸ªé•¿æ–¹ä½“çš„çº¹ç†åæ ‡--------------
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
 				
@@ -381,7 +381,7 @@ public class Dock extends BNDrawer
 				
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
-				//--------Ò»¸ö³¤·½ÌåµÄÎÆÀí×ø±ê--------------
+				//--------ä¸€ä¸ªé•¿æ–¹ä½“çš„çº¹ç†åæ ‡--------------
 				0,0, 0,1, 1,0,
 				1,0, 0,1, 1,1,
 				
@@ -407,27 +407,27 @@ public class Dock extends BNDrawer
 			mTexCoorBuffer.position(0);
 		}
 		
-		//³õÊ¼»¯×ÅÉ«Æ÷µÄinitShader·½·¨
+		//åˆå§‹åŒ–ç€è‰²å™¨çš„initShaderæ–¹æ³•
 		public void initShader(int programId) 
 		{
-			//»ùÓÚ¶¥µã×ÅÉ«Æ÷ÓëÆ¬Ôª×ÅÉ«Æ÷´´½¨³ÌÐò
+			//åŸºäºŽé¡¶ç‚¹ç€è‰²å™¨ä¸Žç‰‡å…ƒç€è‰²å™¨åˆ›å»ºç¨‹åº
 	        mProgram =programId;
-	        //»ñÈ¡³ÌÐòÖÐ¶¥µãÎ»ÖÃÊôÐÔÒýÓÃid  
+	        //èŽ·å–ç¨‹åºä¸­é¡¶ç‚¹ä½ç½®å±žæ€§å¼•ç”¨id  
 	        maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
-	        //»ñÈ¡³ÌÐòÖÐ¶¥µãÎÆÀí×ø±êÊôÐÔÒýÓÃid  
+	        //èŽ·å–ç¨‹åºä¸­é¡¶ç‚¹çº¹ç†åæ ‡å±žæ€§å¼•ç”¨id  
 	        maTexCoorHandle= GLES20.glGetAttribLocation(mProgram, "aTexCoor");
-	        //»ñÈ¡³ÌÐòÖÐ×Ü±ä»»¾ØÕóÒýÓÃid
+	        //èŽ·å–ç¨‹åºä¸­æ€»å˜æ¢çŸ©é˜µå¼•ç”¨id
 	        muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");  
 		}
 		
-		//×Ô¶¨ÒåµÄ»æÖÆ·½·¨drawSelf
+		//è‡ªå®šä¹‰çš„ç»˜åˆ¶æ–¹æ³•drawSelf
 		public void drawSelf(int texId)
 		{
-			//ÖÆ¶¨Ê¹ÓÃÄ³Ì×shader³ÌÐò
+			//åˆ¶å®šä½¿ç”¨æŸå¥—shaderç¨‹åº
 	   	 	GLES20.glUseProgram(mProgram); 
-	        //½«×îÖÕ±ä»»¾ØÕó´«Èëshader³ÌÐò
+	        //å°†æœ€ç»ˆå˜æ¢çŸ©é˜µä¼ å…¥shaderç¨‹åº
 	        GLES20.glUniformMatrix4fv(muMVPMatrixHandle, 1, false, MatrixState.getFinalMatrix(), 0); 
-			//´«Èë¶¥µãÎ»ÖÃÊý¾Ý
+			//ä¼ å…¥é¡¶ç‚¹ä½ç½®æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maPositionHandle, 
@@ -437,7 +437,7 @@ public class Dock extends BNDrawer
 				3*4, 
 				mVertexBuffer
 			);
-			//´«ÈëÎÆÀí×ø±êÊý¾Ý
+			//ä¼ å…¥çº¹ç†åæ ‡æ•°æ®
 			GLES20.glVertexAttribPointer
 			(
 				maTexCoorHandle, 
@@ -447,15 +447,15 @@ public class Dock extends BNDrawer
 				2*4, 
 				mTexCoorBuffer
 			);
-			//ÔÊÐí¶¥µãÎ»ÖÃÊý¾ÝÊý×é
+			//å…è®¸é¡¶ç‚¹ä½ç½®æ•°æ®æ•°ç»„
 	        GLES20.glEnableVertexAttribArray(maPositionHandle);  
 	        GLES20.glEnableVertexAttribArray(maTexCoorHandle);  
 	        
-	        //°ó¶¨ÎÆÀí
+	        //ç»‘å®šçº¹ç†
 	        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 	        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texId);
 	        
-	        //»æÖÆÎÆÀí¾ØÐÎ
+	        //ç»˜åˆ¶çº¹ç†çŸ©å½¢
 	        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vCount); 
 		}
 	}

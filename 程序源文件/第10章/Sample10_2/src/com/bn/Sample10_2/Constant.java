@@ -2,8 +2,8 @@ package com.bn.Sample10_2;
 
 public class Constant 
 {
-	//GLSurfaceViewµÄ¿í¸ß±È
+	//GLSurfaceViewçš„å®½é«˜æ¯”
 	public static float ratio;
-	//Ğı×ªµØÔÂÏµÏß³ÌµÄ¹¤×÷±êÖ¾Î»
+	//æ—‹è½¬åœ°æœˆç³»çº¿ç¨‹çš„å·¥ä½œæ ‡å¿—ä½
 	public static boolean threadFlag=true;
 }

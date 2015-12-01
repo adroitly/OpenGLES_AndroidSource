@@ -9,58 +9,58 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 
 public class MyActivity extends Activity {
-	SensorManager mySensorManager;	//SensorManager¶ÔÏóÒıÓÃ	
-	Sensor myLight; 	//´«¸ĞÆ÷ÀàĞÍ
-	TextView light;	//TextView¶ÔÏóÒıÓÃ	
+	SensorManager mySensorManager;	//SensorManagerå¯¹è±¡å¼•ç”¨	
+	Sensor myLight; 	//ä¼ æ„Ÿå™¨ç±»å‹
+	TextView light;	//TextViewå¯¹è±¡å¼•ç”¨	
 	TextView info;	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main); 
-        light = (TextView)findViewById(R.id.light);	//ÓÃÓÚÏÔÊ¾¹âÇ¿¶ÈµÄ
-        info= (TextView)findViewById(R.id.info);//ÓÃÓÚÏÔÊ¾ÊÖ»úÖĞ¹â´«¸ĞÆ÷µÄÏà¹ØĞÅÏ¢
-        //»ñµÃSensorManager¶ÔÏó
+        light = (TextView)findViewById(R.id.light);	//ç”¨äºæ˜¾ç¤ºå…‰å¼ºåº¦çš„
+        info= (TextView)findViewById(R.id.info);//ç”¨äºæ˜¾ç¤ºæ‰‹æœºä¸­å…‰ä¼ æ„Ÿå™¨çš„ç›¸å…³ä¿¡æ¯
+        //è·å¾—SensorManagerå¯¹è±¡
         mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);	
-        //´«¸ĞÆ÷µÄÀàĞÍÎª¹â´«¸ĞÆ÷
+        //ä¼ æ„Ÿå™¨çš„ç±»å‹ä¸ºå…‰ä¼ æ„Ÿå™¨
         myLight=mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        //´´½¨Ò»¸öStringBuffer
+        //åˆ›å»ºä¸€ä¸ªStringBuffer
         StringBuffer strb=new StringBuffer();
-        strb.append("\nÃû³Æ: ");
+        strb.append("\nåç§°: ");
         strb.append(myLight.getName());
-        strb.append("\nºÄµçÁ¿(mA) : ");
+        strb.append("\nè€—ç”µé‡(mA) : ");
         strb.append(myLight.getPower());
-        strb.append("\nÀàĞÍ±àºÅ  : ");
+        strb.append("\nç±»å‹ç¼–å·  : ");
         strb.append(myLight.getType());
-        strb.append("\nÖÆÔìÉÌ: ");
+        strb.append("\nåˆ¶é€ å•†: ");
         strb.append(myLight.getVendor());
-        strb.append("\n°æ±¾: ");
+        strb.append("\nç‰ˆæœ¬: ");
         strb.append(myLight.getVersion());
-        strb.append("\n×î´ó²âÁ¿·¶Î§: ");
+        strb.append("\næœ€å¤§æµ‹é‡èŒƒå›´: ");
         strb.append(myLight.getMaximumRange());
-        info.setText(strb.toString());	//½«ĞÅÏ¢×Ö·û´®¸³ÓèÃûÎªinfoµÄTextView
+        info.setText(strb.toString());	//å°†ä¿¡æ¯å­—ç¬¦ä¸²èµ‹äºˆåä¸ºinfoçš„TextView
     }
     @Override
-	protected void onResume(){ //ÖØĞ´onResume·½·¨
+	protected void onResume(){ //é‡å†™onResumeæ–¹æ³•
 		super.onResume();
 		mySensorManager.registerListener(
-				mySensorListener, 		//Ìí¼Ó¼àÌı
-				myLight, 		//´«¸ĞÆ÷ÀàĞÍ
-				SensorManager.SENSOR_DELAY_NORMAL	//´«¸ĞÆ÷ÊÂ¼ş´«µİµÄÆµ¶È
+				mySensorListener, 		//æ·»åŠ ç›‘å¬
+				myLight, 		//ä¼ æ„Ÿå™¨ç±»å‹
+				SensorManager.SENSOR_DELAY_NORMAL	//ä¼ æ„Ÿå™¨äº‹ä»¶ä¼ é€’çš„é¢‘åº¦
 		);
 	}	
 	@Override
-	protected void onPause(){//ÖØĞ´onPause·½·¨	
+	protected void onPause(){//é‡å†™onPauseæ–¹æ³•	
 		super.onPause();
-		mySensorManager.unregisterListener(mySensorListener);//È¡Ïû×¢²á¼àÌıÆ÷
+		mySensorManager.unregisterListener(mySensorListener);//å–æ¶ˆæ³¨å†Œç›‘å¬å™¨
 	}
 	private SensorEventListener mySensorListener = 
-		new SensorEventListener(){//¿ª·¢ÊµÏÖÁËSensorEventListener½Ó¿ÚµÄ´«¸ĞÆ÷¼àÌıÆ÷
+		new SensorEventListener(){//å¼€å‘å®ç°äº†SensorEventListeneræ¥å£çš„ä¼ æ„Ÿå™¨ç›‘å¬å™¨
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy){}
 		@Override
 		public void onSensorChanged(SensorEvent event){
 			float []values=event.values;
-			light.setText("¹âµÄÇ¿¶ÈÎª£º"+values[0]);			
+			light.setText("å…‰çš„å¼ºåº¦ä¸ºï¼š"+values[0]);			
 		}
 	};
 	

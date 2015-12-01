@@ -1,63 +1,63 @@
-precision mediump float;//¸ø³öÄ¬ÈÏ¸¡µã¾«¶È
-uniform float uR;//ÇòµÄ°ë¾¶
-uniform vec3 uLightLocation;//¹âÔ´Î»ÖÃ
-uniform mat4 uMMatrix; //±ä»»¾ØÕó
-uniform vec3 uCamera;	//ÉãÏñ»úÎ»ÖÃ
-varying vec3 vPosition;//½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷¹ıÀ´µÄ¶¥µãÎ»ÖÃ
-varying vec3 vNormal;//½ÓÊÕ´Ó¶¥µã×ÅÉ«Æ÷´«µİ¹ıÀ´µÄ·¨ÏòÁ¿
-void pointLight(					//¶¨Î»¹â¹âÕÕ¼ÆËãµÄ·½·¨
-  in vec3 normal,				//·¨ÏòÁ¿
-  inout vec4 ambient,			//»·¾³¹â×îÖÕÇ¿¶È
-  inout vec4 diffuse,				//É¢Éä¹â×îÖÕÇ¿¶È
-  inout vec4 specular,			//¾µÃæ¹â×îÖÕÇ¿¶È
-  in vec3 lightLocation,			//¹âÔ´Î»ÖÃ
-  in vec4 lightAmbient,			//»·¾³¹âÇ¿¶È
-  in vec4 lightDiffuse,			//É¢Éä¹âÇ¿¶È
-  in vec4 lightSpecular			//¾µÃæ¹âÇ¿¶È
+precision mediump float;//ç»™å‡ºé»˜è®¤æµ®ç‚¹ç²¾åº¦
+uniform float uR;//çƒçš„åŠå¾„
+uniform vec3 uLightLocation;//å…‰æºä½ç½®
+uniform mat4 uMMatrix; //å˜æ¢çŸ©é˜µ
+uniform vec3 uCamera;	//æ‘„åƒæœºä½ç½®
+varying vec3 vPosition;//æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨è¿‡æ¥çš„é¡¶ç‚¹ä½ç½®
+varying vec3 vNormal;//æ¥æ”¶ä»é¡¶ç‚¹ç€è‰²å™¨ä¼ é€’è¿‡æ¥çš„æ³•å‘é‡
+void pointLight(					//å®šä½å…‰å…‰ç…§è®¡ç®—çš„æ–¹æ³•
+  in vec3 normal,				//æ³•å‘é‡
+  inout vec4 ambient,			//ç¯å¢ƒå…‰æœ€ç»ˆå¼ºåº¦
+  inout vec4 diffuse,				//æ•£å°„å…‰æœ€ç»ˆå¼ºåº¦
+  inout vec4 specular,			//é•œé¢å…‰æœ€ç»ˆå¼ºåº¦
+  in vec3 lightLocation,			//å…‰æºä½ç½®
+  in vec4 lightAmbient,			//ç¯å¢ƒå…‰å¼ºåº¦
+  in vec4 lightDiffuse,			//æ•£å°„å…‰å¼ºåº¦
+  in vec4 lightSpecular			//é•œé¢å…‰å¼ºåº¦
 ){
-  ambient=lightAmbient;			//Ö±½ÓµÃ³ö»·¾³¹âµÄ×îÖÕÇ¿¶È  
-  vec3 normalTarget=vPosition+normal;	//¼ÆËã±ä»»ºóµÄ·¨ÏòÁ¿
+  ambient=lightAmbient;			//ç›´æ¥å¾—å‡ºç¯å¢ƒå…‰çš„æœ€ç»ˆå¼ºåº¦  
+  vec3 normalTarget=vPosition+normal;	//è®¡ç®—å˜æ¢åçš„æ³•å‘é‡
   vec3 newNormal=(uMMatrix*vec4(normalTarget,1)).xyz-(uMMatrix*vec4(vPosition,1)).xyz;
-  newNormal=normalize(newNormal); 	//¶Ô·¨ÏòÁ¿¹æ¸ñ»¯
-  //¼ÆËã´Ó±íÃæµãµ½ÉãÏñ»úµÄÏòÁ¿
+  newNormal=normalize(newNormal); 	//å¯¹æ³•å‘é‡è§„æ ¼åŒ–
+  //è®¡ç®—ä»è¡¨é¢ç‚¹åˆ°æ‘„åƒæœºçš„å‘é‡
   vec3 eye= normalize(uCamera-(uMMatrix*vec4(vPosition,1)).xyz);  
-  //¼ÆËã´Ó±íÃæµãµ½¹âÔ´Î»ÖÃµÄÏòÁ¿vp
+  //è®¡ç®—ä»è¡¨é¢ç‚¹åˆ°å…‰æºä½ç½®çš„å‘é‡vp
   vec3 vp= normalize(lightLocation-(uMMatrix*vec4(vPosition,1)).xyz);  
-  vp=normalize(vp);//¸ñÊ½»¯vp
-  vec3 halfVector=normalize(vp+eye);	//ÇóÊÓÏßÓë¹âÏßµÄ°ëÏòÁ¿    
-  float shininess=50.0;				//´Ö²Ú¶È£¬Ô½Ğ¡Ô½¹â»¬
-  float nDotViewPosition=max(0.0,dot(newNormal,vp)); 	//Çó·¨ÏòÁ¿ÓëvpµÄµã»ıÓë0µÄ×î´óÖµ
-  diffuse=lightDiffuse*nDotViewPosition;				//¼ÆËãÉ¢Éä¹âµÄ×îÖÕÇ¿¶È
-  float nDotViewHalfVector=dot(newNormal,halfVector);	//·¨ÏßÓë°ëÏòÁ¿µÄµã»ı 
-  float powerFactor=max(0.0,pow(nDotViewHalfVector,shininess)); 	//¾µÃæ·´Éä¹âÇ¿¶ÈÒò×Ó
-  specular=lightSpecular*powerFactor;    			//¼ÆËã¾µÃæ¹âµÄ×îÖÕÇ¿¶È
+  vp=normalize(vp);//æ ¼å¼åŒ–vp
+  vec3 halfVector=normalize(vp+eye);	//æ±‚è§†çº¿ä¸å…‰çº¿çš„åŠå‘é‡    
+  float shininess=50.0;				//ç²—ç³™åº¦ï¼Œè¶Šå°è¶Šå…‰æ»‘
+  float nDotViewPosition=max(0.0,dot(newNormal,vp)); 	//æ±‚æ³•å‘é‡ä¸vpçš„ç‚¹ç§¯ä¸0çš„æœ€å¤§å€¼
+  diffuse=lightDiffuse*nDotViewPosition;				//è®¡ç®—æ•£å°„å…‰çš„æœ€ç»ˆå¼ºåº¦
+  float nDotViewHalfVector=dot(newNormal,halfVector);	//æ³•çº¿ä¸åŠå‘é‡çš„ç‚¹ç§¯ 
+  float powerFactor=max(0.0,pow(nDotViewHalfVector,shininess)); 	//é•œé¢åå°„å…‰å¼ºåº¦å› å­
+  specular=lightSpecular*powerFactor;    			//è®¡ç®—é•œé¢å…‰çš„æœ€ç»ˆå¼ºåº¦
 }
 void main()                         
 {
    vec3 color;
-   float n = 8.0;//Ò»¸ö×ø±ê·ÖÁ¿·ÖµÄ×Ü·İÊı
-   float span = 2.0*uR/n;//Ã¿Ò»·İµÄ³¤¶È
-   //Ã¿Ò»Î¬ÔÚÁ¢·½ÌåÄÚµÄĞĞÁĞÊı
+   float n = 8.0;//ä¸€ä¸ªåæ ‡åˆ†é‡åˆ†çš„æ€»ä»½æ•°
+   float span = 2.0*uR/n;//æ¯ä¸€ä»½çš„é•¿åº¦
+   //æ¯ä¸€ç»´åœ¨ç«‹æ–¹ä½“å†…çš„è¡Œåˆ—æ•°
    int i = int((vPosition.x + uR)/span);
    int j = int((vPosition.y + uR)/span);
    int k = int((vPosition.z + uR)/span);
-   //¼ÆËãµ±µãÓ¦Î»ÓÚ°×É«¿é»¹ÊÇºÚÉ«¿éÖĞ
+   //è®¡ç®—å½“ç‚¹åº”ä½äºç™½è‰²å—è¿˜æ˜¯é»‘è‰²å—ä¸­
    int whichColor = int(mod(float(i+j+k),2.0));
-   if(whichColor == 1) {//ÆæÊıÊ±ÎªºìÉ«
-   		color = vec3(0.678,0.231,0.129);//ºìÉ«
+   if(whichColor == 1) {//å¥‡æ•°æ—¶ä¸ºçº¢è‰²
+   		color = vec3(0.678,0.231,0.129);//çº¢è‰²
    }
-   else {//Å¼ÊıÊ±Îª°×É«
-   		color = vec3(1.0,1.0,1.0);//°×É«
+   else {//å¶æ•°æ—¶ä¸ºç™½è‰²
+   		color = vec3(1.0,1.0,1.0);//ç™½è‰²
    }
-   //×îÖÕÑÕÉ«
+   //æœ€ç»ˆé¢œè‰²
    vec4 finalColor=vec4(color,0);
    
    
-   vec4 ambient,diffuse,specular;    //ÓÃÀ´½ÓÊÕÈı¸öÍ¨µÀ×îÖÕÇ¿¶ÈµÄ±äÁ¿ 
+   vec4 ambient,diffuse,specular;    //ç”¨æ¥æ¥æ”¶ä¸‰ä¸ªé€šé“æœ€ç»ˆå¼ºåº¦çš„å˜é‡ 
    
-   pointLight(normalize(vNormal),ambient,diffuse,specular,uLightLocation,//¼ÆËã¶¨Î»¹â¸÷Í¨µÀÇ¿¶È 
+   pointLight(normalize(vNormal),ambient,diffuse,specular,uLightLocation,//è®¡ç®—å®šä½å…‰å„é€šé“å¼ºåº¦ 
    vec4(0.15,0.15,0.15,1.0),vec4(0.8,0.8,0.8,1.0),vec4(0.7,0.7,0.7,1.0));  
    
-   //×ÛºÏÈı¸öÍ¨µÀ¹âµÄ×îÖÕÇ¿¶È¼°Æ¬ÔªµÄÑÕÉ«¼ÆËã³ö×îÖÕÆ¬ÔªµÄÑÕÉ«²¢´«µİ¸ø¹ÜÏß
+   //ç»¼åˆä¸‰ä¸ªé€šé“å…‰çš„æœ€ç»ˆå¼ºåº¦åŠç‰‡å…ƒçš„é¢œè‰²è®¡ç®—å‡ºæœ€ç»ˆç‰‡å…ƒçš„é¢œè‰²å¹¶ä¼ é€’ç»™ç®¡çº¿
    gl_FragColor=finalColor*ambient + finalColor*diffuse + finalColor*specular;
 }     

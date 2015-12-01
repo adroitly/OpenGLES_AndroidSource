@@ -1,60 +1,60 @@
 package com.bn.clp;
 import static com.bn.clp.Constant.*;
 
-//3DÎï¼þÊý¾ÝÀà
+//3Dç‰©ä»¶æ•°æ®ç±»
 public class TDObjectData
 {
-	//ÓÎÏ·ÖÐ3DÎïÌåµÄÏà¹ØÊý¾ÝÁÐ±í
+	//æ¸¸æˆä¸­3Dç‰©ä½“çš„ç›¸å…³æ•°æ®åˆ—è¡¨
 	static float[][] PART_LIST=new float[][]
     { 
-		//==================ÇÅ=======================
-		//==================ÇÅ=======================
-		{0,UNIT_SIZE*6f,WATER_HIGH_ADJUST,UNIT_SIZE*2f-15f,-90,2,6},//ÇÅ
-		{0,UNIT_SIZE*14f,WATER_HIGH_ADJUST,UNIT_SIZE*2f-15f,-90,2,14},//ÇÅ
-		{0,UNIT_SIZE*4f,WATER_HIGH_ADJUST,UNIT_SIZE*29f-15f,-90,29,4},//ÇÅ
-		{0,UNIT_SIZE*25f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*3f,0,3,25},//ÇÅ
-		{0,UNIT_SIZE*29f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*4f,0,4,29},//ÇÅ
-		{0,UNIT_SIZE*11f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*6f,0,6,11},//ÇÅ
-		{0,UNIT_SIZE*20f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*10f,0,10,20},//ÇÅ
-		{0,UNIT_SIZE*11f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*11f-20,0,11,11},//ÇÅ
-		{0,UNIT_SIZE*1f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*17f,0,17,1},//ÇÅ
-		{0,UNIT_SIZE*24f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*22f,0,22,24},//ÇÅ 
-		{0,UNIT_SIZE*15f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*25f,0,25,15},//ÇÅ
-		{0,UNIT_SIZE*24f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*27f,0,27,24},//ÇÅ			
-		{0,UNIT_SIZE*0f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*2f,0,2,0},//ÇÅ
-		{0,UNIT_SIZE*1f,WATER_HIGH_ADJUST,UNIT_SIZE*0f-15f,-90,0,1},//ÇÅ
+		//==================æ¡¥=======================
+		//==================æ¡¥=======================
+		{0,UNIT_SIZE*6f,WATER_HIGH_ADJUST,UNIT_SIZE*2f-15f,-90,2,6},//æ¡¥
+		{0,UNIT_SIZE*14f,WATER_HIGH_ADJUST,UNIT_SIZE*2f-15f,-90,2,14},//æ¡¥
+		{0,UNIT_SIZE*4f,WATER_HIGH_ADJUST,UNIT_SIZE*29f-15f,-90,29,4},//æ¡¥
+		{0,UNIT_SIZE*25f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*3f,0,3,25},//æ¡¥
+		{0,UNIT_SIZE*29f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*4f,0,4,29},//æ¡¥
+		{0,UNIT_SIZE*11f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*6f,0,6,11},//æ¡¥
+		{0,UNIT_SIZE*20f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*10f,0,10,20},//æ¡¥
+		{0,UNIT_SIZE*11f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*11f-20,0,11,11},//æ¡¥
+		{0,UNIT_SIZE*1f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*17f,0,17,1},//æ¡¥
+		{0,UNIT_SIZE*24f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*22f,0,22,24},//æ¡¥ 
+		{0,UNIT_SIZE*15f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*25f,0,25,15},//æ¡¥
+		{0,UNIT_SIZE*24f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*27f,0,27,24},//æ¡¥			
+		{0,UNIT_SIZE*0f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*2f,0,2,0},//æ¡¥
+		{0,UNIT_SIZE*1f,WATER_HIGH_ADJUST,UNIT_SIZE*0f-15f,-90,0,1},//æ¡¥
 
-		//ÐÂÌí¼ÓµÄÇÅµÄÊý¾Ý
-		//2-10 ºá
+		//æ–°æ·»åŠ çš„æ¡¥çš„æ•°æ®
+		//2-10 æ¨ª
 		{0,UNIT_SIZE*10f,WATER_HIGH_ADJUST,UNIT_SIZE*2f-15f,-90,2,10},
-		//13-14 ºá
+		//13-14 æ¨ª
 		{0,UNIT_SIZE*14f+15,WATER_HIGH_ADJUST,UNIT_SIZE*13f-15f,-90,13,14},
-		//13-18 ºá
+		//13-18 æ¨ª
 		{0,UNIT_SIZE*18f+15,WATER_HIGH_ADJUST,UNIT_SIZE*13f-15f,-90,13,18},
-		//5-20 Êú
+		//5-20 ç«–
 		{0,UNIT_SIZE*20f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*5f+15,0,5,20},
-		//13-25 Êú
+		//13-25 ç«–
 		{0,UNIT_SIZE*25f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*13f,0,13,25},
-		//18-25 Êú
+		//18-25 ç«–
 		{0,UNIT_SIZE*25f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*18f-15,0,18,25},
-		//20-12 ºá
+		//20-12 æ¨ª
 		{0,UNIT_SIZE*12f+15,WATER_HIGH_ADJUST,UNIT_SIZE*20f-15f,-90,20,12},
-		//24-2 Êú
+		//24-2 ç«–
 		{0,UNIT_SIZE*2f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*24f+20,0,24,2},
-		//24-1 Êú
+		//24-1 ç«–
 		{0,UNIT_SIZE*1f-15f,WATER_HIGH_ADJUST,UNIT_SIZE*24f,0,24,1},
-		//==================ÇÅ=======================		
+		//==================æ¡¥=======================		
 		
-		//=================ËíµÀ=======================
-		{1,UNIT_SIZE*2f,WATER_HIGH_ADJUST,0,-90,0,2},//ºá×ÅµÄ
+		//=================éš§é“=======================
+		{1,UNIT_SIZE*2f,WATER_HIGH_ADJUST,0,-90,0,2},//æ¨ªç€çš„
 		{1,UNIT_SIZE*26f,WATER_HIGH_ADJUST,UNIT_SIZE*8f,0,8,26},
 		{1,UNIT_SIZE*16f,WATER_HIGH_ADJUST,UNIT_SIZE*22f,0,22,16},
 		{1,UNIT_SIZE*17f,WATER_HIGH_ADJUST,UNIT_SIZE*28f,-90,28,17},
 		{1,UNIT_SIZE*2f,WATER_HIGH_ADJUST,UNIT_SIZE*10f,0,10,2},
-		//=================ËíµÀ=======================
+		//=================éš§é“=======================
 		
-		//==================É½=======================
-		{2,UNIT_SIZE*2f,LAND_MAX_HIGHEST-1,UNIT_SIZE+10,0,2,2},//É½
+		//==================å±±=======================
+		{2,UNIT_SIZE*2f,LAND_MAX_HIGHEST-1,UNIT_SIZE+10,0,2,2},//å±±
 		{2,UNIT_SIZE*5f,LAND_MAX_HIGHEST-1,UNIT_SIZE*0+10,0,0,5},
 		{2,UNIT_SIZE*3f,LAND_MAX_HIGHEST-1,UNIT_SIZE*2+10,0,2,3},
 		{2,UNIT_SIZE*8f,LAND_MAX_HIGHEST-1,UNIT_SIZE*4+10,0,4,8},
@@ -110,10 +110,10 @@ public class TDObjectData
 		{2,UNIT_SIZE*1f,LAND_MAX_HIGHEST-1,UNIT_SIZE*23+10,0,23,1},
 		{2,UNIT_SIZE*3f,LAND_MAX_HIGHEST-1,UNIT_SIZE*15+10,0,15,3},
 		{2,UNIT_SIZE*1f,LAND_MAX_HIGHEST-1,UNIT_SIZE*7+10,0,7,1},
-		//==================É½=======================
+		//==================å±±=======================
 		
-		//================°ëÑÂ×Ó=======================
-		{3,UNIT_SIZE*4-26f,WATER_HIGH_ADJUST,UNIT_SIZE*1,0,1,4},//°ëÑÂ×Ó
+		//================åŠå´–å­=======================
+		{3,UNIT_SIZE*4-26f,WATER_HIGH_ADJUST,UNIT_SIZE*1,0,1,4},//åŠå´–å­
 		{3,UNIT_SIZE*12f,WATER_HIGH_ADJUST,UNIT_SIZE*2-26f,-90,2,12},
 		{3,UNIT_SIZE*13f,WATER_HIGH_ADJUST,UNIT_SIZE*2-26f,-90,2,13},
 		{3,UNIT_SIZE*12f-26f,WATER_HIGH_ADJUST,UNIT_SIZE*8,0,8,12},
@@ -129,29 +129,29 @@ public class TDObjectData
 		{3,UNIT_SIZE*1f-26f,WATER_HIGH_ADJUST,UNIT_SIZE*20,0,20,1},		
 		{3,UNIT_SIZE*2f-26f,WATER_HIGH_ADJUST,UNIT_SIZE*6,0,6,2},		
 		{3,UNIT_SIZE*2f-26f,WATER_HIGH_ADJUST,UNIT_SIZE*9,0,9,2},
-		//2-5 Ö±µÀ0°ëÑÂ×Ó
+		//2-5 ç›´é“0åŠå´–å­
 		{3,UNIT_SIZE*5f,WATER_HIGH_ADJUST,UNIT_SIZE*2-26f,-90,2,5},
-		//3-15  Ö±µÀ1°ëÑÂ×Ó
-		{3,UNIT_SIZE*15-26f,WATER_HIGH_ADJUST,UNIT_SIZE*3,0,3,15},//°ëÑÂ×Ó
-		//10-11  Ö±µÀ1°ëÑÂ×Ó
-		{3,UNIT_SIZE*11-26f,WATER_HIGH_ADJUST,UNIT_SIZE*10,0,10,11},//°ëÑÂ×Ó
-		//5-22  Ö±µÀ0°ëÑÂ×Ó
+		//3-15  ç›´é“1åŠå´–å­
+		{3,UNIT_SIZE*15-26f,WATER_HIGH_ADJUST,UNIT_SIZE*3,0,3,15},//åŠå´–å­
+		//10-11  ç›´é“1åŠå´–å­
+		{3,UNIT_SIZE*11-26f,WATER_HIGH_ADJUST,UNIT_SIZE*10,0,10,11},//åŠå´–å­
+		//5-22  ç›´é“0åŠå´–å­
 		{3,UNIT_SIZE*22f,WATER_HIGH_ADJUST,UNIT_SIZE*5-26f,-90,5,22},
-		//4-25  Ö±µÀ1°ëÑÂ×Ó
+		//4-25  ç›´é“1åŠå´–å­
 		{3,UNIT_SIZE*25-26f,WATER_HIGH_ADJUST,UNIT_SIZE*4,0,4,25},		
-		//13-17Ö±µÀ0°ëÑÂ×Ó
+		//13-17ç›´é“0åŠå´–å­
 		{3,UNIT_SIZE*17f,WATER_HIGH_ADJUST,UNIT_SIZE*13-26f,-90,13,17},
-		//5-20Ö±µÀ1°ëÑÂ×Ó
+		//5-20ç›´é“1åŠå´–å­
 		{3,UNIT_SIZE*20-26f,WATER_HIGH_ADJUST,UNIT_SIZE*5,0,5,20},
-		//29-6Ö±µÀ1°ëÑÂ×Ó
+		//29-6ç›´é“1åŠå´–å­
 		{3,UNIT_SIZE*6-26f,WATER_HIGH_ADJUST,UNIT_SIZE*29,0,29,6},
 		
-		//0-0ÍäµÀ4 °ëÑÂ×Ó
+		//0-0å¼¯é“4 åŠå´–å­
 		{3,UNIT_SIZE*0f-10,WATER_HIGH_ADJUST,UNIT_SIZE*0-5,-45,0,0},
-		//0-4ÍäµÀ5°ëÑÂ×Ó
+		//0-4å¼¯é“5åŠå´–å­
 		{3,UNIT_SIZE*4+13f,WATER_HIGH_ADJUST,UNIT_SIZE*0-5,-150,0,4},
 		
-		//ÐÂÌí¼ÓµÄ·ÉÍ§=======================================================
+		//æ–°æ·»åŠ çš„é£žè‰‡=======================================================
 		//2-6
 		{4,UNIT_SIZE*6f,UNIT_SIZE-15,UNIT_SIZE*2,-60,2,6},
 		//2-11
@@ -197,8 +197,8 @@ public class TDObjectData
 		//7-3
 		{4,UNIT_SIZE*3f,UNIT_SIZE-15,UNIT_SIZE*7,-60,7,3},
 		
-		//¹ã¸æÅÆ×Ó 
-		//2-7 Êú×ÅµÄ
+		//å¹¿å‘Šç‰Œå­ 
+		//2-7 ç«–ç€çš„
 		{5,UNIT_SIZE*7f-20,LAND_MAX_HIGHEST-5,UNIT_SIZE*2+23,0,2,7},
 		//4-14
 		{5,UNIT_SIZE*14f-20,LAND_MAX_HIGHEST-5,UNIT_SIZE*4-23,0,4,14},
@@ -206,7 +206,7 @@ public class TDObjectData
 		{5,UNIT_SIZE*22f,LAND_MAX_HIGHEST-5,UNIT_SIZE*5-23,0,5,22},
 		//2-28
 		{5,UNIT_SIZE*28f,LAND_MAX_HIGHEST-5,UNIT_SIZE*2+23,0,2,28},
-		//14-25Êú×ÅµÄ1
+		//14-25ç«–ç€çš„1
 		{5,UNIT_SIZE*25f+23,LAND_MAX_HIGHEST-5,UNIT_SIZE*14,0,14,25},
 		//18-25
 		{5,UNIT_SIZE*25f-23,LAND_MAX_HIGHEST-5,UNIT_SIZE*18,0,18,25},
@@ -235,270 +235,270 @@ public class TDObjectData
 		//22-24
 		{5,UNIT_SIZE*24f+23,LAND_MAX_HIGHEST-5,UNIT_SIZE*22,0,22,24}, 
 		 
-		//ÐÂÌí¼ÓµÄ
-		//0-0      ÍäµÀ4Íâ²à 
+		//æ–°æ·»åŠ çš„
+		//0-0      å¼¯é“4å¤–ä¾§ 
 		{5,UNIT_SIZE*0f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*0-5,0,0,0},
-		//2-4      ÍäµÀ6Íâ²à
+		//2-4      å¼¯é“6å¤–ä¾§
 		{5,UNIT_SIZE*4f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*2+5,0,2,4},
-		//2-8      ÍäµÀ5Íâ²à
+		//2-8      å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*8f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*2-5,0,2,8},
-		//3-9      ÍäµÀ7Íâ²à
+		//3-9      å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*9f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*3+5,0,3,9},
-		//2-15      ÍäµÀ5Íâ²à
+		//2-15      å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*15f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*2-5,0,2,15},
-		//4-15     ÍäµÀ7ÄÚ²â
+		//4-15     å¼¯é“7å†…æµ‹
 		{5,UNIT_SIZE*15f-25,LAND_MAX_HIGHEST-8,UNIT_SIZE*4-25,0,4,15},
-		//14-16      ÍäµÀ7Íâ²à
+		//14-16      å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*16f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*14+5,0,14,16},
-		//12-20     ÍäµÀ7Íâ²à
+		//12-20     å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*20f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*12+5,0,12,20},
-		//7-21      ÍäµÀ5Íâ²à
+		//7-21      å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*21f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*7-5,0,7,21},
-		//4-21      ÍäµÀ5Íâ²à
+		//4-21      å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*21f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*4-5,0,4,21},
-		//5-25     ÍäµÀ7Íâ²à
+		//5-25     å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*25f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*5+5,0,5,25},
-		//2-29      ÍäµÀ5Íâ²à
+		//2-29      å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*29f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*2-5,0,2,29},
-		//6-28    ÍäµÀ7Íâ²à
+		//6-28    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*28f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*6+5,0,6,28},
-		//10-26      ÍäµÀ6Íâ²à
+		//10-26      å¼¯é“6å¤–ä¾§
 		{5,UNIT_SIZE*26f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*10+5,0,10,26},
-		//11-27    ÍäµÀ7Íâ²à
+		//11-27    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*27f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*11+5,0,11,27},
-		//15-25      ÍäµÀ6Íâ²à
+		//15-25      å¼¯é“6å¤–ä¾§
 		{5,UNIT_SIZE*25f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*15+5,0,15,25},
-		//17-26   ÍäµÀ7Íâ²à
+		//17-26   å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*26f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*17+5,0,17,26},
-		//23-26   ÍäµÀ7Íâ²à
+		//23-26   å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*26f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*23+5,0,23,26},
-		//21-25     ÍäµÀ5Íâ²à
+		//21-25     å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*25f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*21-5,0,21,25},
-		//26-25   ÍäµÀ7Íâ²à
+		//26-25   å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*25f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*26+5,0,26,25},
-		//29-24   ÍäµÀ7Íâ²à
+		//29-24   å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*24f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*29+5,0,29,24},
-		//28-23     ÍäµÀ5Íâ²à
+		//28-23     å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*23f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*28-5,0,28,23},
-		//28-21     ÍäµÀ5Íâ²à
+		//28-21     å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*21f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*28-5,0,28,21},
-		//29-19      ÍäµÀ6Íâ²à
+		//29-19      å¼¯é“6å¤–ä¾§
 		{5,UNIT_SIZE*19f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*29+5,0,29,19},
-		//24-16    ÍäµÀ7Íâ²à
+		//24-16    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*16f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*24+5,0,24,16},
-		//20-11      ÍäµÀ4Íâ²à
+		//20-11      å¼¯é“4å¤–ä¾§
 		{5,UNIT_SIZE*11f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*20-5,0,20,11},
-		//26-9     ÍäµÀ4Íâ²à
+		//26-9     å¼¯é“4å¤–ä¾§
 		{5,UNIT_SIZE*9f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*26-5,0,26,9},
-		//28-6     ÍäµÀ4Íâ²à
+		//28-6     å¼¯é“4å¤–ä¾§
 		{5,UNIT_SIZE*6f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*28-5,0,28,6},
-		//29-2      ÍäµÀ6Íâ²à
+		//29-2      å¼¯é“6å¤–ä¾§
 		{5,UNIT_SIZE*2f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*29+5,0,29,2},
-		//23-3    ÍäµÀ7Íâ²à
+		//23-3    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*3f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*23+5,0,23,3},
-		//21-1      ÍäµÀ6Íâ²à
+		//21-1      å¼¯é“6å¤–ä¾§
 		{5,UNIT_SIZE*1f-10,LAND_MAX_HIGHEST-8,UNIT_SIZE*21+5,0,21,1},
-		//19-2    ÍäµÀ7Íâ²à
+		//19-2    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*2f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*19+5,0,19,2},
-		//15-2    ÍäµÀ7Íâ²à
+		//15-2    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*2f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*15+5,0,15,2},
-		//8-3    ÍäµÀ7Íâ²à
+		//8-3    å¼¯é“7å¤–ä¾§
 		{5,UNIT_SIZE*3f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*8+5,0,8,3},
-		//3-2      ÍäµÀ5Íâ²à
+		//3-2      å¼¯é“5å¤–ä¾§
 		{5,UNIT_SIZE*2f+10,LAND_MAX_HIGHEST-8,UNIT_SIZE*3-5,0,3,2},
-		//ÐÂÌí¼ÓµÄ 
+		//æ–°æ·»åŠ çš„ 
 		
-		//´¬²ºÍ·
-		//2-5  ºá×ÅµÄ¡¢ÉÏ²à
+		//èˆ¹åŸ å¤´
+		//2-5  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*5f-21,0,UNIT_SIZE*2-15,90,2,5},
-		//2-6   ºá×ÅµÄ¡¢ÏÂ²à 
+		//2-6   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*6f-13,0,UNIT_SIZE*2+15,-90,2,6},
-		//2-10  ºá×ÅµÄ¡¢ÉÏ²à
+		//2-10  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*10f-19,0,UNIT_SIZE*2-15,90,2,10},
-		//2-12  ºá×ÅµÄ¡¢ÉÏ²à
+		//2-12  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*12f-21,0,UNIT_SIZE*2-15,90,2,12},
-		//2-13   ºá×ÅµÄ¡¢ÏÂ²à 
+		//2-13   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*13f-10,0,UNIT_SIZE*2+15,-90,2,13},
-		//2-14   ºá×ÅµÄ¡¢ÏÂ²à 
+		//2-14   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*14f-7,0,UNIT_SIZE*2+15,-90,2,14},
-		//3-15	Êú×ÅµÄ¡¢×ó²à
+		//3-15	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*15f-15,0,UNIT_SIZE*3,180,3,15},
 		{6,UNIT_SIZE*15f-15,0,UNIT_SIZE*3+3,180,3,15},
-		//4-13   ºá×ÅµÄ¡¢ÏÂ²à 
+		//4-13   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*13f-10,0,UNIT_SIZE*4+15,-90,4,13},
-		//5-11	Êú×ÅµÄ¡¢×ó²à
+		//5-11	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*11f-15,0,UNIT_SIZE*5,180,5,11},
-		//6-11	Êú×ÅµÄ¡¢ÓÒ²à
+		//6-11	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*11f+15,0,UNIT_SIZE*6,0,6,11},
-		//10-11	Êú×ÅµÄ¡¢×ó²à
+		//10-11	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*11f-15,0,UNIT_SIZE*10,180,10,11},
-		//12-11	Êú×ÅµÄ¡¢ÓÒ²à
+		//12-11	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*11f+15,0,UNIT_SIZE*12,0,12,11},
-		//13-17   ºá×ÅµÄ¡¢ÏÂ²à 
+		//13-17   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*17f-7,0,UNIT_SIZE*13+15,-90,13,17},
-		//10-20	Êú×ÅµÄ¡¢ÓÒ²à
+		//10-20	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*20f+15,0,UNIT_SIZE*10,0,10,20},
-		//8-21	Êú×ÅµÄ¡¢ÓÒ²à
+		//8-21	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*21f+15,0,UNIT_SIZE*8,0,8,21},
-		//5-20	Êú×ÅµÄ¡¢ÓÒ²à
+		//5-20	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*20f+15,0,UNIT_SIZE*5,0,5,20},
-		//5-22  ºá×ÅµÄ¡¢ÉÏ²à
+		//5-22  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*22f-7,0,UNIT_SIZE*5-15,90,5,22},
-		//5-23   ºá×ÅµÄ¡¢ÏÂ²à 
+		//5-23   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*23f-7,0,UNIT_SIZE*5+15,-90,5,23},
-		//5-24   ºá×ÅµÄ¡¢ÏÂ²à 
+		//5-24   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*24f-7,0,UNIT_SIZE*5+15,-90,5,24},
-		//2-26  ºá×ÅµÄ¡¢ÉÏ²à
+		//2-26  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*26f-7,0,UNIT_SIZE*2-15,90,2,26},
-		//2-27   ºá×ÅµÄ¡¢ÏÂ²à 
+		//2-27   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*27f-7,0,UNIT_SIZE*2+15,-90,2,27},
-		//2-28   ºá×ÅµÄ¡¢ÏÂ²à 
+		//2-28   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*28f-7,0,UNIT_SIZE*2+15,-90,2,28},
-		//3-29	Êú×ÅµÄ¡¢×ó²à
+		//3-29	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*29f-15,0,UNIT_SIZE*3,180,3,29},
-		//6-27   ºá×ÅµÄ¡¢ÏÂ²à 
+		//6-27   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*27f-7,0,UNIT_SIZE*6+15,-90,6,27},
-		//7-26	Êú×ÅµÄ¡¢×ó²à
+		//7-26	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*26f-15,0,UNIT_SIZE*7,180,7,26},
-		//9-26	Êú×ÅµÄ¡¢ÓÒ²à
+		//9-26	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*26f+15,0,UNIT_SIZE*9,0,9,26},
-		//13-25	Êú×ÅµÄ¡¢ÓÒ²à
+		//13-25	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*25f+15,0,UNIT_SIZE*13,0,13,25},
-		//16-26	Êú×ÅµÄ¡¢ÓÒ²à
+		//16-26	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*26f+15,0,UNIT_SIZE*16,0,16,26},
-		//21-26	Êú×ÅµÄ¡¢ÓÒ²à
+		//21-26	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*26f+15,0,UNIT_SIZE*21,0,21,26},
-		//22-25	Êú×ÅµÄ¡¢×ó²à
+		//22-25	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*25f-15,0,UNIT_SIZE*22,180,22,25},
-		//24-24	Êú×ÅµÄ¡¢×ó²à
+		//24-24	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*24f-15,0,UNIT_SIZE*24+3,180,24,24},
-		//24-28	Êú×ÅµÄ¡¢×ó²à
+		//24-28	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*28f-15,0,UNIT_SIZE*24,180,24,28},
-		//28-16  ºá×ÅµÄ¡¢ÉÏ²à
+		//28-16  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*16f-7,0,UNIT_SIZE*28-15,90,28,16},
-		//28-18   ºá×ÅµÄ¡¢ÏÂ²à 
+		//28-18   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*18f-7,0,UNIT_SIZE*28+15,-90,28,18},
-		//25-15	Êú×ÅµÄ¡¢ÓÒ²à
+		//25-15	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*15f+15,0,UNIT_SIZE*25,0,25,15},
-		//26-15	Êú×ÅµÄ¡¢×ó²à
+		//26-15	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*15f-15,0,UNIT_SIZE*26,180,26,15},
-		//23-16	Êú×ÅµÄ¡¢ÓÒ²à
+		//23-16	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*16f+15,0,UNIT_SIZE*23,0,23,16},
-		//21-16	Êú×ÅµÄ¡¢×ó²à
+		//21-16	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*16f-15,0,UNIT_SIZE*21,180,21,16},
-		//20-15  ºá×ÅµÄ¡¢ÉÏ²à
+		//20-15  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*15f-7,0,UNIT_SIZE*20-15,90,20,15},
-		//20-14   ºá×ÅµÄ¡¢ÏÂ²à 
+		//20-14   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*14f-7,0,UNIT_SIZE*20+15,-90,20,14},
-		//21-11	Êú×ÅµÄ¡¢ÓÒ²à
+		//21-11	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*11f+15,0,UNIT_SIZE*21,0,21,11},
-		//22-11	Êú×ÅµÄ¡¢ÓÒ²à
+		//22-11	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*11f+15,0,UNIT_SIZE*22,0,22,11},
-		//24-10	Êú×ÅµÄ¡¢ÓÒ²à
+		//24-10	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*10f+15,0,UNIT_SIZE*24,0,24,10},
-		//25-10	Êú×ÅµÄ¡¢ÓÒ²à
+		//25-10	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*10f+15,0,UNIT_SIZE*25,0,25,10},
-		//29-3  ºá×ÅµÄ¡¢ÉÏ²à
+		//29-3  æ¨ªç€çš„ã€ä¸Šä¾§
 		{6,UNIT_SIZE*3f-7,0,UNIT_SIZE*29-15,90,29,3},
-		//29-4   ºá×ÅµÄ¡¢ÏÂ²à 
+		//29-4   æ¨ªç€çš„ã€ä¸‹ä¾§ 
 		{6,UNIT_SIZE*4f-10,0,UNIT_SIZE*29+15,-90,29,4},
-		//16-1	Êú×ÅµÄ¡¢ÓÒ²à
+		//16-1	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*1f+15,0,UNIT_SIZE*16,0,16,1},
-		//17-1	Êú×ÅµÄ¡¢ÓÒ²à
+		//17-1	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*1f+15,0,UNIT_SIZE*17,0,22,1},
-		//11-2	Êú×ÅµÄ¡¢ÓÒ²à
+		//11-2	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*2f+15,0,UNIT_SIZE*11,0,11,2},
-		//21-16	Êú×ÅµÄ¡¢×ó²à
+		//21-16	ç«–ç€çš„ã€å·¦ä¾§
 		{6,UNIT_SIZE*2f-15,0,UNIT_SIZE*9,180,9,2},
-		//5-2	Êú×ÅµÄ¡¢ÓÒ²à
+		//5-2	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*2f+15,0,UNIT_SIZE*5,0,5,2},
-		//6-2	Êú×ÅµÄ¡¢ÓÒ²à
+		//6-2	ç«–ç€çš„ã€å³ä¾§
 		{6,UNIT_SIZE*2f+15,0,UNIT_SIZE*6,0,6,2},
-		//ÐÂÌí¼ÓµÄ£¬´¬²ºÍ·
+		//æ–°æ·»åŠ çš„ï¼Œèˆ¹åŸ å¤´
 		
-		//³Ç±¤Êý¾Ý
-		//2-7  ºá
+		//åŸŽå ¡æ•°æ®
+		//2-7  æ¨ª
 		{7,UNIT_SIZE*7f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*2-35,0,2,7},
-		//2-11  ºá
+		//2-11  æ¨ª
 		{7,UNIT_SIZE*11f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*2-35,0,2,11},
-		//2-13  ºá
+		//2-13  æ¨ª
 		{7,UNIT_SIZE*13f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*2-35,0,2,13},
-		//3-15  ÊúµÀ
+		//3-15  ç«–é“
 		{7,UNIT_SIZE*15f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*3,0,3,15},
-		//4-13  ºá
+		//4-13  æ¨ª
 		{7,UNIT_SIZE*13f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*4-35,0,4,13},
-		//12-12  ÍäµÀ4
+		//12-12  å¼¯é“4
 		{7,UNIT_SIZE*12f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*12-17,0,12,12},
-		//14-16  ÍäµÀ7
+		//14-16  å¼¯é“7
 		{7,UNIT_SIZE*16f+17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*14+17,0,14,16},
-		//10-20  ÊúÖ±
+		//10-20  ç«–ç›´
 		{7,UNIT_SIZE*20f+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*10,0,10,20},
-		//9-20  ÍäµÀ4
+		//9-20  å¼¯é“4
 		{7,UNIT_SIZE*20f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*9-17,0,9,20},
-		//8-21  ÊúÖ±
+		//8-21  ç«–ç›´
 		{7,UNIT_SIZE*21f+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*8,0,8,21},
-		//4-21 ÍäµÀ5
+		//4-21 å¼¯é“5
 		{7,UNIT_SIZE*21f+17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*4-17,0,4,21},
-		//5-22  ºáµÀ
+		//5-22  æ¨ªé“
 		{7,UNIT_SIZE*22f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*5-35,0,5,22},
-		//5-24  ºáµÀ
+		//5-24  æ¨ªé“
 		{7,UNIT_SIZE*24f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*5-35,0,5,24},
-		//2-26  ºáµÀ
+		//2-26  æ¨ªé“
 		{7,UNIT_SIZE*26f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*2-35,0,2,26},
-		//2-28  ºáµÀ
+		//2-28  æ¨ªé“
 		{7,UNIT_SIZE*28f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*2-35,0,2,28},
-		//6-27  ºáµÀ
+		//6-27  æ¨ªé“
 		{7,UNIT_SIZE*27f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*6-35,0,6,27},
-		//7-26  ÊúÖ±
+		//7-26  ç«–ç›´
 		{7,UNIT_SIZE*26f+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*7,0,7,26},
-		//9-26  ÊúÖ±
+		//9-26  ç«–ç›´
 		{7,UNIT_SIZE*26f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*9,0,9,26},
-		//15-26 ÍäµÀ5
+		//15-26 å¼¯é“5
 		{7,UNIT_SIZE*26f+17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*15-17,0,15,26},
-		//17-25  ÍäµÀ4
+		//17-25  å¼¯é“4
 		{7,UNIT_SIZE*25f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*17-17,0,17,25},
-		//20-26  ÊúÖ±
+		//20-26  ç«–ç›´
 		{7,UNIT_SIZE*26f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*20,0,20,26},
-		//21-24  ÍäµÀ4
+		//21-24  å¼¯é“4
 		{7,UNIT_SIZE*24f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*21-17,0,21,24},
-		//21-26  ÊúÖ±
+		//21-26  ç«–ç›´
 		{7,UNIT_SIZE*26f+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*21,0,21,26},
-		//23-24  ÊúÖ±
+		//23-24  ç«–ç›´
 		{7,UNIT_SIZE*24f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*23,0,23,24},
-		//24-24  ÊúÖ±
+		//24-24  ç«–ç›´
 		{7,UNIT_SIZE*24f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*24,0,24,24},
-		//26-24  ÍäµÀ4
+		//26-24  å¼¯é“4
 		{7,UNIT_SIZE*24f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*26-17,0,26,24},
-		//27-24  ÊúÖ±
+		//27-24  ç«–ç›´
 		{7,UNIT_SIZE*24f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*27,0,27,24},
-		//28-22  ÍäµÀ4
+		//28-22  å¼¯é“4
 		{7,UNIT_SIZE*22f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*28-17,0,28,22},
-		//29-20  ÍäµÀ7
+		//29-20  å¼¯é“7
 		{7,UNIT_SIZE*20f+17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*29+17,0,29,20},
-		//24-15  ÍäµÀ4
+		//24-15  å¼¯é“4
 		{7,UNIT_SIZE*15f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*24-17,0,24,15},
-		//20-14  ºáµÀ
+		//20-14  æ¨ªé“
 		{7,UNIT_SIZE*14f,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*20-35,0,20,14},
-		//24-10  ÊúÖ±
+		//24-10  ç«–ç›´
 		{7,UNIT_SIZE*10f-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*24,0,24,10},
-		//28-6  ÍäµÀ4
+		//28-6  å¼¯é“4
 		{7,UNIT_SIZE*6f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*28-17,0,28,6},
-		//30-6  ÍäµÀ7
+		//30-6  å¼¯é“7
 		{7,UNIT_SIZE*6f+17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*30+17,0,30,6},
-		//27-1 ÊúÖ±
+		//27-1 ç«–ç›´
 		{7,UNIT_SIZE*1-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*27,0,27,1},
-		//24-2 ÊúÖ±
+		//24-2 ç«–ç›´
 		{7,UNIT_SIZE*2+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*24,0,24,2},
-		//20-1 ÊúÖ±
+		//20-1 ç«–ç›´
 		{7,UNIT_SIZE*1-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*20,0,20,1},
-		//17-2 ÊúÖ±
+		//17-2 ç«–ç›´
 		{7,UNIT_SIZE*2+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*17,0,17,2},
-		//13-1 ÍäµÀ4
+		//13-1 å¼¯é“4
 		{7,UNIT_SIZE*1f-17,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*13-17,0,13,1},
-		//12-2 ÊúÖ±
+		//12-2 ç«–ç›´
 		{7,UNIT_SIZE*2+35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*12,0,12,2},
-		//2-0ÊúÖ±
+		//2-0ç«–ç›´
 		{7,UNIT_SIZE*0-35,LAND_MAX_HIGHEST+0.4f,UNIT_SIZE*2,0,2,0},
-		//ÐÂÌí¼ÓµÄ£¬³Ç±¤
+		//æ–°æ·»åŠ çš„ï¼ŒåŸŽå ¡
     };	
 }
