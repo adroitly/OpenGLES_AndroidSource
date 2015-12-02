@@ -1,0 +1,144 @@
+<html>
+	<head>
+  <title>Spinning WebGL Box</title>
+	<script type="text/javascript" src="js/Matrix.js"></script>
+	<script type="text/javascript" src="js/MatrixState.js"></script>	
+	<script type="text/javascript" src="js/GLUtil.js"></script>
+	<script type="text/javascript" src="js/ObjObject.js"></script>
+	<script type="text/javascript" src="js/ch.js"></script>
+	
+	<script id="vshader" type="x-shader/x-vertex">
+	    uniform mat4 uMVPMatrix;
+	    attribute vec4 aPosition;
+	    varying vec3 vPosition;  //顶点位置
+	
+	    void main()
+	    {
+	        gl_Position = uMVPMatrix * aPosition;
+	        vPosition=aPosition.xyz;
+	    }
+	</script>
+	
+	<script id="fshader" type="x-shader/x-fragment">
+	    precision mediump float;	
+	    varying vec3 vPosition;  //顶点位置
+	
+	    void main()
+	    {
+	           vec4 bColor=vec4(0.678,0.231,0.129,1.0);//砖块的颜色
+					   vec4 mColor=vec4(0.763,0.657,0.614,1.0);//间隔的颜色
+					   float y=vPosition.y;
+					   y=mod((y+100.0)*4.0,4.0);
+					   if(y>1.8) 
+					   {
+					     gl_FragColor = bColor;//给此片元颜色值
+					   } 
+					   else 
+					   {
+					     gl_FragColor = mColor;//给此片元颜色值
+					   }
+	    }
+	</script>
+
+	<script>
+	    //GLES上下文
+	    var gl;
+	    //变换矩阵管理类对象
+	    var ms=new MatrixState();
+	    //要绘制的3D物体
+	    var ooTri;
+	    //初始化的方法
+	    function start()
+	    {    		        
+	        //获取GLES上下文
+	        gl = initWebGLCanvas("bncanvas");
+	        if (!gl) 
+	        {
+	        	 alert("创建GLES上下文失败!");
+	           return;
+	        }    
+	        //初始化3D画布参数
+	        var canvas = document.getElementById('bncanvas');
+
+	
+	        //设置视口
+	        gl.viewport(0, 0, canvas.width, canvas.height);
+	        //设置屏幕背景色RGBA
+	        gl.clearColor(0.0,0.0,0.0,1.0);  
+	        //初始化变换矩阵
+	        ms.setInitStack();
+	        //设置摄像机
+	        ms.setCamera(0,0,15,0,0,-1,0,1,0);
+	        //设置投影
+	        ms.setProjectFrustum(-1.5,1.5,-1,1,1,100);
+	        
+	
+	        //创建绘制用的物体
+          ooTri=new ObjObject(
+          gl,
+          vertexDataFromObj);       
+	        
+	        //初始化旋转角度
+	        currentAngle = 0;
+	        //初始化角度步进
+	        incAngle = 0.5;
+	        
+	        //绘制画面
+	        setInterval("drawFrame();",1);
+	    }
+	    
+	    //绘制一帧画面的方法
+	    function drawFrame()
+	    {	        
+	        //清除着色缓冲与深度缓冲
+	        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);  
+	        
+	        //保护现场
+	        ms.pushMatrix(); 
+	        //平移
+	        ms.translate(0,0,-20);
+	        //旋转
+	        ms.rotate(currentAngle,0,1,0);
+          //绘制物体
+          ooTri.drawSelf(ms);
+          //恢复现场
+          ms.popMatrix();
+          
+          //保护现场
+	        ms.pushMatrix(); 
+	        //平移
+	        ms.translate(-20,0,-20);
+	        //旋转
+	        ms.rotate(45,1,0,0);
+	        ms.rotate(currentAngle,0,1,0);
+          //绘制物体
+          ooTri.drawSelf(ms);
+          //回复现场
+          ms.popMatrix();
+          
+          //保护现场
+	        ms.pushMatrix(); 
+	        //平移
+	        ms.translate(20,0,-20);
+	        //旋转
+	        ms.rotate(-45,1,0,0);
+	        ms.rotate(currentAngle,0,1,0);
+          //绘制物体
+          ooTri.drawSelf(ms);
+          //回复现场
+          ms.popMatrix();
+          
+          //修改旋转角度
+	        currentAngle += incAngle;
+	        if (currentAngle > 360)
+	            currentAngle -= 360;            
+	    }   
+	</script>
+</head>
+
+<body onload="start();">
+	<canvas height="800" width="1200" id="bncanvas">
+	    若看到这个文字，说明浏览器不支持WebGL!
+	</canvas>
+</body>
+</html>

@@ -1,0 +1,116 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (classFileParser.cpp:3470), pid=4672, tid=4920
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 7.0_01-b08
+# Java VM: Java HotSpot(TM) Client VM (21.1-b02 mixed mode windows-x86 )
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x028c9c00):  JavaThread "Unknown thread" [_thread_in_vm, id=4920, stack(0x00300000,0x00350000)]
+
+Stack: [0x00300000,0x00350000],  sp=0x0034f128,  free space=316k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x1630e1]
+V  [jvm.dll+0x15dcfb]
+V  [jvm.dll+0x18e37]
+V  [jvm.dll+0x1a6a8]
+V  [jvm.dll+0x2a42f]
+V  [jvm.dll+0x2b818]
+V  [jvm.dll+0x2bedb]
+V  [jvm.dll+0x2bf2a]
+V  [jvm.dll+0x2c07d]
+V  [jvm.dll+0x2c15a]
+V  [jvm.dll+0x2c3d7]
+V  [jvm.dll+0x73cb1]
+V  [jvm.dll+0x7406b]
+V  [jvm.dll+0x121a7c]
+V  [jvm.dll+0x14382a]
+V  [jvm.dll+0xa2940]
+C  [javaw.exe+0x1359]
+C  [javaw.exe+0x1dc9]
+C  [javaw.exe+0xa0cb]
+C  [javaw.exe+0xa155]
+C  [kernel32.dll+0x133aa]  BaseThreadInitThunk+0x12
+C  [ntdll.dll+0x39ef2]  RtlInitializeExceptionChain+0x63
+C  [ntdll.dll+0x39ec5]  RtlInitializeExceptionChain+0x36
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x028c9c00 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=4920, stack(0x00300000,0x00350000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+0x00160000 - 0x0018f000 	G:\jdk1.7\bin\javaw.exe
+0x777b0000 - 0x77930000 	C:\Windows\SysWOW64\ntdll.dll
+0x76d50000 - 0x76e60000 	C:\Windows\syswow64\kernel32.dll
+0x76660000 - 0x766a7000 	C:\Windows\syswow64\KERNELBASE.dll
+0x75eb0000 - 0x75f50000 	C:\Windows\syswow64\ADVAPI32.dll
+0x767c0000 - 0x7686c000 	C:\Windows\syswow64\msvcrt.dll
+0x75e30000 - 0x75e49000 	C:\Windows\SysWOW64\sechost.dll
+0x76510000 - 0x76600000 	C:\Windows\syswow64\RPCRT4.dll
+0x74da0000 - 0x74e00000 	C:\Windows\syswow64\SspiCli.dll
+0x74d90000 - 0x74d9c000 	C:\Windows\syswow64\CRYPTBASE.dll
+0x75d30000 - 0x75e30000 	C:\Windows\syswow64\USER32.dll
+0x75ca0000 - 0x75d30000 	C:\Windows\syswow64\GDI32.dll
+0x76870000 - 0x7687a000 	C:\Windows\syswow64\LPK.dll
+0x75c00000 - 0x75c9d000 	C:\Windows\syswow64\USP10.dll
+0x726d0000 - 0x7286e000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_41e6975e2bd6f2b2\COMCTL32.dll
+0x76880000 - 0x768d7000 	C:\Windows\syswow64\SHLWAPI.dll
+0x75e50000 - 0x75eb0000 	C:\Windows\system32\IMM32.DLL
+0x75a70000 - 0x75b3c000 	C:\Windows\syswow64\MSCTF.dll
+0x72c60000 - 0x72c95000 	C:\Windows\SysWOW64\nvinit.dll
+0x68cf0000 - 0x68dae000 	G:\jdk1.7\jre\bin\msvcr100.dll
+0x6db10000 - 0x6de31000 	G:\jdk1.7\jre\bin\client\jvm.dll
+0x72c50000 - 0x72c57000 	C:\Windows\system32\WSOCK32.dll
+0x75f90000 - 0x75fc5000 	C:\Windows\syswow64\WS2_32.dll
+0x77780000 - 0x77786000 	C:\Windows\syswow64\NSI.dll
+0x75f50000 - 0x75f82000 	C:\Windows\syswow64\WINMM.dll
+0x75a60000 - 0x75a65000 	C:\Windows\syswow64\PSAPI.DLL
+0x73de0000 - 0x73dec000 	G:\jdk1.7\jre\bin\verify.dll
+0x73dc0000 - 0x73de0000 	G:\jdk1.7\jre\bin\java.dll
+0x71d20000 - 0x71d33000 	G:\jdk1.7\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=GBK -Xbootclasspath:G:\sdk\platforms\android-8\android.jar 
+java_command: com.bn.zqt.util.ZQTEdgeUtil
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=G:\jdk1.7
+CLASSPATH=.;G:\jdk1.7\lib\;G:\jdk1.7\lib\tools.jar;
+PATH=G:/jdk1.7/bin/../jre/bin/client;G:/jdk1.7/bin/../jre/bin;G:/jdk1.7/bin/../jre/lib/i386;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;G:\jdk1.7\bin;;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files (x86)\Common Files\Autodesk Shared\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;G:\eclipse;
+USERNAME=Administrator
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 4028780k(2180280k free), swap 8055700k(6042528k free)
+
+vm_info: Java HotSpot(TM) Client VM (21.1-b02) for windows-x86 JRE (1.7.0_01-b08), built on Oct  3 2011 02:11:36 by "java_re" with unknown MS VC++:1600
+
+time: Mon Apr 15 18:08:08 2013
+elapsed time: 0 seconds
+
